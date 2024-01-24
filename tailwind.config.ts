@@ -36,6 +36,9 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        onboard: 'url(../../public/png/onbording.png)',
+        gradient:
+          'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
       colors: {
         primary100: '#4F9E4F',
@@ -55,8 +58,8 @@ const config: Config = {
       },
     },
     screens: {
-      mobile: { min: '320px', max: '767px' },
-      tablet: { min: '768px', max: '1199px' },
+      mobile: '320px',
+      tablet: '768px',
       desktop: '1200px',
     },
     fontFamily: {
@@ -71,68 +74,94 @@ const config: Config = {
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.48),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
         '.font-h3': {
           fontSize: pxToRem(28),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.28),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
-        '.font-title2': {
+        '.font-title1': {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.24),
+          fontFamily: 'Pretendard',
         },
-        '.font-title2-bold': {
+        '.font-title1-bold': {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.24),
           fontWeight: '700',
+          fontFamily: 'Pretendard',
         },
-        '.font-title2-semibold': {
+        '.font-title1-semibold': {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.48),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+        '.font-title2-bold': {
+          fontSize: pxToRem(24),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.48),
+          fontWeight: '700',
+          fontFamily: 'Pretendard',
         },
         '.font-title3-bold': {
           fontSize: pxToRem(20),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.2),
           fontWeight: '700',
+          fontFamily: 'Pretendard',
         },
         '.font-title3-semibold': {
           fontSize: pxToRem(20),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.2),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
         '.font-body1': {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
+          fontFamily: 'Pretendard',
         },
         '.font-body1-medium': {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
         '.font-body2': {
           fontSize: pxToRem(16),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.16),
+          fontFamily: 'Pretendard',
         },
         '.font-body2-semibold': {
           fontSize: pxToRem(16),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.16),
           fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
         '.font-caption1': {
           fontSize: pxToRem(14),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.14),
+          fontFamily: 'Pretendard',
+        },
+        '.font-caption1-semibold': {
+          fontSize: pxToRem(14),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.14),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
         },
       };
 
