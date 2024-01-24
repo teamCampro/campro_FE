@@ -1,6 +1,9 @@
+import Header from '../_components/Header';
+
 export default function Home() {
   return (
     <>
+      <Header />
       <div className='px-4 py-2 sm:px-8 sm:py-3 tablet:text-red flex-center bg-primary100 text-white mobile:text-black'>
         하나
       </div>
