@@ -1,18 +1,69 @@
-import { Button } from '@/app/_components';
+'use client';
+
 import Image from 'next/image';
 import Tent from '@/../public/png/tent.gif';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Pagination } from '@/src/app/_components';
+import usePagination from '@/hooks/usePagination';
+import OnboardingList from '../../_components/OnboardingList';
+
+export interface OnboardingType {
+  id: number;
+  question: string;
+  choices: ChoicesType[];
+}
+
+export interface ChoicesType {
+  id: number;
+  text: string;
+}
 
 function Question() {
-  const isSubmmiting = false;
+  const [isAnswering, setIsAnswering] = useState(true);
+  const [tagState, setTagState] = useState<string[]>([]);
+
+  const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
+    usePagination({});
+  const [mockData, setMockData] = useState<OnboardingType[]>([]);
+
+  const onSubmitOnboard = () => setIsAnswering(false);
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await axios.get<OnboardingType[]>(
+          '/data/onboardingMockData.json',
+        );
+        setMockData(response.data);
+        updateTotalItems(response.data.length);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetch();
+  }, []);
+
+  const handleClickChoices = (text: string) => {
+    updateCurrentPage(currentPage + 1);
+    setTagState((prev) => [...prev, text]);
+  };
 
   return (
-    <div className='flex-center flex-col pt-108pxr'>
-      {isSubmmiting ? (
-        <div className='flex-center flex-col gap-40pxr'>
-          <h4 className='text-gray900 font-title1-bold'>
-            어느 환경을 더 좋아하시나요?
-          </h4>
-          <Button type='round'>지구</Button>
+    <div className='flex-center pt-108pxr'>
+      {isAnswering ? (
+        <div className='flex-center flex-col gap-48pxr'>
+          <Pagination
+            currentPage={currentPage}
+            totalItems={totalItems}
+            onUpdatePage={updateCurrentPage}
+          />
+          <OnboardingList
+            mockData={mockData}
+            currentPage={currentPage}
+            onClickChoices={handleClickChoices}
+            onSubmitOnboard={onSubmitOnboard}
+          />
         </div>
       ) : (
         <div className='flex-center flex-col '>

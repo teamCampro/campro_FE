@@ -1,4 +1,5 @@
-import { Button } from '@/app/_components';
+import Button from '@/components/Button';
+import Link from 'next/link';
 
 function page() {
   return (
@@ -12,7 +13,9 @@ function page() {
             캠퍼 테스트로 나에게 맞는 캠핑장을 알 수 있어요
           </h4>
         </div>
-        <Button type='circle'>테스트 시작하기</Button>
+        <Link href={'/onboard/question'} passHref>
+          <Button type='circle'>테스트 시작하기</Button>
+        </Link>
       </div>
     </div>
   );
