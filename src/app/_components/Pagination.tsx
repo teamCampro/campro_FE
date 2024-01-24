@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import ArrowLeft from '../../../public/svgs/ArrowLeft.svg';
 import ArrowLeftGray from '../../../public/svgs/ArrowLeftGray.svg';
 
