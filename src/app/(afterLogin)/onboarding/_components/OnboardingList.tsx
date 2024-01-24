@@ -1,5 +1,5 @@
 import { OnboardingType } from '../page';
-import OnBoardingItem from './OnBoardingItem';
+import OnboardingItem from './OnboardingItem';
 
 interface Props {
   mockData: OnboardingType[];
@@ -14,7 +14,7 @@ function OnboardingList({ mockData, currentPage, onClickChoices }: Props) {
         <li key={value.id}>
           <h1>{value.question}</h1>
           <div className='flex flex-col'>
-            <OnBoardingItem items={value} onClickChoices={onClickChoices} />
+            <OnboardingItem items={value} onClickChoices={onClickChoices} />
           </div>
         </li>
       ))}

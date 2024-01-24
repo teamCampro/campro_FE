@@ -6,7 +6,7 @@ interface Props {
   onClickChoices: () => void;
 }
 
-function OnBoardingItem({ items, onClickChoices }: Props) {
+function OnboardingItem({ items, onClickChoices }: Props) {
   return items.choices.map((choice) => (
     <button onClick={onClickChoices} key={choice.id}>
       {choice.text}
@@ -14,4 +14,4 @@ function OnBoardingItem({ items, onClickChoices }: Props) {
   ));
 }
 
-export default OnBoardingItem;
+export default OnboardingItem;
