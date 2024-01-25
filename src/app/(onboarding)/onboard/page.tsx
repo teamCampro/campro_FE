@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function page() {
   return (
-    <div className='max-w-1920pxr flex-1 justify-center bg-onboard bg-cover bg-center bg-no-repeat pt-65pxr mobile:flex tablet:pt-201pxr'>
+    <div className='custom-height mobile:custom-height-m  justify-center bg-gray100 bg-onboard bg-cover bg-center bg-no-repeat pt-65pxr mobile:flex tablet:pt-201pxr'>
       <div className='flex flex-col items-center gap-108pxr'>
         <div className='flex-center flex-col gap-12pxr'>
           <h2 className='text-white font-title1-semibold tablet:font-h1'>

@@ -123,6 +123,20 @@ body {
   }
 }
 
+.custom-header {
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+@media (max-width: 767px) {
+  .custom-header {
+    grid-template-columns: 1fr 7fr 1fr;
+  }
+}
+
+.custom-header-logo {
+  grid-column: 2/ 3;
+}
+
 @layer components {
   .button-circle {
     @apply rounded-full bg-primary100 px-48pxr py-16pxr text-center text-white font-title3-semibold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:px-64pxr tablet:py-28pxr tablet:font-title1-semibold;

@@ -168,13 +168,13 @@ const config: Config = {
         '.font-caption2': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontFamily: 'Pretendard',
         },
         '.font-caption2-semibold': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
