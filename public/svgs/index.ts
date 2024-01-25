@@ -1,0 +1,12 @@
+export { default as IconComming } from './comming.svg';
+export { default as IconPeople } from './people.svg';
+export { default as IconArrowLeft } from './ArrowLeft.svg';
+export { default as IconArrowLeftGray } from './ArrowLeftGray.svg';
+export { default as IconCalendar } from './calendar.svg';
+export { default as IconGlamping } from './glamping.svg';
+export { default as IconLike } from './like.svg';
+export { default as IconLocation } from './location.svg';
+export { default as IconMinus } from './minus.svg';
+export { default as IconPlus } from './plus.svg';
+export { default as IconSearch } from './search.svg';
+export { default as IconTent } from './tent.svg';

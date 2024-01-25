@@ -1,6 +1,4 @@
-import React from 'react';
-import ArrowLeft from '../../../public/svgs/ArrowLeft.svg';
-import ArrowLeftGray from '../../../public/svgs/ArrowLeftGray.svg';
+import { IconArrowLeft, IconArrowLeftGray } from '@/public/svgs';
 
 interface Props {
   currentPage: number;
@@ -13,11 +11,11 @@ function Pagination({ currentPage, totalItems, onUpdatePage }: Props) {
     <div className='flex w-103pxr items-center gap-16pxr'>
       {currentPage > 1 ? (
         <button type='button' onClick={() => onUpdatePage(currentPage - 1)}>
-          <ArrowLeft />
+          <IconArrowLeft />
         </button>
       ) : (
         <button disabled>
-          <ArrowLeftGray />
+          <IconArrowLeftGray />
         </button>
       )}
       <p className='pr-10pxr'>
