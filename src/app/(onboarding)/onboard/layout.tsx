@@ -1,5 +1,5 @@
-import OnBoardingHeader from '../_components/OnBoardingHeader';
 import { LayoutType } from '../../_types';
+import OnBoardingHeader from '../_components/OnBoardingHeader';
 
 function Layout({ children }: LayoutType) {
   return (
