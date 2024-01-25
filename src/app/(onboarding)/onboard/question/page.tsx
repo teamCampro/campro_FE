@@ -68,7 +68,7 @@ function Question() {
       ) : (
         <div className='flex-center flex-col '>
           <div className='flex-center flex-col gap-64pxr tablet:gap-12pxr'>
-            <h3 className='text-gray900 font-title1-semibold tablet:font-h3'>
+            <h3 className='text-black font-title1-semibold tablet:font-h3'>
               캠핑 스타일을 분석 중이에요
             </h3>
             <p className='text-gray600 font-body2'>

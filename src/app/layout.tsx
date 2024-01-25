@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import ReactQueryProviders from './_utils/ReactQueryProviders';
 import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
-import { Header } from './_components';
 
 export const metadata: Metadata = {
   title: 'CamPro',
@@ -18,10 +17,7 @@ export default function RootLayout({
     <html lang='ko'>
       <ReduxProvider>
         <ReactQueryProviders>
-          <body className='font-pre'>
-            <Header />
-            {children}
-          </body>
+          <body className='font-pre'>{children}</body>
         </ReactQueryProviders>
       </ReduxProvider>
     </html>
