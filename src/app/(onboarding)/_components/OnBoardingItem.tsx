@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import { OnboardingType } from '../onboard/question/page';
 import { Fragment } from 'react';
 
@@ -22,12 +22,12 @@ function OnboardingItem({
 
   return items.choices.map((choice) => (
     <Fragment key={choice.id}>
-      <Button
-        type='round'
+      <Button.Round
+        size='lg'
         onClick={() => handleClickChoices(questionId, choice.text)}
       >
         {choice.text}
-      </Button>
+      </Button.Round>
     </Fragment>
   ));
 }
