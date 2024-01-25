@@ -40,6 +40,9 @@ const config: Config = {
         gradient:
           'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
+      boxShadow: {
+        categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
+      },
       colors: {
         primary100: '#4F9E4F',
         primary50: '#C4DBC4',
@@ -56,7 +59,7 @@ const config: Config = {
         gray500: '#949494',
         gray600: '#555555',
         gray700: '#383838',
-        gra800: '#1F1F1F',
+        gray800: '#1F1F1F',
       },
     },
     screens: {
