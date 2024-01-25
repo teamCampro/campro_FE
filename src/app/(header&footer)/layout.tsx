@@ -1,4 +1,4 @@
-import { Header } from '../_components';
+import { Footer, Header } from '../_components';
 import { LayoutType } from '../_types';
 
 function Layout({ children }: LayoutType) {
@@ -6,6 +6,7 @@ function Layout({ children }: LayoutType) {
     <div>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 }

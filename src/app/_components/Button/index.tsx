@@ -6,13 +6,14 @@ interface Props {
   children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  type: 'circle' | 'round' | 'search';
+  type: 'circle' | 'round' | 'search' | 'careCenter';
 }
 
 const BUTTON_STYLE = {
   circle: 'button-circle',
   round: 'button-round',
   search: 'button-search',
+  careCenter: 'button-careCenter',
 };
 
 function Button({

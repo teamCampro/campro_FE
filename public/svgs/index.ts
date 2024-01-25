@@ -10,3 +10,5 @@ export { default as IconMinus } from './minus.svg';
 export { default as IconPlus } from './plus.svg';
 export { default as IconSearch } from './search.svg';
 export { default as IconTent } from './tent.svg';
+export { default as IconArrowLeftNormal } from './arrowLeft-normal.svg';
+export { default as IconArrowRightNormal } from './arrowRight-normal.svg';
