@@ -108,12 +108,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 .custom-height {
   height: calc(100vh - 80px);
 }
@@ -137,17 +131,17 @@ body {
   grid-column: 2/ 3;
 }
 
+@layer utilities {
+  .buttonHover {
+    @apply hover:bg-primary50 hover:text-primary100;
+  }
+  .buttonDisabled {
+    @apply disabled:bg-gray300 disabled:text-gray500;
+  }
+}
+
 @layer components {
-  .button-circle {
-    @apply rounded-full bg-primary100 px-48pxr py-16pxr text-center text-white font-title3-semibold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:px-64pxr tablet:py-28pxr tablet:font-title1-semibold;
-  }
-  .button-round {
-    @apply flex-center flex h-64pxr w-318pxr rounded-[16px] bg-gray200 text-gray700 font-body1 hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-108pxr;
-  }
-  .button-search {
-    @apply flex-center flex h-64pxr w-182pxr rounded-md bg-primary100 text-white font-title3-bold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300  disabled:text-gray500 tablet:h-62pxr;
-  }
   .button-careCenter {
-    @apply flex-center flex h-46pxr w-111pxr flex-shrink-0 rounded-full bg-white py-12pxr pl-20pxr pr-16pxr text-center text-gray600 font-body2-semibold;
+    @apply flex-center h-46pxr w-111pxr flex-shrink-0 rounded-full bg-white py-12pxr pl-20pxr pr-16pxr text-center text-gray600 font-body2-semibold;
   }
 }
