@@ -131,6 +131,6 @@ body {
     @apply flex-center flex h-64pxr w-318pxr rounded-[16px] bg-gray200 text-gray700 font-body1 hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-108pxr;
   }
   .button-search {
-    @apply flex-center flex h-64pxr w-182pxr rounded-md bg-primary100 text-white font-title3-bold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300  disabled:text-gray500 tablet:h-62pxr;
+    @apply flex-center flex h-64pxr w-full flex-shrink-0 rounded-md bg-primary100 text-white font-title3-bold hover:bg-primary50 hover:text-primary100  active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-62pxr desktop:w-182pxr;
   }
 }
