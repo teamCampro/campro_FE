@@ -1,5 +1,14 @@
-function layout({ children }: { children: React.ReactNode }) {
-  return <body suppressHydrationWarning={true}>{children}</body>;
+import { Footer, Header } from '../_components';
+import { LayoutType } from '../_types';
+
+function Layout({ children }: LayoutType) {
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 }
 
-export default layout;
+export default Layout;

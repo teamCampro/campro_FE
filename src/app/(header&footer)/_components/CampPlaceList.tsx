@@ -1,11 +1,11 @@
 'use client';
-import { ArrowRight } from '@/public/svgs';
 import CampPlaceItem from './CampPlaceItem';
 import { CampPlaceMockData } from './CampPlaceSection';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import { IconArrowRight } from '@/public/svgs';
 
 interface Props {
   campPlaces: CampPlaceMockData[];
@@ -42,7 +42,7 @@ function CampPlaceList({ campPlaces, type }: Props) {
         >
           <span className='mobile:hidden'>전체보기</span>
           <span className='hidden mobile:block'>전체</span>
-          <ArrowRight />
+          <IconArrowRight />
         </button>
       </div>
       <div>
@@ -56,8 +56,8 @@ function CampPlaceList({ campPlaces, type }: Props) {
           }}
         >
           {campPlaces?.map((campPlace) => (
-            <SwiperSlide id='camp-place'>
-              <ul key={campPlace.id} className='flex gap-16pxr'>
+            <SwiperSlide id='camp-place' key={campPlace.id}>
+              <ul className='flex gap-16pxr'>
                 <CampPlaceItem campPlace={campPlace} />
               </ul>
             </SwiperSlide>

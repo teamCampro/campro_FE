@@ -40,6 +40,9 @@ const config: Config = {
         gradient:
           'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
+      boxShadow: {
+        searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
+      },
       colors: {
         primary100: '#4F9E4F',
         primary50: '#C4DBC4',
@@ -73,6 +76,12 @@ const config: Config = {
     },
     fontFamily: {
       pre: 'Pretendard',
+    },
+    flex: {
+      '1': '1 1 0%',
+      '110': '1.10 1.10 0%',
+      '134': '1.34 1.34 0%',
+      '123': '1.23 1.23 0%',
     },
   },
   plugins: [
@@ -175,13 +184,13 @@ const config: Config = {
         '.font-caption2': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontFamily: 'Pretendard',
         },
         '.font-caption2-semibold': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },

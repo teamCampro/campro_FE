@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CampPlaceMockData } from './CampPlaceSection';
-import { Heart } from '@/public/svgs';
+import { IconHeart } from '@/public/svgs';
 
 interface Props {
   campPlace: CampPlaceMockData;
@@ -22,7 +22,7 @@ function CampPlaceItem({ campPlace }: Props) {
           type='button'
           className='bg-gray800 absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-opacity-50 p-7pxr'
         >
-          <Heart className='absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 transform' />
+          <IconHeart className='absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 transform' />
         </button>
       </div>
       <div className='flex flex-col gap-2pxr'>
