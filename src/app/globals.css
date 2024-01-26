@@ -122,6 +122,31 @@ body {
     height: calc(100vh - 52px);
   }
 }
+@media (max-width: 767px) {
+  #category-swiper {
+    display: contents !important;
+  }
+  #category-swiper .swiper-wrapper {
+    display: contents !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #category-slide {
+    width: 114px !important;
+    padding: 0 0 10px 10px !important;
+    margin-right: 14px;
+  }
+  #category-swiper {
+    margin: 0px !important;
+  }
+}
+@media (min-width: 1200px) {
+  #category-slide {
+    width: 126px !important;
+    padding: 0 0 10px 10px !important;
+  }
+}
 
 @layer components {
   .button-circle {
