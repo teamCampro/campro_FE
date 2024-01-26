@@ -34,7 +34,7 @@ function CampPlaceItem({ campPlace }: Props) {
         <div className='flex flex-col gap-8pxr'>
           <div>
             <span className='text-gray800 font-title3-bold'>
-              ₩{campPlace.price}
+              ₩{campPlace.price.toLocaleString()}
             </span>
             <span className='text-gray800 font-title3-medium text-20pxr font-medium'>
               {' '}
