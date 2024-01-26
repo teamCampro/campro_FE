@@ -1,4 +1,4 @@
-import {IconPeople } from '@/public/svgs';
+import { IconPeople } from '@/public/svgs';
 import Link from 'next/link';
 
 function OnBoardingHeader() {

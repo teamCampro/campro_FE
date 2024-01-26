@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/Button';
 import Link from 'next/link';
 
@@ -14,7 +16,7 @@ function page() {
           </h4>
         </div>
         <Link href={'/onboard/question'} passHref>
-          <Button.CirCle size='lg'>테스트 시작하기</Button.CirCle>
+          <Button.Circle size='lg'>테스트 시작하기</Button.Circle>
         </Link>
       </div>
     </div>

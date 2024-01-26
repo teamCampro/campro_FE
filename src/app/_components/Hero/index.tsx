@@ -10,7 +10,7 @@ function Hero() {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push('/onboarding');
+    router.push('/onboard');
   };
 
   return (
@@ -36,7 +36,6 @@ function Hero() {
           >
             취향 등록하기
           </Button.Circle>
-          {/* 버튼 수정되면 변경 필요 */}
         </div>
       </div>
     </div>
