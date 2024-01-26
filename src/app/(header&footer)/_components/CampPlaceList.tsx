@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import { useEffect, useState } from 'react';
 
 interface Props {
   campPlaces: CampPlaceMockData[];
@@ -14,8 +13,6 @@ interface Props {
 }
 
 function CampPlaceList({ campPlaces, type }: Props) {
-  const [buttonText, setButtonText] = useState('전체보기');
-
   let listName;
   switch (type) {
     case 'matching':
@@ -35,20 +32,6 @@ function CampPlaceList({ campPlaces, type }: Props) {
       break;
   }
 
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth <= 768;
-      setButtonText(isMobile ? '전체' : '전체보기');
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <div className='flex flex-col gap-12pxr'>
       <div className='flex justify-between '>
@@ -57,10 +40,12 @@ function CampPlaceList({ campPlaces, type }: Props) {
           type='button'
           className='flex items-center font-medium text-gray500 font-body2'
         >
-          {buttonText} <ArrowRight />
+          <span className='mobile:hidden'>전체보기</span>
+          <span className='hidden mobile:block'>전체</span>
+          <ArrowRight />
         </button>
       </div>
-      <div className='overflow-x-hidden'>
+      <div>
         <Swiper
           modules={[FreeMode]}
           freeMode={true}
