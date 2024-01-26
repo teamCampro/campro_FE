@@ -56,7 +56,7 @@ const config: Config = {
         gray500: '#949494',
         gray600: '#555555',
         gray700: '#383838',
-        gra800: '#1F1F1F',
+        gray800: '#1F1F1F',
       },
     },
     screens: {

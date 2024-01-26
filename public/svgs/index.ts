@@ -10,3 +10,6 @@ export { default as IconMinus } from './minus.svg';
 export { default as IconPlus } from './plus.svg';
 export { default as IconSearch } from './search.svg';
 export { default as IconTent } from './tent.svg';
+export { default as ColoredHeart } from './coloredHeart.svg';
+export { default as Heart } from './heart.svg';
+export { default as ArrowRight } from './arrowRight.svg';

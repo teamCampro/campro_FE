@@ -1,5 +1,13 @@
+'use client';
+
+import CampPlaceSection from './_components/CampPlaceSection';
+
 function page() {
-  return <div></div>;
+  return (
+    <div className='mx-40pxr'>
+      <CampPlaceSection />
+    </div>
+  );
 }
 
 export default page;

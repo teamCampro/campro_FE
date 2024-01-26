@@ -1,5 +1,5 @@
-function layout() {
-  return <div></div>;
+function layout({ children }: { children: React.ReactNode }) {
+  return <body suppressHydrationWarning={true}>{children}</body>;
 }
 
 export default layout;
