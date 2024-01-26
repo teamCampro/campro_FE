@@ -1,36 +1,9 @@
-'use client';
+import CircleButton from './CircleButton';
+import RoundButton from './RoundButton';
 
-import { ReactNode } from 'react';
-
-interface Props {
-  children: ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  type: 'circle' | 'round' | 'search';
-}
-
-const BUTTON_STYLE = {
-  circle: 'button-circle',
-  round: 'button-round',
-  search: 'button-search',
-};
-
-function Button({
-  type = 'round',
-  onClick = () => {},
-  disabled,
-  children,
-}: Props) {
-  return (
-    <button
-      type='button'
-      onClick={onClick}
-      className={`${BUTTON_STYLE[type]}`}
-      disabled={disabled}
-    >
-      {children}
-    </button>
-  );
-}
+const Button = Object.assign({
+  CirCle: CircleButton,
+  Round: RoundButton,
+});
 
 export default Button;

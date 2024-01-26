@@ -42,6 +42,7 @@ const config: Config = {
       },
       boxShadow: {
         categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
+        searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
       },
       colors: {
         primary100: '#4F9E4F',
@@ -69,6 +70,12 @@ const config: Config = {
     },
     fontFamily: {
       pre: 'Pretendard',
+    },
+    flex: {
+      '1': '1 1 0%',
+      '110': '1.10 1.10 0%',
+      '134': '1.34 1.34 0%',
+      '123': '1.23 1.23 0%',
     },
   },
   plugins: [
@@ -171,13 +178,13 @@ const config: Config = {
         '.font-caption2': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontFamily: 'Pretendard',
         },
         '.font-caption2-semibold': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
-          letterSpacing: pxToRem(-0.14),
+          letterSpacing: pxToRem(-0.12),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },

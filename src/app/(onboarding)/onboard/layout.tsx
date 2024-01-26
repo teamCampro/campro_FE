@@ -1,12 +1,10 @@
-import { ReactNode } from 'react';
-
-interface LayoutType {
-  children: ReactNode;
-}
+import { LayoutType } from '../../_types';
+import OnBoardingHeader from '../_components/OnboardingHeader';
 
 function Layout({ children }: LayoutType) {
   return (
-    <div className='custom-height mobile:custom-height-m flex flex-col bg-gray100'>
+    <div>
+      <OnBoardingHeader />
       {children}
     </div>
   );
