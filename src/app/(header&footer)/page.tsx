@@ -1,5 +1,3 @@
-'use client';
-
 import CampPlaceSection from './_components/CampPlaceSection';
 
 function page() {
