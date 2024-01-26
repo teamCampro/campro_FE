@@ -1,4 +1,4 @@
-import { Button } from '@/components/Button';
+import Button from '@/components/Button';
 import { OnboardingType } from '../onboard/question/page';
 import { Fragment } from 'react';
 
