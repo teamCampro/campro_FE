@@ -19,9 +19,24 @@ export interface ChoicesType {
   text: string;
 }
 
+export interface QustionType {
+  [key: string]: string;
+  '1': string;
+  '2': string;
+  '3': string;
+  '4': string;
+  '5': string;
+}
+
 function Question() {
   const [isAnswering, setIsAnswering] = useState(true);
-  const [tagState, setTagState] = useState<string[]>([]);
+  const [tagState, setTagState] = useState<QustionType>({
+    '1': '',
+    '2': '',
+    '3': '',
+    '4': '',
+    '5': '',
+  });
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -44,9 +59,9 @@ function Question() {
     fetch();
   }, []);
 
-  const handleClickChoices = (text: string) => {
+  const handleClickChoices = (text: string, id: number) => {
     updateCurrentPage(currentPage + 1);
-    setTagState((prev) => [...prev, text]);
+    setTagState({ ...tagState, [id]: text });
   };
 
   return (
@@ -63,6 +78,7 @@ function Question() {
             currentPage={currentPage}
             onClickChoices={handleClickChoices}
             onSubmitOnboard={onSubmitOnboard}
+            tagState={tagState}
           />
         </div>
       ) : (
