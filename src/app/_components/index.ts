@@ -7,6 +7,6 @@ export { default as CommonInput } from './Input/CommonInput';
 export { default as LocationInput } from './Input/LocationInput';
 export { default as DateInput } from './Input/DateInput';
 export { default as GroupCountInput } from './Input/GroupCountInput';
-export { default as searchBar } from './SearchBar';
+export { default as SearchBar } from './SearchBar';
 
 export { default as Footer } from './Footer';

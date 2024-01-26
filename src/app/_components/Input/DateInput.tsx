@@ -1,17 +1,26 @@
+import React, { forwardRef } from 'react';
 import { IconCalendar } from '@/public/svgs';
-import CommonInput from './CommonInput';
 
-function DateInput() {
-  return (
-    <div className='flex-134 relative flex w-full gap-4pxr'>
-      <IconCalendar className='absolute left-16pxr top-16pxr ' />
-      <CommonInput
-        name='date'
-        placeholder='날짜를 선택해주세요'
-        className=' w-full rounded-[8px] bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
-      />
-    </div>
-  );
+interface DateInputProps {
+  value: string;
+  onClick: () => void;
 }
+const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
+  ({ value, onClick }, ref) => {
+    return (
+      <div onClick={onClick} className='relative flex w-full flex-134 gap-4pxr'>
+        <IconCalendar className='absolute left-16pxr top-16pxr ' />
+        <input
+          ref={ref}
+          name='date'
+          placeholder='날짜를 입력해주세요'
+          className=' w-full rounded-[8px] bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
+          readOnly
+          value={value}
+        />
+      </div>
+    );
+  },
+);
 
 export default DateInput;
