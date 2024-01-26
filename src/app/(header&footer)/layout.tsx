@@ -1,11 +1,14 @@
-import { ReactNode } from 'react';
+import { Footer, Header } from '../_components';
+import { LayoutType } from '../_types';
 
-interface LayoutType {
-  children: ReactNode;
+function Layout({ children }: LayoutType) {
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 }
 
-function layout({ children }: LayoutType) {
-  return <div>{children}</div>;
-}
-
-export default layout;
+export default Layout;
