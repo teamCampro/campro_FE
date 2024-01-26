@@ -123,9 +123,19 @@ body {
   }
 }
 
+#camp-place {
+  width: 340px;
+}
+
+@media (max-width: 767px) {
+  #camp-place {
+    width: 184px;
+  }
+}
+
 @layer components {
   .button-circle {
-    @apply rounded-full bg-primary100 px-48pxr py-16pxr text-center text-white font-title3-semibold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:px-64pxr tablet:py-28pxr tablet:font-title1-semibold;
+    @apply tablet:font-title1-semibold rounded-full bg-primary100 px-48pxr py-16pxr text-center text-white font-title3-semibold hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:px-64pxr tablet:py-28pxr;
   }
   .button-round {
     @apply flex-center flex h-64pxr w-318pxr rounded-[16px] bg-gray200 text-gray700 font-body1 hover:bg-primary50 hover:text-primary100 active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-108pxr;

@@ -26,7 +26,6 @@ function CampPlaceSection() {
         const response = await axios.get<CampPlaceRawData[]>(
           `/data/campPlaceMockData.json`,
         );
-        console.log(response.data);
         setCampPlaces(response.data);
       } catch (error) {
         console.error(error);
@@ -35,12 +34,10 @@ function CampPlaceSection() {
     getCampPlace();
   }, []);
   return (
-    <div className='flex flex-col gap-28pxr'>
+    <div className='flex max-w-1440pxr flex-col gap-28pxr '>
       {campPlaces.map((item) => (
-        <div className='flex flex-col gap-28pxr'>
-          <div key={item.id} className='flex flex-col gap-28pxr'>
-            <CampPlaceList campPlaces={item.result} type={item.type} />
-          </div>
+        <div key={item.id} className='flex flex-col gap-28pxr'>
+          <CampPlaceList campPlaces={item.result} type={item.type} />
         </div>
       ))}
     </div>

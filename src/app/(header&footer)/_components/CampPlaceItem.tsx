@@ -9,13 +9,14 @@ interface Props {
 function CampPlaceItem({ campPlace }: Props) {
   return (
     <li key={campPlace.id} className='flex flex-col gap-16pxr'>
-      <div className='relative h-220pxr w-340pxr'>
+      <div className='relative h-220pxr w-340pxr mobile:h-184pxr mobile:w-184pxr'>
         <Image
           className='rounded-3xl object-cover'
           src={campPlace.imgUrl}
           alt='캠핑장 이미지'
           fill
           priority
+          sizes='340px'
         />
         <button
           type='button'

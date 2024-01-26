@@ -60,9 +60,16 @@ const config: Config = {
       },
     },
     screens: {
-      mobile: '320px',
-      tablet: '768px',
+      mobile: {
+        min: '320px',
+        max: '767px',
+      },
+      tablet: {
+        min: '768px',
+        max: '1199px',
+      },
       desktop: '1200px',
+      wide:'1488px',
     },
     fontFamily: {
       pre: 'Pretendard',

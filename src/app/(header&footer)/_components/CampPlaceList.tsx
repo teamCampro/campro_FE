@@ -2,6 +2,10 @@
 import { ArrowRight } from '@/public/svgs';
 import CampPlaceItem from './CampPlaceItem';
 import { CampPlaceMockData } from './CampPlaceSection';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 interface Props {
   campPlaces: CampPlaceMockData[];
@@ -29,22 +33,34 @@ function CampPlaceList({ campPlaces, type }: Props) {
   }
 
   return (
-    <div className='flex max-w-1440pxr flex-col gap-12pxr'>
-      <div className='flex justify-between'>
+    <div className='flex flex-col gap-12pxr'>
+      <div className='flex justify-between '>
         <h1 className='font-title1-semibold'>{listName}</h1>
         <button
           type='button'
-          className='flex items-center font-medium text-gray500 font-body2'
+          className='flex items-center font-medium text-gray500 font-body2 mobile:hidden tablet:hidden'
         >
           전체보기 <ArrowRight />
         </button>
       </div>
-      <div className='flex min-w-1440pxr gap-16pxr'>
-        {campPlaces?.map((campPlace) => (
-          <ul key={campPlace.id} className='flex'>
-            <CampPlaceItem campPlace={campPlace} />
-          </ul>
-        ))}
+      <div className='overflow-x-hidden'>
+        <Swiper
+          modules={[FreeMode]}
+          freeMode={true}
+          slidesPerView='auto'
+          spaceBetween={12}
+          breakpoints={{
+            768: { spaceBetween: 16 },
+          }}
+        >
+          {campPlaces?.map((campPlace) => (
+            <SwiperSlide id='camp-place'>
+              <ul key={campPlace.id} className='flex gap-16pxr'>
+                <CampPlaceItem campPlace={campPlace} />
+              </ul>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
