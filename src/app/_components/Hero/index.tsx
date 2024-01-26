@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import React from 'react';
 import heroImage from '@/public/png/hero.png';
-import Button from '../Button';
 import { useRouter } from 'next/navigation';
+import { Button } from '..';
 
 function Hero() {
   const router = useRouter();
@@ -29,9 +29,13 @@ function Hero() {
           캠핑장을 쉽게 찾아보세요.
         </h1>
         <div>
-          <Button type='circle' onClick={handleButtonClick}>
+          <Button.Circle
+            custom='text-10pxr p-10pxr'
+            size='md'
+            onClick={handleButtonClick}
+          >
             취향 등록하기
-          </Button>
+          </Button.Circle>
           {/* 버튼 수정되면 변경 필요 */}
         </div>
       </div>
