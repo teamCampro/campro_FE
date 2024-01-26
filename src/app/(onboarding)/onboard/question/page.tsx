@@ -65,7 +65,7 @@ function Question() {
   };
 
   return (
-    <div className='flex-center pt-108pxr'>
+    <div className='flex-center custom-height bg-gray100'>
       {isAnswering ? (
         <div className='flex-center flex-col gap-48pxr'>
           <Pagination
@@ -82,7 +82,7 @@ function Question() {
           />
         </div>
       ) : (
-        <div className='flex-center flex-col '>
+        <div className='flex-center flex-col'>
           <div className='flex-center flex-col gap-64pxr tablet:gap-12pxr'>
             <h3 className='text-black font-title1-semibold tablet:font-h3'>
               캠핑 스타일을 분석 중이에요
