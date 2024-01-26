@@ -27,8 +27,10 @@ function CampPlaceItem({ campPlace }: Props) {
       </div>
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
-          <span className='font-caption1-semibold'>{campPlace.placeName}</span>
-          <span className='font-medium text-gray500 font-caption1'>
+          <span className='font-caption1-semibold w-1/2 overflow-hidden text-ellipsis whitespace-nowrap'>
+            {campPlace.placeName}
+          </span>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1'>
             {campPlace.address}
           </span>
         </div>

@@ -2,7 +2,7 @@ import CampPlaceSection from './_components/CampPlaceSection';
 
 function page() {
   return (
-    <div className='mx-40pxr'>
+    <div>
       <div className='wide:flex-center'>
         <CampPlaceSection />
       </div>
