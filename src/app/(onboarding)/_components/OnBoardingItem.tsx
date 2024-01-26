@@ -22,12 +22,12 @@ function OnboardingItem({
 
   return items.choices.map((choice) => (
     <Fragment key={choice.id}>
-      <Button
-        type='round'
+      <Button.Round
+        size='lg'
         onClick={() => handleClickChoices(questionId, choice.text)}
       >
         {choice.text}
-      </Button>
+      </Button.Round>
     </Fragment>
   ));
 }
