@@ -131,13 +131,13 @@ body {
   grid-column: 2/ 3;
 }
 
-@layer utilities {
+@layer utilities 
   .buttonHover {
-    @apply hover:bg-primary50 hover:text-primary100;
-  }
+  @apply hover:bg-primary50 hover:text-primary100;
+}
 
-  .button-search {
-    @apply flex-center flex h-64pxr w-full flex-shrink-0 rounded-md bg-primary100 text-white font-title3-bold hover:bg-primary50 hover:text-primary100  active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-62pxr desktop:w-182pxr;
+.button-search {
+  @apply flex-center flex h-64pxr w-full flex-shrink-0 rounded-md bg-primary100 text-white font-title3-bold hover:bg-primary50 hover:text-primary100  active:text-black disabled:bg-gray300 disabled:text-gray500 tablet:h-62pxr desktop:w-182pxr;
 
   .buttonDisabled {
     @apply disabled:bg-gray300 disabled:text-gray500;
@@ -147,6 +147,5 @@ body {
 @layer components {
   .button-careCenter {
     @apply flex-center h-46pxr w-111pxr flex-shrink-0 rounded-full bg-white py-12pxr pl-20pxr pr-16pxr text-center text-gray600 font-body2-semibold;
-
   }
 }
