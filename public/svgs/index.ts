@@ -12,3 +12,5 @@ export { default as IconSearch } from './search.svg';
 export { default as IconTent } from './tent.svg';
 export { default as IconArrowLeftNormal } from './arrowLeft-normal.svg';
 export { default as IconArrowRightNormal } from './arrowRight-normal.svg';
+export { default as IconArrowLeftNon } from './arrowLeft-non.svg';
+export { default as IconArrowRightNon } from './arrowRight-non.svg';

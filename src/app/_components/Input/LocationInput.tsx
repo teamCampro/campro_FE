@@ -4,19 +4,19 @@ import { IconLocation } from '@/public/svgs';
 import { useState } from 'react';
 import Dropdown from '../Dropdown';
 
-type Field = {
+interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   value: string;
   disabled?: boolean;
   name: string;
   ref: React.Ref<any>;
-};
+}
 
-type Props = {
+interface Props {
   field: Field;
   locations: string[];
-};
+}
 
 function LocationInput({
   field: { onBlur, ...field },
@@ -43,7 +43,7 @@ function LocationInput({
             onClick={handleClick}
             onBlur={handleBlur}
             placeholder='어디로 갈까요?'
-            className='w-full rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
+            className=' whitespace-nowrap w-full rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
           />
         </div>
         {isDropdownVisible && <Dropdown items={locations} />}

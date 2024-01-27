@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import LocationInput from './LocationInput';
 
 interface Props {
-  name?: string;
+  name: string;
 }
 const locations = [
   '경기',
@@ -19,14 +21,13 @@ const locations = [
   '서울',
   '대구',
   '제주',
-  '제주',
   '대전',
   '울산',
   '광주',
   '세종',
 ];
 
-function LocationControl({ name = 'location' }: Props) {
+function LocationControl({ name }: Props) {
   const { control } = useFormContext();
 
   return (

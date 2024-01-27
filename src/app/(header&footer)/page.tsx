@@ -1,5 +1,11 @@
+import { SearchBar } from '../_components';
+
 function page() {
-  return <div></div>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
 
 export default page;
