@@ -6,7 +6,7 @@ import DateInput from './DateInput';
 import { useRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
-
+import useMediaQueries from '../../test2/_components/useMediaQueries';
 interface Props {
   name: string;
 }
@@ -14,6 +14,10 @@ interface Props {
 function DatePickerInput({ name }: Props) {
   const { control } = useFormContext();
   const datePickerRef = useRef<ReactDatePicker>(null);
+  const isTablet =
+    typeof window !== 'undefined'
+      ? useMediaQueries({ breakpoint: 1199 })?.mediaQuery.matches
+      : false;
   return (
     <Controller
       control={control}
@@ -49,7 +53,7 @@ function DatePickerInput({ name }: Props) {
             startDate={Array.isArray(field.value) ? field.value[0] : null}
             endDate={Array.isArray(field.value) ? field.value[1] : null}
             onChange={field.onChange}
-            monthsShown={2}
+            monthsShown={isTablet ? 1 : 2}
             calendarStartDay={1}
             customInput={
               <DateInput

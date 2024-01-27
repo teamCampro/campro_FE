@@ -7,6 +7,7 @@ import {
   Button,
 } from '@/src/app/_components';
 import DatePickerInput from '../Input/DatePickerInput';
+import LocationControl from '../Input/LocationControl';
 function SearchBar() {
   return (
     <div className='m-auto flex w-full max-w-1440pxr items-center justify-center bg-gray500 px-40pxr'>
@@ -15,7 +16,7 @@ function SearchBar() {
         onSubmit={() => {}}
       >
         <div className='flex-center flex w-full flex-col gap-12pxr px-20pxr pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr'>
-          {/* <LocationInput /> */}
+          <LocationControl />
           <DatePickerInput name='date' />
           <GroupCountInput />
         </div>
