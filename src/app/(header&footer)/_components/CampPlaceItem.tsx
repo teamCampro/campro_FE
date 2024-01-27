@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { CampPlaceMockData } from './CampPlaceSection';
 import { IconHeart } from '@/public/svgs';
+import Chip from '@/components/Chip';
 
 interface Props {
   campPlace: CampPlaceMockData;
@@ -45,9 +46,9 @@ function CampPlaceItem({ campPlace }: Props) {
             </span>
           </div>
           <div className='flex gap-10pxr '>
-            <div className='flex-center rounded-full bg-primary50 px-10pxr py-3pxr text-14pxr font-semibold text-emred'>
-              자연
-            </div>
+            <Chip>힐링/휴식</Chip>
+            <Chip>자연</Chip>
+            <Chip>숲</Chip>
           </div>
         </div>
       </div>
