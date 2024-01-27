@@ -1,3 +1,5 @@
+'use client';
+
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import { Controller, useFormContext } from 'react-hook-form';
 import DateInput from './DateInput';
@@ -23,15 +25,21 @@ function DatePickerInput({ name }: Props) {
           }
         };
 
+        const getDayClassName = (date: Date) => {
+          return date.getDay() === 0 ? 'sunday' : '';
+        };
         const handleButtonClick = (days: number) => {
-          const startDate = new Date();
-          const endDate = new Date();
+          const startDate = Array.isArray(field.value)
+            ? field.value[0]
+            : new Date();
+          const endDate = new Date(startDate);
           endDate.setDate(startDate.getDate() + days);
           field.onChange([startDate, endDate]);
         };
 
         return (
           <DatePicker
+            dayClassName={getDayClassName}
             ref={datePickerRef}
             dateFormat='MM.dd (eee)'
             dateFormatCalendar='yyyy MM월'
@@ -42,6 +50,7 @@ function DatePickerInput({ name }: Props) {
             endDate={Array.isArray(field.value) ? field.value[1] : null}
             onChange={field.onChange}
             monthsShown={2}
+            calendarStartDay={1}
             customInput={
               <DateInput
                 ref={field.ref}
@@ -53,25 +62,25 @@ function DatePickerInput({ name }: Props) {
             }
           >
             <button
-              className='flex-center flex rounded-[999px] border bg-white px-20pxr py-12pxr shadow-searchBar'
+              className='buttonForDatePicker'
               onClick={() => handleButtonClick(0)}
             >
               당일치기
             </button>
             <button
-              className='flex-center flex rounded-[999px] border bg-white px-20pxr py-12pxr shadow-searchBar'
+              className='buttonForDatePicker'
               onClick={() => handleButtonClick(1)}
             >
               1박 2일
             </button>
             <button
-              className='flex-center flex rounded-[999px] border bg-white px-20pxr py-12pxr shadow-searchBar'
+              className='buttonForDatePicker'
               onClick={() => handleButtonClick(2)}
             >
               2박 3일
             </button>
             <button
-              className='flex-center flex rounded-[999px] border bg-white px-20pxr py-12pxr shadow-searchBar'
+              className='buttonForDatePicker'
               onClick={() => handleButtonClick(3)}
             >
               3박 4일

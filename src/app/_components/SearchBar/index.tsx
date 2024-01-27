@@ -15,7 +15,7 @@ function SearchBar() {
         onSubmit={() => {}}
       >
         <div className='flex-center flex w-full flex-col gap-12pxr px-20pxr pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr'>
-          <LocationInput />
+          {/* <LocationInput /> */}
           <DatePickerInput name='date' />
           <GroupCountInput />
         </div>
