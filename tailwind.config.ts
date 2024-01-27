@@ -41,6 +41,7 @@ const config: Config = {
           'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
       boxShadow: {
+        categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
       },
       colors: {

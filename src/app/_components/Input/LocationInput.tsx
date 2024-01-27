@@ -3,7 +3,7 @@ import CommonInput from './CommonInput';
 
 function LocationInput() {
   return (
-    <div className='flex-110 relative flex w-full gap-4pxr'>
+    <div className='relative flex w-full flex-110 gap-4pxr'>
       <IconLocation className='absolute left-16pxr top-16pxr ' />
       <CommonInput
         name='location'
