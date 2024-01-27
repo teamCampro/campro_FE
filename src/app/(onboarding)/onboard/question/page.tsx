@@ -19,9 +19,24 @@ export interface ChoicesType {
   text: string;
 }
 
+export interface QustionType {
+  [key: string]: string;
+  '1': string;
+  '2': string;
+  '3': string;
+  '4': string;
+  '5': string;
+}
+
 function Question() {
   const [isAnswering, setIsAnswering] = useState(true);
-  const [tagState, setTagState] = useState<string[]>([]);
+  const [tagState, setTagState] = useState<QustionType>({
+    '1': '',
+    '2': '',
+    '3': '',
+    '4': '',
+    '5': '',
+  });
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -44,13 +59,13 @@ function Question() {
     fetch();
   }, []);
 
-  const handleClickChoices = (text: string) => {
+  const handleClickChoices = (text: string, id: number) => {
     updateCurrentPage(currentPage + 1);
-    setTagState((prev) => [...prev, text]);
+    setTagState({ ...tagState, [id]: text });
   };
 
   return (
-    <div className='flex-center pt-108pxr'>
+    <div className='flex-center custom-height bg-gray100'>
       {isAnswering ? (
         <div className='flex-center flex-col gap-48pxr'>
           <Pagination
@@ -63,10 +78,11 @@ function Question() {
             currentPage={currentPage}
             onClickChoices={handleClickChoices}
             onSubmitOnboard={onSubmitOnboard}
+            tagState={tagState}
           />
         </div>
       ) : (
-        <div className='flex-center flex-col '>
+        <div className='flex-center flex-col'>
           <div className='flex-center flex-col gap-64pxr tablet:gap-12pxr'>
             <h3 className='text-black font-title1-semibold tablet:font-h3'>
               캠핑 스타일을 분석 중이에요

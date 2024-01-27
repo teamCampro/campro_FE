@@ -109,11 +109,11 @@ body {
 }
 
 .custom-height {
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 @media (max-width: 767px) {
   .custom-height {
-    height: calc(100vh - 52px);
+    min-height: calc(100vh - 52px);
   }
 }
 @media (max-width: 767px) {
