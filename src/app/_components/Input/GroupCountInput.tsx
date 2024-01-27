@@ -3,7 +3,7 @@ import CommonInput from './CommonInput';
 
 function GroupCountInput() {
   return (
-    <div className='flex-123 relative flex w-full gap-4pxr'>
+    <div className='relative flex w-full flex-123 gap-4pxr'>
       <IconPeople className='absolute left-16pxr top-16pxr ' />
       <CommonInput
         name='groupCount'
