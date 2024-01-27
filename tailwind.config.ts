@@ -42,6 +42,7 @@ const config: Config = {
       },
       boxShadow: {
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
+        header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
       },
       colors: {
         primary100: '#4F9E4F',
