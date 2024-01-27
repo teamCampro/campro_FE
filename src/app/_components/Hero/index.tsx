@@ -16,9 +16,9 @@ function Hero() {
   return (
     <div className='relative flex items-center justify-center'>
       <Image
-        className='w-2400pxr tablet:h-501 h-486pxr object-cover tablet:w-full tablet:object-cover desktop:h-full'
-        width={2400}
-        height={936}
+        className='h-486pxr w-full object-cover tablet:h-501pxr desktop:h-468pxr'
+        width={1200}
+        height={468}
         src={heroImage}
         alt='히어로 이미지'
       />
