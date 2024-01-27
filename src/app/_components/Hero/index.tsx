@@ -29,11 +29,7 @@ function Hero() {
           캠핑장을 쉽게 찾아보세요.
         </h1>
         <div>
-          <Button.Circle
-            custom='text-10pxr p-10pxr'
-            size='md'
-            onClick={handleButtonClick}
-          >
+          <Button.Circle size='md' onClick={handleButtonClick}>
             취향 등록하기
           </Button.Circle>
         </div>
