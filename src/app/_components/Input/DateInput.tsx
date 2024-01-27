@@ -3,7 +3,7 @@ import CommonInput from './CommonInput';
 
 function DateInput() {
   return (
-    <div className='flex-134 relative flex w-full gap-4pxr'>
+    <div className='relative flex w-full flex-134 gap-4pxr'>
       <IconCalendar className='absolute left-16pxr top-16pxr ' />
       <CommonInput
         name='date'
