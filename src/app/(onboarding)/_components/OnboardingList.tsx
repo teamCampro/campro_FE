@@ -1,11 +1,12 @@
-import { OnboardingType } from '../onboard/question/page';
+import { OnboardingType, QustionType } from '../onboard/question/page';
 import OnboardingItem from './OnBoardingItem';
 
 interface Props {
   mockData: OnboardingType[];
   currentPage: number;
-  onClickChoices: (text: string) => void;
+  onClickChoices: (text: string, id: number) => void;
   onSubmitOnboard: () => void;
+  tagState: QustionType;
 }
 
 function OnboardingList({
@@ -13,6 +14,7 @@ function OnboardingList({
   currentPage,
   onClickChoices,
   onSubmitOnboard,
+  tagState,
 }: Props) {
   return (
     <ul>
@@ -25,6 +27,7 @@ function OnboardingList({
               onClickChoices={onClickChoices}
               onSubmitOnboard={onSubmitOnboard}
               questionId={value.id}
+              tagState={tagState}
             />
           </div>
         </li>
