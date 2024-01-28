@@ -5,7 +5,7 @@ interface Props {
 }
 
 function ModalMainContent({ children }: Props) {
-  return <div className='flex-center px-20pxr pt-16pxr '>{children}</div>;
+  return <div className='flex-center w-full  '>{children}</div>;
 }
 
 export default ModalMainContent;

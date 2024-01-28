@@ -4,8 +4,8 @@ export { default as Pagination } from './Pagination';
 
 export { default as CommonForm } from './Form/CommonForm';
 export { default as CommonInput } from './Input/CommonInput';
-export { default as LocationInput } from './Input/LocationInput';
-export { default as DateInput } from './Input/DateInput';
+export { default as LocationInputView } from './Input/LocationInputView';
+export { default as DateInputView } from './Input/DateInputView';
 export { default as GroupCountInput } from './Input/GroupCountInput';
 export { default as SearchBar } from './SearchBar';
 

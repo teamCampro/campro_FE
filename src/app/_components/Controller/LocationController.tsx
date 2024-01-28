@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import LocationInput from './LocationInput';
+import { LocationInputView } from '@/components/index';
 
 interface Props {
   name: string;
@@ -27,7 +27,7 @@ const locations = [
   '세종',
 ];
 
-function LocationControl({ name }: Props) {
+function LocationController({ name }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -35,10 +35,10 @@ function LocationControl({ name }: Props) {
       control={control}
       name={name}
       render={({ field }) => (
-        <LocationInput field={field} locations={locations} />
+        <LocationInputView field={field} locations={locations} />
       )}
     />
   );
 }
 
-export default LocationControl;
+export default LocationController;

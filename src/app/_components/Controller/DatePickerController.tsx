@@ -2,7 +2,7 @@
 
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import { Controller, useFormContext } from 'react-hook-form';
-import DateInput from './DateInput';
+import { DateInputView } from '@/src/app/_components';
 import { useRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
@@ -31,7 +31,7 @@ const months = [
   '12월',
 ];
 
-function DatePickerInput({ name }: Props) {
+function DatePickerController({ name }: Props) {
   const control = useFormContext().control;
 
   const datePickerRef = useRef<ReactDatePicker>(null);
@@ -100,7 +100,7 @@ function DatePickerInput({ name }: Props) {
             calendarStartDay={1}
             withPortal={isMobile}
             customInput={
-              <DateInput
+              <DateInputView
                 ref={field.ref}
                 value={
                   field.value ? `${field.value[0]} - ${field.value[1]}` : ''
@@ -120,11 +120,11 @@ function DatePickerInput({ name }: Props) {
                     prevMonthButtonDisabled,
                     nextMonthButtonDisabled,
                   }) => (
-                    <div className='px-20pxr'>
-                      <div className='border-bg-gray300 w-full rounded-t-[24px] border-b px-20pxr py-16pxr font-body2-semibold'>
+                    <div className='flex-center w-full flex-col'>
+                      <div className='border-bg-gray300 w-full border-b px-20pxr py-16pxr font-body2-semibold'>
                         일정
                       </div>
-                      <div className='flex-center m-10pxr w-335pxr justify-between px-20pxr'>
+                      <div className='flex-center m-10pxr w-full max-w-335pxr justify-between px-20pxr'>
                         <IconArrowLeftNon
                           onClick={decreaseMonth}
                           disabled={prevMonthButtonDisabled}
@@ -183,4 +183,4 @@ function DatePickerInput({ name }: Props) {
     />
   );
 }
-export default DatePickerInput;
+export default DatePickerController;

@@ -5,7 +5,7 @@ interface DateInputProps {
   value: string;
   onClick: () => void;
 }
-const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
+const DateInputView = forwardRef<HTMLInputElement, DateInputProps>(
   ({ value, onClick }, ref) => {
     return (
       <div onClick={onClick} className='relative flex w-full flex-134 gap-4pxr'>
@@ -23,4 +23,4 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   },
 );
 
-export default DateInput;
+export default DateInputView;
