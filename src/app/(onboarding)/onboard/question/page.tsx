@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Tent from '@/../public/png/tent.gif';
+import Tent from '@/../public/gifs/tent.gif';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Pagination } from '@/src/app/_components';
