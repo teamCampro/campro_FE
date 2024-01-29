@@ -7,8 +7,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const BUTTON_SIZE = {
   sm: 'tablet:h-62pxr w-182pxr h-64pxr flex-shrink-0 rounded-md bg-primary100 text-white font-title3-bold',
-  md: 'bg-gray200 text-gray700 font-body1 h-64pxr w-318pxr rounded-[12px]',
-  lg: 'bg-gray200 text-gray700 font-body1 h-108pxr mobile:h-64pxr w-318pxr rounded-[16px]',
+  md: 'bg-gray200 text-gray700 font-body1 h-64pxr w-318pxr rounded-xl',
+  lg: 'bg-gray200 text-gray700 font-body1 h-108pxr mobile:h-64pxr w-318pxr rounded-2xl',
 };
 
 function RoundButton({
