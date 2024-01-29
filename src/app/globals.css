@@ -190,7 +190,7 @@ body {
 }
 
 .react-datepicker-wrapper,
-.react-daatepicker__input-container,
+.react-datepicker__input-container,
 .wrapper {
   display: flex !important;
   width: 100% !important;
