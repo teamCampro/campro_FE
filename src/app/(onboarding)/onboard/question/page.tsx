@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import Tent from '@/../public/gifs/tent.gif';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Pagination } from '@/src/app/_components';
 import usePagination from '@/hooks/usePagination';
+import { Pagination } from '@/src/app/_components';
+import axios from 'axios';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import OnboardingList from '../../_components/OnboardingList';
 
 export interface OnboardingType {
@@ -57,7 +57,7 @@ function Question() {
     };
 
     fetch();
-  }, []);
+  }, [updateTotalItems]);
 
   const handleClickChoices = (text: string, id: number) => {
     updateCurrentPage(currentPage + 1);
