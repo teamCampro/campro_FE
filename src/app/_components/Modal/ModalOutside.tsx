@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { ReactNode } from 'react';
 import { useRef } from 'react';
+
 export default function ModalOutside({
   children,
   onClose,
@@ -22,18 +23,20 @@ export default function ModalOutside({
       e.preventDefault();
     };
 
-    if (modalRef.current) {
+    const currentModalRef = modalRef.current;
+
+    if (currentModalRef) {
       document.body.style.overflow = 'hidden';
-      modalRef.current.addEventListener('scroll', handleScroll, {
+      currentModalRef.addEventListener('scroll', handleScroll, {
         capture: false,
         passive: false,
       });
     }
 
     return () => {
-      if (modalRef.current) {
+      if (currentModalRef) {
         document.body.style.overflow = '';
-        modalRef.current.removeEventListener('scroll', handleScroll);
+        currentModalRef.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);
