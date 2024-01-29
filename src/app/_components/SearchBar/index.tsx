@@ -1,9 +1,10 @@
 'use client';
 
-import { GroupCountInput, CommonForm, Button } from '@/src/app/_components';
+import { CommonForm, Button } from '@/src/app/_components';
 import DatePickerController from '../Controller/DatePickerController';
 import LocationController from '../Controller/LocationController';
 import { FieldValues } from 'react-hook-form';
+import GroupCountController from '../Controller/GroupCountController';
 
 const onSubmit = (data: FieldValues) => {
   console.log(data);
@@ -18,9 +19,9 @@ function SearchBar() {
       <div className='flex-center flex w-full flex-row gap-12pxr px-20pxr pb-20pxr mobile:flex-col tablet:flex-row tablet:px-0pxr desktop:pb-0pxr'>
         <LocationController name='location' />
         <DatePickerController name='date' />
-        <GroupCountInput />
+        <GroupCountController name='group' />
       </div>
-      <Button.Round size='sm' custom='w-full'>
+      <Button.Round size='sm' custom='mobile:w-full tablet:w-full'>
         검색
       </Button.Round>
     </CommonForm>
