@@ -1,9 +1,11 @@
-import { SearchBar } from '../_components';
-import CampPlaceSection from './_components/CampPlaceSection';
+import { Hero, CampPlaceSection, SearchBar } from '../_components';
 function page() {
   return (
-    <div className=' flex-center flex w-full'>
-      <SearchBar />
+    <div>
+      <Hero />
+      <div className=' flex-center flex w-full'>
+        <SearchBar />
+      </div>
       <div className='wide:flex-center'>
         <CampPlaceSection />
       </div>

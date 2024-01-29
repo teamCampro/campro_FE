@@ -1,3 +1,4 @@
+'use client';
 import CircleButton from './CircleButton';
 import RoundButton from './RoundButton';
 
