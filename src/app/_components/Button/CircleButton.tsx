@@ -6,8 +6,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const BUTTON_SIZE = {
-  md: 'px-48pxr py-16pxr text-center text-white font-title3-semibold tablet:h-70pxr tablet:w-225pxr tablet:font-title1-semibold h-64pxr w-204pxr',
-  lg: 'px-48pxr py-16pxr text-center text-white font-title3-semibold tablet:h-94pxr tablet:w-278pxr tablet:px-64pxr tablet:py-28pxr tablet:font-title1-semibold h-70pxr w-225pxr',
+  md: 'px-48pxr py-16pxr text-center text-white mobile:font-title3-semibold h-70pxr w-225pxr font-title1-semibold mobile:h-64pxr mobile:w-204pxr',
+  lg: 'mobile:px-48pxr mobile:py-16pxr text-center text-white mobile:font-title3-semibold h-94pxr w-278pxr px-64pxr py-28pxr font-title1-semibold mobile:h-70pxr mobile:w-225pxr',
 };
 
 function CircleButton({
