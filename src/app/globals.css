@@ -111,17 +111,23 @@ body {
 .custom-height {
   min-height: calc(100vh - 80px);
 }
-@media (max-width: 767px) {
-  .custom-height {
-    min-height: calc(100vh - 52px);
-  }
+
+#camp-place {
+  width: 340px;
 }
-@media (max-width: 767px) {
-  #category-swiper {
-    display: contents !important;
-  }
-  #category-swiper .swiper-wrapper {
-    display: contents !important;
+
+.custom-header {
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.custom-header-logo {
+  grid-column: 2/ 3;
+}
+
+@media (min-width: 1200px) {
+  #category-slide {
+    width: 126px !important;
+    padding: 0 0 10px 10px !important;
   }
 }
 
@@ -135,34 +141,23 @@ body {
     margin: 0px !important;
   }
 }
-@media (min-width: 1200px) {
-  #category-slide {
-    width: 126px !important;
-    padding: 0 0 10px 10px !important;
-  }
-}
-
-#camp-place {
-  width: 340px;
-}
 
 @media (max-width: 767px) {
+  .custom-height {
+    min-height: calc(100vh - 52px);
+  }
+  #category-swiper {
+    display: contents !important;
+  }
+  #category-swiper .swiper-wrapper {
+    display: contents !important;
+  }
   #camp-place {
     width: 184px;
   }
   .custom-header {
-    grid-template-columns: 1fr 3fr 1fr;
-  }
-}
-
-@media (max-width: 767px) {
-  .custom-header {
     grid-template-columns: 1fr 7fr 1fr;
   }
-}
-
-.custom-header-logo {
-  grid-column: 2/ 3;
 }
 
 @layer utilities {
@@ -190,7 +185,7 @@ body {
 }
 
 .react-datepicker-wrapper,
-.react-daatepicker__input-container,
+.react-datepicker__input-container,
 .wrapper {
   display: flex !important;
   width: 100% !important;

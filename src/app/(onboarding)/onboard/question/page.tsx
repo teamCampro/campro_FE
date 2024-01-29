@@ -65,9 +65,9 @@ function Question() {
   };
 
   return (
-    <div className='flex-center custom-height bg-gray100'>
+    <div className='flex-center custom-height bg-gray100 mobile:items-start'>
       {isAnswering ? (
-        <div className='flex-center flex-col gap-48pxr'>
+        <div className='flex-center flex-col gap-48pxr mobile:pt-40pxr'>
           <Pagination
             currentPage={currentPage}
             totalItems={totalItems}
@@ -82,12 +82,12 @@ function Question() {
           />
         </div>
       ) : (
-        <div className='flex-center flex-col'>
-          <div className='flex-center flex-col gap-64pxr tablet:gap-12pxr'>
-            <h3 className='text-black font-title1-semibold tablet:font-h3'>
+        <div className='flex-center flex-col mobile:pt-108pxr'>
+          <div className='flex-center flex-col gap-12pxr '>
+            <h3 className='text-black font-h3 mobile:font-title1-semibold'>
               캠핑 스타일을 분석 중이에요
             </h3>
-            <p className='text-gray600 font-body2'>
+            <p className='mb-64pxr text-gray600 font-body2'>
               취향에 맞는 캠핑장을 보여드릴게요!
             </p>
 
