@@ -122,6 +122,11 @@ body {
   }
   #category-swiper .swiper-wrapper {
     display: contents !important;
+    overflow: auto !important;
+    max-width: 1120px;
+  }
+  #swiper-slide {
+    display: contents;
   }
 }
 
@@ -131,8 +136,16 @@ body {
     padding: 0 0 10px 10px !important;
     margin-right: 14px;
   }
+
   #category-swiper {
     margin: 0px !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  #category-swiper .swiper-wrapper {
+    overflow: hidden !important;
+    max-width: 1120px !important;
   }
 }
 @media (min-width: 1200px) {

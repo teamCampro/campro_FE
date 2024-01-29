@@ -77,7 +77,7 @@ const config: Config = {
         max: '1199px',
       },
       desktop: '1200px',
-      wide:'1488px',
+      wide: '1488px',
     },
     fontFamily: {
       pre: 'Pretendard',
@@ -123,6 +123,13 @@ const config: Config = {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.48),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+        '.font-title2-semibold': {
+          fontSize: pxToRem(22),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.22),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },

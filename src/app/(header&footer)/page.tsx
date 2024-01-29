@@ -1,4 +1,9 @@
-import { Hero, CampPlaceSection, SearchBar } from '../_components';
+import {
+  CampPlaceSection,
+  CategoryList,
+  Hero,
+  SearchBar,
+} from '../_components';
 function page() {
   return (
     <div>
@@ -6,6 +11,10 @@ function page() {
       <div className='flex-center flex w-full'>
         <SearchBar />
       </div>
+      <div className='wide:flex-center'>
+        <CategoryList />
+      </div>
+
       <div className='wide:flex-center'>
         <CampPlaceSection />
       </div>
