@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <div className='mt-48pxr flex h-167pxr w-full bg-gray200 tablet:h-133pxr'>
-      <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr px-16pxr py-24pxr tablet:px-48pxr tablet:py-24pxr'>
+    <div className='mt-48pxr flex h-133pxr w-full bg-gray200 mobile:h-167pxr'>
+      <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr px-48pxr py-24pxr mobile:px-16pxr'>
         <ul className='text-gray500 font-caption2'>
           <li>상호명: 캠프로</li>
           <li>대표명: 홍길동</li>
