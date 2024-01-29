@@ -26,6 +26,7 @@ function LocationInputView({
   locations,
 }: Props): JSX.Element {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   const isMobile =
     typeof window !== 'undefined'
@@ -49,10 +50,25 @@ function LocationInputView({
     } as React.ChangeEvent<HTMLInputElement>;
 
     onChange(event);
-    if (!isMobile) setIsDropdownVisible(false);
+    setIsDropdownVisible(false);
   };
 
+  const handleChangeItem = (item: string) => {
+    isMobile ? handleSelectLocationForMobile(item) : handleSelectLocation(item);
+  };
+
+  const handleSelectLocationForMobile = (item: string) => setSelectedItem(item);
+
   const handleCloseModal = () => setIsDropdownVisible(false);
+  // const handleSubmitLocation = () => {
+  //   const event = {
+  //     target: {
+  //       value: selectedItem,
+  //     },
+  //   } as React.ChangeEvent<HTMLInputElement>;
+
+  //   onChange(event);
+  // };
 
   return (
     <>
@@ -78,14 +94,18 @@ function LocationInputView({
               <Button.Round
                 size='md'
                 custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'
-                onClick={handleCloseModal}
+                onClick={() => handleSelectLocation(selectedItem as string)}
               >
                 적용
               </Button.Round>
             }
             onClose={handleCloseModal}
           >
-            <Dropdown items={locations} onSelect={handleSelectLocation} />
+            <Dropdown
+              items={locations}
+              onSelect={handleChangeItem}
+              activeItem={selectedItem}
+            />
           </ModalForMobile>
         )}
       </div>

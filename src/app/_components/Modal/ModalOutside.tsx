@@ -1,12 +1,4 @@
-// import { ReactNode } from 'react';
-
-// export default function ModalOutside({ children }: { children?: ReactNode }) {
-//   return (
-//     <div className='z-99 fixed bottom-0pxr left-0pxr flex h-screen w-full items-end bg-black-50'>
-//       {children}
-//     </div>
-//   );
-// }
+import { useEffect } from 'react';
 
 import { ReactNode } from 'react';
 import { useRef } from 'react';
@@ -25,11 +17,32 @@ export default function ModalOutside({
     }
   };
 
+  useEffect(() => {
+    const handleScroll = (e: Event) => {
+      e.preventDefault();
+    };
+
+    if (modalRef.current) {
+      document.body.style.overflow = 'hidden';
+      modalRef.current.addEventListener('scroll', handleScroll, {
+        capture: false,
+        passive: false,
+      });
+    }
+
+    return () => {
+      if (modalRef.current) {
+        document.body.style.overflow = '';
+        modalRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+
   return (
     <div onClick={modalOutSideClick}>
       <div
         ref={modalRef}
-        className='mobile:fixed  mobile:bottom-0pxr mobile:left-0pxr mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:bg-black-50'
+        className=' fixed mobile:fixed  mobile:bottom-0pxr mobile:left-0pxr mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:overflow-hidden mobile:bg-black-50'
       >
         {children}
       </div>
