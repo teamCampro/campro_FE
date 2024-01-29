@@ -142,8 +142,17 @@ body {
   }
 }
 
-.custom-header {
-  grid-template-columns: 1fr 3fr 1fr;
+#camp-place {
+  width: 340px;
+}
+
+@media (max-width: 767px) {
+  #camp-place {
+    width: 184px;
+  }
+  .custom-header {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
 }
 
 @media (max-width: 767px) {
