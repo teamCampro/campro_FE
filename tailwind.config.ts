@@ -36,7 +36,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        onboard: 'url(../../public/png/onbording.png)',
+        onboard: 'url(../../public/avifs/onbording.avif)',
         gradient:
           'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
@@ -68,9 +68,16 @@ const config: Config = {
       },
     },
     screens: {
-      mobile: '320px',
-      tablet: '768px',
+      mobile: {
+        min: '320px',
+        max: '767px',
+      },
+      tablet: {
+        min: '768px',
+        max: '1199px',
+      },
       desktop: '1200px',
+      wide:'1488px',
     },
     fontFamily: {
       pre: 'Pretendard',

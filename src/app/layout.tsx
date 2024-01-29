@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='ko'>
       <ReduxProvider>
         <ReactQueryProviders>
-          <body className='font-pre'>
+          <body className='font-pre' suppressHydrationWarning={true}>
             {children}
             <div id='modal' />
           </body>
