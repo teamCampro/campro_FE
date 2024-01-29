@@ -20,6 +20,7 @@ function RoundButton({
 }: Props) {
   return (
     <button
+      type='submit'
       onClick={onClick}
       disabled={disabled}
       className={`buttonHover buttonDisabled flex-center active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}

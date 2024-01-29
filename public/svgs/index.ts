@@ -15,3 +15,5 @@ export { default as IconHeart } from './heart.svg';
 export { default as IconArrowRight } from './right.svg';
 export { default as IconArrowLeftNormal } from './arrowLeft-normal.svg';
 export { default as IconArrowRightNormal } from './arrowRight-normal.svg';
+export { default as IconArrowLeftNon } from './arrowLeft-non.svg';
+export { default as IconArrowRightNon } from './arrowRight-non.svg';

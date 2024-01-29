@@ -2,11 +2,12 @@
 
 import { useFormContext } from 'react-hook-form';
 
-interface InputProps {
+interface Props {
   name: string;
   type?: string;
   placeholder: string;
   className: string;
+  readOnly?: boolean;
 }
 
 function CommonInput({
@@ -14,7 +15,8 @@ function CommonInput({
   type = 'text',
   placeholder,
   className,
-}: InputProps) {
+  readOnly,
+}: Props) {
   const { register } = useFormContext();
   return (
     <input
@@ -22,6 +24,7 @@ function CommonInput({
       type={type}
       placeholder={placeholder}
       className={className}
+      readOnly={readOnly}
     />
   );
 }

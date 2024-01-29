@@ -172,10 +172,27 @@ body {
   .buttonDisabled {
     @apply disabled:bg-gray300 disabled:text-gray500;
   }
+  .buttonForDatePicker {
+    @apply flex-center flex w-88pxr whitespace-nowrap rounded-[999px] border bg-white px-20pxr py-12pxr shadow-searchBar;
+  }
 }
 
 @layer components {
   .button-careCenter {
     @apply flex-center h-46pxr w-111pxr flex-shrink-0 rounded-full bg-white py-12pxr pl-20pxr pr-16pxr text-center text-gray600 font-body2-semibold;
   }
+}
+
+/* 스크롤  */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.react-datepicker-wrapper,
+.react-daatepicker__input-container,
+.wrapper {
+  display: flex !important;
+  width: 100% !important;
+  flex: 1.34 1.34 0% !important;
 }

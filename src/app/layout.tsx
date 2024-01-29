@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ReactQueryProviders from './_utils/ReactQueryProviders';
 import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
+import './_styles/datePicker.css';
 
 export const metadata: Metadata = {
   title: 'CamPro',
@@ -10,15 +11,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang='ko'>
       <ReduxProvider>
         <ReactQueryProviders>
           <body className='font-pre' suppressHydrationWarning={true}>
             {children}
+            <div id='modal' />
           </body>
         </ReactQueryProviders>
       </ReduxProvider>
