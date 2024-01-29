@@ -47,6 +47,7 @@ const config: Config = {
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
+        'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
         primary100: '#4F9E4F',
@@ -77,7 +78,7 @@ const config: Config = {
         max: '1199px',
       },
       desktop: '1200px',
-      wide:'1488px',
+      wide: '1488px',
     },
     fontFamily: {
       pre: 'Pretendard',

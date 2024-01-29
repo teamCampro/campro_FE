@@ -57,7 +57,7 @@ function LocationInputView({
   return (
     <>
       <div className='relative flex w-full flex-110'>
-        <div className='flex w-full flex-110 gap-4pxr'>
+        <div className=' flex w-full  gap-4pxr'>
           <IconLocation
             onClick={handleClick}
             className='absolute left-16pxr top-16pxr '
@@ -77,7 +77,7 @@ function LocationInputView({
             footerContent={
               <Button.Round
                 size='md'
-                custom='bg-primary100 text-white max-w-[335px] flex w-full'
+                custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'
                 onClick={handleCloseModal}
               >
                 적용

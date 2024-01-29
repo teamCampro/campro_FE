@@ -3,7 +3,7 @@ function page() {
   return (
     <div>
       <Hero />
-      <div className='flex-center flex w-full'>
+      <div className='  flex-center  flex w-full'>
         <SearchBar />
       </div>
       <div className='wide:flex-center'>
