@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
 import { IconCalendar } from '@/public/svgs';
+import { forwardRef } from 'react';
 
 interface DateInputProps {
   value: string;
@@ -22,5 +22,6 @@ const DateInputView = forwardRef<HTMLInputElement, DateInputProps>(
     );
   },
 );
+DateInputView.displayName = 'DateInputView';
 
 export default DateInputView;
