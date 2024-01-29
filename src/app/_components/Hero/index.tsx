@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import heroImage from '@/public/png/hero.png';
+import heroImage from '@/public/avifs/hero.avif';
 import { useRouter } from 'next/navigation';
 import { Button } from '..';
 
