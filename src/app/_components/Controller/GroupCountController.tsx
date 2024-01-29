@@ -4,7 +4,7 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { GroupCountInputView } from '@/components/index';
 
-const family = {
+const groupCount = {
   adult: 0,
   child: 0,
   pet: 0,
@@ -20,10 +20,13 @@ function GroupCountController({ name }: Props) {
   return (
     <Controller
       control={control}
+      defaultValue={{
+        adult: 0,
+        child: 0,
+        pet: 0,
+      }}
       name={name}
-      render={({ field }) => (
-        <GroupCountInputView field={field} group={family} />
-      )}
+      render={({ field }) => <GroupCountInputView field={field} />}
     />
   );
 }

@@ -37,7 +37,6 @@ function LocationInputView({
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     onBlur(event);
-    setIsDropdownVisible(false);
   };
 
   const handleSelectLocation = (item: string) => {
@@ -57,25 +56,13 @@ function LocationInputView({
 
   const handleSelectLocationForMobile = (item: string) => setSelectedItem(item);
 
-  const handleCloseModal = () => setIsDropdownVisible(false);
-  // const handleSubmitLocation = () => {
-  //   const event = {
-  //     target: {
-  //       value: selectedItem,
-  //     },
-  //   } as React.ChangeEvent<HTMLInputElement>;
-
-  //   onChange(event);
-  // };
+  const handleClose = () => setIsDropdownVisible(false);
 
   return (
     <>
-      <div className='relative flex w-full flex-110'>
+      <div onClick={handleClick} className='relative flex w-full flex-110'>
         <div className=' flex w-full  gap-4pxr'>
-          <IconLocation
-            onClick={handleClick}
-            className='absolute left-16pxr top-16pxr '
-          />
+          <IconLocation className='absolute left-16pxr top-16pxr ' />
           <input
             {...field}
             value={value}
@@ -97,12 +84,13 @@ function LocationInputView({
                 적용
               </Button.Round>
             }
-            onClose={handleCloseModal}
+            onClose={handleClose}
           >
             <Dropdown
               items={locations}
               onSelect={handleChangeItem}
               activeItem={selectedItem}
+              onClose={handleClose}
             />
           </ModalForMobile>
         )}
