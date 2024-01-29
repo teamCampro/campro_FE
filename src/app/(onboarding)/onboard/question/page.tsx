@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Tent from '@/../public/png/tent.gif';
+import Tent from '@/../public/gifs/tent.gif';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Pagination } from '@/src/app/_components';
@@ -19,7 +19,7 @@ export interface ChoicesType {
   text: string;
 }
 
-export interface QustionType {
+export interface QuestionType {
   [key: string]: string;
   '1': string;
   '2': string;
@@ -30,7 +30,7 @@ export interface QustionType {
 
 function Question() {
   const [isAnswering, setIsAnswering] = useState(true);
-  const [tagState, setTagState] = useState<QustionType>({
+  const [tagState, setTagState] = useState<QuestionType>({
     '1': '',
     '2': '',
     '3': '',

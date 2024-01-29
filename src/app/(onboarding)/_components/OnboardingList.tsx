@@ -1,4 +1,4 @@
-import { OnboardingType, QustionType } from '../onboard/question/page';
+import { OnboardingType, QuestionType } from '../onboard/question/page';
 import OnboardingItem from './OnBoardingItem';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   currentPage: number;
   onClickChoices: (text: string, id: number) => void;
   onSubmitOnboard: () => void;
-  tagState: QustionType;
+  tagState: QuestionType;
 }
 
 function OnboardingList({

@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import { OnboardingType, QustionType } from '../onboard/question/page';
+import { OnboardingType, QuestionType } from '../onboard/question/page';
 import { Fragment } from 'react';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   onClickChoices: (text: string, id: number) => void;
   onSubmitOnboard: () => void;
   questionId: number;
-  tagState: QustionType;
+  tagState: QuestionType;
 }
 
 function OnboardingItem({
