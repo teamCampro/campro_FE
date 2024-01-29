@@ -12,3 +12,4 @@ export { default as DateInput } from './Input/DateInput';
 export { default as GroupCountInput } from './Input/GroupCountInput';
 export { default as searchBar } from './SearchBar';
 export { default as Footer } from './Footer';
+export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
