@@ -1,5 +1,5 @@
 import { OnboardingType, QuestionType } from '../onboard/question/page';
-import OnboardingItem from './OnBoardingItem';
+import OnboardingItem from './OnboardingItem';
 
 interface Props {
   mockData: OnboardingType[];
