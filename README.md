@@ -55,6 +55,3 @@
 <img src="https://img.shields.io/badge/Library-%23121011?style=for-the-badge"><img src="https://img.shields.io/badge/redux Toolkit-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"><img src="https://img.shields.io/badge/2.0.1-515151?style=for-the-badge">
 <br/>
 <img src="https://img.shields.io/badge/Library-%23121011?style=for-the-badge"><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white"><img src="https://img.shields.io/badge/7.49.3-515151?style=for-the-badge">
-
-<br/>
-<br/>
