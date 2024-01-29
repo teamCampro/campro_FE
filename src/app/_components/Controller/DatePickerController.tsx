@@ -16,7 +16,7 @@ interface Props {
   name: string;
 }
 
-const months = [
+const MONTHS = [
   '1월',
   '2월',
   '3월',
@@ -130,7 +130,7 @@ function DatePickerController({ name }: Props) {
                           disabled={prevMonthButtonDisabled}
                         />
 
-                        <div className='font-title3-semibold'>{`${getYear(date)} ${months[getMonth(date)]}`}</div>
+                        <div className='font-title3-semibold'>{`${getYear(date)} ${MONTHS[getMonth(date)]}`}</div>
                         <IconArrowRightNon
                           onClick={increaseMonth}
                           disabled={nextMonthButtonDisabled}
