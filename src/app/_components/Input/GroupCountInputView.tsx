@@ -1,10 +1,11 @@
 'use client';
 
 import { IconPeople } from '@/public/svgs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GroupDropdown from '../Dropdown/GroupDropdown';
 import ModalForMobile from '../Modal/ModalForMobile';
 import { Button } from '..';
+import useMediaQueries from '@/hooks/useMediaQueries';
 interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -18,12 +19,15 @@ interface Props {
   field: Field;
 }
 
-function GroupCountInputView({
-  field: { onBlur, onChange, value, ...field },
-}: Props) {
+function GroupCountInputView({ field: { onBlur, value, ...field } }: Props) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
+
   const handleRenderDropdown = () => setIsDropdownVisible(true);
+  const handleCloseDropdown = () => setIsDropdownVisible(false);
 
   return (
     <div className='relative flex w-full flex-123'>
@@ -46,16 +50,19 @@ function GroupCountInputView({
           footerContent={
             <Button.Round
               size='md'
+              onClick={handleCloseDropdown}
               custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'
             >
               적용
             </Button.Round>
           }
-          onClose={() => setIsDropdownVisible(false)}
+          onClose={handleCloseDropdown}
         >
           <GroupDropdown
             group={value && JSON.stringify(value)}
-            onChangeGroup={onChange}
+            onChangeGroup={field.onChange}
+            onClose={handleCloseDropdown}
+            isMobile={isMobile}
           />
         </ModalForMobile>
       )}

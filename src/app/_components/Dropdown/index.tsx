@@ -5,16 +5,18 @@ interface Props {
   onSelect: (item: string) => void;
   activeItem: string | null;
   onClose: () => void;
+  isMobile: boolean;
 }
 
-function Dropdown({ items, onSelect, activeItem, onClose }: Props) {
+function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !dropdownRef.current.contains(event.target as Node) &&
+        !isMobile
       ) {
         onClose();
       }
@@ -25,7 +27,12 @@ function Dropdown({ items, onSelect, activeItem, onClose }: Props) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [onClose]);
+  }, [onClose, isMobile]);
+
+  const handleSelect = (e: React.MouseEvent<HTMLElement>, item: string) => {
+    onSelect(item);
+    e.stopPropagation();
+  };
 
   return (
     <div
@@ -34,9 +41,7 @@ function Dropdown({ items, onSelect, activeItem, onClose }: Props) {
     >
       {items.map((item, index) => (
         <div
-          onClick={() => {
-            onSelect(item);
-          }}
+          onClick={(e) => handleSelect(e, item)}
           key={index}
           className={`mobile:active:bg-Primary50 mobile:hover:bg-Primary50  relative flex  w-full  bg-white-100 text-black font-title3-semibold tablet:active:bg-white-100 ${item === activeItem ? 'mobile:bg-primary50' : ''} mobile:relative mobile:z-[99] mobile:justify-center tablet:justify-start`}
         >

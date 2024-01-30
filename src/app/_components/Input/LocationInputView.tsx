@@ -22,21 +22,17 @@ interface Props {
 }
 
 function LocationInputView({
-  field: { onBlur, onChange, value, ...field },
+  field: { value, ...field },
   locations,
 }: Props): JSX.Element {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState('');
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
 
   const handleClick = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    onBlur(event);
+    setIsDropdownVisible(true);
   };
 
   const handleSelectLocation = (item: string) => {
@@ -46,7 +42,7 @@ function LocationInputView({
       },
     } as React.ChangeEvent<HTMLInputElement>;
 
-    onChange(event);
+    field.onChange(event);
     setIsDropdownVisible(false);
   };
 
@@ -66,8 +62,6 @@ function LocationInputView({
           <input
             {...field}
             value={value}
-            onChange={onChange}
-            onBlur={handleBlur}
             placeholder='어디로 갈까요?'
             className=' w-full whitespace-nowrap rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
           />
@@ -79,7 +73,10 @@ function LocationInputView({
               <Button.Round
                 size='md'
                 custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'
-                onClick={() => handleSelectLocation(selectedItem as string)}
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
+                  e.stopPropagation();
+                  handleSelectLocation(selectedItem as string);
+                }}
               >
                 적용
               </Button.Round>
@@ -87,6 +84,7 @@ function LocationInputView({
             onClose={handleClose}
           >
             <Dropdown
+              isMobile={isMobile as boolean}
               items={locations}
               onSelect={handleChangeItem}
               activeItem={selectedItem}
