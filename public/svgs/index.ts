@@ -13,6 +13,8 @@ export { default as IconLike } from './like.svg';
 export { default as IconLocation } from './location.svg';
 export { default as IconMinus } from './minus.svg';
 export { default as IconNavigationDown } from './navigationDown.svg';
+export { default as IconNavigationLeft } from './navigationLeft.svg';
+export { default as IconNavigationRight } from './navigationRight.svg';
 export { default as IconNavigationUp } from './navigationUp.svg';
 export { default as IconPeople } from './people.svg';
 export { default as IconPlus } from './plus.svg';

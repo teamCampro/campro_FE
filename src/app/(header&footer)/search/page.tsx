@@ -1,9 +1,13 @@
 'use client';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+import {
+  CampSearchList,
+  SearchPagination,
+  SortDropdown,
+} from '@/components/index';
 import { CampPlaceMockData } from '../_components/CampPlaceSection';
-import CampSearchList from '../_components/CampSearchList';
-import SortDropdown from '../_components/SortDropdown';
 interface campMapMockData {
   result: CampPlaceMockData[];
 }
@@ -46,6 +50,7 @@ function MapPage() {
           지도
         </div>
       </div>
+      <SearchPagination />
     </>
   );
 }

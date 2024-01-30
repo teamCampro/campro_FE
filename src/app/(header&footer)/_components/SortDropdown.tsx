@@ -1,3 +1,5 @@
+'use client';
+
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
 import { useState } from 'react';
 
@@ -38,7 +40,7 @@ function SortDropdown() {
         {isOpen ? <IconNavigationUp /> : <IconNavigationDown />}
       </button>
       {isOpen && (
-        <div className='flex-center absolute left-0pxr z-10 flex-col'>
+        <div className='flex-center absolute left-0pxr z-10 flex-col bg-white'>
           {orders
             .filter((option) => option.key !== selected.key)
             .map((option) => (
