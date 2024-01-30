@@ -1,6 +1,9 @@
 'use client';
 
-import DatePicker, { ReactDatePicker } from 'react-datepicker';
+import DatePicker, {
+  CalendarContainer,
+  ReactDatePicker,
+} from 'react-datepicker';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DateInputView } from '@/src/app/_components';
 import { useRef } from 'react';
