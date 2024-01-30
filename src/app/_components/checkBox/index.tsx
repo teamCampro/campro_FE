@@ -1,7 +1,7 @@
 function CheckBox() {
   return (
     <>
-      <input type='checkbox' id='check1' />
+      <input type='checkbox' id='check' />
     </>
   );
 }
