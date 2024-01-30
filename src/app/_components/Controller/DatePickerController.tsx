@@ -1,18 +1,14 @@
 'use client';
 
-import DatePicker, {
-  CalendarContainer,
-  ReactDatePicker,
-} from 'react-datepicker';
-import { Controller, useFormContext } from 'react-hook-form';
-import { DateInputView } from '@/src/app/_components';
-import { useRef } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
-import { ko } from 'date-fns/locale';
 import useMediaQueries from '@/hooks/useMediaQueries';
-import { useEffect } from 'react';
-import { getMonth, getYear } from 'date-fns';
 import { IconArrowLeftNon, IconArrowRightNon } from '@/public/svgs';
+import { DateInputView } from '@/src/app/_components';
+import { getMonth, getYear } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import { useEffect, useRef } from 'react';
+import DatePicker, { ReactDatePicker } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Controller, useFormContext } from 'react-hook-form';
 import { Button } from '..';
 
 interface Props {
@@ -38,15 +34,15 @@ function DatePickerController({ name }: Props) {
   const control = useFormContext().control;
 
   const datePickerRef = useRef<ReactDatePicker>(null);
-  const isTablet =
-    typeof window !== 'undefined'
-      ? useMediaQueries({ breakpoint: 1199 })?.mediaQuery.matches
-      : false;
 
-  const isMobile =
-    typeof window !== 'undefined'
-      ? useMediaQueries({ breakpoint: 767 })?.mediaQuery.matches
-      : false;
+  const tabletMediaQuery = useMediaQueries({ breakpoint: 1199 })?.mediaQuery
+    .matches;
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isTablet = typeof window !== 'undefined' ? tabletMediaQuery : false;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
 
   useEffect(() => {
     const datePickerInputContainer = document.querySelector(

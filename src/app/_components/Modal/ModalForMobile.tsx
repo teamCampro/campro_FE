@@ -1,11 +1,11 @@
+import useMediaQueries from '@/hooks/useMediaQueries';
+import { ReactNode } from 'react';
+import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
+import ModalLayout from './ModalLayout';
 import ModalMainContent from './ModalMainContent';
 import ModalOutside from './ModalOutside';
 import ModalPortal from './ModalPortal';
-import ModalFooter from './ModalFooter';
-import { ReactNode } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
-import ModalLayout from './ModalLayout';
 function ModalForMobile({
   children,
   headerContent,
@@ -17,10 +17,10 @@ function ModalForMobile({
   footerContent: ReactNode;
   onClose: () => void;
 }) {
-  const isMobile =
-    typeof window !== 'undefined'
-      ? useMediaQueries({ breakpoint: 767 })?.mediaQuery.matches
-      : false;
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
   return isMobile ? (
     <ModalPortal>
       <ModalOutside onClose={onClose}>

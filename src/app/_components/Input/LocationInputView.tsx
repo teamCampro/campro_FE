@@ -1,11 +1,11 @@
 'use client';
 
+import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconLocation } from '@/public/svgs';
 import { useState } from 'react';
+import { Button } from '..';
 import Dropdown from '../Dropdown';
 import ModalForMobile from '../Modal/ModalForMobile';
-import { Button } from '..';
-import useMediaQueries from '@/hooks/useMediaQueries';
 
 interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,11 +26,9 @@ function LocationInputView({
   locations,
 }: Props): JSX.Element {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
-  const isMobile =
-    typeof window !== 'undefined'
-      ? useMediaQueries({ breakpoint: 767 })?.mediaQuery.matches
-      : false;
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
 
   const handleClick = () => {
     setIsDropdownVisible(!isDropdownVisible);
