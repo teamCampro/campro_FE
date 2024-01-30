@@ -71,6 +71,11 @@ function DatePickerController({ name }: Props) {
           }
         };
 
+        const closeDatePicker = () => {
+          if (datePickerRef.current) {
+            datePickerRef.current.setOpen(false);
+          }
+        };
         const getDayClassName = (date: Date) => {
           return date.getDay() === 0 ? 'sunday' : '';
         };
@@ -85,6 +90,7 @@ function DatePickerController({ name }: Props) {
 
         return (
           <DatePicker
+            shouldCloseOnSelect={isMobile ? false : true}
             dayClassName={getDayClassName}
             ref={datePickerRef}
             dateFormat='MM.dd (eee)'
@@ -171,8 +177,10 @@ function DatePickerController({ name }: Props) {
             ) : (
               <div className='flex-center flex w-full bg-white   '>
                 <Button.Round
+                  type='button'
                   size='md'
                   custom='bg-primary100 text-white max-w-[335px] flex w-full'
+                  onClick={closeDatePicker}
                 >
                   적용
                 </Button.Round>

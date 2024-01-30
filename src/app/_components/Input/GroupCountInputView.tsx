@@ -49,6 +49,7 @@ function GroupCountInputView({ field: { onBlur, value, ...field } }: Props) {
           headerContent='인원'
           footerContent={
             <Button.Round
+              type='button'
               size='md'
               onClick={handleCloseDropdown}
               custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'

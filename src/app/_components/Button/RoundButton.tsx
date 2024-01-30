@@ -12,6 +12,7 @@ const BUTTON_SIZE = {
 };
 
 function RoundButton({
+  type = 'button',
   children,
   onClick,
   disabled,
@@ -20,7 +21,7 @@ function RoundButton({
 }: Props) {
   return (
     <button
-      type='submit'
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className={`buttonHover buttonDisabled flex-center active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}

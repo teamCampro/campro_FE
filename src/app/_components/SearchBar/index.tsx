@@ -24,7 +24,11 @@ function SearchBar() {
           groupCount={{ adult: 0, child: 0, pet: 0 }}
         />
       </div>
-      <Button.Round size='sm' custom='mobile:w-full tablet:w-full'>
+      <Button.Round
+        type='submit'
+        size='sm'
+        custom='mobile:w-full tablet:w-full'
+      >
         검색
       </Button.Round>
     </CommonForm>
