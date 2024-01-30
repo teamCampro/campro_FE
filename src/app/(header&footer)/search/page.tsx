@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { CampPlaceMockData } from '../_components/CampPlaceSection';
 import CampSearchList from '../_components/CampSearchList';
+import SortDropdown from '../_components/SortDropdown';
 interface campMapMockData {
   result: CampPlaceMockData[];
 }
@@ -36,6 +37,7 @@ function MapPage() {
       >
         토글
       </button>
+      <SortDropdown />
       <div className='flex-center'>
         <CampSearchList campPlaces={campPlaces} isExpanded={isExpanded} />
         <div
