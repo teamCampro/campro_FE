@@ -1,13 +1,14 @@
 import { IconMinus, IconPlus } from '@/public/svgs';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 interface Props {
   group: string;
-  onChangeGroup: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+  onChangeGroup: (updatedGroup: string) => void;
   onClose: () => void;
   isMobile?: boolean;
 }
 
-function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
+function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
   const groupObject = JSON.parse(group);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -31,12 +32,15 @@ function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
   }, [onClose, isMobile]);
 
   const handleIncrease = (name: 'adult' | 'child' | 'pet') => {
-    onChangeGroup({ ...groupObject, [name]: groupObject[name] + 1 });
+    const updatedGroup = { ...groupObject, [name]: groupObject[name] + 1 };
+    onChangeGroup(JSON.stringify(updatedGroup));
   };
 
   const handleDecrease = (name: 'adult' | 'child' | 'pet') => {
-    groupObject[name] > 0 &&
-      onChangeGroup({ ...groupObject, [name]: groupObject[name] - 1 });
+    if (groupObject[name] > 0) {
+      const updatedGroup = { ...groupObject, [name]: groupObject[name] - 1 };
+      onChangeGroup(JSON.stringify(updatedGroup));
+    }
   };
 
   return (
