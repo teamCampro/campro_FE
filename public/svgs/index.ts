@@ -17,3 +17,5 @@ export { default as IconArrowLeftNormal } from './arrowLeft-normal.svg';
 export { default as IconArrowRightNormal } from './arrowRight-normal.svg';
 export { default as IconArrowLeftNon } from './arrowLeft-non.svg';
 export { default as IconArrowRightNon } from './arrowRight-non.svg';
+export { default as IconMapMinus } from './mapMinus.svg';
+export { default as IconMapPlus } from './mapPlus.svg';
