@@ -19,7 +19,10 @@ function SearchBar() {
       <div className='flex-center flex w-full flex-row gap-12pxr px-20pxr pb-20pxr mobile:flex-col tablet:flex-row tablet:px-0pxr desktop:pb-0pxr'>
         <LocationController name='location' />
         <DatePickerController name='date' />
-        <GroupCountController name='group' />
+        <GroupCountController
+          name='group'
+          groupCount={{ adult: 0, child: 0, pet: 0 }}
+        />
       </div>
       <Button.Round size='sm' custom='mobile:w-full tablet:w-full'>
         검색
