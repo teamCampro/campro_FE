@@ -112,8 +112,6 @@ function DatePickerController({ name }: Props) {
                 ? undefined
                 : ({
                     date,
-                    changeYear,
-                    changeMonth,
                     decreaseMonth,
                     increaseMonth,
                     prevMonthButtonDisabled,
@@ -142,24 +140,28 @@ function DatePickerController({ name }: Props) {
             {!isMobile ? (
               <>
                 <button
+                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(0)}
                 >
                   당일치기
                 </button>
                 <button
+                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(1)}
                 >
                   1박 2일
                 </button>
                 <button
+                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(2)}
                 >
                   2박 3일
                 </button>
                 <button
+                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(3)}
                 >
