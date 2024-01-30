@@ -11,6 +11,6 @@ export { default as LocationInputView } from './Input/LocationInputView';
 export { default as DateInputView } from './Input/DateInputView';
 export { default as GroupCountInput } from './Input/GroupCountInput';
 export { default as SearchBar } from './SearchBar';
-
+export { default as CheckBox } from './checkBox';
 export { default as Footer } from './Footer';
 export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
