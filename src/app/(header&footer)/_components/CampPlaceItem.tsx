@@ -5,12 +5,18 @@ import { CampPlaceMockData } from './CampPlaceSection';
 
 interface Props {
   campPlace: CampPlaceMockData;
+  isResponsive?: boolean;
 }
 
-function CampPlaceItem({ campPlace }: Props) {
+function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
+  const responsiveClasses = isResponsive
+    ? 'mobile:w-full tablet:w-full desktop1440:w-full'
+    : 'mobile:w-184pxr';
   return (
     <li key={campPlace.id} className='flex flex-col gap-16pxr'>
-      <div className='relative h-220pxr w-340pxr mobile:h-184pxr mobile:w-full tablet:w-full desktop1440:w-full'>
+      <div
+        className={`relative h-220pxr w-340pxr mobile:h-184pxr ${responsiveClasses}`}
+      >
         <Image
           className='rounded-3xl object-cover'
           src={campPlace.imgUrl}

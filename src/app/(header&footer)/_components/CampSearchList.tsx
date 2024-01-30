@@ -17,7 +17,7 @@ function CampSearchList({
       className={`${gridColumns} pt-16px pb-40px m-auto grid w-full gap-16pxr px-40pxr mobile:p-16pxr mobile411:grid-cols-1-col-288 mobile725:grid-cols-2-col-184 mobile767:grid-cols-2-col-184 tablet1199:grid-cols-2-col-184`}
     >
       {campPlaces.map((campPlace) => (
-        <CampPlaceItem key={campPlace.id} campPlace={campPlace} />
+        <CampPlaceItem key={campPlace.id} campPlace={campPlace} isResponsive />
       ))}
     </ul>
   );
