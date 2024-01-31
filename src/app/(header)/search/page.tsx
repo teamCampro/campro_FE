@@ -1,4 +1,5 @@
 'use client';
+import Button from '@/components/Button';
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
@@ -64,6 +65,11 @@ function SearchPage() {
       if (!mapRef.current) return;
       const map = new window.kakao.maps.Map(mapRef.current, options);
       setMap(map);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (map) {
       const positions = campPlaceData?.map((data) => {
         const { location } = data;
 
@@ -95,26 +101,29 @@ function SearchPage() {
           marker.setMap(map);
         }
       }
-    });
-  }, []);
+    }
+  }, [campPlaceData, map]);
 
   return (
     <>
       <div ref={mapRef} className='h-screen w-screen'>
-        <div className='absolute right-26pxr top-16pxr flex flex-col'>
-          <button
-            className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
-            onClick={handleClickZoomIn}
-          >
-            <IconMapPlus />
-          </button>
-          <button
-            className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
-            onClick={handleClickZoomOut}
-          >
-            <IconMapMinus />
-          </button>
-        </div>
+        <Button.RoundArrow>접기</Button.RoundArrow>
+        {map && (
+          <div className='absolute right-26pxr top-16pxr flex flex-col'>
+            <button
+              className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
+              onClick={handleClickZoomIn}
+            >
+              <IconMapPlus />
+            </button>
+            <button
+              className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
+              onClick={handleClickZoomOut}
+            >
+              <IconMapMinus />
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
