@@ -30,7 +30,7 @@ function SortDropdown() {
   };
 
   return (
-    <div>
+    <div className='ml-auto'>
       <button
         type='button'
         className='relative flex text-gray500 font-body2 mobile:font-caption2-semibold tablet:font-caption2-semibold'

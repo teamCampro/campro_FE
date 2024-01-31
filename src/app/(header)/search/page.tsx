@@ -1,44 +1,45 @@
 'use client';
-import Button from '@/components/Button';
-import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-
-interface LocationType {
-  lat: number;
-  lng: number;
-}
-
-interface CampPlaceType {
-  id: number;
-  placeName: string;
-  price: number;
-  address: string;
-  imgUrl: string;
-  location: LocationType;
-}
+import React, { useEffect, useState } from 'react';
+import KakaoMap from '../_components/KakaoMap';
+import kakaoMarkerGenerator, {
+  CampPlaceType,
+} from '../../_utils/kakaoMarkerGenerator';
+import {
+  CampSearchList,
+  SearchPagination,
+  SortDropdown,
+} from '@/components/index';
 
 interface DataType {
   result: CampPlaceType[];
 }
 
-function SearchPage() {
-  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
-  const [map, setMap] = useState<kakao.maps.Map | undefined>();
-  const mapRef = useRef<HTMLDivElement>(null);
+export type MapSizeType = 'half' | 'map' | 'list';
 
-  const handleClickZoomIn = () => {
-    if (map) {
-      const level = map.getLevel();
-      map.setLevel(level - 1);
-    }
+function SearchPage() {
+  const [map, setMap] = useState<kakao.maps.Map | null>(null);
+  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
+  const [mapSize, setMapSize] = useState<MapSizeType>('half');
+
+  const mapBasis = {
+    half: {
+      map: 'basis-424pxr desktop1440:flex-grow-3 mobile:hidden',
+      list: 'basis-776pxr max-w-776pxr desktop1920:max-w-1132pxr desktop:grid-cols-2-col-340 desktop1440:grid-cols-auto-fill-min-340 desktop1920:grid-cols-3-col-340',
+    },
+    map: { map: 'flex-1 w-full', list: 'hidden' },
+    list: {
+      map: 'hidden',
+      list: 'tablet1002:grid-cols-2-col-340 tablet1002:max-w-777pxr tablet1199:grid-cols-3-col-184 max-w-1132pxr desktop1920:grid-cols-5-col-340 desktop1440:max-w-1132pxr desktop:grid-cols-3-col-340 desktop1440:grid-cols-3-col-340 desktop1920:max-w-1845pxr',
+    },
   };
 
-  const handleClickZoomOut = () => {
-    if (map) {
-      const level = map.getLevel();
-      map.setLevel(level + 1);
-    }
+  const setKakaoMap = (map: kakao.maps.Map) => {
+    setMap(map);
+  };
+
+  const handleMapSize = (size: MapSizeType) => {
+    setMapSize(size);
   };
 
   useEffect(() => {
@@ -46,6 +47,7 @@ function SearchPage() {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
+
       const { result } = response.data;
       setCampPlaceData(result);
     };
@@ -54,76 +56,48 @@ function SearchPage() {
   }, []);
 
   useEffect(() => {
-    window.kakao.maps.load(() => {
-      const options = {
-        center: new window.kakao.maps.LatLng(
-          37.561110808242056,
-          126.9831268386891,
-        ),
-        level: 3,
-      };
-      if (!mapRef.current) return;
-      const map = new window.kakao.maps.Map(mapRef.current, options);
-      setMap(map);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (map) {
-      const positions = campPlaceData?.map((data) => {
-        const { location } = data;
-
-        return {
-          title: data.placeName,
-          latlng: new window.kakao.maps.LatLng(location.lat, location.lng),
-        };
-      });
-
-      if (positions) {
-        const imageSrc =
-          'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
-        for (let i = 0; i < positions.length; i++) {
-          const imageSize = new window.kakao.maps.Size(24, 35);
-
-          const markerImage = new window.kakao.maps.MarkerImage(
-            imageSrc,
-            imageSize,
-          );
-
-          const marker = new window.kakao.maps.Marker({
-            map: map,
-            position: positions[i].latlng,
-            title: positions[i].title,
-            image: markerImage,
-          });
-
-          marker.setMap(map);
-        }
-      }
+    if (map && campPlaceData) {
+      kakaoMarkerGenerator({ map, campPlaceData });
     }
-  }, [campPlaceData, map]);
-
+  }, [map, campPlaceData]);
   return (
     <>
-      <div ref={mapRef} className='h-screen w-screen'>
-        <Button.RoundArrow>접기</Button.RoundArrow>
-        {map && (
-          <div className='absolute right-26pxr top-16pxr flex flex-col'>
-            <button
-              className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
-              onClick={handleClickZoomIn}
-            >
-              <IconMapPlus />
-            </button>
-            <button
-              className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
-              onClick={handleClickZoomOut}
-            >
-              <IconMapMinus />
-            </button>
+      <button
+        className='absolute left-0pxr top-0pxr'
+        onClick={() => handleMapSize('map')}
+      >
+        펼치기
+      </button>
+      {/* 비상!!!! */}
+      <div className='flex-center h-full w-full'>
+        {mapSize !== 'map' && (
+          <div className='scrollbar-hide pt-16px pb-40px relative flex h-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr'>
+            <div className='flex items-center justify-around'>
+              <h3 className='text-black font-title1-semibold mobile:font-body1-medium'>
+                전체 {campPlaceData?.length || 0}
+              </h3>
+              <SortDropdown />
+            </div>
+
+            {campPlaceData && (
+              <CampSearchList
+                campPlaces={campPlaceData}
+                gridColumns={mapBasis[mapSize].list}
+              />
+            )}
+            <SearchPagination />
           </div>
         )}
+        <div
+          className={`grow-1 desktop1440:basis-664pxr desktop1920:basis-793pxr relative h-full shrink-0 ${mapBasis[mapSize].map}`}
+        >
+          <KakaoMap
+            map={map}
+            setMap={setKakaoMap}
+            toggleHalfScreen={handleMapSize}
+            mapSize={mapSize}
+          />
+        </div>
       </div>
     </>
   );
