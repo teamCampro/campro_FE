@@ -33,7 +33,7 @@ function Selectable({ children, types }: Props) {
   const textLength = children?.toString().length;
   const [isDrop, setIsDrop] = useState(false);
 
-  const callbackRef = useCallback((current: HTMLUListElement) => {
+  const callbackRef = useCallback((current: HTMLDivElement) => {
     current?.focus();
   }, []);
 
@@ -52,13 +52,16 @@ function Selectable({ children, types }: Props) {
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium`}
+        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none`}
+        /*   ref={callbackRef}
+        tabIndex={-1}
+        onBlur={handleBlur} */
       >
         <div
-          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr'
+          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
           onClick={handleClick}
         >
-          <h3 className='whitespace-nowrap text-gray600 font-body2'>
+          <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
           {isDrop ? (
@@ -68,16 +71,14 @@ function Selectable({ children, types }: Props) {
           )}
         </div>
         {isDrop && (
-          <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white'>
+          <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'>
             <ul
-              className={`scrollbar-hide flex ${types ? 'h-249pxr' : 'h-98pxr'} w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr`}
-              ref={callbackRef}
-              tabIndex={-1}
-              onBlur={handleBlur}
+              className={`scrollbar-hide relative  z-10 flex h-full w-320pxr flex-col justify-between gap-20pxr  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${types ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
             >
               {types ? <SelectList types={types} /> : <PriceTable />}
             </ul>
-            <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr'>
+
+            {/* <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr'>
               <div>초기화</div>
               <Button.Round
                 size='sm'
@@ -86,7 +87,7 @@ function Selectable({ children, types }: Props) {
               >
                 적용
               </Button.Round>
-            </div>
+            </div> */}
           </div>
         )}
       </div>

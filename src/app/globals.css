@@ -252,7 +252,7 @@ input[type='checkbox'] {
   height: 24px;
   cursor: pointer;
   outline: none !important;
-  border: 1px solid #eeeeee;
+  border: 2px solid #949494;
   border-radius: 2px;
   background: #fbfbfb;
 }
@@ -275,9 +275,19 @@ input[type='checkbox']:checked {
   background-color: #4f9e4f;
   border-color: rgba(255, 255, 255, 0.3);
   color: white;
+  border: 0;
 }
 
 input[type='checkbox']:checked::before {
   border-radius: 2px;
   transform: scale(1) translate(-50%, -50%);
+}
+
+/* 2줄이상 긴텍스트 생략 */
+.lineOver {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
