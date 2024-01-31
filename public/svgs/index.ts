@@ -19,3 +19,5 @@ export { default as IconArrowLeftNon } from './arrowLeft-non.svg';
 export { default as IconArrowRightNon } from './arrowRight-non.svg';
 export { default as IconArrowUp } from './arrowUp.svg';
 export { default as IconArrowDown } from './arrowDown.svg';
+export { default as IconFilter } from './filter.svg';
+export { default as IconReset } from './reset.svg';

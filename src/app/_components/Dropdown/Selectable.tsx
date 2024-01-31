@@ -50,7 +50,7 @@ function Selectable({ children, types }: Props) {
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr  rounded-full border bg-white font-medium`}
+        className={`h-48pxr ${textLength && LENTH[textLength]} z-10pxr right-50pxr w-121pxr rounded-full border bg-white font-medium`}
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr'
@@ -67,7 +67,7 @@ function Selectable({ children, types }: Props) {
         </div>
         {isDrop && (
           <div
-            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white'
+            className='z-10pxr absolute left-0pxr top-0pxr rounded-[20px] bg-white'
             ref={callbackRef}
             tabIndex={-1}
             onBlur={handleBlur}

@@ -66,18 +66,26 @@ const config: Config = {
         gray700: '#383838',
         gray800: '#1F1F1F',
       },
+      flexGrow: {
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+      },
     },
     screens: {
+      mobileMin: '320px',
       mobile: {
         min: '320px',
         max: '767px',
       },
+      tabletMin: '768px',
       tablet: {
         min: '768px',
         max: '1199px',
       },
       desktop: '1200px',
-      wide:'1488px',
+      wide: '1488px',
     },
     fontFamily: {
       pre: 'Pretendard',

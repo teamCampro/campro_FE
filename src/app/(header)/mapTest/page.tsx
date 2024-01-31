@@ -1,13 +1,9 @@
-import Selectable from '@/components/Dropdown/Selectable';
+import DetailPanel from './_components/DetailPanel';
 
 function page() {
   return (
-    <div className='flex h-screen w-full gap-8pxr bg-gray-500'>
-      <Selectable types='stay'>숙박 유형</Selectable>
-      <Selectable types='home'>시설</Selectable>
-      <Selectable>가격</Selectable>
-      <Selectable types='theme'>테마</Selectable>
-      <Selectable types='trip'>여행 타입</Selectable>
+    <div className='h-screen w-full bg-gray-500'>
+      <DetailPanel />
     </div>
   );
 }
