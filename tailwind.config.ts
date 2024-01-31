@@ -48,7 +48,6 @@ const config: Config = {
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
         'white-100': 'rgba(255, 255, 255, 1)',
-        'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
         primary100: '#4F9E4F',
