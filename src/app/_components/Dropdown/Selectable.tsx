@@ -33,24 +33,26 @@ function Selectable({ children, types }: Props) {
   const textLength = children?.toString().length;
   const [isDrop, setIsDrop] = useState(false);
 
-  const callbackRef = useCallback((current: HTMLDivElement) => {
+  const callbackRef = useCallback((current: HTMLUListElement) => {
     current?.focus();
   }, []);
 
-  const handleClick = (e: MouseEvent) => {
-    e.preventDefault();
+  const handleClick = () => {
     setIsDrop((prev) => !prev);
+    console.log('onClick 작동중');
   };
   const handleBlur = (e: FocusEvent) => {
     setTimeout(() => {
+      console.log(e.relatedTarget);
       !e.relatedTarget && setIsDrop(false);
+      console.log('onBlur 작동중');
     }, 150);
   };
 
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} z-10pxr right-50pxr w-121pxr rounded-full border bg-white font-medium`}
+        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium`}
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr'
@@ -66,14 +68,12 @@ function Selectable({ children, types }: Props) {
           )}
         </div>
         {isDrop && (
-          <div
-            className='z-10pxr absolute left-0pxr top-0pxr rounded-[20px] bg-white'
-            ref={callbackRef}
-            tabIndex={-1}
-            onBlur={handleBlur}
-          >
+          <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white'>
             <ul
               className={`scrollbar-hide flex ${types ? 'h-249pxr' : 'h-98pxr'} w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr`}
+              ref={callbackRef}
+              tabIndex={-1}
+              onBlur={handleBlur}
             >
               {types ? <SelectList types={types} /> : <PriceTable />}
             </ul>

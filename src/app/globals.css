@@ -114,7 +114,8 @@ body {
 .custom-gradient {
   background: linear-gradient(
     -90deg,
-    rgba(255, 255, 255, 0) 0%,
+    white 0%,
+    white 50%,
     rgba(255, 255, 255, 0.8) 100%
   );
 }
@@ -130,6 +131,19 @@ body {
 .custom-header-logo {
   grid-column: 2/ 3;
 }
+
+/* #filterSlide {
+  overflow: visible;
+} */
+
+/* #filterSlide {
+  flex-grow: 2;
+  margin: 0;
+}
+#filterSlide .swiper-wrapper {
+  justify-content: flex-start;
+  gap: 8px;
+} */
 
 @media (min-width: 1200px) {
   #category-slide {
@@ -151,20 +165,20 @@ body {
     margin: 0px !important;
   }
 }
-
-#godminsup {
-  overflow: visible !important;
-  overflow-x: hidden !important;
-  height: 48px !important;
-}
-#godminsup .swiper-wrapper {
-  position: relative !important;
-  overflow: visible !important;
-  overflow-x: hidden !important;
+#filterSlide {
+  width: 600px;
 }
 
-#godminsup .swiper-wrapper .swiper-slide {
-  position: static !important;
+@media (max-width: 820px) {
+  #filterSlide {
+    width: 500px;
+  }
+}
+
+@media (max-width: 790px) {
+  #filterSlide {
+    width: 480px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -182,6 +196,9 @@ body {
   }
   .custom-header {
     grid-template-columns: 1fr 7fr 1fr;
+  }
+  #filterSlide {
+    width: 450px;
   }
 }
 

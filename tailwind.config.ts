@@ -67,6 +67,7 @@ const config: Config = {
         gray800: '#1F1F1F',
       },
       flexGrow: {
+        '1': '1',
         '2': '2',
         '3': '3',
         '4': '4',
