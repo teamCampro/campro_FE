@@ -34,6 +34,7 @@ function LocationController({ name }: Props) {
     <Controller
       control={control}
       name={name}
+      defaultValue=''
       render={({ field }) => (
         <LocationInputView field={field} locations={locations} />
       )}

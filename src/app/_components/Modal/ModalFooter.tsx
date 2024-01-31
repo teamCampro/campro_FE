@@ -6,7 +6,7 @@ interface Props {
 
 function ModalFooter({ children }: Props) {
   return (
-    <div className='flex-center w-full bg-white px-20pxr py-24pxr '>
+    <div className=' flex-center  w-full bg-white  px-20pxr py-24pxr mobile:relative mobile:z-[99] '>
       {children}
     </div>
   );

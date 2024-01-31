@@ -47,6 +47,7 @@ const config: Config = {
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
+        'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
         primary100: '#4F9E4F',
@@ -81,12 +82,19 @@ const config: Config = {
         max: '767px',
       },
       tabletMin: '768px',
+      mobile411: { min: '320px', max: '411px' },
+      mobile725: { min: '412px', max: '725px' },
       tablet: {
         min: '768px',
         max: '1199px',
       },
+      mobile767: { min: '726px', max: '767px' },
+      tablet1002: { min: '768px', max: '1002px' },
+      tablet1199: { min: '1003px', max: '1199px' },
       desktop: '1200px',
       wide: '1488px',
+      desktop1440: '1440px',
+      desktop1920: '1920px',
     },
     fontFamily: {
       pre: 'Pretendard',
@@ -96,6 +104,24 @@ const config: Config = {
       '110': '1.10 1.10 0%',
       '134': '1.34 1.34 0%',
       '123': '1.23 1.23 0%',
+      '222': '2.22 2.22 0%',
+      '105': '1.05 1.05 0%',
+    },
+    flexGrow: {
+      '0': '0',
+      '1': '1',
+      '3': '3',
+      '7': '7',
+    },
+    gridTemplateColumns: {
+      '1-col-288': 'repeat(1,minmax(288px,1fr))',
+      '2-col-184': 'repeat(2,minmax(184px,1fr))',
+      '2-col-340': 'repeat(2,minmax(340px,340px))',
+      '3-col-184': 'repeat(3,minmax(184px,1fr))',
+      '3-col-340': 'repeat(3,minmax(340px,340px))',
+      '4-col-340': 'repeat(4,minmax(340px,340px))',
+      '5-col-340': 'repeat(5,minmax(340px,340px))',
+      'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
     },
   },
   plugins: [
