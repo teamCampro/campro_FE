@@ -13,6 +13,7 @@ export default function ModalOutside({
   const modalRef = useRef<HTMLDivElement>(null);
 
   const modalOutSideClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     if (modalRef.current === e.target) {
       onClose();
     }
