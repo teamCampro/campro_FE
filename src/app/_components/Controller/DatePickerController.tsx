@@ -35,7 +35,6 @@ function DatePickerController({ name }: Props) {
 
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [tempDates, setTempDates] = useState<Date[]>([]);
-  const [isApplied, setIsApplied] = useState(false);
 
   const datePickerRef = useRef<ReactDatePicker>(null);
 
@@ -90,29 +89,43 @@ function DatePickerController({ name }: Props) {
           const endDate = new Date(startDate.getTime());
           endDate.setDate(startDate.getDate() + days);
 
-          setTempDates([startDate, endDate]); // 모바일/테블릿 상관없이 임시 상태에 저장
+          setTempDates([startDate, endDate]);
 
           if (!isMobile) {
-            // 테블릿 이상의 환경에서는 바로 저장하고 값 반영
             setSelectedDates([startDate, endDate]);
             field.onChange([startDate, endDate]);
           }
         };
 
-        const options = {
-          month: '2-digit',
-          day: '2-digit',
-          weekday: 'short',
+        const getFormattedDate = (selectedDates: Date[]) => {
+          const formatDate = (date: Date) =>
+            date
+              ? date.toLocaleDateString('ko-KR', {
+                  month: '2-digit',
+                  day: '2-digit',
+                  weekday: 'short',
+                })
+              : '';
+
+          let value = '';
+          if (selectedDates) {
+            if (selectedDates[0] && selectedDates[1]) {
+              value = `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
+            } else if (selectedDates[0]) {
+              value = formatDate(selectedDates[0]);
+            }
+          }
+
+          return value;
         };
 
         const handleDateChange = (
           dates: Date | [Date | null, Date | null] | null,
         ) => {
           if (Array.isArray(dates)) {
-            setTempDates(dates as Date[]); // 모바일/테블릿 상관없이 임시 상태에 저장
+            setTempDates(dates as Date[]);
 
             if (!isMobile) {
-              // 테블릿 이상의 환경에서는 바로 저장하고 값 반영
               setSelectedDates(dates as Date[]);
               field.onChange(dates);
             }
@@ -121,10 +134,9 @@ function DatePickerController({ name }: Props) {
 
         const handleApplyClick = (e: React.MouseEvent<HTMLElement>) => {
           e.stopPropagation();
-          setSelectedDates(tempDates); // 임시 상태를 실제 상태로 옮김
-          setIsApplied(true); // '적용' 버튼을 눌렀음을 표시
+          setSelectedDates(tempDates);
+
           if (isMobile) {
-            // 모바일 환경에서는 '적용' 버튼을 누를 때 값 반영
             field.onChange(tempDates);
             if (datePickerRef.current) {
               datePickerRef.current.setOpen(false);
@@ -136,7 +148,7 @@ function DatePickerController({ name }: Props) {
             shouldCloseOnSelect={isMobile ? false : true}
             dayClassName={getDayClassName}
             ref={datePickerRef}
-            onChange={handleDateChange} // 선택한 날짜를 업데이트
+            onChange={handleDateChange}
             dateFormat='MM.dd (eee)'
             dateFormatCalendar='yyyy MM월'
             selectsRange={true}
@@ -146,21 +158,7 @@ function DatePickerController({ name }: Props) {
             endDate={tempDates[1]}
             monthsShown={isTablet ? 1 : 2}
             calendarStartDay={1}
-            value={
-              isMobile && !isApplied
-                ? ''
-                : selectedDates.length === 2
-                  ? `${selectedDates[0]?.toLocaleDateString('ko-KR', {
-                      month: '2-digit',
-                      day: '2-digit',
-                      weekday: 'short',
-                    })} - ${selectedDates[1]?.toLocaleDateString('ko-KR', {
-                      month: '2-digit',
-                      day: '2-digit',
-                      weekday: 'short',
-                    })}`
-                  : ''
-            }
+            value={getFormattedDate(selectedDates)}
             withPortal={isMobile}
             customInput={
               <DateInputView
