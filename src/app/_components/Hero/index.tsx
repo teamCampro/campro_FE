@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import heroImage from '@/public/avifs/hero.avif';
 import { useRouter } from 'next/navigation';
-import { Button } from '..';
+import { Button, SearchBar } from '..';
 
 function Hero() {
   const router = useRouter();
@@ -33,6 +33,9 @@ function Hero() {
             취향 등록하기
           </Button.Circle>
         </div>
+      </div>
+      <div className='inset-x-0 mobile:32pxr absolute bottom-[-60px] z-[98] flex w-full justify-center px-28pxr tablet:px-40pxr'>
+        <SearchBar />
       </div>
     </div>
   );

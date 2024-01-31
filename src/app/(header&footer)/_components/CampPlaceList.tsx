@@ -40,7 +40,7 @@ function CampPlaceList({ campPlaces, type }: Props) {
           type='button'
           className='flex items-center font-medium text-gray500 font-body2'
         >
-          <span className='mobile:hidden'>전체보기</span>
+          <span className='mobile:hidden '>전체보기</span>
           <span className='hidden mobile:block'>전체</span>
           <IconArrowRight />
         </button>
