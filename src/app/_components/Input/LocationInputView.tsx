@@ -3,9 +3,7 @@
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconLocation } from '@/public/svgs';
 import { useState } from 'react';
-import { Button } from '..';
-import Dropdown from '../Dropdown';
-import ModalForMobile from '../Modal/ModalForMobile';
+import { Button, ModalForMobile, LocationDropdown } from '..';
 
 interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -83,7 +81,7 @@ function LocationInputView({
             }
             onClose={handleClose}
           >
-            <Dropdown
+            <LocationDropdown
               isMobile={isMobile as boolean}
               items={locations}
               onSelect={handleChangeItem}

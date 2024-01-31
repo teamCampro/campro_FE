@@ -5,7 +5,7 @@ import { IconArrowLeftNon, IconArrowRightNon } from '@/public/svgs';
 import { DateInputView } from '@/src/app/_components';
 import { getMonth, getYear } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useFormContext } from 'react-hook-form';
@@ -32,6 +32,9 @@ const months = [
 
 function DatePickerController({ name }: Props) {
   const control = useFormContext().control;
+
+  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+  const [tempDates, setTempDates] = useState<Date[]>([]);
 
   const datePickerRef = useRef<ReactDatePicker>(null);
 
@@ -71,46 +74,97 @@ function DatePickerController({ name }: Props) {
           }
         };
 
-        const closeDatePicker = () => {
-          if (datePickerRef.current) {
-            datePickerRef.current.setOpen(false);
-          }
-        };
         const getDayClassName = (date: Date) => {
           return date.getDay() === 0 ? 'sunday' : '';
         };
         const handleButtonClick = (days: number) => {
-          const startDate = Array.isArray(field.value)
-            ? field.value[0]
-            : new Date();
-          const endDate = new Date(startDate);
+          let startDate: Date | undefined = Array.isArray(tempDates)
+            ? tempDates[0]
+            : undefined;
+
+          if (!startDate) {
+            startDate = new Date();
+          }
+
+          const endDate = new Date(startDate.getTime());
           endDate.setDate(startDate.getDate() + days);
-          field.onChange([startDate, endDate]);
+
+          setTempDates([startDate, endDate]);
+
+          if (!isMobile) {
+            setSelectedDates([startDate, endDate]);
+            field.onChange([startDate, endDate]);
+          }
         };
 
+        const getFormattedDate = (selectedDates: Date[]) => {
+          const formatDate = (date: Date) =>
+            date
+              ? date.toLocaleDateString('ko-KR', {
+                  month: '2-digit',
+                  day: '2-digit',
+                  weekday: 'short',
+                })
+              : '';
+
+          let value = '';
+          if (selectedDates) {
+            if (selectedDates[0] && selectedDates[1]) {
+              value = `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
+            } else if (selectedDates[0]) {
+              value = formatDate(selectedDates[0]);
+            }
+          }
+
+          return value;
+        };
+
+        const handleDateChange = (
+          dates: Date | [Date | null, Date | null] | null,
+        ) => {
+          if (Array.isArray(dates)) {
+            setTempDates(dates as Date[]);
+
+            if (!isMobile) {
+              setSelectedDates(dates as Date[]);
+              field.onChange(dates);
+            }
+          }
+        };
+
+        const handleApplyClick = (e: React.MouseEvent<HTMLElement>) => {
+          e.stopPropagation();
+          setSelectedDates(tempDates);
+
+          if (isMobile) {
+            field.onChange(tempDates);
+            if (datePickerRef.current) {
+              datePickerRef.current.setOpen(false);
+            }
+          }
+        };
         return (
           <DatePicker
             shouldCloseOnSelect={isMobile ? false : true}
             dayClassName={getDayClassName}
             ref={datePickerRef}
+            onChange={handleDateChange}
             dateFormat='MM.dd (eee)'
             dateFormatCalendar='yyyy MM월'
             selectsRange={true}
             locale={ko}
             minDate={new Date()}
-            startDate={Array.isArray(field.value) ? field.value[0] : null}
-            endDate={Array.isArray(field.value) ? field.value[1] : null}
-            onChange={field.onChange}
+            startDate={tempDates[0]}
+            endDate={tempDates[1]}
             monthsShown={isTablet ? 1 : 2}
             calendarStartDay={1}
+            value={getFormattedDate(selectedDates)}
             withPortal={isMobile}
             customInput={
               <DateInputView
                 ref={field.ref}
-                value={
-                  field.value ? `${field.value[0]} - ${field.value[1]}` : ''
-                }
                 onClick={handleDateInputClick}
+                value=''
               />
             }
             renderCustomHeader={
@@ -180,7 +234,7 @@ function DatePickerController({ name }: Props) {
                   type='button'
                   size='md'
                   custom='bg-primary100 text-white max-w-[335px] flex w-full'
-                  onClick={closeDatePicker}
+                  onClick={handleApplyClick}
                 >
                   적용
                 </Button.Round>
