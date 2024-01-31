@@ -7,7 +7,7 @@ import { FieldValues } from 'react-hook-form';
 import GroupCountController from '../Controller/GroupCountController';
 
 const onSubmit = (data: FieldValues) => {
-  console.log(data);
+  console.log({ ...data, group: JSON.parse(data.group) });
 };
 
 function SearchBar() {
