@@ -47,6 +47,7 @@ const config: Config = {
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
+        'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
         primary100: '#4F9E4F',
@@ -94,6 +95,8 @@ const config: Config = {
       '110': '1.10 1.10 0%',
       '134': '1.34 1.34 0%',
       '123': '1.23 1.23 0%',
+      '222': '2.22 2.22 0%',
+      '105': '1.05 1.05 0%',
     },
     flexGrow: {
       '0': '0',
