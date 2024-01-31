@@ -1,10 +1,14 @@
 'use client';
 
-import { CommonForm, Button } from '@/src/app/_components';
-import DatePickerController from '../Controller/DatePickerController';
-import LocationController from '../Controller/LocationController';
+import {
+  CommonForm,
+  Button,
+  GroupCountController,
+  DatePickerController,
+  LocationController,
+} from '@/src/app/_components';
+
 import { FieldValues } from 'react-hook-form';
-import GroupCountController from '../Controller/GroupCountController';
 
 const onSubmit = (data: FieldValues) => {
   console.log({ ...data, group: JSON.parse(data.group) });

@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef,ReactNode } from 'react';
 
-import { ReactNode } from 'react';
-import { useRef } from 'react';
 
 export default function ModalOutside({
   children,

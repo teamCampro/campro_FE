@@ -6,7 +6,7 @@ interface Props {
   onUpdatePage: (pageNumber: number) => void;
 }
 
-function Pagination({ currentPage, totalItems, onUpdatePage }: Props) {
+function PaginationView({ currentPage, totalItems, onUpdatePage }: Props) {
   return (
     <div className='flex w-103pxr items-center gap-16pxr'>
       {currentPage > 1 ? (
@@ -25,4 +25,4 @@ function Pagination({ currentPage, totalItems, onUpdatePage }: Props) {
   );
 }
 
-export default Pagination;
+export default PaginationView;

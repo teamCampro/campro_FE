@@ -1,5 +1,5 @@
 import { IconMinus, IconPlus } from '@/public/svgs';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 interface Props {
   group: { adult: number; child: number; pet: number };
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect } from 'react';
 
 interface Props {
@@ -8,7 +10,13 @@ interface Props {
   isMobile: boolean;
 }
 
-function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
+function LocationDropdown({
+  items,
+  onSelect,
+  activeItem,
+  onClose,
+  isMobile,
+}: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,4 +60,4 @@ function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
   );
 }
 
-export default Dropdown;
+export default LocationDropdown;

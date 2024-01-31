@@ -2,9 +2,7 @@
 
 import { IconPeople } from '@/public/svgs';
 import { useEffect, useState } from 'react';
-import GroupDropdown from '../Dropdown/GroupDropdown';
-import ModalForMobile from '../Modal/ModalForMobile';
-import { Button } from '..';
+import { Button, ModalForMobile, GroupDropdown } from '..';
 import useMediaQueries from '@/hooks/useMediaQueries';
 interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
