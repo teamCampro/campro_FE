@@ -1,16 +1,49 @@
+import { useRef, useEffect } from 'react';
+
 interface Props {
   items: string[];
   onSelect: (item: string) => void;
+  activeItem: string | null;
+  onClose: () => void;
+  isMobile: boolean;
 }
 
-function Dropdown({ items, onSelect }: Props) {
+function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !isMobile
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose, isMobile]);
+
+  const handleSelect = (e: React.MouseEvent<HTMLElement>, item: string) => {
+    onSelect(item);
+    e.stopPropagation();
+  };
+
   return (
-    <div className=' scrollbar-hide flex flex-col gap-12pxr overflow-auto  bg-white  px-20pxr pb-0pxr pt-16pxr shadow-searchBar mobile:h-207pxr mobile:w-full tablet:absolute  tablet:z-10 tablet:h-222pxr tablet:w-350pxr tablet:items-start tablet:rounded-[20px] tablet:px-40pxr tablet:py-32pxr'>
+    <div
+      ref={dropdownRef}
+      className='scrollbar-hide  mobile:top-opxr absolute top-65pxr z-[100] flex h-222pxr w-350pxr  flex-col  items-start gap-12pxr overflow-auto rounded-[20px] bg-white-100 px-40pxr py-32pxr shadow-searchBar mobile:relative mobile:top-0pxr mobile:z-[99] mobile:h-207pxr mobile:w-full mobile:rounded-[0] mobile:px-20pxr mobile:pb-0pxr mobile:pt-16pxr'
+    >
       {items.map((item, index) => (
         <div
-          onClick={() => onSelect(item)}
+          onClick={(e) => handleSelect(e, item)}
           key={index}
-          className='mobile:active:bg-Primary50 flex w-full text-black font-title3-semibold active:bg-primary50 mobile:justify-center tablet:justify-start tablet:active:bg-white'
+          className={`mobile:active:bg-Primary50 mobile:hover:bg-Primary50  relative flex  w-full  bg-white-100 text-black font-title3-semibold tablet:active:bg-white-100 ${item === activeItem ? 'mobile:bg-primary50' : ''} mobile:relative mobile:z-[99] mobile:justify-center tablet:justify-start`}
         >
           {item}
         </div>
