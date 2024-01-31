@@ -17,6 +17,7 @@ export { default as CampSearchList } from '../(header&footer)/_components/CampSe
 export { default as SearchPagination } from '../(header&footer)/_components/SearchPagination';
 export { default as SortDropdown } from '../(header&footer)/_components/SortDropdown';
 export { default as Footer } from './Footer';
+
 export { default as ModalFooter } from './Modal/ModalFooter';
 export { default as ModalForMobile } from './Modal/ModalForMobile';
 export { default as ModalHeader } from './Modal/ModalHeader';

@@ -1,3 +1,5 @@
+'use client';
+
 import { IconMinus, IconPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 interface Props {
