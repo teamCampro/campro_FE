@@ -9,7 +9,7 @@ export { default as CommonInput } from './Input/CommonInput';
 export { default as DateInputView } from './Input/DateInputView';
 export { default as GroupCountInputView } from './Input/GroupCountInputView';
 export { default as LocationInputView } from './Input/LocationInputView';
-export { default as PaginationView } from './PaginationView';
+export { default as Pagination } from './Pagination';
 export { default as SearchBar } from './SearchBar';
 
 export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
