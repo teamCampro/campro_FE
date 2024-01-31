@@ -1,16 +1,18 @@
 import { IconMinus, IconPlus } from '@/public/svgs';
 import { useEffect, useRef, useState } from 'react';
 interface Props {
-  group: string;
+  group: { adult: number; child: number; pet: number };
 
-  onChangeGroup: (updatedGroup: string) => void;
+  onChangeGroup: (updatedGroup: {
+    adult: number;
+    child: number;
+    pet: number;
+  }) => void;
   onClose: () => void;
   isMobile?: boolean;
 }
 
 function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
-  const groupObject = JSON.parse(group);
-
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,14 +34,14 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
   }, [onClose, isMobile]);
 
   const handleIncrease = (name: 'adult' | 'child' | 'pet') => {
-    const updatedGroup = { ...groupObject, [name]: groupObject[name] + 1 };
-    onChangeGroup(JSON.stringify(updatedGroup));
+    const updatedGroup = { ...group, [name]: group[name] + 1 };
+    onChangeGroup(updatedGroup);
   };
 
   const handleDecrease = (name: 'adult' | 'child' | 'pet') => {
-    if (groupObject[name] > 0) {
-      const updatedGroup = { ...groupObject, [name]: groupObject[name] - 1 };
-      onChangeGroup(JSON.stringify(updatedGroup));
+    if (group[name] > 0) {
+      const updatedGroup = { ...group, [name]: group[name] - 1 };
+      onChangeGroup(updatedGroup);
     }
   };
 
@@ -58,10 +60,10 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
             <div className='flex w-full items-center justify-end gap-16pxr'>
               <IconMinus
                 onClick={() => handleDecrease('adult')}
-                fill={groupObject.adult === 0 ? '#949494' : '#000000'}
+                fill={group.adult === 0 ? '#949494' : '#000000'}
               />
               <p className='flex-center flex w-25pxr font-title3-semibold'>
-                {groupObject.adult}
+                {group.adult}
               </p>
               <IconPlus onClick={() => handleIncrease('adult')} />
             </div>
@@ -79,10 +81,10 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
             <div className='flex w-full items-center justify-end gap-16pxr'>
               <IconMinus
                 onClick={() => handleDecrease('child')}
-                fill={groupObject.child === 0 ? '#949494' : '#000000'}
+                fill={group.child === 0 ? '#949494' : '#000000'}
               />
               <p className='flex-center flex w-25pxr font-title3-semibold'>
-                {groupObject.child}
+                {group.child}
               </p>
               <IconPlus onClick={() => handleIncrease('child')} />
             </div>
@@ -95,11 +97,11 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
         </div>
         <div className='flex w-full  items-center justify-end gap-16pxr'>
           <IconMinus
-            fill={groupObject.pet === 0 ? '#949494' : '#000000'}
+            fill={group.pet === 0 ? '#949494' : '#000000'}
             onClick={() => handleDecrease('pet')}
           />
           <p className='flex-center flex w-25pxr font-title3-semibold'>
-            {groupObject.pet}
+            {group.pet}
           </p>
           <IconPlus onClick={() => handleIncrease('pet')} />
         </div>

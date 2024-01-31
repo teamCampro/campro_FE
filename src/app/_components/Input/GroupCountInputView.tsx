@@ -19,6 +19,12 @@ interface Props {
   field: Field;
 }
 
+interface Group {
+  adult: number;
+  child: number;
+  pet: number;
+}
+
 function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [group, setGroup] = useState(field.value);
@@ -40,13 +46,11 @@ function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
     }
   };
 
-  const handleGroupChange = (updatedGroup: string) => {
-    const parsedGroup = JSON.parse(updatedGroup);
-
+  const handleGroupChange = (updatedGroup: Group) => {
     if (isMobile) {
-      setTempGroup(parsedGroup);
+      setTempGroup(updatedGroup);
     } else {
-      setGroup(parsedGroup);
+      setGroup(updatedGroup);
     }
   };
 
@@ -55,7 +59,7 @@ function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
       target: { name: field.name, value: JSON.stringify(group) },
     } as React.ChangeEvent<HTMLInputElement>;
     field.onChange(event);
-  }, [group]);
+  }, [group, field]);
 
   useEffect(() => {
     if (!isMobile) {
@@ -94,7 +98,7 @@ function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
           onClose={handleCloseDropdown}
         >
           <GroupDropdown
-            group={JSON.stringify(isMobile ? tempGroup : group)}
+            group={isMobile ? tempGroup : group}
             onChangeGroup={handleGroupChange}
             onClose={handleCloseDropdown}
             isMobile={isMobile}
