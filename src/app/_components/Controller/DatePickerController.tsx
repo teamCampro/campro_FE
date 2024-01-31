@@ -74,11 +74,6 @@ function DatePickerController({ name }: Props) {
           }
         };
 
-        const closeDatePicker = () => {
-          if (datePickerRef.current) {
-            datePickerRef.current.setOpen(false);
-          }
-        };
         const getDayClassName = (date: Date) => {
           return date.getDay() === 0 ? 'sunday' : '';
         };
@@ -206,14 +201,12 @@ function DatePickerController({ name }: Props) {
               <>
                 <button
                   type='button'
-                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(0)}
                 >
                   당일치기
                 </button>
                 <button
-                  type='button'
                   type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(1)}
@@ -222,14 +215,12 @@ function DatePickerController({ name }: Props) {
                 </button>
                 <button
                   type='button'
-                  type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(2)}
                 >
                   2박 3일
                 </button>
                 <button
-                  type='button'
                   type='button'
                   className='buttonForDatePicker'
                   onClick={() => handleButtonClick(3)}
@@ -240,7 +231,6 @@ function DatePickerController({ name }: Props) {
             ) : (
               <div className='flex-center flex w-full bg-white   '>
                 <Button.Round
-                  type='button'
                   type='button'
                   size='md'
                   custom='bg-primary100 text-white max-w-[335px] flex w-full'
