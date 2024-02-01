@@ -1,22 +1,15 @@
-import {
-  CampPlaceSection,
-  CategoryList,
-  Hero,
-  SearchBar,
-} from '../_components';
+import { CampPlaceSection, CategoryList, Hero } from '../_components';
 function page() {
   return (
     <div>
       <Hero />
-      <div className='flex-center flex w-full'>
-        <SearchBar />
-      </div>
-      <div className='wide:flex-center'>
-        <CategoryList />
-      </div>
-
-      <div className='wide:flex-center'>
-        <CampPlaceSection />
+      <div className='flex w-full flex-col bg-gray-100 pl-40pxr pt-104pxr'>
+        <div className='flex-center'>
+          <CategoryList />
+        </div>
+        <div className='wide:flex-center pb-48pxr pt-64pxr'>
+          <CampPlaceSection />
+        </div>
       </div>
     </div>
   );
