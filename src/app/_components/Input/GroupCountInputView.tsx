@@ -66,7 +66,7 @@ function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
   }, [isMobile, group]);
 
   return (
-    <div className='relative flex w-full flex-123'>
+    <div className='relative flex w-full flex-123 pl-6pxr mobile:pl-0pxr'>
       <div className='flex w-full gap-4pxr'>
         <IconPeople className='absolute left-16pxr top-16pxr ' />
         <input
