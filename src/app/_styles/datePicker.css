@@ -1,9 +1,9 @@
 @import url('../globals.css');
 /* picker 커스텀 스타일 */
 
-.react-datepicker-popper {
+/* .react-datepicker-popper {
   left: 12% !important;
-}
+} */
 
 .react-datepicker {
   border: 0 !important;
@@ -300,6 +300,15 @@
     height: auto !important;
     padding: 32px 40px 0 40px !important;
   }
+  .react-datepicker-popper {
+    transform: none !important;
+    top: 100px !important;
+    left: 34% !important;
+  }
+
+  .react-datepicker__tab-loop {
+    position: relative !important;
+  }
 }
 
 .react-datepicker__day--disabled:hover {
@@ -341,9 +350,9 @@
   }
 
   .react-datepicker-popper {
-    left: 0% !important;
-    top: 38% !important;
-    width: 100%;
+    transform: none !important;
+    top: 100px !important;
+    left: 34% !important;
   }
   .react-datepicker {
     width: 100% !important;
@@ -390,5 +399,20 @@
   .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
     border-top-right-radius: 24px !important;
     border-top-left-radius: 24px !important;
+  }
+  .react-datepicker__tab-loop {
+    position: relative !important;
+  }
+}
+
+@media (min-width: 1200) {
+  .react-datepicker-popper {
+    transform: none !important;
+    top: 100px !important;
+    left: 28% !important;
+  }
+
+  .react-datepicker__tab-loop {
+    position: relative !important;
   }
 }

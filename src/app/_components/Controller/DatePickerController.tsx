@@ -145,6 +145,8 @@ function DatePickerController({ name }: Props) {
         };
         return (
           <DatePicker
+            popperPlacement='bottom-start'
+            enableTabLoop={false}
             shouldCloseOnSelect={isMobile ? false : true}
             dayClassName={getDayClassName}
             ref={datePickerRef}
