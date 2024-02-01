@@ -52,7 +52,7 @@ function MapPage() {
           currentPage={currentPage}
         />
         <div
-          className={`${mapBasis} shrink-0 desktop:grow-1 desktop1440:basis-664pxr`}
+          className={`${mapBasis} desktop1440:basis-664pxr shrink-0 desktop:grow-1`}
         >
           지도
         </div>
