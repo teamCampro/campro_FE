@@ -13,12 +13,14 @@ import { setClose, setDetailState } from '@/src/app/_utils/detailState';
 
 function DetailPanel() {
   const details = useAppSelector((state) => state.detail);
+  const checkList = useAppSelector((state) => state.styleSetting);
   const dispatch = useDispatch();
 
   const handleDropClick = (id: number) => {
     dispatch(setDetailState(id));
   };
-
+  console.log(details);
+  console.log(checkList);
   return (
     <ModalPortal>
       <ModalOutside onClose={() => dispatch(setClose(false))}>
@@ -49,9 +51,7 @@ function DetailPanel() {
                       >
                         <Selectable
                           handleDropClick={handleDropClick}
-                          types={detail.name}
-                          listId={detail.id}
-                          isDone={detail.isDone}
+                          typeInfo={detail}
                         >
                           {detail.type}
                         </Selectable>

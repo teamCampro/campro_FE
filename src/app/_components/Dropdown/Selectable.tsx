@@ -6,13 +6,23 @@ import { Button } from '..';
 
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
+import { useAppSelector } from '@/hooks/redux';
+import { useDispatch } from 'react-redux';
+import { setDetailState, setIsCheck } from '../../_utils/detailState';
+import { setReset } from '../../_utils/styleSetting';
+
+interface TypeInfoType {
+  id: number;
+  type: string;
+  name: string;
+  isDone: boolean;
+  isCheck: boolean;
+}
 
 interface Props {
   children: ReactNode;
-  types: string;
+  typeInfo: TypeInfoType;
   handleDropClick: (id: number) => void;
-  listId: number;
-  isDone: boolean;
 }
 
 interface LengthType {
@@ -26,18 +36,21 @@ const LENTH: LengthType = {
   '5': 'w-121pxr',
 };
 
-function Selectable({
-  children,
-  types,
-  handleDropClick,
-  listId,
-  isDone,
-}: Props) {
+function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const textLength = children?.toString().length;
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleOpen = () => {
     if (!handleDropClick) return;
-    handleDropClick(listId);
+    handleDropClick(typeInfo.id);
+    if (!typeInfo.isCheck) {
+      dispatch(setReset(typeInfo.name));
+    }
+  };
+
+  const handleCheck = () => {
+    dispatch(setDetailState(typeInfo.id));
+    dispatch(setIsCheck(typeInfo.id));
   };
 
   return (
@@ -47,24 +60,24 @@ function Selectable({
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
-          onClick={handleClick}
+          onClick={handleOpen}
         >
           <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
-          {isDone ? (
+          {typeInfo.isDone ? (
             <IconArrowUp fill='#949494' />
           ) : (
             <IconArrowDown fill='#949494' />
           )}
         </div>
-        {isDone && (
+        {typeInfo.isDone && (
           <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'>
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${types !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.type !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
             >
-              {types !== 'prices' ? (
-                <SelectList types={types} />
+              {typeInfo.type !== 'prices' ? (
+                <SelectList types={typeInfo.name} />
               ) : (
                 <PriceTable />
               )}
@@ -78,7 +91,7 @@ function Selectable({
               <Button.Round
                 size='sm'
                 custom='w-174pxr h-56pxr'
-                onClick={handleClick}
+                onClick={handleCheck}
               >
                 적용
               </Button.Round>

@@ -31,9 +31,18 @@ export const styleSettingSlice = createSlice({
         action.payload.types
       ].filter((item) => item.id !== action.payload.list.id);
     },
-    setReset: (state, action) => {},
+    setResetAll: (state, action) => {
+      state.select.home = [];
+      state.select.stay = [];
+      state.select.theme = [];
+      state.select.trip = [];
+    },
+    setReset: (state, action) => {
+      state.select[action.payload] = [];
+    },
   },
 });
 
-export const { setSelect, setDelete, setReset } = styleSettingSlice.actions;
+export const { setSelect, setDelete, setResetAll, setReset } =
+  styleSettingSlice.actions;
 export default styleSettingSlice.reducer;

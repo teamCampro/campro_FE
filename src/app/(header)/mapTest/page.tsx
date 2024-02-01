@@ -79,9 +79,7 @@ function Page() {
                     <Selectable
                       key={detail.id}
                       handleDropClick={handleDropClick}
-                      types={detail.name}
-                      listId={detail.id}
-                      isDone={detail.isDone}
+                      typeInfo={detail}
                     >
                       {detail.type}
                     </Selectable>
