@@ -1,10 +1,9 @@
-import { Hero, CampPlaceSection, CategoryList } from '../_components';
-import { LINKS } from '../_constants';
+import { CampPlaceSection, CategoryList, Hero } from '../_components';
 function page() {
   return (
     <div>
       <Hero />
-      <div className='flex w-full flex-col bg-gray-100 pl-40pxr pt-104pxr'>
+      <div className='flex w-full flex-col bg-gray-100 pl-40pxr pt-104pxr mobile:pl-16pxr'>
         <div className='flex-center'>
           <CategoryList />
         </div>
