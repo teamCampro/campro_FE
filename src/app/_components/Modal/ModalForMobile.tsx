@@ -20,7 +20,7 @@ function ModalForMobile({
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   return isMobile ? (
     <ModalPortal>
       <ModalOutside onClose={onClose}>

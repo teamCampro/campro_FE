@@ -7,15 +7,33 @@ import Selectable from '@/components/Dropdown/Selectable';
 import ModalForMobile from '@/components/Modal/ModalForMobile';
 import Button from '@/components/Button';
 import { useState } from 'react';
+import { useAppSelector } from '@/hooks/redux';
+import { useDispatch } from 'react-redux';
+import { setDetailState } from '../../_utils/detailState';
+import { isModal } from '../../_utils/modalState';
 
 function Page() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const details = useAppSelector((state) => state.detail);
+  const dispatch = useDispatch();
+
+  const handleDropClick = (id: number) => {
+    dispatch(setDetailState(id));
+  };
+
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
 
-  const handleClick = () => {
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
+
+  const handleOpen = () => {
     setIsDropdownVisible(true);
+    dispatch(isModal(true));
+  };
+
+  const handleClose = () => {
+    setIsDropdownVisible(false);
+    dispatch(isModal(false));
   };
 
   return (
@@ -24,15 +42,15 @@ function Page() {
         <>
           <button
             type='button'
-            onClick={handleClick}
-            className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium '
+            onClick={handleOpen}
+            className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium'
           >
             <IconFilter />
           </button>
           {isDropdownVisible && (
             <ModalForMobile
               headerContent='상세 보기'
-              onClose={() => setIsDropdownVisible(false)}
+              onClose={handleClose}
               footerContent={
                 <div className='text-right'>
                   <div className='lineOver text-gray600 font-body2-semibold'>
@@ -47,7 +65,7 @@ function Page() {
                     <Button.Round
                       size='sm'
                       custom='!w-174pxr !h-56pxr'
-                      onClick={() => {}}
+                      onClick={() => setIsDropdownVisible(false)}
                     >
                       적용
                     </Button.Round>
@@ -56,11 +74,19 @@ function Page() {
               }
             >
               <div className='flex gap-6pxr mobile:w-full mobile:flex-col mobile:gap-0pxr mobile:border-b'>
-                <Selectable types='stay'>숙박 유형</Selectable>
-                <Selectable types='home'>시설</Selectable>
-                <Selectable>가격</Selectable>
-                <Selectable types='theme'>테마</Selectable>
-                <Selectable types='trip'>여행 타입</Selectable>
+                {details.map((detail) => {
+                  return (
+                    <Selectable
+                      key={detail.id}
+                      handleDropClick={handleDropClick}
+                      types={detail.name}
+                      listId={detail.id}
+                      isDone={detail.isDone}
+                    >
+                      {detail.type}
+                    </Selectable>
+                  );
+                })}
               </div>
             </ModalForMobile>
           )}
@@ -73,11 +99,3 @@ function Page() {
 }
 
 export default Page;
-
-/* <div className='flex flex-col gap-6pxr'>
-            <Selectable types='stay'>숙박 유형</Selectable>
-            <Selectable types='home'>시설</Selectable>
-            <Selectable>가격</Selectable>
-            <Selectable types='theme'>테마</Selectable>
-            <Selectable types='trip'>여행 타입</Selectable>
-          </div> */

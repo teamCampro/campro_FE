@@ -4,6 +4,7 @@ export { default as IconArrowLeftNon } from './arrowLeft-non.svg';
 export { default as IconArrowLeftNormal } from './arrowLeft-normal.svg';
 export { default as IconArrowRightNon } from './arrowRight-non.svg';
 export { default as IconArrowRightNormal } from './arrowRight-normal.svg';
+export { default as IconArrowRight } from './arrowRight.svg';
 export { default as IconCalendar } from './calendar.svg';
 export { default as IconColoredHeart } from './coloredHeart.svg';
 export { default as IconComming } from './comming.svg';

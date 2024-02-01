@@ -11,6 +11,7 @@ const BUTTON_SIZE = {
 };
 
 function CircleButton({
+  type = 'button',
   children,
   onClick,
   disabled,
@@ -19,6 +20,7 @@ function CircleButton({
 }: Props) {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className={`buttonHover buttonDisabled rounded-full bg-primary100 active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}
