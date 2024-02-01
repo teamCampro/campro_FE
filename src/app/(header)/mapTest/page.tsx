@@ -14,7 +14,9 @@ import { isModal } from '../../_utils/modalState';
 
 function Page() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const selectArray: string[] = [];
   const details = useAppSelector((state) => state.detail);
+  const checkList = useAppSelector((state) => state.styleSetting);
   const dispatch = useDispatch();
 
   const handleDropClick = (id: number) => {
@@ -36,6 +38,15 @@ function Page() {
     dispatch(isModal(false));
   };
 
+  details.forEach((detail) => {
+    const { name } = detail;
+    if (name !== 'prices' && checkList.select[name]) {
+      checkList.select[name].map((list) => {
+        selectArray.push(list.type);
+      });
+    }
+  });
+
   return (
     <div className='h-screen w-full bg-gray-500'>
       {isMobile ? (
@@ -54,8 +65,7 @@ function Page() {
               footerContent={
                 <div className='text-right'>
                   <div className='lineOver text-gray600 font-body2-semibold'>
-                    모닥불,바베큐 어쩌구 저쩌구모닥불,바베큐 어쩌구 값선택한
-                    값값선택한 값값선택한 값값선택한 값값선택한 값값선택한 값
+                    {selectArray.join(', ')}
                   </div>
                   <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
                     <div className='flex-center  gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>

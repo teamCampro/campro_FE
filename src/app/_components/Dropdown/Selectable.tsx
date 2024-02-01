@@ -76,7 +76,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             <ul
               className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.type !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
             >
-              {typeInfo.type !== 'prices' ? (
+              {typeInfo.name !== 'prices' ? (
                 <SelectList types={typeInfo.name} />
               ) : (
                 <PriceTable />

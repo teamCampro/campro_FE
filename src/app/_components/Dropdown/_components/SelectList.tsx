@@ -31,8 +31,7 @@ function SelectList({ types }: SelectListType) {
     },
     [checkList],
   );
-  console.log(checkedList);
-  console.log(checkList);
+
   return (
     <>
       {types &&
