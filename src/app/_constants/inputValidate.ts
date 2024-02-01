@@ -36,3 +36,10 @@ export const passwordValidate = {
     message: '8자 이상 작성해주세요',
   },
 };
+
+export const passwordCheckValidate = {
+  required: {
+    value: true,
+    message: '비밀번호를 한번 더 입력해주세요.',
+  },
+};

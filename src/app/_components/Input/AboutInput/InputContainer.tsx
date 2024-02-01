@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 
 interface InputContainerProps {
   children: ReactNode;
-  css: string;
+  className: string;
 }
 
-function InputContainer({ children, css }: InputContainerProps) {
-  return <div className={css}>{children}</div>;
+function InputContainer({ children, className }: InputContainerProps) {
+  return <div className={className}>{children}</div>;
 }
 
 export default InputContainer;

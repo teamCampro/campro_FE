@@ -1,12 +1,12 @@
 interface LabelProps {
-  labelName: string;
+  children: string;
   htmlFor: string;
 }
 
-function Label({ labelName, htmlFor }: LabelProps) {
+function Label({ children, htmlFor }: LabelProps) {
   return (
     <label htmlFor={htmlFor} className='text-black'>
-      {labelName}
+      {children}
     </label>
   );
 }
