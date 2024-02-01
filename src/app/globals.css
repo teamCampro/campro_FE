@@ -141,12 +141,6 @@ body {
   }
 }
 
-@media (max-width: 1199px) {
-  #category-swiper .swiper-wrapper {
-    overflow: hidden !important;
-    max-width: 1120px !important;
-  }
-}
 @media (min-width: 1200px) {
   #category-slide {
     width: 126px !important;
