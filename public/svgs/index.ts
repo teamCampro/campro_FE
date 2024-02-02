@@ -25,3 +25,9 @@ export { default as IconArrowUp } from './arrowUp.svg';
 export { default as IconArrowDown } from './arrowDown.svg';
 export { default as IconFilter } from './filter.svg';
 export { default as IconReset } from './reset.svg';
+export { default as IconArrowRight } from './right.svg';
+export { default as IconMapMinus } from './mapMinus.svg';
+export { default as IconMapPlus } from './mapPlus.svg';
+export { default as IconRightGray } from './rightGray.svg';
+export { default as IconLeftGray } from './leftGray.svg';
+
