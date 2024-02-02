@@ -90,7 +90,7 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
         kakao.maps.event.addListener(marker, 'click', () => {
           overlay.setMap(map);
         });
-        kakao.maps.event.addListener(map, 'click', (event) => {
+        kakao.maps.event.addListener(map, 'click', () => {
           closeOverlay();
         });
       }
