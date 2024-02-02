@@ -6,7 +6,7 @@ function Header() {
     <nav className='absolute top-0pxr w-full border-b border-gray200'>
       <div className='m-auto flex h-80pxr max-w-1440pxr items-center justify-between gap-24pxr px-40pxr py-18pxr mobile:h-52pxr mobile:gap-10pxr mobile:px-20pxr mobile:py-[9.5px]'>
         <Link href='/' className='flex items-center gap-15pxr'>
-          <div className='flex-center font-title2-semibold w-62pxr bg-primary100 px-10pxr py-8pxr text-white'>
+          <div className='flex-center w-62pxr bg-primary100 px-10pxr py-8pxr text-white font-title2-semibold'>
             로고
           </div>
           <h1 className='block h-full text-black font-title3-semibold mobile:hidden'>

@@ -67,6 +67,16 @@ const config: Config = {
         gray700: '#383838',
         gray800: '#1F1F1F',
       },
+      gridTemplateColumns: {
+        '1-col-288': 'repeat(1,minmax(288px,1fr))',
+        '2-col-184': 'repeat(2,minmax(184px,1fr))',
+        '2-col-340': 'repeat(2,minmax(340px,340px))',
+        '3-col-184': 'repeat(3,minmax(184px,1fr))',
+        '3-col-340': 'repeat(3,minmax(340px,340px))',
+        '4-col-340': 'repeat(4,minmax(340px,340px))',
+        '5-col-340': 'repeat(5,minmax(340px,340px))',
+        'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
+      },
     },
     screens: {
       mobile: {
@@ -83,9 +93,7 @@ const config: Config = {
       tablet1002: { min: '768px', max: '1002px' },
       tablet1199: { min: '1003px', max: '1199px' },
       desktop: '1200px',
-      desktop1440: '1440px',
       wide: '1488px',
-      desktop1920: '1920px',
     },
     fontFamily: {
       pre: 'Pretendard',
@@ -103,16 +111,6 @@ const config: Config = {
       '1': '1',
       '3': '3',
       '7': '7',
-    },
-    gridTemplateColumns: {
-      '1-col-288': 'repeat(1,minmax(288px,1fr))',
-      '2-col-184': 'repeat(2,minmax(184px,1fr))',
-      '2-col-340': 'repeat(2,minmax(340px,340px))',
-      '3-col-184': 'repeat(3,minmax(184px,1fr))',
-      '3-col-340': 'repeat(3,minmax(340px,340px))',
-      '4-col-340': 'repeat(4,minmax(340px,340px))',
-      '5-col-340': 'repeat(5,minmax(340px,340px))',
-      'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
     },
   },
   plugins: [
@@ -149,6 +147,13 @@ const config: Config = {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.48),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+        '.font-title2-semibold': {
+          fontSize: pxToRem(22),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.22),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },

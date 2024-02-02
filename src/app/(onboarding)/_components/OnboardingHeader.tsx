@@ -8,7 +8,7 @@ function OnBoardingHeader() {
         <div className=' custom-header-logo flex items-center justify-center gap-15pxr '>
           <Link
             href='/'
-            className='font-title2-semibold w-62pxr bg-primary100 px-10pxr py-8pxr text-center text-white'
+            className='w-62pxr bg-primary100 px-10pxr py-8pxr text-center text-white font-title2-semibold'
           >
             로고
           </Link>

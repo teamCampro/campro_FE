@@ -1,11 +1,11 @@
 'use client';
-import CampPlaceItem from './CampPlaceItem';
-import { CampPlaceMockData } from './CampPlaceSection';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from 'swiper/modules';
+import { IconArrowRight } from '@/public/svgs';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import { IconArrowRight } from '@/public/svgs';
+import { FreeMode } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import CampPlaceItem from './CampPlaceItem';
+import { CampPlaceMockData } from './CampPlaceSection';
 
 interface Props {
   campPlaces: CampPlaceMockData[];
@@ -35,10 +35,12 @@ function CampPlaceList({ campPlaces, type }: Props) {
   return (
     <div className='flex flex-col gap-12pxr'>
       <div className='flex justify-between '>
-        <h1 className='font-title1-semibold'>{listName}</h1>
+        <h1 className='font-title1-semibold mobile:font-body1-medium'>
+          {listName}
+        </h1>
         <button
           type='button'
-          className='flex items-center font-medium text-gray500 font-body2'
+          className='flex items-center font-medium text-gray500 font-body2 mobile:font-caption2-semibold'
         >
           <span className='mobile:hidden '>전체보기</span>
           <span className='hidden mobile:block'>전체</span>

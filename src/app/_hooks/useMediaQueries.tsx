@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 export interface UseMediaQueriesProps {
@@ -6,7 +8,7 @@ export interface UseMediaQueriesProps {
 
 const useMediaQueries = ({ breakpoint }: UseMediaQueriesProps) => {
   const [mediaQuery, setMediaQuery] = useState<Partial<MediaQueryListEvent>>({
-    matches: false,
+    matches: true,
     media: '',
   });
 
