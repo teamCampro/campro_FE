@@ -1,7 +1,9 @@
 'use client';
 import {
   CampSearchList,
+  DetailButtons,
   SearchBar,
+  SearchFilter,
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
@@ -11,9 +13,6 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from '../_components/KakaoMap';
-
-import DetailButtons from '../_components/DetailButtons';
-import SearchFilter from '../_components/SearchFilter';
 
 interface DataType {
   result: CampPlaceType[];
@@ -75,7 +74,7 @@ function SearchPage() {
       </div>
       <div className='flex-center h-full w-full'>
         {mapSize !== 'map' && (
-          <div className='scrollbar-hide pt-16px pb-40px relative flex h-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr'>
+          <div className='scrollbar-hide pt-16px pb-40px relative flex h-full w-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr desktop:w-auto wide:w-auto'>
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-medium'>
                 전체 {campPlaceData?.length || 0}
