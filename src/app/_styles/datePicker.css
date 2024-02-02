@@ -307,9 +307,10 @@
     padding: 32px 40px 0 40px !important;
   }
   .react-datepicker-popper {
-    transform: none !important;
+    /* transform: none !important;
     top: 100px !important;
-    left: 34% !important;
+    left: 34% !important; */
+    z-index: 100 !important;
   }
 
   .react-datepicker__tab-loop {
@@ -356,9 +357,10 @@
   }
 
   .react-datepicker-popper {
-    transform: none !important;
+    /* transform: none !important;
     top: 100px !important;
-    left: 34% !important;
+    left: 34% !important; */
+    z-index: 100 !important;
   }
   .react-datepicker {
     width: 100% !important;
@@ -411,11 +413,12 @@
   }
 }
 
-@media (min-width: 1200) {
+@media (min-width: 1200px) {
   .react-datepicker-popper {
-    transform: none !important;
+    /* transform: none !important;
     top: 100px !important;
-    left: 28% !important;
+    left: 28% !important; */
+    z-index: 100 !important;
   }
 
   .react-datepicker__tab-loop {

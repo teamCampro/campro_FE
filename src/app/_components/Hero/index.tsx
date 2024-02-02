@@ -35,7 +35,7 @@ function Hero() {
         </div>
       </div>
       <div className='inset-x-0 absolute bottom-[-60px] z-[98] flex w-full justify-center px-28pxr mobile:px-32pxr tablet:px-40pxr'>
-        <SearchBar />
+        <SearchBar page='main' />
       </div>
     </div>
   );
