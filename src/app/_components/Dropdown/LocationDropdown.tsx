@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect } from 'react';
 
 interface Props {
@@ -8,7 +10,13 @@ interface Props {
   isMobile: boolean;
 }
 
-function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
+function LocationDropdown({
+  items,
+  onSelect,
+  activeItem,
+  onClose,
+  isMobile,
+}: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,7 +51,7 @@ function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
         <div
           onClick={(e) => handleSelect(e, item)}
           key={index}
-          className={`mobile:active:bg-Primary50 mobile:hover:bg-Primary50  relative flex  w-full  bg-white-100 text-black font-title3-semibold tablet:active:bg-white-100 ${item === activeItem ? 'mobile:bg-primary50' : ''} mobile:relative mobile:z-[99] mobile:justify-center tablet:justify-start`}
+          className={` mobile:active:bg-Primary50 mobile:hover:bg-Primary50 relative  flex w-full  cursor-pointer  bg-white-100 text-black font-title3-semibold tablet:active:bg-white-100 ${item === activeItem ? 'mobile:bg-primary50' : ''} hover:bg-primary50 mobile:relative mobile:z-[99] mobile:justify-center tablet:justify-start`}
         >
           {item}
         </div>
@@ -52,4 +60,4 @@ function Dropdown({ items, onSelect, activeItem, onClose, isMobile }: Props) {
   );
 }
 
-export default Dropdown;
+export default LocationDropdown;

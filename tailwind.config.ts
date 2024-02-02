@@ -74,6 +74,16 @@ const config: Config = {
         '4': '4',
         '5': '5',
       },
+      gridTemplateColumns: {
+        '1-col-288': 'repeat(1,minmax(288px,1fr))',
+        '2-col-184': 'repeat(2,minmax(184px,1fr))',
+        '2-col-340': 'repeat(2,minmax(340px,340px))',
+        '3-col-184': 'repeat(3,minmax(184px,1fr))',
+        '3-col-340': 'repeat(3,minmax(340px,340px))',
+        '4-col-340': 'repeat(4,minmax(340px,340px))',
+        '5-col-340': 'repeat(5,minmax(340px,340px))',
+        'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
+      },
     },
     screens: {
       mobileMin: '320px',
@@ -113,16 +123,6 @@ const config: Config = {
       '3': '3',
       '7': '7',
     },
-    gridTemplateColumns: {
-      '1-col-288': 'repeat(1,minmax(288px,1fr))',
-      '2-col-184': 'repeat(2,minmax(184px,1fr))',
-      '2-col-340': 'repeat(2,minmax(340px,340px))',
-      '3-col-184': 'repeat(3,minmax(184px,1fr))',
-      '3-col-340': 'repeat(3,minmax(340px,340px))',
-      '4-col-340': 'repeat(4,minmax(340px,340px))',
-      '5-col-340': 'repeat(5,minmax(340px,340px))',
-      'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
-    },
   },
   plugins: [
     plugin(({ addUtilities }) => {
@@ -158,6 +158,13 @@ const config: Config = {
           fontSize: pxToRem(24),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.48),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+        '.font-title2-semibold': {
+          fontSize: pxToRem(22),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.22),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },

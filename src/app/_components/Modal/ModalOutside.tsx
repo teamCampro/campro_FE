@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+'use client';
 
-import { ReactNode } from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef, ReactNode } from 'react';
 
 export default function ModalOutside({
   children,
@@ -13,6 +12,7 @@ export default function ModalOutside({
   const modalRef = useRef<HTMLDivElement>(null);
 
   const modalOutSideClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     if (modalRef.current === e.target) {
       onClose();
     }

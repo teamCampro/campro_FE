@@ -1,15 +1,20 @@
+'use client';
+
 import { IconMinus, IconPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 interface Props {
-  group: string;
-  onChangeGroup: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  group: { adult: number; child: number; pet: number };
+
+  onChangeGroup: (updatedGroup: {
+    adult: number;
+    child: number;
+    pet: number;
+  }) => void;
   onClose: () => void;
   isMobile?: boolean;
 }
 
-function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
-  const groupObject = JSON.parse(group);
-
+function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,12 +36,15 @@ function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
   }, [onClose, isMobile]);
 
   const handleIncrease = (name: 'adult' | 'child' | 'pet') => {
-    onChangeGroup({ ...groupObject, [name]: groupObject[name] + 1 });
+    const updatedGroup = { ...group, [name]: group[name] + 1 };
+    onChangeGroup(updatedGroup);
   };
 
   const handleDecrease = (name: 'adult' | 'child' | 'pet') => {
-    groupObject[name] > 0 &&
-      onChangeGroup({ ...groupObject, [name]: groupObject[name] - 1 });
+    if (group[name] > 0) {
+      const updatedGroup = { ...group, [name]: group[name] - 1 };
+      onChangeGroup(updatedGroup);
+    }
   };
 
   return (
@@ -52,14 +60,21 @@ function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
           </div>
           <div className='flex w-full flex-105 items-center'>
             <div className='flex w-full items-center justify-end gap-16pxr'>
-              <IconMinus
-                onClick={() => handleDecrease('adult')}
-                fill={groupObject.adult === 0 ? '#949494' : '#000000'}
-              />
+              <button
+                disabled={group.adult === 0 ? true : false}
+                className='cursor-pointer'
+              >
+                <IconMinus
+                  onClick={() => handleDecrease('adult')}
+                  fill={group.adult === 0 ? '#949494' : '#000000'}
+                />
+              </button>
               <p className='flex-center flex w-25pxr font-title3-semibold'>
-                {groupObject.adult}
+                {group.adult}
               </p>
-              <IconPlus onClick={() => handleIncrease('adult')} />
+              <button className='cursor-pointer'>
+                <IconPlus onClick={() => handleIncrease('adult')} />
+              </button>
             </div>
           </div>
         </div>
@@ -73,14 +88,21 @@ function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
 
           <div className='flex w-full flex-105 items-center'>
             <div className='flex w-full items-center justify-end gap-16pxr'>
-              <IconMinus
-                onClick={() => handleDecrease('child')}
-                fill={groupObject.child === 0 ? '#949494' : '#000000'}
-              />
+              <button
+                disabled={group.child === 0 ? true : false}
+                className='cursor-pointer'
+              >
+                <IconMinus
+                  onClick={() => handleDecrease('child')}
+                  fill={group.child === 0 ? '#949494' : '#000000'}
+                />
+              </button>
               <p className='flex-center flex w-25pxr font-title3-semibold'>
-                {groupObject.child}
+                {group.child}
               </p>
-              <IconPlus onClick={() => handleIncrease('child')} />
+              <button className='cursor-pointer'>
+                <IconPlus onClick={() => handleIncrease('child')} />
+              </button>
             </div>
           </div>
         </div>
@@ -90,14 +112,21 @@ function GroupDropdown({ group, isMobile, onChangeGroup, onClose }: Props) {
           애완동물
         </div>
         <div className='flex w-full  items-center justify-end gap-16pxr'>
-          <IconMinus
-            fill={groupObject.pet === 0 ? '#949494' : '#000000'}
-            onClick={() => handleDecrease('pet')}
-          />
+          <button
+            disabled={group.pet === 0 ? true : false}
+            className='cursor-pointer'
+          >
+            <IconMinus
+              fill={group.pet === 0 ? '#949494' : '#000000'}
+              onClick={() => handleDecrease('pet')}
+            />
+          </button>
           <p className='flex-center flex w-25pxr font-title3-semibold'>
-            {groupObject.pet}
+            {group.pet}
           </p>
-          <IconPlus onClick={() => handleIncrease('pet')} />
+          <button className='cursor-pointer'>
+            <IconPlus onClick={() => handleIncrease('pet')} />
+          </button>
         </div>
       </div>
     </div>

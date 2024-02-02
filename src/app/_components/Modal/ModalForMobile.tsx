@@ -1,11 +1,15 @@
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { ReactNode } from 'react';
-import ModalFooter from './ModalFooter';
-import ModalHeader from './ModalHeader';
-import ModalLayout from './ModalLayout';
-import ModalMainContent from './ModalMainContent';
-import ModalOutside from './ModalOutside';
-import ModalPortal from './ModalPortal';
+
+import {
+  ModalPortal,
+  ModalOutside,
+  ModalMainContent,
+  ModalLayout,
+  ModalHeader,
+  ModalFooter,
+} from '..';
+
 function ModalForMobile({
   children,
   headerContent,

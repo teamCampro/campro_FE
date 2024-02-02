@@ -150,6 +150,20 @@ body {
     width: 126px !important;
     padding: 0 0 10px 10px !important;
   }
+}
+
+@media (max-width: 767px) {
+  #category-swiper {
+    display: contents !important;
+  }
+  #category-swiper .swiper-wrapper {
+    display: contents !important;
+    overflow: auto !important;
+    max-width: 1120px;
+  }
+  #swiper-slide {
+    display: contents;
+  }
   .custom-gradient {
     background: none;
   }
@@ -161,6 +175,7 @@ body {
     padding: 0 0 10px 10px !important;
     margin-right: 14px;
   }
+
   #category-swiper {
     margin: 0px !important;
   }
@@ -179,6 +194,17 @@ body {
   #filterSlide {
     width: 480px;
   }
+}
+
+@media (min-width: 1200px) {
+  #category-slide {
+    width: 126px !important;
+    padding: 0 0 10px 10px !important;
+  }
+}
+
+#camp-place {
+  width: 340px;
 }
 
 @media (max-width: 767px) {
