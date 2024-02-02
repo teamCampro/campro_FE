@@ -1,3 +1,5 @@
+import './kakaoMarkerGenerator.css';
+
 interface LocationType {
   lat: number;
   lng: number;
@@ -25,6 +27,8 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
       return {
         title: data.placeName,
         latlng: new window.kakao.maps.LatLng(location.lat, location.lng),
+        imgUrl: data.imgUrl,
+        address: data.address,
       };
     });
 
@@ -45,9 +49,50 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
           position: positions[i].latlng,
           title: positions[i].title,
           image: markerImage,
+          clickable: true,
         });
 
-        marker.setMap(map);
+        const overlayWrapper = document.createElement('div');
+        overlayWrapper.className = 'overlayWrapper';
+
+        const image = document.createElement('img');
+        image.className = 'overlayImage';
+        image.src = positions[i].imgUrl;
+        overlayWrapper.appendChild(image);
+
+        const overlayContent = document.createElement('div');
+        overlayContent.className = 'overlayContent';
+        overlayWrapper.appendChild(overlayContent);
+
+        const overlayTitle = document.createElement('h1');
+        overlayTitle.className = 'overlayTitle';
+        overlayTitle.innerHTML = positions[i].title;
+        overlayContent.appendChild(overlayTitle);
+
+        const address = document.createElement('span');
+        address.className = 'overlayAddress';
+        address.innerHTML = positions[i].address;
+        overlayContent.appendChild(address);
+
+        const overlay = new kakao.maps.CustomOverlay({
+          content: overlayWrapper,
+          map: map,
+          position: marker.getPosition(),
+          clickable: true,
+        });
+
+        overlay.setMap(null);
+
+        const closeOverlay = () => {
+          overlay.setMap(null);
+        };
+
+        kakao.maps.event.addListener(marker, 'click', () => {
+          overlay.setMap(map);
+        });
+        kakao.maps.event.addListener(map, 'click', (event) => {
+          closeOverlay();
+        });
       }
     }
   }
