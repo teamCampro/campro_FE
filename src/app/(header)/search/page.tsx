@@ -68,7 +68,6 @@ function SearchPage() {
       >
         펼치기
       </button>
-      {/* 비상!!!! */}
       <div className='flex-center h-full w-full'>
         {mapSize !== 'map' && (
           <div className='scrollbar-hide pt-16px pb-40px relative flex h-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr'>
@@ -85,7 +84,7 @@ function SearchPage() {
                 gridColumns={mapBasis[mapSize].list}
               />
             )}
-            <SearchPagination />
+            <SearchPagination currentPage={1} totalItems={50} onUpdatePage={(pageNumber) => null}/>
           </div>
         )}
         <div
