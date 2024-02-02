@@ -1,20 +1,22 @@
-'use client';
-
-import { IconFilter, IconReset } from '@/public/svgs';
-
-import useMediaQueries from '@/hooks/useMediaQueries';
-import Selectable from '@/components/Dropdown/Selectable';
-import ModalForMobile from '@/components/Modal/ModalForMobile';
-import Button from '@/components/Button';
-import { useState } from 'react';
+import { Button, ModalForMobile } from '@/components/index';
 import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
+import { IconFilter, IconReset } from '@/public/svgs';
+import { setClose, setDetailState } from '@/src/app/_utils/detailState';
+import { isModal } from '@/src/app/_utils/modalState';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import DetailPanel from './DetailPanel';
-import { setDetailState } from '@/src/app/_utils/detailState';
-import { isModal } from '@/src/app/_utils/modalState';
+import { MapSizeType } from '../search/page';
 
-function Page() {
+function SearchFilter({
+  mapSize,
+  handleMapSize,
+}: {
+  mapSize: string;
+  handleMapSize: (mapSize: MapSizeType) => void;
+}) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const selectArray: string[] = [];
   const details = useAppSelector((state) => state.detail);
@@ -50,9 +52,9 @@ function Page() {
   });
 
   return (
-    <div className='h-screen w-full bg-gray-500'>
-      {isMobile ? (
-        <>
+    <div className='relative' /* onClick={() => dispatch(setClose(false))} */>
+      <>
+        {isMobile && (
           <button
             type='button'
             onClick={handleOpen}
@@ -60,17 +62,19 @@ function Page() {
           >
             <IconFilter />
           </button>
-          {isDropdownVisible && (
-            <ModalForMobile
-              headerContent='상세 보기'
-              onClose={handleClose}
-              footerContent={
-                <div className='text-right'>
+        )}
+        {(!isMobile || isDropdownVisible) && (
+          <ModalForMobile
+            headerContent='상세 보기'
+            onClose={handleClose}
+            footerContent={
+              <>
+                <div className='text-right mobile:w-full'>
                   <div className='lineOver text-gray600 font-body2-semibold'>
                     {selectArray.join(', ')}
                   </div>
                   <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
-                    <div className='flex-center  gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+                    <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
                       초기화
                       <IconReset fill='#C8C8C8' />
                     </div>
@@ -83,29 +87,15 @@ function Page() {
                     </Button.Round>
                   </div>
                 </div>
-              }
-            >
-              <div className='flex gap-6pxr mobile:w-full mobile:flex-col mobile:gap-0pxr mobile:border-b'>
-                {details.map((detail) => {
-                  return (
-                    <Selectable
-                      key={detail.id}
-                      handleDropClick={handleDropClick}
-                      typeInfo={detail}
-                    >
-                      {detail.type}
-                    </Selectable>
-                  );
-                })}
-              </div>
-            </ModalForMobile>
-          )}
-        </>
-      ) : (
-        <DetailPanel />
-      )}
+              </>
+            }
+          >
+            <DetailPanel handleDropClick={handleDropClick} />
+          </ModalForMobile>
+        )}
+      </>
     </div>
   );
 }
 
-export default Page;
+export default SearchFilter;
