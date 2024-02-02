@@ -1,5 +1,6 @@
 'use client';
 
+/* 나중에 조립하실 때 이 페이지 삭제해도됩니다 ModalDetailList.tsx로 옴겨놨습니다 */
 import { IconFilter, IconReset } from '@/public/svgs';
 import DetailPanel from './_components/DetailPanel';
 import useMediaQueries from '@/hooks/useMediaQueries';

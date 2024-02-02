@@ -1,37 +1,111 @@
-import Selectable from '@/components/Dropdown/Selectable';
-import { IconArrowRightNon, IconFilter } from '@/public/svgs';
+'use client';
 
-function ModalDetailList() {
+import { IconFilter, IconReset } from '@/public/svgs';
+
+import useMediaQueries from '@/hooks/useMediaQueries';
+import Selectable from '@/components/Dropdown/Selectable';
+import ModalForMobile from '@/components/Modal/ModalForMobile';
+import Button from '@/components/Button';
+import { useState } from 'react';
+import { useAppSelector } from '@/hooks/redux';
+import { useDispatch } from 'react-redux';
+
+import DetailPanel from './DetailPanel';
+import { setDetailState } from '@/src/app/_utils/detailState';
+import { isModal } from '@/src/app/_utils/modalState';
+
+function Page() {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const selectArray: string[] = [];
+  const details = useAppSelector((state) => state.detail);
+  const checkList = useAppSelector((state) => state.styleSetting);
+  const dispatch = useDispatch();
+
+  const handleDropClick = (id: number) => {
+    dispatch(setDetailState(id));
+  };
+
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
+
+  const handleOpen = () => {
+    setIsDropdownVisible(true);
+    dispatch(isModal(true));
+  };
+
+  const handleClose = () => {
+    setIsDropdownVisible(false);
+    dispatch(isModal(false));
+  };
+
+  details.forEach((detail) => {
+    const { name } = detail;
+    if (name !== 'prices' && checkList.select[name]) {
+      checkList.select[name].map((list) => {
+        selectArray.push(list.type);
+      });
+    }
+  });
+
   return (
-    <div className='w-full bg-white'>
-      <div className='m-auto flex max-w-1440pxr items-center justify-start gap-8pxr'>
-        <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold'>
-          상세필터
-        </h3>
-        <div className='flex gap-6pxr'>
-          <Selectable types='stay'>숙박 유형</Selectable>
-          <Selectable types='home'>시설</Selectable>
-          <Selectable>가격</Selectable>
-          <Selectable types='theme'>테마</Selectable>
-          <Selectable types='trip'>여행 타입</Selectable>
-        </div>
-        <div className='grow-1 custom-gradient absolute right-0pxr z-10 flex w-250pxr gap-16pxr mobileMin:justify-end'>
-          <div className='flex h-48pxr w-96pxr cursor-pointer items-center gap-4pxr rounded-full border bg-white py-12pxr pl-20pxr pr-14pxr font-medium'>
-            <h3 className='whitespace-nowrap text-gray600 font-body2-semibold'>
-              필터
-            </h3>
+    <div className='h-screen w-full bg-gray-500'>
+      {isMobile ? (
+        <>
+          <button
+            type='button'
+            onClick={handleOpen}
+            className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium'
+          >
             <IconFilter />
-          </div>
-          <div className='flex h-48pxr w-102pxr cursor-pointer items-center gap-3pxr rounded-xl border bg-white py-12pxr pl-20pxr pr-14pxr font-medium'>
-            <IconArrowRightNon />
-            <h3 className='whitespace-nowrap text-gray600 font-body2-semibold'>
-              지도
-            </h3>
-          </div>
-        </div>
-      </div>
+          </button>
+          {isDropdownVisible && (
+            <ModalForMobile
+              headerContent='상세 보기'
+              onClose={handleClose}
+              footerContent={
+                <div className='text-right'>
+                  <div className='lineOver text-gray600 font-body2-semibold'>
+                    {selectArray.join(', ')}
+                  </div>
+                  <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
+                    <div className='flex-center  gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+                      초기화
+                      <IconReset fill='#C8C8C8' />
+                    </div>
+                    <Button.Round
+                      size='sm'
+                      custom='!w-174pxr !h-56pxr'
+                      onClick={() => setIsDropdownVisible(false)}
+                    >
+                      적용
+                    </Button.Round>
+                  </div>
+                </div>
+              }
+            >
+              <div className='flex gap-6pxr mobile:w-full mobile:flex-col mobile:gap-0pxr mobile:border-b'>
+                {details.map((detail) => {
+                  return (
+                    <Selectable
+                      key={detail.id}
+                      handleDropClick={handleDropClick}
+                      typeInfo={detail}
+                    >
+                      {detail.type}
+                    </Selectable>
+                  );
+                })}
+              </div>
+            </ModalForMobile>
+          )}
+        </>
+      ) : (
+        <DetailPanel />
+      )}
     </div>
   );
 }
 
-export default ModalDetailList;
+export default Page;
