@@ -11,6 +11,7 @@ export { default as GroupCountInputView } from './Input/GroupCountInputView';
 export { default as LocationInputView } from './Input/LocationInputView';
 export { default as Pagination } from './Pagination';
 export { default as SearchBar } from './SearchBar';
+export { default as CheckBox } from './checkBox';
 export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
 export { default as CampSearchList } from '../(header)/_components/CampSearchList';
 export { default as SearchPagination } from '../(header)/_components/SearchPagination';

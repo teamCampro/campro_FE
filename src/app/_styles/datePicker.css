@@ -3,6 +3,12 @@
 
 /* .react-datepicker-popper {
   left: 12% !important;
+  z-index: 2 !important;
+}
+
+.react-datepicker-popper[data-placement^='top'] {
+  transform: translate(205.5px, 678.5px) !important;
+}
 } */
 
 .react-datepicker {

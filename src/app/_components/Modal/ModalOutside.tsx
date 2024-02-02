@@ -45,7 +45,7 @@ export default function ModalOutside({
     <div onClick={modalOutSideClick}>
       <div
         ref={modalRef}
-        className=' fixed mobile:fixed  mobile:bottom-0pxr mobile:left-0pxr mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:overflow-hidden mobile:bg-black-50'
+        className='fixed bottom-0pxr left-0pxr h-screen w-full mobile:fixed  mobile:bottom-0pxr mobile:left-0pxr mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:overflow-hidden mobile:bg-black-50'
       >
         {children}
       </div>
