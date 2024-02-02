@@ -6,6 +6,7 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import {
+  Button,
   CampSearchList,
   SearchPagination,
   SortDropdown,
@@ -62,12 +63,6 @@ function SearchPage() {
   }, [map, campPlaceData]);
   return (
     <>
-      <button
-        className='absolute left-0pxr top-0pxr'
-        onClick={() => handleMapSize('map')}
-      >
-        펼치기
-      </button>
       <div className='flex-center h-full w-full'>
         {mapSize !== 'map' && (
           <div className='scrollbar-hide pt-16px pb-40px relative flex h-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr'>
@@ -84,20 +79,20 @@ function SearchPage() {
                 gridColumns={mapBasis[mapSize].list}
               />
             )}
-            <SearchPagination currentPage={1} totalItems={50} onUpdatePage={(pageNumber) => null}/>
+            <SearchPagination
+              currentPage={1}
+              totalItems={50}
+              onUpdatePage={(pageNumber) => null}
+            />
           </div>
         )}
         <div
           className={`grow-1 desktop1440:basis-664pxr desktop1920:basis-793pxr relative h-full shrink-0 ${mapBasis[mapSize].map}`}
         >
-          <KakaoMap
-            map={map}
-            setMap={setKakaoMap}
-            toggleHalfScreen={handleMapSize}
-            mapSize={mapSize}
-          />
+          <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
         </div>
       </div>
+      <Button.MapFloating onMapResize={handleMapSize} />
     </>
   );
 }

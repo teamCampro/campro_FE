@@ -29,4 +29,6 @@ export { default as IconMapMinus } from './mapMinus.svg';
 export { default as IconMapPlus } from './mapPlus.svg';
 export { default as IconRightGray } from './rightGray.svg';
 export { default as IconLeftGray } from './leftGray.svg';
-
+export { default as IconListAndMap } from './listAndMap.svg';
+export { default as IconMap } from './map.svg';
+export { default as IconList } from './list.svg';
