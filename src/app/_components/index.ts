@@ -11,11 +11,11 @@ export { default as GroupCountInputView } from './Input/GroupCountInputView';
 export { default as LocationInputView } from './Input/LocationInputView';
 export { default as Pagination } from './Pagination';
 export { default as SearchBar } from './SearchBar';
-
+export { default as CheckBox } from './checkBox';
 export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
-export { default as CampSearchList } from '../(header&footer)/_components/CampSearchList';
-export { default as SearchPagination } from '../(header&footer)/_components/SearchPagination';
-export { default as SortDropdown } from '../(header&footer)/_components/SortDropdown';
+export { default as CampSearchList } from '../(header)/_components/CampSearchList';
+export { default as SearchPagination } from '../(header)/_components/SearchPagination';
+export { default as SortDropdown } from '../(header)/_components/SortDropdown';
 export { default as Footer } from './Footer';
 
 export { default as ModalFooter } from './Modal/ModalFooter';

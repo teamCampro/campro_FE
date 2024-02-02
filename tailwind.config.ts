@@ -67,6 +67,13 @@ const config: Config = {
         gray700: '#383838',
         gray800: '#1F1F1F',
       },
+      flexGrow: {
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+      },
       gridTemplateColumns: {
         '1-col-288': 'repeat(1,minmax(288px,1fr))',
         '2-col-184': 'repeat(2,minmax(184px,1fr))',
@@ -79,10 +86,12 @@ const config: Config = {
       },
     },
     screens: {
+      mobileMin: '320px',
       mobile: {
         min: '320px',
         max: '767px',
       },
+      tabletMin: '768px',
       mobile411: { min: '320px', max: '411px' },
       mobile725: { min: '412px', max: '725px' },
       tablet: {
@@ -94,6 +103,8 @@ const config: Config = {
       tablet1199: { min: '1003px', max: '1199px' },
       desktop: '1200px',
       wide: '1488px',
+      desktop1440: '1440px',
+      desktop1920: '1920px',
     },
     fontFamily: {
       pre: 'Pretendard',
