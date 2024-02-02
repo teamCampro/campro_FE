@@ -1,0 +1,47 @@
+.overlayWrapper {
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  background-color: white;
+  top: 95px;
+  transform: translate(-50%, -50%);
+  width: 324px;
+  height: 173px;
+  z-index: 500;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 17px 16px 26px -6px rgba(196, 196, 196, 0.89);
+  border: 1px solid gainsboro;
+  border-radius: 16px;
+}
+
+.showOverlay {
+  display: block;
+}
+
+.hideOverlay {
+  display: none;
+}
+
+.overlayImage {
+  width: 116px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.overlayTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+.overlayAddress {
+  font-size: 14px;
+  color: gray;
+}
