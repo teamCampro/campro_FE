@@ -23,7 +23,6 @@ function DeTailList({ children }: Props) {
 
   const handleClick = () => {
     setIsDrop((prev) => !prev);
-    console.log('onClick 작동중');
   };
   return (
     <div

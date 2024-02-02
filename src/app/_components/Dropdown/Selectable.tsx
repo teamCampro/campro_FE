@@ -1,14 +1,14 @@
 'use client';
 
 import { IconArrowDown, IconArrowUp, IconReset } from '@/public/svgs';
-import { ReactNode } from 'react';
+import { FocusEvent, ReactNode, useCallback } from 'react';
 import { Button } from '..';
 
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useAppSelector } from '@/hooks/redux';
 import { useDispatch } from 'react-redux';
-import { setDetailState, setIsCheck } from '../../_utils/detailState';
+import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
 import { setReset } from '../../_utils/styleSetting';
 
 interface TypeInfoType {
@@ -42,6 +42,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   const handleOpen = () => {
     if (!handleDropClick) return;
+    console.log('onClick 실행');
     handleDropClick(typeInfo.id);
     if (!typeInfo.isCheck) {
       dispatch(setReset(typeInfo.name));
@@ -51,6 +52,27 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const handleCheck = () => {
     dispatch(setDetailState(typeInfo.id));
     dispatch(setIsCheck(typeInfo.id));
+  };
+
+  const callbackRef = useCallback((current: HTMLDivElement) => {
+    current?.focus();
+  }, []);
+
+  const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
+    console.log('onBlur 작동');
+    e.stopPropagation();
+    e.preventDefault();
+
+    console.log(e.relatedTarget);
+    console.log(e.target.localName);
+    console.log(e.target.localName == 'input');
+    console.log(e.relatedTarget || e.target.localName == 'input');
+    console.log(e);
+    setTimeout(() => {
+      e.relatedTarget || e.target.localName == 'input'
+        ? null
+        : dispatch(setClose(false));
+    }, 150);
   };
 
   return (
@@ -72,7 +94,12 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           )}
         </div>
         {typeInfo.isDone && (
-          <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'>
+          <div
+            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'
+            ref={callbackRef}
+            tabIndex={-1}
+            onBlur={handleBlur}
+          >
             <ul
               className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.type !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
             >

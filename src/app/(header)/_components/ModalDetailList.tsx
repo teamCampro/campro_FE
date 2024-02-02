@@ -1,8 +1,7 @@
 'use client';
 
-/* 나중에 조립하실 때 이 페이지 삭제해도됩니다 ModalDetailList.tsx로 옴겨놨습니다 */
 import { IconFilter, IconReset } from '@/public/svgs';
-import DetailPanel from './_components/DetailPanel';
+
 import useMediaQueries from '@/hooks/useMediaQueries';
 import Selectable from '@/components/Dropdown/Selectable';
 import ModalForMobile from '@/components/Modal/ModalForMobile';
@@ -10,8 +9,10 @@ import Button from '@/components/Button';
 import { useState } from 'react';
 import { useAppSelector } from '@/hooks/redux';
 import { useDispatch } from 'react-redux';
-import { setDetailState } from '../../_utils/detailState';
-import { isModal } from '../../_utils/modalState';
+
+import DetailPanel from './DetailPanel';
+import { setDetailState } from '@/src/app/_utils/detailState';
+import { isModal } from '@/src/app/_utils/modalState';
 
 function Page() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -101,7 +102,7 @@ function Page() {
           )}
         </>
       ) : (
-        <DetailPanel />
+        <DetailPanel handleDropClick={handleDropClick} />
       )}
     </div>
   );
