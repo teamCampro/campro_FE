@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React, { useState } from 'react';
 import { MapSizeType } from '../../(header)/search/page';
 import {
@@ -11,7 +10,6 @@ import {
 
 interface FloatingButtonContent {
   name: string;
-  imageUrl: string;
   type: MapSizeType;
 }
 
@@ -26,9 +24,9 @@ const MAP_SIZE_NAME = {
 };
 
 let floatingButtonContents: FloatingButtonContent[] = [
-  { name: '목록+지도', imageUrl: '', type: 'half' },
-  { name: '목록만', imageUrl: '', type: 'list' },
-  { name: '지도만', imageUrl: '', type: 'map' },
+  { name: '목록+지도', type: 'half' },
+  { name: '목록만', type: 'list' },
+  { name: '지도만', type: 'map' },
 ];
 
 function MapFloatingButton({ onMapResize }: Props) {

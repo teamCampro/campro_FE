@@ -10,7 +10,7 @@ function KakaoOverlay({ name, imageUrl, address }: Props) {
   return (
     <div>
       <span className='font-title3-simibold'>{name}</span>
-      <Image src={imageUrl} alt='오버레이 이미지' width={120} height={120} />
+      <Image src={imageUrl} alt='오버레이 이미지' width={100} height={100} />
       <span className='font-title3-simibold'>{address}</span>
     </div>
   );
