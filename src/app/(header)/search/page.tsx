@@ -18,7 +18,7 @@ import SearchFilter from '../_components/SearchFilter';
 interface DataType {
   result: CampPlaceType[];
 }
-//search/id <--
+
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
@@ -90,6 +90,7 @@ function Page() {
             </div>
             {campPlaceData && (
               <CampSearchList
+                currentPage={currentPage}
                 campPlaces={campPlaceData}
                 gridColumns={mapBasis[mapSize].list}
               />
