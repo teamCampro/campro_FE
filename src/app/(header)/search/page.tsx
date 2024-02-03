@@ -1,16 +1,20 @@
 'use client';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import KakaoMap from '../_components/KakaoMap';
-import kakaoMarkerGenerator, {
-  CampPlaceType,
-} from '../../_utils/kakaoMarkerGenerator';
 import {
   Button,
   CampSearchList,
+  SearchBar,
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import kakaoMarkerGenerator, {
+  CampPlaceType,
+} from '../../_utils/kakaoMarkerGenerator';
+import KakaoMap from '../_components/KakaoMap';
+
+import DetailButtons from '../_components/DetailButtons';
+import SearchFilter from '../_components/SearchFilter';
 
 interface DataType {
   result: CampPlaceType[];
@@ -63,6 +67,13 @@ function SearchPage() {
   }, [map, campPlaceData]);
   return (
     <>
+      <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr'>
+        <SearchBar />
+        <div className='z-[99] flex gap-12pxr'>
+          <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
+          <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} />
+        </div>
+      </div>
       <div className='flex-center h-full w-full'>
         {mapSize !== 'map' && (
           <div className='scrollbar-hide pt-16px pb-40px relative flex h-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr'>
@@ -72,7 +83,6 @@ function SearchPage() {
               </h3>
               <SortDropdown />
             </div>
-
             {campPlaceData && (
               <CampSearchList
                 campPlaces={campPlaceData}
@@ -87,7 +97,7 @@ function SearchPage() {
           </div>
         )}
         <div
-          className={`grow-1 desktop1440:basis-664pxr desktop1920:basis-793pxr relative h-full shrink-0 ${mapBasis[mapSize].map}`}
+          className={`relative h-full shrink-0 grow-1 desktop1440:basis-664pxr desktop1920:basis-793pxr ${mapBasis[mapSize].map}`}
         >
           <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
         </div>

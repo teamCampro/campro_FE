@@ -35,3 +35,5 @@ export { default as IconList } from './list.svg';
 export { default as IconMarkerGray } from './markerGray.svg';
 export { default as IconMarkerGreen } from './markerGreen.svg';
 export { default as IconScore } from './score.svg';
+export { default as IconCheckboxOff } from './checkboxOff.svg';
+export { default as IconCheckboxOn } from './checkboxOn.svg';

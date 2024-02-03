@@ -1,15 +1,13 @@
 'use client';
 
-import { IconArrowDown, IconArrowUp, IconReset } from '@/public/svgs';
-import { ReactNode } from 'react';
+import { IconArrowUp, IconReset } from '@/public/svgs';
+import { ReactNode, useEffect, useRef } from 'react';
 import { Button } from '..';
 
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
-import { useAppSelector } from '@/hooks/redux';
 import { useDispatch } from 'react-redux';
-import { setDetailState, setIsCheck } from '../../_utils/detailState';
-import { setReset } from '../../_utils/styleSetting';
+import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
 
 interface TypeInfoType {
   id: number;
@@ -38,14 +36,16 @@ const LENTH: LengthType = {
 
 function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const textLength = children?.toString().length;
+  const divRef = useRef<HTMLDivElement>(null);
+  const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const handleOpen = () => {
     if (!handleDropClick) return;
     handleDropClick(typeInfo.id);
-    if (!typeInfo.isCheck) {
+    /*  if (!typeInfo.isCheck) {
       dispatch(setReset(typeInfo.name));
-    }
+    } */
   };
 
   const handleCheck = () => {
@@ -53,10 +53,26 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     dispatch(setIsCheck(typeInfo.id));
   };
 
+  const handleClickOutside = (event: any) => {
+    if (!divRef.current || !buttomRef.current) return;
+    if (divRef.current && buttomRef.current.contains(event.target)) {
+    } else {
+      dispatch(setClose(false));
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div
         className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none`}
+        ref={buttomRef}
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
@@ -65,16 +81,18 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
-          {typeInfo.isDone ? (
+          <div className={`${typeInfo.isDone && 'arrowDown'} w-full`}>
             <IconArrowUp fill='#949494' />
-          ) : (
-            <IconArrowDown fill='#949494' />
-          )}
+          </div>
         </div>
         {typeInfo.isDone && (
-          <div className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'>
+          <div
+            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'
+            ref={divRef}
+          >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.type !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
                 <SelectList types={typeInfo.name} />

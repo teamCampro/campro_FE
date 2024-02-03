@@ -102,7 +102,7 @@ function Page() {
           )}
         </>
       ) : (
-        <DetailPanel />
+        <DetailPanel handleDropClick={handleDropClick} />
       )}
     </div>
   );
