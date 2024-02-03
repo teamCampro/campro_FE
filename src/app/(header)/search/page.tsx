@@ -50,7 +50,7 @@ function Page() {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get<DataType>(
-        `/data/mapPositionsMockData.json`,
+        `data/mapPositionsMockData.json`,
       );
 
       const { result } = response.data;
@@ -59,7 +59,7 @@ function Page() {
     };
 
     fetch();
-  }, [updateTotalItems]);
+  }, []);
 
   useEffect(() => {
     if (map && campPlaceData) {

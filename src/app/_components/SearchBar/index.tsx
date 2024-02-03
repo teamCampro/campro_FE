@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 function SearchBar({ page }: { page: 'main' | 'search' }) {
   const router = useRouter();
   const searchParams = useSearchParams(); // ?id=123&minhyuk=천재
+
   const onSubmit = (data: FieldValues) => {
     if (Array.isArray(data.date) && data.date.length === 2) {
       const location = encodeURIComponent(data.location);
