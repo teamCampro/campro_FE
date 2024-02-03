@@ -1,4 +1,5 @@
 'use client';
+
 import {
   CampSearchList,
   SearchPagination,
@@ -6,7 +7,7 @@ import {
   SearchBar,
 } from '@/components/index';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
@@ -70,7 +71,9 @@ function Page() {
     <>
       <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr mobile:flex-row'>
         <div className='flex-center w-full'>
-          <SearchBar page='search' />
+          <Suspense>
+            <SearchBar page='search' />
+          </Suspense>
         </div>
         <div className='mobile:flex-center flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
