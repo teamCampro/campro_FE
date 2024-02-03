@@ -84,6 +84,12 @@ const config: Config = {
         '5-col-340': 'repeat(5,minmax(340px,340px))',
         'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
       },
+      width: {
+        custom: 'calc(100vh * 0.84)',
+      },
+      maxWidth: {
+        custom: '100vw',
+      },
     },
     screens: {
       mobileMin: '320px',
@@ -240,6 +246,37 @@ const config: Config = {
           letterSpacing: pxToRem(-0.12),
           fontWeight: '600',
           fontFamily: 'Pretendard',
+        },
+
+        '.font-sign-title': {
+          color: 'var(--naver-text, #FFF)',
+          textAlign: 'center',
+          fontFamily: 'Preahvihear',
+          fontSize: pxToRem(140),
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: 'normal',
+          letterSpacing: pxToRem(7),
+        },
+        '.font-sign-subTitle1': {
+          color: 'var(--naver-text, #FFF)',
+          textAlign: 'center',
+          fontFamily: 'Preahvihear',
+          fontSize: pxToRem(32),
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: 'normal',
+          letterSpacing: pxToRem(1.6),
+        },
+        '.font-sign-subTitle2': {
+          color: '#3BA53B',
+          textAlign: 'center',
+          fontFamily: 'Preahvihear',
+          fontSize: pxToRem(32),
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: 'normal',
+          letterSpacing: pxToRem(1.6),
         },
       };
 

@@ -31,7 +31,7 @@ function CommonInput({
   } = useFormContext();
 
   const inputCss = (isError: boolean, className?: string) =>
-    `outline-0 box-border flex gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400 focus-within:border-#5534DA   ${isError ? 'border-red-500' : 'border-gray-500'} ${className ? className : ''}`;
+    `outline-0 box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400 focus-within:border-#5534DA   ${isError ? 'border-red-500' : 'border-gray-500'} ${className ? className : ''}`;
 
   return (
     <input
