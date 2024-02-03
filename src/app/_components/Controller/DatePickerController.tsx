@@ -5,12 +5,12 @@ import { IconArrowLeftNon, IconArrowRightNon } from '@/public/svgs';
 import { DateInputView } from '@/src/app/_components';
 import { getMonth, getYear } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Button } from '..';
-
+import { ControllerRenderProps } from 'react-hook-form';
 interface Props {
   name: string;
   checkIn?: string;
@@ -38,7 +38,7 @@ function DatePickerController({
   checkOut: initCheckOut,
 }: Props) {
   const control = useFormContext().control;
-
+  const fieldRef = useRef<ControllerRenderProps | null>(null);
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [tempDates, setTempDates] = useState<Date[]>([]);
   const [checkIn, setCheckIn] = useState(initCheckIn);
@@ -70,11 +70,23 @@ function DatePickerController({
     }
   }, [isMobile]);
 
+  const setFieldRef = useCallback((field: ControllerRenderProps) => {
+    fieldRef.current = field;
+  }, []);
+
+  useEffect(() => {
+    if (checkIn && checkOut && fieldRef.current) {
+      const dates = [new Date(checkIn), new Date(checkOut)];
+      fieldRef.current.onChange(dates);
+    }
+  }, [checkIn, checkOut]);
+
   return (
     <Controller
       control={control}
       name={name}
       render={({ field }) => {
+        setFieldRef(field);
         const handleDateInputClick = () => {
           if (datePickerRef.current) {
             datePickerRef.current.setOpen(true);
@@ -154,6 +166,7 @@ function DatePickerController({
             }
           }
         };
+
         return (
           <DatePicker
             popperPlacement='bottom-start'

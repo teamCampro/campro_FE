@@ -9,10 +9,11 @@ import { RegisterOptions } from 'react-hook-form';
 interface Props {
   name: string;
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
   readOnly?: boolean;
   rules?: RegisterOptions;
+  defaultValue?: string;
 }
 function CommonInput({
   name,
@@ -21,6 +22,7 @@ function CommonInput({
   className,
   readOnly,
   rules = requiredValidate,
+  defaultValue,
 }: Props) {
   const {
     register,
@@ -47,6 +49,7 @@ function CommonInput({
       placeholder={placeholder}
       className={inputCss(errors[name] ? true : false, className)}
       readOnly={readOnly}
+      defaultValue={defaultValue}
     />
   );
 }
