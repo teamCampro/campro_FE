@@ -39,7 +39,7 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
       const imageSrc = '/svgs/markerGray.svg';
       let selectedOverlay: kakao.maps.CustomOverlay | null = null;
       for (let i = 0; i < positions.length; i++) {
-        const imageSize = new window.kakao.maps.Size(24, 24);
+        const imageSize = new window.kakao.maps.Size(19, 25);
 
         const markerImage = new window.kakao.maps.MarkerImage(
           imageSrc,
