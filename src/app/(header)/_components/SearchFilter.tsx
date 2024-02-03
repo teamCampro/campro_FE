@@ -2,7 +2,7 @@ import { Button, ModalForMobile } from '@/components/index';
 import { useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconFilter, IconReset } from '@/public/svgs';
-import { setClose, setDetailState } from '@/src/app/_utils/detailState';
+import { setDetailState } from '@/src/app/_utils/detailState';
 import { isModal } from '@/src/app/_utils/modalState';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,7 @@ function SearchFilter({
   });
 
   return (
-    <div className='relative' /* onClick={() => dispatch(setClose(false))} */>
+    <div className='relative'>
       <>
         {isMobile && (
           <button
