@@ -1,7 +1,7 @@
 'use client';
 import {
   CampSearchList,
-  DetailButtons,
+  MapSizeButtons,
   SearchBar,
   SearchFilter,
   SearchPagination,
@@ -63,13 +63,17 @@ function SearchPage() {
       kakaoMarkerGenerator({ map, campPlaceData });
     }
   }, [map, campPlaceData]);
+
   return (
     <>
+      <MapSizeButtons
+        handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
+      />
+
       <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr'>
         <SearchBar />
         <div className='z-[99] flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
-          <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} />
         </div>
       </div>
       <div className='flex-center h-full w-full'>

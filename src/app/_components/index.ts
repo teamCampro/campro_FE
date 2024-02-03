@@ -1,7 +1,7 @@
 export { default as CampPlaceSection } from '../(header&footer)/_components/CampPlaceSection';
 export { default as CampSearchList } from '../(header)/_components/CampSearchList';
 export { default as SearchPagination } from '../(header)/_components/SearchPagination';
-export { default as SortDropdown } from '../(header)/_components/SortDropdown';
+export { default as SortDropdown } from '../(header)/search/_components/SortDropdown';
 export { default as Button } from './Button';
 export { default as CategoryItem } from './CategoryItem';
 export { default as CategoryList } from './CategoryList';
@@ -31,6 +31,7 @@ export { default as LocationDropdown } from './Dropdown/LocationDropdown';
 
 export { default as DetailButtons } from '../(header)/_components/DetailButtons';
 export { default as SearchFilter } from '../(header)/_components/SearchFilter';
+export { default as MapSizeButtons } from '../(header)/search/_components/MapSizeButtons';
 export { default as DatePickerController } from './Controller/DatePickerController';
 export { default as GroupCountController } from './Controller/GroupCountController';
 export { default as LocationController } from './Controller/LocationController';
