@@ -2,7 +2,6 @@
 
 import Selectable from '@/components/Dropdown/Selectable';
 import { useAppSelector } from '@/hooks/redux';
-
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
