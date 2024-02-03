@@ -1,31 +1,33 @@
 'use client';
+
 import {
   CampSearchList,
-  SearchBar,
   SearchPagination,
   SortDropdown,
+  SearchBar,
 } from '@/components/index';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from '../_components/KakaoMap';
-
-import DetailButtons from '../_components/DetailButtons';
+import usePagination from '@/hooks/usePagination';
 import SearchFilter from '../_components/SearchFilter';
 
 interface DataType {
   result: CampPlaceType[];
 }
-
+//search/id <--
 export type MapSizeType = 'half' | 'map' | 'list';
 
-function SearchPage() {
+function Page() {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
-
+  const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
+    usePagination({});
+  // search/123
   const mapBasis = {
     half: {
       map: 'basis-424pxr desktop1440:flex-grow-3 mobile:hidden',
@@ -54,6 +56,7 @@ function SearchPage() {
 
       const { result } = response.data;
       setCampPlaceData(result);
+      updateTotalItems(response.data.result.length);
     };
 
     fetch();
@@ -66,11 +69,14 @@ function SearchPage() {
   }, [map, campPlaceData]);
   return (
     <>
-      <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr'>
-        <SearchBar />
-        <div className='z-[99] flex gap-12pxr'>
+      <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr mobile:flex-row'>
+        <div className='flex-center w-full'>
+          <Suspense>
+            <SearchBar page='search' />
+          </Suspense>
+        </div>
+        <div className='mobile:flex-center flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
-          <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} />
         </div>
       </div>
       <div className='flex-center h-full w-full'>
@@ -89,9 +95,9 @@ function SearchPage() {
               />
             )}
             <SearchPagination
-              currentPage={1}
-              totalItems={50}
-              onUpdatePage={(pageNumber) => null}
+              currentPage={currentPage}
+              totalItems={totalItems}
+              onUpdatePage={updateCurrentPage}
             />
           </div>
         )}
@@ -110,4 +116,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage;
+export default Page;
