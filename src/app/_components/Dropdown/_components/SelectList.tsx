@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { IconCheckboxOff, IconCheckboxOn } from '@/public/svgs';
 import { DETAIL } from '@/src/app/_constants';
 import { setDelete, setSelect } from '@/src/app/_utils/styleSetting';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 interface SelectListType {
   types?: string;
 }

@@ -1,22 +1,13 @@
 'use client';
 
-import { IconArrowDown, IconArrowUp, IconReset } from '@/public/svgs';
-import {
-  FocusEvent,
-  MouseEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-} from 'react';
+import { IconArrowUp, IconReset } from '@/public/svgs';
+import { ReactNode, useEffect, useRef } from 'react';
 import { Button } from '..';
 
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
-import { useAppSelector } from '@/hooks/redux';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
-import { setReset } from '../../_utils/styleSetting';
 
 interface TypeInfoType {
   id: number;
