@@ -11,7 +11,7 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from '../_components/KakaoMap';
-
+import usePagination from '@/hooks/usePagination';
 import SearchFilter from '../_components/SearchFilter';
 
 interface DataType {
@@ -24,7 +24,8 @@ function Page() {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
-
+  const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
+    usePagination({});
   // search/123
   const mapBasis = {
     half: {
@@ -54,10 +55,11 @@ function Page() {
 
       const { result } = response.data;
       setCampPlaceData(result);
+      updateTotalItems(response.data.result.length);
     };
 
     fetch();
-  }, []);
+  }, [updateTotalItems]);
 
   useEffect(() => {
     if (map && campPlaceData) {
@@ -90,9 +92,9 @@ function Page() {
               />
             )}
             <SearchPagination
-              currentPage={1}
-              totalItems={50}
-              onUpdatePage={(pageNumber) => null}
+              currentPage={currentPage}
+              totalItems={totalItems}
+              onUpdatePage={updateCurrentPage}
             />
           </div>
         )}
