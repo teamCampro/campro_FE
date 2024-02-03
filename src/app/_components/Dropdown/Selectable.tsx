@@ -1,7 +1,14 @@
 'use client';
 
 import { IconArrowDown, IconArrowUp, IconReset } from '@/public/svgs';
-import { FocusEvent, ReactNode, useCallback } from 'react';
+import {
+  FocusEvent,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 import { Button } from '..';
 
 import SelectList from './_components/SelectList';
@@ -38,15 +45,16 @@ const LENTH: LengthType = {
 
 function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const textLength = children?.toString().length;
+  const divRef = useRef<HTMLDivElement>(null);
+  const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const handleOpen = () => {
     if (!handleDropClick) return;
-    console.log('onClick 실행');
     handleDropClick(typeInfo.id);
-    if (!typeInfo.isCheck) {
+    /*  if (!typeInfo.isCheck) {
       dispatch(setReset(typeInfo.name));
-    }
+    } */
   };
 
   const handleCheck = () => {
@@ -54,31 +62,26 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     dispatch(setIsCheck(typeInfo.id));
   };
 
-  const callbackRef = useCallback((current: HTMLDivElement) => {
-    current?.focus();
-  }, []);
-
-  const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
-    console.log('onBlur 작동');
-    e.stopPropagation();
-    e.preventDefault();
-
-    console.log(e.relatedTarget);
-    console.log(e.target.localName);
-    console.log(e.target.localName == 'input');
-    console.log(e.relatedTarget || e.target.localName == 'input');
-    console.log(e);
-    setTimeout(() => {
-      e.relatedTarget || e.target.localName == 'input'
-        ? null
-        : dispatch(setClose(false));
-    }, 150);
+  const handleClickOutside = (event: any) => {
+    if (!divRef.current || !buttomRef.current) return;
+    if (divRef.current && buttomRef.current.contains(event.target)) {
+    } else {
+      dispatch(setClose(false));
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <div
         className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none`}
+        ref={buttomRef}
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
@@ -87,21 +90,18 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
-          {typeInfo.isDone ? (
+          <div className={`${typeInfo.isDone && 'arrowDown'} w-full`}>
             <IconArrowUp fill='#949494' />
-          ) : (
-            <IconArrowDown fill='#949494' />
-          )}
+          </div>
         </div>
         {typeInfo.isDone && (
           <div
             className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'
-            ref={callbackRef}
-            tabIndex={-1}
-            onBlur={handleBlur}
+            ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.type !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
                 <SelectList types={typeInfo.name} />

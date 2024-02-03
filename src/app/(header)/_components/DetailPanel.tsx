@@ -1,10 +1,8 @@
 'use client';
 
 import Selectable from '@/components/Dropdown/Selectable';
-import { ModalLayout, ModalOutside, ModalPortal } from '@/components/index';
 import { useAppSelector } from '@/hooks/redux';
-import { setClose, setDetailState } from '@/src/app/_utils/detailState';
-import { useDispatch } from 'react-redux';
+
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -14,11 +12,7 @@ interface Type {
 
 function DetailPanel({ handleDropClick }: Type) {
   const details = useAppSelector((state) => state.detail);
-  const dispatch = useDispatch();
 
-  /* const handleDropClick = (id: number) => {
-    dispatch(setDetailState(id));
-  }; */
   return (
     <div className='w-full bg-white mobile:flex-col'>
       <div className='m-auto flex max-w-1440pxr items-center justify-start gap-8pxr mobile:justify-center'>
@@ -48,7 +42,7 @@ function DetailPanel({ handleDropClick }: Type) {
               return (
                 <SwiperSlide
                   key={detail.id}
-                  className={`${textLength ? '!w-121pxr' : '!w-90pxr'} mobile:!w-full`}
+                  className={`${textLength ? '!w-121pxr' : '!w-90pxr'} z-0 mobile:!w-full`}
                 >
                   <Selectable
                     handleDropClick={handleDropClick}

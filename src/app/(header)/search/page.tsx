@@ -68,7 +68,7 @@ function SearchPage() {
     <>
       <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr'>
         <SearchBar />
-        <div className='flex gap-12pxr'>
+        <div className='z-[99] flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
           <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} />
         </div>
