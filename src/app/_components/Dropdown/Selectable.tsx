@@ -42,7 +42,6 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   const handleOpen = () => {
     if (!handleDropClick) return;
-    console.log('onClick 실행');
     handleDropClick(typeInfo.id);
     /*  if (!typeInfo.isCheck) {
       dispatch(setReset(typeInfo.name));
