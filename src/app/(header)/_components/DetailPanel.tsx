@@ -2,6 +2,7 @@
 
 import Selectable from '@/components/Dropdown/Selectable';
 import { useAppSelector } from '@/hooks/redux';
+import { IconFilter } from '@/public/svgs';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -18,7 +19,7 @@ function DetailPanel({ handleDropClick }: Type) {
         <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold mobile:hidden'>
           상세필터
         </h3>
-        <div className='flex gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr'>
+        <div className='mobileMiddle:max-w-360pxr mobileMiddle:px-0pxr flex gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr'>
           <Swiper
             modules={[FreeMode]}
             freeMode={true}

@@ -224,7 +224,7 @@ body {
     grid-template-columns: 1fr 7fr 1fr;
   }
   #filterSlide {
-    width: 450px;
+    width: 100%;
   }
 }
 

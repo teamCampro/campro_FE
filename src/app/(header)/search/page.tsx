@@ -70,7 +70,7 @@ function SearchPage() {
         <SearchBar />
         <div className='z-[99] flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
-          <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} />
+          {/* <DetailButtons mapSize={mapSize} handleMapSize={handleMapSize} /> */}
         </div>
       </div>
       <div className='flex-center h-full w-full'>

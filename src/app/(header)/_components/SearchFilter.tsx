@@ -52,7 +52,7 @@ function SearchFilter({
   });
 
   return (
-    <div className='relative'>
+    <div className='relative w-full'>
       <>
         {isMobile && (
           <button
@@ -69,7 +69,7 @@ function SearchFilter({
             onClose={handleClose}
             footerContent={
               <>
-                <div className='text-right mobile:w-full'>
+                <div className='mobileMiddle: max-w-360pxr text-right mobile:w-full'>
                   <div className='lineOver text-gray600 font-body2-semibold'>
                     {selectArray.join(', ')}
                   </div>

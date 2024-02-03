@@ -35,6 +35,7 @@ function SelectList({ types }: SelectListType) {
               <h3>{list.type}</h3>
               <input
                 type='checkbox'
+                name={list.type}
                 checked={checkList.select[types].some(
                   (item) => item.id === list.id,
                 )}
