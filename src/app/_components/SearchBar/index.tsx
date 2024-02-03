@@ -64,10 +64,7 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
     return value;
   };
 
-  const renderSearchBarForMobile = () => {
-    setIsTotalInput(true);
-  };
-
+  const renderSearchBarForMobile = () => setIsTotalInput(true);
   const closeSearchBarForMobile = () => setIsTotalInput(false);
 
   useEffect(() => {
