@@ -98,6 +98,7 @@ function MapFloatingButton({ onMapResize }: Props) {
         <div className='absolute -top-116pxr flex flex-col gap-8pxr'>
           {insideButtons?.map((button) => (
             <button
+              key={button.name}
               className='flex w-127pxr items-center gap-4pxr rounded-full border border-gray400 bg-white py-12pxr pl-20pxr pr-14pxr hover:text-primary100'
               onClick={() => handleInsideFloatingButtonClick(button)}
             >

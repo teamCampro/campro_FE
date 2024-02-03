@@ -46,6 +46,7 @@
 .overlayScoreContainer {
   display: flex;
   gap: 0.125rem;
+  align-items: center;
 }
 
 .overlayScore {
