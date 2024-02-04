@@ -1,5 +1,5 @@
 import { Button, ModalForMobile } from '@/components/index';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconFilter, IconReset } from '@/public/svgs';
 import { setDetailState } from '@/src/app/_utils/detailState';
@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 
 import DetailPanel from './DetailPanel';
 import { MapSizeType } from '../search/page';
+import { setSelect } from '../../_utils/styleSetting';
+import { setCheckStandBy } from '../../_utils/checkStandByState';
 
 function SearchFilter({
   mapSize,
@@ -21,7 +23,8 @@ function SearchFilter({
   const selectArray: string[] = [];
   const details = useAppSelector((state) => state.detail);
   const checkList = useAppSelector((state) => state.styleSetting);
-  const dispatch = useDispatch();
+  const StandByList = useAppSelector((state) => state.checkStandBy);
+  const dispatch = useAppDispatch();
 
   const handleDropClick = (id: number) => {
     dispatch(setDetailState(id));
@@ -38,19 +41,42 @@ function SearchFilter({
   };
 
   const handleClose = () => {
+    details.forEach((detail) => {
+      const { name: types } = detail;
+      console.log(checkList.select[types]);
+      if (types !== 'prices' && checkList.select[types].length > 0) {
+        console.log(2222);
+        checkList.select[types].map((list) => {
+          dispatch(setCheckStandBy({ types, list }));
+        });
+      }
+    });
     setIsDropdownVisible(false);
     dispatch(isModal(false));
   };
 
+  const handleFinalCheck = () => {
+    details.forEach((detail) => {
+      const { name: types } = detail;
+      if (types !== 'prices' && StandByList[types].length > 0) {
+        StandByList[types].map((list) => {
+          dispatch(setSelect({ list, types }));
+        });
+      }
+    });
+    setIsDropdownVisible(false);
+  };
+
   details.forEach((detail) => {
-    const { name } = detail;
-    if (name !== 'prices' && checkList.select[name]) {
-      checkList.select[name].map((list) => {
+    const { name: types } = detail;
+
+    if (types !== 'prices' && StandByList[types].length > 0) {
+      StandByList[types].map((list) => {
         selectArray.push(list.type);
       });
     }
   });
-
+  console.log(checkList);
   return (
     <div className='relative w-full'>
       <>
@@ -70,7 +96,7 @@ function SearchFilter({
             footerContent={
               <>
                 <div className='mobileMiddle: max-w-360pxr text-right mobile:w-full'>
-                  <div className='lineOver text-gray600 font-body2-semibold'>
+                  <div className='lineOver h-45pxr overflow-hidden text-gray600 font-body2-semibold'>
                     {selectArray.join(', ')}
                   </div>
                   <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
@@ -81,7 +107,7 @@ function SearchFilter({
                     <Button.Round
                       size='sm'
                       custom='!w-174pxr !h-56pxr'
-                      onClick={() => setIsDropdownVisible(false)}
+                      onClick={handleFinalCheck}
                     >
                       적용
                     </Button.Round>

@@ -1,13 +1,20 @@
 'use client';
 
 import { IconArrowUp, IconReset } from '@/public/svgs';
-import { ReactNode, useEffect, useRef } from 'react';
-import { Button } from '..';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import { Button, CommonForm } from '..';
 
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
+import { FieldValues } from 'react-hook-form';
+import {
+  InitialStateType,
+  setReset,
+  setSelect,
+} from '../../_utils/styleSetting';
+import { useAppSelector } from '@/hooks/redux';
 
 interface TypeInfoType {
   id: number;
@@ -29,13 +36,35 @@ interface LengthType {
   '5': string;
 }
 
+export interface CheckStandByListType {
+  [key: string]: InitialStateType[];
+  stay: InitialStateType[];
+  home: InitialStateType[];
+  theme: InitialStateType[];
+  trip: InitialStateType[];
+}
+
 const LENTH: LengthType = {
   '2': 'w-90pxr',
   '5': 'w-121pxr',
 };
 
 function Selectable({ children, typeInfo, handleDropClick }: Props) {
+  const checkList = useAppSelector((state) => state.styleSetting);
+  const StandByList = useAppSelector((state) => state.checkStandBy);
   const textLength = children?.toString().length;
+  const [checkStandByList, setCheckStandByList] =
+    useState<CheckStandByListType>({
+      stay: [],
+      home: [],
+      theme: [],
+      trip: [],
+    });
+
+  const standBy = {
+    checkStandByList,
+    setCheckStandByList,
+  };
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -48,15 +77,25 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     } */
   };
 
-  const handleCheck = () => {
+  /* const getAlreadyCheckList = (types: string, list: InitialStateType) => {
+    return (
+      checkList.select[types].findIndex((select) => select.id === list.id) ===
+      -1
+    );
+  }; */
+
+  const handleFinalCheck = (types: string) => {
+    dispatch(setReset(types));
+    StandByList[types].map((list) => {
+      dispatch(setSelect({ list, types }));
+    });
     dispatch(setDetailState(typeInfo.id));
-    dispatch(setIsCheck(typeInfo.id));
+    /* dispatch(setIsCheck(typeInfo.id)); */
   };
 
   const handleClickOutside = (event: any) => {
     if (!divRef.current || !buttomRef.current) return;
-    if (divRef.current && buttomRef.current.contains(event.target)) {
-    } else {
+    if (divRef.current && !buttomRef.current.contains(event.target)) {
       dispatch(setClose(false));
     }
   };
@@ -81,7 +120,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
-          <div className={`${typeInfo.isDone && 'arrowDown'} w-full`}>
+          <div className={`${typeInfo.isDone ? '' : 'arrowDown'} w-full`}>
             <IconArrowUp fill='#949494' />
           </div>
         </div>
@@ -95,7 +134,11 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
-                <SelectList types={typeInfo.name} />
+                <SelectList
+                  types={typeInfo.name}
+                  isCheck={typeInfo.isCheck}
+                  {...standBy}
+                />
               ) : (
                 <PriceTable />
               )}
@@ -109,7 +152,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
               <Button.Round
                 size='sm'
                 custom='w-174pxr h-56pxr'
-                onClick={handleCheck}
+                onClick={() => handleFinalCheck(typeInfo.name)}
               >
                 적용
               </Button.Round>

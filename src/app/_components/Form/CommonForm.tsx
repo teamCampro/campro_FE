@@ -6,7 +6,7 @@ import { SubmitHandler, FieldValues } from 'react-hook-form';
 interface CommonFormProps {
   children: ReactNode;
   onSubmit: SubmitHandler<FieldValues>;
-  className: string;
+  className?: string;
   mode?: 'onChange' | 'onBlur';
 }
 
@@ -14,7 +14,14 @@ function CommonForm({ children, onSubmit, className }: CommonFormProps) {
   const methods = useForm();
   return (
     <FormProvider {...methods}>
-      <form className={className} onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className={className}
+        onSubmit={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          methods.handleSubmit(onSubmit)(e);
+        }}
+      >
         {children}
       </form>
     </FormProvider>

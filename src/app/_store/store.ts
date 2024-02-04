@@ -3,6 +3,7 @@ import counterSlice from '../counterSlice';
 import detailSlice from '../_utils/detailState';
 import modalStateSlice from '../_utils/modalState';
 import styleSettingSlice from '../_utils/styleSetting';
+import checkStandBySlice from '../_utils/checkStandByState';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     detail: detailSlice,
     isModal: modalStateSlice,
     styleSetting: styleSettingSlice,
+    checkStandBy: checkStandBySlice,
   },
 });
 export type rootState = ReturnType<typeof store.getState>;
