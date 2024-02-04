@@ -35,3 +35,7 @@ export { default as MapSizeButtons } from '../(header)/search/_components/MapSiz
 export { default as DatePickerController } from './Controller/DatePickerController';
 export { default as GroupCountController } from './Controller/GroupCountController';
 export { default as LocationController } from './Controller/LocationController';
+
+export { default as Label } from './Input/AboutInput/Label';
+export { default as InputContainer } from './Input/AboutInput/InputContainer';
+export { default as ErrorMessage } from './Input/AboutInput/ErrorMessage';

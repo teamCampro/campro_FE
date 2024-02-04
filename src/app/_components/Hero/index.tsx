@@ -5,7 +5,7 @@ import React from 'react';
 import heroImage from '@/public/avifs/hero.avif';
 import { useRouter } from 'next/navigation';
 import { Button, SearchBar } from '..';
-
+import { Suspense } from 'react';
 function Hero() {
   const router = useRouter();
 
@@ -35,7 +35,9 @@ function Hero() {
         </div>
       </div>
       <div className='inset-x-0 absolute bottom-[-60px] z-[98] flex w-full justify-center px-28pxr mobile:px-32pxr tablet:px-40pxr'>
-        <SearchBar />
+        <Suspense>
+          <SearchBar page='main' />
+        </Suspense>
       </div>
     </div>
   );
