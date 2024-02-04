@@ -23,7 +23,7 @@ function SelectList({ types }: SelectListType) {
         dispatch(setDelete({ list, types }));
       }
     },
-    [],
+    [dispatch],
   );
 
   return (

@@ -19,7 +19,7 @@ import KakaoMap from '../_components/KakaoMap';
 interface DataType {
   result: CampPlaceType[];
 }
-//search/id <--
+
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
@@ -61,6 +61,7 @@ function Page() {
     };
 
     fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
