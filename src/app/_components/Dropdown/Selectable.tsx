@@ -18,6 +18,7 @@ import { useAppSelector } from '@/hooks/redux';
 import {
   setCheckStandBy,
   setResetAllStandBy,
+  setResetStandBy,
 } from '../../_utils/checkStandByState';
 import useMediaQueries from '@/hooks/useMediaQueries';
 
@@ -100,17 +101,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     }
 
     handleDropClick(typeInfo.id);
-    /*  if (!typeInfo.isCheck) {
-      dispatch(setReset(typeInfo.name));
-    } */
   };
-
-  /* const getAlreadyCheckList = (types: string, list: InitialStateType) => {
-    return (
-      checkList.select[types].findIndex((select) => select.id === list.id) ===
-      -1
-    );
-  }; */
 
   const getNewPrice = (types: string, size = 'pc') => {
     const list = {
@@ -161,6 +152,12 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     };
   }, []);
 
+  const handleReset = (type: string) => {
+    dispatch(setReset(type));
+    dispatch(setResetStandBy(type));
+  };
+  console.log(checkList);
+  console.log(StandByList);
   return (
     <>
       <div
@@ -204,7 +201,10 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             </ul>
 
             <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:hidden'>
-              <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+              <div
+                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                onClick={() => handleReset(typeInfo.name)}
+              >
                 초기화
                 <IconReset fill='#C8C8C8' />
               </div>
