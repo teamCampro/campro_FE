@@ -1,3 +1,4 @@
+import { numberFormatter } from '@/src/app/_utils/numberFormatter';
 import { FocusEvent, useState } from 'react';
 
 interface PriceInputType {
@@ -11,6 +12,7 @@ function PriceInput({ name }: PriceInputType) {
   };
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
+    console.log(numberFormatter(value));
     console.log(value);
     console.log(name);
     setIsFocus(false);
