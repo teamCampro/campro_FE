@@ -1,24 +1,40 @@
 import { numberFormatter } from '@/src/app/_utils/numberFormatter';
-import { FocusEvent, useState } from 'react';
+import {
+  Dispatch,
+  FocusEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
+import { PriceType } from '../Selectable';
 
 interface PriceInputType {
+  price: PriceType;
+  setPrice: Dispatch<
+    SetStateAction<{
+      startPrice: string;
+      endPrice: string;
+    }>
+  >;
   name: string;
 }
 
-function PriceInput({ name }: PriceInputType) {
+function PriceInput({ name, setPrice, price }: PriceInputType) {
   const [isFocus, setIsFocus] = useState(false);
   const handleFocus = () => {
     setIsFocus(!isFocus);
   };
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    console.log(numberFormatter(value));
-    console.log(value);
-    console.log(name);
+    const priceNubmer = numberFormatter(value);
+    setPrice({ ...price, [name]: priceNubmer });
+    console.log(price);
     setIsFocus(false);
   };
 
   /*   toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") */
+
+  console.log(price);
 
   return (
     <div className='flex-center h-54pxr w-116pxr rounded-lg bg-gray100 p-16pxr mobile:w-120pxr mobile:gap-4pxr mobile:bg-white'>

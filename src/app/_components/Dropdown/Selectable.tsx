@@ -15,6 +15,11 @@ import {
   setSelect,
 } from '../../_utils/styleSetting';
 import { useAppSelector } from '@/hooks/redux';
+import {
+  setCheckStandBy,
+  setResetAllStandBy,
+} from '../../_utils/checkStandByState';
+import useMediaQueries from '@/hooks/useMediaQueries';
 
 interface TypeInfoType {
   id: number;
@@ -44,14 +49,27 @@ export interface CheckStandByListType {
   trip: InitialStateType[];
 }
 
+export interface PriceType {
+  startPrice: string;
+  endPrice: string;
+}
+
 const LENTH: LengthType = {
   '2': 'w-90pxr',
   '5': 'w-121pxr',
 };
 
 function Selectable({ children, typeInfo, handleDropClick }: Props) {
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const checkList = useAppSelector((state) => state.styleSetting);
   const StandByList = useAppSelector((state) => state.checkStandBy);
+  const [price, setPrice] = useState({
+    startPrice: '',
+    endPrice: '',
+  });
   const textLength = children?.toString().length;
   const [checkStandByList, setCheckStandByList] =
     useState<CheckStandByListType>({
@@ -71,6 +89,16 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   const handleOpen = () => {
     if (!handleDropClick) return;
+    if (!isMobile) {
+      dispatch(setResetAllStandBy());
+    }
+    const types = typeInfo.name;
+    if (checkList.select[types].length > 0) {
+      checkList.select[types].map((list) => {
+        dispatch(setCheckStandBy({ types, list }));
+      });
+    }
+
     handleDropClick(typeInfo.id);
     /*  if (!typeInfo.isCheck) {
       dispatch(setReset(typeInfo.name));
@@ -84,18 +112,44 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     );
   }; */
 
+  const getNewPrice = (types: string, size = 'pc') => {
+    const list = {
+      id: 0,
+      type: `${price.startPrice}원-${price.endPrice}원`,
+    };
+    if (size !== 'mobile') {
+      dispatch(setSelect({ list, types }));
+    } else {
+      dispatch(setCheckStandBy({ types, list }));
+    }
+  };
+
   const handleFinalCheck = (types: string) => {
     dispatch(setReset(types));
-    StandByList[types].map((list) => {
-      dispatch(setSelect({ list, types }));
-    });
+    if (types !== 'prices') {
+      StandByList[types].map((list) => {
+        dispatch(setSelect({ list, types }));
+      });
+    } else {
+      getNewPrice(types);
+    }
+
     dispatch(setDetailState(typeInfo.id));
     /* dispatch(setIsCheck(typeInfo.id)); */
   };
 
   const handleClickOutside = (event: any) => {
+    /* dispatch(setResetAllStandBy()); */
     if (!divRef.current || !buttomRef.current) return;
     if (divRef.current && !buttomRef.current.contains(event.target)) {
+      /*  dispatch(setResetAllStandBy()); */
+      const types = typeInfo.name;
+      dispatch(setResetAllStandBy());
+      if (checkList.select[types].length > 0) {
+        checkList.select[types].map((list) => {
+          dispatch(setCheckStandBy({ types, list }));
+        });
+      }
       dispatch(setClose(false));
     }
   };
@@ -140,7 +194,12 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
                   {...standBy}
                 />
               ) : (
-                <PriceTable />
+                <PriceTable
+                  setPrice={setPrice}
+                  price={price}
+                  getNewPrice={getNewPrice}
+                  types={typeInfo.name}
+                />
               )}
             </ul>
 

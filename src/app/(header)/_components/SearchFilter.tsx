@@ -10,7 +10,10 @@ import { useDispatch } from 'react-redux';
 import DetailPanel from './DetailPanel';
 import { MapSizeType } from '../search/page';
 import { setSelect } from '../../_utils/styleSetting';
-import { setCheckStandBy } from '../../_utils/checkStandByState';
+import {
+  setCheckStandBy,
+  setResetAllStandBy,
+} from '../../_utils/checkStandByState';
 
 function SearchFilter({
   mapSize,
@@ -41,11 +44,10 @@ function SearchFilter({
   };
 
   const handleClose = () => {
+    dispatch(setResetAllStandBy());
     details.forEach((detail) => {
       const { name: types } = detail;
-      console.log(checkList.select[types]);
-      if (types !== 'prices' && checkList.select[types].length > 0) {
-        console.log(2222);
+      if (checkList.select[types].length > 0) {
         checkList.select[types].map((list) => {
           dispatch(setCheckStandBy({ types, list }));
         });
@@ -58,7 +60,7 @@ function SearchFilter({
   const handleFinalCheck = () => {
     details.forEach((detail) => {
       const { name: types } = detail;
-      if (types !== 'prices' && StandByList[types].length > 0) {
+      if (StandByList[types].length > 0) {
         StandByList[types].map((list) => {
           dispatch(setSelect({ list, types }));
         });
@@ -69,14 +71,13 @@ function SearchFilter({
 
   details.forEach((detail) => {
     const { name: types } = detail;
-
-    if (types !== 'prices' && StandByList[types].length > 0) {
+    if (StandByList[types].length > 0) {
       StandByList[types].map((list) => {
         selectArray.push(list.type);
       });
     }
   });
-  console.log(checkList);
+
   return (
     <div className='relative w-full'>
       <>

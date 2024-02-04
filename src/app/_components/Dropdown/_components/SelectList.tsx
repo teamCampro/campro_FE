@@ -7,6 +7,7 @@ import { CheckStandByListType } from '../Selectable';
 import {
   setCheckStandBy,
   setDeleteStandBy,
+  setResetAllStandBy,
 } from '@/src/app/_utils/checkStandByState';
 interface SelectListType {
   types?: string;
@@ -41,6 +42,7 @@ function SelectList({
   ) => {
     const { name, checked, id, value } = e.target;
     /*  console.log(name, checked, types, value, list); */
+
     if (checked) {
       if (checkStandByList[types].includes(list)) return;
       dispatch(setCheckStandBy({ types, list }));
@@ -59,15 +61,13 @@ function SelectList({
       dispatch(setSelect({ list, types }));
     } */
   };
-  console.log(checkList);
-  console.log(checkStandByList);
-  console.log('스텐바이', StandByList);
+
   const checkOption = (types: string, list: DetailType) => {
-    console.log(1111);
     if (isMobile && !isCheck) {
       return StandByList[types].some((item) => item.id === list.id);
     }
-    return checkList.select[types].some((item) => item.id === list.id);
+
+    return StandByList[types].some((item) => item.id === list.id);
   };
 
   return (
@@ -84,8 +84,8 @@ function SelectList({
                 <input
                   type='checkbox'
                   name='checkList'
-                  id={list.type}
-                  value={list.type}
+                  /* id={list.type}
+                  value={list.type} */
                   defaultChecked={checkOption(types, list)}
                   onChange={(e) => handleCheck(e, list, types)}
                 />

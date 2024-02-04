@@ -9,6 +9,7 @@ interface CheckStandByType {
   [key: string]: InitialStateType[];
   stay: InitialStateType[];
   home: InitialStateType[];
+  prices: InitialStateType[];
   theme: InitialStateType[];
   trip: InitialStateType[];
 }
@@ -16,6 +17,7 @@ interface CheckStandByType {
 const initialState: CheckStandByType = {
   stay: [],
   home: [],
+  prices: [],
   theme: [],
   trip: [],
 };
@@ -32,14 +34,23 @@ export const checkStandBySlice = createSlice({
         (item) => item.id !== action.payload.list.id,
       );
     },
-    setResetStandBy: (state) => {
+    setResetAllStandBy: (state) => {
       state.home = [];
       state.stay = [];
+      state.prices = [];
       state.theme = [];
       state.trip = [];
+    },
+    setResetStandBy: (state, action) => {
+      state[action.payload] = [];
     },
   },
 });
 
-export const { setCheckStandBy, setDeleteStandBy } = checkStandBySlice.actions;
+export const {
+  setCheckStandBy,
+  setDeleteStandBy,
+  setResetAllStandBy,
+  setResetStandBy,
+} = checkStandBySlice.actions;
 export default checkStandBySlice.reducer;
