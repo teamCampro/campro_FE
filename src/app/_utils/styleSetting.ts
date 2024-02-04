@@ -39,7 +39,7 @@ export const styleSettingSlice = createSlice({
     setSelect: (state, action) => {
       state.select[action.payload.types].push(action.payload.list);
     },
-    setResetAll: (state, action) => {
+    setResetAll: (state) => {
       state.select.home = [];
       state.select.stay = [];
       state.select.theme = [];

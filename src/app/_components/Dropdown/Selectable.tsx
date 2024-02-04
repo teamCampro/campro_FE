@@ -3,12 +3,10 @@
 import { IconArrowUp, IconReset } from '@/public/svgs';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Button, CommonForm } from '..';
-
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
-import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
-import { FieldValues } from 'react-hook-form';
+import { setClose, setDetailState } from '../../_utils/detailState';
 import {
   InitialStateType,
   setReset,
@@ -72,6 +70,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     endPrice: '',
   });
   const textLength = children?.toString().length;
+  const [isReset, setIsReset] = useState(false);
   const [checkStandByList, setCheckStandByList] =
     useState<CheckStandByListType>({
       stay: [],
@@ -156,8 +155,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
   };
-  console.log(checkList);
-  console.log(StandByList);
+
   return (
     <>
       <div
@@ -188,6 +186,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
                 <SelectList
                   types={typeInfo.name}
                   isCheck={typeInfo.isCheck}
+                  isReset={isReset}
                   {...standBy}
                 />
               ) : (

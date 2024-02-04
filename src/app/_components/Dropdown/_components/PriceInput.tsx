@@ -35,7 +35,7 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.value;
+    /* e.target.value; */
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {

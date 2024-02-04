@@ -12,6 +12,7 @@ import {
 interface SelectListType {
   types?: string;
   isCheck: boolean;
+  isReset: boolean;
   checkStandByList: CheckStandByListType;
   setCheckStandByList: Dispatch<SetStateAction<CheckStandByListType>>;
 }
@@ -24,6 +25,7 @@ interface SelectListOptionType {
 function SelectList({
   types,
   isCheck,
+  isReset,
   checkStandByList,
   setCheckStandByList,
 }: SelectListType) {
@@ -63,9 +65,12 @@ function SelectList({
   };
 
   const checkOption = (types: string, list: DetailType) => {
-    if (isMobile && !isCheck) {
+    /* if (isMobile && !isCheck) {
       return StandByList[types].some((item) => item.id === list.id);
-    }
+    } */
+    /* if (isReset) {
+      return StandByList[types].some((item) => item.id === list.id);
+    } */
 
     return StandByList[types].some((item) => item.id === list.id);
   };
@@ -86,7 +91,7 @@ function SelectList({
                   name='checkList'
                   /* id={list.type}
                   value={list.type} */
-                  defaultChecked={checkOption(types, list)}
+                  checked={checkOption(types, list)}
                   onChange={(e) => handleCheck(e, list, types)}
                 />
               </label>

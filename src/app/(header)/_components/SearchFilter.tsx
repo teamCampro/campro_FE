@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 
 import DetailPanel from './DetailPanel';
 import { MapSizeType } from '../search/page';
-import { setSelect } from '../../_utils/styleSetting';
+import { setResetAll, setSelect } from '../../_utils/styleSetting';
 import {
   setCheckStandBy,
   setResetAllStandBy,
@@ -69,6 +69,11 @@ function SearchFilter({
     setIsDropdownVisible(false);
   };
 
+  const handleReset = () => {
+    dispatch(setResetAll());
+    dispatch(setResetAllStandBy());
+  };
+
   details.forEach((detail) => {
     const { name: types } = detail;
     if (StandByList[types].length > 0) {
@@ -101,7 +106,10 @@ function SearchFilter({
                     {selectArray.join(', ')}
                   </div>
                   <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
-                    <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+                    <div
+                      className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                      onClick={handleReset}
+                    >
                       초기화
                       <IconReset fill='#C8C8C8' />
                     </div>
