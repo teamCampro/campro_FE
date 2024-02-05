@@ -83,17 +83,20 @@ function SelectList({
             <li key={list.id}>
               <label
                 htmlFor={list.type}
-                className='flex-center justify-between'
+                className='flex-center relative justify-between'
               >
-                <h3>{list.type}</h3>
-                <input
-                  type='checkbox'
-                  name='checkList'
-                  /* id={list.type}
-                  value={list.type} */
-                  checked={checkOption(types, list)}
-                  onChange={(e) => handleCheck(e, list, types)}
-                />
+                {/* <div className='absolute right-0pxr top-0pxr h-50pxr w-50pxr'></div> */}
+                {list.type}
+                <div>
+                  <input
+                    type='checkbox'
+                    name='checkList'
+                    id={list.type}
+                    value={list.type}
+                    checked={checkOption(types, list)}
+                    onChange={(e) => handleCheck(e, list, types)}
+                  />
+                </div>
               </label>
             </li>
           );
