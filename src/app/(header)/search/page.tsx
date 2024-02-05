@@ -82,7 +82,7 @@ function Page() {
             <SearchBar page='search' />
           </Suspense>
         </div>
-        <div className='mobile:flex-center flex gap-12pxr'>
+        <div className='mobile:flex-center z-[99] flex gap-12pxr'>
           <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
         </div>
       </div>

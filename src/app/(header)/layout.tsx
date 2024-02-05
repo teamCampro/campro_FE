@@ -3,7 +3,7 @@ import { LayoutType } from '../_types';
 
 function Layout({ children }: LayoutType) {
   return (
-    <div className='relative h-dvh pt-80pxr'>
+    <div className='relative h-dvh'>
       <Header />
       {children}
     </div>
