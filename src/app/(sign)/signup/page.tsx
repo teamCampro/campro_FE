@@ -2,7 +2,7 @@ import SignUpForm from '@/components/Form/SignUpForm';
 
 function Page() {
   return (
-    <div className='relative  flex w-full flex-col items-center justify-center gap-56pxr  bg-[url("/avifs/login.png")] bg-cover bg-center bg-no-repeat pb-149pxr pt-102pxr mobile:gap-40pxr  mobile:px-20pxr mobile:pt-40pxr tablet:px-100pxr tablet:pb-124pxr tablet:pt-96pxr'>
+    <div className='relative  flex w-full flex-col items-center justify-center gap-56pxr  bg-[url("/avifs/sign.avif")] bg-cover bg-center bg-no-repeat pb-149pxr pt-102pxr mobile:gap-40pxr  mobile:px-20pxr mobile:pt-40pxr tablet:px-100pxr tablet:pb-124pxr tablet:pt-96pxr'>
       <div className=' flex w-full flex-col items-center justify-center'>
         <span className='line tablet:font-sign-title-tablet mobile:mobile:font-sign-title-mobile  w-full leading-none  font-sign-title'>
           CAMPRO
