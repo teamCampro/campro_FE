@@ -1,6 +1,5 @@
-import Button from '@/components/Button';
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../search/page';
 
 interface Props {
@@ -51,22 +50,20 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
   return (
     <div ref={mapRef} className='h-full w-full'>
       {map && (
-        <>
-          <div className='absolute right-26pxr top-16pxr flex flex-col'>
-            <button
-              className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
-              onClick={handleClickZoomIn}
-            >
-              <IconMapPlus />
-            </button>
-            <button
-              className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
-              onClick={handleClickZoomOut}
-            >
-              <IconMapMinus />
-            </button>
-          </div>
-        </>
+        <div className='absolute right-26pxr top-16pxr flex flex-col'>
+          <button
+            className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
+            onClick={handleClickZoomIn}
+          >
+            <IconMapPlus />
+          </button>
+          <button
+            className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
+            onClick={handleClickZoomOut}
+          >
+            <IconMapMinus />
+          </button>
+        </div>
       )}
     </div>
   );

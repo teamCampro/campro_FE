@@ -35,13 +35,21 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
     };
   }, [onClose, isMobile]);
 
-  const handleIncrease = (name: 'adult' | 'child' | 'pet') => {
+  const handleIncrease = (
+    name: 'adult' | 'child' | 'pet',
+    e: React.MouseEvent<HTMLElement>,
+  ) => {
+    e.stopPropagation();
     const updatedGroup = { ...group, [name]: group[name] + 1 };
     onChangeGroup(updatedGroup);
   };
 
-  const handleDecrease = (name: 'adult' | 'child' | 'pet') => {
+  const handleDecrease = (
+    name: 'adult' | 'child' | 'pet',
+    e: React.MouseEvent<HTMLElement>,
+  ) => {
     if (group[name] > 0) {
+      e.stopPropagation();
       const updatedGroup = { ...group, [name]: group[name] - 1 };
       onChangeGroup(updatedGroup);
     }
@@ -61,19 +69,26 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
           <div className='flex w-full flex-105 items-center'>
             <div className='flex w-full items-center justify-end gap-16pxr'>
               <button
+                type='button'
                 disabled={group.adult === 0 ? true : false}
                 className='cursor-pointer'
               >
                 <IconMinus
-                  onClick={() => handleDecrease('adult')}
+                  onClick={(e: React.MouseEvent<HTMLElement>) =>
+                    handleDecrease('adult', e)
+                  }
                   fill={group.adult === 0 ? '#949494' : '#000000'}
                 />
               </button>
               <p className='flex-center flex w-25pxr font-title3-semibold'>
                 {group.adult}
               </p>
-              <button className='cursor-pointer'>
-                <IconPlus onClick={() => handleIncrease('adult')} />
+              <button type='button' className='cursor-pointer'>
+                <IconPlus
+                  onClick={(e: React.MouseEvent<HTMLElement>) =>
+                    handleIncrease('adult', e)
+                  }
+                />
               </button>
             </div>
           </div>
@@ -89,19 +104,26 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
           <div className='flex w-full flex-105 items-center'>
             <div className='flex w-full items-center justify-end gap-16pxr'>
               <button
+                type='button'
                 disabled={group.child === 0 ? true : false}
                 className='cursor-pointer'
               >
                 <IconMinus
-                  onClick={() => handleDecrease('child')}
+                  onClick={(e: React.MouseEvent<HTMLElement>) =>
+                    handleDecrease('child', e)
+                  }
                   fill={group.child === 0 ? '#949494' : '#000000'}
                 />
               </button>
               <p className='flex-center flex w-25pxr font-title3-semibold'>
                 {group.child}
               </p>
-              <button className='cursor-pointer'>
-                <IconPlus onClick={() => handleIncrease('child')} />
+              <button type='button' className='cursor-pointer'>
+                <IconPlus
+                  onClick={(e: React.MouseEvent<HTMLElement>) =>
+                    handleIncrease('child', e)
+                  }
+                />
               </button>
             </div>
           </div>
@@ -113,19 +135,26 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
         </div>
         <div className='flex w-full  items-center justify-end gap-16pxr'>
           <button
+            type='button'
             disabled={group.pet === 0 ? true : false}
             className='cursor-pointer'
           >
             <IconMinus
               fill={group.pet === 0 ? '#949494' : '#000000'}
-              onClick={() => handleDecrease('pet')}
+              onClick={(e: React.MouseEvent<HTMLElement>) =>
+                handleDecrease('pet', e)
+              }
             />
           </button>
           <p className='flex-center flex w-25pxr font-title3-semibold'>
             {group.pet}
           </p>
-          <button className='cursor-pointer'>
-            <IconPlus onClick={() => handleIncrease('pet')} />
+          <button type='button' className='cursor-pointer'>
+            <IconPlus
+              onClick={(e: React.MouseEvent<HTMLElement>) =>
+                handleIncrease('pet', e)
+              }
+            />
           </button>
         </div>
       </div>
