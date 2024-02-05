@@ -16,6 +16,7 @@ import {
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
+import { usePathname } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
@@ -24,6 +25,8 @@ interface DataType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
+  const pathName = usePathname();
+  const isSearch = pathName.includes('search');
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
@@ -76,8 +79,8 @@ function Page() {
       <MapSizeButtons
         handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
       />
-      <div className='flex-center border-bg-gray200 flex-col justify-between gap-16pxr border-b bg-white px-40pxr py-20pxr mobile:flex-row mobile:p-16pxr tabletMin:items-start'>
-        <div className='flex-center w-full'>
+      <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:p-16pxr'>
+        <div className='m-auto w-full max-w-1360pxr'>
           <Suspense>
             <SearchBar page='search' />
           </Suspense>

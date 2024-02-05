@@ -16,11 +16,13 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
 
   return (
     <div className='w-full bg-white mobile:flex-col'>
-      <div className='m-auto flex max-w-1360pxr items-center justify-start gap-8pxr mobile:justify-center'>
+      <div className='relative m-auto flex max-w-1360pxr items-center justify-start gap-8pxr px-40pxr pt-16pxr mobile:justify-center'>
         <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold mobile:hidden'>
           상세필터
         </h3>
-        <div className='flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr mobileMiddle:max-w-360pxr mobileMiddle:px-0pxr'>
+        <div
+          className={`filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr mobileMiddle:max-w-360pxr mobileMiddle:px-0pxr`}
+        >
           <Swiper
             modules={[FreeMode]}
             freeMode={true}
@@ -59,7 +61,7 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
         <button
           type='button'
           onClick={handleOpen}
-          className='custom-gradient z-10 flex  gap-16pxr mobileMin:justify-end mobile:hidden'
+          className='custom-gradient absolute -right-60pxr z-10 flex w-150pxr -translate-x-1/2 justify-center mobile:hidden'
         >
           <div className='flex h-48pxr w-96pxr cursor-pointer items-center gap-4pxr rounded-full border bg-white py-12pxr pl-20pxr pr-14pxr font-medium'>
             <h3 className='whitespace-nowrap text-center text-gray600 font-body2-semibold'>

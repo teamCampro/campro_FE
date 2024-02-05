@@ -103,13 +103,16 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
           />
         </div>
       )}
-      <div ref={outerDivRef}>
+      <div
+        ref={outerDivRef}
+        className='w-full max-w-1480pxr px-40pxr mobile:px-0pxr'
+      >
         <CommonForm
-          className={`flex w-full max-w-1360pxr justify-between rounded-lg bg-white ${!isSearch && 'px-28pxr py-32pxr'}   ${pathName.includes('search') && (isTotalInput ? 'absolute left-0pxr top-55pxr z-[99] mobile:inline-block' : 'mobile:hidden')} ${PAGE_TYPE[page]}`}
+          className={`flex w-full justify-between rounded-2xl bg-white mobile:px-20pxr mobile:pb-20pxr ${isSearch ? '' : 'px-28pxr py-32pxr'} ${isSearch ? (isTotalInput ? 'absolute left-0pxr top-55pxr z-[99] mobile:inline-block' : 'mobile:hidden') : ''} ${PAGE_TYPE[page]}`}
           onSubmit={onSubmit}
         >
           <div
-            className={`flex-center flex w-full flex-row px-20pxr pb-20pxr mobile:flex-col mobile:gap-12pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER[page]}`}
+            className={`flex-center flex w-full flex-row gap-12pxr ${isSearch ? '' : 'pb-20pxr'} mobile:flex-col tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER[page]}`}
           >
             <LocationController
               name='location'
@@ -137,7 +140,7 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
             type='submit'
             size='sm'
             onClick={closeSearchBarForMobile}
-            custom={`mobile:w-full tablet:w-full ${page === 'main' ? '' : 'tablet:max-w-134pxr desktop:max-w-134pxr mobile:w-full '}`}
+            custom={`mobile:w-full tablet:w-full !h-56pxr ${page === 'main' ? '' : 'tablet:max-w-134pxr desktop:max-w-134pxr'}`}
           >
             검색
           </Button.Round>

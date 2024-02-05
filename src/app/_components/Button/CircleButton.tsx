@@ -23,7 +23,7 @@ function CircleButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`buttonHover buttonDisabled rounded-full bg-primary100 active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}
+      className={`tabletMin:buttonHover buttonDisabled rounded-full bg-primary100 active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}
     >
       {children}
     </button>

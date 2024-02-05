@@ -1,4 +1,4 @@
-import { IconArrowRightNormal } from '@/public/svgs';
+import { IconArrowRightNon, IconArrowRightNormal } from '@/public/svgs';
 import Link from 'next/link';
 
 function Footer() {
@@ -14,7 +14,7 @@ function Footer() {
         </ul>
         <Link className='button-careCenter' href='#none'>
           고객센터
-          <IconArrowRightNormal className='w-20pxr' />
+          <IconArrowRightNon className='w-20pxr' fill='#949494' />
         </Link>
       </div>
     </div>

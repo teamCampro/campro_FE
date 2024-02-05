@@ -24,7 +24,7 @@ function RoundButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`buttonHover buttonDisabled flex-center active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}
+      className={`tabletMin:buttonHover buttonDisabled flex-center active:text-black ${BUTTON_SIZE[size]} ${custom && custom}`}
     >
       {children}
     </button>

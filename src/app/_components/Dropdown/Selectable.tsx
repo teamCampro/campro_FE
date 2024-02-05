@@ -169,7 +169,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
         </div>
         {typeInfo.isDone && (
           <div
-            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white shadow-searchBar mobile:static'
+            className='absolute left-0pxr top-66pxr rounded-[20px] bg-white shadow-searchBar mobile:static'
             ref={divRef}
           >
             <ul

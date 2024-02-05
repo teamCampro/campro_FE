@@ -8,10 +8,7 @@ interface DateInputProps {
 const DateInputView = forwardRef<HTMLInputElement, DateInputProps>(
   ({ value, onClick }, ref) => {
     return (
-      <div
-        onClick={onClick}
-        className='relative flex w-full flex-134 gap-4pxr pr-6pxr mobile:pr-0pxr'
-      >
+      <div onClick={onClick} className='relative flex w-full flex-134 gap-4pxr'>
         <IconCalendar className='absolute left-16pxr top-16pxr ' />
         <input
           ref={ref}
