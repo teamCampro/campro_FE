@@ -21,6 +21,11 @@ function CommonForm({
 }: CommonFormProps) {
   const methods = useForm({ mode, defaultValues });
 
+  // const sasdawdas = (data: FieldValues, e: SubmitEvent) => {
+  //   e.stopPropagation();
+  //   onSubmit(data);
+  // };
+
   return (
     <FormProvider {...methods}>
       <form
