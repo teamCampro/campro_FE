@@ -21,6 +21,8 @@ interface PriceTableType {
 
 function PriceTable({ setPrice, price, getNewPrice, types }: PriceTableType) {
   const dispatch = useDispatch();
+
+  //모바일일 때 설정한 가격 대기상태로 넣기
   const handleClick = (types: string) => {
     dispatch(setResetStandBy(types));
     getNewPrice(types, 'mobile');

@@ -1,15 +1,14 @@
 import { numberFormatter } from '@/src/app/_utils/numberFormatter';
+import { PriceType } from '../Selectable';
+import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   ChangeEvent,
   Dispatch,
   FocusEvent,
   SetStateAction,
-  useEffect,
   useState,
 } from 'react';
-import { PriceType } from '../Selectable';
-import { useAppSelector } from '@/hooks/redux';
-import useMediaQueries from '@/hooks/useMediaQueries';
 
 interface PriceInputType {
   price: PriceType;
@@ -36,6 +35,7 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     /* e.target.value; */
+    //value값 사용하기위해 적용(차후에 리셋할 때 defaultValue값 없어지게 사용 예정)
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
@@ -47,12 +47,15 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
 
   let applyStartPrice = '';
   let applyEndPrice = '';
+  //각 가격 적용눌렀을 때 화면에 보여지는 값
   if (checkList.select.prices.length > 0) {
     const checkPriceSplit = checkList.select.prices[0].type.split('-');
+
     applyStartPrice = checkPriceSplit[0].replace('원', '');
     applyEndPrice = checkPriceSplit[1].replace('원', '');
   } else if (StandByList.prices.length > 0 && isMobile) {
     const StandByPriceSplit = StandByList.prices[0].type.split('-');
+
     applyStartPrice = StandByPriceSplit[0].replace('원', '');
     applyEndPrice = StandByPriceSplit[1].replace('원', '');
   }

@@ -18,6 +18,7 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathName = usePathname();
+  const isSearch = pathName.includes('search');
   const [isTotalInput, setIsTotalInput] = useState(false);
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
@@ -90,7 +91,7 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
 
   return (
     <>
-      {pathName.includes('search') && isMobile && (
+      {isSearch && isMobile && (
         <div className={`inline-block  w-full`}>
           <input
             name='total'
@@ -104,11 +105,11 @@ function SearchBar({ page }: { page: 'main' | 'search' }) {
       )}
       <div ref={outerDivRef}>
         <CommonForm
-          className={`flex w-full max-w-1360pxr justify-between rounded-lg bg-white px-28pxr py-32pxr  ${pathName.includes('search') && (isTotalInput ? 'absolute left-0pxr top-55pxr z-[99] mobile:inline-block' : 'mobile:hidden')} ${PAGE_TYPE[page]}`}
+          className={`flex w-full max-w-1360pxr justify-between rounded-lg bg-white ${!isSearch && 'px-28pxr py-32pxr'}   ${pathName.includes('search') && (isTotalInput ? 'absolute left-0pxr top-55pxr z-[99] mobile:inline-block' : 'mobile:hidden')} ${PAGE_TYPE[page]}`}
           onSubmit={onSubmit}
         >
           <div
-            className={`flex-center flex w-full flex-row px-20pxr  pb-20pxr mobile:flex-col mobile:gap-12pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER[page]}`}
+            className={`flex-center flex w-full flex-row px-20pxr pb-20pxr mobile:flex-col mobile:gap-12pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER[page]}`}
           >
             <LocationController
               name='location'

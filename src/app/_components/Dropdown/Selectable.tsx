@@ -2,23 +2,23 @@
 
 import { IconArrowUp, IconReset } from '@/public/svgs';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Button, CommonForm } from '..';
+import { Button } from '..';
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
+import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   InitialStateType,
   setReset,
   setSelect,
 } from '../../_utils/styleSetting';
-import { useAppSelector } from '@/hooks/redux';
 import {
   setCheckStandBy,
   setResetAllStandBy,
   setResetStandBy,
 } from '../../_utils/checkStandByState';
-import useMediaQueries from '@/hooks/useMediaQueries';
 
 interface TypeInfoType {
   id: number;
@@ -65,37 +65,25 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const checkList = useAppSelector((state) => state.styleSetting);
   const StandByList = useAppSelector((state) => state.checkStandBy);
+  const divRef = useRef<HTMLDivElement>(null);
+  const buttomRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
   const [price, setPrice] = useState({
     startPrice: '',
     endPrice: '',
   });
+
   const textLength = children?.toString().length;
 
-  const [isReset, setIsReset] = useState(false);
-  const [checkStandByList, setCheckStandByList] =
-    useState<CheckStandByListType>({
-      stay: [],
-      home: [],
-      theme: [],
-      trip: [],
-    });
-
-  const standBy = {
-    checkStandByList,
-    setCheckStandByList,
-  };
-
-  const divRef = useRef<HTMLDivElement>(null);
-  const buttomRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
-
+  //dropdown열고&닫기
   const handleOpen = () => {
     if (!handleDropClick) return;
+    const types = typeInfo.name;
 
     if (!isMobile) {
       dispatch(setResetAllStandBy());
     }
-    const types = typeInfo.name;
+
     if (checkList.select[types].length > 0) {
       checkList.select[types].map((list) => {
         dispatch(setCheckStandBy({ types, list }));
@@ -105,6 +93,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     handleDropClick(typeInfo.id);
   };
 
+  //가격 객체 새로 만들어서 대기상태와 확정상태로 넣기
   const getNewPrice = (types: string, size = 'pc') => {
     const list = {
       id: 0,
@@ -117,6 +106,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     }
   };
 
+  //pc&tablet 선택 확정
   const handleFinalCheck = (types: string) => {
     dispatch(setReset(types));
     if (types !== 'prices') {
@@ -128,14 +118,12 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     }
 
     dispatch(setDetailState(typeInfo.id));
-    /* dispatch(setIsCheck(typeInfo.id)); */
   };
 
+  //외부 클릭시 닫기
   const handleClickOutside = (event: any) => {
-    /* dispatch(setResetAllStandBy()); */
     if (!divRef.current || !buttomRef.current) return;
     if (divRef.current && !buttomRef.current.contains(event.target)) {
-      /*  dispatch(setResetAllStandBy()); */
       const types = typeInfo.name;
       dispatch(setResetAllStandBy());
       if (checkList.select[types].length > 0) {
@@ -154,6 +142,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     };
   }, []);
 
+  //초기화
   const handleReset = (type: string) => {
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
@@ -162,24 +151,25 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none`}
+        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
         ref={buttomRef}
       >
         <div
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
           onClick={handleOpen}
         >
-          <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
+          <h3
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2 mobile:text-black mobile:font-title3-semibold`}
+          >
             {children}
           </h3>
-
           <div className={`${typeInfo.isDone ? '' : 'arrowDown'} w-full`}>
             <IconArrowUp fill='#949494' />
           </div>
         </div>
         {typeInfo.isDone && (
           <div
-            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'
+            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white shadow-searchBar mobile:static'
             ref={divRef}
           >
             <ul
@@ -187,12 +177,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
-                <SelectList
-                  types={typeInfo.name}
-                  isCheck={typeInfo.isCheck}
-                  isReset={isReset}
-                  {...standBy}
-                />
+                <SelectList types={typeInfo.name} />
               ) : (
                 <PriceTable
                   setPrice={setPrice}
@@ -202,7 +187,6 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
                 />
               )}
             </ul>
-
             <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:hidden'>
               <div
                 className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'

@@ -1,5 +1,5 @@
-import CampPlaceItem from '../../(header&footer)/_components/CampPlaceItem';
-import { CampPlaceType } from '../../_utils/kakaoMarkerGenerator';
+import CampPlaceItem from '../../../(header&footer)/_components/CampPlaceItem';
+import { CampPlaceType } from '../../../_utils/kakaoMarkerGenerator';
 
 function CampSearchList({
   campPlaces,

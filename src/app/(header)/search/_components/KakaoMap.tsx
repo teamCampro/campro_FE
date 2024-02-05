@@ -1,6 +1,6 @@
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
-import { MapSizeType } from '../search/page';
+import { MapSizeType } from '../page';
 
 interface Props {
   map: kakao.maps.Map | null;

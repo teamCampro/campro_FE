@@ -7,22 +7,15 @@ import { IconFilter, IconReset } from '@/public/svgs';
 import { setDetailState } from '@/src/app/_utils/detailState';
 import { isModal } from '@/src/app/_utils/modalState';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { MapSizeType } from '../search/page';
-import { setResetAll, setSelect } from '../../_utils/styleSetting';
+import { MapSizeType } from '../page';
+import { setResetAll, setSelect } from '../../../_utils/styleSetting';
 import {
   setCheckStandBy,
   setResetAllStandBy,
-} from '../../_utils/checkStandByState';
+} from '../../../_utils/checkStandByState';
 import DetailPanel from './DetailPanel';
 
-function SearchFilter({
-  mapSize,
-  handleMapSize,
-}: {
-  mapSize: string;
-  handleMapSize: (mapSize: MapSizeType) => void;
-}) {
+function SearchFilter() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const selectArray: string[] = [];
   const details = useAppSelector((state) => state.detail);
@@ -30,20 +23,23 @@ function SearchFilter({
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const dispatch = useAppDispatch();
 
-  const handleDropClick = (id: number) => {
-    dispatch(setDetailState(id));
-  };
-
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
+  //pc& tablet 열고 닫기
+  const handleDropClick = (id: number) => {
+    dispatch(setDetailState(id));
+  };
+
+  //모바일 열기
   const handleOpen = () => {
     setIsDropdownVisible(true);
     dispatch(isModal(true));
   };
 
+  //모바일 닫기
   const handleClose = () => {
     dispatch(setResetAllStandBy());
     details.forEach((detail) => {
@@ -58,6 +54,12 @@ function SearchFilter({
     dispatch(isModal(false));
   };
 
+  const handleReset = () => {
+    dispatch(setResetAll());
+    dispatch(setResetAllStandBy());
+  };
+
+  //모바일 최종 적용 누를때
   const handleFinalCheck = () => {
     details.forEach((detail) => {
       const { name: types } = detail;
@@ -70,11 +72,7 @@ function SearchFilter({
     setIsDropdownVisible(false);
   };
 
-  const handleReset = () => {
-    dispatch(setResetAll());
-    dispatch(setResetAllStandBy());
-  };
-
+  //모바일 상세 필터 선택한 옵션 보여주기
   details.forEach((detail) => {
     const { name: types } = detail;
     if (StandByList[types].length > 0) {
