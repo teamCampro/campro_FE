@@ -10,7 +10,7 @@ function CampSearchList({
 }) {
   return (
     <ul
-      className={`${gridColumns}  mobile411:grid-cols-1-col-288 mobile725:grid-cols-2-col-184 mobile767:grid-cols-2-col-184 tablet1199:grid-cols-2-col-184 grid w-full gap-16pxr gap-y-24pxr mobile:gap-y-16pxr tablet:gap-y-24pxr`}
+      className={`${gridColumns} grid w-full gap-16pxr gap-y-24pxr mobile:gap-y-16pxr mobile411:grid-cols-1-col-288 mobile725:grid-cols-2-col-184 tablet:gap-y-24pxr mobile767:grid-cols-2-col-184 tablet1199:grid-cols-2-col-184`}
     >
       {campPlaces?.map(
         (campPlace, i) =>

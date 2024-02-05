@@ -2,17 +2,17 @@
 
 import { IconFilter, IconReset } from '@/public/svgs';
 
-import useMediaQueries from '@/hooks/useMediaQueries';
+import Button from '@/components/Button';
 import Selectable from '@/components/Dropdown/Selectable';
 import ModalForMobile from '@/components/Modal/ModalForMobile';
-import Button from '@/components/Button';
-import { useState } from 'react';
 import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import DetailPanel from './DetailPanel';
 import { setDetailState } from '@/src/app/_utils/detailState';
 import { isModal } from '@/src/app/_utils/modalState';
+import DetailPanel from './DetailPanel';
 
 function Page() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -102,7 +102,10 @@ function Page() {
           )}
         </>
       ) : (
-        <DetailPanel handleDropClick={handleDropClick} />
+        <DetailPanel
+          handleOpen={handleOpen}
+          handleDropClick={handleDropClick}
+        />
       )}
     </div>
   );

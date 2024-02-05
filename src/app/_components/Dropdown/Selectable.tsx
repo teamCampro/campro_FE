@@ -4,10 +4,10 @@ import { IconArrowUp, IconReset } from '@/public/svgs';
 import { ReactNode, useEffect, useRef } from 'react';
 import { Button } from '..';
 
-import SelectList from './_components/SelectList';
-import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
+import PriceTable from './_components/PriceTable';
+import SelectList from './_components/SelectList';
 
 interface TypeInfoType {
   id: number;
@@ -53,20 +53,19 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     dispatch(setIsCheck(typeInfo.id));
   };
 
-  const handleClickOutside = (event: any) => {
-    if (!divRef.current || !buttomRef.current) return;
-    if (divRef.current && buttomRef.current.contains(event.target)) {
-    } else {
-      dispatch(setClose(false));
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (!divRef.current || !buttomRef.current) return;
+      if (divRef.current && buttomRef.current.contains(event.target)) {
+      } else {
+        dispatch(setClose(false));
+      }
+    };
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
