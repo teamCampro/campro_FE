@@ -24,7 +24,6 @@ interface Props {
   increaseMonth: () => void;
   prevMonthButtonDisabled: boolean;
   nextMonthButtonDisabled: boolean;
-  isMobile: boolean;
 }
 
 function CustomHeaderForDatePicker({
@@ -33,12 +32,7 @@ function CustomHeaderForDatePicker({
   increaseMonth,
   prevMonthButtonDisabled,
   nextMonthButtonDisabled,
-  isMobile,
 }: Props) {
-  if (!isMobile) {
-    return null;
-  }
-
   return (
     <div className='flex-center w-full flex-col'>
       <div className='border-bg-gray300 w-full border-b px-20pxr py-16pxr font-body2-semibold'>

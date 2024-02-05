@@ -1,7 +1,6 @@
 import LoginForm from '@/components/Form/LoginForm';
 import Image from 'next/image';
 import signImage from '@/public/avifs/sign.avif';
-
 function Page() {
   return (
     <div className='relative flex  h-screen w-full items-center justify-center'>

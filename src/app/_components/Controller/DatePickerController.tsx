@@ -70,6 +70,13 @@ function DatePickerController({
     }
   }, [checkIn, checkOut]);
 
+  useEffect(() => {
+    const popper = document.querySelector('.react-datepicker-popper');
+    if (popper) {
+      popper.setAttribute('data-placement', 'bottom-start');
+    }
+  }, []);
+
   return (
     <Controller
       control={control}
@@ -164,12 +171,11 @@ function DatePickerController({
                 value=''
               />
             }
-            renderCustomHeader={(props) => (
-              <CustomHeaderForDatePicker
-                {...props}
-                isMobile={isMobile || false}
-              />
-            )}
+            renderCustomHeader={
+              isMobile
+                ? (props) => <CustomHeaderForDatePicker {...props} />
+                : undefined
+            }
           >
             {!isMobile ? (
               <ButtonSetForDatePicker handleButtonClick={handleButtonClick} />

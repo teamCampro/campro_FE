@@ -4,12 +4,11 @@
 /* .react-datepicker-popper {
   left: 12% !important;
   z-index: 2 !important;
-}
+} */
 
 .react-datepicker-popper[data-placement^='top'] {
-  transform: translate(205.5px, 678.5px) !important;
+  transform: translate(417.5px, 101px) !important;
 }
-} */
 
 .react-datepicker {
   border: 0 !important;
@@ -293,6 +292,9 @@
 }
 
 @media (max-width: 1199px) {
+  .react-datepicker-popper[data-placement^='top'] {
+    transform: translate(278px, 101px) !important;
+  }
   .react-datepicker__children-container {
     display: flex !important;
     justify-content: center !important;
