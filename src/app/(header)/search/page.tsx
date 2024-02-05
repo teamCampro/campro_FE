@@ -76,7 +76,7 @@ function Page() {
       <MapSizeButtons
         handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
       />
-      <div className='flex flex-col gap-16pxr bg-white px-40pxr py-20pxr mobile:flex-row'>
+      <div className='flex-center border-bg-gray200 flex-col gap-16pxr border-b bg-white px-40pxr py-20pxr mobile:flex-row mobile:p-16pxr'>
         <div className='flex-center w-full'>
           <Suspense>
             <SearchBar page='search' />
@@ -97,6 +97,7 @@ function Page() {
             </div>
             {campPlaceData && (
               <CampSearchList
+                currentPage={currentPage}
                 campPlaces={campPlaceData}
                 gridColumns={mapBasis[mapSize].list}
               />

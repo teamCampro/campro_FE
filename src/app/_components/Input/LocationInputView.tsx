@@ -4,6 +4,7 @@ import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconLocation } from '@/public/svgs';
 import { useState } from 'react';
 import { Button, ModalForMobile, LocationDropdown } from '..';
+import { usePathname } from 'next/navigation';
 
 interface Field {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -28,6 +29,7 @@ function LocationInputView({
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
+  const pathName = usePathname();
 
   const handleClick = () => {
     setIsDropdownVisible(true);

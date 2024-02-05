@@ -1,15 +1,19 @@
 'use client';
 
 import useMediaQueries from '@/hooks/useMediaQueries';
-import { IconArrowLeftNon, IconArrowRightNon } from '@/public/svgs';
-import { DateInputView } from '@/src/app/_components';
-import { getMonth, getYear } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Button } from '..';
+import {
+  Button,
+  CustomHeaderForDatePicker,
+  ButtonSetForDatePicker,
+  DateInputView,
+} from '..';
+import { ControllerRenderProps } from 'react-hook-form';
+import getFormattedDate from '../../_utils/getFormattedDate';
 
 interface Props {
   name: string;
@@ -17,28 +21,13 @@ interface Props {
   checkOut?: string;
 }
 
-const MONTHS = [
-  '1월',
-  '2월',
-  '3월',
-  '4월',
-  '5월',
-  '6월',
-  '7월',
-  '8월',
-  '9월',
-  '10월',
-  '11월',
-  '12월',
-];
-
 function DatePickerController({
   name,
   checkIn: initCheckIn,
   checkOut: initCheckOut,
 }: Props) {
   const control = useFormContext().control;
-
+  const fieldRef = useRef<ControllerRenderProps | null>(null);
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [tempDates, setTempDates] = useState<Date[]>([]);
   const [checkIn, setCheckIn] = useState(initCheckIn);
@@ -70,11 +59,30 @@ function DatePickerController({
     }
   }, [isMobile]);
 
+  const setFieldRef = useCallback((field: ControllerRenderProps) => {
+    fieldRef.current = field;
+  }, []);
+
+  useEffect(() => {
+    if (checkIn && checkOut && fieldRef.current) {
+      const dates = [new Date(checkIn), new Date(checkOut)];
+      fieldRef.current.onChange(dates);
+    }
+  }, [checkIn, checkOut]);
+
+  useEffect(() => {
+    const popper = document.querySelector('.react-datepicker-popper');
+    if (popper) {
+      popper.setAttribute('data-placement', 'bottom-start');
+    }
+  }, []);
+
   return (
     <Controller
       control={control}
       name={name}
       render={({ field }) => {
+        setFieldRef(field);
         const handleDateInputClick = () => {
           if (datePickerRef.current) {
             datePickerRef.current.setOpen(true);
@@ -102,28 +110,6 @@ function DatePickerController({
             setSelectedDates([startDate, endDate]);
             field.onChange([startDate, endDate]);
           }
-        };
-
-        const getFormattedDate = (selectedDates: Date[]) => {
-          const formatDate = (date: Date) =>
-            date
-              ? date.toLocaleDateString('ko-KR', {
-                  month: '2-digit',
-                  day: '2-digit',
-                  weekday: 'short',
-                })
-              : '';
-
-          let value = '';
-          if (selectedDates) {
-            if (selectedDates[0] && selectedDates[1]) {
-              value = `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
-            } else if (selectedDates[0]) {
-              value = formatDate(selectedDates[0]);
-            }
-          }
-
-          return value;
         };
 
         const handleDateChange = (
@@ -154,6 +140,7 @@ function DatePickerController({
             }
           }
         };
+
         return (
           <DatePicker
             popperPlacement='bottom-start'
@@ -185,66 +172,13 @@ function DatePickerController({
               />
             }
             renderCustomHeader={
-              !isMobile
-                ? undefined
-                : ({
-                    date,
-                    decreaseMonth,
-                    increaseMonth,
-                    prevMonthButtonDisabled,
-                    nextMonthButtonDisabled,
-                  }) => (
-                    <div className='flex-center w-full flex-col'>
-                      <div className='border-bg-gray300 w-full border-b px-20pxr py-16pxr font-body2-semibold'>
-                        일정
-                      </div>
-                      <div className='flex-center m-10pxr w-full max-w-335pxr justify-between px-20pxr'>
-                        <IconArrowLeftNon
-                          onClick={decreaseMonth}
-                          disabled={prevMonthButtonDisabled}
-                        />
-
-                        <div className='font-title3-semibold'>{`${getYear(date)} ${MONTHS[getMonth(date)]}`}</div>
-                        <IconArrowRightNon
-                          onClick={increaseMonth}
-                          disabled={nextMonthButtonDisabled}
-                        />
-                      </div>
-                    </div>
-                  )
+              isMobile
+                ? (props) => <CustomHeaderForDatePicker {...props} />
+                : undefined
             }
           >
             {!isMobile ? (
-              <>
-                <button
-                  type='button'
-                  className='buttonForDatePicker'
-                  onClick={() => handleButtonClick(0)}
-                >
-                  당일치기
-                </button>
-                <button
-                  type='button'
-                  className='buttonForDatePicker'
-                  onClick={() => handleButtonClick(1)}
-                >
-                  1박 2일
-                </button>
-                <button
-                  type='button'
-                  className='buttonForDatePicker'
-                  onClick={() => handleButtonClick(2)}
-                >
-                  2박 3일
-                </button>
-                <button
-                  type='button'
-                  className='buttonForDatePicker'
-                  onClick={() => handleButtonClick(3)}
-                >
-                  3박 4일
-                </button>
-              </>
+              <ButtonSetForDatePicker handleButtonClick={handleButtonClick} />
             ) : (
               <div className='flex-center flex w-full bg-white   '>
                 <Button.Round
