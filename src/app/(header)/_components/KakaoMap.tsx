@@ -5,11 +5,10 @@ import { MapSizeType } from '../search/page';
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
-  toggleHalfScreen: (mapSize: MapSizeType) => void;
   mapSize: MapSizeType;
 }
 
-function KakaoMap({ map, setMap, toggleHalfScreen, mapSize }: Props) {
+function KakaoMap({ map, setMap, mapSize }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const handleClickZoomIn = () => {

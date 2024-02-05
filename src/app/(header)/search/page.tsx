@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Button,
   CampSearchList,
   MapSizeButtons,
   SearchBar,
@@ -110,14 +111,10 @@ function Page() {
         <div
           className={`relative h-full shrink-0 grow-1 desktop1440:basis-649pxr desktop1920:basis-793pxr ${mapBasis[mapSize].map}`}
         >
-          <KakaoMap
-            map={map}
-            setMap={setKakaoMap}
-            toggleHalfScreen={handleMapSize}
-            mapSize={mapSize}
-          />
+          <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
         </div>
       </div>
+      <Button.MapFloating onMapResize={handleMapSize} />
     </>
   );
 }

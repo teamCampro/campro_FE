@@ -1,3 +1,7 @@
+import createCustomOverlay from './createCustomOverlay';
+import createMapPosition from './createMapPosition';
+import createMarkerImage from './createMarkerImage';
+import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
 
 interface LocationType {
@@ -21,28 +25,22 @@ interface Props {
 
 function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
   if (map) {
-    const positions = campPlaceData?.map((data) => {
-      const { location } = data;
+    const positions = createMapPosition(campPlaceData);
 
-      return {
-        title: data.placeName,
-        latlng: new window.kakao.maps.LatLng(location.lat, location.lng),
-        imgUrl: data.imgUrl,
-        address: data.address,
-      };
-    });
+    let selectedMarker: kakao.maps.Marker | null = null;
 
     if (positions) {
-      const imageSrc =
-        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
+      let selectedOverlay: kakao.maps.CustomOverlay | null = null;
       for (let i = 0; i < positions.length; i++) {
-        const imageSize = new window.kakao.maps.Size(24, 35);
+        const markerImage = createMarkerImage({
+          src: '/svgs/markerGray.svg',
+          size: { width: 19, height: 25 },
+        });
 
-        const markerImage = new window.kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-        );
+        const clickedMarkerImage = createMarkerImage({
+          src: '/svgs/markerGreen.svg',
+          size: { width: 19, height: 25 },
+        });
 
         const marker = new window.kakao.maps.Marker({
           map: map,
@@ -52,33 +50,12 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
           clickable: true,
         });
 
-        const overlayWrapper = document.createElement('div');
-        overlayWrapper.className = 'overlayWrapper';
+        const overlayElement = createOverlayElement(positions[i]);
 
-        const image = document.createElement('img');
-        image.className = 'overlayImage';
-        image.src = positions[i].imgUrl;
-        overlayWrapper.appendChild(image);
-
-        const overlayContent = document.createElement('div');
-        overlayContent.className = 'overlayContent';
-        overlayWrapper.appendChild(overlayContent);
-
-        const overlayTitle = document.createElement('h1');
-        overlayTitle.className = 'overlayTitle';
-        overlayTitle.innerHTML = positions[i].title;
-        overlayContent.appendChild(overlayTitle);
-
-        const address = document.createElement('span');
-        address.className = 'overlayAddress';
-        address.innerHTML = positions[i].address;
-        overlayContent.appendChild(address);
-
-        const overlay = new kakao.maps.CustomOverlay({
-          content: overlayWrapper,
-          map: map,
-          position: marker.getPosition(),
-          clickable: true,
+        const overlay = createCustomOverlay({
+          marker,
+          map,
+          content: overlayElement,
         });
 
         overlay.setMap(null);
@@ -88,9 +65,29 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
         };
 
         kakao.maps.event.addListener(marker, 'click', () => {
+          const isSelectedOverlay = selectedOverlay !== overlay;
+          const isSelectedMarkerChanged =
+            !selectedMarker || selectedMarker !== marker;
+
+          if (isSelectedOverlay) selectedOverlay?.setMap(null);
+
           overlay.setMap(map);
+
+          if (isSelectedMarkerChanged) {
+            !!selectedMarker && selectedMarker.setImage(markerImage);
+            marker.setImage(clickedMarkerImage);
+          }
+
+          selectedMarker = marker;
+          selectedOverlay = overlay;
         });
+
         kakao.maps.event.addListener(map, 'click', () => {
+          if (selectedMarker) {
+            !!selectedMarker && selectedMarker.setImage(markerImage);
+          }
+
+          selectedMarker = null;
           closeOverlay();
         });
       }
