@@ -13,6 +13,8 @@ import { Button } from '..';
 
 interface Props {
   name: string;
+  checkIn?: string;
+  checkOut?: string;
 }
 
 const MONTHS = [
@@ -30,12 +32,17 @@ const MONTHS = [
   '12월',
 ];
 
-function DatePickerController({ name }: Props) {
+function DatePickerController({
+  name,
+  checkIn: initCheckIn,
+  checkOut: initCheckOut,
+}: Props) {
   const control = useFormContext().control;
 
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [tempDates, setTempDates] = useState<Date[]>([]);
-
+  const [checkIn, setCheckIn] = useState(initCheckIn);
+  const [checkOut, setCheckOut] = useState(initCheckOut);
   const datePickerRef = useRef<ReactDatePicker>(null);
 
   const tabletMediaQuery = useMediaQueries({ breakpoint: 1199 })?.mediaQuery
@@ -122,6 +129,10 @@ function DatePickerController({ name }: Props) {
         const handleDateChange = (
           dates: Date | [Date | null, Date | null] | null,
         ) => {
+          if (checkIn && checkOut) {
+            setCheckIn('');
+            setCheckOut('');
+          }
           if (Array.isArray(dates)) {
             setTempDates(dates as Date[]);
 
@@ -160,7 +171,11 @@ function DatePickerController({ name }: Props) {
             endDate={tempDates[1]}
             monthsShown={isTablet ? 1 : 2}
             calendarStartDay={1}
-            value={getFormattedDate(selectedDates)}
+            value={
+              checkIn && checkOut
+                ? getFormattedDate([new Date(checkIn), new Date(checkOut)])
+                : getFormattedDate(selectedDates)
+            }
             withPortal={isMobile}
             customInput={
               <DateInputView

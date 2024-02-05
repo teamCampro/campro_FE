@@ -70,6 +70,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     endPrice: '',
   });
   const textLength = children?.toString().length;
+
   const [isReset, setIsReset] = useState(false);
   const [checkStandByList, setCheckStandByList] =
     useState<CheckStandByListType>({
@@ -83,12 +84,14 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     checkStandByList,
     setCheckStandByList,
   };
+
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const handleOpen = () => {
     if (!handleDropClick) return;
+
     if (!isMobile) {
       dispatch(setResetAllStandBy());
     }
@@ -169,6 +172,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
             {children}
           </h3>
+
           <div className={`${typeInfo.isDone ? '' : 'arrowDown'} w-full`}>
             <IconArrowUp fill='#949494' />
           </div>

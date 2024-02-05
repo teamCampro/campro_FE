@@ -180,9 +180,6 @@ body {
     margin: 0px !important;
   }
 }
-#filterSlide {
-  width: 600px;
-}
 
 @media (max-width: 820px) {
   #filterSlide {
