@@ -23,7 +23,12 @@ function SignUpForm() {
         onSubmit={(data: FieldValues) => console.log(data)}
       >
         <InputContainer className='flex flex-col gap-8pxr'>
-          <Label htmlFor='email'>이메일</Label>
+          <Label
+            className='flex w-full text-gray400 font-body2'
+            htmlFor='email'
+          >
+            이메일
+          </Label>
           <CommonInput
             name='email'
             placeholder='이메일을 입력해주세요'
@@ -33,7 +38,12 @@ function SignUpForm() {
         </InputContainer>
 
         <InputContainer className='flex flex-col gap-8pxr'>
-          <Label htmlFor='password'>비밀번호</Label>
+          <Label
+            className='flex w-full text-gray400 font-body2'
+            htmlFor='password'
+          >
+            비밀번호
+          </Label>
           <CommonInput
             name='password'
             placeholder='비밀번호를 입력해주세요'
@@ -42,7 +52,12 @@ function SignUpForm() {
           <ErrorMessage name='password' />
         </InputContainer>
         <InputContainer className='flex flex-col gap-8pxr'>
-          <Label htmlFor='password'>비밀번호</Label>
+          <Label
+            className='flex w-full text-gray400 font-body2'
+            htmlFor='password'
+          >
+            비밀번호
+          </Label>
           <CommonInput
             name='passwordCheck'
             placeholder='비밀번호를 한번 더 입력해주세요'
