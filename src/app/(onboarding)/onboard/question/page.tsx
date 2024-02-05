@@ -57,7 +57,8 @@ function Question() {
     };
 
     fetch();
-  }, [updateTotalItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClickChoices = (text: string, id: number) => {
     updateCurrentPage(currentPage + 1);
