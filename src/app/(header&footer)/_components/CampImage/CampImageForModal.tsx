@@ -6,17 +6,14 @@ import { CampImageData } from '.';
 import { useState } from 'react';
 function CampImageForModal({ campImages }: { campImages: CampImageData[] }) {
   const [mainImage, setMainImage] = useState<string>(campImages[0].imgUrl);
-  const [subImages, setSubImages] = useState<CampImageData[]>(campImages);
 
-  console.log(subImages);
   const handleClickImage = (img: string) => {
     setMainImage(img);
-    setSubImages(subImages.filter((sub) => sub.imgUrl != mainImage));
   };
 
   return (
     <div className='flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
-      <div className='flex-center flex w-full gap-16pxr px-20pxr'>
+      <div className=' flex-center flex w-full gap-16pxr px-20pxr'>
         <ExitIcon />
         <span className='text-black font-title1-bold '> 전체 사진</span>
       </div>
@@ -25,7 +22,7 @@ function CampImageForModal({ campImages }: { campImages: CampImageData[] }) {
           {mainImage && (
             <Image
               className='flex w-full '
-              src={campImages[0].imgUrl}
+              src={mainImage}
               width={586}
               height={356}
               alt='메인 캠프 이미지'
@@ -37,25 +34,16 @@ function CampImageForModal({ campImages }: { campImages: CampImageData[] }) {
           id='campImage-swiper'
           className='!flex w-full items-start !gap-12pxr  bg-white !p-16pxr'
           slidesPerView='auto'
-          breakpoints={{
-            1200: {
-              slidesPerView: 7.5,
-            },
-            768: {
-              slidesPerView: 6,
-            },
-          }}
         >
-          {subImages.slice(0, 9).map(
+          {campImages.slice(0, Number(campImages.length)).map(
             (item, i) =>
               item.imgUrl && (
-                <SwiperSlide className='!flex w-full ' key={item.id}>
+                <SwiperSlide key={item.id}>
                   <Image
-                    className={`flex h-100pxr w-100pxr rounded-[12px] object-cover ${mainImage === item.imgUrl ? 'border-3 border-green-500' : 'border-white'}`}
+                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover`}
                     src={item.imgUrl}
                     alt={`camp-image${i}`}
-                    width={100}
-                    height={100}
+                    fill
                     onClick={() => handleClickImage(item.imgUrl)}
                   />
                 </SwiperSlide>
