@@ -15,14 +15,12 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
   const details = useAppSelector((state) => state.detail);
 
   return (
-    <div className='w-full bg-white mobile:flex-col'>
-      <div className='relative m-auto flex max-w-1360pxr items-center justify-start gap-8pxr px-40pxr pt-16pxr mobile:justify-center'>
+    <div className='w-full bg-white'>
+      <div className='relative m-auto flex max-w-1360pxr items-center justify-start gap-8pxr mobile:justify-center tabletMin:px-40pxr tabletMin:pt-16pxr'>
         <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold mobile:hidden'>
           상세필터
         </h3>
-        <div
-          className={`filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr mobileMiddle:max-w-360pxr mobileMiddle:px-0pxr`}
-        >
+        <div className='filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:border-b mobile:border-t mobile:border-gray300 mobile:px-0pxr'>
           <Swiper
             modules={[FreeMode]}
             freeMode={true}
