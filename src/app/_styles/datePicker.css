@@ -393,6 +393,7 @@
   .react-datepicker__portal {
     background-color: rgba(0, 0, 0, 0.5) !important;
     bottom: 0 !important;
+    height: 100dvh !important;
   }
 
   .react-datepicker__navigation {
