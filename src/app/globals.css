@@ -37,8 +37,7 @@
     url(/fonts/Pretendard-Bold.subset.woff2) format('woff2'),
     url(/fonts/Pretendard-Bold.subset.woff) format('woff');
 }
-
-@font-face {
+Preahvihear-Regular.ttf @font-face {
   font-family: 'Pretendard';
   font-weight: 600;
   font-display: swap;
@@ -96,6 +95,15 @@
     local('Pretendard Thin'),
     url(/fonts/Pretendard-Thin.subset.woff2) format('woff2'),
     url(/fonts/Pretendard-Thin.subset.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Preahvihear';
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Preahvihear Regular'),
+    url(/fonts/Preahvihear-Regular.ttf) format('truetype');
 }
 
 body {

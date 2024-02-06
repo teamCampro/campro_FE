@@ -45,7 +45,7 @@ function CommonInput({
             }
           : rules,
       )}
-      type={name === 'password' ? 'password' : type}
+      type={name === 'password' || name === 'passwordCheck' ? 'password' : type}
       placeholder={placeholder}
       className={inputCss(errors[name] ? true : false, className)}
       readOnly={readOnly}
