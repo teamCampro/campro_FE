@@ -8,3 +8,12 @@
 .swiper-pagination-bullet {
   background-color: white !important;
 }
+
+#campImage-swiper .swiper-wrapper {
+  gap: 12px !important;
+}
+
+#campImage-swiper .swiper-wrapper .swiper-slide {
+  width: 100px !important;
+  height: 100pxr !important;
+}
