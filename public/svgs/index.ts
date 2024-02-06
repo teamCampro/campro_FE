@@ -40,3 +40,7 @@ export { default as IconSearchHalf } from './searchHalf.svg';
 export { default as IconSearchList } from './searchList.svg';
 export { default as IconSearchMap } from './searchMap.svg';
 export { default as IconTent } from './tent.svg';
+export { default as IconJumpingPerson } from './ownerPage/jumpingPerson.svg';
+export { default as IconPets } from './ownerPage/pets.svg';
+export { default as IconInstagram } from './ownerPage/instagram.svg';
+export { default as IconFireplace } from './ownerPage/fireplace.svg';

@@ -1,7 +1,9 @@
 import React from 'react';
 
+export type OwnerButtonType = 'prev' | 'next' | 'done';
+
 interface Props {
-  type: 'prev' | 'next' | 'done';
+  type: OwnerButtonType;
 }
 
 function OwnerButton({ type }: Props) {

@@ -3,11 +3,11 @@ import React from 'react';
 
 function OwnerHeader() {
   return (
-    <header className='mx-80pxr flex justify-between py-30pxr'>
+    <header className='flex items-center justify-between py-20pxr'>
       <Link href={'/'}>
-        <button className='text-43pxr font-bold'>CamPro</button>
+        <button className='text-36pxr font-bold'>CamPro</button>
       </Link>
-      <button className='h-67pxr w-136pxr text-24pxr font-semibold'>
+      <button className='flex-center h-50pxr w-136pxr text-20pxr font-semibold'>
         저장 후 나가기
       </button>
     </header>
