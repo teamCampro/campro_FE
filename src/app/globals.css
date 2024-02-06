@@ -98,6 +98,15 @@
     url(/fonts/Pretendard-Thin.subset.woff) format('woff');
 }
 
+@font-face {
+  font-family: 'Preahvihear';
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Preahvihear Regular'),
+    url(/fonts/Preahvihear-Regular.ttf) format('truetype');
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

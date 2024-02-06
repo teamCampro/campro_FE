@@ -43,3 +43,14 @@ export const passwordCheckValidate = {
     message: '비밀번호를 한번 더 입력해주세요.',
   },
 };
+
+export const nicknameValidate = {
+  required: {
+    value: true,
+    message: '닉네임을 입력해주세요.',
+  },
+  minLength: {
+    value: 3,
+    message: '닉네임은 3자 이상 작성해주세요',
+  },
+};
