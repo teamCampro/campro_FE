@@ -99,11 +99,11 @@ function SearchFilter() {
           onClose={handleClose}
           footerContent={
             <>
-              <div className='text-right'>
-                <div className='lineOver text-gray600 font-body2-semibold'>
+              <div className='w-full text-right'>
+                <div className='lineOver mb-8pxr text-gray600 font-body2-semibold'>
                   {selectArray.join(', ')}
                 </div>
-                <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
+                <div className='flex-center justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
                   <div
                     className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                     onClick={handleReset}
@@ -113,7 +113,7 @@ function SearchFilter() {
                   </div>
                   <Button.Round
                     size='sm'
-                    custom='!w-174pxr !h-56pxr'
+                    custom='mobileMin:!w-174pxr !h-56pxr mobileMiddle:!w-214pxr mobileMiddle:w-full'
                     onClick={handleFinalCheck}
                   >
                     적용
