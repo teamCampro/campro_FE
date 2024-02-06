@@ -37,7 +37,8 @@
     url(/fonts/Pretendard-Bold.subset.woff2) format('woff2'),
     url(/fonts/Pretendard-Bold.subset.woff) format('woff');
 }
-Preahvihear-Regular.ttf @font-face {
+
+@font-face {
   font-family: 'Pretendard';
   font-weight: 600;
   font-display: swap;
