@@ -12,6 +12,4 @@ function ModalFooter({ children }: Props) {
   );
 }
 
-/* mobile:relative */
-
 export default ModalFooter;
