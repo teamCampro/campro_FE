@@ -79,7 +79,7 @@ function Page() {
       <MapSizeButtons
         handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
       />
-      <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:p-16pxr'>
+      <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
           <Suspense>
             <SearchBar page='search' />

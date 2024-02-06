@@ -99,7 +99,7 @@ function SearchFilter() {
           onClose={handleClose}
           footerContent={
             <>
-              <div className='text-right mobile:w-full'>
+              <div className='text-right'>
                 <div className='lineOver text-gray600 font-body2-semibold'>
                   {selectArray.join(', ')}
                 </div>

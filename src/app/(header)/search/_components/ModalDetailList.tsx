@@ -69,7 +69,7 @@ function Page() {
                   <div className='lineOver text-gray600 font-body2-semibold'>
                     {selectArray.join(', ')}
                   </div>
-                  <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
+                  <div className='flex-center h-88pxr justify-between gap-16pxr border-t border-b-white  mobile:m-auto mobile:max-w-400pxr mobile:border-0 mobile:px-20pxr'>
                     <div className='flex-center  gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
                       초기화
                       <IconReset fill='#C8C8C8' />

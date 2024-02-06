@@ -163,7 +163,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           >
             {children}
           </h3>
-          <div className={`${typeInfo.isDone ? '' : 'arrowDown'} w-full`}>
+          <div className={`${typeInfo.isDone ? '' : 'arrowDown'}`}>
             <IconArrowUp fill='#949494' />
           </div>
         </div>
@@ -187,7 +187,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
                 />
               )}
             </ul>
-            <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:hidden'>
+            <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:m-auto mobile:hidden mobile:max-w-400pxr mobile:px-20pxr'>
               <div
                 className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                 onClick={() => handleReset(typeInfo.name)}
