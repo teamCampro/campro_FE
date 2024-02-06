@@ -154,6 +154,10 @@ body {
   height: calc(100vh - 81px - 169px);
 }
 
+#detail-swiper .swiper-pagination-bullet-active {
+  background-color: #4f9e4f;
+}
+
 @media (min-width: 1200px) {
   #category-slide {
     width: 126px !important;

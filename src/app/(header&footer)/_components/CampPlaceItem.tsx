@@ -51,7 +51,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               원 부터
             </span>
           </div>
-          <div className='flex gap-10pxr '>
+          <div className='flex gap-10pxr'>
             <Chip>힐링/휴식</Chip>
             <Chip>자연</Chip>
             <Chip>숲</Chip>

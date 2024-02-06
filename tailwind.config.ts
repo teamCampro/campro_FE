@@ -90,6 +90,14 @@ const config: Config = {
       maxWidth: {
         custom: '100vw',
       },
+      aspectRatio: {
+        '2/1': '2 / 1',
+        '288/184': '288 / 184',
+        '340/220': '340 / 220',
+        '320/197': '320 / 197',
+        '688/398': '688 / 398',
+        '719/291': '719 / 291',
+      },
     },
     screens: {
       mobileMin: '320px',
@@ -107,6 +115,7 @@ const config: Config = {
       },
       mobile767: { min: '726px', max: '767px' },
       tablet1002: { min: '768px', max: '1002px' },
+      tablet1079: { min: '768px', max: '1079px' },
       tablet1199: { min: '1003px', max: '1199px' },
       desktop: '1200px',
       wide: '1488px',
@@ -201,6 +210,13 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
           fontFamily: 'Pretendard',
+        },
+        '.font-body1-bold': {
+          fontSize: pxToRem(18),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.18),
+          fontFamily: 'Pretendard',
+          fontWeight: '700',
         },
         '.font-body1-medium': {
           fontSize: pxToRem(18),

@@ -1,5 +1,13 @@
+import CampSiteDetail from './_components/CampSiteDetail';
+import CampSiteList from './_components/CampSiteList';
+
 function page() {
-  return <div>안녕하세요</div>;
+  return (
+    <div>
+      <CampSiteList />
+      <CampSiteDetail />
+    </div>
+  );
 }
 
 export default page;
