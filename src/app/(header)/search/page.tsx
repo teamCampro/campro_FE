@@ -1,5 +1,12 @@
 'use client';
 
+import { Suspense, useEffect, useState } from 'react';
+import usePagination from '@/hooks/usePagination';
+import axios from 'axios';
+import KakaoMap from './_components/KakaoMap';
+import kakaoMarkerGenerator, {
+  CampPlaceType,
+} from '../../_utils/kakaoMarkerGenerator';
 import {
   Button,
   CampSearchList,
@@ -9,13 +16,7 @@ import {
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
-import usePagination from '@/hooks/usePagination';
-import axios from 'axios';
-import { Suspense, useEffect, useState } from 'react';
-import kakaoMarkerGenerator, {
-  CampPlaceType,
-} from '../../_utils/kakaoMarkerGenerator';
-import KakaoMap from '../_components/KakaoMap';
+import { usePathname } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
@@ -24,6 +25,8 @@ interface DataType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
+  const pathName = usePathname();
+  const isSearch = pathName.includes('search');
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
@@ -76,17 +79,17 @@ function Page() {
       <MapSizeButtons
         handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
       />
-      <div className='flex-center border-bg-gray200 flex-col gap-16pxr border-b bg-white px-40pxr py-20pxr mobile:flex-row mobile:p-16pxr'>
-        <div className='flex-center w-full'>
+      <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
+        <div className='m-auto w-full max-w-1360pxr'>
           <Suspense>
             <SearchBar page='search' />
           </Suspense>
         </div>
-        <div className='mobile:flex-center flex gap-12pxr'>
-          <SearchFilter mapSize={mapSize} handleMapSize={handleMapSize} />
+        <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
+          <SearchFilter />
         </div>
       </div>
-      <div className='flex-center h-full w-full'>
+      <div className=' flex-center searchPageOverFlow h-full w-full'>
         {mapSize !== 'map' && (
           <div className='scrollbar-hide pt-16px pb-40px relative flex h-full w-full flex-col gap-24pxr overflow-y-scroll px-40pxr mobile:p-16pxr desktop:w-auto wide:w-auto'>
             <div className='flex items-center justify-around'>

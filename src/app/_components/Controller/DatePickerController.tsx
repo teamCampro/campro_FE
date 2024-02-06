@@ -180,11 +180,11 @@ function DatePickerController({
             {!isMobile ? (
               <ButtonSetForDatePicker handleButtonClick={handleButtonClick} />
             ) : (
-              <div className='flex-center flex w-full bg-white   '>
+              <div className='flex-center flex w-full bg-white'>
                 <Button.Round
                   type='button'
                   size='md'
-                  custom='bg-primary100 text-white max-w-[335px] flex w-full'
+                  custom='bg-primary100 text-white max-w-335pxr flex w-full'
                   onClick={handleApplyClick}
                 >
                   적용

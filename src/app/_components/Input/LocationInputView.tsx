@@ -29,7 +29,6 @@ function LocationInputView({
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
-  const pathName = usePathname();
 
   const handleClick = () => {
     setIsDropdownVisible(true);
@@ -56,10 +55,7 @@ function LocationInputView({
 
   return (
     <>
-      <div
-        onClick={handleClick}
-        className='relative flex w-full flex-110 pr-12pxr mobile:pr-0pxr'
-      >
+      <div onClick={handleClick} className='relative flex w-full flex-110'>
         <div className=' flex w-full  gap-4pxr'>
           <IconLocation className='absolute left-16pxr top-16pxr ' />
           <input

@@ -1,4 +1,4 @@
-interface DetailType {
+export interface DetailType {
   id: number;
   type: string;
 }

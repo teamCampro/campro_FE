@@ -28,7 +28,14 @@ function CommonForm({
 
   return (
     <FormProvider {...methods}>
-      <form className={className} onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className={className}
+        onSubmit={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          methods.handleSubmit(onSubmit)(e);
+        }}
+      >
         {children}
       </form>
     </FormProvider>

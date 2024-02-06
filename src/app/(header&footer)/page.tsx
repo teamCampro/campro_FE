@@ -1,4 +1,4 @@
-import { CampPlaceSection, CategoryList, Hero } from '../_components';
+import { CampPlaceSection, CategoryList, Header, Hero } from '../_components';
 function page() {
   return (
     <div>
