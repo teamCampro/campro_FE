@@ -1,5 +1,11 @@
+import MinikakaoMap from '../_components/MinikakaoMap';
+
 function page() {
-  return <div>안녕하세요</div>;
+  return (
+    <div>
+      <MinikakaoMap />
+    </div>
+  );
 }
 
 export default page;
