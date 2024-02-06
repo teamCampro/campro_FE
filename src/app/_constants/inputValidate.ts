@@ -43,3 +43,10 @@ export const passwordCheckValidate = {
     message: '비밀번호를 한번 더 입력해주세요.',
   },
 };
+
+export const ownerValidate = {
+  required: {
+    value: true,
+    message: '내용을 입력해주세요',
+  },
+};
