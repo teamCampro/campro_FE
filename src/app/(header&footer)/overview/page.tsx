@@ -1,5 +1,11 @@
+import CampImage from '../_components/CampImage';
+
 function page() {
-  return <div>안녕하세요</div>;
+  return (
+    <div className='flex-center h-screen w-full '>
+      <CampImage />
+    </div>
+  );
 }
 
 export default page;

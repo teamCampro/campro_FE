@@ -6,10 +6,12 @@ export default function ModalOutside({
   children,
   onClose,
   page,
+  custom,
 }: {
   children?: ReactNode;
   onClose: () => void;
   page?: string;
+  custom?: string;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +49,7 @@ export default function ModalOutside({
     <div onClick={modalOutSideClick}>
       <div
         ref={modalRef}
-        className={`fixed ${page === 'search' ? 'mobile:left-0pxr mobile:top-0pxr' : 'mobile:bottom-0pxr mobile:left-0pxr'} h-screen w-full mobile:fixed mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:overflow-hidden mobile:bg-black-50`}
+        className={`fixed ${page === 'search' ? 'mobile:left-0pxr mobile:top-0pxr' : 'mobile:bottom-0pxr mobile:left-0pxr'} h-screen w-full mobile:fixed   mobile:z-[99] mobile:flex mobile:h-screen mobile:w-full mobile:items-end mobile:overflow-hidden mobile:bg-black-50 ${custom && custom}`}
       >
         {children}
       </div>
