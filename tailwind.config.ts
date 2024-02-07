@@ -44,6 +44,7 @@ const config: Config = {
         categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
         header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
+        overView: '0px 0px 24px 0px rgba(0, 0, 0, 0.07)',
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
@@ -151,8 +152,15 @@ const config: Config = {
       const newUtilities = {
         '.font-h1': {
           fontSize: pxToRem(48),
-          lineHeight: '1.6',
+          lineHeight: '1.4',
           letterSpacing: pxToRem(-0.48),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+        '.font-h2': {
+          fontSize: pxToRem(32),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.32),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
