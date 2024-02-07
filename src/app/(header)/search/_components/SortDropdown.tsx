@@ -28,11 +28,10 @@ function SortDropdown() {
                 <li key={option.key} className='flex w-full'>
                   <button
                     type='button'
-                    className='flex flex-1 items-center justify-end text-gray500 font-body2 hover:bg-gray100 mobile:font-caption2-semibold tablet:font-body2'
+                    className='flex-1 items-center text-nowrap px-12pxr text-right text-gray500 font-body2 hover:bg-gray100 mobile:font-caption2-semibold tablet:font-body2'
                     onClick={() => setSelected(option)}
                   >
                     {option.text}
-                    <IconNavigationDown />
                   </button>
                 </li>
               ),
