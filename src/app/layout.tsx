@@ -22,7 +22,7 @@ export default function RootLayout({
           <body className='font-pre' suppressHydrationWarning={true}>
             <Script
               strategy='beforeInteractive'
-              src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false`}
+              src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&libraries=services&autoload=false`}
             />
             {children}
             <div id='modal' />

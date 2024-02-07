@@ -5,10 +5,11 @@ import { MapSizeType } from '../search/page';
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
-  mapSize: MapSizeType;
+  mapSize?: MapSizeType;
+  isZoomButtonShadow?: boolean;
 }
 
-function KakaoMap({ map, setMap, mapSize }: Props) {
+function KakaoMap({ map, setMap, mapSize, isZoomButtonShadow = false }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const handleClickZoomIn = () => {
@@ -24,6 +25,10 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
       map.setLevel(level + 1);
     }
   };
+
+  const dropShadow = isZoomButtonShadow
+    ? 'drop-shadow-[0px_10px_10px_rgba(0,0,0,0.25)]'
+    : '';
 
   useEffect(() => {
     if (!map) {
@@ -52,13 +57,13 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
       {map && (
         <div className='absolute right-26pxr top-16pxr flex flex-col'>
           <button
-            className='flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr'
+            className={`flex-center z-50 rounded-tl-xl rounded-tr-xl border-l border-r border-t border-gray-300 bg-white px-16pxr py-12pxr ${dropShadow}`}
             onClick={handleClickZoomIn}
           >
             <IconMapPlus />
           </button>
           <button
-            className='flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr'
+            className={`flex-center z-50 rounded-bl-xl rounded-br-xl border border-gray-300 bg-white px-16pxr py-12pxr ${dropShadow}`}
             onClick={handleClickZoomOut}
           >
             <IconMapMinus />
