@@ -155,7 +155,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
         ref={buttomRef}
       >
         <div
-          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
+          className='mobile344:px-24pxr flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
           <h3
@@ -169,11 +169,11 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
         </div>
         {typeInfo.isDone && (
           <div
-            className='absolute left-0pxr top-66pxr rounded-[20px] bg-white shadow-searchBar mobile:static'
+            className={`absolute left-0pxr top-66pxr rounded-[20px] bg-white shadow-searchBar mobile:static ${typeInfo.name === 'theme' || typeInfo.name === 'trip' ? 'tablet:-left-208pxr' : ''} `}
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'mobile344:h-full h-98pxr mobile:px-16pxr  mobile:py-12pxr mobileMiddle:h-78pxr'}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (

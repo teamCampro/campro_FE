@@ -29,17 +29,15 @@ function PriceTable({ setPrice, price, getNewPrice, types }: PriceTableType) {
   };
 
   return (
-    <li
-      className={
-        'flex-center justify-between mobile:gap-12pxr mobileMiddle:gap-4pxr'
-      }
-    >
-      <PriceInput name='startPrice' setPrice={setPrice} price={price} />
-      <div className='w-16pxr border-b-2 border-b-gray700 mobileMiddle:w-12pxr'></div>
-      <PriceInput name='endPrice' setPrice={setPrice} price={price} />
+    <li className='flex-center mobile344:flex-wrap justify-between mobile:gap-12pxr mobileMiddle:gap-4pxr'>
+      <div className='flex-center w-full justify-between gap-4pxr'>
+        <PriceInput name='startPrice' setPrice={setPrice} price={price} />
+        <div className='w-16pxr flex-shrink-0 border-b-2 border-b-gray700 mobileMiddle:w-12pxr'></div>
+        <PriceInput name='endPrice' setPrice={setPrice} price={price} />
+      </div>
       <Button.Circle
         size='sm'
-        custom='mobileMiddle:w-68pxr mobileMiddle:h-46pxr tabletMin:hidden mobileMiddle:ml-8pxr bg-white border border-bg-gray300 font-body2-semibold text-gray600'
+        custom='mobileMiddle:w-68pxr mobileMiddle:h-46pxr tabletMin:hidden mobileMiddle:ml-8pxr bg-white border border-bg-gray300 font-body2-semibold text-gray600 mobile344:w-full mobile344:h-46pxr hover:border-primary100 hover:text-primary100 active:text-primary100'
         onClick={() => handleClick(types)}
       >
         확인
