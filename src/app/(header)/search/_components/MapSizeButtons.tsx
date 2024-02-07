@@ -43,7 +43,7 @@ function MapSizeButtons({ handleMapSize }: Props) {
   return (
     <div
       ref={wrapperRef}
-      className='flex-center fixed bottom-24pxr left-2/4 z-[99] flex w-127pxr -translate-x-2/4 flex-col gap-8pxr mobile:bottom-20pxr mobile:left-auto mobile:right-16pxr mobile:w-56pxr tablet:bottom-20pxr tablet:left-auto tablet:right-16pxr tablet:w-56pxr'
+      className='flex-center mobile:left-0 fixed bottom-24pxr left-2/4 z-[99] flex w-127pxr -translate-x-2/4 flex-col gap-8pxr mobile:bottom-20pxr mobile:left-auto mobile:right-16pxr mobile:w-56pxr mobile:translate-x-0pxr tablet:bottom-20pxr tablet:left-auto tablet:right-16pxr tablet:w-56pxr tablet:translate-x-0pxr'
     >
       <ul className='flex w-full flex-col gap-8pxr'>
         {MAP_OPTIONS.map((option) => (
