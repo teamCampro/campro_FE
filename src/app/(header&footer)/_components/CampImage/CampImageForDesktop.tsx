@@ -3,7 +3,7 @@ import { CampImageData } from '.';
 import Image from 'next/image';
 import AllPictureIcon from '@/public/svgs/pic.svg';
 import { useState } from 'react';
-import ModalAboutCampImage from './ModalAboutCampImage';
+import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
 function CampImageForDesktop({
   campImages,

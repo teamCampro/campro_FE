@@ -5,7 +5,7 @@ import { CampImageData } from '.';
 import Image from 'next/image';
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 import { useState } from 'react';
-import ModalAboutCampImage from './ModalAboutCampImage';
+import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
 function CampImageCarousel({
   campImages,
