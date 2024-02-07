@@ -24,7 +24,7 @@ function MiniMapContainer() {
   return (
     <>
       <h3
-        className='tabletMiddleMin:hiddne flex text-second100'
+        className='tabletMiddleMin:hidden flex text-second100'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>
@@ -83,6 +83,7 @@ function MiniMapContainer() {
                     height='100%'
                     viewBox='0 0 24 24'
                     fill='#949494'
+                    onClick={handleClose}
                     className='inline-block tabletMin:hidden '
                   />
                 </div>
