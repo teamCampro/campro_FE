@@ -11,5 +11,5 @@ function ModalHeader({ children }: Props) {
     </div>
   );
 }
-
+/* mobile:relative */
 export default ModalHeader;
