@@ -17,15 +17,14 @@ function ModalForMobileCampImg({
           {campImages.map(
             (item, i) =>
               item.imgUrl && (
-                <div key={item.id} className='flex w-full'>
-                  <Image
-                    width={138}
-                    height={138}
-                    className='flex w-full object-cover'
-                    src={item.imgUrl}
-                    alt={`${campImages[i].id}`}
-                  />
-                </div>
+                <Image
+                  width={138}
+                  height={138}
+                  key={item.id}
+                  className='flex min-h-138pxr w-full min-w-138pxr object-cover object-center'
+                  src={item.imgUrl}
+                  alt={`${campImages[i].id}`}
+                />
               ),
           )}
         </div>

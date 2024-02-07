@@ -30,6 +30,7 @@ function CampImageForModal({
               width={586}
               height={356}
               alt='메인 캠프 이미지'
+              style={{ objectFit: 'cover' }}
             />
           )}
         </div>
