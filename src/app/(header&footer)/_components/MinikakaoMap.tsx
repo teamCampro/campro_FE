@@ -4,7 +4,23 @@ import { useEffect, useRef, useState } from 'react';
 import createMarkerImage from '../../_utils/createMarkerImage';
 
 interface KakaoMap {
-  // 여기에 kakao 맵 관련 타입들을 정의하세요.
+  maps: {
+    Map: new (
+      container: HTMLElement,
+      options: {
+        center: any;
+        level: number;
+      },
+    ) => any;
+    LatLng: new (lat: number, lng: number) => any;
+    services: {
+      Geocoder: new (
+        result: number,
+        status: number,
+      ) => kakao.maps.services.Geocoder;
+      Status: { [key: string]: any };
+    };
+  };
 }
 
 declare global {
@@ -13,15 +29,28 @@ declare global {
   }
 }
 
-function MinikakaoMap() {
+interface MinikakaoMapType {
+  location: string;
+  size: string;
+  isClose?: boolean;
+}
+
+interface SIZE_LISTType {
+  [key: string]: string;
+}
+
+const SIZE_LIST: SIZE_LISTType = {
+  sm: 'h-135pxr w-full',
+  modal: 'w-full h-884pxr tabletMiddleMin:h-602pxr tablet1079:h-540pxr',
+};
+
+function MinikakaoMap({ location, size, isClose }: MinikakaoMapType) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.kakao) return;
     const { kakao } = window;
-
-    const container = document.getElementById('map') as HTMLDivElement; //지도를 담을 영역의 DOM 레퍼런스
 
     window.kakao.maps.load(() => {
       const options = {
@@ -31,10 +60,9 @@ function MinikakaoMap() {
       };
 
       if (!mapRef.current) return;
-      const kakaomap = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+      const kakaomap = new kakao.maps.Map(mapRef.current, options); //지도 생성 및 객체 리턴
       setMap(kakaomap);
-      console.log(kakaomap);
-      console.log(kakao);
+
       if (!kakaomap) return;
 
       // 주소-좌표 변환 객체를 생성합니다
@@ -42,59 +70,52 @@ function MinikakaoMap() {
       /* if (!geocoder) return; */
       // 주소로 좌표를 검색합니다
 
-      geocoder.addressSearch(
-        '달천도담길 3-40',
-        function (result: any, status: any) {
-          // 정상적으로 검색이 완료됐으면
-          if (status === kakao.maps.services.Status.OK) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            const imageSrc =
-              'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'; // 마커이미지의 주소입니다
-            const imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-            const imageOption = { offset: new kakao.maps.Point(27, 69) };
+      geocoder.addressSearch(location, function (result, status) {
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+          const coords = new kakao.maps.LatLng(
+            parseFloat(result[0].y),
+            parseFloat(result[0].x),
+          );
 
-            const markerImage = new kakao.maps.MarkerImage(
-              imageSrc,
-              imageSize,
-              imageOption,
-            );
+          const clickedMarkerImage = createMarkerImage({
+            src: '/svgs/markerGreen.svg',
+            size: { width: 19, height: 25 },
+          });
 
-            const clickedMarkerImage = createMarkerImage({
-              src: '/svgs/markerGreen.svg',
-              size: { width: 19, height: 25 },
-            });
+          // 결과값으로 받은 위치를 마커로 표시합니다
+          const marker = new kakao.maps.Marker({
+            map: kakaomap,
+            position: coords,
+            image: clickedMarkerImage,
+          });
 
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            const marker = new kakao.maps.Marker({
-              map: kakaomap,
-              position: coords,
-              image: clickedMarkerImage,
-            });
-
-            // 인포윈도우로 장소에 대한 설명을 표시합니다
-            const infowindow = new kakao.maps.InfoWindow({
+          // 인포윈도우로 장소에 대한 설명을 표시합니다
+          /* const infowindow = new kakao.maps.InfoWindow({
               content:
                 '<div style="width:150px;text-align:center;padding:6px 0;">우리집</div>',
             });
-            infowindow.open(kakaomap, marker);
+            infowindow.open(kakaomap, marker); */
 
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            kakaomap.setCenter(coords);
-          }
-        },
-      );
+          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+          kakaomap.setCenter(coords);
+        }
+      });
     });
-    console.log(map);
-  }, []);
+  }, [isClose]);
 
   useEffect(() => {
     if (!map) return;
     map.relayout();
-  }, [map]);
+  }, [map, isClose]);
 
   return (
-    <div className='flex-center w-full'>
-      <div ref={mapRef} id='map' className='h-400pxr w-500pxr'></div>
+    <div>
+      <div
+        ref={mapRef}
+        id='map'
+        className={`${size === 'modal' ? 'rounded-b-xl' : 'rounded-t-xl'} ${SIZE_LIST[size]}`}
+      ></div>
     </div>
   );
 }
