@@ -1,15 +1,11 @@
 import Chip from '@/components/Chip';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
-import CampSiteDetail from '../_components/CampSiteDetail';
 import CampSiteList from '../_components/CampSiteList';
 import SearchBar from '@/components/SearchBar';
 import { IconCall, IconLocation, IconStar } from '@/public/svgs';
-
-import { LINKS } from '@/src/app/_constants';
 import Image from 'next/image';
 import Category from '@/components/Category';
-import { CAMPININFO } from '@/src/app/_constants/information';
 import Progress from '../_components/Progress';
 import TextInfo from '../_components/TextInfo';
 

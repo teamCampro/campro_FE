@@ -1,6 +1,5 @@
 'use client';
 
-import { CAMPININFO, CANCELRULES } from '@/src/app/_constants/information';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
