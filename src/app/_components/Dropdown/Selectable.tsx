@@ -155,7 +155,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
         ref={buttomRef}
       >
         <div
-          className='mobile344:px-24pxr flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobileMiddle:px-40pxr'
+          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
           <h3
@@ -173,7 +173,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'mobile344:h-full h-98pxr mobile:px-16pxr  mobile:py-12pxr mobileMiddle:h-78pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
