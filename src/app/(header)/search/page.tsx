@@ -3,14 +3,13 @@
 import {
   CampSearchList,
   MapSizeButtons,
-  SearchBar,
   SearchFilter,
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import { usePathname } from 'next/navigation';
+import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
@@ -24,8 +23,6 @@ interface DataType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
-  const pathName = usePathname();
-  const isSearch = pathName.includes('search');
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
@@ -81,7 +78,7 @@ function Page() {
       <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
           <Suspense>
-            <SearchBar page='search' />
+            <SearchBarForSearch />
           </Suspense>
         </div>
         <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
