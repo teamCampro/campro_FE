@@ -61,9 +61,9 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
   }
 
   return (
-    <div className='flex-center h-54pxr w-116pxr rounded-lg bg-gray100 p-16pxr mobile:w-120pxr mobile:gap-4pxr mobile:bg-white'>
+    <div className='flex-center h-54pxr w-116pxr rounded-lg bg-gray100 p-16pxr mobile:gap-4pxr  mobile:bg-white mobile344:w-full mobileMiddle:w-full'>
       <input
-        className='w-66pxr bg-gray100 text-right font-medium text-gray800 outline-0 font-body2 mobile:w-70pxr mobile:bg-white'
+        className='w-66pxr bg-gray100 text-right font-medium text-gray800 outline-0 font-body2 mobile:w-full mobile:bg-white'
         name={name}
         defaultValue={name === 'startPrice' ? applyStartPrice : applyEndPrice}
         onFocus={handleFocus}

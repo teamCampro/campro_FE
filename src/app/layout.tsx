@@ -4,6 +4,7 @@ import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
 import './_styles/datePicker.css';
 import Script from 'next/script';
+import './_styles/carousel.css';
 
 export const metadata: Metadata = {
   title: 'CamPro',

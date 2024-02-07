@@ -11,7 +11,7 @@ function ModalLayout({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`bottom-0pxr flex w-full ${isModal && isMobile ? 'modal-up' : 'modal-down'} flex-col mobile:relative mobile:z-[99]`}
+      className={`bottom-0pxr flex w-full ${isModal && isMobile ? 'modal-up' : 'modal-down'} flex-col  mobile:z-[99]`}
     >
       {children}
     </div>
