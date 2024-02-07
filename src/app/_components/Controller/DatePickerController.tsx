@@ -32,6 +32,7 @@ function DatePickerController({
   const [tempDates, setTempDates] = useState<Date[]>([]);
   const [checkIn, setCheckIn] = useState(initCheckIn);
   const [checkOut, setCheckOut] = useState(initCheckOut);
+  const [isDatePickerOpen, setDatePickerOpen] = useState(false);
   const datePickerRef = useRef<ReactDatePicker>(null);
 
   const tabletMediaQuery = useMediaQueries({ breakpoint: 1199 })?.mediaQuery
@@ -71,11 +72,12 @@ function DatePickerController({
   }, [checkIn, checkOut]);
 
   useEffect(() => {
-    const popper = document.querySelector('.react-datepicker-popper');
-    if (popper) {
-      popper.setAttribute('data-placement', 'bottom-start');
+    if (isMobile && isDatePickerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
-  }, []);
+  }, [isMobile, isDatePickerOpen]);
 
   return (
     <Controller
@@ -143,6 +145,8 @@ function DatePickerController({
 
         return (
           <DatePicker
+            onCalendarOpen={() => setDatePickerOpen(true)}
+            onCalendarClose={() => setDatePickerOpen(false)}
             popperPlacement='bottom-start'
             enableTabLoop={false}
             shouldCloseOnSelect={isMobile ? false : true}

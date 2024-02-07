@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-
+import Hangul from 'hangul-js';
 interface Props {
   items: string[];
   onSelect: (item: string) => void;
@@ -45,7 +45,7 @@ function LocationDropdown({
   return (
     <div
       ref={dropdownRef}
-      className='scrollbar-hide  mobile:top-opxr absolute top-65pxr z-[100] flex h-222pxr w-350pxr  flex-col  items-start gap-12pxr overflow-auto rounded-[20px] bg-white-100 px-40pxr py-32pxr shadow-searchBar mobile:relative mobile:top-0pxr mobile:z-[99] mobile:h-207pxr mobile:w-full mobile:rounded-[0] mobile:px-20pxr mobile:pb-0pxr mobile:pt-16pxr'
+      className='scrollbar-hide  mobile:top-opxr absolute top-65pxr z-[100] flex max-h-222pxr w-350pxr  flex-col  items-start gap-12pxr overflow-auto rounded-[20px] bg-white-100 px-40pxr py-32pxr shadow-searchBar mobile:relative mobile:top-0pxr mobile:z-[99] mobile:h-207pxr mobile:w-full mobile:rounded-[0] mobile:px-20pxr mobile:pb-0pxr mobile:pt-16pxr'
     >
       {items.map((item, index) => (
         <div
