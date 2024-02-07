@@ -77,18 +77,23 @@ const config: Config = {
       gridTemplateColumns: {
         '1-col-288': 'repeat(1,minmax(288px,1fr))',
         '2-col-184': 'repeat(2,minmax(184px,1fr))',
-        '2-col-340': 'repeat(2,minmax(340px,340px))',
+        '2-col-340': 'repeat(2,minmax(340px,1fr))',
         '3-col-184': 'repeat(3,minmax(184px,1fr))',
-        '3-col-340': 'repeat(3,minmax(340px,340px))',
-        '4-col-340': 'repeat(4,minmax(340px,340px))',
-        '5-col-340': 'repeat(5,minmax(340px,340px))',
+        '3-col-340': 'repeat(3,minmax(340px,1fr))',
+        '4-col-340': 'repeat(4,minmax(340px,1fr))',
+        '5-col-340': 'repeat(5,minmax(340px,1fr))',
         'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
+        'auto-fit-min-340': 'repeat(auto-fit, minmax(340px, 1fr))',
       },
       width: {
         custom: 'calc(100vh * 0.84)',
       },
       maxWidth: {
         custom: '100vw',
+      },
+      aspectRatio: {
+        '340/220': '340 / 220',
+        '288/184': '288 / 184',
       },
     },
     screens: {
