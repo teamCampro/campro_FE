@@ -60,3 +60,4 @@ export { default as IconWinter } from './ownerPage/winter.svg';
 export { default as IconAllTime } from './ownerPage/allTime.svg';
 export { default as IconWeekend } from './ownerPage/weekend.svg';
 export { default as IconDay } from './ownerPage/day.svg';
+export { default as IconUploadImage } from './ownerPage/uploadImage.svg';
