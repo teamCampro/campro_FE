@@ -1,14 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
-import usePagination from '@/hooks/usePagination';
-import axios from 'axios';
-import KakaoMap from './_components/KakaoMap';
-import kakaoMarkerGenerator, {
-  CampPlaceType,
-} from '../../_utils/kakaoMarkerGenerator';
 import {
-  Button,
   CampSearchList,
   MapSizeButtons,
   SearchBar,
@@ -16,7 +8,14 @@ import {
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
+import usePagination from '@/hooks/usePagination';
+import axios from 'axios';
 import { usePathname } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import kakaoMarkerGenerator, {
+  CampPlaceType,
+} from '../../_utils/kakaoMarkerGenerator';
+import KakaoMap from './_components/KakaoMap';
 
 interface DataType {
   result: CampPlaceType[];
@@ -118,7 +117,6 @@ function Page() {
           <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
         </div>
       </div>
-      <Button.MapFloating onMapResize={handleMapSize} />
     </>
   );
 }
