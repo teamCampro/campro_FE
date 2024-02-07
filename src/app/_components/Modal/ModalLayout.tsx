@@ -17,5 +17,5 @@ function ModalLayout({ children }: { children: ReactNode }) {
     </div>
   );
 }
-
+/* mobile:relative */
 export default ModalLayout;

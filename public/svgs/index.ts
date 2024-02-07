@@ -43,3 +43,6 @@ export { default as IconSearchHalf } from './searchHalf.svg';
 export { default as IconSearchList } from './searchList.svg';
 export { default as IconSearchMap } from './searchMap.svg';
 export { default as IconTent } from './tent.svg';
+export { default as IconCopy } from './copy.svg';
+export { default as IconFullPage } from './fullPage.svg';
+export { default as IconExit } from './exit.svg';
