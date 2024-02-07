@@ -4,13 +4,18 @@ import OwnerSelectButton from './OwnerSelectButton';
 
 interface Props {
   config: Config[];
+  buttonType?: 'small';
 }
 
-function OwnerButtonList({ config }: Props) {
+function OwnerButtonList({ config, buttonType }: Props) {
   return (
     <>
       {config.map((item) => (
-        <OwnerSelectButton key={item.buttonText} buttonText={item.buttonText}>
+        <OwnerSelectButton
+          key={item.buttonText}
+          buttonText={item.buttonText}
+          type={buttonType}
+        >
           {item.Image}
         </OwnerSelectButton>
       ))}
