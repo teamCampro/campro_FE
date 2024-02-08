@@ -26,21 +26,17 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
   };
 
   useEffect(() => {
-    if (!map) {
-      window.kakao.maps.load(() => {
-        const options = {
-          center: new window.kakao.maps.LatLng(
-            37.561110808242056,
-            126.9831268386891,
-          ),
-          level: 3,
-        };
-        if (!mapRef.current) return;
-        const map = new window.kakao.maps.Map(mapRef.current, options);
-        setMap(map);
-      });
-    }
-  }, [map, setMap]);
+    kakao.maps.load(() => {
+      const options = {
+        center: new kakao.maps.LatLng(37.561110808242056, 126.9831268386891),
+        level: 3,
+      };
+      if (!mapRef.current) return;
+      const map = new kakao.maps.Map(mapRef.current, options);
+      setMap(map);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!map) return;
