@@ -15,14 +15,22 @@ function OperatingPeriodPage() {
             <button className='text-14pxr font-medium'>전체선택</button>
           </div>
           <div className='flex gap-17pxr'>
-            <OwnerButtonList config={periodConfig} buttonType='small' />
+            <OwnerButtonList
+              pageName='operating_period'
+              config={periodConfig}
+              buttonType='small'
+            />
           </div>
         </div>
         <div className='flex self-start'>
           <div className='flex flex-col gap-10pxr'>
             <span className='text-20pxr font-semibold'>운영일</span>
             <div className='flex gap-17pxr'>
-              <OwnerButtonList config={daysConfig} buttonType='small' />
+              <OwnerButtonList
+                pageName='operating_days'
+                config={daysConfig}
+                buttonType='small'
+              />
             </div>
           </div>
         </div>
