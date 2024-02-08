@@ -8,7 +8,7 @@ import {
   LocationController,
 } from '@/src/app/_components';
 import { FieldValues } from 'react-hook-form';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
 
 function SearchBar() {

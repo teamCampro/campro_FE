@@ -99,7 +99,8 @@ function SearchBarForOverview() {
       setTimeout(() => {
         if (
           outerDivRef.current &&
-          !outerDivRef.current.contains(targetElement)
+          !outerDivRef.current.contains(targetElement) &&
+          !isMobile
         ) {
           closeButton();
         }
@@ -116,10 +117,10 @@ function SearchBarForOverview() {
   return (
     <>
       {isMobile && (
-        <div className={`inline-block w-full`}>
+        <div className={` w-full bg-white mobile:p-16pxr`}>
           <input
             name='total'
-            className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
+            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2 '
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
@@ -133,10 +134,10 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='mb-40pxr w-full max-w-1440pxr  border-b  border-gray200 py-20pxr mobile:px-0pxr'
+        className='flex-center w-full  max-w-1440pxr  border-b  border-gray200  '
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
           onSubmit={onSubmit}
         >
           <div
