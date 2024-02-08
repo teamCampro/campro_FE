@@ -9,7 +9,7 @@ import TextInfo from '../_components/TextInfo';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
 import CampSiteProfile from '../_components/CampSiteProfile';
 import CampSiteBasicInfo from '../_components/CampSiteBasicInfo';
-import CampSiteBookingInfo from '../_components/CampsiteBookingInfo';
+import CampSiteBookingInfo from '../_components/CampSiteBookingInfo';
 import CampSiteBossInfo from '../_components/CampSiteBossInfo';
 function page() {
   return (
