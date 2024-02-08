@@ -36,7 +36,7 @@ function Hero() {
       </div>
       <div className='inset-x-0 absolute bottom-[-56px] z-[98] flex w-full justify-center mobile:px-16pxr'>
         <Suspense>
-          <SearchBar page='main' />
+          <SearchBar />
         </Suspense>
       </div>
     </div>
