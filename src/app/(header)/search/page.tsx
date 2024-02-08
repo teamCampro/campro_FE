@@ -1,5 +1,6 @@
 'use client';
 
+import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import {
   CampSearchList,
   MapSizeButtons,
@@ -9,7 +10,6 @@ import {
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,

@@ -1,6 +1,6 @@
 interface LabelProps {
   children: string;
-  htmlFor: string;
+  htmlFor?: string;
   className: string;
 }
 

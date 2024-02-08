@@ -96,6 +96,7 @@ const config: Config = {
         '2/1': '2 / 1',
         '288/184': '288 / 184',
         '320/197': '320 / 197',
+        '320/220': '320 / 220',
         '340/220': '340 / 220',
         '688/398': '688 / 398',
         '719/291': '719 / 291',
@@ -111,6 +112,7 @@ const config: Config = {
       tabletMiddleMin: '1080px',
 
       mobile344: { min: '320px', max: '344px' },
+      mobile359: { min: '320px', max: '359px' },
       mobile411: { min: '320px', max: '411px' },
       mobile725: { min: '412px', max: '725px' },
       mobileMiddle: { min: '345px', max: '767px' },

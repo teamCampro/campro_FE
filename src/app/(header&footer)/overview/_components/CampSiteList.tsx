@@ -15,8 +15,8 @@ const siteInfos = [
 
 function CampSiteList() {
   return (
-    <div className='flex w-full max-w-980pxr gap-20pxr bg-gray100 px-23pxr py-24pxr mobile:max-w-767pxr mobile:flex-1 mobile:flex-col mobile:p-0pxr'>
-      <div className='flex w-full max-w-174pxr flex-col gap-12pxr mobile:contents mobile:h-full mobile:max-w-none mobile:flex-col mobile:gap-20pxr'>
+    <div className='flex w-full max-w-980pxr gap-20pxr bg-gray100 px-23pxr py-24pxr mobile:max-w-767pxr mobile:flex-1 mobile:flex-col mobile:px-20pxr mobile:pb-24pxr mobile:pt-0pxr mobile359:px-0pxr'>
+      <div className='flex w-full max-w-174pxr flex-col gap-12pxr mobile:contents mobile:h-full mobile:max-w-none mobile:flex-col mobile:gap-20pxr mobile:rounded-xl'>
         <div className='max-h-174pxr w-full max-w-174pxr mobile:h-full mobile:max-h-none mobile:max-w-none'>
           <Image
             width={174}
@@ -25,12 +25,12 @@ function CampSiteList() {
               width: '100%',
               height: 'auto',
             }}
-            className='aspect-square rounded-xl mobile:aspect-340/220 mobile:rounded-none'
+            className='aspect-square rounded-2xl mobile:aspect-340/220 mobile:rounded-b-none mobile359:rounded-none'
             src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D'
             alt='dd'
           />
         </div>
-        <div className='flex h-55pxr w-174pxr flex-col gap-2pxr mobile:h-full mobile:w-full mobile:px-20pxr'>
+        <div className='flex h-55pxr w-174pxr flex-col gap-2pxr mobile:h-full mobile:w-full mobile:rounded-b-2xl mobile:px-20pxr mobile359:rounded-none'>
           <div className='flex items-center justify-between'>
             <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
               <IconClock width='12' height='12' />
@@ -60,7 +60,7 @@ function CampSiteList() {
           </div>
         </div>
       </div>
-      <div className='flex w-full flex-col gap-12pxr'>
+      <div className='flex w-full flex-col gap-12pxr mobile:px-20pxr'>
         {siteInfos.map((siteInfo) => (
           <CampSiteItem
             key={siteInfo.campingZoneName + siteInfo.siteName}

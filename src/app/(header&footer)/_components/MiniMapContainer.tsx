@@ -1,5 +1,7 @@
 'use client';
 
+import Button from '@/components/Button';
+import { ModalOutside, ModalPortal } from '@/components/index';
 import {
   IconArrowLeftNon,
   IconArrowRightNon,
@@ -7,10 +9,8 @@ import {
   IconExit,
   IconFullPage,
 } from '@/public/svgs';
-import MinikakaoMap from './MinikakaoMap';
-import Button from '@/components/Button';
-import { ModalOutside, ModalPortal } from '@/components/index';
 import { useState } from 'react';
+import MinikakaoMap from './MinikakaoMap';
 
 function MiniMapContainer() {
   const [isClose, setIsClose] = useState(false);
@@ -37,7 +37,7 @@ function MiniMapContainer() {
           />
         </div>
       </h3>
-      <div className='relative hidden w-340pxr flex-col rounded-xl border border-gray200 tabletMiddleMin:flex'>
+      <div className='hidden w-340pxr flex-col rounded-xl border border-gray200 tabletMiddleMin:flex'>
         <Button.Circle
           size='sm'
           custom='bg-white !w-56pxr !h-48pxr absolute top-75pxr border border-gray300 flex-center py-12pxr px-16pxr z-10 right-12pxr hover:!bg-white'

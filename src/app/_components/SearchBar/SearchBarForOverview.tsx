@@ -1,17 +1,17 @@
 'use client';
 
+import useMediaQueries from '@/hooks/useMediaQueries';
 import {
-  CommonForm,
   Button,
-  GroupCountController,
+  CommonForm,
   DatePickerController,
+  GroupCountController,
   LocationController,
 } from '@/src/app/_components';
-import { FieldValues } from 'react-hook-form';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
-import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
+import { useEffect, useRef, useState } from 'react';
+import { FieldValues } from 'react-hook-form';
+import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
 
 function SearchBarForOverview() {
@@ -116,7 +116,7 @@ function SearchBarForOverview() {
   return (
     <>
       {isMobile && (
-        <div className={`inline-block  w-full px-40pxr`}>
+        <div className={`inline-block w-full`}>
           <input
             name='total'
             className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
@@ -136,7 +136,7 @@ function SearchBarForOverview() {
         className='mb-40pxr w-full max-w-1440pxr  border-b  border-gray200 py-20pxr mobile:px-0pxr'
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white    ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
           onSubmit={onSubmit}
         >
           <div
