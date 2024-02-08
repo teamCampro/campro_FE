@@ -2,14 +2,13 @@ import Chip from '@/components/Chip';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
 import CampSiteList from '../_components/CampSiteList';
-import SearchBar from '@/components/SearchBar';
 import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
 import Category from '@/components/Category';
 import Progress from '../_components/Progress';
 import TextInfo from '../_components/TextInfo';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
-
+import Copy from '@/components/Copy';
 function page() {
   return (
     <div className='m-auto w-full max-w-1360pxr'>
@@ -34,9 +33,7 @@ function page() {
                     </span>
                     충남 아산시 배방읍 솔치로 17-32
                   </h3>
-                  <span className='text-second100 font-body2-semibold'>
-                    복사
-                  </span>
+                  <Copy copyTarget='충남 아산시 배방읍 솔치로 17-32'>복사</Copy>
                 </li>
                 <li className='flex gap-4pxr'>
                   <h3 className='flex-center justify-start font-medium !leading-none text-gray600 font-body2'>
@@ -50,9 +47,7 @@ function page() {
                     </span>
                     042-123-4567
                   </h3>
-                  <span className='text-second100 font-body2-semibold'>
-                    복사
-                  </span>
+                  <Copy copyTarget='042-123-4567'>복사</Copy>
                 </li>
               </ul>
             </div>
@@ -63,8 +58,22 @@ function page() {
                 </h3>
                 <span>전체보기</span>
               </div>
-              <ul>
-                <Progress />
+              <ul className='flex flex-col gap-8pxr'>
+                <Progress
+                  keywordPercentage='40'
+                  keyword='깨끗해요'
+                  keywordCount='1900'
+                />
+                <Progress
+                  keywordPercentage='20'
+                  keyword='매너 타임을 잘 지켜요 '
+                  keywordCount='950'
+                />
+                <Progress
+                  keywordPercentage='10'
+                  keyword='조용해요'
+                  keywordCount='475'
+                />
               </ul>
               <div className='my-24pxr w-700pxr border-b border-gray200'></div>
             </div>

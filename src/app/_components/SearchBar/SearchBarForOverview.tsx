@@ -133,7 +133,7 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='w-full max-w-1440pxr px-40pxr mobile:px-0pxr'
+        className='mb-40pxr w-full max-w-1440pxr  border-b  border-gray200 py-20pxr mobile:px-0pxr'
       >
         <CommonForm
           className={`flex w-full justify-between rounded-2xl bg-white    ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
