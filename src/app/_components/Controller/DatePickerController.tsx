@@ -5,7 +5,7 @@ import { ko } from 'date-fns/locale';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import DatePicker, { ReactDatePicker } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, Field, useFormContext } from 'react-hook-form';
 import {
   Button,
   CustomHeaderForDatePicker,
@@ -19,12 +19,14 @@ interface Props {
   name: string;
   checkIn?: string;
   checkOut?: string;
+  onRenderButton?: () => void;
 }
 
 function DatePickerController({
   name,
   checkIn: initCheckIn,
   checkOut: initCheckOut,
+  onRenderButton,
 }: Props) {
   const control = useFormContext().control;
   const fieldRef = useRef<ControllerRenderProps | null>(null);
@@ -157,6 +159,7 @@ function DatePickerController({
             dateFormatCalendar='yyyy MM월'
             selectsRange={true}
             locale={ko}
+            onInputClick={onRenderButton}
             minDate={new Date()}
             startDate={tempDates[0]}
             endDate={tempDates[1]}

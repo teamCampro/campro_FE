@@ -1,5 +1,7 @@
 'use client';
 
+import Button from '@/components/Button';
+import { ModalOutside, ModalPortal } from '@/components/index';
 import {
   IconArrowLeftNon,
   IconArrowRightNon,
@@ -7,10 +9,8 @@ import {
   IconExit,
   IconFullPage,
 } from '@/public/svgs';
-import MinikakaoMap from './MinikakaoMap';
-import Button from '@/components/Button';
-import { ModalOutside, ModalPortal } from '@/components/index';
 import { useState } from 'react';
+import MinikakaoMap from './MinikakaoMap';
 
 function MiniMapContainer() {
   const [isClose, setIsClose] = useState(false);
@@ -24,7 +24,7 @@ function MiniMapContainer() {
   return (
     <>
       <h3
-        className='tabletMiddleMin:hidden flex text-second100'
+        className='flex text-second100 tabletMiddleMin:hidden'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>
@@ -37,7 +37,7 @@ function MiniMapContainer() {
           />
         </div>
       </h3>
-      <div className='tabletMiddleMin:flex relative hidden w-340pxr flex-col rounded-xl border border-gray200'>
+      <div className='hidden w-340pxr flex-col rounded-xl border border-gray200 tabletMiddleMin:flex'>
         <Button.Circle
           size='sm'
           custom='bg-white !w-56pxr !h-48pxr absolute top-75pxr border border-gray300 flex-center py-12pxr px-16pxr z-10 right-12pxr hover:!bg-white'
@@ -67,7 +67,7 @@ function MiniMapContainer() {
             onClose={handleClick}
             custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 tabletMin:px-40pxr mobile: justify-center mobile:items-center'
           >
-            <div className='tabletMiddleMin:h-672pxr tabletMiddleMin:max-w-767pxr tablet1079:max-w-688pxr tablet1079:h-610pxr h-screen w-full bg-white tabletMin:rounded-2xl'>
+            <div className='h-screen w-full bg-white tabletMin:rounded-2xl tabletMiddleMin:h-672pxr tabletMiddleMin:max-w-767pxr tablet1079:h-610pxr tablet1079:max-w-688pxr'>
               <div className='flex-center relative py-16pxr font-title3-semibold tabletMin:font-title1-bold'>
                 <div className='absolute left-20pxr top-1/2 h-26pxr w-26pxr -translate-y-1/2'>
                   <IconExit
@@ -76,7 +76,7 @@ function MiniMapContainer() {
                     viewBox='0 0 24 24'
                     fill='#949494'
                     onClick={handleClose}
-                    className='hidden tabletMin:inline-block'
+                    className='top-0 absolute hidden tabletMin:inline-block'
                   />
                   <IconArrowLeftNon
                     width='100%'
@@ -84,7 +84,7 @@ function MiniMapContainer() {
                     viewBox='0 0 24 24'
                     fill='#949494'
                     onClick={handleClose}
-                    className='inline-block tabletMin:hidden '
+                    className='top-0 absolute inline-block tabletMin:hidden '
                   />
                 </div>
                 <h3>자연숲 캠핑장</h3>

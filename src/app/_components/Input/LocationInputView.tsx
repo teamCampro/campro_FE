@@ -17,11 +17,13 @@ interface Field {
 interface Props {
   field: Field;
   locations: string[];
+  onRenderButton?: () => void;
 }
 
 function LocationInputView({
   field: { onChange, value, ...field },
   locations,
+  onRenderButton,
 }: Props): JSX.Element {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
@@ -73,7 +75,8 @@ function LocationInputView({
         <div className=' flex w-full  gap-4pxr'>
           <IconLocation className='absolute left-16pxr top-16pxr ' />
           <input
-          readOnly={isMobile ? true : false}
+            onClick={onRenderButton}
+            readOnly={mobileMediaQuery && mobileMediaQuery}
             autoComplete='off'
             {...field}
             onChange={handleInputChange}
