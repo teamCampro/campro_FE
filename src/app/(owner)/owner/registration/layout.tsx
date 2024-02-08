@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import OwnerHeader from '../../_components/OwnerHeader';
-import OwnerButton from '../../_components/OwnerButton';
 import OwnerBottomController from '../../_components/OwnerBottomController';
 
 interface Props {
@@ -9,10 +8,12 @@ interface Props {
 
 function layout({ children }: Props) {
   return (
-    <div className='px-80pxr'>
-      <OwnerHeader />
-      {children}
-      {/* <OwnerBottomController /> */}
+    <div className='relative pb-120pxr'>
+      <div className='px-80pxr'>
+        <OwnerHeader />
+        {children}
+      </div>
+      <OwnerBottomController />
     </div>
   );
 }

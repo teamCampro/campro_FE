@@ -4,7 +4,7 @@ import OwnerTitle from '../../../_components/OwnerTitle';
 function IntroductionPage() {
   return (
     <div className='flex flex-col items-center gap-110pxr'>
-      <OwnerTitle>마지막으로 캠핑장 소개글을 작성해주세요 !</OwnerTitle>
+      <OwnerTitle>캠핑장 소개글을 작성해주세요 !</OwnerTitle>
       <div className='flex flex-col gap-13pxr'>
         <span className='flex text-20pxr font-semibold '>소개글</span>
         <div className='h-419pxr w-1060pxr '>
