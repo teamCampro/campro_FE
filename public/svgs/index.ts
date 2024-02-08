@@ -46,3 +46,5 @@ export { default as IconTent } from './tent.svg';
 export { default as IconCopy } from './copy.svg';
 export { default as IconFullPage } from './fullPage.svg';
 export { default as IconExit } from './exit.svg';
+export { default as IconCall } from './call.svg';
+export { default as IconStar } from './star.svg';
