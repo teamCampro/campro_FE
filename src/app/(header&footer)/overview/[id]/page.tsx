@@ -1,14 +1,16 @@
-import Chip from '@/components/Chip';
+import { IconStar } from '@/public/svgs';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
 import CampSiteList from '../_components/CampSiteList';
-import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
 import Category from '@/components/Category';
 import Progress from '../_components/Progress';
 import TextInfo from '../_components/TextInfo';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
-import Copy from '@/components/Copy';
+import CampSiteProfile from '../_components/CampSiteProfile';
+import CampSiteBasicInfo from '../_components/CampSiteBasicInfo';
+import CampSiteBookingInfo from '../_components/CampsiteBookingInfo';
+import CampSiteBossInfo from '../_components/CampSiteBossInfo';
 function page() {
   return (
     <div className='m-auto w-full max-w-1360pxr'>
@@ -17,40 +19,7 @@ function page() {
       <main className='overview mt-40pxr grid'>
         <div>
           <section>
-            <div className='mb-32pxr'>
-              <Chip>텐트캠핑</Chip>
-              <h2 className='mb-12pxr font-h2'>자연숲캠핑장</h2>
-              <ul className='flex flex-col gap-8pxr'>
-                <li className='flex gap-4pxr'>
-                  <h3 className='flex-center justify-start font-medium !leading-none text-gray600 font-body2'>
-                    <span className='inline-block h-20pxr w-20pxr'>
-                      <IconLocation
-                        width='100%'
-                        height='100%'
-                        viewBox='0 0 24 24'
-                        fill='#949494'
-                      />
-                    </span>
-                    충남 아산시 배방읍 솔치로 17-32
-                  </h3>
-                  <Copy copyTarget='충남 아산시 배방읍 솔치로 17-32'>복사</Copy>
-                </li>
-                <li className='flex gap-4pxr'>
-                  <h3 className='flex-center justify-start font-medium !leading-none text-gray600 font-body2'>
-                    <span className='inline-block h-20pxr w-20pxr'>
-                      <IconCall
-                        width='100%'
-                        height='100%'
-                        viewBox='0 0 24 24'
-                        fill='#949494'
-                      />
-                    </span>
-                    042-123-4567
-                  </h3>
-                  <Copy copyTarget='042-123-4567'>복사</Copy>
-                </li>
-              </ul>
-            </div>
+            <CampSiteProfile />
             <div>
               <div className='flex justify-between'>
                 <h3 className='mb-12pxr text-gray-500 font-body2-semibold'>
@@ -59,34 +28,13 @@ function page() {
                 <span>전체보기</span>
               </div>
               <ul className='flex flex-col gap-8pxr'>
-                <Progress
-                  keywordPercentage='40'
-                  keyword='깨끗해요'
-                  keywordCount='1900'
-                />
-                <Progress
-                  keywordPercentage='20'
-                  keyword='매너 타임을 잘 지켜요 '
-                  keywordCount='950'
-                />
-                <Progress
-                  keywordPercentage='10'
-                  keyword='조용해요'
-                  keywordCount='475'
-                />
+                <Progress />
               </ul>
               <div className='my-24pxr w-700pxr border-b border-gray200'></div>
             </div>
           </section>
           <section className='flex flex-col gap-32pxr'>
-            <div className='flex flex-col gap-16pxr'>
-              <h2 className='text-black font-body1-bold'>기본 정보</h2>
-              <p className='font-medium text-gray500 font-body2'>
-                전통이라는 지붕 위에 모더니즘적 디자인 요소를 가미, 삶에 여유와
-                품격을 한층 높여 주는 프리미엄 라이프 스타일 공간으로 변화를
-                거듭해 오는 세계 최고의 캠핑장입니다.
-              </p>
-            </div>
+            <CampSiteBasicInfo />
             <div className='flex flex-col gap-16pxr'>
               <h2 className='text-black font-body1-bold'>시설 환경</h2>
               <Category />
@@ -103,18 +51,7 @@ function page() {
               </div>
             </div>
             <div className='flex flex-col gap-16pxr'>
-              <h2 className='text-black font-body1-bold'>예약 안내</h2>
-              <ul className='flex flex-col gap-4pxr rounded-xl bg-white px-24pxr py-20pxr font-medium text-gray600 shadow-overView font-body2'>
-                <li>
-                  · 매너 타임 : <span>22:00 - 08:00 (모든 타입 동일)</span>
-                </li>
-                <li>
-                  · 오픈 주기 : <span>매월 2일 6시 (2개월 단위)</span>
-                </li>
-                <li>
-                  · 다음 예약 오픈일 : <span>2024.03.02일 오전 10시</span>
-                </li>
-              </ul>
+              <CampSiteBookingInfo />
             </div>
             <div>
               <CampSiteList />
@@ -129,27 +66,7 @@ function page() {
               <TextInfo text='cancelRules' />
             </div>
             <div className='flex flex-col gap-16pxr'>
-              <h2 className='text-black font-body1-bold'>판매자 정보</h2>
-              <ul className='font-medium text-gray500 font-body2'>
-                <li>
-                  대표자: <span>도주용</span>
-                </li>
-                <li>
-                  상호명: <span>자연숲 캠핑장</span>
-                </li>
-                <li>
-                  사업자 주소: <span>충남 아산시 배방옵 솔치로 17-31</span>
-                </li>
-                <li>
-                  이메일: <span>bbtf1731@naver.com</span>
-                </li>
-                <li>
-                  사업자 등록 번호: <span>338-88-01159</span>
-                </li>
-                <li>
-                  관광사업(야영장) 등록번호: <span>제2022-000001호</span>
-                </li>
-              </ul>
+              <CampSiteBossInfo />
             </div>
           </section>
           <section>
