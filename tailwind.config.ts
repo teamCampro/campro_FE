@@ -152,21 +152,22 @@ const config: Config = {
   plugins: [
     plugin(({ addUtilities }) => {
       const newUtilities = {
-        '.font-h1': {
+        '.font-h1-semibold': {
           fontSize: pxToRem(48),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.48),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-h2': {
+        '.font-h2-semibold': {
           fontSize: pxToRem(32),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.32),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-h3': {
+
+        '.font-h3-semibold': {
           fontSize: pxToRem(28),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.28),
@@ -193,17 +194,10 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-title2-semibold': {
+        '.font-title2-bold': {
           fontSize: pxToRem(22),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.22),
-          fontWeight: '600',
-          fontFamily: 'Pretendard',
-        },
-        '.font-title2-bold': {
-          fontSize: pxToRem(24),
-          lineHeight: '1.6',
-          letterSpacing: pxToRem(-0.48),
           fontWeight: '700',
           fontFamily: 'Pretendard',
         },
@@ -221,6 +215,14 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
+        '.font-title3-medium': {
+          fontSize: pxToRem(20),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.2),
+          fontWeight: '500',
+          fontFamily: 'Pretendard',
+        },
+
         '.font-body1': {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
@@ -238,7 +240,7 @@ const config: Config = {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
-          fontWeight: '600',
+          fontWeight: '500',
           fontFamily: 'Pretendard',
         },
         '.font-body2': {
@@ -247,6 +249,13 @@ const config: Config = {
           letterSpacing: pxToRem(-0.16),
           fontFamily: 'Pretendard',
         },
+        '.font-body2-medium': {
+          fontSize: pxToRem(16),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.16),
+          fontFamily: 'Pretendard',
+          fontWeight: '500',
+        },
         '.font-body2-semibold': {
           fontSize: pxToRem(16),
           lineHeight: '1.4',
@@ -254,11 +263,12 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-caption1': {
+        '.font-caption1-medium': {
           fontSize: pxToRem(14),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.14),
           fontFamily: 'Pretendard',
+          fontWeight: '500',
         },
         '.font-caption1-semibold': {
           fontSize: pxToRem(14),
@@ -267,11 +277,12 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-caption2': {
+        '.font-caption2-medium': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.12),
           fontFamily: 'Pretendard',
+          fontWeight: '500',
         },
         '.font-caption2-semibold': {
           fontSize: pxToRem(12),
