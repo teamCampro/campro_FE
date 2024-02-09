@@ -13,9 +13,10 @@ interface GroupCount {
 interface Props {
   name: string;
   groupCount: GroupCount;
+  onRenderButton?: () => void;
 }
 
-function GroupCountController({ name, groupCount }: Props) {
+function GroupCountController({ name, groupCount, onRenderButton }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -23,7 +24,9 @@ function GroupCountController({ name, groupCount }: Props) {
       control={control}
       defaultValue={groupCount}
       name={name}
-      render={({ field }) => <GroupCountInputView field={field} />}
+      render={({ field }) => (
+        <GroupCountInputView field={field} onRenderButton={onRenderButton} />
+      )}
     />
   );
 }

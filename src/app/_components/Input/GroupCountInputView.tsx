@@ -15,6 +15,7 @@ interface Field {
 
 interface Props {
   field: Field;
+  onRenderButton?: () => void;
 }
 
 interface Group {
@@ -23,7 +24,10 @@ interface Group {
   pet: number;
 }
 
-function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
+function GroupCountInputView({
+  field: { onBlur, ...field },
+  onRenderButton,
+}: Props) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [group, setGroup] = useState(field.value);
   const [tempGroup, setTempGroup] = useState(group);
@@ -71,7 +75,10 @@ function GroupCountInputView({ field: { onBlur, ...field } }: Props) {
         <IconPeople className='absolute left-16pxr top-16pxr ' />
         <input
           {...field}
-          onClick={handleRenderDropdown}
+          onClick={() => {
+            handleRenderDropdown();
+            if (onRenderButton) onRenderButton();
+          }}
           onBlur={onBlur}
           value={`성인 ${group?.adult}명, 아동 ${group?.child}명, 펫 ${group?.pet}마리`}
           name='groupCount'
