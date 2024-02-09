@@ -1,8 +1,8 @@
 'use client';
-import { CampImageData } from '.';
-import Image from 'next/image';
 import AllPictureIcon from '@/public/svgs/pic.svg';
+import Image from 'next/image';
 import { useState } from 'react';
+import { CampImageData } from '.';
 import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
 function CampImageForDesktop({

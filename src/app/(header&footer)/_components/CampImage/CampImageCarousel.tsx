@@ -1,10 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { CampImageData } from '.';
-import Image from 'next/image';
-import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
-import { useState } from 'react';
 import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
 function CampImageCarousel({
@@ -41,7 +41,7 @@ function CampImageCarousel({
             item.imgUrl ? (
               <SwiperSlide className='flex w-full' key={item.id}>
                 <Image
-                  className='flex w-full object-cover'
+                  className='flex w-full rounded-2xl object-cover mobile:rounded-none'
                   src={item.imgUrl}
                   alt={`camp-image${i}`}
                   width={688}

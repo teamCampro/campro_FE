@@ -45,6 +45,7 @@ const config: Config = {
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
         header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
         overView: '0px 0px 24px 0px rgba(0, 0, 0, 0.07)',
+        overViewButton: '0px 2px 8px 0px rgba(0, 0, 0, 0.24)',
         reserve: '0px 2px 8px 0px rgba(0, 0, 0, 0.24)',
       },
       backgroundColor: {
@@ -111,7 +112,6 @@ const config: Config = {
       },
       tabletMin: '768px',
       tabletMiddleMin: '1080px',
-
       mobile344: { min: '320px', max: '344px' },
       mobile359: { min: '320px', max: '359px' },
       mobile411: { min: '320px', max: '411px' },
@@ -203,11 +203,18 @@ const config: Config = {
           fontWeight: '700',
           fontFamily: 'Pretendard',
         },
+        '.font-title2-semibold': {
+          fontSize: pxToRem(22),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.22),
+          fontWeight: '700',
+          fontFamily: 'Pretendard',
+        },
         '.font-title3-bold': {
           fontSize: pxToRem(20),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.2),
-          fontWeight: '700',
+          fontWeight: '600',
           fontFamily: 'Pretendard',
         },
         '.font-title3-semibold': {
