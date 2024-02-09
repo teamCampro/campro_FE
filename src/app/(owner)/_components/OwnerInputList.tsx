@@ -7,6 +7,10 @@ import {
   Label,
 } from '@/components/index';
 import { ownerValidate } from '../../_constants/inputValidate';
+import {
+  handleChangeOwnerInputValue,
+  handleOwnerInputDefaultValue,
+} from '../_utils/inputValueStorageHandler';
 
 function OwnerInputList() {
   return (
@@ -26,6 +30,8 @@ function OwnerInputList() {
             name={input.name}
             className='!h-65pxr !rounded-[16px] !text-18pxr focus:border-2 focus:border-black'
             rules={ownerValidate}
+            onBlur={(e) => handleChangeOwnerInputValue(e, input.name)}
+            defaultValue={handleOwnerInputDefaultValue(input.name)}
           />
           <ErrorMessage name={input.name} />
         </InputContainer>

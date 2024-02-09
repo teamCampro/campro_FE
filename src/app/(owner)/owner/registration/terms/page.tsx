@@ -12,12 +12,14 @@ function TermsPage() {
       </OwnerTitle>
       <div className='flex flex-col gap-60pxr'>
         <OwnerTextArea
+          name='informationUse'
           title='이용 안내'
           placeholder='이용 안내문을 입력 해 주세요'
           defaultValue={informationUse}
         />
         <hr className='w-full' />
         <OwnerTextArea
+          name='cancellationRefundPolicy'
           title='취소/환불 규정'
           placeholder='취소/환불 규정을 입력 해 주세요'
           defaultValue={cancellationRefundPolicy}

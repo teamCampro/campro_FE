@@ -6,6 +6,7 @@ import {
   passwordCheckValidate,
 } from '../../_constants/inputValidate';
 import { RegisterOptions } from 'react-hook-form';
+import { ChangeEvent } from 'react';
 interface Props {
   name: string;
   type?: string;
@@ -14,6 +15,8 @@ interface Props {
   readOnly?: boolean;
   rules?: RegisterOptions;
   defaultValue?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 function CommonInput({
   name,
@@ -23,6 +26,8 @@ function CommonInput({
   readOnly,
   rules = requiredValidate,
   defaultValue,
+  onChange,
+  onBlur,
 }: Props) {
   const {
     register,
@@ -50,6 +55,8 @@ function CommonInput({
       className={inputCss(errors[name] ? true : false, className)}
       readOnly={readOnly}
       defaultValue={defaultValue}
+      onChange={onChange}
+      onBlur={onBlur}
     />
   );
 }
