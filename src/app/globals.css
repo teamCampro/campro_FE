@@ -133,6 +133,10 @@ body {
   width: 340px;
 }
 
+.overview {
+  grid-template-columns: minmax(700px, 980px) 420px;
+}
+
 .filterHidden {
   overflow: clip;
   overflow-y: visible;
@@ -156,6 +160,21 @@ body {
 
 #detail-swiper .swiper-pagination-bullet-active {
   background-color: #4f9e4f;
+}
+/* progress */
+#progress::-webkit-progress-bar {
+  background: #f5f5f5;
+  border-radius: 6px;
+  border: 1px solid #eeeeee;
+  height: 46px;
+  overflow: hidden;
+}
+
+#progress::-webkit-progress-value {
+  background: #dfd5c2;
+  border-radius: 6px;
+  height: 46px;
+  width: 48px;
 }
 
 @media (min-width: 1200px) {
