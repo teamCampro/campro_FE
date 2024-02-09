@@ -181,6 +181,7 @@ const config: Config = {
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.24),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-title1-bold': {
           fontSize: pxToRem(24),
@@ -207,7 +208,7 @@ const config: Config = {
           fontSize: pxToRem(22),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.22),
-          fontWeight: '700',
+          fontWeight: '600',
           fontFamily: 'Pretendard',
         },
         '.font-title3-bold': {
@@ -237,6 +238,14 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
+        },
+        '.font-body1-semibold': {
+          fontSize: pxToRem(18),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.18),
+          fontFamily: 'Pretendard',
+          fontWeight: '600',
         },
         '.font-body1-bold': {
           fontSize: pxToRem(18),
@@ -257,6 +266,7 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.16),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-body2-medium': {
           fontSize: pxToRem(16),
@@ -285,6 +295,13 @@ const config: Config = {
           letterSpacing: pxToRem(-0.14),
           fontWeight: '600',
           fontFamily: 'Pretendard',
+        },
+        '.font-caption2': {
+          fontSize: pxToRem(12),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.12),
+          fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-caption2-medium': {
           fontSize: pxToRem(12),
