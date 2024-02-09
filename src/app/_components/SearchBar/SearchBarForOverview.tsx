@@ -6,9 +6,13 @@ import {
   CommonForm,
   DatePickerController,
   GroupCountController,
-  LocationController,
 } from '@/src/app/_components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
@@ -17,6 +21,7 @@ import PlaceController from '../Controller/PlaceController';
 
 function SearchBarForOverview() {
   const router = useRouter();
+  const path = useParams();
   const searchParams = useSearchParams();
 
   const [isTotalInput, setIsTotalInput] = useState(false);
@@ -30,7 +35,6 @@ function SearchBarForOverview() {
 
   const onSubmit = (data: FieldValues) => {
     if (Array.isArray(data.date) && data.date.length === 2) {
-      const place = encodeURIComponent(data.place);
       const checkIn = encodeURIComponent(
         new Date(data.date[0].toLocaleDateString('fr-CA'))
           .toISOString()
@@ -45,7 +49,7 @@ function SearchBarForOverview() {
 
       const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
-      router.push(`/overview/1/${place}?${queryString}`);
+      router.push(`/overview/${path.id}/?${queryString}`);
     } else {
       console.error('Invalid date range');
     }
@@ -58,9 +62,9 @@ function SearchBarForOverview() {
     const checkOut = searchParams.get('checkOut');
     const group = searchParams.get('group');
 
-    if (location && checkIn && checkOut && group) {
+    if (path.id && checkIn && checkOut && group) {
       const groupObj = JSON.parse(group);
-      value = `${place}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
+      value = `${path.id}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
     }
 
     return value;
@@ -146,7 +150,7 @@ function SearchBarForOverview() {
           >
             <PlaceController
               name='place'
-              default={searchParams.get('place') || ''}
+              default={`${path.id}` || ''}
               onRenderButton={renderButton}
             />
             <DatePickerController
