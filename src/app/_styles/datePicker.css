@@ -320,6 +320,9 @@
   .react-datepicker__tab-loop {
     position: relative !important;
   }
+  .react-datepicker__day.react-datepicker__day--in-range.react-datepicker__day--range-end {
+    border-radius: 0 24px 24px 0px !important;
+  }
 }
 
 .react-datepicker__day--disabled:hover {
@@ -393,6 +396,7 @@
   .react-datepicker__portal {
     background-color: rgba(0, 0, 0, 0.5) !important;
     bottom: 0 !important;
+    height: 100dvh !important;
   }
 
   .react-datepicker__navigation {
@@ -418,6 +422,11 @@
   }
   .react-datepicker__tab-loop {
     position: relative !important;
+  }
+  .react-datepicker__day--range-start.react-datepicker__day--in-range.react-datepicker__day--today:not(
+      .react-datepicker__day--range-end
+    ) {
+    border-radius: 24px 0px 0px 24px !important;
   }
 }
 

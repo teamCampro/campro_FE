@@ -6,21 +6,21 @@ import { IconFilter } from '@/public/svgs';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-interface Type {
+interface DetailPanelType {
   handleDropClick: (id: number) => void;
   handleOpen: () => void;
 }
 
-function DetailPanel({ handleDropClick, handleOpen }: Type) {
+function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
   const details = useAppSelector((state) => state.detail);
 
   return (
-    <div className='w-full bg-white mobile:flex-col'>
-      <div className='m-auto flex max-w-1440pxr items-center justify-start gap-8pxr mobile:justify-center'>
+    <div className='w-full bg-white'>
+      <div className='relative m-auto flex max-w-1360pxr items-center justify-start gap-8pxr mobile:justify-center tabletMin:px-40pxr tabletMin:pt-16pxr'>
         <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold mobile:hidden'>
           상세필터
         </h3>
-        <div className='flex gap-6pxr mobile:w-full mobile:flex-col mobile:px-24pxr'>
+        <div className='filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:border-b mobile:border-t mobile:border-gray300 mobile:px-0pxr'>
           <Swiper
             modules={[FreeMode]}
             freeMode={true}
@@ -43,7 +43,7 @@ function DetailPanel({ handleDropClick, handleOpen }: Type) {
               return (
                 <SwiperSlide
                   key={detail.id}
-                  className={`${textLength ? '!w-121pxr' : '!w-90pxr'} z-0 mobile:!w-full`}
+                  className={`${textLength ? '!w-121pxr' : '!w-90pxr'}  mobile:!w-full`}
                 >
                   <Selectable
                     handleDropClick={handleDropClick}
@@ -59,7 +59,7 @@ function DetailPanel({ handleDropClick, handleOpen }: Type) {
         <button
           type='button'
           onClick={handleOpen}
-          className='custom-gradient z-10 flex flex-1 gap-16pxr mobileMin:justify-end mobile:hidden'
+          className='custom-gradient absolute -right-60pxr z-10 flex w-150pxr -translate-x-1/2 justify-center mobile:hidden'
         >
           <div className='flex h-48pxr w-96pxr cursor-pointer items-center gap-4pxr rounded-full border bg-white py-12pxr pl-20pxr pr-14pxr font-medium'>
             <h3 className='whitespace-nowrap text-center text-gray600 font-body2-semibold'>

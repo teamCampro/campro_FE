@@ -1,13 +1,24 @@
 'use client';
 
 import { IconArrowUp, IconReset } from '@/public/svgs';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Button } from '..';
-
-import { useDispatch } from 'react-redux';
-import { setClose, setDetailState, setIsCheck } from '../../_utils/detailState';
-import PriceTable from './_components/PriceTable';
 import SelectList from './_components/SelectList';
+import PriceTable from './_components/PriceTable';
+import { useDispatch } from 'react-redux';
+import { setClose, setDetailState } from '../../_utils/detailState';
+import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
+import {
+  InitialStateType,
+  setReset,
+  setSelect,
+} from '../../_utils/styleSetting';
+import {
+  setCheckStandBy,
+  setResetAllStandBy,
+  setResetStandBy,
+} from '../../_utils/checkStandByState';
 
 interface TypeInfoType {
   id: number;
@@ -29,86 +40,165 @@ interface LengthType {
   '5': string;
 }
 
+export interface CheckStandByListType {
+  [key: string]: InitialStateType[];
+  stay: InitialStateType[];
+  home: InitialStateType[];
+  theme: InitialStateType[];
+  trip: InitialStateType[];
+}
+
+export interface PriceType {
+  startPrice: string;
+  endPrice: string;
+}
+
 const LENTH: LengthType = {
   '2': 'w-90pxr',
   '5': 'w-121pxr',
 };
 
 function Selectable({ children, typeInfo, handleDropClick }: Props) {
-  const textLength = children?.toString().length;
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
+  const checkList = useAppSelector((state) => state.styleSetting);
+  const StandByList = useAppSelector((state) => state.checkStandBy);
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+  const [price, setPrice] = useState({
+    startPrice: '',
+    endPrice: '',
+  });
 
+  const textLength = children?.toString().length;
+
+  //dropdown열고&닫기
   const handleOpen = () => {
     if (!handleDropClick) return;
+    const types = typeInfo.name;
+
+    if (!isMobile) {
+      dispatch(setResetAllStandBy());
+    }
+
+    if (checkList.select[types].length > 0) {
+      checkList.select[types].map((list) => {
+        dispatch(setCheckStandBy({ types, list }));
+      });
+    }
+
     handleDropClick(typeInfo.id);
-    /*  if (!typeInfo.isCheck) {
-      dispatch(setReset(typeInfo.name));
-    } */
   };
 
-  const handleCheck = () => {
+  //가격 객체 새로 만들어서 대기상태와 확정상태로 넣기
+  const getNewPrice = (types: string, size = 'pc') => {
+    const list = {
+      id: 0,
+      type: `${price.startPrice}원-${price.endPrice}원`,
+    };
+    if (size !== 'mobile') {
+      dispatch(setSelect({ list, types }));
+    } else {
+      dispatch(setCheckStandBy({ types, list }));
+    }
+  };
+
+  //pc&tablet 선택 확정
+  const handleFinalCheck = (types: string) => {
+    dispatch(setReset(types));
+    if (types !== 'prices') {
+      StandByList[types].map((list) => {
+        dispatch(setSelect({ list, types }));
+      });
+    } else {
+      getNewPrice(types);
+    }
+
     dispatch(setDetailState(typeInfo.id));
-    dispatch(setIsCheck(typeInfo.id));
+  };
+
+  //외부 클릭시 닫기
+  const handleClickOutside = (event: any) => {
+    if (!divRef.current || !buttomRef.current) return;
+    if (divRef.current && !buttomRef.current.contains(event.target)) {
+      const types = typeInfo.name;
+      dispatch(setResetAllStandBy());
+      if (checkList.select[types].length > 0) {
+        checkList.select[types].map((list) => {
+          dispatch(setCheckStandBy({ types, list }));
+        });
+      }
+      dispatch(setClose(false));
+    }
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!divRef.current || !buttomRef.current) return;
-      if (divRef.current && buttomRef.current.contains(event.target)) {
-      } else {
-        dispatch(setClose(false));
-      }
-    };
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [dispatch]);
+  }, []);
+
+  //초기화
+  const handleReset = (type: string) => {
+    dispatch(setReset(type));
+    dispatch(setResetStandBy(type));
+  };
 
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none`}
+        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
         ref={buttomRef}
       >
         <div
-          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between'
+          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
-          <h3 className='whitespace-nowrap text-gray600 font-body2 mobile:text-black mobile:font-title3-semibold'>
+          <h3
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2 mobile:text-black mobile:font-title3-semibold`}
+          >
             {children}
           </h3>
-          <div className={`${typeInfo.isDone && 'arrowDown'} w-full`}>
+          <div className={`${typeInfo.isDone ? '' : 'arrowDown'}`}>
             <IconArrowUp fill='#949494' />
           </div>
         </div>
         {typeInfo.isDone && (
           <div
-            className='absolute left-0pxr top-50pxr rounded-[20px] bg-white mobile:static'
+            className={`absolute left-0pxr top-66pxr rounded-[20px] bg-white shadow-searchBar mobile:static ${typeInfo.name === 'theme' || typeInfo.name === 'trip' ? 'tablet:-left-208pxr' : ''} `}
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:h-78pxr mobile:px-16pxr mobile:py-12pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
                 <SelectList types={typeInfo.name} />
               ) : (
-                <PriceTable />
+                <PriceTable
+                  setPrice={setPrice}
+                  price={price}
+                  getNewPrice={getNewPrice}
+                  types={typeInfo.name}
+                />
               )}
             </ul>
-
-            <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:hidden'>
-              <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+            <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:m-auto mobile:hidden mobile:max-w-400pxr mobile:px-20pxr'>
+              <div
+                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                onClick={() => handleReset(typeInfo.name)}
+              >
                 초기화
                 <IconReset fill='#C8C8C8' />
               </div>
               <Button.Round
                 size='sm'
                 custom='w-174pxr h-56pxr'
-                onClick={handleCheck}
+                onClick={() => handleFinalCheck(typeInfo.name)}
               >
                 적용
               </Button.Round>

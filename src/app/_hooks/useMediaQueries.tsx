@@ -14,7 +14,7 @@ const useMediaQueries = ({ breakpoint }: UseMediaQueriesProps) => {
 
   useEffect(() => {
     const mediaQueryList = matchMedia(`(max-width: ${breakpoint}px)`);
-    const matches = window.innerWidth < breakpoint;
+    const matches = window.innerWidth <= breakpoint;
     setMediaQuery((prev) => ({
       ...prev,
       matches,

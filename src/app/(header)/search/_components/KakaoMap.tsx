@@ -1,6 +1,6 @@
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
-import { MapSizeType } from '../search/page';
+import { MapSizeType } from '../page';
 
 interface Props {
   map: kakao.maps.Map | null;
@@ -41,15 +41,19 @@ function KakaoMap({ map, setMap, mapSize, isZoomButtonShadow = false }: Props) {
           level: 3,
         };
         if (!mapRef.current) return;
+        console.count('map');
         const map = new window.kakao.maps.Map(mapRef.current, options);
         setMap(map);
       });
     }
-  }, [map, setMap]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!map) return;
     map.relayout();
+    console.count('re');
   }, [mapSize, map]);
 
   return (

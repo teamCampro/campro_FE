@@ -44,6 +44,7 @@ const config: Config = {
         categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
         header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
+        overView: '0px 0px 24px 0px rgba(0, 0, 0, 0.07)',
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
@@ -77,18 +78,28 @@ const config: Config = {
       gridTemplateColumns: {
         '1-col-288': 'repeat(1,minmax(288px,1fr))',
         '2-col-184': 'repeat(2,minmax(184px,1fr))',
-        '2-col-340': 'repeat(2,minmax(340px,340px))',
+        '2-col-340': 'repeat(2,minmax(340px,1fr))',
         '3-col-184': 'repeat(3,minmax(184px,1fr))',
-        '3-col-340': 'repeat(3,minmax(340px,340px))',
-        '4-col-340': 'repeat(4,minmax(340px,340px))',
-        '5-col-340': 'repeat(5,minmax(340px,340px))',
+        '3-col-340': 'repeat(3,minmax(340px,1fr))',
+        '4-col-340': 'repeat(4,minmax(340px,1fr))',
+        '5-col-340': 'repeat(5,minmax(340px,1fr))',
         'auto-fill-min-340': 'repeat(auto-fill, minmax(340px, 1fr))',
+        'auto-fit-min-340': 'repeat(auto-fit, minmax(340px, 1fr))',
       },
       width: {
         custom: 'calc(100vh * 0.84)',
       },
       maxWidth: {
         custom: '100vw',
+      },
+      aspectRatio: {
+        '2/1': '2 / 1',
+        '288/184': '288 / 184',
+        '320/197': '320 / 197',
+        '320/220': '320 / 220',
+        '340/220': '340 / 220',
+        '688/398': '688 / 398',
+        '719/291': '719 / 291',
       },
     },
     screens: {
@@ -98,14 +109,20 @@ const config: Config = {
         max: '767px',
       },
       tabletMin: '768px',
+      tabletMiddleMin: '1080px',
+
+      mobile344: { min: '320px', max: '344px' },
+      mobile359: { min: '320px', max: '359px' },
       mobile411: { min: '320px', max: '411px' },
       mobile725: { min: '412px', max: '725px' },
+      mobileMiddle: { min: '345px', max: '767px' },
       tablet: {
         min: '768px',
         max: '1199px',
       },
       mobile767: { min: '726px', max: '767px' },
       tablet1002: { min: '768px', max: '1002px' },
+      tablet1079: { min: '768px', max: '1079px' },
       tablet1199: { min: '1003px', max: '1199px' },
       desktop: '1200px',
       wide: '1488px',
@@ -122,6 +139,8 @@ const config: Config = {
       '123': '1.23 1.23 0%',
       '222': '2.22 2.22 0%',
       '105': '1.05 1.05 0%',
+      '580': '5.80 5.80 0%',
+      '524': '5.24 5.24 0%',
     },
     flexGrow: {
       '0': '0',
@@ -133,14 +152,22 @@ const config: Config = {
   plugins: [
     plugin(({ addUtilities }) => {
       const newUtilities = {
-        '.font-h1': {
+        '.font-h1-semibold': {
           fontSize: pxToRem(48),
-          lineHeight: '1.6',
+          lineHeight: '1.4',
           letterSpacing: pxToRem(-0.48),
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-h3': {
+        '.font-h2-semibold': {
+          fontSize: pxToRem(32),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.32),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
+
+        '.font-h3-semibold': {
           fontSize: pxToRem(28),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.28),
@@ -167,17 +194,10 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-title2-semibold': {
+        '.font-title2-bold': {
           fontSize: pxToRem(22),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.22),
-          fontWeight: '600',
-          fontFamily: 'Pretendard',
-        },
-        '.font-title2-bold': {
-          fontSize: pxToRem(24),
-          lineHeight: '1.6',
-          letterSpacing: pxToRem(-0.48),
           fontWeight: '700',
           fontFamily: 'Pretendard',
         },
@@ -195,17 +215,32 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
+        '.font-title3-medium': {
+          fontSize: pxToRem(20),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.2),
+          fontWeight: '500',
+          fontFamily: 'Pretendard',
+        },
+
         '.font-body1': {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
           fontFamily: 'Pretendard',
         },
+        '.font-body1-bold': {
+          fontSize: pxToRem(18),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.18),
+          fontFamily: 'Pretendard',
+          fontWeight: '700',
+        },
         '.font-body1-medium': {
           fontSize: pxToRem(18),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
-          fontWeight: '600',
+          fontWeight: '500',
           fontFamily: 'Pretendard',
         },
         '.font-body2': {
@@ -214,6 +249,13 @@ const config: Config = {
           letterSpacing: pxToRem(-0.16),
           fontFamily: 'Pretendard',
         },
+        '.font-body2-medium': {
+          fontSize: pxToRem(16),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.16),
+          fontFamily: 'Pretendard',
+          fontWeight: '500',
+        },
         '.font-body2-semibold': {
           fontSize: pxToRem(16),
           lineHeight: '1.4',
@@ -221,11 +263,12 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-caption1': {
+        '.font-caption1-medium': {
           fontSize: pxToRem(14),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.14),
           fontFamily: 'Pretendard',
+          fontWeight: '500',
         },
         '.font-caption1-semibold': {
           fontSize: pxToRem(14),
@@ -234,11 +277,12 @@ const config: Config = {
           fontWeight: '600',
           fontFamily: 'Pretendard',
         },
-        '.font-caption2': {
+        '.font-caption2-medium': {
           fontSize: pxToRem(12),
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.12),
           fontFamily: 'Pretendard',
+          fontWeight: '500',
         },
         '.font-caption2-semibold': {
           fontSize: pxToRem(12),
@@ -252,31 +296,33 @@ const config: Config = {
           color: 'var(--naver-text, #FFF)',
           textAlign: 'center',
           fontFamily: 'Preahvihear',
-          fontSize: pxToRem(140),
+          fontSize: pxToRem(94),
           fontStyle: 'normal',
           fontWeight: '400',
-          lineHeight: 'normal',
-          letterSpacing: pxToRem(7),
+          lineHeight: '1.165',
+          letterSpacing: pxToRem(4),
         },
-        '.font-sign-subTitle1': {
+
+        '.font-sign-title-tablet': {
           color: 'var(--naver-text, #FFF)',
           textAlign: 'center',
           fontFamily: 'Preahvihear',
-          fontSize: pxToRem(32),
+          fontSize: pxToRem(94),
           fontStyle: 'normal',
           fontWeight: '400',
-          lineHeight: 'normal',
-          letterSpacing: pxToRem(1.6),
+          lineHeight: '1.165',
+          letterSpacing: pxToRem(4),
         },
-        '.font-sign-subTitle2': {
-          color: '#3BA53B',
+
+        '.font-sign-title-mobile': {
+          color: 'var(--naver-text, #fff)',
           textAlign: 'center',
           fontFamily: 'Preahvihear',
-          fontSize: pxToRem(32),
+          fontSize: pxToRem(42),
           fontStyle: 'normal',
           fontWeight: '400',
-          lineHeight: 'normal',
-          letterSpacing: pxToRem(1.6),
+          lineHeight: '1.165',
+          letterSpacing: pxToRem(4),
         },
       };
 

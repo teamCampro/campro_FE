@@ -7,6 +7,7 @@ import { LocationInputView } from '@/components/index';
 interface Props {
   name: string;
   default?: string;
+  onRenderButton?: () => void;
 }
 const locations = [
   '경기',
@@ -28,7 +29,7 @@ const locations = [
   '세종',
 ];
 
-function LocationController({ name, default: defaultValue }: Props) {
+function LocationController({ name, default: defaultValue, onRenderButton }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -37,7 +38,11 @@ function LocationController({ name, default: defaultValue }: Props) {
       name={name}
       defaultValue={defaultValue ? defaultValue : ''}
       render={({ field }) => (
-        <LocationInputView field={field} locations={locations} />
+        <LocationInputView
+          field={field}
+          locations={locations}
+          onRenderButton={onRenderButton}
+        />
       )}
     />
   );

@@ -1,47 +1,66 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { DETAIL } from '@/src/app/_constants';
-import { setDelete, setSelect } from '@/src/app/_utils/styleSetting';
-import { useCallback } from 'react';
+import { DetailType } from '@/src/app/_constants/detail';
+import { ChangeEvent } from 'react';
+import {
+  setCheckStandBy,
+  setDeleteStandBy,
+} from '@/src/app/_utils/checkStandByState';
+
 interface SelectListType {
   types?: string;
 }
 
-interface SelectListsType {
+interface SelectListOptionType {
   id: number;
   type: string;
 }
 
 function SelectList({ types }: SelectListType) {
-  const checkList = useAppSelector((state) => state.styleSetting);
+  const StandByList = useAppSelector((state) => state.checkStandBy);
   const dispatch = useAppDispatch();
 
-  const handleCheck = useCallback(
-    (checked: boolean, list: SelectListsType, types: string) => {
-      if (checked) {
-        dispatch(setSelect({ list, types }));
-      } else {
-        dispatch(setDelete({ list, types }));
-      }
-    },
-    [dispatch],
-  );
+  const handleCheck = (
+    e: ChangeEvent<HTMLInputElement>,
+    list: SelectListOptionType,
+    types: string,
+  ) => {
+    const { checked } = e.target;
+
+    if (checked) {
+      if (StandByList[types].includes(list)) return;
+      dispatch(setCheckStandBy({ types, list }));
+    } else {
+      dispatch(setDeleteStandBy({ types, list }));
+    }
+  };
+
+  const checkOption = (types: string, list: DetailType) => {
+    return StandByList[types].some((item) => item.id === list.id);
+  };
 
   return (
     <>
       {types &&
         DETAIL[types].map((list) => {
           return (
-            <li key={list.id} className='flex-center justify-between'>
-              <h3>{list.type}</h3>
-              <input
-                type='checkbox'
-                checked={checkList.select[types].some(
-                  (item) => item.id === list.id,
-                )}
-                onChange={(e) => {
-                  handleCheck(e.target.checked, list, types);
-                }}
-              />
+            <li key={list.id}>
+              <label
+                htmlFor={list.type}
+                className={`flex-center relative justify-between font-medium font-body1 ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
+              >
+                {list.type}
+                <div>
+                  <input
+                    type='checkbox'
+                    name='checkList'
+                    id={list.type}
+                    value={list.type}
+                    checked={checkOption(types, list)}
+                    onChange={(e) => handleCheck(e, list, types)}
+                  />
+                </div>
+              </label>
             </li>
           );
         })}

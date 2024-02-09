@@ -23,7 +23,7 @@ export const detailTableSlice = createSlice({
     setIsCheck: (state, action) => {
       return state.map((item) => {
         if (item.id === action.payload) {
-          return { ...item, isCheck: !item.isCheck };
+          return { ...item, isCheck: true };
         }
         return item;
       });
