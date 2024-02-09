@@ -18,7 +18,7 @@ function Page() {
   };
   return (
     <>
-      <h2 className='text-block flex-center relative p-16pxr font-title3-semibold tabletMin:hidden tabletMin:font-h1'>
+      <h2 className='text-block flex-center tabletMin:font-h1 relative p-16pxr font-title3-semibold tabletMin:hidden'>
         <IconArrowLeftNon
           fill='#949494'
           className='absolute left-16pxr top-1/2 block -translate-y-1/2 tabletMin:hidden'
@@ -27,7 +27,7 @@ function Page() {
       </h2>
       <div className='m-auto mb-125pxr mt-24pxr max-w-1400pxr px-20pxr tabletMin:mt-40pxr tabletMin:px-40pxr'>
         <div className='mb-16pxr flex flex-col gap-32pxr'>
-          <h2 className='text-block tabletMin:flex-center hidden justify-start gap-12pxr font-title3-semibold tabletMin:font-h1'>
+          <h2 className='text-block tabletMin:flex-center tabletMin:font-h1 hidden justify-start gap-12pxr font-title3-semibold'>
             <Button.Circle
               size='sm'
               custom='bg-white !w-56pxr !h-48pxr border border-gray300 gap-4pxr font-body2 font-medium !leading-none '
@@ -265,7 +265,7 @@ function Page() {
                 className='flex-center justify-start gap-4pxr'
               >
                 <input type='radio' id='card' name='card' />
-                <span className='font-medium text-gray600 font-caption1'>
+                <span className='font-caption1 font-medium text-gray600'>
                   이 결제수단으로 다음에도 사용하기
                 </span>
               </label>
@@ -389,7 +389,7 @@ function Page() {
             </div>
           </section>
         </main>
-        <div className='shadow-reserve fixed bottom-8pxr left-0pxr w-full bg-white px-20pxr py-16pxr tabletMin:hidden'>
+        <div className='fixed bottom-8pxr left-0pxr w-full bg-white px-20pxr py-16pxr shadow-reserve tabletMin:hidden'>
           <Button.Round size='sm' custom='w-full !h-56pxr'>
             결제하기
           </Button.Round>

@@ -9,7 +9,7 @@ function CampSiteBossInfo() {
   };
   return (
     <>
-      <h2 className='text-black font-body1-bold'>판매자 정보</h2>
+      <h2 className='text-black font-title2-semibold'>판매자 정보</h2>
       <ul className='font-medium text-gray500 font-body2'>
         <li>
           대표자: <span>{bossInfo.name}</span>

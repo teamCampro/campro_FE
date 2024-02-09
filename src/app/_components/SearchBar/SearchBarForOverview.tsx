@@ -7,12 +7,7 @@ import {
   DatePickerController,
   GroupCountController,
 } from '@/src/app/_components';
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';

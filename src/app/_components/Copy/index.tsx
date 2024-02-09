@@ -20,7 +20,7 @@ function Copy({ children, copyTarget }: Props) {
   return (
     <span
       onClick={handleCopy}
-      className='cursor-pointer text-second100 font-body2-semibold'
+      className='cursor-pointer !leading-none text-second100 font-body2-semibold'
     >
       {children}
     </span>
