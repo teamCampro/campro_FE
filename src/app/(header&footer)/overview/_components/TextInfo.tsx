@@ -36,7 +36,7 @@ function TextInfo({ text }: TextInfotType) {
 
   return (
     <div
-      className='font-medium text-gray500 font-body2'
+      className='font-caption1-medium text-gray500'
       dangerouslySetInnerHTML={{ __html: guidance[text] }}
     ></div>
   );

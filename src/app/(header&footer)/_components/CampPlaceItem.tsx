@@ -38,19 +38,19 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
       </div>
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-caption1-semibold'>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold'>
             {campPlace.placeName}
           </span>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1'>
+          <span className='font-caption1-medium overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500'>
             {campPlace.address}
           </span>
         </div>
         <div className='flex flex-col gap-8pxr'>
           <div>
-            <span className='text-gray800 font-title3-bold'>
+            <span className='text-gray800 font-title1-bold'>
               ₩{campPlace.price.toLocaleString()}
             </span>
-            <span className='font-title3-medium text-20pxr font-medium text-gray800'>
+            <span className='text-20pxr font-medium text-gray800 font-title1'>
               {' '}
               원 부터
             </span>

@@ -39,7 +39,7 @@ function SiteInfo({ size }: SiteInfoType) {
         {/*    </div> */}
         <div className='flex flex-col'>
           <h3 className='text-gray800 font-title2-semibold'>자연숲 캠핑장</h3>
-          <small className='font-caption2 flex text-gray500'>
+          <small className='font-caption2-medium flex text-gray500'>
             <div className='h-16pxr w-16pxr'>
               <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
             </div>
@@ -47,7 +47,7 @@ function SiteInfo({ size }: SiteInfoType) {
           </small>
           <ul className='mt-20pxr flex flex-col gap-8pxr'>
             <li className='flex  gap-4pxr '>
-              <h3 className='flex-center  h-22pxr justify-start font-medium !leading-none text-gray600 font-body2'>
+              <h3 className='flex-center  font-body2-medium h-22pxr justify-start !leading-none text-gray600'>
                 <span className='inline-block h-20pxr w-20pxr'>
                   <IconLocation
                     width='100%'
@@ -62,7 +62,7 @@ function SiteInfo({ size }: SiteInfoType) {
               </h3>
             </li>
             <li className='flex gap-4pxr'>
-              <h3 className='flex-center justify-start font-medium !leading-none text-gray600 font-body2'>
+              <h3 className='flex-center font-body2-medium justify-start !leading-none text-gray600 '>
                 <span className='inline-block h-20pxr w-20pxr'>
                   <IconCall
                     width='100%'
@@ -80,7 +80,7 @@ function SiteInfo({ size }: SiteInfoType) {
       <ul className='flex flex-col gap-12pxr pb-24pxr'>
         <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
           예약 사이트
-          <span className='flex-center gap-4pxr font-normal text-gray700 font-body1'>
+          <span className='flex-center gap-4pxr text-gray700 font-body1'>
             A사이트 | <h4 className='font-body1-bold'>A1-08</h4>
             <div className='text-second100 underline font-body2-semibold'>
               배치도
@@ -89,7 +89,7 @@ function SiteInfo({ size }: SiteInfoType) {
         </li>
         <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
           기준 인원
-          <span className='font-normal text-gray700 font-body1'>최대 2인</span>
+          <span className='text-gray700 font-body1'>최대 2인</span>
         </li>
       </ul>
     </div>

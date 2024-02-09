@@ -47,8 +47,8 @@ function MiniMapContainer() {
         </Button.Circle>
         <MinikakaoMap location='달천도담길 3-40' size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
-          <h3 className='text-gray600 font-body2'>달천도담길 3-40</h3>
-          <div className='flex-center gap-2pxr font-medium text-second100 font-body2'>
+          <h3 className='font-body2-medium text-gray600'>달천도담길 3-40</h3>
+          <div className='flex-center font-body2-medium gap-2pxr text-second100'>
             <div className='h-16pxr w-16pxr'>
               <IconCopy
                 width='100%'
@@ -64,17 +64,17 @@ function MiniMapContainer() {
       <div className='flex flex-col gap-12pxr px-20pxr mobile:hidden tablet1079:hidden'>
         <h5 className='font-body1-bold'>주변 관광지</h5>
         <ul className='flex w-full flex-col gap-12pxr'>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
+          <li className='font-body2-medium flex justify-between text-gray600'>
             · 나무석상
-            <span className='text-gray500 font-body2-medium'>2km</span>
+            <span className='font-body2-medium text-gray500'>2km</span>
           </li>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
+          <li className='font-body2-medium flex justify-between text-gray600'>
             · 자연친숲 계곡
-            <span className='text-gray500 font-body2-medium'>2km</span>
+            <span className='font-body2-medium text-gray500'>2km</span>
           </li>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
+          <li className='font-body2-medium flex justify-between text-gray600'>
             · gs편의점 솔치점
-            <span className='text-gray500 font-body2-medium'>2km</span>
+            <span className='font-body2-medium text-gray500'>2km</span>
           </li>
         </ul>
       </div>

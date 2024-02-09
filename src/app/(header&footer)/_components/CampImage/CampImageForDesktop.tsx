@@ -54,7 +54,7 @@ function CampImageForDesktop({
             className='flex-center absolute bottom-20pxr right-20pxr  gap-4pxr rounded-[999px] border-gray300 bg-white py-12pxr  pl-20pxr pr-14pxr'
             onClick={handleRenderModal}
           >
-            <p className='whitespace-nowrap text-[#555] font-body2'>
+            <p className='whitespace-nowrap text-[#555] font-body2-semibold'>
               모든 사진
             </p>
 
