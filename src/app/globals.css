@@ -202,6 +202,21 @@ body {
   .searchPageOverFlow {
     min-height: calc(100vh - 81px - 59px);
   }
+  .camp-site {
+    grid-template-areas:
+      'picture'
+      'select'
+      'info';
+  }
+  .camp-site-picture {
+    grid-area: picture;
+  }
+  .camp-site-info {
+    grid-area: info;
+  }
+  .camp-site-select {
+    grid-area: select;
+  }
 }
 
 @media (min-width: 768px) {
