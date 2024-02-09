@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
+import PlaceController from '../Controller/PlaceController';
 
 function SearchBarForOverview() {
   const router = useRouter();
@@ -29,7 +30,7 @@ function SearchBarForOverview() {
 
   const onSubmit = (data: FieldValues) => {
     if (Array.isArray(data.date) && data.date.length === 2) {
-      const location = encodeURIComponent(data.location);
+      const place = encodeURIComponent(data.place);
       const checkIn = encodeURIComponent(
         new Date(data.date[0].toLocaleDateString('fr-CA'))
           .toISOString()
@@ -42,9 +43,9 @@ function SearchBarForOverview() {
       );
       const group = encodeURIComponent(data.group);
 
-      const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
+      const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
-      router.push(`/search?${queryString}`);
+      router.push(`/overview/1/${place}?${queryString}`);
     } else {
       console.error('Invalid date range');
     }
@@ -52,14 +53,14 @@ function SearchBarForOverview() {
 
   const getValueForSearchBar = () => {
     let value = '';
-    const location = searchParams.get('location');
+    const place = searchParams.get('place');
     const checkIn = searchParams.get('checkIn');
     const checkOut = searchParams.get('checkOut');
     const group = searchParams.get('group');
 
     if (location && checkIn && checkOut && group) {
       const groupObj = JSON.parse(group);
-      value = `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
+      value = `${place}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
     }
 
     return value;
@@ -143,9 +144,9 @@ function SearchBarForOverview() {
           <div
             className={`flex-center flex w-full flex-row gap-12pxr mobile:flex-col mobile:px-20pxr  mobile:pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER.search}`}
           >
-            <LocationController
-              name='location'
-              default={searchParams.get('location') || ''}
+            <PlaceController
+              name='place'
+              default={searchParams.get('place') || ''}
               onRenderButton={renderButton}
             />
             <DatePickerController
