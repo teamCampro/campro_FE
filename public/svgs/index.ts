@@ -48,3 +48,4 @@ export { default as IconFullPage } from './fullPage.svg';
 export { default as IconExit } from './exit.svg';
 export { default as IconCall } from './call.svg';
 export { default as IconStar } from './star.svg';
+export { default as IconPlusNon } from './plus-non.svg';

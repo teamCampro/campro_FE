@@ -1,9 +1,22 @@
-import { IconArrowRightNon, IconArrowRightNormal } from '@/public/svgs';
+'use client';
+
+import useMediaQueries from '@/hooks/useMediaQueries';
+import { IconArrowRightNon } from '@/public/svgs';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function Footer() {
+  const pathName = usePathname();
+  const isReserve = pathName.includes('reserve');
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
+
   return (
-    <div className=' flex h-133pxr w-full bg-gray200 mobile:h-167pxr'>
+    <footer
+      className={`h-133pxr w-full bg-gray200 mobile:h-167pxr ${isMobile && isReserve ? 'hidden' : 'flex '}`}
+    >
       <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr px-48pxr py-24pxr mobile:px-16pxr'>
         <ul className='text-gray500 font-caption2'>
           <li>상호명: 캠프로</li>
@@ -17,7 +30,7 @@ function Footer() {
           <IconArrowRightNon className='w-20pxr' fill='#949494' />
         </Link>
       </div>
-    </div>
+    </footer>
   );
 }
 

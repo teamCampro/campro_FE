@@ -45,6 +45,7 @@ const config: Config = {
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
         header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
         overView: '0px 0px 24px 0px rgba(0, 0, 0, 0.07)',
+        reserve: '0px 2px 8px 0px rgba(0, 0, 0, 0.24)',
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
@@ -133,6 +134,7 @@ const config: Config = {
       pre: 'Pretendard',
     },
     flex: {
+      '0': '1 0 0%',
       '1': '1 1 0%',
       '110': '1.10 1.10 0%',
       '134': '1.34 1.34 0%',
