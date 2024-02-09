@@ -14,7 +14,7 @@ function SortDropdown() {
     <div className='relative ml-auto w-104pxr' ref={wrapperRef}>
       <button
         type='button'
-        className='flex w-full items-center justify-end text-gray500 font-body2 mobile:font-caption2-semibold tablet:font-body2'
+        className='tablet:font-body2-medium flex w-full items-center justify-end text-gray500 font-body2 mobile:font-caption2-semibold'
         onClick={toggleDropdown}
       >
         {selected.text}
@@ -28,7 +28,7 @@ function SortDropdown() {
                 <li key={option.key} className='flex w-full'>
                   <button
                     type='button'
-                    className='flex-1 items-center text-nowrap px-12pxr text-right text-gray500 font-body2 hover:bg-gray100 mobile:font-caption2-semibold tablet:font-body2'
+                    className='font-body2-medium tablet:font-body2-medium flex-1 items-center text-nowrap px-12pxr text-right text-gray500 hover:bg-gray100 mobile:font-caption2-semibold'
                     onClick={() => setSelected(option)}
                   >
                     {option.text}

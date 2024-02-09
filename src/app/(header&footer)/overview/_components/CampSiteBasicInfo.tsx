@@ -8,7 +8,7 @@ function CampSiteBasicInfo() {
   return (
     <div className='flex flex-col gap-16pxr'>
       <h2 className='text-black font-title2-semibold'>기본 정보</h2>
-      <p className='font-medium text-gray500 font-body2'>{basicInfo.info}</p>
+      <p className='font-body2-medium text-gray500'>{basicInfo.info}</p>
     </div>
   );
 }
