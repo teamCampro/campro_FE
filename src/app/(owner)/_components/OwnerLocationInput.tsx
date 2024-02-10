@@ -3,9 +3,10 @@ import React from 'react';
 
 interface Props {
   setAddress: (address: string) => void;
+  defaultValue: (inputName: string) => string | undefined;
 }
 
-function OwnerLocationInput({ setAddress }: Props) {
+function OwnerLocationInput({ setAddress, defaultValue }: Props) {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -16,6 +17,7 @@ function OwnerLocationInput({ setAddress }: Props) {
         placeholder='주소를 입력하세요.'
         className='ml-25pxr h-60pxr w-475pxr text-18pxr font-semibold focus:outline-none'
         onChange={(e) => setAddress(e.target.value)}
+        defaultValue={defaultValue('location')}
       />
     </form>
   );

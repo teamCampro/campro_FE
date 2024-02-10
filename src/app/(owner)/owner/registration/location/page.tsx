@@ -5,6 +5,7 @@ import OwnerLocationInput from '../../../_components/OwnerLocationInput';
 import createMarkerImage from '@/src/app/_utils/createMarkerImage';
 import useDebounce from '@/hooks/useDebounce';
 import KakaoMap from '@/src/app/(header)/search/_components/KakaoMap';
+import { handleOwnerInputDefaultValue } from '../../../_utils/inputValueStorageHandler';
 
 interface Result {
   address_name: string;
@@ -27,10 +28,13 @@ function LocationPage() {
 
   const setKakaoMap = (map: kakao.maps.Map) => {
     setMap(map);
+    map.setDraggable(false);
+    map.setZoomable(false);
   };
 
   const handleAddressChange = useCallback((address: string) => {
     setAddress(address);
+    localStorage.setItem('location', address);
   }, []);
 
   const callback = useCallback(
@@ -74,6 +78,15 @@ function LocationPage() {
 
   useEffect(() => {
     if (geocoder !== null) {
+      const localLocation = localStorage.getItem('location');
+      if (localLocation) {
+        geocoder.addressSearch(localLocation, callback);
+      }
+    }
+  }, [geocoder, callback]);
+
+  useEffect(() => {
+    if (geocoder !== null) {
       geocoder.addressSearch(debouncedAddress, callback);
     }
   }, [geocoder, callback, debouncedAddress]);
@@ -85,7 +98,10 @@ function LocationPage() {
         <KakaoMap map={map} setMap={setKakaoMap} isZoomButtonShadow={true} />
         {map && (
           <div className='pl-82pxr'>
-            <OwnerLocationInput setAddress={handleAddressChange} />
+            <OwnerLocationInput
+              setAddress={handleAddressChange}
+              defaultValue={handleOwnerInputDefaultValue}
+            />
           </div>
         )}
       </div>
