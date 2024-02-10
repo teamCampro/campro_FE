@@ -7,7 +7,8 @@ import useMediaQueries from '@/hooks/useMediaQueries';
 
 function Header() {
   const pathName = usePathname();
-  const isReserve = pathName.includes('reserve');
+  const isReserve =
+    pathName.includes('reserve') || pathName.includes('profile');
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
