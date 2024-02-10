@@ -79,15 +79,11 @@ function LocationPage() {
   useEffect(() => {
     if (geocoder !== null) {
       const localLocation = localStorage.getItem('location');
-      if (localLocation) {
-        geocoder.addressSearch(localLocation, callback);
-      }
-    }
-  }, [geocoder, callback]);
 
-  useEffect(() => {
-    if (geocoder !== null) {
-      geocoder.addressSearch(debouncedAddress, callback);
+      if (localLocation) {
+        setAddress(localLocation);
+        geocoder.addressSearch(debouncedAddress, callback);
+      }
     }
   }, [geocoder, callback, debouncedAddress]);
 
