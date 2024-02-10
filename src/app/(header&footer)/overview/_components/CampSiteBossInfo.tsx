@@ -1,3 +1,5 @@
+import SectionTitle from './SectionTitle';
+
 function CampSiteBossInfo() {
   const bossInfo = {
     name: '고민혁',
@@ -8,8 +10,8 @@ function CampSiteBossInfo() {
     campRegistrationNumber: '제010-3518-750호',
   };
   return (
-    <>
-      <h2 className='text-black font-title2-semibold'>판매자 정보</h2>
+    <div className='flex flex-col gap-16pxr mobile:px-20pxr'>
+      <SectionTitle>판매자 정보</SectionTitle>
       <ul className='text-gray500 font-body2-medium'>
         <li>
           대표자: <span>{bossInfo.name}</span>
@@ -31,7 +33,7 @@ function CampSiteBossInfo() {
           <span>{bossInfo.campRegistrationNumber}</span>
         </li>
       </ul>
-    </>
+    </div>
   );
 }
 

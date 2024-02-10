@@ -39,7 +39,7 @@ const images = [
 function CampSiteDetail({ onClose }: { onClose: () => void }) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
-      <div className='flex h-744pxr w-767pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:w-full mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:h-733pxr tablet:w-688pxr'>
+      <div className='flex h-744pxr w-767pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:w-full mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:h-773pxr tablet:w-688pxr'>
         <div className='flex gap-16pxr'>
           <button type='button' onClick={onClose}>
             <IconClose />
@@ -73,7 +73,6 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
                 </SwiperSlide>
               ))}
             </Swiper>
-
             <div className='flex justify-start gap-128pxr px-16pxr mobile:flex-col mobile:gap-20pxr tablet:justify-center tablet:gap-72pxr'>
               <div className='flex flex-col gap-24pxr mobile:gap-20pxr'>
                 <div className='flex flex-col gap-2pxr'>
@@ -101,7 +100,7 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
               </div>
             </div>
           </div>
-          <Button.Round size='sm' custom='w-full'>
+          <Button.Round size='sm' custom='w-full !h-56pxr'>
             예약하기
           </Button.Round>
         </div>

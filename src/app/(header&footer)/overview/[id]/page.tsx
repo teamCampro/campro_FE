@@ -1,20 +1,18 @@
 'use client';
-import Button from '@/components/Button';
 import Category from '@/components/Category';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
-import { IconArrowDown, IconNavigationDown } from '@/public/svgs';
-import Image from 'next/image';
+import { IconNavigationDown } from '@/public/svgs';
 import { useEffect, useRef, useState } from 'react';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
-import CampSiteBasicInfo from '../_components/CampSiteBasicInfo';
+import AnchorMenu from '../_components/AnchorMenu';
 import CampSiteBookingInfo from '../_components/CampSiteBookingInfo';
-import CampSiteBossInfo from '../_components/CampSiteBossInfo';
 import CampSiteList from '../_components/CampSiteList';
+import CampSiteMap from '../_components/CampSiteMap';
 import CampSiteProfile from '../_components/CampSiteProfile';
-import Progress from '../_components/Progress';
+import Notice from '../_components/Notice';
 import Review from '../_components/Review';
-import TextInfo from '../_components/TextInfo';
+import SectionTitle from '../_components/SectionTitle';
 
 const campingZoneInfos = [
   {
@@ -62,6 +60,57 @@ const campingZoneInfos = [
 function Page() {
   const [isSticky, setIsSticky] = useState(false);
   const imageEndRef = useRef<HTMLDivElement>(null);
+  const [showSiteButton, setShowSiteButton] = useState(true);
+  const [activeSection, setActiveSection] = useState('');
+
+  const sectionRefs = {
+    section1: useRef<HTMLDivElement>(null),
+    section2: useRef<HTMLDivElement>(null),
+    section3: useRef<HTMLDivElement>(null),
+    section4: useRef<HTMLDivElement>(null),
+    section5: useRef<HTMLDivElement>(null),
+    section6: useRef<HTMLDivElement>(null),
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let maxRatio = 0;
+        let newActiveSection = activeSection;
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            newActiveSection = entry.target.id;
+          }
+        });
+
+        if (newActiveSection !== activeSection) {
+          setActiveSection(newActiveSection);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0.2, 0.5, 1.0],
+      },
+    );
+
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      Object.values(sectionRefs).forEach((ref) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
 
   useEffect(() => {
     const imageEnd = imageEndRef.current;
@@ -71,7 +120,7 @@ function Page() {
           setIsSticky(!entry.isIntersecting);
         });
       },
-      { threshold: [1.0], rootMargin: '50px' },
+      { threshold: [0.1, 0.3], rootMargin: '-98px 0px 0px 0px' },
     );
 
     if (imageEnd) {
@@ -85,135 +134,71 @@ function Page() {
     };
   }, []);
 
+  useEffect(() => {
+    const reserveRef = sectionRefs.section4.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.log(entry.isIntersecting);
+          setShowSiteButton(!entry.isIntersecting);
+        });
+      },
+      { threshold: [0.3], rootMargin: '50px' },
+    );
+
+    if (reserveRef) {
+      observer.observe(reserveRef);
+    }
+
+    return () => {
+      if (reserveRef) {
+        observer.unobserve(reserveRef);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
+
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
       <SearchBarForOverview />
-      <CampImage />
-      <div
-        ref={imageEndRef}
-        style={{ height: '1px', position: 'absolute', bottom: '0' }}
-      />
-      <div
-        className={`${isSticky ? 'block' : 'hidden'} sticky top-0pxr z-30 flex w-full max-w-1360pxr items-center justify-between border-b border-gray200 bg-white py-16pxr mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
-      >
-        <ul className='flex mobile:hidden'>
-          <li>
-            <a href='#1'>기본 정보</a>
-          </li>
-          <li>
-            <a
-              className='px-16pxr py-23pxr text-gray500 font-body2-medium'
-              href='#2'
-            >
-              시설/환경
-            </a>
-          </li>
-          <li>
-            <a
-              className='px-16pxr py-23pxr text-gray500 font-body2-medium'
-              href='#3'
-            >
-              배치도
-            </a>
-          </li>
-          <li>
-            <a
-              className='px-16pxr py-23pxr text-gray500 font-body2-medium'
-              href='#4'
-            >
-              예약안내
-            </a>
-          </li>
-          <li>
-            <a
-              className='px-16pxr py-23pxr text-gray500 font-body2-medium'
-              href='#5'
-            >
-              이용안내
-            </a>
-          </li>
-          <li>
-            <a
-              className='px-16pxr py-23pxr text-gray500 font-body2-medium'
-              href='#6'
-            >
-              후기
-            </a>
-          </li>
-        </ul>
-        <a href='#site'>
-          <Button.Round
-            size='sm'
-            custom='w-full p-24pxr w-170pxr h-40pxr mobile:w-360pxr mobile:h-56pxr'
-          >
-            사이트 선택
-          </Button.Round>
-        </a>
+      <div ref={imageEndRef}>
+        <CampImage />
       </div>
-      <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet1079:relative'>
-        <aside className='sticky top-40pxr flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit'>
+      <AnchorMenu
+        isSticky={isSticky}
+        selectedMenu={activeSection}
+        showSiteButton={showSiteButton}
+      />
+      <main
+        className={`${isSticky ? 'mt-161pxr' : ''} relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet1079:relative`}
+      >
+        <aside
+          className={`${isSticky ? 'top-208pxr' : ''} sticky top-40pxr flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
+        >
           <MiniMapContainer />
         </aside>
         <div>
-          <section className='flex flex-col gap-32pxr border-b pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-            <CampSiteProfile />
-            <div>
-              <div className='flex justify-between'>
-                <h3 className='mb-12pxr text-gray-600 font-body2-semibold'>
-                  {'"청결도 만족도가 높은 곳이에요"'}
-                </h3>
-                <span className='flex-center text-gray500 font-caption1-medium'>
-                  전체보기
-                  <span className='inline-block h-16pxr w-16pxr'>
-                    <IconArrowDown
-                      width='100%'
-                      height='100%'
-                      viewBox='0 0 24 24'
-                    />
-                  </span>
-                </span>
-              </div>
-              <ul className='flex flex-col gap-8pxr'>
-                <Progress />
-              </ul>
-            </div>
-            <CampSiteBasicInfo />
-            <div className='flex flex-col gap-16pxr'>
-              <h2
-                className='text-black font-title2-semibold mobile:font-title3-bold'
-                id='2'
-              >
-                시설 환경
-              </h2>
+          <section className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
+            <CampSiteProfile isRef={sectionRefs.section1} />
+            <div
+              className='flex scroll-mt-168pxr flex-col gap-16pxr'
+              id='2'
+              ref={sectionRefs.section2}
+            >
+              <SectionTitle>시설/환경</SectionTitle>
               <Category />
             </div>
           </section>
+          <section>
+            <CampSiteMap isRef={sectionRefs.section3} id='3' />
+          </section>
           <section className='flex flex-col gap-24pxr pt-24pxr'>
-            <div className='flex flex-col gap-16pxr'>
-              <h3
-                className='text-black font-body1-bold mobile:px-20pxr mobile:font-title3-bold mobile359:px-16pxr'
-                id='3'
-              >
-                배치도
-              </h3>
-              <div>
-                <Image
-                  className='rounded-2xl mobile:aspect-320/220 mobile:rounded-none'
-                  src={'/avifs/map.avif'}
-                  alt='배치도'
-                  width={174}
-                  height={174}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                  }}
-                />
-              </div>
-            </div>
-            <div className='flex flex-col gap-16pxr mobile:px-20pxr mobile359:px-16pxr'>
+            <div
+              ref={sectionRefs.section4}
+              id='4'
+              className='flex scroll-mt-168pxr flex-col gap-24pxr'
+            >
               <CampSiteBookingInfo />
-            </div>
-            <div className='flex flex-col gap-24pxr mobile:gap-16pxr mobile:px-20pxr mobile359:px-0pxr'>
               {campingZoneInfos.map((campingZone) => (
                 <CampSiteList
                   campingZone={campingZone}
@@ -232,26 +217,14 @@ function Page() {
                 </button>
               </div>
             </div>
-            <div className='flex flex-col gap-16pxr mobile:px-20pxr'>
-              <h2
-                className='text-black font-title2-semibold mobile:font-title3-bold mobile359:px-16pxr'
-                id='5'
-              >
-                이용 안내
-              </h2>
-              <TextInfo text='campInfo' />
-            </div>
-            <div className='flex flex-col gap-16pxr mobile:px-20pxr'>
-              <h2 className='text-black font-title2-semibold mobile:font-title3-bold mobile359:px-16pxr'>
-                취소/환불 규정
-              </h2>
-              <TextInfo text='cancelRules' />
-            </div>
-            <div className='flex flex-col gap-16pxr mobile:px-20pxr'>
-              <CampSiteBossInfo />
-            </div>
+            <Notice
+              title='이용 안내'
+              id='5'
+              text='campInfo'
+              isRef={sectionRefs.section5}
+            />
           </section>
-          <Review />
+          <Review isRef={sectionRefs.section6} id='6' />
         </div>
       </main>
     </div>

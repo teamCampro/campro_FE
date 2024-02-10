@@ -28,7 +28,7 @@ interface Props {
 
 function Progress() {
   return (
-    <>
+    <ul className='flex flex-col gap-8pxr'>
       {progressData.map((data, index) => (
         <li key={index} className='relative h-46pxr'>
           <progress
@@ -45,7 +45,7 @@ function Progress() {
           </span>
         </li>
       ))}
-    </>
+    </ul>
   );
 }
 

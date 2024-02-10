@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
+import Copy from '@/components/Copy';
 import { ModalOutside, ModalPortal } from '@/components/index';
 import {
   IconArrowLeftNon,
@@ -48,17 +49,19 @@ function MiniMapContainer() {
         <MinikakaoMap location='달천도담길 3-40' size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
           <h3 className='text-gray600 font-body2-medium'>달천도담길 3-40</h3>
-          <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
-            <div className='h-16pxr w-16pxr'>
-              <IconCopy
-                width='100%'
-                height='100%'
-                viewBox='0 0 24 24'
-                fill='#7D6F5A'
-              />
+          <Copy copyTarget='달천도담길 3-40'>
+            <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
+              <div className='h-16pxr w-16pxr'>
+                <IconCopy
+                  width='100%'
+                  height='100%'
+                  viewBox='0 0 24 24'
+                  fill='#7D6F5A'
+                />
+              </div>
+              주소복사
             </div>
-            주소복사
-          </div>
+          </Copy>
         </div>
       </div>
       <div className='flex flex-col gap-12pxr px-20pxr mobile:hidden tablet1079:hidden'>

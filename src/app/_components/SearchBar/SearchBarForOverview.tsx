@@ -117,7 +117,9 @@ function SearchBarForOverview() {
   return (
     <>
       {isMobile && (
-        <div className={` w-full bg-white mobile:p-16pxr`}>
+        <div
+          className={`w-full bg-white mobile:sticky mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr`}
+        >
           <input
             name='total'
             className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
@@ -134,10 +136,10 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='flex-center w-full max-w-1440pxr border-b border-gray200'
+        className='flex-center sticky top-0pxr z-30 w-full max-w-1440pxr border-b border-gray200 bg-white'
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isMobile && isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:fixed mobile:top-0pxr mobile:mt-0pxr mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
           onSubmit={onSubmit}
         >
           <div
