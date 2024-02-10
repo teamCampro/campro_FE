@@ -280,7 +280,7 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.16),
           fontFamily: 'Pretendard',
-          fontWeight: '600',
+          fontWeight: '700',
         },
         '.font-body2-semibold': {
           fontSize: pxToRem(16),
