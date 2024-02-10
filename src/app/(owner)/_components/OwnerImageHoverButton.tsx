@@ -9,7 +9,7 @@ function OwnerImageHoverButton({ style, onClick, children }: Props) {
   return (
     <button
       style={style}
-      className='absolute bottom-15pxr right-15pxr rounded-2xl bg-black px-10pxr py-6pxr text-12pxr font-semibold text-white'
+      className='absolute bottom-15pxr right-15pxr z-50 rounded-2xl bg-black px-10pxr py-6pxr text-12pxr font-semibold text-white'
       onClick={onClick}
     >
       {children}
