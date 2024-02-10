@@ -47,8 +47,8 @@ function MiniMapContainer() {
         </Button.Circle>
         <MinikakaoMap location='달천도담길 3-40' size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
-          <h3 className='text-gray600 font-body2'>달천도담길 3-40</h3>
-          <div className='flex-center gap-2pxr font-medium text-second100 font-body2'>
+          <h3 className='text-gray600 font-body2-medium'>달천도담길 3-40</h3>
+          <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
             <div className='h-16pxr w-16pxr'>
               <IconCopy
                 width='100%'

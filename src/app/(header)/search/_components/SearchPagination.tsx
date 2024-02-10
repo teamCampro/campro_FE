@@ -33,7 +33,7 @@ function SearchPagination({ currentPage, totalItems, onUpdatePage }: Props) {
           <button
             key={page}
             type='button'
-            className={`px-8pxr py-2pxr font-caption1 ${selected === page ? 'rounded-xl bg-gray100 text-gray800 font-caption1-semibold' : ''}`}
+            className={`px-8pxr py-2pxr font-caption1-medium ${selected === page ? 'rounded-xl bg-gray100 text-gray800 font-caption1-semibold' : ''}`}
             onClick={() => handleClickPage(page)}
           >
             {page}

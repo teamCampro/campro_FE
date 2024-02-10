@@ -10,7 +10,7 @@ function CampSiteBossInfo() {
   return (
     <>
       <h2 className='text-black font-title2-semibold'>판매자 정보</h2>
-      <ul className='font-medium text-gray500 font-body2'>
+      <ul className='text-gray500 font-body2-medium'>
         <li>
           대표자: <span>{bossInfo.name}</span>
         </li>

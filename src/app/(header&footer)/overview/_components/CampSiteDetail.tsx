@@ -83,11 +83,13 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
                     A1-08
                   </h4>
-                  <span className='font-caption1 text-gray500'>하단 구역</span>
+                  <span className='text-gray500 font-caption1-medium'>
+                    하단 구역
+                  </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
-                  <span className='text-gray500 font-body2'>
+                  <span className='text-gray500 font-body2-medium'>
                     4.5x10m (파쇄석)
                   </span>
                 </div>

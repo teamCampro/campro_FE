@@ -120,7 +120,7 @@ function SearchBarForOverview() {
         <div className={` w-full bg-white mobile:p-16pxr`}>
           <input
             name='total'
-            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2 '
+            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
@@ -134,7 +134,7 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='flex-center w-full  max-w-1440pxr  border-b  border-gray200  '
+        className='flex-center w-full max-w-1440pxr border-b border-gray200'
       >
         <CommonForm
           className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}

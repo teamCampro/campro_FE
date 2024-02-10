@@ -51,7 +51,7 @@ function MapSizeButtons({ handleMapSize }: Props) {
             <button
               type='button'
               onClick={() => handleFloatingButtonClick(option)}
-              className={`flex-center h-48pxr w-full gap-4pxr text-nowrap rounded-full border border-gray300 bg-white py-12pxr pl-20pxr pr-14pxr text-gray600 font-body2 hover:text-primary100 mobile:w-auto mobile:px-15pxr mobile:text-gray700 tablet:w-auto tablet:px-15pxr`}
+              className={`flex-center h-48pxr w-full gap-4pxr text-nowrap rounded-full border border-gray300 bg-white py-12pxr pl-20pxr pr-14pxr text-gray600 font-body2-medium hover:text-primary100 mobile:w-auto mobile:px-15pxr mobile:text-gray700 tablet:w-auto tablet:px-15pxr`}
             >
               <span className='mobile:hidden tablet:hidden'>{option.text}</span>
               <span className='ml-auto'>{option.icon}</span>
@@ -63,7 +63,7 @@ function MapSizeButtons({ handleMapSize }: Props) {
       <button
         type='button'
         onClick={toggleDropdown}
-        className={`flex-center h-48pxr w-full gap-4pxr text-nowrap rounded-full border border-gray300 bg-white py-12pxr pl-20pxr pr-14pxr text-gray600 font-body2 mobile:px-15pxr mobile:text-gray700 tablet:px-15pxr ${isOpen && 'mobile:border-gray30 border border-primary100 text-primary100 mobile:border-gray300 mobile:text-primary100 tablet:border-gray300'}`}
+        className={`flex-center h-48pxr w-full gap-4pxr text-nowrap rounded-full border border-gray300 bg-white py-12pxr pl-20pxr pr-14pxr text-gray600 font-body2-medium mobile:px-15pxr mobile:text-gray700 tablet:px-15pxr ${isOpen && 'mobile:border-gray30 border border-primary100 text-primary100 mobile:border-gray300 mobile:text-primary100 tablet:border-gray300'}`}
       >
         <span className='mobile:hidden tablet:hidden'>{currentMap.text}</span>
         <span className='pointer-events-none ml-auto mobile:hidden tablet:hidden'>

@@ -30,7 +30,7 @@ function Page() {
           <h2 className='text-block tabletMin:flex-center tabletMin:font-h1 hidden justify-start gap-12pxr font-title3-semibold'>
             <Button.Circle
               size='sm'
-              custom='bg-white !w-56pxr !h-48pxr border border-gray300 gap-4pxr font-body2 font-medium !leading-none '
+              custom='bg-white !w-56pxr !h-48pxr border border-gray300 gap-4pxr'
             >
               <IconArrowLeftNon />
             </Button.Circle>
@@ -110,7 +110,7 @@ function Page() {
                 </CommonForm>
                 <Button.Circle
                   size='sm'
-                  custom='bg-white !w-108pxr !h-56pxr border border-gray300 flex-center gap-4pxr font-body2 font-medium !leading-none'
+                  custom='bg-white !w-108pxr !h-56pxr border border-gray300 flex-center gap-4pxr font-body2-medium !leading-none'
                 >
                   <div className='h-20pxr w-20pxr'>
                     <IconPlusNon
@@ -129,7 +129,7 @@ function Page() {
               </h3>
               <ul className='flex flex-col gap-16pxr'>
                 <li className='flex-center flex-wrap justify-between'>
-                  <h3 className='reserve-options font-medium font-body2 tabletMin:font-body1'>
+                  <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
                     장작 세트
                   </h3>
                   <div className='flex-center w-73pxr justify-between gap-16pxr tabletMin:w-97pxr'>
@@ -140,7 +140,7 @@ function Page() {
                         viewBox='0 0 24 24'
                       />
                     </div>
-                    <span className='font-medium font-body2 tabletMin:font-body1'>
+                    <span className='font-medium font-body2-medium tabletMin:font-body1-medium'>
                       1
                     </span>
                     <div className='h-20pxr w-20pxr'>
@@ -156,7 +156,7 @@ function Page() {
                   </h3>
                 </li>
                 <li className='flex-center flex-wrap justify-between'>
-                  <h3 className='reserve-options font-medium font-body2 tabletMin:font-body1'>
+                  <h3 className='reserve-options font-medium font-body2-medium tabletMin:font-body1-medium'>
                     전기 장판
                   </h3>
                   <div className='flex-center w-73pxr justify-between gap-16pxr tabletMin:w-97pxr'>
@@ -167,7 +167,7 @@ function Page() {
                         viewBox='0 0 24 24'
                       />
                     </div>
-                    <span className='font-medium font-body2 tabletMin:font-body1'>
+                    <span className='font-medium font-body2-medium tabletMin:font-body1-medium'>
                       1
                     </span>
                     <div className='h-20pxr w-20pxr'>
@@ -183,7 +183,7 @@ function Page() {
                   </h3>
                 </li>
                 <li className='flex-center flex-wrap justify-between'>
-                  <h3 className='reserve-options font-medium font-body2 tabletMin:font-body1'>
+                  <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
                     이불세트(덮는 이불 2장)
                   </h3>
                   <div className='flex-center w-73pxr justify-between gap-16pxr tabletMin:w-97pxr'>
@@ -194,7 +194,7 @@ function Page() {
                         viewBox='0 0 24 24'
                       />
                     </div>
-                    <span className='font-medium font-body2 tabletMin:font-body1'>
+                    <span className='font-body2-medium tabletMin:font-body1-medium'>
                       1
                     </span>
                     <div className='h-20pxr w-20pxr'>
@@ -210,7 +210,7 @@ function Page() {
                   </h3>
                 </li>
                 <li className='flex-center flex-wrap justify-between'>
-                  <h3 className='reserve-options whitespace-pre-line font-medium font-body2 tabletMin:font-body1'>
+                  <h3 className='reserve-options whitespace-pre-line  font-body2-medium tabletMin:font-body1-medium'>
                     욕실세트(치약+일회용 칫솔)
                   </h3>
                   <div className='flex-center w-73pxr justify-between gap-16pxr tabletMin:w-97pxr'>
@@ -221,7 +221,7 @@ function Page() {
                         viewBox='0 0 24 24'
                       />
                     </div>
-                    <span className='font-medium font-body2 tabletMin:font-body1'>
+                    <span className='font-body2-medium tabletMin:font-body1-medium'>
                       1
                     </span>
                     <div className='h-20pxr w-20pxr'>
@@ -265,7 +265,7 @@ function Page() {
                 className='flex-center justify-start gap-4pxr'
               >
                 <input type='radio' id='card' name='card' />
-                <span className='font-caption1 font-medium text-gray600'>
+                <span className='text-gray600 font-caption1-medium'>
                   이 결제수단으로 다음에도 사용하기
                 </span>
               </label>
@@ -277,7 +277,7 @@ function Page() {
               <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
                 <h3 className='text-black font-title3-semibold'>결제 금액</h3>
                 <ul className='flex flex-col gap-12pxr'>
-                  <li className='flex-center justify-between font-medium text-gray600 font-body2'>
+                  <li className='flex-center justify-between text-gray600 font-body2-medium'>
                     객실 1개 x 2박
                     <span className='text-gray600 font-body2-semibold'>
                       90,000원
@@ -285,19 +285,19 @@ function Page() {
                   </li>
                 </ul>
                 <ul className='flex flex-col gap-8pxr'>
-                  <li className='flex-center justify-between font-medium text-gray600 font-body2'>
+                  <li className='flex-center justify-betweentext-gray600 font-body2-medium '>
                     추가 상품
                     <span className='text-gray600 font-body2-semibold'>
                       합계 - 40,000원
                     </span>
                   </li>
-                  <li className='flex-center justify-between font-medium text-gray600 font-body2'>
+                  <li className='flex-center justify-between text-gray600 font-body2-medium '>
                     바베큐 x 1
                     <span className='text-gray500 font-body2-semibold'>
                       20,000원
                     </span>
                   </li>
-                  <li className='flex-center justify-between font-medium text-gray600 font-body2'>
+                  <li className='flex-center justify-between text-gray600 font-body2-medium '>
                     장작 x 1
                     <span className='text-gray500 font-body2-semibold'>
                       20,000원
