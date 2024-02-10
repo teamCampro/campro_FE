@@ -15,6 +15,7 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
+import { useSearchParams } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
@@ -28,6 +29,7 @@ function Page() {
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
+  const searchParam = useSearchParams();
 
   const mapBasis = {
     half: {
@@ -50,12 +52,27 @@ function Page() {
   };
 
   useEffect(() => {
+    const location = searchParam.get('location');
+    const checkIn = searchParam.get('checkIn');
+    const checkout = searchParam.get('checkOut');
+    const group = searchParam.get('group');
+
     const fetch = async () => {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
 
       const { result } = response.data;
+
+      if (location && checkIn && checkout && group) {
+        const newResult = result.filter((li) => {
+          return li.address.includes(location);
+        });
+        setCampPlaceData(newResult);
+        updateTotalItems(newResult.length);
+        return;
+      }
+
       setCampPlaceData(result);
       updateTotalItems(response.data.result.length);
     };
@@ -91,7 +108,7 @@ function Page() {
             className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : ' flex-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
           >
             <div className='flex items-center justify-around'>
-              <h3 className='mobile:font-body1-semibold text-black font-title1-semibold'>
+              <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
                 전체 {campPlaceData?.length || 0}
               </h3>
               <SortDropdown />
