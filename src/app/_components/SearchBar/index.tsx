@@ -1,15 +1,15 @@
 'use client';
 
 import {
-  CommonForm,
   Button,
-  GroupCountController,
+  CommonForm,
   DatePickerController,
+  GroupCountController,
   LocationController,
 } from '@/src/app/_components';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FieldValues } from 'react-hook-form';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
+import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 
 function SearchBar() {
   const router = useRouter();

@@ -45,6 +45,8 @@ const config: Config = {
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
         header: '0px 4px 16px 0px rgba(149, 149, 149, 0.12)',
         overView: '0px 0px 24px 0px rgba(0, 0, 0, 0.07)',
+        overViewButton: '0px 2px 8px 0px rgba(0, 0, 0, 0.24)',
+        reserve: '0px 2px 8px 0px rgba(0, 0, 0, 0.24)',
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
@@ -110,7 +112,6 @@ const config: Config = {
       },
       tabletMin: '768px',
       tabletMiddleMin: '1080px',
-
       mobile344: { min: '320px', max: '344px' },
       mobile359: { min: '320px', max: '359px' },
       mobile411: { min: '320px', max: '411px' },
@@ -133,6 +134,7 @@ const config: Config = {
       pre: 'Pretendard',
     },
     flex: {
+      '0': '1 0 0%',
       '1': '1 1 0%',
       '110': '1.10 1.10 0%',
       '134': '1.34 1.34 0%',
@@ -179,6 +181,7 @@ const config: Config = {
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.24),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-title1-bold': {
           fontSize: pxToRem(24),
@@ -201,11 +204,18 @@ const config: Config = {
           fontWeight: '700',
           fontFamily: 'Pretendard',
         },
+        '.font-title2-semibold': {
+          fontSize: pxToRem(22),
+          lineHeight: '1.6',
+          letterSpacing: pxToRem(-0.22),
+          fontWeight: '600',
+          fontFamily: 'Pretendard',
+        },
         '.font-title3-bold': {
           fontSize: pxToRem(20),
           lineHeight: '1.6',
           letterSpacing: pxToRem(-0.2),
-          fontWeight: '700',
+          fontWeight: '600',
           fontFamily: 'Pretendard',
         },
         '.font-title3-semibold': {
@@ -228,6 +238,14 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.18),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
+        },
+        '.font-body1-semibold': {
+          fontSize: pxToRem(18),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.18),
+          fontFamily: 'Pretendard',
+          fontWeight: '600',
         },
         '.font-body1-bold': {
           fontSize: pxToRem(18),
@@ -248,6 +266,7 @@ const config: Config = {
           lineHeight: '1.4',
           letterSpacing: pxToRem(-0.16),
           fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-body2-medium': {
           fontSize: pxToRem(16),
@@ -276,6 +295,13 @@ const config: Config = {
           letterSpacing: pxToRem(-0.14),
           fontWeight: '600',
           fontFamily: 'Pretendard',
+        },
+        '.font-caption2': {
+          fontSize: pxToRem(12),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.12),
+          fontFamily: 'Pretendard',
+          fontWeight: '400',
         },
         '.font-caption2-medium': {
           fontSize: pxToRem(12),

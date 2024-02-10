@@ -36,12 +36,12 @@ const images = [
   'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
 ];
 
-function CampSiteDetail() {
+function CampSiteDetail({ onClose }: { onClose: () => void }) {
   return (
-    <div className='flex '>
-      <div className='flex h-full max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:max-h-none mobile:px-20pxr mobile:pb-16pxr tablet:max-h-804pxr tablet:max-w-804pxr desktop1440:max-h-1008pxr desktop1440:max-w-1008pxr'>
+    <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
+      <div className='flex h-744pxr w-767pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:w-full mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:h-733pxr tablet:w-688pxr'>
         <div className='flex gap-16pxr'>
-          <button type='button'>
+          <button type='button' onClick={onClose}>
             <IconClose />
           </button>
           <h4 className='flex-1 text-center text-black font-title1-bold'>
@@ -83,11 +83,13 @@ function CampSiteDetail() {
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
                     A1-08
                   </h4>
-                  <span className='text-gray500 font-caption1'>하단 구역</span>
+                  <span className='font-caption1-medium text-gray500'>
+                    하단 구역
+                  </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
-                  <span className='text-gray500 font-body2'>
+                  <span className='font-body2-medium text-gray500'>
                     4.5x10m (파쇄석)
                   </span>
                 </div>

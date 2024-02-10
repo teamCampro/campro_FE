@@ -47,8 +47,8 @@ function MiniMapContainer() {
         </Button.Circle>
         <MinikakaoMap location='달천도담길 3-40' size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
-          <h3>달천도담길 3-40</h3>
-          <div className='flex-center gap-2pxr font-medium text-second100 font-body2'>
+          <h3 className='font-body2-medium text-gray600'>달천도담길 3-40</h3>
+          <div className='flex-center font-body2-medium gap-2pxr text-second100'>
             <div className='h-16pxr w-16pxr'>
               <IconCopy
                 width='100%'
@@ -61,11 +61,28 @@ function MiniMapContainer() {
           </div>
         </div>
       </div>
+      <div className='flex flex-col gap-12pxr px-20pxr mobile:hidden tablet1079:hidden'>
+        <h5 className='font-body1-bold'>주변 관광지</h5>
+        <ul className='flex w-full flex-col gap-12pxr'>
+          <li className='font-body2-medium flex justify-between text-gray600'>
+            · 나무석상
+            <span className='font-body2-medium text-gray500'>2km</span>
+          </li>
+          <li className='font-body2-medium flex justify-between text-gray600'>
+            · 자연친숲 계곡
+            <span className='font-body2-medium text-gray500'>2km</span>
+          </li>
+          <li className='font-body2-medium flex justify-between text-gray600'>
+            · gs편의점 솔치점
+            <span className='font-body2-medium text-gray500'>2km</span>
+          </li>
+        </ul>
+      </div>
       {isClose && (
         <ModalPortal>
           <ModalOutside
             onClose={handleClick}
-            custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 tabletMin:px-40pxr mobile: justify-center mobile:items-center'
+            custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 tabletMin:px-40pxr mobile:justify-center mobile:items-center'
           >
             <div className='h-screen w-full bg-white tabletMin:rounded-2xl tabletMiddleMin:h-672pxr tabletMiddleMin:max-w-767pxr tablet1079:h-610pxr tablet1079:max-w-688pxr'>
               <div className='flex-center relative py-16pxr font-title3-semibold tabletMin:font-title1-bold'>

@@ -64,7 +64,9 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
         <div className='flex w-full items-center justify-between'>
           <div className=' flex w-full flex-222  flex-col items-start'>
             <p className='flex w-full text-black font-title3-semibold'>성인</p>
-            <p className='flex w-full text-gray-500 font-caption1'>18세 이상</p>
+            <p className='font-caption1-medium flex w-full text-gray-500'>
+              18세 이상
+            </p>
           </div>
           <div className='flex w-full flex-105 items-center'>
             <div className='flex w-full items-center justify-end gap-16pxr'>
@@ -96,7 +98,7 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
         <div className='flex w-full items-center justify-between'>
           <div className=' flex w-full flex-222  flex-col items-start'>
             <p className='flex w-full text-black font-title3-semibold'>아동</p>
-            <p className='flex w-full text-gray-500 font-caption1'>
+            <p className='font-caption1-medium flex w-full text-gray-500'>
               0 ~ 17세 이하
             </p>
           </div>

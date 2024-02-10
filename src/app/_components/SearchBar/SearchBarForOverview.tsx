@@ -6,16 +6,17 @@ import {
   CommonForm,
   DatePickerController,
   GroupCountController,
-  LocationController,
 } from '@/src/app/_components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
+import PlaceController from '../Controller/PlaceController';
 
 function SearchBarForOverview() {
   const router = useRouter();
+  const path = useParams();
   const searchParams = useSearchParams();
 
   const [isTotalInput, setIsTotalInput] = useState(false);
@@ -29,7 +30,6 @@ function SearchBarForOverview() {
 
   const onSubmit = (data: FieldValues) => {
     if (Array.isArray(data.date) && data.date.length === 2) {
-      const location = encodeURIComponent(data.location);
       const checkIn = encodeURIComponent(
         new Date(data.date[0].toLocaleDateString('fr-CA'))
           .toISOString()
@@ -42,9 +42,9 @@ function SearchBarForOverview() {
       );
       const group = encodeURIComponent(data.group);
 
-      const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
+      const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
-      router.push(`/search?${queryString}`);
+      router.push(`/overview/${path.id}/?${queryString}`);
     } else {
       console.error('Invalid date range');
     }
@@ -52,14 +52,14 @@ function SearchBarForOverview() {
 
   const getValueForSearchBar = () => {
     let value = '';
-    const location = searchParams.get('location');
+    const place = searchParams.get('place');
     const checkIn = searchParams.get('checkIn');
     const checkOut = searchParams.get('checkOut');
     const group = searchParams.get('group');
 
-    if (location && checkIn && checkOut && group) {
+    if (path.id && checkIn && checkOut && group) {
       const groupObj = JSON.parse(group);
-      value = `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
+      value = `${path.id}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
     }
 
     return value;
@@ -99,7 +99,8 @@ function SearchBarForOverview() {
       setTimeout(() => {
         if (
           outerDivRef.current &&
-          !outerDivRef.current.contains(targetElement)
+          !outerDivRef.current.contains(targetElement) &&
+          !isMobile
         ) {
           closeButton();
         }
@@ -116,10 +117,10 @@ function SearchBarForOverview() {
   return (
     <>
       {isMobile && (
-        <div className={`inline-block w-full`}>
+        <div className={` w-full bg-white mobile:p-16pxr`}>
           <input
             name='total'
-            className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2'
+            className='placeholder:font-body2-medium relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
@@ -133,18 +134,18 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='mb-40pxr w-full max-w-1440pxr  border-b  border-gray200 py-20pxr mobile:px-0pxr'
+        className='flex-center w-full max-w-1440pxr border-b border-gray200'
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
           onSubmit={onSubmit}
         >
           <div
             className={`flex-center flex w-full flex-row gap-12pxr mobile:flex-col mobile:px-20pxr  mobile:pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER.search}`}
           >
-            <LocationController
-              name='location'
-              default={searchParams.get('location') || ''}
+            <PlaceController
+              name='place'
+              default={`${path.id}` || ''}
               onRenderButton={renderButton}
             />
             <DatePickerController

@@ -15,7 +15,7 @@ function CategoryItem({ href, text, icon }: CategoryItemProps) {
         className='flex-center h-134pxr w-126pxr flex-col gap-24pxr rounded-xl bg-white shadow-categoryItem mobile:h-68pxr mobile:w-48pxr mobile:shadow-none tablet:w-114pxr'
       >
         {icon}
-        <div className='text-gray800 font-body2-semibold mobile:font-caption1'>
+        <div className='text-gray800 font-body2-semibold mobile:font-caption1-medium'>
           {text}
         </div>
       </Link>
