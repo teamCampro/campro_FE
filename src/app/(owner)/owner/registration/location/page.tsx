@@ -1,10 +1,10 @@
 'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import OwnerTitle from '../../../_components/OwnerTitle';
-import KakaoMap from '@/src/app/(header)/_components/KakaoMap';
 import OwnerLocationInput from '../../../_components/OwnerLocationInput';
 import createMarkerImage from '@/src/app/_utils/createMarkerImage';
 import useDebounce from '@/hooks/useDebounce';
+import KakaoMap from '@/src/app/(header)/search/_components/KakaoMap';
 
 interface Result {
   address_name: string;

@@ -50,6 +50,7 @@ export const ownerValidate = {
     message: '내용을 입력해주세요',
   },
 };
+
 export const nicknameValidate = {
   required: {
     value: true,

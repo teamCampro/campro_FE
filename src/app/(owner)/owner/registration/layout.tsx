@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode;
 }
 
-function layout({ children }: Props) {
+function Layout({ children }: Props) {
   return (
     <div className='relative pb-120pxr'>
       <div className='px-80pxr'>
@@ -18,4 +18,4 @@ function layout({ children }: Props) {
   );
 }
 
-export default layout;
+export default Layout;

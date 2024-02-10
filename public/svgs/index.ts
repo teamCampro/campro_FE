@@ -64,6 +64,7 @@ export { default as IconAllTime } from './ownerPage/allTime.svg';
 export { default as IconWeekend } from './ownerPage/weekend.svg';
 export { default as IconDay } from './ownerPage/day.svg';
 export { default as IconUploadImage } from './ownerPage/uploadImage.svg';
+export { default as IconLoadingSpinner } from './ownerPage/loadingSpinner.svg';
 export { default as IconCopy } from './copy.svg';
 export { default as IconFullPage } from './fullPage.svg';
 export { default as IconExit } from './exit.svg';
