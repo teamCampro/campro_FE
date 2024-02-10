@@ -4,7 +4,7 @@ import Delete from '@/public/svgs/deleteVehicle.svg';
 import { IconPlusNon } from '@/public/svgs';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { addVehicle, deleteVehicle } from '@/src/app/_utils/vehicleNumber';
+import { addVehicle, deleteVehicle } from '@/src/app/_slices/vehicleNumber';
 
 function AddVehicle() {
   const [vehicleNumber, setVehicleNumber] = useState('');
