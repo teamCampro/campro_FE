@@ -1,16 +1,15 @@
 'use client';
 
+import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import {
   CampSearchList,
   MapSizeButtons,
-  SearchBar,
   SearchFilter,
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import { usePathname } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
@@ -24,8 +23,6 @@ interface DataType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page() {
-  const pathName = usePathname();
-  const isSearch = pathName.includes('search');
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
@@ -81,7 +78,7 @@ function Page() {
       <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
           <Suspense>
-            <SearchBar page='search' />
+            <SearchBarForSearch />
           </Suspense>
         </div>
         <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
@@ -94,7 +91,7 @@ function Page() {
             className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : ' flex-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
           >
             <div className='flex items-center justify-around'>
-              <h3 className='text-black font-title1-semibold mobile:font-body1-medium'>
+              <h3 className='mobile:font-body1-semibold text-black font-title1-semibold'>
                 전체 {campPlaceData?.length || 0}
               </h3>
               <SortDropdown />

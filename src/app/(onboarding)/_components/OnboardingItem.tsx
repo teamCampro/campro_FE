@@ -33,7 +33,7 @@ function OnboardingItem({
     <Fragment key={choice.id}>
       <Button.Round
         size='lg'
-        custom={`${selectTagLog(choice.text, questionId) ? 'bg-primary50' : ''}`}
+        custom={`${selectTagLog(choice.text, questionId) ? 'bg-primary50 ' : ''} hover:font-body1-bold`}
         onClick={() => handleClickChoices(questionId, choice.text)}
       >
         {choice.text}

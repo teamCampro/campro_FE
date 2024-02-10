@@ -159,7 +159,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
           onClick={handleOpen}
         >
           <h3
-            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2 mobile:text-black mobile:font-title3-semibold`}
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold`}
           >
             {children}
           </h3>

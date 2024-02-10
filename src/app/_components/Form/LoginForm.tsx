@@ -24,7 +24,10 @@ function LoginForm() {
     >
       <div className='flex w-full flex-col gap-24pxr '>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
-          <Label className='flex text-gray400 font-body2' htmlFor='email'>
+          <Label
+            className='font-body2-medium flex text-gray400'
+            htmlFor='email'
+          >
             이메일
           </Label>
           <CommonInput
@@ -36,7 +39,10 @@ function LoginForm() {
         </InputContainer>
 
         <InputContainer className='flex w-full flex-col gap-8pxr'>
-          <Label className='flex  text-gray400 font-body2' htmlFor='password'>
+          <Label
+            className='font-body2-medium  flex text-gray400'
+            htmlFor='password'
+          >
             비밀번호
           </Label>
           <CommonInput

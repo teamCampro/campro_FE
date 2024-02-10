@@ -47,7 +47,7 @@ function SelectList({ types }: SelectListType) {
             <li key={list.id}>
               <label
                 htmlFor={list.type}
-                className={`flex-center relative justify-between font-medium font-body1 ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
+                className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
               >
                 {list.type}
                 <div>

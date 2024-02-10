@@ -41,6 +41,7 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
   useEffect(() => {
     if (!map) return;
     map.relayout();
+    console.count('re');
   }, [mapSize, map]);
 
   return (

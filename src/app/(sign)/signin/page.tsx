@@ -10,13 +10,13 @@ function Page() {
         </p>
         <div className='flex w-full max-w-400pxr flex-col items-center justify-center '>
           <LoginForm />
-          <div className=' mt-24pxr flex w-full justify-around text-gray300 font-body2'>
+          <div className=' font-body2-medium mt-24pxr flex w-full justify-around text-gray300'>
             <span>회원가입</span>
             <span>아이디/비밀번호 찾기</span>
           </div>
           <div className='flex-center mb-50pxr mt-50pxr flex w-full gap-16pxr '>
             <div className='h-0pxr  w-full border border-b-white'></div>
-            <span className=' whitespace-nowrap text-white font-body1'>
+            <span className=' whitespace-nowrap text-white font-body1-bold'>
               간편 로그인
             </span>
             <div className='h-0pxr w-full border border-b-white'></div>

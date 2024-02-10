@@ -23,20 +23,24 @@ function Hero() {
         alt='히어로 이미지'
       />
       <div className='flex-center absolute top-64pxr flex-col gap-28pxr mobile:top-62pxr'>
-        <h1 className='text-center text-white font-h1 mobile:font-title3-bold '>
+        <h1 className='font-h1-semibold text-center text-white mobile:font-title3-bold '>
           나의 취향에 맞는
           <br />
           캠핑장을 쉽게 찾아보세요.
         </h1>
         <div>
-          <Button.Circle size='md' onClick={handleButtonClick}>
+          <Button.Circle
+            size='md'
+            onClick={handleButtonClick}
+            custom='font-title1-bold mobile:font-title3-bold'
+          >
             취향 등록하기
           </Button.Circle>
         </div>
       </div>
       <div className='inset-x-0 absolute bottom-[-56px] z-[98] flex w-full justify-center mobile:px-16pxr'>
         <Suspense>
-          <SearchBar page='main' />
+          <SearchBar />
         </Suspense>
       </div>
     </div>
