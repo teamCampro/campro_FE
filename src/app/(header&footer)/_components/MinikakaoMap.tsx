@@ -102,7 +102,7 @@ function MinikakaoMap({ location, size, isClose }: MinikakaoMapType) {
         }
       });
     });
-  }, [isClose]);
+  }, [isClose, location]);
 
   useEffect(() => {
     if (!map) return;

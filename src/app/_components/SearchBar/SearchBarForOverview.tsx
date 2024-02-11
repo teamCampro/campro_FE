@@ -112,6 +112,7 @@ function SearchBarForOverview() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -120,7 +121,7 @@ function SearchBarForOverview() {
         <div className={` w-full bg-white mobile:p-16pxr`}>
           <input
             name='total'
-            className='placeholder:font-body2-medium relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
