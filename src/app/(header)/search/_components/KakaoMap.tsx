@@ -1,14 +1,16 @@
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
+import { CampPlaceType } from '@/src/app/_utils/kakaoMarkerGenerator';
 
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
   mapSize: MapSizeType;
+  campPlaceData: CampPlaceType[];
 }
 
-function KakaoMap({ map, setMap, mapSize }: Props) {
+function KakaoMap({ map, setMap, mapSize, campPlaceData }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const handleClickZoomIn = () => {
@@ -27,16 +29,21 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
 
   useEffect(() => {
     kakao.maps.load(() => {
+      if (!mapRef.current || campPlaceData.length === 0) return;
+      console.log(campPlaceData[0]);
       const options = {
-        center: new kakao.maps.LatLng(37.561110808242056, 126.9831268386891),
-        level: 3,
+        center: new kakao.maps.LatLng(
+          campPlaceData[0].location.lat,
+          campPlaceData[0].location.lng,
+        ),
+        level: 8,
       };
-      if (!mapRef.current) return;
       const map = new kakao.maps.Map(mapRef.current, options);
       setMap(map);
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [campPlaceData]);
 
   useEffect(() => {
     if (!map) return;

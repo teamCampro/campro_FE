@@ -15,21 +15,26 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
 }
 
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+
 export type MapSizeType = 'half' | 'map' | 'list';
 
-function Page() {
+function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
+  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
-  const searchParam = useSearchParams();
 
   const mapBasis = {
     half: {
@@ -52,11 +57,16 @@ function Page() {
   };
 
   useEffect(() => {
-    const location = searchParam.get('location');
-    const checkIn = searchParam.get('checkIn');
-    const checkout = searchParam.get('checkOut');
-    const group = searchParam.get('group');
+    const location = searchParams.location;
+    const checkIn = searchParams.checkIn;
+    const checkout = searchParams.checkOut;
+    const group = JSON.parse(searchParams.group);
+    const totalNumberOfPeople = group.adult + group.child;
+    const totalPet = group.pet;
 
+    console.log(location);
+    console.log('그룹', group); // <-- object
+    console.log(totalNumberOfPeople);
     const fetch = async () => {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
@@ -64,22 +74,23 @@ function Page() {
 
       const { result } = response.data;
 
-      if (location && checkIn && checkout && group) {
+      if (location && checkIn && checkout && group && totalNumberOfPeople > 0) {
+        console.log(1111);
         const newResult = result.filter((li) => {
           return li.address.includes(location);
         });
+        console.log(newResult);
         setCampPlaceData(newResult);
         updateTotalItems(newResult.length);
         return;
       }
-
       setCampPlaceData(result);
       updateTotalItems(response.data.result.length);
     };
 
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (map && campPlaceData) {
@@ -132,7 +143,12 @@ function Page() {
         <div
           className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
         >
-          <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
+          <KakaoMap
+            map={map}
+            setMap={setKakaoMap}
+            mapSize={mapSize}
+            campPlaceData={campPlaceData}
+          />
         </div>
       </div>
     </>
