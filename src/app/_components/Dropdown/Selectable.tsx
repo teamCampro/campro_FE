@@ -4,7 +4,7 @@ import { IconArrowUp, IconReset } from '@/public/svgs';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Button } from '..';
 import SelectList from './_components/SelectList';
-
+import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
 import { useAppSelector } from '@/hooks/redux';
