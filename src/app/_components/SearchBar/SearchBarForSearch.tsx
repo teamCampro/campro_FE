@@ -139,8 +139,14 @@ function SearchBarForSearch() {
               name='group'
               groupCount={
                 searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
+                  ? JSON.parse(
+                      decodeURIComponent(searchParams.get('group') || '') || '',
+                    )
+                  : {
+                      adult: 0,
+                      child: 0,
+                      pet: 0,
+                    }
               }
             />
           </div>
