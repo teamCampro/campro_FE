@@ -37,6 +37,12 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const renderSearchBarForMobile = () => setIsTotalInput(true);
   const closeSearchBarForMobile = () => setIsTotalInput(false);
 
+  const defaultGroupCount = {
+    adult: Number(searchParams.adult) || 0,
+    child: Number(searchParams.child) || 0,
+    pet: Number(searchParams.pet) || 0,
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const targetElement = event.target as HTMLElement;
@@ -57,11 +63,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  const defaultGroupCount = {
-    adult: Number(searchParams.adult) || 0,
-    child: Number(searchParams.child) || 0,
-    pet: Number(searchParams.pet) || 0,
-  };
+
   return (
     <>
       {isMobile && (
