@@ -1,25 +1,31 @@
 'use client';
 
+import { useAppDispatch } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import {
-  CommonForm,
   Button,
-  GroupCountController,
+  CommonForm,
   DatePickerController,
+  GroupCountController,
   LocationController,
 } from '@/src/app/_components';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
-import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
+import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
+import { setReserveInfo } from '../../_slices/reserveInfo';
 import getFormattedDate from '../../_utils/getFormattedDate';
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
 
-function SearchBarForSearch() {
+function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [isTotalInput, setIsTotalInput] = useState(false);
-
+  const dispatch = useAppDispatch();
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
@@ -27,7 +33,6 @@ function SearchBarForSearch() {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
     if (Array.isArray(data.date) && data.date.length === 2) {
       const location = encodeURIComponent(data.location);
       const checkIn = encodeURIComponent(
@@ -45,6 +50,17 @@ function SearchBarForSearch() {
       const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
       router.push(`/search?${queryString}`);
+
+      const groupObject = JSON.parse(decodeURIComponent(data.group));
+
+      dispatch(
+        setReserveInfo({
+          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
+          adult: groupObject.adult,
+          child: groupObject.child,
+          pet: groupObject.pet,
+        }),
+      );
     } else {
       console.error('Invalid date range');
     }
@@ -52,14 +68,19 @@ function SearchBarForSearch() {
 
   const getValueForSearchBar = () => {
     let value = '';
-    const location = searchParams.get('location');
-    const checkIn = searchParams.get('checkIn');
-    const checkOut = searchParams.get('checkOut');
-    const group = searchParams.get('group');
 
+    const { location, checkIn, checkOut, group: groupParam } = searchParams;
+    let group = { adult: 0, child: 0, pet: 0 };
+    if (groupParam) {
+      try {
+        group = JSON.parse(groupParam);
+        console.log(group);
+      } catch (e) {
+        console.error('Error parsing group params:', e);
+      }
+    }
     if (location && checkIn && checkOut && group) {
-      const groupObj = JSON.parse(group);
-      value = `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
+      value = `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${group.adult}명, 아동 ${group.child}명, 펫 ${group.pet}마리`;
     }
 
     return value;
@@ -116,19 +137,25 @@ function SearchBarForSearch() {
           >
             <LocationController
               name='location'
-              default={searchParams.get('location') || ''}
+              default={searchParams.location || ''}
             />
             <DatePickerController
               name='date'
-              checkIn={searchParams.get('checkIn') || ''}
-              checkOut={searchParams.get('checkOut') || ''}
+              checkIn={searchParams.checkIn || ''}
+              checkOut={searchParams.checkOut || ''}
             />
             <GroupCountController
               name='group'
               groupCount={
-                searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
+                searchParams.group
+                  ? JSON.parse(
+                      decodeURIComponent(searchParams.group || '') || '',
+                    )
+                  : {
+                      adult: 0,
+                      child: 0,
+                      pet: 0,
+                    }
               }
             />
           </div>

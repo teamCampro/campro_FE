@@ -10,12 +10,11 @@ import {
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
@@ -57,37 +56,21 @@ function Page({ searchParams }: SearchParamsType) {
   };
 
   useEffect(() => {
-    const location = searchParams.location;
-    const checkIn = searchParams.checkIn;
-    const checkout = searchParams.checkOut;
-    const group = JSON.parse(searchParams.group);
-    const totalNumberOfPeople = group.adult + group.child;
-    const totalPet = group.pet;
+    const { location, checkIn, checkOut, group: groupTest } = searchParams;
 
-    console.log(location);
-    console.log('그룹', group); // <-- object
-    console.log(totalNumberOfPeople);
     const fetch = async () => {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
-
       const { result } = response.data;
+      const filteredResult =
+        location && checkIn && checkOut
+          ? result.filter((item) => item.address.includes(location))
+          : result;
 
-      if (location && checkIn && checkout && group && totalNumberOfPeople > 0) {
-        console.log(1111);
-        const newResult = result.filter((li) => {
-          return li.address.includes(location);
-        });
-        console.log(newResult);
-        setCampPlaceData(newResult);
-        updateTotalItems(newResult.length);
-        return;
-      }
-      setCampPlaceData(result);
-      updateTotalItems(response.data.result.length);
+      setCampPlaceData(filteredResult);
+      updateTotalItems(filteredResult.length);
     };
-
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
@@ -105,9 +88,7 @@ function Page({ searchParams }: SearchParamsType) {
       />
       <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
-          <Suspense>
-            <SearchBarForSearch />
-          </Suspense>
+          <SearchBarForSearch searchParams={searchParams} />
         </div>
         <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
           <SearchFilter />

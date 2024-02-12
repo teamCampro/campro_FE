@@ -10,10 +10,14 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
+import { useAppDispatch } from '@/hooks/redux';
+import { setReserveInfo } from '../../_slices/reserveInfo';
+import getFormattedDate from '../../_utils/getFormattedDate';
 
 function SearchBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: FieldValues) => {
     if (Array.isArray(data.date) && data.date.length === 2) {
@@ -33,6 +37,17 @@ function SearchBar() {
       const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
       router.push(`/search?${queryString}`);
+
+      const groupObject = JSON.parse(decodeURIComponent(data.group));
+
+      dispatch(
+        setReserveInfo({
+          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
+          adult: groupObject.adult,
+          child: groupObject.child,
+          pet: groupObject.pet,
+        }),
+      );
     } else {
       console.error('Invalid date range');
     }
@@ -61,7 +76,9 @@ function SearchBar() {
               name='group'
               groupCount={
                 searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
+                  ? JSON.parse(
+                      decodeURIComponent(searchParams.get('group') || '') || '',
+                    )
                   : {
                       adult: 0,
                       child: 0,

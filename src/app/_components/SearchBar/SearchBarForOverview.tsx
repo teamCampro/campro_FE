@@ -13,7 +13,8 @@ import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
 import PlaceController from '../Controller/PlaceController';
-
+import { useAppDispatch } from '@/hooks/redux';
+import { setReserveInfo } from '../../_slices/reserveInfo';
 function SearchBarForOverview() {
   const router = useRouter();
   const path = useParams();
@@ -21,6 +22,7 @@ function SearchBarForOverview() {
 
   const [isTotalInput, setIsTotalInput] = useState(false);
   const [isRenderedButton, setIsRenderedButton] = useState(false);
+  const dispatch = useAppDispatch();
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
@@ -40,11 +42,22 @@ function SearchBarForOverview() {
           .toISOString()
           .slice(0, 10),
       );
+
       const group = encodeURIComponent(data.group);
 
       const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
-
       router.push(`/overview/${path.id}/?${queryString}`);
+
+      const groupObject = JSON.parse(decodeURIComponent(data.group));
+
+      dispatch(
+        setReserveInfo({
+          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
+          adult: groupObject.adult,
+          child: groupObject.child,
+          pet: groupObject.pet,
+        }),
+      );
     } else {
       console.error('Invalid date range');
     }
@@ -161,10 +174,15 @@ function SearchBarForOverview() {
               name='group'
               groupCount={
                 searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
+                  ? JSON.parse(
+                      decodeURIComponent(searchParams.get('group') || '') || '',
+                    )
+                  : {
+                      adult: 0,
+                      child: 0,
+                      pet: 0,
+                    }
               }
-              onRenderButton={renderButton}
             />
           </div>
           {isRenderedButton && (
