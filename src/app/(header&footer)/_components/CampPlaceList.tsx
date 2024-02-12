@@ -35,7 +35,7 @@ function CampPlaceList({ campPlaces, type }: Props) {
   return (
     <div className='flex flex-col gap-12pxr'>
       <div className='flex justify-between '>
-        <h1 className='mobile:font-body1-semibold font-title1-semibold'>
+        <h1 className='font-title1-semibold mobile:font-body1-semibold'>
           {listName}
         </h1>
         <button

@@ -28,7 +28,7 @@ function SignUpForm() {
       <div className='flex w-full flex-col gap-24pxr'>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
           <Label
-            className='font-body2-medium flex w-full text-gray400'
+            className='flex w-full text-gray400 font-body2-medium'
             htmlFor='email'
           >
             이메일
@@ -42,7 +42,7 @@ function SignUpForm() {
         </InputContainer>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
           <Label
-            className='font-body2-medium flex w-full text-gray400'
+            className='flex w-full text-gray400 font-body2-medium'
             htmlFor='nickname'
           >
             닉네임
@@ -57,7 +57,7 @@ function SignUpForm() {
 
         <InputContainer className='flex w-full flex-col gap-8pxr'>
           <Label
-            className='font-body2-medium flex w-full text-gray400'
+            className='flex w-full text-gray400 font-body2-medium'
             htmlFor='password'
           >
             비밀번호
@@ -71,7 +71,7 @@ function SignUpForm() {
         </InputContainer>
         <InputContainer className='flex  w-full flex-col gap-8pxr'>
           <Label
-            className='font-body2-medium flex w-full text-gray400'
+            className='flex w-full text-gray400 font-body2-medium'
             htmlFor='password'
           >
             비밀번호 확인
@@ -82,7 +82,7 @@ function SignUpForm() {
           />
           <ErrorMessage name='passwordCheck' />
         </InputContainer>
-        <div className=' font-body2-medium flex w-full  flex-col text-gray300'>
+        <div className=' flex w-full flex-col  text-gray300 font-body2-medium'>
           <p>가입유형</p>
           <div className=' flex justify-start gap-108pxr'>
             <InputContainer className='flex-center gap-8pxr'>
@@ -91,7 +91,7 @@ function SignUpForm() {
                 checkedIcon={<BoxChecked />}
                 uncheckedIcon={<BoxEmpty />}
               />
-              <Label className='font-body2-medium text-white' htmlFor='user'>
+              <Label className='text-white font-body2-medium' htmlFor='user'>
                 이용자
               </Label>
             </InputContainer>
@@ -101,7 +101,7 @@ function SignUpForm() {
                 checkedIcon={<BoxChecked />}
                 uncheckedIcon={<BoxEmpty />}
               />
-              <Label className='font-body2-medium text-white' htmlFor='boss'>
+              <Label className='text-white font-body2-medium' htmlFor='boss'>
                 사용자
               </Label>
             </InputContainer>

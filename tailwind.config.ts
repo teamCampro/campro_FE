@@ -275,6 +275,13 @@ const config: Config = {
           fontFamily: 'Pretendard',
           fontWeight: '500',
         },
+        '.font-body2-bold': {
+          fontSize: pxToRem(16),
+          lineHeight: '1.4',
+          letterSpacing: pxToRem(-0.16),
+          fontFamily: 'Pretendard',
+          fontWeight: '700',
+        },
         '.font-body2-semibold': {
           fontSize: pxToRem(16),
           lineHeight: '1.4',

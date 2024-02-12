@@ -28,6 +28,7 @@ function SearchBarForSearch() {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
+    console.log(data);
     if (Array.isArray(data.date) && data.date.length === 2) {
       const location = encodeURIComponent(data.location);
       const checkIn = encodeURIComponent(

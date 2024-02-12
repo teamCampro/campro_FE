@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
+import Copy from '@/components/Copy';
 import { ModalOutside, ModalPortal } from '@/components/index';
 import {
   IconArrowLeftNon,
@@ -23,20 +24,20 @@ function MiniMapContainer() {
   };
   return (
     <>
-      <h3
+      <button
         className='flex text-second100 tabletMiddleMin:hidden'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>
-        <div className='h-20pxr w-20pxr'>
+        <span className='h-20pxr w-20pxr'>
           <IconArrowRightNon
             width='100%'
             height='100%'
             viewBox='0 0 24 24'
             fill='#7D6F5A'
           />
-        </div>
-      </h3>
+        </span>
+      </button>
       <div className='hidden w-340pxr flex-col rounded-xl border border-gray200 tabletMiddleMin:flex'>
         <Button.Circle
           size='sm'
@@ -47,34 +48,36 @@ function MiniMapContainer() {
         </Button.Circle>
         <MinikakaoMap location='달천도담길 3-40' size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
-          <h3 className='font-body2-medium text-gray600'>달천도담길 3-40</h3>
-          <div className='flex-center font-body2-medium gap-2pxr text-second100'>
-            <div className='h-16pxr w-16pxr'>
-              <IconCopy
-                width='100%'
-                height='100%'
-                viewBox='0 0 24 24'
-                fill='#7D6F5A'
-              />
+          <h3 className='text-gray600 font-body2-medium'>달천도담길 3-40</h3>
+          <Copy copyTarget='달천도담길 3-40'>
+            <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
+              <div className='h-16pxr w-16pxr'>
+                <IconCopy
+                  width='100%'
+                  height='100%'
+                  viewBox='0 0 24 24'
+                  fill='#7D6F5A'
+                />
+              </div>
+              주소복사
             </div>
-            주소복사
-          </div>
+          </Copy>
         </div>
       </div>
       <div className='flex flex-col gap-12pxr px-20pxr mobile:hidden tablet1079:hidden'>
         <h5 className='font-body1-bold'>주변 관광지</h5>
         <ul className='flex w-full flex-col gap-12pxr'>
-          <li className='font-body2-medium flex justify-between text-gray600'>
+          <li className='flex justify-between text-gray600 font-body2-medium'>
             · 나무석상
-            <span className='font-body2-medium text-gray500'>2km</span>
+            <span className='text-gray500 font-body2-medium'>2km</span>
           </li>
-          <li className='font-body2-medium flex justify-between text-gray600'>
+          <li className='flex justify-between text-gray600 font-body2-medium'>
             · 자연친숲 계곡
-            <span className='font-body2-medium text-gray500'>2km</span>
+            <span className='text-gray500 font-body2-medium'>2km</span>
           </li>
-          <li className='font-body2-medium flex justify-between text-gray600'>
+          <li className='flex justify-between text-gray600 font-body2-medium'>
             · gs편의점 솔치점
-            <span className='font-body2-medium text-gray500'>2km</span>
+            <span className='text-gray500 font-body2-medium'>2km</span>
           </li>
         </ul>
       </div>
