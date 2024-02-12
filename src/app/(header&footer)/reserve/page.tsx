@@ -15,9 +15,6 @@ import TermsAgreement from './_components/TermsAgreement';
 import PaymentSubmit from './_components/PaymentSubmit';
 import PaymentAmount from './_components/PaymentAmount';
 function Page() {
-  const ss = () => {
-    console.log(111);
-  };
   return (
     <>
       <h2 className='text-block flex-center relative p-16pxr font-title3-semibold tabletMin:hidden tabletMin:font-h1-semibold'>
@@ -48,7 +45,6 @@ function Page() {
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />
                 <TermsAgreement />
-
                 <PaymentSubmit custom='w-full hidden tabletMin:flex-center !h-56pxr' />
               </div>
             </div>

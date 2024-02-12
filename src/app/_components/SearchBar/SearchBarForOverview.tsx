@@ -13,7 +13,8 @@ import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
 import PlaceController from '../Controller/PlaceController';
-
+import { useAppDispatch } from '@/hooks/redux';
+import { setReserveInfo } from '../../_slices/reserveInfo';
 function SearchBarForOverview() {
   const router = useRouter();
   const path = useParams();
@@ -21,6 +22,7 @@ function SearchBarForOverview() {
 
   const [isTotalInput, setIsTotalInput] = useState(false);
   const [isRenderedButton, setIsRenderedButton] = useState(false);
+  const dispatch = useAppDispatch();
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
@@ -40,11 +42,22 @@ function SearchBarForOverview() {
           .toISOString()
           .slice(0, 10),
       );
+
       const group = encodeURIComponent(data.group);
 
       const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
-
       router.push(`/overview/${path.id}/?${queryString}`);
+
+      const groupObject = JSON.parse(decodeURIComponent(data.group));
+
+      dispatch(
+        setReserveInfo({
+          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
+          adult: groupObject.adult,
+          child: groupObject.child,
+          pet: groupObject.pet,
+        }),
+      );
     } else {
       console.error('Invalid date range');
     }
@@ -120,7 +133,7 @@ function SearchBarForOverview() {
         <div className={` w-full bg-white mobile:p-16pxr`}>
           <input
             name='total'
-            className='placeholder:font-body2-medium relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
