@@ -77,7 +77,15 @@ const campingZoneInfos = [
   },
 ];
 
-function Page() {
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+
+export type MapSizeType = 'half' | 'map' | 'list';
+
+function Page({ searchParams }: SearchParamsType) {
   const [isSticky, setIsSticky] = useState(false);
   const campImageRef = useRef<HTMLDivElement>(null);
   const [showSiteButton, setShowSiteButton] = useState(true);
@@ -179,7 +187,7 @@ function Page() {
 
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
-      <SearchBarForOverview />
+      <SearchBarForOverview searchParams={searchParams} />
       <CampImage campImageRef={campImageRef} />
       <AnchorMenu
         isSticky={isSticky}
