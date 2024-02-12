@@ -62,7 +62,6 @@ function Page({ searchParams }: SearchParamsType) {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
-
       const { result } = response.data;
       const filteredResult =
         location && checkIn && checkOut
