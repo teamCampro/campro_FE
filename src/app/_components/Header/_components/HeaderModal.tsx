@@ -1,8 +1,6 @@
 'use client';
 
-import { useState } from 'react';
 import { ModalOutside, ModalPortal } from '../..';
-import SideLists from '@/src/app/(header&footer)/profile/_components/SideLists';
 import { IconArrowRightNon, IconPeople } from '@/public/svgs';
 import { USER_OPTIONS } from './HeaderDropdown';
 import Link from 'next/link';
@@ -28,7 +26,7 @@ function HeaderModal({ handleClick }: HeaderModalType) {
                 fill='black'
               />
             </div>
-            <h2 className='font-body2-bold text-black'>홍길동님</h2>
+            <h2 className='text-black font-body2-bold'>홍길동님</h2>
           </div>
           <ul className='flex flex-col gap-24pxr px-24pxr py-12pxr'>
             {USER_OPTIONS.map((option) => {
