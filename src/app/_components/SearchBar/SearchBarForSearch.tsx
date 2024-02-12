@@ -27,6 +27,7 @@ function SearchBarForSearch() {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
+    console.log(data);
     if (Array.isArray(data.date) && data.date.length === 2) {
       const location = encodeURIComponent(data.location);
       const checkIn = encodeURIComponent(
@@ -94,7 +95,7 @@ function SearchBarForSearch() {
         <div className={`inline-block  w-full`}>
           <input
             name='total'
-            className='placeholder:font-body2-medium w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
             value={getValueForSearchBar()}
