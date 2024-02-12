@@ -82,7 +82,7 @@ function LocationInputView({
             onChange={handleInputChange}
             value={value}
             placeholder='어디로 갈까요?'
-            className=' placeholder:font-body2-medium w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className=' w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
           />
         </div>
         {isDropdownVisible && (

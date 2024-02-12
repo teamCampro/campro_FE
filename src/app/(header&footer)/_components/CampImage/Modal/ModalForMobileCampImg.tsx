@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import { CampImageData } from '..';
 import ModalAboutHeader from './ModalAboutHeader';
-import Image from 'next/image';
 
 function ModalForMobileCampImg({
   onClose,

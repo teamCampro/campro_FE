@@ -9,7 +9,7 @@ function SiteInfoList({ title, infos }: SiteInfoListProps) {
       <h6 className='text-black font-body1-bold'>{title}</h6>
       <ul className='flex flex-col gap-8pxr'>
         {infos.map((info, i) => (
-          <li key={`${info + i}`} className='font-body2-medium text-gray500'>
+          <li key={`${info + i}`} className='text-gray500 font-body2-medium'>
             · {info}
           </li>
         ))}
