@@ -84,7 +84,7 @@ function AddOption() {
                 />
               </button>
             </div>
-            <h3 className='font-body2-bold basis-78pxr tabletMin:font-body1-bold'>
+            <h3 className='basis-78pxr font-body2-bold tabletMin:font-body1-bold'>
               {option.price}
             </h3>
           </li>
