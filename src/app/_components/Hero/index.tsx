@@ -23,7 +23,7 @@ function Hero() {
         alt='히어로 이미지'
       />
       <div className='flex-center absolute top-64pxr flex-col gap-28pxr mobile:top-62pxr'>
-        <h1 className='font-h1-semibold text-center text-white mobile:font-title3-bold '>
+        <h1 className='text-center text-white font-h1-semibold mobile:font-title3-bold '>
           나의 취향에 맞는
           <br />
           캠핑장을 쉽게 찾아보세요.
