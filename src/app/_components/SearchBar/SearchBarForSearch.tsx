@@ -13,13 +13,14 @@ import { useState, useRef, useEffect } from 'react';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
 import getFormattedDate from '../../_utils/getFormattedDate';
-
+import { useAppDispatch } from '@/hooks/redux';
+import { setReserveInfo } from '../../_slices/reserveInfo';
 function SearchBarForSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [isTotalInput, setIsTotalInput] = useState(false);
-
+  const dispatch = useAppDispatch();
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
@@ -45,6 +46,17 @@ function SearchBarForSearch() {
       const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
 
       router.push(`/search?${queryString}`);
+
+      const groupObject = JSON.parse(decodeURIComponent(data.group));
+
+      dispatch(
+        setReserveInfo({
+          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
+          adult: groupObject.adult,
+          child: groupObject.child,
+          pet: groupObject.pet,
+        }),
+      );
     } else {
       console.error('Invalid date range');
     }
@@ -127,8 +139,14 @@ function SearchBarForSearch() {
               name='group'
               groupCount={
                 searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
+                  ? JSON.parse(
+                      decodeURIComponent(searchParams.get('group') || '') || '',
+                    )
+                  : {
+                      adult: 0,
+                      child: 0,
+                      pet: 0,
+                    }
               }
             />
           </div>

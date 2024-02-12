@@ -1,3 +1,4 @@
+import HeaderDropdown from '@/components/Header/_components/HeaderDropdown';
 import { IconPeople } from '@/public/svgs';
 import Link from 'next/link';
 
@@ -16,15 +17,9 @@ function OnBoardingHeader() {
             캠핑 테스트
           </h3>
         </div>
-        <Link
-          href='#none'
-          className='flex items-center justify-end font-title3-bold mobile:text-gray500 mobile:font-caption1-semibold tablet:items-center'
-        >
-          <IconPeople className='hidden mobile:block' />
-          <span className='block text-gray500 font-title3-semibold mobile:hidden'>
-            로그인/회원가입
-          </span>
-        </Link>
+        <div className='flex-center relative'>
+          <HeaderDropdown />
+        </div>
       </div>
     </nav>
   );

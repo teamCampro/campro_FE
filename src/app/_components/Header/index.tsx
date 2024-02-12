@@ -4,14 +4,17 @@ import Link from 'next/link';
 import { IconComming, IconPeople } from '@/public/svgs';
 import { usePathname } from 'next/navigation';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import HeaderDropdown from './_components/HeaderDropdown';
 
 function Header() {
   const pathName = usePathname();
-  const isReserve = pathName.includes('reserve');
+  const isReserve =
+    pathName.includes('reserve') || pathName.includes('profile');
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
+
   return (
     <nav
       className={`w-full border-b border-gray200 bg-white ${isMobile && isReserve ? 'hidden' : 'block'}`}
@@ -35,11 +38,8 @@ function Header() {
               <span className='block mobile:hidden'>오픈 일정</span>
             </Link>
           </li>
-          <li className='ml-32pxr text-gray500 mobile:ml-0pxr'>
-            <Link href='#none'>
-              <IconPeople className='hidden mobile:block' />
-              <span className='block mobile:hidden'>로그인/회원가입</span>
-            </Link>
+          <li className='relative ml-32pxr text-gray500 mobile:ml-0pxr'>
+            <HeaderDropdown />
           </li>
         </ul>
       </div>
