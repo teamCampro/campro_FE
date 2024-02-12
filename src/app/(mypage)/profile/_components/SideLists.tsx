@@ -14,7 +14,6 @@ function SideLists() {
   const handleClick = (id: number) => {
     dispatch(setProfileState(id));
   };
-  console.log(pathName.split('/')[2]);
 
   const isPath = (link: string) => {
     return pathName.split('/')[2]

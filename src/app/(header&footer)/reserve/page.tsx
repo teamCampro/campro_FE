@@ -27,7 +27,7 @@ function Page() {
       <div className='m-auto mb-125pxr mt-24pxr max-w-1400pxr px-20pxr tabletMin:mt-40pxr tabletMin:px-40pxr'>
         <HeaderAboutReserve />
         <main className='reserve flex flex-col gap-24pxr tabletMin:grid'>
-          <section className='flex flex-col gap-24pxr'>
+          <section id='reserve' className='flex flex-col gap-24pxr'>
             <Button.Round custom='w-full bg-white border border-gray200 font-body2-semibold !h-46pxr rounded-lg'>
               이용 안내 보기
             </Button.Round>

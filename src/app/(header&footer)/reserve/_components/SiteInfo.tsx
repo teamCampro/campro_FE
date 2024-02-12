@@ -1,28 +1,32 @@
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 interface SiteInfoType {
   [key: string]: string;
-  size: 'mobile' | 'pc';
+  size: 'mobile' | 'pc' | 'profile';
 }
 
 interface SizeOptionType {
   mobile: string;
   pc: string;
+  profile: string;
 }
 
 const SIZE_OPTION: SizeOptionType = {
   mobile: 'tabletMin:hidden flex',
   pc: 'tabletMin:flex hidden',
+  profile: 'flex',
 };
 
 function SiteInfo({ size }: SiteInfoType) {
+  const pathName = usePathname();
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-
+  const isProfile = pathName.includes('reserveList');
   return (
     <div
       className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
@@ -87,7 +91,7 @@ function SiteInfo({ size }: SiteInfoType) {
             </div>
           </span>
         </li>
-        <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
+        <li className='flex-center justify-start gap-28pxr text-gray500 font-body2-semibold'>
           기준 인원
           <span className='text-gray700 font-body1'>최대 2인</span>
         </li>
