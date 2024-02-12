@@ -5,13 +5,24 @@ import InfoAboutBookingPerson from '@/src/app/(header&footer)/reserve/_component
 import InfoAboutReserve from '@/src/app/(header&footer)/reserve/_components/InfoAboutReserve';
 import PaymentAmount from '@/src/app/(header&footer)/reserve/_components/PaymentAmount';
 import SiteInfo from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
+import { useState } from 'react';
+import CancleReserverModal from './CancleReserverModal';
 
 function ReserveInfo() {
+  const [isClose, setIsClose] = useState(false);
+
+  const handleModal = () => {
+    setIsClose(!isClose);
+  };
+
   return (
     <>
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
         <h2 className='hidden font-h1-semibold tabletMin:block'>예약 상세</h2>
-        <Button.Round custom='!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 !rounded-md'>
+        <Button.Round
+          custom='!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 !rounded-md'
+          onClick={handleModal}
+        >
           예약 취소
         </Button.Round>
       </div>
@@ -70,11 +81,15 @@ function ReserveInfo() {
               <h2>130,000원</h2>
             </div>
           </div>
-          <Button.Round custom='w-full mt-40pxr mb-20pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr flex tabletMin:hidden !text-gray700 !rounded-md'>
+          <Button.Round
+            custom='w-full mt-40pxr mb-20pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr flex tabletMin:hidden !text-gray700 !rounded-md'
+            onClick={handleModal}
+          >
             예약 취소
           </Button.Round>
         </div>
       </div>
+      {isClose && <CancleReserverModal handleClick={handleModal} />}
     </>
   );
 }
