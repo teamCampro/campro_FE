@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Image from 'next/image';
-import { CampImageData } from '../index';
 import { useState } from 'react';
+import { CampImageData } from '../index';
 import ModalAboutHeader from './ModalAboutHeader';
 
 function CampImageForModal({
@@ -19,7 +19,7 @@ function CampImageForModal({
   };
 
   return (
-    <div className='  flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
+    <div className='flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
       <ModalAboutHeader onClose={onClose} />
       <div className='flex w-full flex-col items-center justify-center  bg-gray100'>
         <div className=' flex-center w-full'>

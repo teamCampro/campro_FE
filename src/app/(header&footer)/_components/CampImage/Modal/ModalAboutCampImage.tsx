@@ -1,9 +1,9 @@
 'use client';
 
 import { ModalOutside, ModalPortal } from '@/components/index';
-import CampImageForModal from './CampImageForModal';
-import { CampImageData } from '../index';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import { CampImageData } from '../index';
+import CampImageForModal from './CampImageForModal';
 import ModalForMobileCampImg from './ModalForMobileCampImg';
 
 interface Props {
@@ -26,7 +26,12 @@ function ModalAboutCampImage({ onClose, campImages }: Props) {
     </ModalPortal>
   ) : (
     <ModalPortal>
-      <ModalForMobileCampImg onClose={onClose} campImages={campImages} />
+      <ModalOutside
+        onClose={onClose}
+        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center'
+      >
+        <ModalForMobileCampImg onClose={onClose} campImages={campImages} />
+      </ModalOutside>
     </ModalPortal>
   );
 }

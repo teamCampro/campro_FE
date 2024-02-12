@@ -48,7 +48,6 @@ function KakaoMap({ map, setMap, mapSize, campPlaceData }: Props) {
   useEffect(() => {
     if (!map) return;
     map.relayout();
-    console.count('re');
   }, [mapSize, map]);
 
   return (

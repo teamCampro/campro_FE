@@ -1,17 +1,21 @@
 'use client';
 
 import useMediaQueries from '@/hooks/useMediaQueries';
-import CampImageCarousel from './CampImageCarousel';
-import CampImageForDesktop from './CampImageForDesktop';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import CampImageCarousel from './CampImageCarousel';
+import CampImageForDesktop from './CampImageForDesktop';
 
 export interface CampImageData {
   id: number;
   imgUrl: string;
 }
 
-function CampImage() {
+function CampImage({
+  campImageRef,
+}: {
+  campImageRef: React.RefObject<HTMLDivElement>;
+}) {
   const [campImages, setCampImages] = useState<CampImageData[] | null>(null);
 
   useEffect(() => {
@@ -33,10 +37,14 @@ function CampImage() {
     .matches;
   const isCarousel = typeof window !== 'undefined' ? tabletMediaQuery : false;
 
-  return isCarousel ? (
-    <CampImageCarousel campImages={campImages} />
-  ) : (
-    <CampImageForDesktop campImages={campImages} />
+  return (
+    <section ref={campImageRef}>
+      {isCarousel ? (
+        <CampImageCarousel campImages={campImages} />
+      ) : (
+        <CampImageForDesktop campImages={campImages} />
+      )}
+    </section>
   );
 }
 

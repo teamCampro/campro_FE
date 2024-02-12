@@ -39,7 +39,7 @@ const images = [
 function CampSiteDetail({ onClose }: { onClose: () => void }) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
-      <div className='flex h-744pxr w-767pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:w-full mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:h-733pxr tablet:w-688pxr'>
+      <div className='flex h-744pxr w-767pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:w-full mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:h-773pxr tablet:w-688pxr'>
         <div className='flex gap-16pxr'>
           <button type='button' onClick={onClose}>
             <IconClose />
@@ -73,7 +73,6 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
                 </SwiperSlide>
               ))}
             </Swiper>
-
             <div className='flex justify-start gap-128pxr px-16pxr mobile:flex-col mobile:gap-20pxr tablet:justify-center tablet:gap-72pxr'>
               <div className='flex flex-col gap-24pxr mobile:gap-20pxr'>
                 <div className='flex flex-col gap-2pxr'>
@@ -83,13 +82,13 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
                     A1-08
                   </h4>
-                  <span className='font-caption1-medium text-gray500'>
+                  <span className='text-gray500 font-caption1-medium'>
                     하단 구역
                   </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
-                  <span className='font-body2-medium text-gray500'>
+                  <span className='text-gray500 font-body2-medium'>
                     4.5x10m (파쇄석)
                   </span>
                 </div>
@@ -101,7 +100,7 @@ function CampSiteDetail({ onClose }: { onClose: () => void }) {
               </div>
             </div>
           </div>
-          <Button.Round size='sm' custom='w-full'>
+          <Button.Round size='sm' custom='w-full !h-56pxr'>
             예약하기
           </Button.Round>
         </div>
