@@ -8,7 +8,7 @@ function page() {
     <div className='custom-height justify-center bg-gray100 bg-onboard bg-cover bg-center bg-no-repeat pt-201pxr mobile:pt-65pxr'>
       <div className='flex flex-col items-center gap-108pxr'>
         <div className='flex-center flex-col gap-12pxr'>
-          <h2 className='text-white font-h1 mobile:font-title1-semibold'>
+          <h2 className='text-white font-h1-semibold mobile:font-title1-semibold'>
             나는 어떤 캠핑이 맞을까?
           </h2>
           <h4 className='text-gray200 font-title1 mobile:font-body2'>

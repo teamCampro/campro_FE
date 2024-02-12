@@ -4,7 +4,7 @@ import { IconArrowUp, IconReset } from '@/public/svgs';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Button } from '..';
 import SelectList from './_components/SelectList';
-import PriceTable from './_components/PriceTable';
+
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
 import { useAppSelector } from '@/hooks/redux';
@@ -140,6 +140,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //초기화
@@ -155,11 +156,11 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
         ref={buttomRef}
       >
         <div
-          className='mobile344:px-24pxr flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobileMiddle:px-40pxr'
+          className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
           <h3
-            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2 mobile:text-black mobile:font-title3-semibold`}
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold`}
           >
             {children}
           </h3>
@@ -173,7 +174,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'mobile344:h-full h-98pxr mobile:px-16pxr  mobile:py-12pxr mobileMiddle:h-78pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (

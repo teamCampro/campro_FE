@@ -83,7 +83,7 @@ function MapFloatingButton({ onMapResize }: Props) {
       >
         <div className='flex-center'>
           <span
-            className={`w-65pxr font-medium font-body2 ${toggleFloating ? 'text-primary100 font-body2-semibold' : 'text-gray600'}`}
+            className={`w-65pxr font-body2-medium ${toggleFloating ? 'text-primary100 font-body2-semibold' : 'text-gray600'}`}
           >
             {currentButton?.name}
           </span>
@@ -103,7 +103,7 @@ function MapFloatingButton({ onMapResize }: Props) {
               onClick={() => handleInsideFloatingButtonClick(button)}
             >
               <div className='flex-center'>
-                <span className='w-65pxr font-medium text-gray600 font-body2'>
+                <span className='w-65pxr text-gray600 font-body2-medium'>
                   {button.name}
                 </span>
               </div>

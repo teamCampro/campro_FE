@@ -13,7 +13,7 @@
 
 ## 배포 주소
 
-### <a href='https://google.com' target="_blank" rel="noopener noreferrer">CamPro</a>
+### <a href='https://campro-alpha.vercel.app' target="_blank" rel="noopener noreferrer">CamPro</a>
 
 <br/>
 <br/>

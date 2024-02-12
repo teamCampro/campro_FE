@@ -8,7 +8,7 @@ import { LINKS } from '../_constants';
 function CategoryList() {
   return (
     <div className='relative flex h-196pxr w-full max-w-1440pxr flex-col gap-16pxr mobile:h-245pxr mobile:gap-16pxr mobile:pr-16pxr tablet:gap-13pxr'>
-      <h3 className='font-title1-semibold mobile:text-black mobile:font-body1-medium tablet:font-title2-semibold'>
+      <h3 className='font-title1-semibold mobile:text-black mobile:font-body1-medium tablet:font-body1-semibold'>
         원하는 캠핑을 찾아보세요
       </h3>
       <div className='absolute -left-10pxr bottom-0pxr flex w-full bg-inherit shadow-none mobile:static mobile:justify-center mobile:rounded-xl mobile:bg-white mobile:shadow-categoryItem tablet:justify-normal'>

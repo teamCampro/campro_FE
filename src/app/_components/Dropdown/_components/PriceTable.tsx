@@ -29,7 +29,7 @@ function PriceTable({ setPrice, price, getNewPrice, types }: PriceTableType) {
   };
 
   return (
-    <li className='flex-center mobile344:flex-wrap justify-between mobile:gap-12pxr mobileMiddle:gap-4pxr'>
+    <li className='flex-center justify-between mobile:gap-12pxr mobile344:flex-wrap mobileMiddle:gap-4pxr'>
       <div className='flex-center w-full justify-between gap-4pxr'>
         <PriceInput name='startPrice' setPrice={setPrice} price={price} />
         <div className='w-16pxr flex-shrink-0 border-b-2 border-b-gray700 mobileMiddle:w-12pxr'></div>

@@ -10,20 +10,24 @@ interface Props {
 
 function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
   const responsiveClasses = isResponsive
-    ? 'mobile:w-full tablet:w-full desktop1440:w-full'
-    : 'mobile:w-184pxr';
+    ? ''
+    : 'max-h-220pxr max-w-340pxr mobile:max-w-184pxr';
+  const aspectClasses = isResponsive
+    ? 'aspect-340/220 tablet:aspect-square mobile:aspect-square mobile411:aspect-288/184 mobile767:aspect-square'
+    : '';
   return (
-    <li key={campPlace.id} className='flex flex-col gap-16pxr'>
-      <div
-        className={`relative h-220pxr w-340pxr mobile:h-184pxr ${responsiveClasses}`}
-      >
+    <li key={campPlace.id} className='flex w-full flex-col gap-16pxr'>
+      <div className={`relative ${responsiveClasses}`}>
         <Image
-          className='rounded-3xl object-cover'
+          width={262}
+          height={262}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          className={`rounded-3xl ${aspectClasses}`}
           src={campPlace.imgUrl}
           alt='캠핑장 이미지'
-          fill
-          priority
-          sizes='340px'
         />
         <button
           type='button'
@@ -34,24 +38,24 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
       </div>
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-caption1-semibold'>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold'>
             {campPlace.placeName}
           </span>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1'>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
             {campPlace.address}
           </span>
         </div>
         <div className='flex flex-col gap-8pxr'>
           <div>
-            <span className='text-gray800 font-title3-bold'>
+            <span className='text-gray800 font-title1-bold'>
               ₩{campPlace.price.toLocaleString()}
             </span>
-            <span className='font-title3-medium text-20pxr font-medium text-gray800'>
+            <span className='text-20pxr font-medium text-gray800 font-title1'>
               {' '}
               원 부터
             </span>
           </div>
-          <div className='flex gap-10pxr '>
+          <div className='flex gap-10pxr'>
             <Chip>힐링/휴식</Chip>
             <Chip>자연</Chip>
             <Chip>숲</Chip>
