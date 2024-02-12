@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import HeaderModal from './HeaderModal';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setProfileState } from '@/src/app/_utils/profileState';
 
 interface UserOptionsType {
   id: number;
@@ -15,10 +17,10 @@ interface UserOptionsType {
 }
 
 export const USER_OPTIONS: UserOptionsType[] = [
-  { id: 1, list: '예약 내역', link: '/profile', isDone: false },
+  { id: 1, list: '예약 내역', link: '/profile/reserveList', isDone: false },
   { id: 2, list: '계정 관리', link: '/profile', isDone: false },
   { id: 3, list: '사장님 전환', link: '/profile', isDone: false },
-  { id: 4, list: '설정', link: '/profile', isDone: false },
+  { id: 4, list: '설정', link: '/profile/setting', isDone: false },
   { id: 5, list: '로그아웃', isDone: false },
 ];
 
@@ -26,6 +28,9 @@ function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
   const pathName = usePathname();
   const isOnboard = pathName.includes('onboard');
+  const profile = useAppSelector((state) => state.profile);
+  const dispatch = useAppDispatch();
+
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
@@ -33,19 +38,22 @@ function HeaderDropdown() {
 
   const login = '민섭쨩쨩';
 
-  const handleClick = () => {
+  const handleModal = () => {
     if (!isMobile) return;
     setIsClose(!isClose);
-    console.log(1111);
   };
 
   const handleClose = () => {
     setIsClose(false);
   };
 
+  const handleClick = (id: number) => {
+    dispatch(setProfileState(id));
+  };
+
   return login ? (
     <>
-      <div className='flex-center group h-40pxr' onClick={handleClick}>
+      <div className='flex-center group h-40pxr' onClick={handleModal}>
         <div className='h-24pxr w-24pxr cursor-pointer tabletMin:h-32pxr tabletMin:w-32pxr'>
           <IconPeople
             width='100%'
@@ -57,12 +65,13 @@ function HeaderDropdown() {
         <ul
           className={`flex-center invisible absolute left-[49%] ${isOnboard ? 'top-60pxr' : 'top-40pxr'} z-[99999] w-113pxr -translate-x-1/2 flex-col rounded-xl border border-gray-300 bg-white py-16pxr group-hover:visible mobile:hidden`}
         >
-          {USER_OPTIONS.map((option) => {
+          {profile.map((option) => {
             return option.link ? (
               <Link className='w-full' href={option.link}>
                 <li
                   key={option.id}
                   className='flex-center h-34pxr cursor-pointer justify-start whitespace-nowrap px-20pxr text-gray800 font-body2-medium hover:text-primary100'
+                  onClick={() => handleClick(option.id)}
                 >
                   {option.list}
                 </li>
@@ -78,7 +87,7 @@ function HeaderDropdown() {
           })}
         </ul>
       </div>
-      {isClose && <HeaderModal handleClick={handleClick} />}
+      {isClose && <HeaderModal handleClick={handleModal} />}
     </>
   ) : (
     <Link href='/signin'>
