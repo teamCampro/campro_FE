@@ -60,7 +60,7 @@ function Page({ searchParams }: SearchParamsType) {
     const location = searchParams.location;
     const checkIn = searchParams.checkIn;
     const checkout = searchParams.checkOut;
-    const group = JSON.parse(searchParams.group);
+    const group = JSON.parse(decodeURIComponent(searchParams.group));
     const totalNumberOfPeople = group.adult + group.child;
     const totalPet = group.pet;
 
