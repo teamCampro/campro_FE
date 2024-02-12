@@ -1,13 +1,13 @@
 import Image from 'next/image';
 interface CampSiteMapProps {
-  isRef: React.RefObject<HTMLDivElement>;
+  sectionRef: React.RefObject<HTMLDivElement>;
   id: string;
 }
-function CampSiteMap({ isRef, id }: CampSiteMapProps) {
+function CampSiteMap({ sectionRef, id }: CampSiteMapProps) {
   return (
-    <div
+    <section
       className='flex scroll-mt-168pxr flex-col gap-16pxr'
-      ref={isRef}
+      ref={sectionRef}
       id={id}
     >
       <h3 className='text-black font-body1-bold mobile:px-20pxr mobile:font-title3-bold mobile359:px-16pxr'>
@@ -26,7 +26,7 @@ function CampSiteMap({ isRef, id }: CampSiteMapProps) {
           }}
         />
       </div>
-    </div>
+    </section>
   );
 }
 

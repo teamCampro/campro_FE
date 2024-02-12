@@ -36,7 +36,6 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
           level: 3,
         };
         if (!mapRef.current) return;
-        console.count('map');
         const map = new window.kakao.maps.Map(mapRef.current, options);
         setMap(map);
       });
@@ -48,7 +47,6 @@ function KakaoMap({ map, setMap, mapSize }: Props) {
   useEffect(() => {
     if (!map) return;
     map.relayout();
-    console.count('re');
   }, [mapSize, map]);
 
   return (

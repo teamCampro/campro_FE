@@ -1,18 +1,15 @@
 'use client';
-import Category from '@/components/Category';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
-import { IconNavigationDown } from '@/public/svgs';
 import { useEffect, useRef, useState } from 'react';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
 import AnchorMenu from '../_components/AnchorMenu';
-import CampSiteBookingInfo from '../_components/CampSiteBookingInfo';
-import CampSiteList from '../_components/CampSiteList';
+import CampSiteBasicInfo from '../_components/CampSiteBasicInfo';
+import CampSiteFacilities from '../_components/CampSiteFacilities';
 import CampSiteMap from '../_components/CampSiteMap';
-import CampSiteProfile from '../_components/CampSiteProfile';
-import Notice from '../_components/Notice';
-import Review from '../_components/Review';
-import SectionTitle from '../_components/SectionTitle';
+import CustomerReviews from '../_components/CustomerReviews';
+import ReservationInfo from '../_components/ReservationInfo';
+import UsageGuidelines from '../_components/UsageGuidelines';
 
 const campingZoneInfos = [
   {
@@ -55,11 +52,34 @@ const campingZoneInfos = [
       },
     ],
   },
+  {
+    campingZoneName: 'C사이트',
+    siteInfos: [
+      {
+        siteName: 'C1-02',
+        reserveTime: '입실 23:00 - 퇴실 24:00',
+        fee: 70000,
+        feeBaseDate: '1박 기준',
+      },
+      {
+        siteName: 'C2-06',
+        reserveTime: '입실 12:00 - 퇴실 12:02',
+        fee: 2000,
+        feeBaseDate: '1박 기준',
+      },
+      {
+        siteName: 'B2-08',
+        reserveTime: '입실 00:01 - 퇴실 00:08',
+        fee: 9999,
+        feeBaseDate: '1박 기준',
+      },
+    ],
+  },
 ];
 
 function Page() {
   const [isSticky, setIsSticky] = useState(false);
-  const imageEndRef = useRef<HTMLDivElement>(null);
+  const campImageRef = useRef<HTMLDivElement>(null);
   const [showSiteButton, setShowSiteButton] = useState(true);
   const [activeSection, setActiveSection] = useState('');
 
@@ -113,7 +133,7 @@ function Page() {
   }, [activeSection]);
 
   useEffect(() => {
-    const imageEnd = imageEndRef.current;
+    const campImage = campImageRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -123,13 +143,13 @@ function Page() {
       { threshold: [0.1, 0.3], rootMargin: '-98px 0px 0px 0px' },
     );
 
-    if (imageEnd) {
-      observer.observe(imageEnd);
+    if (campImage) {
+      observer.observe(campImage);
     }
 
     return () => {
-      if (imageEnd) {
-        observer.unobserve(imageEnd);
+      if (campImage) {
+        observer.unobserve(campImage);
       }
     };
   }, []);
@@ -139,7 +159,6 @@ function Page() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry.isIntersecting);
           setShowSiteButton(!entry.isIntersecting);
         });
       },
@@ -161,9 +180,7 @@ function Page() {
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
       <SearchBarForOverview />
-      <div ref={imageEndRef}>
-        <CampImage />
-      </div>
+      <CampImage campImageRef={campImageRef} />
       <AnchorMenu
         isSticky={isSticky}
         selectedMenu={activeSection}
@@ -176,53 +193,20 @@ function Page() {
           <MiniMapContainer />
         </aside>
         <div>
-          <section className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-            <CampSiteProfile isRef={sectionRefs.section1} />
-            <div
-              className='flex scroll-mt-168pxr flex-col gap-16pxr'
-              id='2'
-              ref={sectionRefs.section2}
-            >
-              <SectionTitle>시설/환경</SectionTitle>
-              <Category />
-            </div>
-          </section>
-          <section>
-            <CampSiteMap isRef={sectionRefs.section3} id='3' />
-          </section>
-          <section className='flex flex-col gap-24pxr pt-24pxr'>
-            <div
-              ref={sectionRefs.section4}
+          <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
+            <CampSiteBasicInfo sectionRef={sectionRefs.section1} id='1' />
+            <CampSiteFacilities sectionRef={sectionRefs.section2} id='2' />
+          </div>
+          <CampSiteMap sectionRef={sectionRefs.section3} id='3' />
+          <div className='flex flex-col gap-24pxr pt-24pxr'>
+            <ReservationInfo
+              sectionRef={sectionRefs.section4}
               id='4'
-              className='flex scroll-mt-168pxr flex-col gap-24pxr'
-            >
-              <CampSiteBookingInfo />
-              {campingZoneInfos.map((campingZone) => (
-                <CampSiteList
-                  campingZone={campingZone}
-                  key={campingZone.campingZoneName}
-                />
-              ))}
-              <div className='contents mobile:block mobile:px-36pxr mobile359:px-16pxr'>
-                <button
-                  type='button'
-                  className='flex-center w-full gap-10pxr rounded-lg border border-gray200 bg-white px-40pxr py-12pxr text-gray700 font-caption1-semibold'
-                >
-                  모두보기
-                  <span className='mobile:hidden tablet:hidden'>
-                    <IconNavigationDown />
-                  </span>
-                </button>
-              </div>
-            </div>
-            <Notice
-              title='이용 안내'
-              id='5'
-              text='campInfo'
-              isRef={sectionRefs.section5}
+              campingZoneInfos={campingZoneInfos}
             />
-          </section>
-          <Review isRef={sectionRefs.section6} id='6' />
+          </div>
+          <UsageGuidelines sectionRef={sectionRefs.section5} id='5' />
+          <CustomerReviews sectionRef={sectionRefs.section6} id='6' />
         </div>
       </main>
     </div>

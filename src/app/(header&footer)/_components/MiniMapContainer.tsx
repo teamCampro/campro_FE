@@ -24,20 +24,20 @@ function MiniMapContainer() {
   };
   return (
     <>
-      <h3
+      <button
         className='flex text-second100 tabletMiddleMin:hidden'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>
-        <div className='h-20pxr w-20pxr'>
+        <span className='h-20pxr w-20pxr'>
           <IconArrowRightNon
             width='100%'
             height='100%'
             viewBox='0 0 24 24'
             fill='#7D6F5A'
           />
-        </div>
-      </h3>
+        </span>
+      </button>
       <div className='hidden w-340pxr flex-col rounded-xl border border-gray200 tabletMiddleMin:flex'>
         <Button.Circle
           size='sm'
