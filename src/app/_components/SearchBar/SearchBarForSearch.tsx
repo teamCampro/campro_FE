@@ -31,7 +31,14 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(data, dispatch, router, 'search', 'location');
+    submitForSearch(
+      data,
+      dispatch,
+      router,
+      'search',
+      'location',
+      `${searchParams.campType}`,
+    );
   };
 
   const renderSearchBarForMobile = () => setIsTotalInput(true);

@@ -13,16 +13,21 @@ export const submitForSearch = (
   router: AppRouterInstance,
   pathName: string,
   Key: string,
+  campType?: string,
 ) => {
   if (Array.isArray(data.date) && data.date.length === 2) {
-    const { group } = data;
     const locationOrPlace = data[Key];
     const [checkInDate, checkOutDate] = data.date;
 
     const checkIn = formatDate(checkInDate);
     const checkOut = formatDate(checkOutDate);
     const groupObject = JSON.parse(data.group);
-    const queryString = `${Key}=${encodeURIComponent(locationOrPlace)}&checkIn=${checkIn}&checkOut=${checkOut}&adult=${groupObject.adult}&child=${groupObject.child}&pet=${groupObject.pet}`;
+    let queryString = `${Key}=${encodeURIComponent(locationOrPlace)}&checkIn=${checkIn}&checkOut=${checkOut}&adult=${groupObject.adult}&child=${groupObject.child}&pet=${groupObject.pet}`;
+
+    if (campType) {
+      queryString += `&campType=${encodeURIComponent(campType)}`;
+    }
+
     router.push(`/${pathName}?${queryString}`);
 
     dispatch(
