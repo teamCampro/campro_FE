@@ -1,0 +1,12 @@
+{
+  "result": [
+    {
+      "campId": 1,
+      "name": "유령 무희 캠핑장",
+      "price": 40000,
+      "address": "경기 안성시",
+      "campImage": "https://image.fmkorea.com/files/attach/new3/20231214/14339012/2857140960/6504813238/99b983892094b5c6d2fc3736e15da7d1.png",
+      "location": { "lat": 37.27943075229118, "lng": 127.01763998406159 }
+    }
+  ]
+}
