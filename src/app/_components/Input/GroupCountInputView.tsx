@@ -72,7 +72,7 @@ function GroupCountInputView({
   return (
     <div className='relative flex w-full flex-123'>
       <div className='flex w-full gap-4pxr'>
-        <IconPeople className='absolute left-16pxr top-16pxr ' />
+        <IconPeople fill='#55555' className='absolute left-16pxr top-16pxr ' />
         <input
           {...field}
           onClick={() => {
@@ -83,7 +83,7 @@ function GroupCountInputView({
           value={`성인 ${group?.adult}명, 아동 ${group?.child}명, 펫 ${group?.pet}마리`}
           name='groupCount'
           placeholder='참여 그룹을 설정해주세요'
-          className={`placeholder:font-body2-medium w-full cursor-pointer whitespace-nowrap rounded-[8px] bg-gray100 py-16pxr pl-44pxr  pr-16pxr placeholder-gray500 outline-none font-body2-semibold ${group.adult || group.child || group.pet ? 'text-black' : 'text-gray500'}`}
+          className={`w-full cursor-pointer whitespace-nowrap rounded-[8px] bg-gray100 py-16pxr pl-44pxr pr-16pxr  placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium ${group.adult || group.child || group.pet ? 'text-black' : 'text-gray500'}`}
           readOnly
         />
       </div>

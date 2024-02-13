@@ -140,6 +140,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //초기화

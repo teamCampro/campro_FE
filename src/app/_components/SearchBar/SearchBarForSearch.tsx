@@ -1,71 +1,47 @@
 'use client';
 
+import { useAppDispatch } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import {
-  CommonForm,
   Button,
-  GroupCountController,
+  CommonForm,
   DatePickerController,
+  GroupCountController,
   LocationController,
 } from '@/src/app/_components';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
-import { PAGE_TYPE, INPUT_WRAPPER } from '../../_constants/inputStyle';
-import getFormattedDate from '../../_utils/getFormattedDate';
+import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
+import { submitForSearch } from '../../_utils/submitForSearchBar';
+import getSearchBarValue from '../../_utils/getSearchBarValue';
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
 
-function SearchBarForSearch() {
+function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
+  const dispatch = useAppDispatch();
   const [isTotalInput, setIsTotalInput] = useState(false);
-
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    if (Array.isArray(data.date) && data.date.length === 2) {
-      const location = encodeURIComponent(data.location);
-      const checkIn = encodeURIComponent(
-        new Date(data.date[0].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const checkOut = encodeURIComponent(
-        new Date(data.date[1].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const group = encodeURIComponent(data.group);
-
-      const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
-
-      router.push(`/search?${queryString}`);
-    } else {
-      console.error('Invalid date range');
-    }
-  };
-
-  const getValueForSearchBar = () => {
-    let value = '';
-    const location = searchParams.get('location');
-    const checkIn = searchParams.get('checkIn');
-    const checkOut = searchParams.get('checkOut');
-    const group = searchParams.get('group');
-
-    if (location && checkIn && checkOut && group) {
-      const groupObj = JSON.parse(group);
-      value = `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
-    }
-
-    return value;
+    submitForSearch(data, dispatch, router, 'search');
   };
 
   const renderSearchBarForMobile = () => setIsTotalInput(true);
   const closeSearchBarForMobile = () => setIsTotalInput(false);
+
+  const defaultGroupCount = {
+    adult: Number(searchParams.adult) || 0,
+    child: Number(searchParams.child) || 0,
+    pet: Number(searchParams.pet) || 0,
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -94,10 +70,10 @@ function SearchBarForSearch() {
         <div className={`inline-block  w-full`}>
           <input
             name='total'
-            className='placeholder:font-body2-medium w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
-            value={getValueForSearchBar()}
+            value={getSearchBarValue({ searchParams })}
             onClick={renderSearchBarForMobile}
           />
         </div>
@@ -115,21 +91,14 @@ function SearchBarForSearch() {
           >
             <LocationController
               name='location'
-              default={searchParams.get('location') || ''}
+              default={searchParams.location || ''}
             />
             <DatePickerController
               name='date'
-              checkIn={searchParams.get('checkIn') || ''}
-              checkOut={searchParams.get('checkOut') || ''}
+              checkIn={searchParams.checkIn || ''}
+              checkOut={searchParams.checkOut || ''}
             />
-            <GroupCountController
-              name='group'
-              groupCount={
-                searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
-              }
-            />
+            <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
           <Button.Round
             type='submit'

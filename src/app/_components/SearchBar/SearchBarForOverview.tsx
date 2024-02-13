@@ -11,16 +11,22 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
-import getFormattedDate from '../../_utils/getFormattedDate';
 import PlaceController from '../Controller/PlaceController';
-
-function SearchBarForOverview() {
+import { useAppDispatch } from '@/hooks/redux';
+import { submitForSearch } from '../../_utils/submitForSearchBar';
+import getSearchBarValue from '../../_utils/getSearchBarValue';
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+function SearchBarForOverview({ searchParams }: SearchParamsType) {
   const router = useRouter();
   const path = useParams();
-  const searchParams = useSearchParams();
 
   const [isTotalInput, setIsTotalInput] = useState(false);
   const [isRenderedButton, setIsRenderedButton] = useState(false);
+  const dispatch = useAppDispatch();
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
@@ -29,40 +35,7 @@ function SearchBarForOverview() {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    if (Array.isArray(data.date) && data.date.length === 2) {
-      const checkIn = encodeURIComponent(
-        new Date(data.date[0].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const checkOut = encodeURIComponent(
-        new Date(data.date[1].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const group = encodeURIComponent(data.group);
-
-      const queryString = `checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
-
-      router.push(`/overview/${path.id}/?${queryString}`);
-    } else {
-      console.error('Invalid date range');
-    }
-  };
-
-  const getValueForSearchBar = () => {
-    let value = '';
-    const place = searchParams.get('place');
-    const checkIn = searchParams.get('checkIn');
-    const checkOut = searchParams.get('checkOut');
-    const group = searchParams.get('group');
-
-    if (path.id && checkIn && checkOut && group) {
-      const groupObj = JSON.parse(group);
-      value = `${path.id}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${groupObj.adult}명, 아동 ${groupObj.child}명, 펫 ${groupObj.pet}마리`;
-    }
-
-    return value;
+    submitForSearch(data, dispatch, router, '/overview/${path.id}/');
   };
 
   const renderButton = () => setIsRenderedButton(true);
@@ -70,6 +43,12 @@ function SearchBarForOverview() {
 
   const renderSearchBarForMobile = () => setIsTotalInput(true);
   const closeSearchBarForMobile = () => setIsTotalInput(false);
+
+  const defaultGroupCount = {
+    adult: Number(searchParams.adult) || 0,
+    child: Number(searchParams.child) || 0,
+    pet: Number(searchParams.pet) || 0,
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -112,18 +91,21 @@ function SearchBarForOverview() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       {isMobile && (
-        <div className={` w-full bg-white mobile:p-16pxr`}>
+        <div
+          className={`w-full bg-white mobile:sticky mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr`}
+        >
           <input
             name='total'
-            className='placeholder:font-body2-medium relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold'
+            className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
-            value={getValueForSearchBar()}
+            value={getSearchBarValue({ searchParams })}
             onClick={(e) => {
               e.stopPropagation();
               renderButton();
@@ -134,10 +116,10 @@ function SearchBarForOverview() {
       )}
       <div
         ref={outerDivRef}
-        className='flex-center w-full max-w-1440pxr border-b border-gray200'
+        className='flex-center sticky top-0pxr z-30 w-full max-w-1440pxr border-b border-gray200 bg-white'
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white ${isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isMobile && isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:fixed mobile:top-0pxr mobile:mt-0pxr mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
           onSubmit={onSubmit}
         >
           <div
@@ -150,19 +132,10 @@ function SearchBarForOverview() {
             />
             <DatePickerController
               name='date'
-              checkIn={searchParams.get('checkIn') || ''}
-              checkOut={searchParams.get('checkOut') || ''}
-              onRenderButton={renderButton}
+              checkIn={searchParams.checkIn || ''}
+              checkOut={searchParams.checkOut || ''}
             />
-            <GroupCountController
-              name='group'
-              groupCount={
-                searchParams.get('group')
-                  ? JSON.parse(searchParams.get('group') || '')
-                  : { adult: 0, child: 0, pet: 0 }
-              }
-              onRenderButton={renderButton}
-            />
+            <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
           {isRenderedButton && (
             <Button.Round

@@ -41,7 +41,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
           <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold'>
             {campPlace.placeName}
           </span>
-          <span className='font-caption1-medium overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500'>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
             {campPlace.address}
           </span>
         </div>

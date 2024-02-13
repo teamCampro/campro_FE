@@ -10,7 +10,7 @@ import {
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
@@ -20,11 +20,17 @@ interface DataType {
   result: CampPlaceType[];
 }
 
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+
 export type MapSizeType = 'half' | 'map' | 'list';
 
-function Page() {
+function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>();
+  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -50,19 +56,24 @@ function Page() {
   };
 
   useEffect(() => {
+    const { location, checkIn, checkOut, group: groupTest } = searchParams;
+
     const fetch = async () => {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
-
       const { result } = response.data;
-      setCampPlaceData(result);
-      updateTotalItems(response.data.result.length);
-    };
+      const filteredResult =
+        location && checkIn && checkOut
+          ? result.filter((item) => item.address.includes(location))
+          : result;
 
+      setCampPlaceData(filteredResult);
+      updateTotalItems(filteredResult.length);
+    };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (map && campPlaceData) {
@@ -77,9 +88,7 @@ function Page() {
       />
       <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
-          <Suspense>
-            <SearchBarForSearch />
-          </Suspense>
+          <SearchBarForSearch searchParams={searchParams} />
         </div>
         <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
           <SearchFilter />
@@ -88,10 +97,10 @@ function Page() {
       <div className='flex-center searchPageOverFlow h-full w-full'>
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : ' flex-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
+            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : ' grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
           >
             <div className='flex items-center justify-around'>
-              <h3 className='mobile:font-body1-semibold text-black font-title1-semibold'>
+              <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
                 전체 {campPlaceData?.length || 0}
               </h3>
               <SortDropdown />
@@ -115,7 +124,12 @@ function Page() {
         <div
           className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
         >
-          <KakaoMap map={map} setMap={setKakaoMap} mapSize={mapSize} />
+          <KakaoMap
+            map={map}
+            setMap={setKakaoMap}
+            mapSize={mapSize}
+            campPlaceData={campPlaceData}
+          />
         </div>
       </div>
     </>

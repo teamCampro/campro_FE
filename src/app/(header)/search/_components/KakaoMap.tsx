@@ -1,15 +1,23 @@
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
+import { CampPlaceType } from '@/src/app/_utils/kakaoMarkerGenerator';
 
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
+  campPlaceData: CampPlaceType[];
 }
 
-function KakaoMap({ map, setMap, mapSize, isZoomButtonShadow = false }: Props) {
+function KakaoMap({
+  map,
+  setMap,
+  mapSize,
+  isZoomButtonShadow = false,
+  campPlaceData,
+}: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const handleClickZoomIn = () => {
@@ -31,29 +39,26 @@ function KakaoMap({ map, setMap, mapSize, isZoomButtonShadow = false }: Props) {
     : '';
 
   useEffect(() => {
-    if (!map) {
-      window.kakao.maps.load(() => {
-        const options = {
-          center: new window.kakao.maps.LatLng(
-            37.561110808242056,
-            126.9831268386891,
-          ),
-          level: 3,
-        };
-        if (!mapRef.current) return;
-        console.count('map');
-        const map = new window.kakao.maps.Map(mapRef.current, options);
-        setMap(map);
-      });
-    }
+    kakao.maps.load(() => {
+      if (!mapRef.current || campPlaceData.length === 0) return;
+      console.log(campPlaceData[0]);
+      const options = {
+        center: new kakao.maps.LatLng(
+          campPlaceData[0].location.lat,
+          campPlaceData[0].location.lng,
+        ),
+        level: 8,
+      };
+      const map = new kakao.maps.Map(mapRef.current, options);
+      setMap(map);
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [campPlaceData]);
 
   useEffect(() => {
     if (!map) return;
     map.relayout();
-    console.count('re');
   }, [mapSize, map]);
 
   return (
