@@ -113,15 +113,10 @@ interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
+  params: { id: number };
 }
 
-function Page({
-  searchParams,
-  params,
-}: {
-  searchParams: SearchParamsType;
-  params: { id: number };
-}) {
+function Page({ searchParams, params }: SearchParamsType) {
   const [isSticky, setIsSticky] = useState(false);
   const campImageRef = useRef<HTMLDivElement>(null);
   const [showSiteButton, setShowSiteButton] = useState(true);
@@ -139,7 +134,7 @@ function Page({
       setCampingZone(data[params.id - 1]);
     };
     getCamp();
-  }, []);
+  }, [params.id]);
   const sectionRefs = {
     section1: useRef<HTMLDivElement>(null),
     section2: useRef<HTMLDivElement>(null),
@@ -154,7 +149,6 @@ function Page({
       (entries) => {
         let maxRatio = 0;
         let newActiveSection = activeSection;
-        console.log(activeSection);
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio;

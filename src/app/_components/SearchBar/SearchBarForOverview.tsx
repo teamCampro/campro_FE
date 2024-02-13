@@ -1,5 +1,6 @@
 'use client';
 
+import { useAppDispatch } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   Button,
@@ -7,14 +8,13 @@ import {
   DatePickerController,
   GroupCountController,
 } from '@/src/app/_components';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
-import PlaceController from '../Controller/PlaceController';
-import { useAppDispatch } from '@/hooks/redux';
-import { submitForSearch } from '../../_utils/submitForSearchBar';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
+import { submitForSearch } from '../../_utils/submitForSearchBar';
+import PlaceController from '../Controller/PlaceController';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
