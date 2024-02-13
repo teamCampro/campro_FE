@@ -6,7 +6,7 @@ interface CategoryItemProps {
   href: string;
   text: string;
   icon: ReactNode;
-  id: number;
+  id?: number;
 }
 
 function CategoryItem({ href, text, icon, id }: CategoryItemProps) {
