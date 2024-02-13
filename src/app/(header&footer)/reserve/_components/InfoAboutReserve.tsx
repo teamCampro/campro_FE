@@ -1,7 +1,11 @@
-import { useAppSelector } from '@/hooks/redux';
+'use client';
 
+import { useAppSelector } from '@/hooks/redux';
+import { useSearchParams } from 'next/navigation';
+import getFormattedDate from '@/src/app/_utils/getFormattedDate';
 function InfoAboutReserve() {
   const reserveInfo = useAppSelector((state) => state.reserveInfo);
+  const searchParams = useSearchParams();
   return (
     <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
       <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>
@@ -12,20 +16,26 @@ function InfoAboutReserve() {
           인원
           <span className='text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
             {reserveInfo
-              ? `성인${reserveInfo.adult}명, 아이 ${reserveInfo.child}명`
+              ? `성인 ${searchParams.get('adult')}명, 아이 ${searchParams.get('child')}명`
               : '성인 0명, 아이 0명'}
           </span>
         </li>
         <li className='flex items-center justify-start gap-53pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
           일정
           <span className='text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
-            {reserveInfo.dates}
+            {getFormattedDate([
+              new Date(searchParams.get('checkIn') || new Date()),
+              new Date(
+                searchParams.get('checkOut') ||
+                  new Date(Date.now() + 1000 * 60 * 60 * 24),
+              ),
+            ])}
           </span>
         </li>
         <li className='flex items-center justify-start gap-53pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
           애견
           <span className='text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
-            {reserveInfo ? `${reserveInfo.pet}마리` : '0마리'}
+            {reserveInfo ? `${searchParams.get('pet')}마리` : '0 마리'}
           </span>
         </li>
       </ul>

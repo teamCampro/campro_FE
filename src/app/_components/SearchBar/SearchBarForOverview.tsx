@@ -35,7 +35,7 @@ function SearchBarForOverview({ searchParams }: SearchParamsType) {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(data, dispatch, router, '/overview/${path.id}/');
+    submitForSearch(data, dispatch, router, `overview/${path.id}`, 'place');
   };
 
   const renderButton = () => setIsRenderedButton(true);
@@ -134,8 +134,13 @@ function SearchBarForOverview({ searchParams }: SearchParamsType) {
               name='date'
               checkIn={searchParams.checkIn || ''}
               checkOut={searchParams.checkOut || ''}
+              onRenderButton={renderButton}
             />
-            <GroupCountController name='group' groupCount={defaultGroupCount} />
+            <GroupCountController
+              onRenderButton={renderButton}
+              name='group'
+              groupCount={defaultGroupCount}
+            />
           </div>
           {isRenderedButton && (
             <Button.Round
