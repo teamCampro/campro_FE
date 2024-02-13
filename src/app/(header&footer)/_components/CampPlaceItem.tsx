@@ -31,7 +31,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
   return (
     <li key={campPlace.id} className='w-full'>
       <Link
-        href={`overview/${campPlace.id}?${newSearchParams}`}
+        href={`overview/${campPlace.id}?${newSearchParams.toString()}`}
         className='flex w-full flex-col gap-16pxr'
       >
         <div className={`relative ${responsiveClasses}`}>

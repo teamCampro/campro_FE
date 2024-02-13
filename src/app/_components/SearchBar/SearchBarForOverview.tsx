@@ -19,8 +19,14 @@ interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
+  placeName?: string;
+  campId?: number;
 }
-function SearchBarForOverview({ searchParams }: SearchParamsType) {
+function SearchBarForOverview({
+  searchParams,
+  placeName,
+  campId,
+}: SearchParamsType) {
   const router = useRouter();
   const path = useParams();
 
@@ -105,7 +111,7 @@ function SearchBarForOverview({ searchParams }: SearchParamsType) {
             className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
-            value={getSearchBarValue({ searchParams })}
+            value={getSearchBarValue({ searchParams, place: placeName })}
             onClick={(e) => {
               e.stopPropagation();
               renderButton();
@@ -127,7 +133,7 @@ function SearchBarForOverview({ searchParams }: SearchParamsType) {
           >
             <PlaceController
               name='place'
-              default={`${path.id}` || ''}
+              default={Number(path?.id) === campId ? placeName : ''}
               onRenderButton={renderButton}
             />
             <DatePickerController

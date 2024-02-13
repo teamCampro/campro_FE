@@ -15,6 +15,7 @@ import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
+import { formatDate } from '../../_utils/formatDate';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -31,21 +32,17 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(
-      data,
-      dispatch,
-      router,
-      'search',
-      'location',
-      `${searchParams.campType}`,
-    );
+    const campType =
+      searchParams.campType === 'undefined' ? undefined : searchParams.campType;
+
+    submitForSearch(data, dispatch, router, 'search', 'location', campType);
   };
 
   const renderSearchBarForMobile = () => setIsTotalInput(true);
   const closeSearchBarForMobile = () => setIsTotalInput(false);
 
   const defaultGroupCount = {
-    adult: Number(searchParams.adult) || 0,
+    adult: Number(searchParams.adult) || 2,
     child: Number(searchParams.child) || 0,
     pet: Number(searchParams.pet) || 0,
   };
@@ -80,7 +77,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
             className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
             readOnly
             placeholder='입력해주세요'
-            value={getSearchBarValue({ searchParams })}
+            value={getSearchBarValue({ searchParams, page: 'search' })}
             onClick={renderSearchBarForMobile}
           />
         </div>
@@ -98,12 +95,15 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           >
             <LocationController
               name='location'
-              default={searchParams.location || ''}
+              default={searchParams.location || '전체'}
             />
             <DatePickerController
               name='date'
-              checkIn={searchParams.checkIn || ''}
-              checkOut={searchParams.checkOut || ''}
+              checkIn={searchParams.checkIn || formatDate(new Date())}
+              checkOut={
+                searchParams.checkOut ||
+                formatDate(new Date(Date.now() + 1000 * 60 * 60 * 24))
+              }
             />
             <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
@@ -113,8 +113,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
             onClick={closeSearchBarForMobile}
             custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none tablet:max-w-134pxr desktop:max-w-134pxr `}
           >
-            {' '}
-            검색{' '}
+            검색
           </Button.Round>
         </CommonForm>
       </div>
