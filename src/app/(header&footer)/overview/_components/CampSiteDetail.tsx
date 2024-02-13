@@ -87,7 +87,7 @@ function CampSiteDetail({
                     <Chip>{campingZone.type}</Chip>
                   </div>
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
-                    {campingZone.campingZoneName}
+                    {campingZone.name}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
                     {campingZone.area}

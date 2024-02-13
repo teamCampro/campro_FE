@@ -81,7 +81,7 @@ function CampSiteList({ campingZone }: CampSiteListProps) {
         <div className='camp-site-select flex w-full flex-col gap-12pxr mobile:px-20pxr'>
           <div className='flex h-32pxr justify-between mobile:items-center'>
             <h4 className='text-gray600 font-title3-semibold mobile:font-body2-semibold'>
-              {campingZone.campingZoneName}
+              {campingZone.name}
             </h4>
             <span
               className='flex cursor-pointer items-end gap-2pxr text-second100 font-caption1-semibold'

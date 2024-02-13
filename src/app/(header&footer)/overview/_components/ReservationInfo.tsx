@@ -22,10 +22,7 @@ function ReservationInfo({
       />
       {(showAll ? campingZones : campingZones.slice(0, 2)).map(
         (campingZone) => (
-          <CampZoneList
-            campingZone={campingZone}
-            key={campingZone.campingZoneName}
-          />
+          <CampZoneList campingZone={campingZone} key={campingZone.name} />
         ),
       )}
       {campingZones.length > 2 && (

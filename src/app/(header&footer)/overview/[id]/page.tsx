@@ -56,7 +56,7 @@ export interface CampSite {
 
 export interface CampingZone {
   campingZoneId: number;
-  campingZoneName: string;
+  name: string;
   allowPet: boolean;
   minStay: string;
   parkingLimit: number;
