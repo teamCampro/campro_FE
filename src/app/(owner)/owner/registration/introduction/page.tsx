@@ -2,7 +2,6 @@
 import React from 'react';
 import OwnerTitle from '../../../_components/OwnerTitle';
 import OwnerTextArea from '../../../_components/OwnerTextArea';
-import { handleOwnerInputDefaultValue } from '../../../_utils/inputValueStorageHandler';
 
 function IntroductionPage() {
   return (

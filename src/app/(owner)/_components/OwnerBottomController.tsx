@@ -67,7 +67,7 @@ function OwnerBottomController() {
   };
 
   return (
-    <div className='fixed bottom-0pxr z-50 h-100pxr w-full bg-white pb-10pxr'>
+    <div className='fixed bottom-0pxr left-0pxr z-50 h-100pxr w-full bg-white pb-10pxr'>
       <div className='h-10pxr w-full bg-gray300'>
         <hr
           style={{ width: `${progressPercent()}%` }}

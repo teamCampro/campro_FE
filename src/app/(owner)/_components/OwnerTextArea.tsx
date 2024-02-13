@@ -20,7 +20,7 @@ function OwnerTextArea({
   value,
 }: Props) {
   const localStorageData = () => {
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       const data = localStorage.getItem(name);
       return data || '';
     }
