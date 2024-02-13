@@ -2,19 +2,26 @@ interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
+  page?: string;
+  place?: string;
 }
 import getFormattedDate from './getFormattedDate';
-
-export default function getSearchBarValue({ searchParams }: SearchParamsType) {
+import { formatDate } from './formatDate';
+export default function getSearchBarValue({
+  searchParams,
+  page,
+  place,
+}: SearchParamsType) {
   const {
-    location,
-    checkIn,
-    checkOut,
-    adult = '0',
+    location = '전체',
+
+    checkIn = formatDate(new Date()),
+    checkOut = formatDate(new Date(Date.now() + 1000 * 60 * 60 * 24)),
+    adult = '2',
     child = '0',
     pet = '0',
   } = searchParams;
   return (location && checkIn && checkOut) || adult || child || pet
-    ? `${location}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${adult}명, 아동 ${child}명, 펫 ${pet}마리`
+    ? `${page === 'search' ? location : place}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${adult}명, 아동 ${child}명, 펫 ${pet}마리`
     : '';
 }

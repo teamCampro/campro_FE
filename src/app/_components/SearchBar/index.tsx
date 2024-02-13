@@ -23,7 +23,7 @@ function SearchBar({ searchParams }: SearchParamsType) {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(data, dispatch, router, 'search');
+    submitForSearch(data, dispatch, router, 'search', 'location');
   };
 
   const defaultGroupCount = {

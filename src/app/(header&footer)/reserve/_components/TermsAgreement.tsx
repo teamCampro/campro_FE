@@ -58,7 +58,7 @@ function TermsAgreement() {
           id='checkTable'
           value='checkTable'
           checked={isAllChecked}
-          onClick={() => handleAllCheck()}
+          onChange={() => handleAllCheck()}
         />
         <label htmlFor='checkAll' className='grow-2 font-caption1-semibold'>
           약관 전체 동의
@@ -76,7 +76,7 @@ function TermsAgreement() {
               name='manage'
               id='checkTable'
               checked={isChecked.manage}
-              onClick={() => handleCheck('manage')}
+              onChange={() => handleCheck('manage')}
             />
             <label htmlFor='manage' className='grow-2 font-caption1-semibold'>
               캠핑장 운영정책 동의
@@ -90,7 +90,7 @@ function TermsAgreement() {
               name='refund'
               id='checkTable'
               checked={isChecked.refund}
-              onClick={() => handleCheck('refund')}
+              onChange={() => handleCheck('refund')}
             />
             <label htmlFor='refund' className='grow-2 font-caption1-semibold'>
               캠핑장 이용 취소/환불 규정 동의
@@ -104,7 +104,7 @@ function TermsAgreement() {
               name='private'
               id='checkTable'
               checked={isChecked.private}
-              onClick={() => handleCheck('private')}
+              onChange={() => handleCheck('private')}
             />
             <label htmlFor='private' className='grow-2 font-caption1-semibold'>
               개인정보 수집 및 이용 동의
@@ -118,7 +118,7 @@ function TermsAgreement() {
               name='thirdPerson'
               id='checkTable'
               checked={isChecked.thirdPerson}
-              onClick={() => handleCheck('thirdPerson')}
+              onChange={() => handleCheck('thirdPerson')}
             />
             <label
               htmlFor='thirdPerson'
