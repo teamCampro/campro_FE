@@ -1,8 +1,14 @@
 import { CampPlaceSection, CategoryList, Header, Hero } from '../_components';
-function page() {
+
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+function Page({ searchParams }: SearchParamsType) {
   return (
     <div>
-      <Hero />
+      <Hero searchParams={searchParams} />
       <div className='flex w-full flex-col bg-gray-100 pl-40pxr pt-104pxr mobile:pl-16pxr'>
         <div className='flex-center'>
           <CategoryList />
@@ -15,4 +21,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

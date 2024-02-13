@@ -9,80 +9,132 @@ import CampSiteFacilities from '../_components/CampSiteFacilities';
 import CampSiteMap from '../_components/CampSiteMap';
 import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
+import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
 
-const campingZoneInfos = [
-  {
-    campingZoneName: 'A사이트',
-    siteInfos: [
-      {
-        siteName: 'A1-08',
-        reserveTime: '입실 12:00 - 퇴실 11:00',
-        fee: 800000,
-        feeBaseDate: '1박 기준',
-      },
-      {
-        siteName: 'A1-09',
-        reserveTime: '입실 12:00 - 퇴실 11:00',
-        fee: 800000,
-        feeBaseDate: '1박 기준',
-      },
-    ],
-  },
-  {
-    campingZoneName: 'B사이트',
-    siteInfos: [
-      {
-        siteName: 'B1-02',
-        reserveTime: '입실 23:00 - 퇴실 24:00',
-        fee: 990000,
-        feeBaseDate: '1박 기준',
-      },
-      {
-        siteName: 'B2-04',
-        reserveTime: '입실 12:00 - 퇴실 12:02',
-        fee: 2000,
-        feeBaseDate: '1박 기준',
-      },
-      {
-        siteName: 'B2-05',
-        reserveTime: '입실 00:01 - 퇴실 00:08',
-        fee: 8000,
-        feeBaseDate: '1박 기준',
-      },
-    ],
-  },
-  {
-    campingZoneName: 'C사이트',
-    siteInfos: [
-      {
-        siteName: 'C1-02',
-        reserveTime: '입실 23:00 - 퇴실 24:00',
-        fee: 70000,
-        feeBaseDate: '1박 기준',
-      },
-      {
-        siteName: 'C2-06',
-        reserveTime: '입실 12:00 - 퇴실 12:02',
-        fee: 2000,
-        feeBaseDate: '1박 기준',
-      },
-      {
-        siteName: 'B2-08',
-        reserveTime: '입실 00:01 - 퇴실 00:08',
-        fee: 9999,
-        feeBaseDate: '1박 기준',
-      },
-    ],
-  },
-];
+export interface CampSite {
+  id: number;
+  placeName: string;
+  address: string;
+  tel: string;
+  imgUrl: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  facilities: string[];
+  planImage: string;
+  mannerTimeStart: string;
+  mannerTimeEnd: string;
+  openTime: string;
+  nextOpen: string;
+  guide: {
+    usage: string;
+    refund: string;
+  };
+  ownerInfo: {
+    ownerName: string;
+    placeName: string;
+    address: string;
+    email: string;
+    ownerRegistrationNumber: string;
+    placeRegistrationNumber: string;
+  };
+  types: string[];
+  tag: {
+    text: string;
+    list: Array<{ [key: string]: number }>;
+  };
+  intro: string;
+  sites: Site[];
+  reviews: {
+    totalCount: number;
+    contents: Review[];
+    averageScore: number;
+  };
+}
 
-function Page() {
+export interface Site {
+  name: string;
+  allowPet: boolean;
+  minStay: string;
+  parkingLimit: number;
+  parkingLocation: string;
+  size: string;
+  checkInTime: string;
+  checkOutTime: string;
+  baseGuests: string;
+  site: SiteDetail[];
+  type: string;
+  area: string;
+  floor: string;
+  extraGuests: number;
+  allowTrailer: boolean;
+  allowCampingCar: boolean;
+  images: string[];
+  facilities: string[];
+}
+
+export interface SiteDetail {
+  siteId: number;
+  name: string;
+  type: string;
+  size: string;
+  floor: string;
+  checkInTime: string;
+  checkOutTime: string;
+  minStay: string;
+  allowPet: boolean;
+  parkingLimit: number;
+  parkingLocation: string;
+  allowTrailer: boolean;
+  allowCampingCar: boolean;
+  facilities: string[];
+  price: number;
+  images: string[];
+}
+
+export interface Review {
+  nickName: string;
+  createdAt: string;
+  siteId: number;
+  siteName: string;
+  group: {
+    adult: number;
+    child: number;
+    pet: number;
+  };
+  content: string;
+  score: number;
+  tag: string;
+}
+
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+  params: { id: number };
+}
+
+function Page({ searchParams, params }: SearchParamsType) {
   const [isSticky, setIsSticky] = useState(false);
   const campImageRef = useRef<HTMLDivElement>(null);
   const [showSiteButton, setShowSiteButton] = useState(true);
   const [activeSection, setActiveSection] = useState('');
+  const [campingZone, setCampingZone] = useState<CampSite>();
+  useEffect(() => {
+    const getCamp = async () => {
+      const res = await fetch('/data/overviewMockData.json');
 
+      if (!res.ok) {
+        throw new Error('흑흑');
+      }
+
+      const data = await res.json();
+      setCampingZone(data[params.id - 1]);
+    };
+    getCamp();
+  }, [params.id]);
   const sectionRefs = {
     section1: useRef<HTMLDivElement>(null),
     section2: useRef<HTMLDivElement>(null),
@@ -97,7 +149,6 @@ function Page() {
       (entries) => {
         let maxRatio = 0;
         let newActiveSection = activeSection;
-
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio;
@@ -130,7 +181,7 @@ function Page() {
       });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection]);
+  }, [activeSection, campingZone]);
 
   useEffect(() => {
     const campImage = campImageRef.current;
@@ -152,7 +203,7 @@ function Page() {
         observer.unobserve(campImage);
       }
     };
-  }, []);
+  }, [campingZone]);
 
   useEffect(() => {
     const reserveRef = sectionRefs.section4.current;
@@ -176,10 +227,10 @@ function Page() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSection]);
-
+  if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
-      <SearchBarForOverview />
+      <SearchBarForOverview searchParams={searchParams} />
       <CampImage campImageRef={campImageRef} />
       <AnchorMenu
         isSticky={isSticky}
@@ -190,23 +241,31 @@ function Page() {
         <aside
           className={`${isSticky ? 'top-199pxr' : 'top-40pxr'} sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
         >
-          <MiniMapContainer />
+          <MiniMapContainer {...campingZone} />
         </aside>
         <div>
           <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-            <CampSiteBasicInfo sectionRef={sectionRefs.section1} id='1' />
-            <CampSiteFacilities sectionRef={sectionRefs.section2} id='2' />
+            <SectionRef sectionRef={sectionRefs.section1} id='1'>
+              <CampSiteBasicInfo {...campingZone} />
+            </SectionRef>
+            <SectionRef sectionRef={sectionRefs.section2} id='2'>
+              <CampSiteFacilities facilities={campingZone.facilities} />
+            </SectionRef>
           </div>
-          <CampSiteMap sectionRef={sectionRefs.section3} id='3' />
+          <SectionRef sectionRef={sectionRefs.section3} id='3'>
+            <CampSiteMap planImage={campingZone.planImage} />
+          </SectionRef>
           <div className='flex flex-col gap-24pxr pt-24pxr'>
-            <ReservationInfo
-              sectionRef={sectionRefs.section4}
-              id='4'
-              campingZoneInfos={campingZoneInfos}
-            />
+            <SectionRef sectionRef={sectionRefs.section4} id='4'>
+              <ReservationInfo {...campingZone} />
+            </SectionRef>
           </div>
-          <UsageGuidelines sectionRef={sectionRefs.section5} id='5' />
-          <CustomerReviews sectionRef={sectionRefs.section6} id='6' />
+          <SectionRef sectionRef={sectionRefs.section5} id='5'>
+            <UsageGuidelines {...campingZone} />
+          </SectionRef>
+          <SectionRef sectionRef={sectionRefs.section6} id='6'>
+            <CustomerReviews {...campingZone} />
+          </SectionRef>
         </div>
       </main>
     </div>
