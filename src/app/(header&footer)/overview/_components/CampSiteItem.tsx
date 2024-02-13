@@ -1,14 +1,14 @@
 import Button from '@/components/Button';
-import { SiteDetail } from '../[id]/page';
+import { Site } from '../[id]/page';
 
 interface CampSiteItemProps {
-  siteDetail: SiteDetail[];
+  sites: Site[];
 }
 
-function CampSiteItem({ siteDetail }: CampSiteItemProps) {
+function CampSiteItem({ sites }: CampSiteItemProps) {
   return (
     <div className='flex flex-col gap-12pxr'>
-      {siteDetail.map(
+      {sites.map(
         ({ siteId, name, price, checkInTime, checkOutTime, minStay }) => (
           <div
             key={siteId}

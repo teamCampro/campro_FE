@@ -46,7 +46,7 @@ export interface CampSite {
     list: Array<{ [key: string]: number }>;
   };
   intro: string;
-  sites: Site[];
+  campingZones: CampingZone[];
   reviews: {
     totalCount: number;
     contents: Review[];
@@ -54,8 +54,9 @@ export interface CampSite {
   };
 }
 
-export interface Site {
-  name: string;
+export interface CampingZone {
+  campingZoneId: number;
+  campingZoneName: string;
   allowPet: boolean;
   minStay: string;
   parkingLimit: number;
@@ -64,7 +65,7 @@ export interface Site {
   checkInTime: string;
   checkOutTime: string;
   baseGuests: string;
-  site: SiteDetail[];
+  sites: Site[];
   type: string;
   area: string;
   floor: string;
@@ -75,7 +76,7 @@ export interface Site {
   facilities: string[];
 }
 
-export interface SiteDetail {
+export interface Site {
   siteId: number;
   name: string;
   type: string;

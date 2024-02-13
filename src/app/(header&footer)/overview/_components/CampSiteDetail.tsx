@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Site } from '../[id]/page';
+import { CampingZone } from '../[id]/page';
 import SiteInfoList from './SiteInfoList';
 
 const siteInfos = [
@@ -39,10 +39,10 @@ const images = [
 
 function CampSiteDetail({
   onClose,
-  site,
+  campingZone,
 }: {
   onClose: () => void;
-  site: Site;
+  campingZone: CampingZone;
 }) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
@@ -64,7 +64,7 @@ function CampSiteDetail({
               pagination={true}
               className='h-full w-full'
             >
-              {site.images.map((image, i) => (
+              {campingZone.images.map((image, i) => (
                 <SwiperSlide key={image + i}>
                   <Image
                     width={320}
@@ -84,19 +84,19 @@ function CampSiteDetail({
               <div className='flex flex-col gap-24pxr mobile:gap-20pxr'>
                 <div className='flex flex-col gap-2pxr'>
                   <div className='flex gap-4pxr'>
-                    <Chip>{site.type}</Chip>
+                    <Chip>{campingZone.type}</Chip>
                   </div>
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
-                    {site.name}
+                    {campingZone.campingZoneName}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
-                    {site.area}
+                    {campingZone.area}
                   </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
                   <span className='text-gray500 font-body2-medium'>
-                    {site.size} ({site.floor})
+                    {campingZone.size} ({campingZone.floor})
                   </span>
                 </div>
               </div>
@@ -104,16 +104,19 @@ function CampSiteDetail({
                 <SiteInfoList
                   title='기본 정보'
                   infos={[
-                    `입실 ${site.checkInTime} - 퇴실 ${site.checkOutTime}`,
-                    `${site.baseGuests} 기준 (${site.extraGuests ? '인원 추가 가능' : '인원 추가 불가'})`,
-                    `최소 ${site.minStay}`,
-                    `반려동물 숙박 ${site.allowPet ? '가능' : '불가'}`,
-                    `최소 ${site.parkingLimit}대`,
-                    `트레일러 진입 ${site.allowTrailer ? '가능' : '불가'}`,
-                    `캠핑카 진입 ${site.allowCampingCar ? '가능' : '불가'}`,
+                    `입실 ${campingZone.checkInTime} - 퇴실 ${campingZone.checkOutTime}`,
+                    `${campingZone.baseGuests} 기준 (${campingZone.extraGuests ? '인원 추가 가능' : '인원 추가 불가'})`,
+                    `최소 ${campingZone.minStay}`,
+                    `반려동물 숙박 ${campingZone.allowPet ? '가능' : '불가'}`,
+                    `최소 ${campingZone.parkingLimit}대`,
+                    `트레일러 진입 ${campingZone.allowTrailer ? '가능' : '불가'}`,
+                    `캠핑카 진입 ${campingZone.allowCampingCar ? '가능' : '불가'}`,
                   ]}
                 />
-                <SiteInfoList title='시설/환경' infos={site.facilities} />
+                <SiteInfoList
+                  title='시설/환경'
+                  infos={campingZone.facilities}
+                />
               </div>
             </div>
           </div>

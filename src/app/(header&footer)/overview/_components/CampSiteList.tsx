@@ -4,14 +4,14 @@ import { ModalOutside, ModalPortal } from '@/components/index';
 import { IconClock, IconTest } from '@/public/svgs';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Site } from '../[id]/page';
+import { CampingZone } from '../[id]/page';
 import CampSiteDetail from './CampSiteDetail';
 import CampSiteItem from './CampSiteItem';
 
 interface CampSiteListProps {
-  site: Site;
+  campingZone: CampingZone;
 }
-function CampSiteList({ site }: CampSiteListProps) {
+function CampSiteList({ campingZone }: CampSiteListProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className='flex flex-col gap-24pxr mobile:gap-16pxr mobile:px-20pxr mobile359:px-0pxr'>
@@ -39,27 +39,13 @@ function CampSiteList({ site }: CampSiteListProps) {
                 <span className='inline-block h-12pxr w-12pxr'>
                   <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
                 </span>
-                {site.type}
+                {campingZone.type}
               </span>
               <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
                 <span className='inline-block h-12pxr w-12pxr'>
                   <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
                 </span>
-                {site.baseGuests}룸
-              </span>
-            </li>
-            <li className='flex items-center justify-between'>
-              <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
-                <span className='inline-block h-12pxr w-12pxr'>
-                  <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
-                </span>
-                최소 {site.minStay}
-              </span>
-              <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
-                <span className='inline-block h-12pxr w-12pxr'>
-                  <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
-                </span>
-                {site.parkingLocation}
+                {campingZone.baseGuests}룸
               </span>
             </li>
             <li className='flex items-center justify-between'>
@@ -67,13 +53,27 @@ function CampSiteList({ site }: CampSiteListProps) {
                 <span className='inline-block h-12pxr w-12pxr'>
                   <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
                 </span>
-                반려동물 {site.allowPet ? '가능' : '불가'}
+                최소 {campingZone.minStay}
               </span>
               <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
                 <span className='inline-block h-12pxr w-12pxr'>
                   <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
                 </span>
-                {site.size}
+                {campingZone.parkingLocation}
+              </span>
+            </li>
+            <li className='flex items-center justify-between'>
+              <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
+                <span className='inline-block h-12pxr w-12pxr'>
+                  <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
+                </span>
+                반려동물 {campingZone.allowPet ? '가능' : '불가'}
+              </span>
+              <span className='flex h-17pxr items-center gap-2pxr text-gray500 font-caption2-semibold'>
+                <span className='inline-block h-12pxr w-12pxr'>
+                  <IconClock width='100%' height='100%' viewBox='0 0 12 13' />
+                </span>
+                {campingZone.size}
               </span>
             </li>
           </ul>
@@ -81,7 +81,7 @@ function CampSiteList({ site }: CampSiteListProps) {
         <div className='camp-site-select flex w-full flex-col gap-12pxr mobile:px-20pxr'>
           <div className='flex h-32pxr justify-between mobile:items-center'>
             <h4 className='text-gray600 font-title3-semibold mobile:font-body2-semibold'>
-              {site.name}
+              {campingZone.campingZoneName}
             </h4>
             <span
               className='flex cursor-pointer items-end gap-2pxr text-second100 font-caption1-semibold'
@@ -91,7 +91,7 @@ function CampSiteList({ site }: CampSiteListProps) {
               <IconTest />
             </span>
           </div>
-          <CampSiteItem siteDetail={site.site} />
+          <CampSiteItem sites={campingZone.sites} />
         </div>
         {isOpen && (
           <ModalPortal>
@@ -99,7 +99,10 @@ function CampSiteList({ site }: CampSiteListProps) {
               onClose={() => {}}
               custom='bg-black-50 z-30 h-screen w-full left-0pxr top-0pxr'
             >
-              <CampSiteDetail onClose={() => setIsOpen(false)} site={site} />
+              <CampSiteDetail
+                onClose={() => setIsOpen(false)}
+                campingZone={campingZone}
+              />
             </ModalOutside>
           </ModalPortal>
         )}
