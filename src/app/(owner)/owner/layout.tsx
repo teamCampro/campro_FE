@@ -10,7 +10,7 @@ interface Props {
 
 function OwnerLayout({ children }: Props) {
   const pathName = usePathname();
-  const isRegistrationPage = pathName.includes('/owner/registration/location');
+  const isRegistrationPage = pathName.includes('/owner/registration');
   return (
     <div className='px-80pxr'>
       <OwnerHeader>
