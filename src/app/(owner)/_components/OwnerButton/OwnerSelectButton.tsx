@@ -1,7 +1,7 @@
 'use client';
 import React, { ReactNode, useEffect, useState } from 'react';
-import registrationStorageHandler from '../_utils/registrationStorageHandler';
-import getStorageItems from '../_utils/getStorageItems';
+import registrationStorageHandler from '../../_utils/registrationStorageHandler';
+import getStorageItems from '../../_utils/getStorageItems';
 
 export type ButtonPageType =
   | 'theme'

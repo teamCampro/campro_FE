@@ -70,4 +70,8 @@ export { default as IconWeekend } from './ownerPage/weekend.svg';
 export { default as IconDay } from './ownerPage/day.svg';
 export { default as IconUploadImage } from './ownerPage/uploadImage.svg';
 export { default as IconLoadingSpinner } from './ownerPage/loadingSpinner.svg';
+export { default as IconSofa } from './ownerPage/sofa.svg';
+export { default as IconHammer } from './ownerPage/hammer.svg';
+export { default as IconPhoneCheck } from './ownerPage/phoneCheck.svg';
+export { default as IconCampInfoTent } from './ownerPage/campInfoTent.svg';
 export { default as IconStar } from './star.svg';

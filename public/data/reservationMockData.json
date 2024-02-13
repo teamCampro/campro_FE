@@ -1,0 +1,272 @@
+[
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "B사이트",
+    "site": "B2-12",
+    "clientName": "김철수",
+    "checkIn": "01/15(화)",
+    "checkOut": "01/17(목)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "C사이트",
+    "site": "C3-05",
+    "clientName": "이영희",
+    "checkIn": "02/20(수)",
+    "checkOut": "02/23(토)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "A사이트",
+    "site": "A1-01",
+    "clientName": "박민수",
+    "checkIn": "03/10(일)",
+    "checkOut": "03/12(화)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "D사이트",
+    "site": "D4-08",
+    "clientName": "최영진",
+    "checkIn": "04/05(금)",
+    "checkOut": "04/07(일)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "E사이트",
+    "site": "E5-03",
+    "clientName": "정수빈",
+    "checkIn": "05/18(토)",
+    "checkOut": "05/20(월)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "F사이트",
+    "site": "F6-02",
+    "clientName": "이미란",
+    "checkIn": "06/30(일)",
+    "checkOut": "07/03(수)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "G사이트",
+    "site": "G7-09",
+    "clientName": "황영희",
+    "checkIn": "08/10(토)",
+    "checkOut": "08/12(월)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "H사이트",
+    "site": "H8-04",
+    "clientName": "이동민",
+    "checkIn": "09/25(수)",
+    "checkOut": "09/27(금)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "I사이트",
+    "site": "I9-11",
+    "clientName": "김지영",
+    "checkIn": "10/12(토)",
+    "checkOut": "10/14(월)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "J사이트",
+    "site": "J10-06",
+    "clientName": "박철호",
+    "checkIn": "11/08(금)",
+    "checkOut": "11/10(일)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "K사이트",
+    "site": "K11-01",
+    "clientName": "김민서",
+    "checkIn": "12/19(목)",
+    "checkOut": "12/21(토)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "L사이트",
+    "site": "L12-07",
+    "clientName": "최재영",
+    "checkIn": "01/30(목)",
+    "checkOut": "02/01(토)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "M사이트",
+    "site": "M13-03",
+    "clientName": "장민수",
+    "checkIn": "03/05(수)",
+    "checkOut": "03/07(금)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "N사이트",
+    "site": "N14-09",
+    "clientName": "이지훈",
+    "checkIn": "04/15(수)",
+    "checkOut": "04/17(금)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "O사이트",
+    "site": "O15-05",
+    "clientName": "박서영",
+    "checkIn": "05/20(수)",
+    "checkOut": "05/22(금)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "P사이트",
+    "site": "P16-02",
+    "clientName": "김현우",
+    "checkIn": "06/25(목)",
+    "checkOut": "06/27(토)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "Q사이트",
+    "site": "Q17-08",
+    "clientName": "이지희",
+    "checkIn": "07/30(목)",
+    "checkOut": "08/01(토)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "pending",
+    "siteArea": "R사이트",
+    "site": "R18-12",
+    "clientName": "박준호",
+    "checkIn": "09/05(토)",
+    "checkOut": "09/07(월)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "accepted",
+    "siteArea": "S사이트",
+    "site": "S19-06",
+    "clientName": "최미래",
+    "checkIn": "10/10(토)",
+    "checkOut": "10/12(월)"
+  },
+  {
+    "imageUrl": "https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "type": "rejected",
+    "siteArea": "T사이트",
+    "site": "T20-01",
+    "clientName": "김태영",
+    "checkIn": "11/15(일)",
+    "checkOut": "11/17(화)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjhfMTgz/MDAxNTk4NjIzMzA1NzM5.DIl8OSA2BPVlvf0JTEfG2_ZGX7BT7r5MQdpDX2DbufMg.zsU3ma7nIdMLHST_mrIjNnZMsGPF-ELhLZCKn5xPkikg.JPEG.dmoka/3.jpg?type=w966",
+    "type": "pending",
+    "siteArea": "U사이트",
+    "site": "U21-04",
+    "clientName": "이승우",
+    "checkIn": "12/20(목)",
+    "checkOut": "12/22(토)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjhfNDcg/MDAxNTk4NjIzMzA1NzUx.bkA-pmoFlK5gaNu6od4ClB771ItIucvaCj2IZjN1GAAg.-cYcg3Ygs0vvCG3if_LMPjJu8wrrV5V5JpSsQJ1rDZcg.JPEG.dmoka/alex-flores-settbasesplash-final-alexflores.jpg?type=w966",
+    "type": "accepted",
+    "siteArea": "V사이트",
+    "site": "V22-08",
+    "clientName": "장미나",
+    "checkIn": "01/25(토)",
+    "checkOut": "01/27(월)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjhfMTA4/MDAxNTk4NjIzMzA1Nzgz.5OXQ2KLZ7cSsiSBbRChc6vY1pvBMmboKIV8Dae1q-Qwg.fpsVWoJyd0yNREfIyHW2N9SCvbDKGXDswbEHXzUpm0Ig.JPEG.dmoka/alex-flores-morgana-coven-final-alexflores.jpg?type=w966",
+    "type": "rejected",
+    "siteArea": "W사이트",
+    "site": "W23-03",
+    "clientName": "오동민",
+    "checkIn": "02/28(금)",
+    "checkOut": "03/02(월)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfMjA5/MDAxNTk4NDI2NjU5ODY2.cHMBkG17XtWSDatOOWsz75NM2bSS43wW3e19X47peAEg.Agyf7ZAwkDO5JoYEdxeBhu_sJeGFRYdytlrX5uyyb9Yg.JPEG.dmoka/7.jpg?type=w966",
+    "type": "pending",
+    "siteArea": "X사이트",
+    "site": "X24-10",
+    "clientName": "윤가영",
+    "checkIn": "03/20(금)",
+    "checkOut": "03/22(일)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfMTk2/MDAxNTk4NDI2MzgxMDYy.so5OMSJ5k23ssTnV_J3SwjCdmy1zgKZkgyJ9TF1ce1og.Y2rwzbFijHcSVJT-JDIYkl56jjf2z7wDq8mXVmIHbk8g.JPEG.dmoka/6.jpg?type=w966",
+    "type": "accepted",
+    "siteArea": "Y사이트",
+    "site": "Y25-05",
+    "clientName": "김은영",
+    "checkIn": "04/10(금)",
+    "checkOut": "04/12(일)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfMTA5/MDAxNTk4NDI2Mzc5OTMy.4ce6vLoL8ioUuvKEavizyUkxcMXnS4M4UYM_ExcWjgQg.-slAgXWAwZs7qdN4ExoOr8fsIoXIf_iDx6Qh6pB1ChYg.JPEG.dmoka/5.jpg?type=w966",
+    "type": "rejected",
+    "siteArea": "Z사이트",
+    "site": "Z26-12",
+    "clientName": "박정수",
+    "checkIn": "05/15(금)",
+    "checkOut": "05/17(일)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfMTYg/MDAxNTk4NDI2Mzc5NjQw.YbtX-Ss51lGU7FADL4-QHOjDaqMBCZ73uS3Q-zUOONcg.SDPGar79qRZ-IwKshMgrD1hvgK9_fBhNlTfvfYl-kv8g.JPEG.dmoka/4.jpg?type=w966",
+    "type": "pending",
+    "siteArea": "A1사이트",
+    "site": "A127-07",
+    "clientName": "이지우",
+    "checkIn": "06/05(금)",
+    "checkOut": "06/07(일)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfNDUg/MDAxNTk4NDI2Mzc5OTMx.dtHt1ytbTcGAG3GEinAPeg_Uqm2zUXLtkTqR2MRY-DYg.Jf7jxexVrnBzLyxIYpGruqMX3sJyJJeQi8gAxWKYhSkg.JPEG.dmoka/3.jpg?type=w966",
+    "type": "accepted",
+    "siteArea": "B1사이트",
+    "site": "B128-02",
+    "clientName": "김동현",
+    "checkIn": "07/10(금)",
+    "checkOut": "07/12(일)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfMTg2/MDAxNTk4NDI2Mzc5NzQ4.Y0MbhXanlc77yRez2_aN_EChVnwaVqMFg7r97aIPG7Yg.TmPqicCmcMwHHEVWmJPy6xQHPTF85DWNCfCZ0w9poaYg.JPEG.dmoka/1.jpg?type=w966",
+    "type": "rejected",
+    "siteArea": "C1사이트",
+    "site": "C129-11",
+    "clientName": "이정희",
+    "checkIn": "08/15(토)",
+    "checkOut": "08/17(월)"
+  },
+  {
+    "imageUrl": "https://postfiles.pstatic.net/MjAyMDA4MjZfNjYg/MDAxNTk4NDI2MzgyNDc3.JdVzh14L-9BQd4we7ABkSRocsD1IZi6KYVJ79_HKO38g.OBtY2cEoPE_LXKDY5KnSPA4iFfPCFrDrl5kCu2vwV90g.JPEG.dmoka/2.jpg?type=w966",
+    "type": "pending",
+    "siteArea": "D1사이트",
+    "site": "D130-06",
+    "clientName": "최지현",
+    "checkIn": "09/20(일)",
+    "checkOut": "09/22(화)"
+  }
+]

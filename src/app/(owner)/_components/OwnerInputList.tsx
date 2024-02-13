@@ -1,5 +1,4 @@
 import React from 'react';
-import OWNER_INFORMATION_INPUTS from '../_constants/ownerInformationInputs';
 import {
   CommonInput,
   ErrorMessage,
@@ -12,10 +11,19 @@ import {
   handleOwnerInputDefaultValue,
 } from '../_utils/inputValueStorageHandler';
 
-function OwnerInputList() {
+interface ListData {
+  label: string;
+  name: string;
+}
+
+interface Props {
+  listData: ListData[];
+}
+
+function OwnerInputList({ listData }: Props) {
   return (
     <div className='flex flex-col gap-23pxr'>
-      {OWNER_INFORMATION_INPUTS.map((input) => (
+      {listData.map((input) => (
         <InputContainer
           key={input.label}
           className='flex w-700pxr flex-col gap-6pxr'

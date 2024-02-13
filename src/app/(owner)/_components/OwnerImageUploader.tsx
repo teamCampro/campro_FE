@@ -3,10 +3,13 @@ import useUploadImageHover from '@/hooks/useUploadImageHover';
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { MAX_IMAGES } from '../_constants/common';
 import ImageUploader from './ImageUploader';
 
-function OwnerImageUploader() {
+interface Props {
+  maxImages: number;
+}
+
+function OwnerImageUploader({ maxImages }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string[]>([]);
   const { isHovered, handleMouseEnter, handleMouseLeave } =
@@ -14,7 +17,8 @@ function OwnerImageUploader() {
 
   const handleClickUpload = () => {
     if (!inputRef.current) return;
-    if (images.length >= 10) return toast.warn('이미지 제거후 추가해주세요');
+    if (images.length >= maxImages)
+      return toast.warn('이미지 제거 후 추가해주세요');
     inputRef.current.click();
   };
 
@@ -22,7 +26,7 @@ function OwnerImageUploader() {
     const files = e.target.files;
     if (!files) return;
 
-    const leftCount = files.length + images.length - MAX_IMAGES;
+    const leftCount = files.length + images.length - maxImages;
 
     if (leftCount <= 0) {
       Array.from(files).forEach((file) => {

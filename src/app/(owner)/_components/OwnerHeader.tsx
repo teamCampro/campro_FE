@@ -1,15 +1,17 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-function OwnerHeader() {
+interface Props {
+  children?: ReactNode;
+}
+
+function OwnerHeader({ children }: Props) {
   return (
     <header className='flex items-center justify-between py-20pxr'>
       <Link href={'/'}>
         <button className='text-36pxr font-bold'>CamPro</button>
       </Link>
-      <button className='flex-center h-50pxr w-136pxr text-20pxr font-semibold'>
-        저장 후 나가기
-      </button>
+      {children}
     </header>
   );
 }

@@ -1,7 +1,8 @@
 import React, { ChangeEvent, RefObject } from 'react';
-import OwnerImageHoverButton from './OwnerImageHoverButton';
+import OwnerImageHoverButton from './OwnerButton/OwnerImageHoverButton';
 import { IconPlus } from '@/public/svgs';
 import Image from 'next/image';
+import OwnerButton from './OwnerButton';
 
 interface Props {
   images: string[];
@@ -39,14 +40,14 @@ function ImageUploader({
         onMouseEnter={() => onMouseEnter(-1)}
         onMouseLeave={() => onMouseLeave(-1)}
       >
-        <OwnerImageHoverButton
+        <OwnerButton.ImageHover
           style={{
             display: images.length === 0 || isHovered[0] ? 'initial' : 'none',
           }}
           onClick={onClickUpload}
         >
           이미지 업로드
-        </OwnerImageHoverButton>
+        </OwnerButton.ImageHover>
         {images[0] && (
           <>
             <Image
@@ -96,12 +97,12 @@ function ImageUploader({
               >
                 <IconPlus />
               </button>
-              <OwnerImageHoverButton
+              <OwnerButton.ImageHover
                 style={{ display: isHovered[index + 1] ? 'initial' : 'none' }}
                 onClick={() => onSetMainImage(index + 1)}
               >
                 대표이미지 설정
-              </OwnerImageHoverButton>
+              </OwnerButton.ImageHover>
             </div>
           ))}
       </div>

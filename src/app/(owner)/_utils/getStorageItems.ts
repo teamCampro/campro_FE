@@ -1,4 +1,4 @@
-import { ButtonPageType } from '../_components/OwnerSelectButton';
+import { ButtonPageType } from '../_components/OwnerButton/OwnerSelectButton';
 
 function getStorageItems(pageName: ButtonPageType) {
   const data = localStorage.getItem(pageName);

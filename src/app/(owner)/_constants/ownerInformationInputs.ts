@@ -8,12 +8,16 @@ const OWNER_INFORMATION_INPUTS = [
     name: 'phoneNumber',
   },
   {
-    label: '홈페이지 url',
-    name: 'homepageUrl',
+    label: '이메일',
+    name: 'eamil',
   },
   {
-    label: '한줄 소개',
-    name: 'lineIntroduction',
+    label: '사업자 등록 번호',
+    name: 'BusinessRegistrationNumber',
+  },
+  {
+    label: '관광사업(야영장) 등록 번호',
+    name: 'TourismBusinessRegistrationNumber',
   },
 ];
 

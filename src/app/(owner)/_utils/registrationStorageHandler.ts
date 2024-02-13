@@ -1,4 +1,4 @@
-import { ButtonPageType } from '../_components/OwnerSelectButton';
+import { ButtonPageType } from '../_components/OwnerButton/OwnerSelectButton';
 import getStorageItems from './getStorageItems';
 
 interface Props {

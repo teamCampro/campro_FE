@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import OwnerButton from './OwnerButton';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import OWNER_REGISTRATION_ROUTES from '../_constants/ownerRegistrationRoutes';
+import OwnerButton from './OwnerButton';
 
 function OwnerBottomController() {
   const pathName = usePathname();
@@ -28,7 +28,7 @@ function OwnerBottomController() {
         return (
           <div className='flex h-full items-center justify-end'>
             <Link href={nextPageRoute}>
-              <OwnerButton type='next' />
+              <OwnerButton.Navigate type='next' />
             </Link>
           </div>
         );
@@ -37,10 +37,10 @@ function OwnerBottomController() {
         return (
           <div className='flex h-full items-center justify-between'>
             <Link href={prevPageRoute}>
-              <OwnerButton type='prev' />
+              <OwnerButton.Navigate type='prev' />
             </Link>
             <Link href={'/'}>
-              <OwnerButton type='done' />
+              <OwnerButton.Navigate type='done' />
             </Link>
           </div>
         );
@@ -49,10 +49,10 @@ function OwnerBottomController() {
         return (
           <div className='flex h-full items-center justify-between'>
             <Link href={prevPageRoute}>
-              <OwnerButton type='prev' />
+              <OwnerButton.Navigate type='prev' />
             </Link>
             <Link href={nextPageRoute}>
-              <OwnerButton type='next' />
+              <OwnerButton.Navigate type='next' />
             </Link>
           </div>
         );

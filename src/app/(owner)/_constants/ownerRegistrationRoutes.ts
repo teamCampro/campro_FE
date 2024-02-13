@@ -9,6 +9,7 @@ const OWNER_REGISTRATION_ROUTES = {
     'location',
     'second_step',
     'upload_images',
+    'upload_site_image',
     'introduction',
     'terms',
   ],
