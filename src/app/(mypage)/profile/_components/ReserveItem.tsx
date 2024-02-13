@@ -53,15 +53,15 @@ function ReserveItem() {
           <div className='flex flex-row-reverse justify-start gap-12pxr tabletMin:flex-col'>
             <Button.Round
               size='md'
-              custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-full tabletMin:!w-106pxr'
+              custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-1/2 tabletMin:!w-106pxr'
               onClick={handleModal}
             >
               후기 등록
             </Button.Round>
-            <Link href={'/profile/reserveList/1'} passHref>
+            <Link href={'/profile/reserveList/1'} className='w-1/2 ' passHref>
               <Button.Round
                 size='md'
-                custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-full tabletMin:!w-106pxr'
+                custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-full tabletMin:!w-106pxr '
               >
                 예약 상세
               </Button.Round>

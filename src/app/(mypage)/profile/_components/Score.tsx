@@ -27,7 +27,7 @@ function Score() {
 
   return (
     <>
-      <div className='flex'>
+      <div className='flex-center'>
         {Array(5)
           .fill(0)
           .map((i, idx) => (
@@ -90,9 +90,11 @@ function Score() {
             </div>
           ))}
       </div>
-      <div>
-        <span className=''>{scoreFixed ? scoreFixed : score.toFixed(1)}</span>
-        /5
+      <div className='text-center text-gray600 font-body2-medium'>
+        <span className='text-black font-body1-bold'>
+          {scoreFixed ? scoreFixed.toFixed(1) : score.toFixed(1)} /
+        </span>
+        5
       </div>
     </>
   );

@@ -594,3 +594,20 @@ input[id='checkTable']:checked::before {
     width: 100%;
   }
 }
+
+/* mypage */
+.mypage {
+  grid-template-columns: 169.5px 169.5px;
+}
+
+@media (min-width: 368px) and (max-width: 767px) {
+  .mypage {
+    grid-template-columns: minmax(162px, 100%) minmax(162px, 100%);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 367px) {
+  .mypage {
+    grid-template-columns: minmax(138px, 162px) minmax(138px, 162px);
+  }
+}
