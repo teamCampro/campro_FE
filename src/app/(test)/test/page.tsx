@@ -16,7 +16,9 @@ function Page() {
     fetch();
   }, []);
 
-  return <>{data}</>;
+  console.log(data);
+
+  return <></>;
 }
 
 export default Page;
