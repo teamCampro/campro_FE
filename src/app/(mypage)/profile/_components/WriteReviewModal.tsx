@@ -103,7 +103,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
               </div>
               <Button.Round
                 size='sm'
-                custom='!w-full text-white !h-56pxr flex-shrink'
+                custom='!w-full text-white !h-56pxr !flex-shrink'
                 onClick={handleButton}
               >
                 다음

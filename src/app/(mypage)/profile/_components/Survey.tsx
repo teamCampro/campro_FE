@@ -42,7 +42,7 @@ function Survey() {
               <Button.Round
                 key={keyword.id}
                 size='lg'
-                custom={`${keyword.isDone ? 'bg-primary50 ' : ''} hover:font-body1-bold !w-full !h-44pxr rounded-lg font-caption1-medium text-gray600`}
+                custom={`${keyword.isDone ? 'bg-primary50 ' : ''} hover:font-caption1-semibold !w-full !h-44pxr rounded-lg font-caption1-medium text-gray600`}
               >
                 {keyword.keyword}
               </Button.Round>
