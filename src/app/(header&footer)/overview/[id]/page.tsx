@@ -43,7 +43,7 @@ export interface CampSite {
   types: string[];
   tag: {
     text: string;
-    list: Array<{ [key: string]: number }>;
+    list: { text: string; count: number }[];
   };
   intro: string;
   campingZones: CampingZone[];
