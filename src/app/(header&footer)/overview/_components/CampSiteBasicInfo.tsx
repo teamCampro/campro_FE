@@ -25,7 +25,7 @@ function CampSiteBasicInfo({
 }: CampSiteBasicInfoProps) {
   return (
     <article>
-      <div className='flex gap-8pxr'>
+      <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr tablet:mr-80pxr'>
         {types.map((type, i) => (
           <Chip key={type + i}>{type}</Chip>
         ))}
