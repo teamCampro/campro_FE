@@ -11,9 +11,10 @@ import {
   IconFullPage,
 } from '@/public/svgs';
 import { useState } from 'react';
+import { CampSite } from '../overview/[id]/page';
 import MinikakaoMap from './MinikakaoMap';
 
-function MiniMapContainer() {
+function MiniMapContainer({ address, placeName }: CampSite) {
   const [isClose, setIsClose] = useState(false);
   const handleClick = () => {
     setIsClose(!isClose);
@@ -46,10 +47,10 @@ function MiniMapContainer() {
         >
           <IconFullPage fill='#949494' />
         </Button.Circle>
-        <MinikakaoMap location='달천도담길 3-40' size='sm' />
+        <MinikakaoMap location={address} size='sm' />
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
-          <h3 className='text-gray600 font-body2-medium'>달천도담길 3-40</h3>
-          <Copy copyTarget='달천도담길 3-40'>
+          <h3 className='text-gray600 font-body2-medium'>{address}</h3>
+          <Copy copyTarget={address}>
             <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
               <div className='h-16pxr w-16pxr'>
                 <IconCopy
@@ -107,13 +108,9 @@ function MiniMapContainer() {
                     className='top-0 absolute inline-block tabletMin:hidden '
                   />
                 </div>
-                <h3>자연숲 캠핑장</h3>
+                <h3>{placeName}</h3>
               </div>
-              <MinikakaoMap
-                location='달천도담길 3-40'
-                size='modal'
-                isClose={isClose}
-              />
+              <MinikakaoMap location={address} size='modal' isClose={isClose} />
             </div>
           </ModalOutside>
         </ModalPortal>
