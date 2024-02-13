@@ -1,5 +1,5 @@
 'use client';
-import { IconArrowRight } from '@/public/svgs';
+import { IconArrowRightNon } from '@/public/svgs';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper/modules';
@@ -44,7 +44,9 @@ function CampPlaceList({ campPlaces, type }: Props) {
         >
           <span className='mobile:hidden '>전체보기</span>
           <span className='hidden mobile:block'>전체</span>
-          <IconArrowRight />
+          <span className='inline-block h-20pxr w-20pxr'>
+            <IconArrowRightNon width='100%' height='100%' viewBox='0 0 24 24' />
+          </span>
         </button>
       </div>
       <div>
