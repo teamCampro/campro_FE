@@ -1,0 +1,4 @@
+<svg width="37" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<clipPath id="half-clip">
+    <rect x="0" y="0" width="18.5" height="36" />
+  </clipPath><path fill-rule="evenodd" clip-rule="evenodd" d="M18.495 2.25h.01a1.5 1.5 0 0 1 1.343.84l4.236 8.647 9.631 1.397a1.5 1.5 0 0 1 .834 2.557l-6.979 6.822 1.666 9.477a1.5 1.5 0 0 1-2.183 1.584l-8.552-4.56H18.5l-8.554 4.56a1.5 1.5 0 0 1-2.182-1.584l1.666-9.477-6.979-6.822a1.5 1.5 0 0 1 .834-2.557l9.63-1.397 4.237-8.647a1.5 1.5 0 0 1 1.343-.84z" fill="current" clip-path="url(#half-clip)"/></svg>
