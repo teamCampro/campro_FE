@@ -3,20 +3,18 @@
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface ButtonListsType {
-  id: number;
-  name: string;
-}
-
-const BUTTON_LISTS: ButtonListsType[] = [
-  { id: 1, name: '후기 등록' },
-  { id: 2, name: '예약 상세' },
-];
+import { useState } from 'react';
+import WriteReviewModal from './WriteReviewModal';
 
 function ReserveItem() {
+  const [isClose, setIsClose] = useState(false);
+
+  const handleModal = () => {
+    setIsClose(!isClose);
+  };
+
   return (
-    <Link href={'/profile/reserveList/1'} className='w-full'>
+    <>
       <figure className='flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row'>
         <Image
           src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHwwfDB8fHww'
@@ -53,21 +51,26 @@ function ReserveItem() {
             </div>
           </div>
           <div className='flex flex-row-reverse justify-start gap-12pxr tabletMin:flex-col'>
-            {BUTTON_LISTS.map((list) => {
-              return (
-                <Button.Round
-                  key={list.id}
-                  size='md'
-                  custom=' !h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-full tabletMin:!w-106pxr'
-                >
-                  {list.name}
-                </Button.Round>
-              );
-            })}
+            <Button.Round
+              size='md'
+              custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-1/2 tabletMin:!w-106pxr'
+              onClick={handleModal}
+            >
+              후기 등록
+            </Button.Round>
+            <Link href={'/profile/reserveList/1'} className='w-1/2 ' passHref>
+              <Button.Round
+                size='md'
+                custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-full tabletMin:!w-106pxr '
+              >
+                예약 상세
+              </Button.Round>
+            </Link>
           </div>
         </div>
       </figure>
-    </Link>
+      {isClose && <WriteReviewModal handleClick={handleModal} />}
+    </>
   );
 }
 

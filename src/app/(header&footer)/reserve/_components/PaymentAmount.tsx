@@ -4,8 +4,11 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { Options } from './AddOption';
 import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
+import { usePathname } from 'next/navigation';
 
 function PaymentAmount() {
+  const pathName = usePathname();
+  const isProfile = pathName.includes('reserveList');
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
 
@@ -21,17 +24,23 @@ function PaymentAmount() {
 
   return (
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
-      <h3 className='text-black font-title3-semibold'>결제 금액</h3>
+      <h3
+        className={`text-black  ${isProfile ? 'font-title1-semibold' : 'font-title3-semibold'}`}
+      >
+        결제 금액
+      </h3>
       <ul className='flex flex-col gap-12pxr'>
         <li className='flex-center justify-between text-gray600 font-body2-medium'>
           객실 1개 x 2박
-          <span className='text-gray600 font-body2-semibold'>90,000원</span>
+          <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
+            90,000원
+          </span>
         </li>
       </ul>
       <ul className='flex flex-col gap-8pxr'>
-        <li className='flex-center justify-between text-gray600 font-body2-medium '>
+        <li className='flex-center justify-between text-gray600 font-body2-semibold '>
           추가 옵션
-          <span className='text-gray600 font-body2-semibold'>
+          <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
             {totalPaymentForOptions.toLocaleString()}원
           </span>
         </li>
@@ -42,7 +51,7 @@ function PaymentAmount() {
           >
             {option?.content}{' '}
             {count[option.content_id] ? `x ${count[option.content_id]}` : ''}
-            <span className='text-gray500 font-body2-semibold'>
+            <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
               {count[option.content_id] ? option.price : '0원'}
             </span>
           </li>

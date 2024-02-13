@@ -49,3 +49,5 @@ export { default as IconSearchList } from './searchList.svg';
 export { default as IconSearchMap } from './searchMap.svg';
 export { default as IconStar } from './star.svg';
 export { default as IconTent } from './tent.svg';
+export { default as IconStarScore } from './star-gray.svg';
+export { default as IconStarHalf } from './star-half.svg';
