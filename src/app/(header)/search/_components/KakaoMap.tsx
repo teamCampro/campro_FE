@@ -8,7 +8,7 @@ interface Props {
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
-  campPlaceData: CampPlaceType[];
+  campPlaceData?: CampPlaceType[];
 }
 
 function KakaoMap({
@@ -40,17 +40,17 @@ function KakaoMap({
 
   useEffect(() => {
     kakao.maps.load(() => {
-      if (!mapRef.current || campPlaceData.length === 0) return;
-      console.log(campPlaceData[0]);
+      if (!mapRef.current) return;
       const options = {
         center: new kakao.maps.LatLng(
-          campPlaceData[0].location.lat,
-          campPlaceData[0].location.lng,
+          campPlaceData ? campPlaceData[0].location.lat : 37.561110808242056,
+          campPlaceData ? campPlaceData[0].location.lng : 126.9831268386891,
         ),
-        level: 8,
+        level: campPlaceData ? 8 : 3,
       };
       const map = new kakao.maps.Map(mapRef.current, options);
       setMap(map);
+      return;
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
