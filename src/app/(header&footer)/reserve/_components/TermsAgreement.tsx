@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { IconArrowDown, IconArrowRightNon } from '@/public/svgs';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
