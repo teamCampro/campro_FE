@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/Button';
 import { Site } from '../[id]/page';
 
