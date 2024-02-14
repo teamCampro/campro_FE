@@ -4,7 +4,7 @@ interface Props {
   size?: 'primary' | 'large';
   type: 'accept' | 'reject' | '_';
   isDisabled?: boolean;
-  onChange?: () => void;
+  onClick?: () => void;
   children: ReactNode;
 }
 
@@ -12,7 +12,7 @@ function OwnerReservationButton({
   size = 'primary',
   type = '_',
   isDisabled,
-  onChange,
+  onClick,
   children,
 }: Props) {
   const buttonConfig = {
@@ -48,7 +48,7 @@ function OwnerReservationButton({
     <button
       disabled={isDisabled}
       className={`rounded-md text-black ${buttonConfig[size]} ${buttonConfig[type].bgColor} ${buttonConfig[type].color} ${buttonConfig[type].outline} ${buttonConfig[type].hover} ${isDisabled && buttonConfig[type].disabled}`}
-      onChange={onChange}
+      onClick={onClick}
     >
       {children}
     </button>

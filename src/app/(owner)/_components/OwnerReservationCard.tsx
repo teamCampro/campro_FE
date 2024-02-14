@@ -1,8 +1,12 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import OwnerButton from './OwnerButton';
 import Image from 'next/image';
 import OwnerReservationStatus from './OwnerReservationStatus';
 import OwnerCheckInCheckOut from './OwnerCheckInCheckOut';
+import { ModalOutside, ModalPortal } from '@/components/index';
+import OwnerModalContent from './OwnerModal/OwnerModalContent';
+import OwnerModalWrapper from './OwnerModal/OwnerModalWrapper';
 
 export type ReservationType = 'accepted' | 'rejected' | 'pending';
 
@@ -25,6 +29,8 @@ function OwnerReservationCard({
   checkOut,
   clientName,
 }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const isDisabled = () => {
     switch (type) {
       case 'accepted':
@@ -36,6 +42,14 @@ function OwnerReservationCard({
       case 'pending':
         return false;
     }
+  };
+
+  const handleClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -69,8 +83,22 @@ function OwnerReservationCard({
             </div>
           </div>
           <div className='flex items-start'>
-            <OwnerButton.Reservation>예약 상세</OwnerButton.Reservation>
+            <OwnerButton.Reservation onClick={handleClick}>
+              예약 상세
+            </OwnerButton.Reservation>
           </div>
+          {isModalOpen ? (
+            <ModalPortal>
+              <ModalOutside
+                onClose={handleClose}
+                custom='fixed left-0pxr bg-gray-950/70 top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden px-40pxr'
+              >
+                <OwnerModalWrapper onCloseClick={handleClose}>
+                  <OwnerModalContent />
+                </OwnerModalWrapper>
+              </ModalOutside>
+            </ModalPortal>
+          ) : null}
         </div>
       </div>
       <div className='flex justify-between'>

@@ -1,35 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import OwnerReservationCard, { ReservationType } from './OwnerReservationCard';
-import axios from 'axios';
+import React from 'react';
+import OwnerReservationCard from './OwnerReservationCard';
+import { ReservationData } from '../owner/reservation-check/page';
 
-interface ReservationData {
-  imageUrl: string;
-  type: ReservationType;
-  siteArea: string;
-  site: string;
-  clientName: string;
-  checkIn: string;
-  checkOut: string;
+interface Props {
+  reservationData: ReservationData[];
 }
-function OwnerReservationCardList() {
-  const [reservataionData, setReservationData] = useState<ReservationData[]>(
-    [],
-  );
 
-  useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get('/data/reservationMockData.json');
-      setReservationData(response.data);
-    };
-
-    fetch();
-  }, []);
-
+function OwnerReservationCardList({ reservationData }: Props) {
   return (
-    <div className='grid w-1150pxr grid-cols-2 place-items-center gap-x-91pxr gap-y-50pxr mobile:grid-cols-1 tablet:grid-cols-1'>
-      {reservataionData.map((reservation, index) => {
+    <div className='grid w-1100pxr grid-cols-2 place-items-center gap-x-45pxr gap-y-30pxr mobile:grid-cols-1 tablet:grid-cols-1'>
+      {reservationData.map((reservation, index) => {
         const {
           imageUrl,
           type,
