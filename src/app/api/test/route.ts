@@ -7,7 +7,7 @@ export const GET = async () => {
 
     const userId = 1;
 
-    const query = 'SELECT * FROM user_info WHERE user_id = ?';
+    const query = 'SELECT * FROM user_info WHERE id = ?';
     const [rows] = await db.execute(query, [userId]);
 
     const query2 = 'SELECT * FROM user_info';
