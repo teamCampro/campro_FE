@@ -277,6 +277,14 @@
 .react-datepicker__month-text--keyboard-selected:hover,
 .react-datepicker__quarter-text--keyboard-selected:hover,
 .react-datepicker__year-text--keyboard-selected:hover,
+.react-datepicker__day--keyboard-selected {
+  border-radius: 0px !important;
+}
+
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover,
 .react-datepicker__day--keyboard-selected.react-datepicker__day--selecting-range-start {
   border-radius: 24px 0px 0px 24px !important;
 }
