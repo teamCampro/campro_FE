@@ -2,6 +2,7 @@ import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
 import { CampPlaceType } from '@/src/app/_utils/kakaoMarkerGenerator';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
   map: kakao.maps.Map | null;
@@ -11,7 +12,9 @@ interface Props {
 }
 
 function KakaoMap({ map, setMap, mapSize, campPlaceData }: Props) {
+  const params = useSearchParams();
   const mapRef = useRef<HTMLDivElement>(null);
+  const isParamLocationAll = params.get('location') === '전체';
 
   const handleClickZoomIn = () => {
     if (map) {
@@ -29,26 +32,34 @@ function KakaoMap({ map, setMap, mapSize, campPlaceData }: Props) {
 
   useEffect(() => {
     kakao.maps.load(() => {
-      if (!mapRef.current || campPlaceData.length === 0) return;
-      console.log(campPlaceData[0]);
+      if (!mapRef.current) return;
       const options = {
-        center: new kakao.maps.LatLng(
-          campPlaceData[0].location.lat,
-          campPlaceData[0].location.lng,
-        ),
-        level: 8,
+        center: new kakao.maps.LatLng(36.7140176374004, 128.10524294165157),
+        level: 13,
       };
       const map = new kakao.maps.Map(mapRef.current, options);
       setMap(map);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [campPlaceData]);
+  }, []);
 
   useEffect(() => {
     if (!map) return;
     map.relayout();
-  }, [mapSize, map]);
+
+    if (campPlaceData.length !== 0) {
+      map.setCenter(
+        new kakao.maps.LatLng(
+          isParamLocationAll ? 36.7140176374004 : campPlaceData[0].location.lat,
+          isParamLocationAll
+            ? 128.10524294165157
+            : campPlaceData[0].location.lng,
+        ),
+      );
+      map.setLevel(isParamLocationAll ? 13 : 8);
+    }
+  }, [isParamLocationAll, campPlaceData, mapSize, map]);
 
   return (
     <div ref={mapRef} className='h-full w-full'>

@@ -15,6 +15,7 @@ import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
+import { useSearchParams } from 'next/navigation';
 
 interface DataType {
   result: CampPlaceType[];
@@ -29,6 +30,7 @@ interface SearchParamsType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
+  const params = useSearchParams();
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
@@ -63,10 +65,14 @@ function Page({ searchParams }: SearchParamsType) {
         `data/mapPositionsMockData.json`,
       );
       const { result } = response.data;
-      const filteredResult =
-        location && checkIn && checkOut
+      const filteredResult = () => {
+        if (params.get('location') === '전체') {
+          return result;
+        }
+        return location && checkIn && checkOut
           ? result.filter((item) => item.address.includes(location))
           : result;
+      };
 
       setCampPlaceData(filteredResult);
       updateTotalItems(filteredResult.length);
