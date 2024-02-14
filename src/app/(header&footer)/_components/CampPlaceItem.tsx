@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CampPlaceMockData } from './CampPlaceSection';
 import { useSearchParams } from 'next/navigation';
-import { formatDate } from '../../_utils/submitForSearchBar';
+import { formatDate } from '../../_utils/formatDate';
 
 interface Props {
   campPlace: CampPlaceMockData;
@@ -20,14 +20,21 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
     ? 'aspect-340/220 tablet:aspect-square mobile:aspect-square mobile411:aspect-288/184 mobile767:aspect-square'
     : '';
 
-  const newSearchParams = new URLSearchParams({
-    checkIn: formatDate(new Date()),
-    checkOut: formatDate(new Date(Date.now() + 1000 * 60 * 60 * 24)),
-    adult: '1',
-    child: '0',
-    pet: '0',
-  });
+  const checkInValue = searchParams.get('checkIn');
+  const checkInDate = checkInValue ? new Date(checkInValue) : new Date();
 
+  const checkOutValue = searchParams.get('checkOut');
+  const checkOutDate = checkOutValue
+    ? new Date(checkOutValue)
+    : new Date(Date.now() + 1000 * 60 * 60 * 24);
+
+  const newSearchParams = new URLSearchParams({
+    checkIn: formatDate(checkInDate),
+    checkOut: formatDate(checkOutDate),
+    adult: searchParams.get('adult') || '2',
+    child: searchParams.get('child') || '0',
+    pet: searchParams.get('pet') || '0',
+  });
   return (
     <li key={campPlace.id} className='w-full'>
       <Link

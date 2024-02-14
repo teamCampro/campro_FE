@@ -1,3 +1,5 @@
+'use client';
+
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
