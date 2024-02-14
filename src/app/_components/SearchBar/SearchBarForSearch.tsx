@@ -2,19 +2,13 @@
 
 import { useAppDispatch } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
-import { useAppDispatch } from '@/hooks/redux';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   Button,
-  Button,
   CommonForm,
-  DatePickerController,
   DatePickerController,
   GroupCountController,
   LocationController,
 } from '@/src/app/_components';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
