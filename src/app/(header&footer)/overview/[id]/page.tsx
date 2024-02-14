@@ -231,7 +231,11 @@ function Page({ searchParams, params }: SearchParamsType) {
   if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
-      <SearchBarForOverview searchParams={searchParams} />
+      <SearchBarForOverview
+        searchParams={searchParams}
+        placeName={campingZone?.placeName}
+        campId={campingZone?.id}
+      />
       <CampImage campImageRef={campImageRef} />
       <AnchorMenu
         isSticky={isSticky}

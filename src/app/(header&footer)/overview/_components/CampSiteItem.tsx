@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Site } from '../[id]/page';
 
 interface CampSiteItemProps {
@@ -8,6 +9,23 @@ interface CampSiteItemProps {
 }
 
 function CampSiteItem({ sites }: CampSiteItemProps) {
+  const router = useRouter();
+  const pathName = useParams();
+  const searchParams = useSearchParams();
+  console.log('ㅋㅋㅋㅋㅋ', pathName);
+  console.log('확인할게', searchParams.get('checkIn'));
+
+  const move = (id: number) => {
+    const newSearchParams = new URLSearchParams({
+      checkIn: searchParams.get('checkIn') || '',
+      checkOut: searchParams.get('checkOut') || '',
+      adult: searchParams.get('adult') || '',
+      child: searchParams.get('child') || '',
+      pet: searchParams.get('pet') || '',
+    });
+
+    router.push(`/reserve/${pathName.id}/${id}?${newSearchParams.toString()}`);
+  };
   return (
     <div className='flex flex-col gap-12pxr'>
       {sites.map(
@@ -38,6 +56,7 @@ function CampSiteItem({ sites }: CampSiteItemProps) {
               <Button.Round
                 size='sm'
                 custom={`w-98pxr !h-36pxr font-caption1-semibold text-white px-24pxr py-8xr mobile:w-full`}
+                onClick={() => move(siteId)}
               >
                 선택하기
               </Button.Round>
