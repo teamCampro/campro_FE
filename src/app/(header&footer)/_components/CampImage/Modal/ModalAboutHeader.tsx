@@ -8,7 +8,7 @@ function ModalAboutHeader({ onClose }: { onClose: () => void }) {
         className='absolute left-24pxr  flex items-center justify-center mobile:left-0pxr'
         onClick={onClose}
       >
-        <IconClose />
+        <IconClose fill='#949494' />
       </button>
       <p className='flex-center w-full text-black font-title1-bold'>
         전체 사진
