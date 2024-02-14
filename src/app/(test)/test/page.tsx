@@ -6,14 +6,19 @@ function Page() {
   const [data, setData] = useState('123');
 
   useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get(`/api/test`);
+    const getFetch = async () => {
+      const response = await axios.get(`/api/test?email=test`);
 
       const { data } = response;
       setData(data);
     };
 
-    fetch();
+    const postFetch = async () => {
+      await axios.post(`/api/test`, { email: 'test' });
+    };
+
+    getFetch();
+    postFetch();
   }, []);
 
   console.log(data);
