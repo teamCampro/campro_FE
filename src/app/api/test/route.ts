@@ -1,7 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { pool } from '../libs/mysql';
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+  const data = await req.nextUrl.searchParams.get('email');
+
+  console.log('get query: ', data);
+
   try {
     const db = await pool.getConnection();
 
@@ -23,4 +27,10 @@ export const GET = async () => {
       { status: 500 },
     );
   }
+};
+
+export const POST = async (req: NextRequest) => {
+  const data = await req.json();
+  console.log('post body: ', data);
+  return NextResponse.json({ status: 200 });
 };
