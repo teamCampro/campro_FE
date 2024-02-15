@@ -56,7 +56,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
       </div>
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold'>
+          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold mobile:font-caption1-semibold'>
             {campPlace.placeName}
           </span>
           <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
@@ -65,10 +65,12 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
         </div>
         <div className='flex flex-col gap-8pxr'>
           <div>
-            <span className='text-gray800 font-title1-bold'>
+            <span className='text-gray800 font-title1-bold mobile:font-title3-bold'>
               ₩{campPlace.price.toLocaleString()}
             </span>
-            <span className='text-20pxr text-gray800 font-title1'>원 부터</span>
+            <span className='text-20pxr text-gray800 font-title1 mobile:font-title3-medium'>
+              원 부터
+            </span>
           </div>
           <div className='flex gap-10pxr'>
             <Chip>힐링/휴식</Chip>
