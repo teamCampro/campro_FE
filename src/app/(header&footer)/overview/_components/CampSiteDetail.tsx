@@ -6,36 +6,10 @@ import { IconClose } from '@/public/svgs';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { CampingZone } from '../[id]/page';
 import SiteInfoList from './SiteInfoList';
-
-const siteInfos = [
-  {
-    title: '기본 정보',
-    infos: [
-      '입실 12:00 - 퇴실 11:00',
-      '2인 기준 (인원 추가 불가)',
-      '최소 1박',
-      '반려동물 숙박 불가',
-      '최소 1대 (텐트옆 주차)',
-      '트레일러 진입 가능',
-      '캠핑카 진입 불가',
-    ],
-  },
-  {
-    title: '시설/환경',
-    infos: ['공용 화장실', '공용 샤워실', '무료 와이파이', '매점', '바베큐'],
-  },
-];
-
-const images = [
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-];
 
 function CampSiteDetail({
   onClose,
@@ -58,8 +32,9 @@ function CampSiteDetail({
         <div className='flex flex-col gap-32pxr mobile:gap-20pxr'>
           <div className='flex flex-col gap-28pxr mobile:gap-20pxr'>
             <Swiper
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
               id='detail-swiper'
-              modules={[Pagination]}
+              modules={[Pagination, Autoplay]}
               slidesPerView={1}
               pagination={true}
               className='h-full w-full'
