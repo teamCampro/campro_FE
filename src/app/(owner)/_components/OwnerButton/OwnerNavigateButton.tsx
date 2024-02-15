@@ -4,9 +4,11 @@ export type OwnerButtonType = 'prev' | 'next' | 'done';
 
 interface Props {
   type: OwnerButtonType;
+  customWidth?: string;
+  custom?: string;
 }
 
-function OwnerNavigateButton({ type }: Props) {
+function OwnerNavigateButton({ type, customWidth = '', custom = '' }: Props) {
   const primaryClassName =
     'text-28pxr w-130pxr py-10pxr px-20pxr flex-center rounded-2xl bg-gray700 text-white hover:bg-black transition ease-in-out active:py-5pxr active:px-15pxr active:w-115pxr duration-400';
   const prevClassName =
@@ -28,8 +30,8 @@ function OwnerNavigateButton({ type }: Props) {
   const { text, className } = buttonConfig();
 
   return (
-    <div className='flex-center w-130pxr'>
-      <button className={className}>{text}</button>
+    <div className={`flex-center w-130pxr ${customWidth}`}>
+      <button className={`${className} ${custom}`}>{text}</button>
     </div>
   );
 }

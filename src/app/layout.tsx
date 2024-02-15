@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ReactQueryProviders from './_utils/ReactQueryProviders';
 import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
-import './_styles/datePicker.css';
+
 import Script from 'next/script';
 import './_styles/carousel.css';
 

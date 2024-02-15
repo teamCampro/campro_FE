@@ -1,15 +1,16 @@
 'use client';
-import useUploadImageHover from '@/hooks/useUploadImageHover';
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageUploader from './ImageUploader';
+import useUploadImageHover from '../_hooks/useUploadImageHover';
 
 interface Props {
   maxImages: number;
+  gridType?: 'horizontal' | 'default';
 }
 
-function OwnerImageUploader({ maxImages }: Props) {
+function OwnerImageUploader({ maxImages, gridType }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string[]>([]);
   const { isHovered, handleMouseEnter, handleMouseLeave } =
@@ -68,6 +69,7 @@ function OwnerImageUploader({ maxImages }: Props) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClickUpload={handleClickUpload}
+        gridType={gridType}
       />
 
       <ToastContainer

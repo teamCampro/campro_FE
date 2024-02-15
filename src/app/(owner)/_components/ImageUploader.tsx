@@ -1,5 +1,4 @@
 import React, { ChangeEvent, RefObject } from 'react';
-import OwnerImageHoverButton from './OwnerButton/OwnerImageHoverButton';
 import { IconPlus } from '@/public/svgs';
 import Image from 'next/image';
 import OwnerButton from './OwnerButton';
@@ -7,6 +6,7 @@ import OwnerButton from './OwnerButton';
 interface Props {
   images: string[];
   inputRef: RefObject<HTMLInputElement>;
+  gridType?: 'horizontal' | 'default';
   onImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onCancelClick: (image: string) => void;
   onSetMainImage: (index: number) => void;
@@ -19,6 +19,7 @@ interface Props {
 function ImageUploader({
   images,
   inputRef,
+  gridType = 'default',
   onImageChange,
   onClickUpload,
   onCancelClick,
@@ -27,10 +28,15 @@ function ImageUploader({
   onMouseEnter,
   onMouseLeave,
 }: Props) {
+  const isHorizontalTypeGrid = gridType === 'horizontal';
   const largeTypeClassName =
     'overflow-hidden relative flex-center h-370pxr w-615pxr rounded-[20px] border-2 border-dashed border-gray500';
-  const primaryTypeClassName =
-    'overflow-hidden relative flex-center h-300pxr w-320pxr rounded-[20px] border-2 border-dashed border-gray500';
+  const primaryTypeClassName = isHorizontalTypeGrid
+    ? 'overflow-hidden relative flex-center h-260pxr w-245pxr rounded-[20px] border-2 border-dashed border-gray500'
+    : 'overflow-hidden relative flex-center h-300pxr w-320pxr rounded-[20px] border-2 border-dashed border-gray500';
+  const gridClassName = isHorizontalTypeGrid
+    ? 'grid grid-cols-4 gap-25pxr'
+    : 'grid grid-cols-3 gap-25pxr';
 
   return (
     <div className='flex flex-col items-center gap-25pxr'>
@@ -76,7 +82,7 @@ function ImageUploader({
           />
         </label>
       </form>
-      <div className='grid grid-cols-3 grid-rows-3 gap-25pxr'>
+      <div className={gridClassName}>
         {images &&
           images.slice(1).map((image, index) => (
             <div

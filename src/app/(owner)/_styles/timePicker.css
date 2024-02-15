@@ -1,0 +1,26 @@
+.react-datepicker__header {
+  display: none;
+}
+.react-datepicker__time-container,
+.react-datepicker__time-box,
+.react-datepicker__time {
+  width: 14.125rem !important;
+}
+
+.react-datepicker {
+  border: 0.125rem solid #dfdfdf;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.react-datepicker__time-list-item {
+  font-family: Pretendard;
+  font-size: 1rem;
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important;
+  height: initial !important;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: black !important;
+}

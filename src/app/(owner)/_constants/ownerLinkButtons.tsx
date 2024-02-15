@@ -8,7 +8,7 @@ import {
 const OWNER_LINK_BUTTONS = [
   {
     icon: <IconSofa />,
-    href: '/owner/room-registration',
+    href: '/owner/site-registration',
     name: '객실 등록',
   },
   {
