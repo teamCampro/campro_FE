@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppDispatch } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   Button,
@@ -8,19 +7,16 @@ import {
   DatePickerController,
   GroupCountController,
   LocationController,
-  ModalForMobile,
-  ModalOutside,
-  ModalPortal,
 } from '@/src/app/_components';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { formatDate } from '../../_utils/formatDate';
 import ModalForSearchBar from '../Modal/ModalForSearchBar';
-import { useForm } from 'react-hook-form';
+
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -35,22 +31,16 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' && mobileMediaQuery;
-  const [modalPending, setModalPending] = useState(false);
+
   const onSubmit = (data: FieldValues) => {
     const campType =
       searchParams.campType === 'undefined' ? undefined : searchParams.campType;
-    console.log('비상!!!!!!', data);
     submitForSearch(data, router, 'search', 'location', campType);
   };
 
   const renderSearchBarForMobile = () => {
     setIsTotalInput(true);
     setIsOpenModal(true);
-  };
-
-  const closeSearchBarForMobile = () => {
-    setIsTotalInput(false);
-    setIsOpenModal(false);
   };
 
   const defaultGroupCount = {
