@@ -1,5 +1,6 @@
 'use client';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
@@ -228,7 +229,17 @@ function Page({ searchParams, params }: SearchParamsType) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSection]);
-  if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
+  if (!campingZone)
+    return (
+      <div className='custom-height flex-center'>
+        <Image
+          width={140}
+          height={140}
+          src='/gifs/campro_loading.gif'
+          alt='로딩중입니다'
+        />
+      </div>
+    );
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
       <SearchBarForOverview
