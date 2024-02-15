@@ -298,7 +298,7 @@
   .react-datepicker-popper[data-placement^='top'] {
     transform: none !important;
     top: 100px !important;
-    left: 34% !important;
+    left: 33% !important;
   }
   .react-datepicker__children-container {
     display: flex !important;
