@@ -34,15 +34,13 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const [isTotalInput, setIsTotalInput] = useState(false);
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-
+  const isMobile = typeof window !== 'undefined' && mobileMediaQuery;
+  const [modalPending, setModalPending] = useState(false);
   const onSubmit = (data: FieldValues) => {
     const campType =
       searchParams.campType === 'undefined' ? undefined : searchParams.campType;
     console.log('비상!!!!!!', data);
     submitForSearch(data, router, 'search', 'location', campType);
-    setIsTotalInput(false);
-    setIsOpenModal(false);
   };
 
   const renderSearchBarForMobile = () => {
@@ -50,11 +48,21 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
     setIsOpenModal(true);
   };
 
+  const closeSearchBarForMobile = () => {
+    setIsTotalInput(false);
+    setIsOpenModal(false);
+  };
+
   const defaultGroupCount = {
     adult: Number(searchParams.adult) || 2,
     child: Number(searchParams.child) || 0,
     pet: Number(searchParams.pet) || 0,
   };
+
+  useEffect(() => {
+    setIsTotalInput(false);
+    setIsOpenModal(false);
+  }, [searchParams]);
 
   return (
     <>

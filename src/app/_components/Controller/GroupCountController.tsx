@@ -3,7 +3,7 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { GroupCountInputView } from '@/components/index';
-
+import { useEffect } from 'react';
 interface GroupCount {
   adult: number;
   child: number;
@@ -17,7 +17,11 @@ interface Props {
 }
 
 function GroupCountController({ name, groupCount, onRenderButton }: Props) {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext(); // setValue 추가
+
+  useEffect(() => {
+    setValue(name, groupCount); // URL 파라미터가 변경될 때마다 form 값을 갱신
+  }, [groupCount]);
 
   return (
     <Controller

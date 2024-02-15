@@ -21,7 +21,7 @@ function ModalForSearchBar({
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
-  return open ? (
+  return open && mobileMediaQuery ? (
     <ModalPortal>
       <ModalOutside onClose={onClose} custom={custom} page='search'>
         {children}
