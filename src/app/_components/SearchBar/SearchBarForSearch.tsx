@@ -8,6 +8,9 @@ import {
   DatePickerController,
   GroupCountController,
   LocationController,
+  ModalForMobile,
+  ModalOutside,
+  ModalPortal,
 } from '@/src/app/_components';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -16,6 +19,8 @@ import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { formatDate } from '../../_utils/formatDate';
+import ModalForSearchBar from '../Modal/ModalForSearchBar';
+import { useForm } from 'react-hook-form';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -24,22 +29,26 @@ interface SearchParamsType {
 
 function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const router = useRouter();
-  const dispatch = useAppDispatch();
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isTotalInput, setIsTotalInput] = useState(false);
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-  const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
     const campType =
       searchParams.campType === 'undefined' ? undefined : searchParams.campType;
-
-    submitForSearch(data, dispatch, router, 'search', 'location', campType);
+    console.log('비상!!!!!!', data);
+    submitForSearch(data, router, 'search', 'location', campType);
+    setIsTotalInput(false);
+    setIsOpenModal(false);
   };
 
-  const renderSearchBarForMobile = () => setIsTotalInput(true);
-  const closeSearchBarForMobile = () => setIsTotalInput(false);
+  const renderSearchBarForMobile = () => {
+    setIsTotalInput(true);
+    setIsOpenModal(true);
+  };
 
   const defaultGroupCount = {
     adult: Number(searchParams.adult) || 2,
@@ -47,31 +56,10 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
     pet: Number(searchParams.pet) || 0,
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const targetElement = event.target as HTMLElement;
-      const modalElement = document.getElementById('modal');
-      if (
-        modalElement &&
-        !modalElement.contains(targetElement) &&
-        outerDivRef.current &&
-        !outerDivRef.current.contains(targetElement)
-      ) {
-        setIsTotalInput(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
     <>
       {isMobile && (
-        <div className={`inline-block  w-full`}>
+        <div className={`  inline-block  w-full`}>
           <input
             name='total'
             className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
@@ -82,16 +70,21 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           />
         </div>
       )}
-      <div
-        ref={outerDivRef}
-        className='w-full max-w-1480pxr px-40pxr mobile:px-0pxr'
+
+      <ModalForSearchBar
+        open={isOpenModal}
+        onClose={() => {
+          setIsOpenModal(false);
+          setIsTotalInput(false);
+        }}
+        custom=' mobile:!items-start  mobile:!top-52pxr mobile:!bg-black-searchBar '
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white    ${isTotalInput ? 'absolute left-0pxr top-0pxr z-[150] mobile:inline-block' : 'mobile:hidden'}  ${PAGE_TYPE.search}`}
+          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
           onSubmit={onSubmit}
         >
           <div
-            className={`flex-center flex w-full flex-row gap-12pxr mobile:flex-col mobile:px-20pxr  mobile:pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER.search}`}
+            className={`visibility flex-center flex w-full flex-row gap-12pxr mobile:flex-col mobile:px-20pxr  mobile:pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr   ${INPUT_WRAPPER.search}`}
           >
             <LocationController
               name='location'
@@ -110,13 +103,12 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           <Button.Round
             type='submit'
             size='sm'
-            onClick={closeSearchBarForMobile}
             custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none tablet:max-w-134pxr desktop:max-w-134pxr `}
           >
             검색
           </Button.Round>
         </CommonForm>
-      </div>
+      </ModalForSearchBar>
     </>
   );
 }

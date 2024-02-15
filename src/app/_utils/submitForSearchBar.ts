@@ -9,7 +9,6 @@ export const formatDate = (date: Date) =>
 
 export const submitForSearch = (
   data: FieldValues,
-  dispatch: AppDispatch,
   router: AppRouterInstance,
   pathName: string,
   Key?: string,
@@ -34,12 +33,5 @@ export const submitForSearch = (
     }
 
     router.push(`/${pathName}?${queryString}`);
-
-    dispatch(
-      setReserveInfo({
-        dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
-        ...groupObject,
-      }),
-    );
   }
 };
