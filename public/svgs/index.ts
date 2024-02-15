@@ -81,3 +81,5 @@ export { default as IconRadiator } from './ownerPage/radiator.svg';
 export { default as IconToothbrushPaste } from './ownerPage/toothbrushPaste.svg';
 export { default as IconExitX } from './ownerPage/exit.svg';
 export { default as IconStar } from './star.svg';
+export { default as IconStarScore } from './star-gray.svg';
+export { default as IconStarHalf } from './star-half.svg';

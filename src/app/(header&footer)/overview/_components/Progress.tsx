@@ -32,31 +32,32 @@ interface ProgressData {
   keywordCount: string;
 }
 
-interface Props {
-  progressData: ProgressData[];
+interface ProgressProps {
+  tagList: { text: string; count: number }[];
+  showAll: boolean;
 }
 
-function Progress({ showAll }: { showAll: boolean }) {
+function Progress({ showAll, tagList }: ProgressProps) {
+  const max = tagList.reduce((acc, tag) => tag.count + acc, 0);
+  tagList.sort((a, b) => b.count - a.count);
   return (
     <ul className='flex flex-col gap-8pxr'>
-      {(showAll ? progressData : progressData.slice(0, 3)).map(
-        (data, index) => (
-          <li key={index} className='relative h-46pxr'>
-            <progress
-              id='progress'
-              value={data.keywordPercentage}
-              max='100'
-              className='w-full'
-            ></progress>
-            <h3 className='absolute left-16pxr top-1/2 -translate-y-1/2 font-body2-semibold'>
-              {data.keyword}
-            </h3>
-            <span className='absolute right-16pxr top-1/2 -translate-y-1/2 font-body2-semibold'>
-              {data.keywordCount}
-            </span>
-          </li>
-        ),
-      )}
+      {(showAll ? tagList : tagList.slice(0, 3)).map((tag, index) => (
+        <li key={index} className='relative h-46pxr'>
+          <progress
+            id='progress'
+            value={(tag.count / max) * 100}
+            max='100'
+            className='w-full'
+          />
+          <h3 className='absolute left-16pxr top-1/2 -translate-y-1/2 font-body2-semibold'>
+            {tag.text}
+          </h3>
+          <span className='absolute right-16pxr top-1/2 -translate-y-1/2 font-body2-semibold'>
+            {tag.count}
+          </span>
+        </li>
+      ))}
     </ul>
   );
 }

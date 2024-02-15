@@ -8,7 +8,8 @@ interface Props {
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
-  campPlaceData?: CampPlaceType[];
+  campPlaceData: CampPlaceType[];
+  region: string;
 }
 
 function KakaoMap({
@@ -17,8 +18,10 @@ function KakaoMap({
   mapSize,
   isZoomButtonShadow = false,
   campPlaceData,
+  region,
 }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
+  const isRegion = region === '전체';
 
   const handleClickZoomIn = () => {
     if (map) {
@@ -39,14 +42,12 @@ function KakaoMap({
     : '';
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.kakao) return;
     kakao.maps.load(() => {
       if (!mapRef.current) return;
       const options = {
-        center: new kakao.maps.LatLng(
-          campPlaceData ? campPlaceData[0].location.lat : 37.561110808242056,
-          campPlaceData ? campPlaceData[0].location.lng : 126.9831268386891,
-        ),
-        level: campPlaceData ? 8 : 3,
+        center: new kakao.maps.LatLng(36.7140176374004, 128.10524294165157),
+        level: 13,
       };
       const map = new kakao.maps.Map(mapRef.current, options);
       setMap(map);
@@ -54,7 +55,35 @@ function KakaoMap({
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [campPlaceData]);
+  }, []);
+
+  useEffect(() => {
+    if (!map) return;
+    map.relayout();
+
+    if (campPlaceData.length !== 0) {
+      map.setCenter(
+        new kakao.maps.LatLng(
+          isRegion ? 36.7140176374004 : campPlaceData[0].location.lat,
+          isRegion ? 128.10524294165157 : campPlaceData[0].location.lng,
+        ),
+      );
+      map.setLevel(isRegion ? 13 : 8);
+      return;
+    }
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    geocoder.addressSearch(region, function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(
+          parseFloat(result[0].y),
+          parseFloat(result[0].x),
+        );
+        map.setCenter(coords);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRegion, campPlaceData, mapSize, map]);
 
   useEffect(() => {
     if (!map) return;

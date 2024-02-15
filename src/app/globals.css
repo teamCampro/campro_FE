@@ -165,13 +165,13 @@ body {
 }
 
 @media (min-width: 825px) and (max-width: 1030px) {
-  .reserve-lineOver {
+  #reserve .reserve-lineOver {
     width: 160px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 824px) {
-  .reserve-lineOver {
+  #reserve .reserve-lineOver {
     width: 120px;
   }
   .reserve-options {
@@ -180,18 +180,27 @@ body {
 }
 
 @media (min-width: 370px) and (max-width: 432px) {
-  .reserve-lineOver {
+  #reserve .reserve-lineOver {
+    width: 160px;
+  }
+  #profile .reserve-lineOver {
     width: 160px;
   }
 }
 @media (min-width: 340px) and (max-width: 370px) {
-  .reserve-lineOver {
+  #reserve .reserve-lineOver {
+    width: 120px;
+  }
+  #profile .reserve-lineOver {
     width: 120px;
   }
 }
 
 @media (min-width: 320px) and (max-width: 340px) {
-  .reserve-lineOver {
+  #reserve .reserve-lineOver {
+    width: 110px;
+  }
+  #profile .reserve-lineOver {
     width: 110px;
   }
 }
@@ -583,5 +592,22 @@ input[id='checkTable']:checked::before {
   }
   .profile-width {
     width: 100%;
+  }
+}
+
+/* mypage */
+.mypage {
+  grid-template-columns: 169.5px 169.5px;
+}
+
+@media (min-width: 368px) and (max-width: 767px) {
+  .mypage {
+    grid-template-columns: minmax(162px, 100%) minmax(162px, 100%);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 367px) {
+  .mypage {
+    grid-template-columns: minmax(138px, 162px) minmax(138px, 162px);
   }
 }
