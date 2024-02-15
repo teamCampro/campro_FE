@@ -8,8 +8,8 @@ interface Props {
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
-  campPlaceData: CampPlaceType[];
-  region: string;
+  campPlaceData?: CampPlaceType[];
+  region?: string;
 }
 
 function KakaoMap({
@@ -60,7 +60,7 @@ function KakaoMap({
   useEffect(() => {
     if (!map) return;
     map.relayout();
-
+    if (!campPlaceData) return;
     if (campPlaceData.length !== 0) {
       map.setCenter(
         new kakao.maps.LatLng(
@@ -72,7 +72,7 @@ function KakaoMap({
       return;
     }
     const geocoder = new kakao.maps.services.Geocoder();
-
+    if (!region) return
     geocoder.addressSearch(region, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(

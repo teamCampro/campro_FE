@@ -77,6 +77,7 @@ function LocationPage() {
   }, []);
 
   useEffect(() => {
+    map?.setLevel(4);
     if (geocoder !== null) {
       const localLocation = localStorage.getItem('location');
 
