@@ -122,7 +122,7 @@ function SearchBarForOverview({
       )}
       <div
         ref={outerDivRef}
-        className='flex-center sticky top-0pxr z-30 w-full max-w-1440pxr border-b border-gray200 bg-white'
+        className='flex-center sticky top-0pxr z-30 w-full max-w-1440pxr bg-white'
       >
         <CommonForm
           className={`flex w-full justify-between rounded-2xl bg-white ${isMobile && isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:fixed mobile:top-0pxr mobile:mt-0pxr mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
