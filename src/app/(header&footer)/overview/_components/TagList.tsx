@@ -4,15 +4,20 @@ import { IconArrowDown, IconArrowUp } from '@/public/svgs';
 import { useState } from 'react';
 import Progress from './Progress';
 
-function TagList() {
+interface TagListProps {
+  tag: {
+    text: string;
+    list: { text: string; count: number }[];
+  };
+}
+
+function TagList({ tag }: TagListProps) {
   const [showAll, setShowAll] = useState(false);
 
   return (
     <div className='mt-32pxr flex flex-col gap-12pxr border-b border-b-gray200 pb-24pxr'>
       <div className='flex items-center justify-between'>
-        <h3 className='text-gray-600 font-body2-semibold'>
-          {'"청결도 만족도가 높은 곳이에요"'}
-        </h3>
+        <h3 className='text-gray-600 font-body2-semibold'>{tag.text}</h3>
         <button
           type='button'
           className='flex-center text-gray500 font-caption1-medium'
@@ -28,7 +33,7 @@ function TagList() {
           </span>
         </button>
       </div>
-      <Progress showAll={showAll} />
+      <Progress showAll={showAll} tagList={tag.list} />
     </div>
   );
 }

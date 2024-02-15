@@ -9,6 +9,10 @@ interface CampSiteBasicInfoProps {
   address: string;
   tel: string;
   intro: string;
+  tag: {
+    text: string;
+    list: { text: string; count: number }[];
+  };
 }
 
 function CampSiteBasicInfo({
@@ -17,15 +21,16 @@ function CampSiteBasicInfo({
   address,
   tel,
   intro,
+  tag,
 }: CampSiteBasicInfoProps) {
   return (
     <article>
-      <div className='flex gap-8pxr'>
+      <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr tablet:mr-80pxr'>
         {types.map((type, i) => (
           <Chip key={type + i}>{type}</Chip>
         ))}
       </div>
-      <h2 className='mb-12pxr font-h2-semibold mobile:font-title3-bold'>
+      <h2 className='mb-12pxr mt-2pxr font-h2-semibold mobile:font-title3-bold'>
         {placeName}
       </h2>
       <ul className='flex flex-col gap-8pxr'>
@@ -49,7 +54,7 @@ function CampSiteBasicInfo({
         </li>
       </ul>
       <div className='flex flex-col'>
-        <TagList />
+        <TagList tag={tag} />
         <div className='flex flex-col gap-16pxr pt-24pxr'>
           <h2 className='text-black font-title2-semibold'>기본 정보</h2>
           <p className='text-gray500 font-body2-medium'>{intro}</p>

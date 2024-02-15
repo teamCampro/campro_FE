@@ -1,0 +1,200 @@
+[
+  {
+    "orderId": 1,
+    "placeName": "호날두 캠핑장",
+    "address": "서울 영등포구",
+    "tel": "010-1234-0067",
+    "site": {
+      "campingZoneId": 2,
+      "campingZoneName": "두 캠핑장",
+      "siteName": "사이트 1",
+      "siteId": 1,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 1, "child": 1, "pet": 0 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "욕실 세트(치약+일회용 칫솔)",
+          "price": 10000,
+          "count": 5
+        }
+      ]
+    },
+    "orderInfo": { "time": "2024-02-02T05:34:23.096Z", "type": "무통장 입금" },
+    "reviews": { "score": "7.6", "totalCount": 383 },
+    "carInfo": "가나109231"
+  },
+  {
+    "orderId": 2,
+    "placeName": "유령 무희 캠핑장",
+    "address": "경기 안성시",
+    "tel": "010-1234-0000",
+    "site": {
+      "campingZoneId": 1,
+      "campingZoneName": " 무희 캠핑장",
+      "siteName": "사이트 3",
+      "siteId": 3,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 4, "child": 0, "pet": 1 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "숯불 세트 (고기 2인분+식기)",
+          "price": 18000,
+          "count": 4
+        },
+        {
+          "optionId": 2,
+          "option": "이불 세트(덮는 이불 2장)",
+          "price": 10000,
+          "count": 7
+        },
+        { "optionId": 3, "option": "전기 장판", "price": 11000, "count": 6 }
+      ]
+    },
+    "orderInfo": { "time": "2024-01-26T20:44:03.802Z", "type": "네이버 페이" },
+    "reviews": { "score": "0.9", "totalCount": 438 },
+    "carInfo": "가나109231"
+  },
+  {
+    "orderId": 3,
+    "placeName": "징수의 총 캠핑장",
+    "address": "서울 영등포구",
+    "tel": "010-1234-0020",
+    "site": {
+      "campingZoneId": 1,
+      "campingZoneName": "캠핑장",
+      "siteName": "사이트 5",
+      "siteId": 5,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 4, "child": 2, "pet": 1 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "이불 세트(덮는 이불 2장)",
+          "price": 14000,
+          "count": 4
+        }
+      ]
+    },
+    "orderInfo": {
+      "time": "2024-01-26T05:06:12.324Z",
+      "type": "국민 ****-****-**12"
+    },
+    "reviews": { "score": "2.9", "totalCount": 329 },
+    "carInfo": "다라883312"
+  },
+  {
+    "orderId": 4,
+    "placeName": "사미라 캠핑장",
+    "address": "서울 영등포구",
+    "tel": "010-1234-0037",
+    "site": {
+      "campingZoneId": 1,
+      "campingZoneName": "",
+      "siteName": "사이트 1",
+      "siteId": 1,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 4, "child": 0, "pet": 1 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "숯불 세트 (고기 2인분+식기)",
+          "price": 48000,
+          "count": 7
+        },
+        { "optionId": 2, "option": "장작 세트", "price": 20000, "count": 8 },
+        { "optionId": 3, "option": "전기 장판", "price": 39000, "count": 2 }
+      ]
+    },
+    "orderInfo": { "time": "2024-01-04T10:51:55.206Z", "type": "카카오 페이" },
+    "reviews": { "score": "1.6", "totalCount": 136 },
+    "carInfo": "다라883312"
+  },
+  {
+    "orderId": 5,
+    "placeName": "호날두 캠핑장",
+    "address": "서울 영등포구",
+    "tel": "010-1234-0064",
+    "site": {
+      "campingZoneId": 1,
+      "campingZoneName": "날두 캠핑장",
+      "siteName": "사이트 1",
+      "siteId": 1,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 4, "child": 2, "pet": 0 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "욕실 세트(치약+일회용 칫솔)",
+          "price": 26000,
+          "count": 10
+        },
+        { "optionId": 2, "option": "전기 장판", "price": 26000, "count": 7 },
+        {
+          "optionId": 3,
+          "option": "이불 세트(덮는 이불 2장)",
+          "price": 34000,
+          "count": 4
+        }
+      ]
+    },
+    "orderInfo": { "time": "2024-01-01T02:56:00.545Z", "type": "네이버 페이" },
+    "reviews": { "score": "9.6", "totalCount": 227 },
+    "carInfo": "다라883312"
+  },
+  {
+    "orderId": 6,
+    "placeName": "호날두 캠핑장",
+    "address": "서울 영등포구",
+    "tel": "010-1234-0054",
+    "site": {
+      "campingZoneId": 2,
+      "campingZoneName": "핑장",
+      "siteName": "사이트 1",
+      "siteId": 1,
+      "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"
+    },
+    "group": { "adult": 2, "child": 0, "pet": 1 },
+    "options": {
+      "options": [
+        {
+          "optionId": 1,
+          "option": "욕실 세트(치약+일회용 칫솔)",
+          "price": 10000,
+          "count": 1
+        },
+        { "optionId": 2, "option": "전기 장판", "price": 29000, "count": 6 },
+        { "optionId": 3, "option": "장작 세트", "price": 45000, "count": 9 },
+        {
+          "optionId": 4,
+          "option": "이불 세트(덮는 이불 2장)",
+          "price": 48000,
+          "count": 6
+        },
+        {
+          "optionId": 5,
+          "option": "숯불 세트 (고기 2인분+식기)",
+          "price": 18000,
+          "count": 5
+        }
+      ]
+    },
+    "orderInfo": {
+      "time": "2024-01-27T03:32:02.452Z",
+      "type": "현대 ****-****-**21"
+    },
+    "reviews": { "score": "7.2", "totalCount": 665 },
+    "carInfo": "민섭331233"
+  }
+]

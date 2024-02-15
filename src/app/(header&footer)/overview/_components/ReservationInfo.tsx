@@ -5,7 +5,7 @@ import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampZoneList from './CampSiteList';
 
 function ReservationInfo({
-  sites,
+  campingZones,
   openTime,
   nextOpen,
   mannerTimeStart,
@@ -20,10 +20,12 @@ function ReservationInfo({
         mannerTimeStart={mannerTimeStart}
         mannerTimeEnd={mannerTimeEnd}
       />
-      {(showAll ? sites : sites.slice(0, 2)).map((site) => (
-        <CampZoneList site={site} key={site.name} />
-      ))}
-      {sites.length > 2 && (
+      {(showAll ? campingZones : campingZones.slice(0, 2)).map(
+        (campingZone) => (
+          <CampZoneList campingZone={campingZone} key={campingZone.name} />
+        ),
+      )}
+      {campingZones.length > 2 && (
         <div className='contents mobile:block mobile:px-36pxr mobile359:px-16pxr'>
           <button
             type='button'

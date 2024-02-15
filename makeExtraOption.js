@@ -1,5 +1,3 @@
-const { type } = require('os');
-
 const mapMock = [
   {
     id: 1,
@@ -798,244 +796,37 @@ const mapMock = [
   },
 ];
 
-const facilities = [
-  '바베큐',
-  '모닥불',
-  '매점',
-  '와이파이',
-  '에어컨',
-  '전기장판',
-  '개인화장실',
-  '개인샤워실',
+const options = [
+  '숯불 세트 (고기 2인분+식기)',
+  '장작 세트',
+  '전기 장판',
+  '이불 세트(덮는 이불 2장)',
+  '욕실 세트(치약+일회용 칫솔)',
 ];
+const makeOptions = (mapMock) => {
+  return mapMock.map((mock) => {
+    const randomCount = Math.floor(Math.random() * options.length) + 1;
+    const selectedOptions = [];
 
-function generateRandomNumber(length) {
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += Math.floor(Math.random() * 10);
-  }
-  return result;
-}
+    while (selectedOptions.length < randomCount) {
+      const randomIndex = Math.floor(Math.random() * options.length);
+      const option = options[randomIndex];
 
-function generateRandomFormat(num1, num2, num3) {
-  const part1 = generateRandomNumber(num1);
-  const part2 = generateRandomNumber(num2);
-  const part3 = generateRandomNumber(num3);
+      const selectedOptionNames = selectedOptions.map((o) => o.option);
 
-  return `${part1}-${part2}-${part3}`;
-}
-
-const owners = ['고민혁', '김진우', '남민섭', '이정윤', '윤대호'];
-const campingTypes = [
-  '텐트캠핑',
-  '카라반',
-  '글램핑',
-  '오토캠핑',
-  '캠프닉',
-  '키즈캠핑',
-  '애견캠핑',
-  '차박',
-];
-
-const tags = [
-  '깨끗해요',
-  '매너 타임을 잘 지켜요',
-  '조용해요',
-  '사장님이 cs를 양보해요',
-  '아늑해요',
-];
-
-function generateRandomValuesForTags(tags) {
-  return tags.map((tag) => ({
-    text: tag,
-    count: Math.floor(Math.random() * 2000) + 1,
-  }));
-}
-
-function getRandomFacilities(facilities, num) {
-  const shuffled = facilities.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, num);
-}
-
-function generateRandomSites(numberOfSites, types) {
-  const facilitiesOptions = [
-    '바베큐',
-    '모닥불',
-    '매점',
-    '와이파이',
-    '에어컨',
-    '전기장판',
-    '개인화장실',
-    '개인샤워실',
-  ];
-  const imagesOptions = [
-    'https://upload2.inven.co.kr/upload/2017/01/03/bbs/i13963558439.png',
-    'https://static.inven.co.kr/column/2019/02/06/news/i14483364038.jpg',
-  ];
-
-  const sites = [];
-
-  for (let i = 0; i < numberOfSites; i++) {
-    const facilitiesCount =
-      Math.floor(Math.random() * facilitiesOptions.length) + 1;
-    const selectedFacilities = [];
-    while (selectedFacilities.length < facilitiesCount) {
-      const facility =
-        facilitiesOptions[Math.floor(Math.random() * facilitiesOptions.length)];
-      if (!selectedFacilities.includes(facility)) {
-        selectedFacilities.push(facility);
+      if (!selectedOptionNames.includes(option)) {
+        selectedOptions.push({
+          optionId: selectedOptions.length + 1,
+          option: option,
+          price:
+            Math.floor((Math.random() * (50000 - 10000 + 1) + 10000) / 1000) *
+            1000,
+        });
       }
     }
 
-    const site = {
-      siteId: i + 1,
-      name: `사이트 ${i + 1}`,
-      type: types[Math.floor(Math.random() * types.length)],
-      size: `${(Math.floor(Math.random() * 5) + 4).toFixed(1)}x10m`,
-      floor: '파쇄석',
-      checkInTime: '23:00',
-      checkOutTime: '24:00',
-      minStay: '1박',
-      allowPet: Math.random() < 0.5,
-      parkingLimit: Math.floor(Math.random() * 3) + 1,
-      parkingLocation: '텐트 옆 주차',
-      allowTrailer: Math.random() < 0.5,
-      allowCampingCar: Math.random() < 0.5,
-      facilities: selectedFacilities,
-      price: Math.floor(Math.random() * (1000000 - 200000 + 1)) + 200000,
-      images: imagesOptions,
-    };
-
-    sites.push(site);
-  }
-
-  return sites;
-}
-
-function generateTopSiteWithSubSites(placeName, types) {
-  const numberOfSites = Math.floor(Math.random() * 5) + 1;
-  const subSites = generateRandomSites(numberOfSites, types);
-
-  const allowTrailerInSubSites = subSites.some((site) => site.allowTrailer);
-  const top = [];
-  const topSites = Math.floor(Math.random() * 2) + 1;
-  for (let i = 0; i < topSites; i++) {
-    const facilities = [];
-    const topSite = {
-      id: i + 1,
-      name: `${placeName.slice(Math.random() * placeName.length + 1)}`,
-      allowPet: subSites.some((site) => site.allowPet),
-      minStay: '1박',
-      parkingLimit: Math.max(...subSites.map((site) => site.parkingLimit)),
-      parkingLocation: '텐트 옆 주차',
-      size: `${(Math.floor(Math.random() * 5) + 4).toFixed(1)}x10m`,
-      checkInTime: '23:00',
-      checkOutTime: '24:00',
-      baseGuests: '성인 2인',
-      type: types[Math.floor(Math.random() * types.length)],
-      floor: '파쇄석',
-      allowTrailer: allowTrailerInSubSites,
-      allowCampingCar: subSites.some((site) => site.allowCampingCar),
-      facilities: [...new Set(subSites.flatMap((sub) => sub.facilities))],
-      extraGuests: Math.floor(Math.random() * 4 + 1),
-      area: '하단 구역',
-      images: [
-        'https://upload2.inven.co.kr/upload/2017/01/03/bbs/i13963558439.png',
-        'https://static.inven.co.kr/column/2019/02/06/news/i14483364038.jpg',
-      ],
-      sites: subSites,
-    };
-    top.push(topSite);
-  }
-
-  return top;
-}
-
-function generateRandomReviews(sites, numberOfReviews) {
-  const nicknames = ['황족정윤', '미녀기', '갓민섭', '캐리왕진우', '자연인123'];
-  const tags = [
-    '사장님이 cs를 양보해요',
-    '민섭님이 cs를 다 뺏어먹어요',
-    '조용해서 좋아요',
-    '가족과 함께하기 좋아요',
-    '힐링되는 곳',
-  ];
-
-  const reviews = [];
-
-  sites.forEach((site) => {
-    const review = {
-      nickName: nicknames[Math.floor(Math.random() * nicknames.length)],
-      createdAt: new Date(
-        2024,
-        Math.floor(Math.random() * 12),
-        Math.floor(Math.random() * 28) + 1,
-      )
-        .toISOString()
-        .split('T')[0],
-      siteId: site.siteId,
-      siteName: site.name,
-      group: {
-        adult: Math.floor(Math.random() * 4) + 1,
-        child: Math.floor(Math.random() * 3),
-        pet: Math.floor(Math.random() * 2),
-      },
-      content: `${site.name} 정말 좋았어요! 다음에 또 방문하고 싶습니다.`,
-      score: Math.floor(Math.random() * 5) + 1,
-      tag: tags[Math.floor(Math.random() * tags.length)],
-    };
-    reviews.push(review);
+    return { id: mock.id, options: selectedOptions };
   });
-
-  return {
-    totalCount: reviews.length,
-    averageScore:
-      reviews.reduce((acc, review) => acc + review.score, 0) / reviews.length,
-    contents: reviews,
-  };
-}
-const createMockData = () => {
-  let mockData = [];
-  mapMock.forEach((mock, i) => {
-    const types = getRandomFacilities(campingTypes, Math.random() * 8 + 1);
-    const sites = generateRandomSites(Math.random() * 5 + 1, types);
-    mockData.push({
-      id: mock.id,
-      placeName: mock.placeName,
-      address: mock.address,
-      tel: `010-1234-${String(i).padStart(4, '0')}`,
-      imgUrl: mock.imgUrl,
-      facilities: getRandomFacilities(facilities, Math.random() * 8 + 1),
-      location: { lat: mock.location.lat, lng: mock.location.lng },
-      planImage: 'https://camping.dpto.or.kr/images/sub/new_map1.jpg',
-      mannerTimeStart: '08:00',
-      mannerTimeEnd: '09:00',
-      openTime: '매월 30일 23시',
-      nextOpen: '2024.04.30 오후 11시',
-      guide: {
-        usage: `<div>문의/상담 운영시간 (09:30 ~ 21:30)</div><div>입실 시 관리실에 방문하여 예약자 확인 및 이용안내 후 입장 가능합니다.</div><div>- 12시부터 14시 사이에는 화장실, 샤워실, 개수대, 쓰레기장 등 캠핑장 청소를 진행하므로 입실이 어렵습니다.</div><br><div># 기준 숙박인원, 차량안내</div> <div>- 사이트 1면 당 정원 4인(성인2/미성년2), 차량 1대</div><div>- 다자녀가족의 경우 예약 시 관리실에 알려주시면 미성년은 추가비용 없이 이용 가능합니다</div><div>- 기준차량 초과 시 1대 당 1만원의 주차요금이 발생됩니다.</div><div># 외부손님(식사초대 등) 방문금지</div><div>- 보안 및 안전관리로 예외없이 금지하며 현장 적발 시 즉각 퇴실조치 합니다.</div><br><div># 차박, 도킹텐트, 텐트 트레일러는 c구역에서만 가능(캠핑카/카라반 이용불가)</div><br><div># 동반캠핑(가족단위, 최대 2팀까지만 가능)</div><div>- 매너타임 동안 잦은 소음발생으로 인한 불편 예방 조치이므로 성인팀은 불가능합니다.</div> <div>- 위반하여 예약 적발 시 예약이 취소되거나 입실이 거부될 수 있습니다.</div><br><div># 매너타임(22:00 ~ 07:00) - 22시 이후 유도등 외 모든 조명이 소등됩니다.</div> <div>- 관리자가 30분 간격으로 순찰합니다. 소음으로 인한 불편발생 시 관리실로 연락주시면 됩니다.</div><br><div># 기타 이용/안전수칙 안내</div> <div>1) 화재발생의 위험이 있는 기구사용 또는 행위 절대금지 </div><div>2) 모닥불은 반드시 화로에 이용하셔야 하며 파쇄석 위에서 바로사용 불가능</div><div> - 사용 후 재는 꼭 수거통에 버려주세요.</div> <div>- 당일 기상상황에 따라 화로 이용이 불가능할 수 있습니다.</div><div>3) 생활쓰레기 배출금지</div> <div>- 고장난 캠핑용품, 우산, 전기장판 등 생활쓰레기는 일반수거가 불가능합니다.</div><div>4) 캠핑장 내 차량이동 시 10km/h 이하로 서행, 18시 이후 안전을 위해 차량통행 제한 </div><div>5) 텐트 내 전기사용량은 안전을 위해 법령기준 600W 이하로 제한 </div><div>- 화재발생 위험이 높은 전열기구의 사용을 절대금지합니다.</div> <div>- 허용용량 초과제픔 사용 또는 위험기구의 사용위반 시 강제조치하며 모든 책임은 이용객에게 있습니다.</div><div>6) 반려동물 동반불가 </div><div>7) 사이트 전 구역 흡연 절대불가, 주차장 가장자리에 흡연구역이 마련되어 있습니다.</div> <div>8) 캠핑장 내 시설물 파손 또는 개인 귀중품 분실 시 모든 책임은 이용객에게 있으므로 유의해주시기 바랍니다. ${mock.placeName} 화이팅</div>`,
-        refund: `<div>1. 환불 규정은 입실일(체크인 일자) 기준으로 적용됩니다.</div><div>2. 환불 규정은 예약 당시 고지된 환불 규정의 적용을 받으며, 캠핑장의 환불 규정과 예약 당시의 환불 규정은 상이할 수 있습니다.</div><div>· 예약 당시 환불 규정 확인 경로: 앱 > 예약 내역 > 하단 '예약일 기준 취소 환불 규정' 클릭 시 확인 가능</div><div>1. 취소 환불 규정은 숙박요금에 한해 적용됩니다.※ 숙박금액 적용항목: 사이트 이용금액, 초과 인원 요금</div><div>2. 추가 옵션은 환불 규정 적용 제외 항목이며, 취소수수료 차감 없이 100% 환불 됩니다.</div><div>3. 연박(2일 이상의 숙박) 예약 시 환불 규정은 각 예약 일자와 무관하게 최초 입실일을 기준으로 일괄 적용됩니다.</div><br><div>취소 불가 사항</div><div>입실(체크인) 시각 이후(No show)에는 예약취소 및 환불이 불가능합니다.</div><div>※ No show란 : 사전 연락 없이 예약된 사이트를 이용하지 않는 것을 지칭</div><div>환불 규정 적용 예외 정책</div><div>결제 완료(예약 완료) 시각으로부터 30분 이내 취소 시 100% 환불 취소가 가능합니다.</div> <div>단, 무통장입금 예약 건은 캠핑장 자체 환불 수수료가 공제 될 수 있습니다.</div><div>유의사항</div><div>현장에서 발생된 숙박시설과의 분쟁으로 인한 취소/환불 요청 시 당사는 통신판매중개자로 취소 및 환불 처리에 관여하지 않습니다. 하하하하하 ${mock.placeName} 화이팅</div>`,
-      },
-      ownerInfo: {
-        ownerName: getRandomFacilities(owners, 1)[0],
-        placeName: mock.placeName,
-        address: mock.address,
-        email: `campro${mock.id}@gmail.com`,
-        ownerRegistrationNumber: generateRandomFormat(3, 2, 9),
-        placeRegistrationNumber: generateRandomFormat(3, 4, 3),
-      },
-      types: types,
-      tag: {
-        text: '청결도 만족도가 높은 곳이에요',
-        list: generateRandomValuesForTags(tags),
-      },
-      intro: `${mock.placeName}은 매우 좋습니다 이유는 ${mock.placeName}이기 때문입니다`,
-      campingZones: generateTopSiteWithSubSites(mock.placeName, types),
-      reviews: generateRandomReviews(sites, Math.random() * 10 + 1),
-    });
-  });
-
-  return mockData;
 };
 
-console.log(JSON.stringify(createMockData()));
+console.log(JSON.stringify(makeOptions(mapMock)));
