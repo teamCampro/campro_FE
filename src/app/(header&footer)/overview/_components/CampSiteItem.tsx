@@ -47,7 +47,7 @@ function CampSiteItem({ sites }: CampSiteItemProps) {
                   입실 {checkInTime} - 퇴실 {checkOutTime}
                 </span>
                 <span className='text-gray500 font-caption2-medium'>
-                  {minStay}
+                  {minStay} 기준
                 </span>
               </div>
             </div>

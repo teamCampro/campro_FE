@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CampSite } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampZoneList from './CampSiteList';
+import NewCampSiteItem from './NewCampSiteItem';
 
 function ReservationInfo({
   campingZones,
@@ -14,6 +15,7 @@ function ReservationInfo({
   const [showAll, setShowAll] = useState(false);
   return (
     <section className='flex flex-col gap-24pxr'>
+      <NewCampSiteItem />
       <CampSiteBookingInfo
         openTime={openTime}
         nextOpen={nextOpen}
