@@ -10,6 +10,7 @@ interface Props {
   onRenderButton?: () => void;
 }
 const locations = [
+  '전체',
   '경기',
   '강원',
   '경남',
@@ -29,7 +30,11 @@ const locations = [
   '세종',
 ];
 
-function LocationController({ name, default: defaultValue, onRenderButton }: Props) {
+function LocationController({
+  name,
+  default: defaultValue,
+  onRenderButton,
+}: Props) {
   const { control } = useFormContext();
 
   return (

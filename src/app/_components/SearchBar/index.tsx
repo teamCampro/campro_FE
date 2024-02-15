@@ -7,50 +7,29 @@ import {
   GroupCountController,
   LocationController,
 } from '@/src/app/_components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import { useAppDispatch } from '@/hooks/redux';
-import { setReserveInfo } from '../../_slices/reserveInfo';
-import getFormattedDate from '../../_utils/getFormattedDate';
-
-function SearchBar() {
+import { submitForSearch } from '../../_utils/submitForSearchBar';
+interface SearchParamsType {
+  searchParams: {
+    [key: string]: string;
+  };
+}
+function SearchBar({ searchParams }: SearchParamsType) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: FieldValues) => {
-    if (Array.isArray(data.date) && data.date.length === 2) {
-      const location = encodeURIComponent(data.location);
-      const checkIn = encodeURIComponent(
-        new Date(data.date[0].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const checkOut = encodeURIComponent(
-        new Date(data.date[1].toLocaleDateString('fr-CA'))
-          .toISOString()
-          .slice(0, 10),
-      );
-      const group = encodeURIComponent(data.group);
+    submitForSearch(data, dispatch, router, 'search', 'location');
+  };
 
-      const queryString = `location=${location}&checkIn=${checkIn}&checkOut=${checkOut}&group=${group}`;
-
-      router.push(`/search?${queryString}`);
-
-      const groupObject = JSON.parse(decodeURIComponent(data.group));
-
-      dispatch(
-        setReserveInfo({
-          dates: getFormattedDate([new Date(checkIn), new Date(checkOut)]),
-          adult: groupObject.adult,
-          child: groupObject.child,
-          pet: groupObject.pet,
-        }),
-      );
-    } else {
-      console.error('Invalid date range');
-    }
+  const defaultGroupCount = {
+    adult: Number(searchParams.adult) || 0,
+    child: Number(searchParams.child) || 0,
+    pet: Number(searchParams.pet) || 0,
   };
 
   return (
@@ -65,27 +44,14 @@ function SearchBar() {
           >
             <LocationController
               name='location'
-              default={searchParams.get('location') || ''}
+              default={searchParams.location || ''}
             />
             <DatePickerController
               name='date'
-              checkIn={searchParams.get('checkIn') || ''}
-              checkOut={searchParams.get('checkOut') || ''}
+              checkIn={searchParams.checkIn || ''}
+              checkOut={searchParams.checkOut || ''}
             />
-            <GroupCountController
-              name='group'
-              groupCount={
-                searchParams.get('group')
-                  ? JSON.parse(
-                      decodeURIComponent(searchParams.get('group') || '') || '',
-                    )
-                  : {
-                      adult: 0,
-                      child: 0,
-                      pet: 0,
-                    }
-              }
-            />
+            <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
           <Button.Round
             type='submit'

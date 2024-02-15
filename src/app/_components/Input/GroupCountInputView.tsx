@@ -72,7 +72,7 @@ function GroupCountInputView({
   return (
     <div className='relative flex w-full flex-123'>
       <div className='flex w-full gap-4pxr'>
-        <IconPeople className='absolute left-16pxr top-16pxr ' />
+        <IconPeople fill='#55555' className='absolute left-16pxr top-16pxr ' />
         <input
           {...field}
           onClick={() => {

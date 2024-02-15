@@ -3,17 +3,17 @@
 import Button from '@/components/Button';
 
 import { IconArrowLeftNon } from '@/public/svgs';
-import SiteInfo from './_components/SiteInfo';
-import HeaderAboutReserve from './_components/HeaderAboutReserve';
-import InfoAboutReserve from './_components/InfoAboutReserve';
-import InfoAboutBookingPerson from './_components/InfoAboutBookingPerson';
-import AddVehicle from './_components/AddVehicle';
-import AddOption from './_components/AddOption';
-import PaymentMethod from './_components/PaymentMethod';
-import TotalPayment from './_components/TotalPayment';
-import TermsAgreement from './_components/TermsAgreement';
-import PaymentSubmit from './_components/PaymentSubmit';
-import PaymentAmount from './_components/PaymentAmount';
+import SiteInfo from '../../_components/SiteInfo';
+import HeaderAboutReserve from '../../_components/HeaderAboutReserve';
+import InfoAboutReserve from '../../_components/InfoAboutReserve';
+import InfoAboutBookingPerson from '../../_components/InfoAboutBookingPerson';
+import AddVehicle from '../../_components/AddVehicle';
+import AddOption from '../../_components/AddOption';
+import PaymentMethod from '../../_components/PaymentMethod';
+import TotalPayment from '../../_components/TotalPayment';
+import TermsAgreement from '../../_components/TermsAgreement';
+import PaymentSubmit from '../../_components/PaymentSubmit';
+import PaymentAmount from '../../_components/PaymentAmount';
 function Page() {
   return (
     <>
@@ -27,7 +27,7 @@ function Page() {
       <div className='m-auto mb-125pxr mt-24pxr max-w-1400pxr px-20pxr tabletMin:mt-40pxr tabletMin:px-40pxr'>
         <HeaderAboutReserve />
         <main className='reserve flex flex-col gap-24pxr tabletMin:grid'>
-          <section className='flex flex-col gap-24pxr'>
+          <section id='reserve' className='flex flex-col gap-24pxr'>
             <Button.Round custom='w-full bg-white border border-gray200 font-body2-semibold !h-46pxr rounded-lg'>
               이용 안내 보기
             </Button.Round>

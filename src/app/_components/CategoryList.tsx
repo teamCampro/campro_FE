@@ -23,9 +23,9 @@ function CategoryList() {
             }}
             id='category-swiper'
           >
-            {LINKS.map(({ href, text, icon }) => (
+            {LINKS.map(({ href, text, icon, id }) => (
               <SwiperSlide key={text} id='category-slide'>
-                <CategoryItem href={href} text={text} icon={icon} />
+                <CategoryItem href={href} text={text} icon={icon} id={id} />
               </SwiperSlide>
             ))}
           </Swiper>
