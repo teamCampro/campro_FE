@@ -1,3 +1,5 @@
+'use client';
+
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
