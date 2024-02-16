@@ -11,7 +11,9 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '@/src/app/_styles/toast.css';
 export interface CampSite {
   id: number;
   placeName: string;
@@ -230,50 +232,53 @@ function Page({ searchParams, params }: SearchParamsType) {
   }, [activeSection]);
   if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
   return (
-    <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
-      <SearchBarForOverview
-        searchParams={searchParams}
-        placeName={campingZone?.placeName}
-        campId={campingZone?.id}
-      />
-      <CampImage campImageRef={campImageRef} />
-      <AnchorMenu
-        isSticky={isSticky}
-        selectedMenu={activeSection}
-        showSiteButton={showSiteButton}
-      />
-      <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
-        <aside
-          className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
-        >
-          <MiniMapContainer {...campingZone} />
-        </aside>
-        <div>
-          <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-            <SectionRef sectionRef={sectionRefs.section1} id='1'>
-              <CampSiteBasicInfo {...campingZone} />
+    <>
+      <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
+        <SearchBarForOverview
+          searchParams={searchParams}
+          placeName={campingZone?.placeName}
+          campId={campingZone?.id}
+        />
+        <CampImage campImageRef={campImageRef} />
+        <AnchorMenu
+          isSticky={isSticky}
+          selectedMenu={activeSection}
+          showSiteButton={showSiteButton}
+        />
+        <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
+          <aside
+            className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
+          >
+            <MiniMapContainer {...campingZone} />
+          </aside>
+          <div>
+            <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
+              <SectionRef sectionRef={sectionRefs.section1} id='1'>
+                <CampSiteBasicInfo {...campingZone} />
+              </SectionRef>
+              <SectionRef sectionRef={sectionRefs.section2} id='2'>
+                <CampSiteFacilities facilities={campingZone.facilities} />
+              </SectionRef>
+            </div>
+            <SectionRef sectionRef={sectionRefs.section3} id='3'>
+              <CampSiteMap planImage={campingZone.planImage} />
             </SectionRef>
-            <SectionRef sectionRef={sectionRefs.section2} id='2'>
-              <CampSiteFacilities facilities={campingZone.facilities} />
+            <div className='flex flex-col gap-24pxr pt-24pxr'>
+              <SectionRef sectionRef={sectionRefs.section4} id='4'>
+                <ReservationInfo {...campingZone} />
+              </SectionRef>
+            </div>
+            <SectionRef sectionRef={sectionRefs.section5} id='5'>
+              <UsageGuidelines {...campingZone} />
+            </SectionRef>
+            <SectionRef sectionRef={sectionRefs.section6} id='6'>
+              <CustomerReviews {...campingZone} />
             </SectionRef>
           </div>
-          <SectionRef sectionRef={sectionRefs.section3} id='3'>
-            <CampSiteMap planImage={campingZone.planImage} />
-          </SectionRef>
-          <div className='flex flex-col gap-24pxr pt-24pxr'>
-            <SectionRef sectionRef={sectionRefs.section4} id='4'>
-              <ReservationInfo {...campingZone} />
-            </SectionRef>
-          </div>
-          <SectionRef sectionRef={sectionRefs.section5} id='5'>
-            <UsageGuidelines {...campingZone} />
-          </SectionRef>
-          <SectionRef sectionRef={sectionRefs.section6} id='6'>
-            <CustomerReviews {...campingZone} />
-          </SectionRef>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+      <ToastContainer className='overview-toast' />
+    </>
   );
 }
 export default Page;

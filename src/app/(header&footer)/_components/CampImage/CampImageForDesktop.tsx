@@ -23,7 +23,7 @@ function CampImageForDesktop({
             <div className='flex w-full'>
               {campImages[0].imgUrl && campImages[0].imgUrl !== '' && (
                 <Image
-                  className='flex w-full object-cover'
+                  className='flex w-full cursor-pointer object-cover hover:brightness-[0.7]'
                   width={580}
                   height={380}
                   src={campImages[0]?.imgUrl}
@@ -40,7 +40,7 @@ function CampImageForDesktop({
                       <Image
                         width={256}
                         height={192}
-                        className='flex w-full object-cover'
+                        className='flex w-full cursor-pointer object-cover hover:brightness-[0.7]'
                         src={item.imgUrl}
                         key={item?.id}
                         alt={`${campImages[i].id}`}

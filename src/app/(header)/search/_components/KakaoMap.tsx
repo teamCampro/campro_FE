@@ -1,3 +1,5 @@
+'use client';
+
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
@@ -72,7 +74,7 @@ function KakaoMap({
       return;
     }
     const geocoder = new kakao.maps.services.Geocoder();
-    if (!region) return
+    if (!region) return;
     geocoder.addressSearch(region, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(

@@ -21,7 +21,7 @@ function ModalForMobileCampImg({
                   width={138}
                   height={138}
                   key={item.id}
-                  className='flex min-h-138pxr w-full min-w-138pxr object-cover object-center'
+                  className='flex min-h-138pxr w-full min-w-138pxr cursor-pointer object-cover object-center hover:brightness-[0.7]'
                   src={item.imgUrl}
                   alt={`${campImages[i].id}`}
                 />
