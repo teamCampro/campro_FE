@@ -3,6 +3,7 @@
     "orderId": 1,
     "placeName": "호날두 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "충청남도 태안군 원북면 방갈리 515-26",
     "tel": "010-1234-0067",
     "max_people": "2",
     "site": {
@@ -39,6 +40,7 @@
     "orderId": 2,
     "placeName": "유령 무희 캠핑장",
     "address": "경기 안성시",
+    "address_2": "경남 함양군 서상면 부전계곡로 245",
     "tel": "010-1234-0000",
     "max_people": "3",
 
@@ -83,6 +85,7 @@
     "orderId": 3,
     "placeName": "징수의 총 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "전북 무주군 설천면 보안길 88",
     "tel": "010-1234-0020",
     "max_people": "5",
 
@@ -120,6 +123,7 @@
     "orderId": 4,
     "placeName": "사미라 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "충남 태안군 소원면 산간이길 158-24",
     "tel": "010-1234-0037",
     "max_people": "2",
 
@@ -159,6 +163,7 @@
     "orderId": 5,
     "placeName": "호날두 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "충남 태안군 남면 몽산포길 63-23",
     "tel": "010-1234-0064",
     "max_people": "2",
     "site": {
@@ -202,6 +207,7 @@
     "orderId": 6,
     "placeName": "호날두 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "경북 고령군 덕곡면 가륜장길 20-7",
     "tel": "010-1234-0054",
     "max_people": "4",
     "site": {
@@ -252,6 +258,7 @@
     "orderId": 7,
     "placeName": "냥냥 캠핑장",
     "address": "서울 영등포구",
+    "address_2": "경기도 양평군 옥천면 옥천창말길 18-80",
     "tel": "010-1234-0054",
     "max_people": "4",
     "site": {

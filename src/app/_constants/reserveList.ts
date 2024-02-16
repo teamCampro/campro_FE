@@ -2,6 +2,7 @@ export interface ReserveListType {
   orderId: number;
   placeName: string;
   address: string;
+  address_2: string;
   tel: string;
   max_people: string;
   site: {

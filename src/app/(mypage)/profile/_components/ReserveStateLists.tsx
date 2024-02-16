@@ -1,22 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { ReserveStateType } from './ReserveList';
 
-interface ReserveListType {
-  id: number;
-  name: string;
-  isDone: boolean;
+interface ReserveStateListsType {
+  handleClick: (id: number) => void;
+  reserveState: ReserveStateType[];
 }
-
-const RESERVE_LISTS: ReserveListType[] = [
-  { id: 1, name: '전체', isDone: false },
-  { id: 2, name: '예약대기', isDone: false },
-  { id: 3, name: '예약완료', isDone: false },
-  { id: 4, name: '이용완료', isDone: false },
-];
-
-function ReserveStateLists() {
+function ReserveStateLists({
+  handleClick,
+  reserveState,
+}: ReserveStateListsType) {
   return (
     <Swiper
       modules={[FreeMode]}
@@ -34,14 +30,15 @@ function ReserveStateLists() {
       }}
     >
       <ul className='flex justify-start gap-12pxr text-gray600 font-body2-semibold'>
-        {RESERVE_LISTS.map((list) => {
+        {reserveState.map((list) => {
           return (
             <SwiperSlide
               key={list.id}
               style={{ width: 'auto', display: 'inline-block' }}
-              className='cursor-pointer rounded-full border border-gray300 px-20pxr py-12pxr hover:border-primary100 hover:text-primary100'
+              className={`cursor-pointer rounded-full border px-20pxr py-12pxr hover:border-primary100 hover:text-primary100 ${list.isDone ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
+              onClick={() => handleClick(list.id)}
             >
-              <li> {list.name}</li>
+              <li>{list.name}</li>
             </SwiperSlide>
           );
         })}

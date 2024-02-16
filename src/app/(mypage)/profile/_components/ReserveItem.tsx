@@ -8,8 +8,14 @@ import WriteReviewModal from './WriteReviewModal';
 import { ReserveListType } from '@/src/app/_constants/reserveList';
 import getFormattedDate from '@/src/app/_utils/getFormattedDate';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
+import { ReserveStateType } from './ReserveList';
 
-function ReserveItem({ list }: { list: ReserveListType }) {
+interface ReserveItemType {
+  list: ReserveListType;
+  reserveState: ReserveStateType[];
+}
+
+function ReserveItem({ list, reserveState }: ReserveItemType) {
   const [isClose, setIsClose] = useState(false);
 
   const handleModal = () => {
@@ -28,11 +34,11 @@ function ReserveItem({ list }: { list: ReserveListType }) {
     }
   };
 
-  console.log();
-
   return (
     <>
-      <figure className='flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row'>
+      <figure
+        className={`flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row`}
+      >
         <Image
           src={list.image}
           width={140}

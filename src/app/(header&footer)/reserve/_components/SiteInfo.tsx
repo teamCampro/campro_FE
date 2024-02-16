@@ -6,10 +6,11 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
+import { ReserveListType } from '@/src/app/_constants/reserveList';
 
 interface SiteInfoType {
-  [key: string]: string;
   size: 'mobile' | 'pc' | 'profile';
+  campList?: ReserveListType;
 }
 
 interface SizeOptionType {
@@ -24,17 +25,15 @@ const SIZE_OPTION: SizeOptionType = {
   profile: 'flex',
 };
 
-function SiteInfo({ size }: SiteInfoType) {
+function SiteInfo({ size, campList }: SiteInfoType) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const pathName = usePathname();
-  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
-    .matches;
-
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const isProfile = pathName.includes('reserveList');
 
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
+  if (!campList) return; // 차후에 예약페이지 데이터가 있으면 지울것
+  //현재 컴포넌트 예약페이지 & 예약내역 같이 사용중임
   return (
     <>
       <div
@@ -43,7 +42,7 @@ function SiteInfo({ size }: SiteInfoType) {
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
           {/* <div className='relative h-140pxr w-140pxr rounded-xl border'> */}
           <Image
-            src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHwwfDB8fHww'
+            src={campList.image}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
@@ -51,12 +50,14 @@ function SiteInfo({ size }: SiteInfoType) {
           />
 
           <div className='flex flex-col'>
-            <h3 className='text-gray800 font-title2-semibold'>자연숲 캠핑장</h3>
+            <h3 className='text-gray800 font-title2-semibold'>
+              {campList.placeName}
+            </h3>
             <small className='flex text-gray500 font-caption2-medium'>
               <div className='h-16pxr w-16pxr'>
                 <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
               </div>
-              <span>9.8 (257)</span>
+              <span>{`${campList.reviews.score} (${campList.reviews.totalCount})`}</span>
             </small>
             <ul className='mt-20pxr flex flex-col gap-8pxr'>
               <li className='flex  gap-4pxr '>
@@ -69,9 +70,7 @@ function SiteInfo({ size }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  <div className='reserve-lineOver'>
-                    충남 아산시 배방읍 솔치로 17-32
-                  </div>
+                  <div className='reserve-lineOver'>{campList.address_2}</div>
                 </h3>
               </li>
               <li className='flex gap-4pxr'>
@@ -84,7 +83,7 @@ function SiteInfo({ size }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  042-123-4567
+                  {campList.tel}
                 </h3>
               </li>
             </ul>
@@ -94,7 +93,8 @@ function SiteInfo({ size }: SiteInfoType) {
           <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
-              A사이트 | <h4 className='font-body1-bold'>A1-08</h4>
+              {campList.site.campingZoneName} |
+              <h4 className='font-body1-bold'>{campList.site.siteName}</h4>
               <div
                 onClick={openModal}
                 className='text-second100 underline font-body2-semibold'
@@ -105,7 +105,9 @@ function SiteInfo({ size }: SiteInfoType) {
           </li>
           <li className='flex-center justify-start gap-28pxr text-gray500 font-body2-semibold'>
             기준 인원
-            <span className='text-gray700 font-body1'>최대 2인</span>
+            <span className='text-gray700 font-body1'>
+              최대 {campList.max_people}인
+            </span>
           </li>
         </ul>
       </div>
