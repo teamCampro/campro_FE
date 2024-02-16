@@ -1,7 +1,7 @@
 'use client';
 
+import { IconArrowLeftNon, IconArrowRightNon } from '@/public/svgs';
 import { getMonth, getYear } from 'date-fns';
-import { IconArrowRightNon, IconArrowLeftNon } from '@/public/svgs';
 
 const MONTHS = [
   '1월',
@@ -39,16 +39,20 @@ function CustomHeaderForDatePicker({
         일정
       </div>
       <div className='flex-center m-10pxr w-full max-w-335pxr justify-between px-20pxr'>
-        <IconArrowLeftNon
-          onClick={decreaseMonth}
+        <button
+          type='button'
+          className={`${prevMonthButtonDisabled ? 'invisible' : ''}`}
           disabled={prevMonthButtonDisabled}
-        />
-
+        >
+          <IconArrowLeftNon onClick={decreaseMonth} />
+        </button>
         <div className='font-title3-semibold'>{`${getYear(date)} ${MONTHS[getMonth(date)]}`}</div>
-        <IconArrowRightNon
-          onClick={increaseMonth}
-          disabled={nextMonthButtonDisabled}
-        />
+        <button type='button'>
+          <IconArrowRightNon
+            onClick={increaseMonth}
+            disabled={nextMonthButtonDisabled}
+          />
+        </button>
       </div>
     </div>
   );
