@@ -101,10 +101,10 @@ function SearchBarForOverview({
   }, []);
 
   return (
-    <>
+    <div className='sticky top-0pxr z-30'>
       {isMobile && (
         <div
-          className={`w-full bg-white mobile:sticky mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr`}
+          className={`w-full bg-white mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr`}
         >
           <input
             name='total'
@@ -122,10 +122,10 @@ function SearchBarForOverview({
       )}
       <div
         ref={outerDivRef}
-        className='flex-center sticky top-0pxr z-30 w-full max-w-1440pxr bg-white'
+        className='flex-center z-30 w-full max-w-1440pxr bg-white mobile:border-b mobile:border-gray200'
       >
         <CommonForm
-          className={`flex w-full justify-between rounded-2xl bg-white ${isMobile && isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:fixed mobile:top-0pxr mobile:mt-0pxr mobile:inline-block mobile:rounded-none' : 'mobile:hidden'}  ${PAGE_TYPE.search} my-20pxr `}
+          className={`flex w-full justify-between rounded-2xl bg-white ${isMobile && isTotalInput ? 'absolute left-0pxr top-35pxr z-[50] mobile:top-0pxr mobile:mt-0pxr mobile:inline-block' : 'mobile:hidden'}   ${PAGE_TYPE.overview} my-20pxr `}
           onSubmit={onSubmit}
         >
           <div
@@ -160,7 +160,7 @@ function SearchBarForOverview({
           )}
         </CommonForm>
       </div>
-    </>
+    </div>
   );
 }
 

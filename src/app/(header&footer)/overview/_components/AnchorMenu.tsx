@@ -21,7 +21,7 @@ function AnchorMenu({
 }) {
   return (
     <div
-      className={`${isSticky ? 'block ' : 'hidden'} ${showSiteButton ? 'mobile:flex mobile:h-88pxr' : 'mobile:hidden'} sticky top-95pxr z-[25] flex h-64pxr w-full max-w-1360pxr items-center justify-between border-b border-t border-gray200 bg-white mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
+      className={`${isSticky ? 'block ' : 'hidden'} ${showSiteButton ? 'mobile:flex mobile:h-88pxr' : 'mobile:hidden'} sticky top-94pxr z-[25] flex h-64pxr w-full max-w-1360pxr items-center justify-between border-b border-t border-gray200 bg-white mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
     >
       <ul className='flex mobile:hidden'>
         {anchorMenus.map((menu, i) => (
