@@ -30,9 +30,6 @@ function SiteInfo({ size }: SiteInfoType) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-  const isProfile = pathName.includes('reserveList');
-
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
   return (
@@ -93,11 +90,11 @@ function SiteInfo({ size }: SiteInfoType) {
         <ul className='flex flex-col gap-12pxr pb-24pxr'>
           <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
             예약 사이트
-            <span className='flex-center gap-4pxr text-gray700 font-body1'>
-              A사이트 | <h4 className='font-body1-bold'>A1-08</h4>
+            <span className='flex-center gap-16pxr text-gray700 font-body1'>
+              <h4 className='font-body1-bold'>A1-08</h4>
               <div
                 onClick={openModal}
-                className='text-second100 underline font-body2-semibold'
+                className='cursor-pointer text-second100 underline font-body2-semibold'
               >
                 배치도
               </div>

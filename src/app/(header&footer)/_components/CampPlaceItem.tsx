@@ -8,7 +8,6 @@ import { formatDate } from '../../_utils/formatDate';
 
 import { CampPlaceMockData } from './CampPlaceSection';
 
-
 interface Props {
   campPlace: CampPlaceMockData;
   isResponsive?: boolean;
@@ -52,7 +51,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               width: '100%',
               height: 'auto',
             }}
-            className={`rounded-3xl ${aspectClasses}`}
+            className={`rounded-3xl ${aspectClasses} hover:brightness-[0.7]`}
             src={campPlace.imgUrl}
             alt='캠핑장 이미지'
           />

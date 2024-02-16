@@ -9,13 +9,13 @@ function ModalForSearchBar({
   children,
   onClose,
   custom,
-  isTotalClick,
+
   open,
 }: {
   children: ReactNode;
   onClose: () => void;
   custom?: string;
-  isTotalClick?: boolean;
+
   open?: boolean;
 }) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery

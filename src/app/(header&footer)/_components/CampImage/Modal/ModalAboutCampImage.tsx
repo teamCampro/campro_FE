@@ -19,7 +19,7 @@ function ModalAboutCampImage({ onClose, campImages }: Props) {
     <ModalPortal>
       <ModalOutside
         onClose={onClose}
-        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center'
+        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
       >
         <CampImageForModal campImages={campImages} onClose={onClose} />
       </ModalOutside>
@@ -28,7 +28,7 @@ function ModalAboutCampImage({ onClose, campImages }: Props) {
     <ModalPortal>
       <ModalOutside
         onClose={onClose}
-        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center'
+        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
       >
         <ModalForMobileCampImg onClose={onClose} campImages={campImages} />
       </ModalOutside>
