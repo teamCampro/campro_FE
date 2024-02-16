@@ -34,7 +34,7 @@ function GroupCountInputView({
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
-
+  const [wasMobile, setWasMobile] = useState(isMobile);
   const handleRenderDropdown = () => {
     setIsDropdownVisible(true);
   };
@@ -43,9 +43,8 @@ function GroupCountInputView({
 
   const handleApplyDropdown = () => {
     setIsDropdownVisible(false);
-    if (isMobile) {
-      setGroup(tempGroup);
-    }
+    setGroup(tempGroup);
+    setTempGroup(tempGroup);
   };
 
   const handleGroupChange = (updatedGroup: Group) => {
@@ -64,11 +63,11 @@ function GroupCountInputView({
   }, [group, field]);
 
   useEffect(() => {
-    if (!isMobile) {
+    if (wasMobile && !isMobile) {
       setTempGroup(group);
     }
-  }, [isMobile, group]);
-
+    setWasMobile(isMobile);
+  }, [wasMobile, isMobile, group]);
   return (
     <div className='relative flex w-full flex-123'>
       <div className='flex w-full gap-4pxr'>

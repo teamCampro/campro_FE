@@ -4,9 +4,10 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { Options } from './AddOption';
 import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 function PaymentAmount() {
+  const searchParams = useSearchParams();
   const pathName = usePathname();
   const isProfile = pathName.includes('reserveList');
   const count = useAppSelector((state) => state.plusOptionCount);
@@ -18,8 +19,27 @@ function PaymentAmount() {
     return acc + countForOption * priceForOption;
   }, 0);
 
+  function dateDiff(date1: string | null, date2: string | null) {
+    if (date1 && date2) {
+      const d1 = new Date(date1);
+      const d2 = new Date(date2);
+
+      const diff =
+        Math.abs(d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24);
+
+      return diff;
+    } else {
+      return 1;
+    }
+  }
   useEffect(() => {
-    dispatch(setTotalPayment(totalPaymentForOptions + 90000));
+    dispatch(
+      setTotalPayment(
+        totalPaymentForOptions +
+          45000 *
+            dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut')),
+      ),
+    );
   }, [totalPaymentForOptions, dispatch]);
 
   return (
@@ -31,9 +51,20 @@ function PaymentAmount() {
       </h3>
       <ul className='flex flex-col gap-12pxr'>
         <li className='flex-center justify-between text-gray600 font-body2-medium'>
-          객실 1개 x 2박
+          객실 1개 x
+          {dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut'))}
+          박
           <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
-            90,000원
+            {searchParams.get('checkIn') && searchParams.get('checkOut')
+              ? (
+                  45000 *
+                  dateDiff(
+                    searchParams.get('checkIn'),
+                    searchParams.get('checkOut'),
+                  )
+                ).toLocaleString()
+              : '45,000'}
+            원
           </span>
         </li>
       </ul>

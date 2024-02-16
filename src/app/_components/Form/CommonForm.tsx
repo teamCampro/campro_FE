@@ -19,7 +19,7 @@ function CommonForm({
   mode = 'onBlur',
   defaultValues = {},
 }: CommonFormProps) {
-  const methods = useForm({ mode, defaultValues });
+  const methods = useForm({ mode, defaultValues, shouldUnregister: false });
 
   // const sasdawdas = (data: FieldValues, e: SubmitEvent) => {
   //   e.stopPropagation();
