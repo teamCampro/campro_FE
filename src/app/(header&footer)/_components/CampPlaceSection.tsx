@@ -11,33 +11,40 @@ export interface CampPlaceMockData {
   imgUrl: string;
 }
 
+type CampZone = {
+  id: number;
+  name: string;
+  address: string;
+  campImage: string;
+  minimumAmount: number;
+  keyword: string;
+};
+
+interface CampZoneData {
+  result: {
+    recommendList: CampZone[];
+    popularList: CampZone[];
+    recentList: CampZone[];
+  };
+}
+
 export interface CampPlaceRawData {
   id: number;
   type: string;
   result: CampPlaceMockData[];
+  data: CampZone[];
 }
 
-function CampPlaceSection() {
-  const [campPlaces, setCampPlaces] = useState<CampPlaceRawData[]>([]);
-
-  useEffect(() => {
-    const getCampPlace = async () => {
-      try {
-        const response = await axios.get<CampPlaceRawData[]>(
-          `/data/campPlaceMockData.json`,
-        );
-        setCampPlaces(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCampPlace();
-  }, []);
+function CampPlaceSection({ data }: { data: CampZoneData }) {
+  const popularList = data.result.popularList;
+  const recommendList = data.result.recommendList;
+  const recentList = data.result.recentList;
+  const campPlaces = [recommendList, popularList, recentList];
   return (
     <div className='flex max-w-1440pxr flex-col gap-28pxr '>
-      {campPlaces.map((item) => (
-        <div key={item.id} className='flex flex-col gap-28pxr'>
-          <CampPlaceList campPlaces={item.result} type={item.type} />
+      {campPlaces.map((item, index) => (
+        <div key={index} className='flex flex-col gap-28pxr'>
+          <CampPlaceList campPlaces={item} type={index} />
         </div>
       ))}
     </div>
