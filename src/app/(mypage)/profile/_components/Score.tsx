@@ -33,7 +33,7 @@ function Score() {
           .map((i, idx) => (
             <div
               key={idx}
-              className='relative h-36pxr w-36pxr'
+              className='relative h-36pxr w-36pxr cursor-pointer'
               onClick={handleStarClick}
             >
               {score - Math.floor(score) === 0.5 &&
