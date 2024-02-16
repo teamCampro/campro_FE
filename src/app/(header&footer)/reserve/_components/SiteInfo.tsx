@@ -1,9 +1,7 @@
 'use client';
 
-import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
 import { ReserveListType } from '@/src/app/_constants/reserveList';
