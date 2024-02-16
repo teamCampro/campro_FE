@@ -721,6 +721,957 @@
       "address": "충남 태안군",
       "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
       "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 74,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 75,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 76,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 77,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 78,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 79,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 80,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 81,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 82,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 83,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 84,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 85,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 86,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 87,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 88,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 89,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 90,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 91,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 92,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 93,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 94,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 95,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 96,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 97,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 98,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 99,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 100,
+      "price": 98000,
+      "placeName": "유미 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://e1.pxfuel.com/desktop-wallpaper/991/865/desktop-wallpaper-artstation-yuumi-lol.jpg",
+      "location": {
+        "lat": 36.26835862950247,
+        "lng": 128.89755089175871
+      }
+    },
+    {
+      "id": 101,
+      "price": 55000,
+      "placeName": "프렐요드 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 36.36835862950247,
+        "lng": 128.79755089175871
+      }
+    },
+    {
+      "id": 102,
+      "price": 150000,
+      "placeName": "레오나 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F6wOnh%2Fbtr9CI3wHH1%2FXWr5TCiXlAkUo2uYIIE9w0%2Fimg.jpg",
+      "location": {
+        "lat": 36.76835862950247,
+        "lng": 126.19755089175871
+      }
+    },
+    {
+      "id": 103,
+      "price": 140000,
+      "placeName": "프렐요드 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbCqfyg%2Fbtr9AatfmKe%2FL9yYTOIyyeMmJKPNoHqTkK%2Fimg.jpg",
+      "location": {
+        "lat": 37.86835462950247,
+        "lng": 122.54755089175871
+      }
+    },
+    {
+      "id": 104,
+      "price": 210000,
+      "placeName": "바루스 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 35.86835862950247,
+        "lng": 128.59755089175871
+      }
+    },
+    {
+      "id": 105,
+      "price": 460000,
+      "placeName": "사미라 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 31.26835862950247,
+        "lng": 125.59755089175871
+      }
+    },
+    {
+      "id": 106,
+      "price": 70000,
+      "placeName": "애니 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcGEZMP%2Fbtr9DU3HCey%2F3akVU18ArY2yaveXFWrrZK%2Fimg.jpg",
+      "location": {
+        "lat": 32.46835862950247,
+        "lng": 126.59755089175871
+      }
+    },
+    {
+      "id": 107,
+      "price": 72000,
+      "placeName": "트위스티드 페이트 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 35.86835862950247,
+        "lng": 123.59755089175871
+      }
+    },
+    {
+      "id": 108,
+      "price": 175000,
+      "placeName": "흐웨이 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 36.86835862250247,
+        "lng": 128.59865089175871
+      }
+    },
+    {
+      "id": 109,
+      "price": 79000,
+      "placeName": "람머스 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 33.86835862950247,
+        "lng": 122.59755089175871
+      }
+    },
+    {
+      "id": 110,
+      "price": 68000,
+      "placeName": "징크스 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 38.26835862950247,
+        "lng": 126.29755089175871
+      }
+    },
+    {
+      "id": 111,
+      "price": 97000,
+      "placeName": "미스포츈 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 30.86835833950247,
+        "lng": 130.52055089175871
+      }
+    },
+    {
+      "id": 112,
+      "price": 51000,
+      "placeName": "카사딘 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 31.46835862950247,
+        "lng": 118.59755089175871
+      }
+    },
+    {
+      "id": 113,
+      "price": 77000,
+      "placeName": "갈리오 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 34.86345862950247,
+        "lng": 128.59755077175871
+      }
+    },
+    {
+      "id": 114,
+      "price": 56000,
+      "placeName": "마오카이 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 33.86835862955347,
+        "lng": 119.59755089175871
+      }
+    },
+    {
+      "id": 115,
+      "price": 41000,
+      "placeName": "이즈리얼 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBm5dv%2Fbtr9A5rmRFH%2FdcKLxTyKaZoiAGcbYFtF1k%2Fimg.jpg",
+      "location": {
+        "lat": 34.86835862955347,
+        "lng": 128.59755089175871
+      }
+    },
+    {
+      "id": 116,
+      "price": 51000,
+      "placeName": "말자하 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHwwfDB8fHww",
+      "location": {
+        "lat": 33.86835862951247,
+        "lng": 127.59755089175871
+      }
+    },
+    {
+      "id": 117,
+      "price": 73000,
+      "placeName": "자르반 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 118,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 119,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 120,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 121,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 122,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 123,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 124,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 125,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 126,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 127,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 128,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 129,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 130,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 131,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 132,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 133,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 132,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 133,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 134,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 135,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 136,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 137,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 138,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 139,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 140,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 141,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 142,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 143,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 144,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 145,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 146,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 147,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 148,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 149,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 150,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 151,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 152,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 153,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 154,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 155,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 156,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 157,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 158,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 159,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 160,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 161,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 162,
+      "price": 73000,
+      "placeName": "호날두 캠핑장",
+      "address": "서울 영등포구",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsPqY4%2FbtqKSWeazQe%2FOHlHOzmMJnJKT2emnC3QVk%2Fimg.jpg",
+      "location": {
+        "lat": 40.86835862950247,
+        "lng": 138.59755089175871
+      }
+    },
+    {
+      "id": 163,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
+    },
+    {
+      "id": 164,
+      "price": 90000,
+      "placeName": "세릴다의 원한 캠핑장",
+      "address": "충남 태안군",
+      "imgUrl": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtJ2LU%2FbtqCxPPVM4d%2FSHEc9IremCZSIgRAkN5GXk%2Fimg.jpg",
+      "location": { "lat": 35.13854258261161, "lng": 129.1014781294671 }
     }
   ]
 }
