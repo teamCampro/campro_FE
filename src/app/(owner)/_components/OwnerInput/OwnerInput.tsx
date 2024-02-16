@@ -1,8 +1,9 @@
-import React, { FocusEvent, ReactNode } from 'react';
+import React, { FocusEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
 
 interface Props {
+  inputType?: HTMLInputTypeAttribute;
   type?: 'default' | 'small';
-  value: string;
+  value?: string;
   placeholder?: string;
   unit?: string;
   inputName?: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function OwnerInput({
+  inputType = 'text',
   type = 'default',
   value,
   placeholder,
@@ -35,9 +37,11 @@ function OwnerInput({
       </label>
       <div className='relative'>
         <input
+          type={inputType}
           id={inputName}
           className='h-74pxr w-full rounded-[20px] border-2 pl-20pxr pr-40pxr text-18pxr leading-8 focus:border-black focus:outline-none'
           value={value}
+          min={0}
           onChange={onChange}
           onFocus={onFocus}
           onBlur={(e) => {

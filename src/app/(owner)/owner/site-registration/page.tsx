@@ -95,11 +95,11 @@ function SiteRegistrationPage() {
           <div className='flex-center '>
             <div className='grid w-1055pxr grid-cols-2 place-items-center gap-y-20pxr'>
               {OWNER_INPUT_MAP_DATA.map((data, index) => {
-                const { label, placeholder, unit } = data;
+                const { label, placeholder, unit, inputType } = data;
                 return (
                   <OwnerInput
                     key={index}
-                    value=''
+                    inputType={inputType}
                     onChange={() => console.log('changed~')}
                     placeholder={placeholder}
                     inputName={label}
@@ -132,20 +132,18 @@ function SiteRegistrationPage() {
 
               <div className='flex items-center gap-15pxr'>
                 <OwnerInput
-                  unit='cm'
-                  value=''
+                  inputType='number'
+                  unit='m'
                   onChange={() => console.log('changed')}
                   inputName='가로 크기'
-                  placeholder='32'
                   type='small'
                 />
                 <span className='mt-38pxr text-20pxr text-gray500'>X</span>
                 <OwnerInput
-                  unit='cm'
-                  value=''
+                  inputType='number'
+                  unit='m'
                   onChange={() => console.log('changed')}
                   inputName='세로 크기'
-                  placeholder='26'
                   type='small'
                 />
               </div>
@@ -255,7 +253,7 @@ function SiteRegistrationPage() {
       <OwnerButton.Navigate
         type='done'
         customWidth='w-550pxr h-78pxr mt-146pxr mb-100pxr'
-        custom='w-550pxr h-78pxr py-8pxr px-20pxr rounded-[20px] active:w-530pxr active:h-60pxr active:text-26pxr'
+        custom='w-550pxr h-78pxr py-8pxr px-20pxr rounded-[20px]'
         onClick={() => {
           router.push('/owner');
         }}

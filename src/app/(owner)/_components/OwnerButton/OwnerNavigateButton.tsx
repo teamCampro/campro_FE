@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export type OwnerButtonType = 'prev' | 'next' | 'done';
 
@@ -16,7 +18,7 @@ function OwnerNavigateButton({
   onClick,
 }: Props) {
   const primaryClassName =
-    'text-28pxr w-130pxr py-10pxr px-20pxr flex-center rounded-2xl bg-gray700 text-white hover:bg-black transition ease-in-out active:py-5pxr active:px-15pxr active:w-115pxr duration-400';
+    'text-28pxr w-130pxr py-10pxr px-20pxr flex-center rounded-2xl bg-gray700 text-white hover:bg-black ';
   const prevClassName =
     'text-28pxr font-semibold w-130pxr py-10pxr flex-center';
 
@@ -37,9 +39,15 @@ function OwnerNavigateButton({
 
   return (
     <div className={`flex-center w-130pxr ${customWidth}`}>
-      <button className={`${className} ${custom}`} onClick={onClick}>
-        {text}
-      </button>
+      <motion.div
+        whileHover={{ scale: 1.07 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      >
+        <button className={`${className} ${custom}`} onClick={onClick}>
+          {text}
+        </button>
+      </motion.div>
     </div>
   );
 }
