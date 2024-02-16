@@ -1,7 +1,10 @@
 'use client';
 import { useState } from 'react';
 
+export type GroundType = '파쇄석' | '잔디' | '흙' | '데크' | '';
+
 function useTogglePopover() {
+  const [groundType, setGroundType] = useState<GroundType>('');
   const [date, setDate] = useState<Date | null>(new Date());
   const [formmatedDate, setFormmatedDate] = useState<string>('');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -20,6 +23,11 @@ function useTogglePopover() {
     }
   };
 
+  const handleChangeGroundType = (ground: GroundType) => {
+    setGroundType(ground);
+    setIsPopoverOpen(false);
+  };
+
   const setPopoverOpen = (boolean: boolean) => {
     setIsPopoverOpen(boolean);
   };
@@ -31,6 +39,8 @@ function useTogglePopover() {
     handleChangeDatePicker,
     formmatedDate,
     setPopoverOpen,
+    groundType,
+    handleChangeGroundType,
   };
 }
 

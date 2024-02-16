@@ -29,11 +29,6 @@ const OWNER_INPUT_MAP_DATA = [
     placeholder: '최대 주차 가능 수를 입력해주세요. ex) 2',
     unit: '대',
   },
-  {
-    label: '바닥 타입',
-    placeholder: '바닥 타입을 입력해주세요.',
-    unit: '',
-  },
 ];
 
 export default OWNER_INPUT_MAP_DATA;

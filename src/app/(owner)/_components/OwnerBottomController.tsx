@@ -39,7 +39,7 @@ function OwnerBottomController() {
             <Link href={prevPageRoute}>
               <OwnerButton.Navigate type='prev' />
             </Link>
-            <Link href={'/'}>
+            <Link href={'/owner'}>
               <OwnerButton.Navigate type='done' />
             </Link>
           </div>

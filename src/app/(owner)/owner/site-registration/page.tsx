@@ -11,10 +11,14 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../_styles/timePicker.css';
 import vi from 'date-fns/locale/vi';
+import OwnerGroundTypePopover from '../../_components/OwnerGroundTypePopover';
+import { useRouter } from 'next/navigation';
 
 registerLocale('vi', vi);
 
 function SiteRegistrationPage() {
+  const router = useRouter();
+  const groundTypeRef = useRef<null | HTMLUListElement>(null);
   const checkInRef = useRef<null | DatePicker>(null);
   const checkOutRef = useRef<null | DatePicker>(null);
   const {
@@ -33,6 +37,21 @@ function SiteRegistrationPage() {
     handleClickPopover: handleClickCheckOutPopover,
     setPopoverOpen: setCheckOutPopoverOpen,
   } = useTogglePopover();
+  const {
+    groundType,
+    handleChangeGroundType,
+    handleClickPopover: handleClickGroundTypePopover,
+    isPopoverOpen: isGroundTypePopoverOpen,
+    setPopoverOpen: setGroundTypePopoverOpen,
+  } = useTogglePopover();
+
+  const handleFloorTypeBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
+    if (!groundTypeRef.current) return;
+    if (groundTypeRef.current.contains(e.relatedTarget as Node)) {
+      return;
+    }
+    setGroundTypePopoverOpen(false);
+  };
 
   const handleCheckInBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
     if (!checkInRef.current) return;
@@ -88,6 +107,29 @@ function SiteRegistrationPage() {
                   />
                 );
               })}
+              <OwnerInput
+                value={groundType}
+                onChange={() => console.log('changed~')}
+                placeholder='바닥 타입을 선택해주세요.'
+                inputName='바닥 타입'
+                onFocus={() => {
+                  setGroundTypePopoverOpen(true);
+                }}
+                onBlur={(e) => handleFloorTypeBlur(e)}
+                readOnly
+              >
+                <OwnerButton.Popover
+                  isPopoverOpen={isGroundTypePopoverOpen}
+                  handleClickPopover={handleClickGroundTypePopover}
+                />
+                {isGroundTypePopoverOpen && (
+                  <OwnerGroundTypePopover
+                    groundTypeRef={groundTypeRef}
+                    onClick={handleChangeGroundType}
+                  />
+                )}
+              </OwnerInput>
+
               <div className='flex items-center gap-15pxr'>
                 <OwnerInput
                   unit='cm'
@@ -121,6 +163,7 @@ function SiteRegistrationPage() {
                       type='radio'
                       name='pets'
                       value='yes'
+                      defaultChecked
                     />
                   </div>
                   <div className='flex items-center gap-26pxr'>
@@ -213,9 +256,10 @@ function SiteRegistrationPage() {
         type='done'
         customWidth='w-550pxr h-78pxr mt-146pxr mb-100pxr'
         custom='w-550pxr h-78pxr py-8pxr px-20pxr rounded-[20px] active:w-530pxr active:h-60pxr active:text-26pxr'
-      >
-        등록 완료
-      </OwnerButton.Navigate>
+        onClick={() => {
+          router.push('/owner');
+        }}
+      />
     </div>
   );
 }
