@@ -5,19 +5,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import WriteReviewModal from './WriteReviewModal';
+import { ReserveListType } from '@/src/app/_constants/reserveList';
 
-function ReserveItem() {
+function ReserveItem({ list }: { list: ReserveListType }) {
   const [isClose, setIsClose] = useState(false);
 
   const handleModal = () => {
     setIsClose(!isClose);
   };
+  console.log(list);
 
   return (
     <>
       <figure className='flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row'>
         <Image
-          src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHwwfDB8fHww'
+          src={list.image}
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
