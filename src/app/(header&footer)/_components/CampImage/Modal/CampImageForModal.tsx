@@ -21,11 +21,11 @@ function CampImageForModal({
   return (
     <div className='flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
       <ModalAboutHeader onClose={onClose} />
-      <div className='flex w-full flex-col items-center justify-center  bg-gray100'>
+      <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
         <div className=' flex-center w-full'>
           {mainImage && (
             <Image
-              className='flex w-full '
+              className='flex w-full  cursor-pointer'
               src={mainImage}
               width={586}
               height={356}
@@ -45,7 +45,7 @@ function CampImageForModal({
               item.imgUrl && (
                 <SwiperSlide key={item.id}>
                   <Image
-                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover`}
+                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
                     src={item.imgUrl}
                     alt={`camp-image${i}`}
                     fill

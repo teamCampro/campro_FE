@@ -27,9 +27,6 @@ const SIZE_OPTION: SizeOptionType = {
 
 function SiteInfo({ size, campList }: SiteInfoType) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const pathName = usePathname();
-  const isProfile = pathName.includes('reserveList');
-
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
   if (!campList) return; // 차후에 예약페이지 데이터가 있으면 지울것
@@ -97,7 +94,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
               <h4 className='font-body1-bold'>{campList.site.siteName}</h4>
               <div
                 onClick={openModal}
-                className='text-second100 underline font-body2-semibold'
+                className='cursor-pointer text-second100 underline font-body2-semibold'
               >
                 배치도
               </div>
