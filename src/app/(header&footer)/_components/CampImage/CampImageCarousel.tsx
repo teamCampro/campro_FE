@@ -41,7 +41,7 @@ function CampImageCarousel({
             item.imgUrl ? (
               <SwiperSlide className='flex w-full' key={item.id}>
                 <Image
-                  className='flex w-full cursor-pointer cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:rounded-none'
+                  className='flex w-full cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:rounded-none'
                   src={item.imgUrl}
                   alt={`camp-image${i}`}
                   width={688}
