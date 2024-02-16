@@ -8,30 +8,19 @@ import {
   IconTwoPeople,
 } from '@/public/svgs';
 import Image from 'next/image';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Site } from '../[id]/page';
 
 interface CampSiteItemProps {
   site: Site;
-  OpenSiteModal: (site: Site) => void;
+  openSiteModal: (site: Site) => void;
+  handleReserve: (siteId: number) => void;
 }
 
-function CampSiteItem({ site, OpenSiteModal }: CampSiteItemProps) {
-  const router = useRouter();
-  const { id: campingZoneId } = useParams();
-  const searchParams = useSearchParams();
-  const move = (id: number) => {
-    const newSearchParams = new URLSearchParams({
-      checkIn: searchParams.get('checkIn') || '',
-      checkOut: searchParams.get('checkOut') || '',
-      adult: searchParams.get('adult') || '',
-      child: searchParams.get('child') || '',
-      pet: searchParams.get('pet') || '',
-    });
-    router.push(
-      `/reserve/${campingZoneId}/${id}?${newSearchParams.toString()}`,
-    );
-  };
+function CampSiteItem({
+  site,
+  openSiteModal,
+  handleReserve,
+}: CampSiteItemProps) {
   const { type, baseGuests, parkingLocation, allowPet, minStay } = site;
   const infos = [
     {
@@ -91,7 +80,7 @@ function CampSiteItem({ site, OpenSiteModal }: CampSiteItemProps) {
               <Button.Round
                 size='sm'
                 custom={`w-98pxr !h-36pxr font-caption1-semibold text-white px-24pxr py-8xr mobile:w-full camp-site-button`}
-                onClick={() => move(1)}
+                onClick={() => handleReserve(site.siteId)}
               >
                 선택하기
               </Button.Round>
@@ -117,7 +106,7 @@ function CampSiteItem({ site, OpenSiteModal }: CampSiteItemProps) {
             <button
               type='button'
               className='flex h-full cursor-pointer items-start gap-2pxr text-nowrap text-second100 font-caption1-semibold'
-              onClick={() => OpenSiteModal(site)}
+              onClick={() => openSiteModal(site)}
             >
               상세정보
               <span className='inline-block h-20pxr w-20pxr'>

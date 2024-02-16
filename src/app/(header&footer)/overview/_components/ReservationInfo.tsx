@@ -1,5 +1,6 @@
 import { ModalOutside, ModalPortal } from '@/components/index';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { CampSite, Site } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
@@ -26,7 +27,25 @@ function ReservationInfo({
       })),
     )
     .flat();
-  const OpenSiteModal = (site: Site) => setSelectedSite(site);
+
+  const router = useRouter();
+  const { id: campingZoneId } = useParams();
+  const searchParams = useSearchParams();
+
+  const openSiteModal = (site: Site) => setSelectedSite(site);
+
+  const handleReserve = (id: number) => {
+    const paramsKeys = ['checkIn', 'checkOut', 'adult', 'child', 'pet'];
+    const newSearchParams = new URLSearchParams();
+    paramsKeys.forEach((key) => {
+      const value = searchParams.get(key);
+      if (value) newSearchParams.set(key, value);
+    });
+
+    router.push(
+      `/reserve/${campingZoneId}/${id}?${newSearchParams.toString()}`,
+    );
+  };
   return (
     <section className='flex flex-col gap-24pxr'>
       <CampSiteBookingInfo
@@ -43,7 +62,8 @@ function ReservationInfo({
           <CampSiteItem
             key={`${site.campingZoneId} ${site.siteId}`}
             site={site}
-            OpenSiteModal={OpenSiteModal}
+            openSiteModal={openSiteModal}
+            handleReserve={handleReserve}
           />
         ))}
       </ul>
@@ -70,6 +90,7 @@ function ReservationInfo({
             <CampSiteDetail
               onClose={() => setSelectedSite(null)}
               site={selectedSite}
+              handleReserve={handleReserve}
             />
           </ModalOutside>
         </ModalPortal>
