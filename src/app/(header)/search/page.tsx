@@ -122,10 +122,10 @@ function Page({ searchParams }: SearchParamsType) {
               ) : (
                 <div className='flex-center h-500pxr flex-col'>
                   <h3 className='text-gray600 font-h2-semibold'>
-                    주변에 캠핑장이 없어요
+                    모든 캠핑장 예약이 마감됐어요
                   </h3>
                   <div className='text-gray500 font-body1-medium'>
-                    다른 지역으로 재검색 해보는 건 어떨까요?
+                    다른 일정/지역으로 재검색 해보는 건 어떨까요?
                   </div>
                 </div>
               )}
