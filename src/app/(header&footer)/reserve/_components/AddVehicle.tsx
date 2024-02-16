@@ -58,10 +58,17 @@ function AddVehicle() {
           onClick={() => handleAdd(vehicleNumber)}
           className='flex-center flex h-56pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'
         >
-          <div className='h-20pxr w-20pxr'>
-            <IconPlusNon width='100%' height='100%' viewBox='0 0 24 24' />
+          <div className='flex-center  w-20pxr'>
+            <IconPlusNon
+              fill='#949494'
+              width='100%'
+              height='100%'
+              viewBox='0 0 24 24'
+            />
           </div>
-          <p className='whitespace-nowrap font-body2-medium'>등록</p>
+          <p className='flex-center  whitespace-nowrap leading-none font-body2-medium'>
+            등록
+          </p>
         </button>
       </div>
     </div>

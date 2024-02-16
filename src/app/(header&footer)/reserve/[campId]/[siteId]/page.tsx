@@ -14,15 +14,12 @@ import TotalPayment from '../../_components/TotalPayment';
 import TermsAgreement from '../../_components/TermsAgreement';
 import PaymentSubmit from '../../_components/PaymentSubmit';
 import PaymentAmount from '../../_components/PaymentAmount';
+import HeaderContent from '../../_components/HeaderContent';
 function Page() {
   return (
     <>
       <h2 className='text-block flex-center relative p-16pxr font-title3-semibold tabletMin:hidden tabletMin:font-h1-semibold'>
-        <IconArrowLeftNon
-          fill='#949494'
-          className='absolute left-16pxr top-1/2 block -translate-y-1/2 tabletMin:hidden'
-        />
-        예약 요청
+        <HeaderContent />
       </h2>
       <div className='m-auto mb-125pxr mt-24pxr max-w-1400pxr px-20pxr tabletMin:mt-40pxr tabletMin:px-40pxr'>
         <HeaderAboutReserve />

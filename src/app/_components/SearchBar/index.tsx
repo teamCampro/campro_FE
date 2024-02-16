@@ -20,10 +20,8 @@ interface SearchParamsType {
 function SearchBar({ searchParams }: SearchParamsType) {
   const router = useRouter();
 
-  const dispatch = useAppDispatch();
-
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(data, dispatch, router, 'search', 'location');
+    submitForSearch(data, router, 'search', 'location');
   };
 
   const defaultGroupCount = {
