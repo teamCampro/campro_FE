@@ -35,7 +35,10 @@ function ReservationInfo({
         mannerTimeStart={mannerTimeStart}
         mannerTimeEnd={mannerTimeEnd}
       />
-      <ul className='flex flex-col gap-16pxr bg-inherit mobile:gap-20pxr mobile:px-20pxr mobile359:gap-16pxr mobile359:px-0pxr'>
+      <ul
+        className='flex scroll-mt-168pxr flex-col gap-16pxr bg-inherit mobile:scroll-mt-87pxr mobile:gap-20pxr mobile:px-20pxr mobile359:gap-16pxr mobile359:px-0pxr'
+        id='site'
+      >
         {(showAll ? sites : sites.slice(0, 3)).map((site) => (
           <CampSiteItem
             key={`${site.campingZoneId} ${site.siteId}`}

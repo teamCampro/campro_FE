@@ -1,5 +1,6 @@
 'use client';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
+import useRefs from '@/hooks/useRefs';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import CampImage from '../../_components/CampImage';
@@ -127,6 +128,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const [showSiteButton, setShowSiteButton] = useState(true);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampSite>();
+
   useEffect(() => {
     const getCamp = async () => {
       const res = await fetch('/data/overviewMockData.json');
@@ -140,24 +142,33 @@ function Page({ searchParams, params }: SearchParamsType) {
     };
     getCamp();
   }, [params.id]);
-  const sectionRefs = {
-    section1: useRef<HTMLDivElement>(null),
-    section2: useRef<HTMLDivElement>(null),
-    section3: useRef<HTMLDivElement>(null),
-    section4: useRef<HTMLDivElement>(null),
-    section5: useRef<HTMLDivElement>(null),
-    section6: useRef<HTMLDivElement>(null),
-  };
+
+  const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
+
+  const FOOTER_ID = 'footer';
+  const TARGET_SECTION_ID = '4';
+  const IMAGE_SECTION_ID = 'image';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         let maxRatio = 0;
         let newActiveSection = activeSection;
+
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          const { id } = entry.target;
+          if (id === IMAGE_SECTION_ID) {
+            setIsSticky(!entry.isIntersecting);
+          }
+
+          if (id === FOOTER_ID || id === TARGET_SECTION_ID) {
+            setShowSiteButton(!entry.isIntersecting);
+          } else if (
+            entry.isIntersecting &&
+            entry.intersectionRatio > maxRatio
+          ) {
             maxRatio = entry.intersectionRatio;
-            newActiveSection = entry.target.id;
+            newActiveSection = id;
           }
         });
 
@@ -171,67 +182,15 @@ function Page({ searchParams, params }: SearchParamsType) {
         threshold: [0.2, 0.5, 1.0],
       },
     );
+    if (campImageRef.current) {
+      observer.observe(campImageRef.current);
+    }
+    divRefs.forEach((ref) => ref && observer.observe(ref));
 
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      Object.values(sectionRefs).forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
+    return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSection, campingZone]);
 
-  useEffect(() => {
-    const campImage = campImageRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsSticky(!entry.isIntersecting);
-        });
-      },
-      { threshold: [0.1, 0.3], rootMargin: '-98px 0px 0px 0px' },
-    );
-
-    if (campImage) {
-      observer.observe(campImage);
-    }
-
-    return () => {
-      if (campImage) {
-        observer.unobserve(campImage);
-      }
-    };
-  }, [campingZone]);
-
-  useEffect(() => {
-    const reserveRef = sectionRefs.section4.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setShowSiteButton(!entry.isIntersecting);
-        });
-      },
-      { threshold: [0.3], rootMargin: '50px' },
-    );
-
-    if (reserveRef) {
-      observer.observe(reserveRef);
-    }
-
-    return () => {
-      if (reserveRef) {
-        observer.unobserve(reserveRef);
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection]);
   if (!campingZone)
     return (
       <div className='custom-height flex-center'>
@@ -250,7 +209,9 @@ function Page({ searchParams, params }: SearchParamsType) {
         placeName={campingZone?.placeName}
         campId={campingZone?.id}
       />
-      <CampImage campImageRef={campImageRef} />
+      <SectionRef sectionRef={setDivRef} id='image'>
+        <CampImage />
+      </SectionRef>
       <AnchorMenu
         isSticky={isSticky}
         selectedMenu={activeSection}
@@ -264,29 +225,30 @@ function Page({ searchParams, params }: SearchParamsType) {
         </aside>
         <div>
           <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-            <SectionRef sectionRef={sectionRefs.section1} id='1'>
+            <SectionRef sectionRef={setDivRef} id='1'>
               <CampSiteBasicInfo {...campingZone} />
             </SectionRef>
-            <SectionRef sectionRef={sectionRefs.section2} id='2'>
+            <SectionRef sectionRef={setDivRef} id='2'>
               <CampSiteFacilities facilities={campingZone.facilities} />
             </SectionRef>
           </div>
-          <SectionRef sectionRef={sectionRefs.section3} id='3'>
+          <SectionRef sectionRef={setDivRef} id='3'>
             <CampSiteMap planImage={campingZone.planImage} />
           </SectionRef>
           <div className='flex flex-col gap-24pxr pt-24pxr'>
-            <SectionRef sectionRef={sectionRefs.section4} id='4'>
+            <SectionRef sectionRef={setDivRef} id='4'>
               <ReservationInfo {...campingZone} />
             </SectionRef>
           </div>
-          <SectionRef sectionRef={sectionRefs.section5} id='5'>
+          <SectionRef sectionRef={setDivRef} id='5'>
             <UsageGuidelines {...campingZone} />
           </SectionRef>
-          <SectionRef sectionRef={sectionRefs.section6} id='6'>
+          <SectionRef sectionRef={setDivRef} id='6'>
             <CustomerReviews {...campingZone} />
           </SectionRef>
         </div>
       </main>
+      <div ref={setDivRef} id='footer' />
     </div>
   );
 }
