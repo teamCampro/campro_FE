@@ -1,22 +1,38 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { toast, ToastOptions } from 'react-toastify';
+import { Slide } from 'react-toastify';
 
 interface Props {
   children: ReactNode;
   copyTarget: string;
 }
 
+const toastOptions: ToastOptions = {
+  position: 'top-center',
+  autoClose: 3000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: false,
+  transition: Slide,
+};
+
 function Copy({ children, copyTarget }: Props) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(copyTarget);
-      alert('클립보드에 복사되었습니다.');
+
+      toast.success('복사가 완료되었습니다', {
+        ...toastOptions,
+      });
     } catch (err) {
-      console.error('오류 발생', err);
+      toast.error('복사에 실패하였습니다', {
+        ...toastOptions,
+      });
     }
   };
-
   return (
     <span
       onClick={handleCopy}
