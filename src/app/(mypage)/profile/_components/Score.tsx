@@ -7,12 +7,20 @@ import { SurveyListsType } from './WriteReviewModal';
 interface ScoreType {
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   surveyLists: SurveyListsType;
+  scoreFixed: number;
+  setScoreFixed: Dispatch<SetStateAction<number>>;
+  score: number;
+  setScore: Dispatch<SetStateAction<number>>;
 }
 
-function Score({ setSurveyLists, surveyLists }: ScoreType) {
-  const [score, setScore] = useState<number>(0);
-  const [scoreFixed, setScoreFixed] = useState(score);
-
+function Score({
+  setSurveyLists,
+  surveyLists,
+  scoreFixed,
+  setScoreFixed,
+  score,
+  setScore,
+}: ScoreType) {
   const handleLeftHalfEnter = (idx: number) => {
     setScore(idx + 0.5);
   };

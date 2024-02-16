@@ -1,6 +1,5 @@
 'use client';
 
-import { USER_OPTIONS } from '@/components/Header/_components/HeaderDropdown';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { IconArrowRightNon } from '@/public/svgs';
 import { setProfileState } from '@/src/app/_utils/profileState';

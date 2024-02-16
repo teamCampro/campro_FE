@@ -9,6 +9,12 @@ interface SurveyType {
   handleScroll: () => void;
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   surveyLists: SurveyListsType;
+  scoreFixed: number;
+  setScoreFixed: Dispatch<SetStateAction<number>>;
+  keywords: ReviewKeywordType[];
+  setKeywords: Dispatch<SetStateAction<ReviewKeywordType[]>>;
+  score: number;
+  setScore: Dispatch<SetStateAction<number>>;
 }
 
 function Survey({
@@ -16,23 +22,13 @@ function Survey({
   handleScroll,
   setSurveyLists,
   surveyLists,
+  scoreFixed,
+  setScoreFixed,
+  keywords,
+  setKeywords,
+  score,
+  setScore,
 }: SurveyType) {
-  const [keywords, setKeywords] = useState<ReviewKeywordType[]>([
-    { id: 1, keyword: '깨끗해요', isDone: false },
-    { id: 2, keyword: '조용해서 쉬기 좋아요', isDone: false },
-    { id: 3, keyword: '바베큐 해 먹기 좋아요', isDone: false },
-    { id: 4, keyword: '온수가 잘 나와요', isDone: false },
-    { id: 5, keyword: '매너타임이 잘 지켜져요', isDone: false },
-    { id: 6, keyword: '화장실이 잘 되어있어요', isDone: false },
-    { id: 7, keyword: '공용 시설 관리가 잘 되요', isDone: false },
-    { id: 8, keyword: '벌레 걱정 없어요', isDone: false },
-    { id: 9, keyword: '사진이 잘 나와요', isDone: false },
-    { id: 10, keyword: '냉난방이 잘 돼요', isDone: false },
-    { id: 11, keyword: '친절해요', isDone: false },
-    { id: 12, keyword: '편의시설이 잘 되어있어요', isDone: false },
-    { id: 13, keyword: '근처에 갈 곳이 많아요', isDone: false },
-  ]);
-
   const handleClick = (keyword: ReviewKeywordType) => {
     setKeywords(
       surveyLists.selectList.length < 3
@@ -65,7 +61,14 @@ function Survey({
     <>
       <div className='mt-24pxr flex flex-col gap-8pxr'>
         <h3 className='text-black font-body1-bold'>전체 만족도는 어땠나요?</h3>
-        <Score setSurveyLists={setSurveyLists} surveyLists={surveyLists} />
+        <Score
+          setSurveyLists={setSurveyLists}
+          surveyLists={surveyLists}
+          scoreFixed={scoreFixed}
+          setScoreFixed={setScoreFixed}
+          score={score}
+          setScore={setScore}
+        />
       </div>
       <div className='mt-24pxr'>
         <h3 className='text-black font-body1-bold'>어떤 점이 좋았나요?</h3>

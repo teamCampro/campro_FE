@@ -33,17 +33,59 @@ export interface SurveyListsType {
 function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   const [isNext, setisNext] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
+  const [score, setScore] = useState<number>(0);
+  const [scoreFixed, setScoreFixed] = useState(0);
+  const [keywords, setKeywords] = useState<ReviewKeywordType[]>([
+    { id: 1, keyword: '깨끗해요', isDone: false },
+    { id: 2, keyword: '조용해서 쉬기 좋아요', isDone: false },
+    { id: 3, keyword: '바베큐 해 먹기 좋아요', isDone: false },
+    { id: 4, keyword: '온수가 잘 나와요', isDone: false },
+    { id: 5, keyword: '매너타임이 잘 지켜져요', isDone: false },
+    { id: 6, keyword: '화장실이 잘 되어있어요', isDone: false },
+    { id: 7, keyword: '공용 시설 관리가 잘 되요', isDone: false },
+    { id: 8, keyword: '벌레 걱정 없어요', isDone: false },
+    { id: 9, keyword: '사진이 잘 나와요', isDone: false },
+    { id: 10, keyword: '냉난방이 잘 돼요', isDone: false },
+    { id: 11, keyword: '친절해요', isDone: false },
+    { id: 12, keyword: '편의시설이 잘 되어있어요', isDone: false },
+    { id: 13, keyword: '근처에 갈 곳이 많아요', isDone: false },
+  ]);
   const [surveyLists, setSurveyLists] = useState<SurveyListsType>({
     score: '',
     selectList: [],
   });
+
+  const propsList = {
+    scoreFixed,
+    setScoreFixed,
+    keywords,
+    setKeywords,
+    score,
+    setScore,
+  };
 
   const handleScroll = () => {
     setIsScroll(true);
   };
 
   const handleButton = () => {
-    setisNext(true);
+    if (surveyLists.score !== '' && surveyLists.selectList.length >= 3) {
+      setisNext(true);
+    }
+  };
+
+  const handleReset = () => {
+    if (!isNext) {
+      setScore(0);
+      setScoreFixed(0);
+      setKeywords(
+        keywords.map((keyword) => {
+          return { ...keyword, isDone: false };
+        }),
+      );
+      setSurveyLists({ score: '', selectList: [] });
+    } else {
+    }
   };
 
   console.log(surveyLists);
@@ -54,7 +96,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
         custom='fixed flex-center !left-0pxr mobile:items-center top-0pxr z-[1000] overflow-hidden bg-black-50'
       >
         <div
-          className={`flex h-screen ${isNext ? 'tabletMin:h-708pxr' : 'tabletMin:h-816pxr'} w-full flex-col bg-white tabletMin:w-407pxr tabletMin:rounded-xl`}
+          className={`flex mobile:h-screen ${isNext ? '' : 'tabletMin:h-816pxr'} w-full flex-col bg-white tabletMin:w-407pxr tabletMin:rounded-xl`}
         >
           <h2 className='flex-center relative p-16pxr text-black font-title3-semibold tabletMin:hidden tabletMin:font-h1-semibold'>
             <IconArrowLeftNon
@@ -86,7 +128,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 캠핑장 이용 경험을 공유해 주세요
               </h4>
               <ul
-                className={`flex flex-col gap-4pxr ${isNext ? '' : 'rounded-lg bg-gray100 px-16pxr py-12pxr'} `}
+                className={`flex flex-col gap-4pxr ${isNext ? '' : 'rounded-lg bg-gray100 px-16pxr py-12pxr'}`}
               >
                 <li className='text-gray500 font-caption1-medium'>
                   객실명: <span>A사이드 | A1-8구역</span>
@@ -96,9 +138,9 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 </li>
                 {isNext ? (
                   <li>
-                    <ul className='flex-center justify-start gap-4pxr'>
+                    <ul className='flex-center flex-wrap justify-start gap-4pxr'>
                       <li className='flex-center bg-gray100 px-6pxr py-2pxr !leading-none text-gray600 font-caption2-medium'>
-                        <div className='w-24xpr h-24pxr'>
+                        <div className='w-16xpr h-16pxr'>
                           <IconStar
                             width='100%'
                             height='100%'
@@ -111,7 +153,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                         return (
                           <li
                             key={index}
-                            className='bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'
+                            className='whitespace-nowrap bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'
                           >
                             {list}
                           </li>
@@ -129,11 +171,15 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                   isScroll={isScroll}
                   handleScroll={handleScroll}
                   surveyLists={surveyLists}
+                  {...propsList}
                 />
               )}
             </div>
             <div className='flex-center h-88pxr justify-between gap-14pxr border-t border-b-white px-20pxr py-16pxr'>
-              <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
+              <div
+                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                onClick={handleReset}
+              >
                 초기화
                 <div className='h-24pxr w-24pxr'>
                   <IconReset
@@ -149,7 +195,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 custom='!w-full text-white !h-56pxr !flex-shrink'
                 onClick={handleButton}
               >
-                다음
+                {isNext ? '후기 등록' : '다음'}
               </Button.Round>
             </div>
           </div>
