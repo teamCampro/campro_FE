@@ -112,8 +112,8 @@
     "reviews": { "score": "2.9", "totalCount": 329 },
     "carInfo": "다라883312",
     "check_state": 2,
-    "start_day": "2023-02-02T13:30:00.096Z",
-    "end_day": "2023-02-03T13:30:00.096Z",
+    "start_day": "2023-12-02T13:30:00.096Z",
+    "end_day": "2023-12-03T13:30:00.096Z",
     "image": "https://gocamping.or.kr/upload/camp/10/thumb/thumb_720_1869epdMHtUyrinZWKFHDWty.jpg"
   },
   {
@@ -125,7 +125,7 @@
 
     "site": {
       "campingZoneId": 1,
-      "campingZoneName": "",
+      "campingZoneName": "글램핑A",
       "siteName": "사이트 1",
       "siteId": 1,
       "planImage": "https://camping.dpto.or.kr/images/sub/new_map1.jpg"

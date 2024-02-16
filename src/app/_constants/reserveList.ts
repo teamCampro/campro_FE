@@ -19,8 +19,8 @@ export interface ReserveListType {
   reviews: ReviewsType;
   carInfo: string;
   check_state: number;
-  start_day: string;
-  end_day: string;
+  start_day: Date;
+  end_day: Date;
   image: string;
 }
 
@@ -39,7 +39,7 @@ interface OptionType {
 }
 
 interface OrderInfoType {
-  time: string;
+  time: Date;
   type: string;
   payment: string;
 }
