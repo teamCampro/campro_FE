@@ -21,7 +21,6 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
   const handleModal = () => {
     setIsClose(!isClose);
   };
-  console.log(list);
 
   const checkState = (check: number) => {
     switch (check) {

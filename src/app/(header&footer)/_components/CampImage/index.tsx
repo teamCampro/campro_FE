@@ -25,7 +25,6 @@ function CampImage({
           `/data/campImageMockData.json`,
         );
         setCampImages(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

@@ -22,7 +22,6 @@ function ReserveList({ reserveList }: { reserveList: ReserveListType[] }) {
   ]);
 
   const handleClick = (id: number) => {
-    console.log(id);
     setReserveState(
       reserveState.map((list) => {
         return list.id === id
@@ -39,7 +38,6 @@ function ReserveList({ reserveList }: { reserveList: ReserveListType[] }) {
       }),
     );
   };
-  console.log(newReserveList);
   return (
     <>
       <h2 className='mb-24pxr hidden font-title1-bold tabletMin:block'>

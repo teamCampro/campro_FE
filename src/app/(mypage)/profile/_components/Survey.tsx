@@ -56,7 +56,6 @@ function Survey({
     }
   };
 
-  console.log(surveyLists);
   return (
     <>
       <div className='mt-24pxr flex flex-col gap-8pxr'>

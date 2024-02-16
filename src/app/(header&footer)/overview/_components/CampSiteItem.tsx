@@ -12,8 +12,6 @@ function CampSiteItem({ sites }: CampSiteItemProps) {
   const router = useRouter();
   const pathName = useParams();
   const searchParams = useSearchParams();
-  console.log('ㅋㅋㅋㅋㅋ', pathName);
-  console.log('확인할게', searchParams.get('checkIn'));
 
   const move = (id: number) => {
     const newSearchParams = new URLSearchParams({

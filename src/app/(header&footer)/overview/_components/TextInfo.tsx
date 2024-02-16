@@ -22,7 +22,6 @@ function TextInfo({ text }: TextInfotType) {
   const getText = async () => {
     try {
       const response = await axios.get('/data/bossText.json');
-      console.log(response);
       const { data } = response;
       setGuidance(data);
     } catch (error) {

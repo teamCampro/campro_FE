@@ -10,7 +10,6 @@ import CancleReserverModal from './CancleReserverModal';
 import { ReserveListType } from '@/src/app/_constants/reserveList';
 
 function ReserveInfo({ campList }: { campList: ReserveListType }) {
-  console.log(campList);
   const [isClose, setIsClose] = useState(false);
 
   const handleModal = () => {

@@ -12,7 +12,6 @@ async function getData() {
 }
 
 async function Page({ params }: { params: { id: number } }) {
-  console.log(params.id);
   const data = await getData();
 
   return (

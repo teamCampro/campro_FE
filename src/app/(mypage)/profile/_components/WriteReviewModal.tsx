@@ -4,13 +4,9 @@ import { Button, ModalOutside, ModalPortal } from '@/components/index';
 import {
   IconArrowLeftNon,
   IconClose,
-  IconPlusNon,
   IconReset,
   IconStar,
-  IconStarHalf,
-  IconStarScore,
 } from '@/public/svgs';
-import Score from './Score';
 import { useState } from 'react';
 import Survey from './Survey';
 import WriteReview from './WriteReview';
@@ -88,7 +84,18 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     }
   };
 
-  console.log(surveyLists);
+  const isDisabled = () => {
+    if (
+      !isNext &&
+      surveyLists.score !== '' &&
+      surveyLists.selectList.length >= 3
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return (
     <ModalPortal>
       <ModalOutside
@@ -194,6 +201,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 size='sm'
                 custom='!w-full text-white !h-56pxr !flex-shrink'
                 onClick={handleButton}
+                disabled={isDisabled()}
               >
                 {isNext ? '후기 등록' : '다음'}
               </Button.Round>
