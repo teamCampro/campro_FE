@@ -50,6 +50,7 @@ const config: Config = {
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
+        'black-searchBar': 'rgba(0, 0, 0, 0.20)',
         'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {

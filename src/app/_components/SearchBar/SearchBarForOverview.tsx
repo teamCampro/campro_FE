@@ -41,7 +41,7 @@ function SearchBarForOverview({
   const outerDivRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: FieldValues) => {
-    submitForSearch(data, dispatch, router, `overview/${path.id}`, 'place');
+    submitForSearch(data, router, `overview/${path.id}`, 'place');
   };
 
   const renderButton = () => setIsRenderedButton(true);

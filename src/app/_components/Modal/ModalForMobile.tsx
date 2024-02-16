@@ -15,11 +15,15 @@ function ModalForMobile({
   headerContent,
   footerContent,
   onClose,
+  custom,
+  type,
 }: {
   children: ReactNode;
   headerContent?: string;
-  footerContent: ReactNode;
+  footerContent?: ReactNode;
   onClose: () => void;
+  custom?: string;
+  type?: string;
 }) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
@@ -27,7 +31,7 @@ function ModalForMobile({
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   return isMobile ? (
     <ModalPortal>
-      <ModalOutside onClose={onClose}>
+      <ModalOutside onClose={onClose} custom={custom}>
         <ModalLayout>
           <ModalHeader>{headerContent}</ModalHeader>
           <ModalMainContent>{children}</ModalMainContent>

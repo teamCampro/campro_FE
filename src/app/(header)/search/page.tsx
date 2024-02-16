@@ -32,6 +32,7 @@ function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
+  const { location, checkIn, checkOut, group: groupTest } = searchParams;
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
 
@@ -56,15 +57,13 @@ function Page({ searchParams }: SearchParamsType) {
   };
 
   useEffect(() => {
-    const { location, checkIn, checkOut, group: groupTest } = searchParams;
-
     const fetch = async () => {
       const response = await axios.get<DataType>(
         `data/mapPositionsMockData.json`,
       );
       const { result } = response.data;
       const filteredResult =
-        location && checkIn && checkOut
+        location !== '전체' && checkIn && checkOut && location
           ? result.filter((item) => item.address.includes(location))
           : result;
 
@@ -105,19 +104,31 @@ function Page({ searchParams }: SearchParamsType) {
               </h3>
               <SortDropdown />
             </div>
+
             <div className='flex w-full flex-col gap-48pxr mobile:gap-64pxr tablet:gap-64pxr'>
-              {campPlaceData && (
-                <CampSearchList
-                  currentPage={currentPage}
-                  campPlaces={campPlaceData}
-                  gridColumns={mapBasis[mapSize].list}
-                />
+              {campPlaceData.length > 0 ? (
+                <>
+                  <CampSearchList
+                    currentPage={currentPage}
+                    campPlaces={campPlaceData}
+                    gridColumns={mapBasis[mapSize].list}
+                  />
+                  <SearchPagination
+                    currentPage={currentPage}
+                    totalItems={totalItems}
+                    onUpdatePage={updateCurrentPage}
+                  />
+                </>
+              ) : (
+                <div className='flex-center h-500pxr flex-col'>
+                  <h3 className='text-gray600 font-h2-semibold'>
+                    모든 캠핑장 예약이 마감됐어요
+                  </h3>
+                  <div className='text-gray500 font-body1-medium'>
+                    다른 일정/지역으로 재검색 해보는 건 어떨까요?
+                  </div>
+                </div>
               )}
-              <SearchPagination
-                currentPage={currentPage}
-                totalItems={totalItems}
-                onUpdatePage={updateCurrentPage}
-              />
             </div>
           </div>
         )}
@@ -125,6 +136,7 @@ function Page({ searchParams }: SearchParamsType) {
           className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
         >
           <KakaoMap
+            region={location}
             map={map}
             setMap={setKakaoMap}
             mapSize={mapSize}

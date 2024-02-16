@@ -44,7 +44,7 @@ function PaymentMethod() {
         </li>
       </ul>
       <label htmlFor='card' className='flex-center justify-start gap-4pxr'>
-        <input type='radio' id='card' name='card' />
+        <input type='checkbox' id='card' name='card' />
         <span className='text-gray600 font-caption1-medium'>
           이 결제수단으로 다음에도 사용하기
         </span>
