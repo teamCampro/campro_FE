@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { pool } from '../../libs/mysql';
-
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 export const POST = async (req: NextRequest) => {
     try {
@@ -18,11 +17,11 @@ export const POST = async (req: NextRequest) => {
         }
 
         else {
-            const query2 = 'SELECT password FROM user_info WHERE email = ?';
-            const [rows2] = await db.execute(query2, [signInUserData.email]);
+            const passwordQuery = 'SELECT password FROM user_info WHERE email = ?';
+            const [passwordRows] = await db.execute(passwordQuery, [signInUserData.email]);
             db.release();
-            let tmpResult2: any = rows2;
-            const savedPassword = tmpResult2[0].password;
+            let tmpPasswordResult: any = passwordRows;
+            const savedPassword = tmpPasswordResult[0].password;
             const passwordMatch = await bcrypt.compare(signInUserData.password, savedPassword);
 
             if (passwordMatch) {
