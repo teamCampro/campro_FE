@@ -322,19 +322,20 @@ body {
     min-height: calc(100vh - 81px - 59px);
   }
   .camp-site {
+    display: grid;
     grid-template-areas:
-      'picture'
-      'select'
-      'info';
+      'info'
+      'facilities'
+      'button';
   }
-  .camp-site-picture {
-    grid-area: picture;
+  .camp-site-facilities {
+    grid-area: facilities;
   }
   .camp-site-info {
     grid-area: info;
   }
-  .camp-site-select {
-    grid-area: select;
+  .camp-site-button {
+    grid-area: button;
   }
 }
 

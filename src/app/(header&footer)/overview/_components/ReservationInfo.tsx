@@ -1,9 +1,10 @@
+import { ModalOutside, ModalPortal } from '@/components/index';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
 import { useState } from 'react';
-import { CampSite } from '../[id]/page';
+import { CampSite, Site } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
-import CampZoneList from './CampSiteList';
-import NewCampSiteItem from './NewCampSiteItem';
+import CampSiteDetail from './CampSiteDetail';
+import CampSiteItem from './CampSiteItem';
 
 function ReservationInfo({
   campingZones,
@@ -12,22 +13,38 @@ function ReservationInfo({
   mannerTimeStart,
   mannerTimeEnd,
 }: CampSite) {
+  const [selectedSite, setSelectedSite] = useState<Site | null>(null);
   const [showAll, setShowAll] = useState(false);
+  const sites = campingZones
+    .map((campingZone) =>
+      campingZone.sites.map((site) => ({
+        ...site,
+        baseGuests: campingZone.baseGuests,
+        campingZoneId: campingZone.id,
+        extraGuests: campingZone.extraGuests,
+        area: campingZone.area,
+      })),
+    )
+    .flat();
+  const OpenSiteModal = (site: Site) => setSelectedSite(site);
   return (
     <section className='flex flex-col gap-24pxr'>
-      <NewCampSiteItem />
       <CampSiteBookingInfo
         openTime={openTime}
         nextOpen={nextOpen}
         mannerTimeStart={mannerTimeStart}
         mannerTimeEnd={mannerTimeEnd}
       />
-      {(showAll ? campingZones : campingZones.slice(0, 2)).map(
-        (campingZone) => (
-          <CampZoneList campingZone={campingZone} key={campingZone.name} />
-        ),
-      )}
-      {campingZones.length > 2 && (
+      <ul className='flex flex-col gap-16pxr bg-inherit mobile:gap-20pxr mobile:px-20pxr mobile359:gap-16pxr mobile359:px-0pxr'>
+        {(showAll ? sites : sites.slice(0, 3)).map((site) => (
+          <CampSiteItem
+            key={`${site.campingZoneId} ${site.siteId}`}
+            site={site}
+            OpenSiteModal={OpenSiteModal}
+          />
+        ))}
+      </ul>
+      {sites.length > 2 && (
         <div className='contents mobile:block mobile:px-36pxr mobile359:px-16pxr'>
           <button
             type='button'
@@ -40,6 +57,19 @@ function ReservationInfo({
             </span>
           </button>
         </div>
+      )}
+      {selectedSite && (
+        <ModalPortal>
+          <ModalOutside
+            onClose={() => {}}
+            custom='bg-black-50 z-30 h-screen w-full left-0pxr top-0pxr'
+          >
+            <CampSiteDetail
+              onClose={() => setSelectedSite(null)}
+              site={selectedSite}
+            />
+          </ModalOutside>
+        </ModalPortal>
       )}
     </section>
   );
