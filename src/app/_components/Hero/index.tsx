@@ -5,7 +5,6 @@ import React from 'react';
 import heroImage from '@/public/avifs/hero.avif';
 import { useRouter } from 'next/navigation';
 import { Button, SearchBar } from '..';
-import { Suspense } from 'react';
 
 interface SearchParamsType {
   searchParams: {
@@ -45,9 +44,7 @@ function Hero({ searchParams }: SearchParamsType) {
         </div>
       </div>
       <div className='inset-x-0 absolute bottom-[-56px] z-[98] flex w-full justify-center mobile:px-16pxr'>
-        <Suspense>
-          <SearchBar searchParams={searchParams} />
-        </Suspense>
+        <SearchBar searchParams={searchParams} />
       </div>
     </div>
   );

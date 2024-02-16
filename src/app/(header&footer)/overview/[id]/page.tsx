@@ -11,7 +11,7 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
-import { Suspense } from 'react';
+
 export interface CampSite {
   id: number;
   placeName: string;
@@ -231,13 +231,11 @@ function Page({ searchParams, params }: SearchParamsType) {
   if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
   return (
     <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
-      <Suspense>
-        <SearchBarForOverview
-          searchParams={searchParams}
-          placeName={campingZone?.placeName}
-          campId={campingZone?.id}
-        />
-      </Suspense>
+      <SearchBarForOverview
+        searchParams={searchParams}
+        placeName={campingZone?.placeName}
+        campId={campingZone?.id}
+      />
       <CampImage campImageRef={campImageRef} />
       <AnchorMenu
         isSticky={isSticky}
