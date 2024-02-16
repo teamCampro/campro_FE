@@ -45,7 +45,9 @@ function Hero({ searchParams }: SearchParamsType) {
         </div>
       </div>
       <div className='inset-x-0 absolute bottom-[-56px] z-[98] flex w-full justify-center mobile:px-16pxr'>
-        <SearchBar searchParams={searchParams} />
+        <Suspense>
+          <SearchBar searchParams={searchParams} />
+        </Suspense>
       </div>
     </div>
   );

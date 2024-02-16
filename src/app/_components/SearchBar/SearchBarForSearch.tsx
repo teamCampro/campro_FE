@@ -30,7 +30,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const [isTotalInput, setIsTotalInput] = useState(false);
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
-  const isMobile = typeof window !== 'undefined' && mobileMediaQuery;
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
   const onSubmit = (data: FieldValues) => {
     const campType =

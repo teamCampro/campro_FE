@@ -10,7 +10,7 @@ import {
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import kakaoMarkerGenerator, {
   CampPlaceType,
 } from '../../_utils/kakaoMarkerGenerator';
@@ -87,7 +87,9 @@ function Page({ searchParams }: SearchParamsType) {
       />
       <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
-          <SearchBarForSearch searchParams={searchParams} />
+          <Suspense>
+            <SearchBarForSearch searchParams={searchParams} />
+          </Suspense>
         </div>
         <div className='mobile:flex-center z-[99] flex gap-12pxr tabletMin:w-full'>
           <SearchFilter />
