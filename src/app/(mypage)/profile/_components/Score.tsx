@@ -1,9 +1,15 @@
 'use client';
 
 import { IconStarHalf, IconStarScore } from '@/public/svgs';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { SurveyListsType } from './WriteReviewModal';
 
-function Score() {
+interface ScoreType {
+  setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
+  surveyLists: SurveyListsType;
+}
+
+function Score({ setSurveyLists, surveyLists }: ScoreType) {
   const [score, setScore] = useState<number>(0);
   const [scoreFixed, setScoreFixed] = useState(score);
 
@@ -25,29 +31,32 @@ function Score() {
     }
   };
 
+  useEffect(() => {
+    setSurveyLists({ ...surveyLists, score: scoreFixed.toFixed(1) });
+  }, [scoreFixed]);
   return (
     <>
       <div className='flex-center'>
         {Array(5)
           .fill(0)
-          .map((i, idx) => (
+          .map((_, index) => (
             <div
-              key={idx}
+              key={index}
               className='relative h-36pxr w-36pxr cursor-pointer'
               onClick={handleStarClick}
             >
               {score - Math.floor(score) === 0.5 &&
-              Math.floor(score) === idx ? (
+              Math.floor(score) === index ? (
                 <>
                   <IconStarScore
-                    key={idx}
+                    key={index}
                     width='100%'
                     height='100%'
                     viewBox='0 0 37 36'
                     fill='#DFDFDF'
                   />
                   <IconStarHalf
-                    key={idx}
+                    key={index}
                     width='100%'
                     height='100%'
                     viewBox='0 0 37 36'
@@ -55,9 +64,9 @@ function Score() {
                     className='absolute left-0pxr top-0pxr'
                   />
                 </>
-              ) : idx + 1 > score ? (
+              ) : index + 1 > score ? (
                 <IconStarScore
-                  key={idx}
+                  key={index}
                   width='100%'
                   height='100%'
                   viewBox='0 0 37 36'
@@ -66,7 +75,7 @@ function Score() {
                 />
               ) : (
                 <IconStarScore
-                  key={idx}
+                  key={index}
                   width='100%'
                   height='100%'
                   viewBox='0 0 37 36'
@@ -77,14 +86,14 @@ function Score() {
 
               <div
                 className='absolute left-0pxr top-0pxr h-36pxr w-18pxr'
-                key={idx + 'left'}
-                onMouseEnter={() => handleLeftHalfEnter(idx)}
+                key={index + 'left'}
+                onMouseEnter={() => handleLeftHalfEnter(index)}
                 onMouseLeave={handleStarLeave}
               ></div>
               <div
                 className='absolute right-0pxr top-0pxr h-36pxr w-18pxr'
-                key={idx + 'right'}
-                onMouseEnter={() => handleRightHalfEnter(idx)}
+                key={index + 'right'}
+                onMouseEnter={() => handleRightHalfEnter(index)}
                 onMouseLeave={handleStarLeave}
               ></div>
             </div>

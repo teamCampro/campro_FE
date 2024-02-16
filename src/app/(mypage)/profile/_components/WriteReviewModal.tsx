@@ -6,6 +6,7 @@ import {
   IconClose,
   IconPlusNon,
   IconReset,
+  IconStar,
   IconStarHalf,
   IconStarScore,
 } from '@/public/svgs';
@@ -18,13 +19,34 @@ interface WriteReviewModalType {
   handleClick: () => void;
 }
 
+export interface ReviewKeywordType {
+  id: number;
+  keyword: string;
+  isDone: boolean;
+}
+
+export interface SurveyListsType {
+  score: string;
+  selectList: string[];
+}
+
 function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   const [isNext, setisNext] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
+  const [surveyLists, setSurveyLists] = useState<SurveyListsType>({
+    score: '',
+    selectList: [],
+  });
+
+  const handleScroll = () => {
+    setIsScroll(true);
+  };
 
   const handleButton = () => {
     setisNext(true);
   };
 
+  console.log(surveyLists);
   return (
     <ModalPortal>
       <ModalOutside
@@ -32,7 +54,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
         custom='fixed flex-center !left-0pxr mobile:items-center top-0pxr z-[1000] overflow-hidden bg-black-50'
       >
         <div
-          className={`flex h-screen ${isNext ? 'tabletMin:h-708pxr' : 'tabletMin:h-816pxr'} w-full  flex-col  bg-white tabletMin:w-407pxr tabletMin:rounded-xl`}
+          className={`flex h-screen ${isNext ? 'tabletMin:h-708pxr' : 'tabletMin:h-816pxr'} w-full flex-col bg-white tabletMin:w-407pxr tabletMin:rounded-xl`}
         >
           <h2 className='flex-center relative p-16pxr text-black font-title3-semibold tabletMin:hidden tabletMin:font-h1-semibold'>
             <IconArrowLeftNon
@@ -42,8 +64,10 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
             />
             후기 등록
           </h2>
-          <div className='flex w-full flex-col'>
-            <div className='flex flex-col px-16pxr pb-20pxr pt-16pxr tabletMin:px-28pxr tabletMin:pb-28pxr tabletMin:pt-24pxr'>
+          <div className='flex h-full w-full flex-col justify-between gap-32pxr'>
+            <div
+              className={`flex h-full flex-col ${isScroll ? 'scrollbar-hide overflow-y-scroll' : ''}  px-16pxr  pt-16pxr tabletMin:px-28pxr tabletMin:pt-24pxr`}
+            >
               <div
                 className='hidden h-24pxr w-24pxr cursor-pointer tabletMin:block'
                 onClick={handleClick}
@@ -55,7 +79,6 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                   fill='white'
                 />
               </div>
-
               <h3 className='text-black font-title2-semibold tabletMin:mt-24pxr'>
                 자연숲 캠핑장은 어떠셨나요?
               </h3>
@@ -74,20 +97,40 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 {isNext ? (
                   <li>
                     <ul className='flex-center justify-start gap-4pxr'>
-                      <li className='bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'>
-                        4.0
+                      <li className='flex-center bg-gray100 px-6pxr py-2pxr !leading-none text-gray600 font-caption2-medium'>
+                        <div className='w-24xpr h-24pxr'>
+                          <IconStar
+                            width='100%'
+                            height='100%'
+                            viewBox='0 0 24 24'
+                          />
+                        </div>
+                        {surveyLists.score}
                       </li>
-                      <li className='bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'>
-                        깨끗해요
-                      </li>
-                      <li className='bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'>
-                        온수가 잘 나와요
-                      </li>
+                      {surveyLists.selectList.map((list, index) => {
+                        return (
+                          <li
+                            key={index}
+                            className='bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'
+                          >
+                            {list}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </li>
                 ) : null}
               </ul>
-              {isNext ? <WriteReview /> : <Survey />}
+              {isNext ? (
+                <WriteReview />
+              ) : (
+                <Survey
+                  setSurveyLists={setSurveyLists}
+                  isScroll={isScroll}
+                  handleScroll={handleScroll}
+                  surveyLists={surveyLists}
+                />
+              )}
             </div>
             <div className='flex-center h-88pxr justify-between gap-14pxr border-t border-b-white px-20pxr py-16pxr'>
               <div className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'>
