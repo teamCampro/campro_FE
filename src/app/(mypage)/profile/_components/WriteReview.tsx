@@ -16,7 +16,6 @@ function WriteReview({
   setWriteReview,
 }: WriteReviewType) {
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(e.target.value);
     setWriteReview(e.target.value);
   };
 
