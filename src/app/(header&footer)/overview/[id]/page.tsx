@@ -164,10 +164,12 @@ function Page({ searchParams, params }: SearchParamsType) {
           }
 
           if (id === FOOTER_ID || id === TARGET_SECTION_ID) {
-            setShowSiteButton(!entry.isIntersecting);
-          } else if (
+            setShowSiteButton((prev) => !prev);
+          }
+          if (
             entry.isIntersecting &&
-            entry.intersectionRatio > maxRatio
+            entry.intersectionRatio > maxRatio &&
+            id !== FOOTER_ID
           ) {
             maxRatio = entry.intersectionRatio;
             newActiveSection = id;
@@ -180,8 +182,8 @@ function Page({ searchParams, params }: SearchParamsType) {
       },
       {
         root: null,
-        rootMargin: '0px',
-        threshold: [0.2, 0.5, 1.0],
+        rootMargin: '-160px 0px 0px 0px',
+        threshold: [0.25, 0.5, 1.0],
       },
     );
     if (campImageRef.current) {
@@ -212,6 +214,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           placeName={campingZone?.placeName}
           campId={campingZone?.id}
         />
+
         <SectionRef sectionRef={setDivRef} id='image'>
           <CampImage />
         </SectionRef>
