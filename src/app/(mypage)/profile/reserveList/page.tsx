@@ -1,6 +1,6 @@
 import ReserveList from '../_components/ReserveList';
-
-async function getData() {
+//api연결시 차후에 쓸 함수
+/* async function getData() { 
   const res = await fetch(
     'http://localhost:3000/data/reserveListMockData.json',
   );
@@ -9,14 +9,14 @@ async function getData() {
   }
 
   return res.json();
-}
+} */
 
 export default async function Page() {
-  const data = await getData();
+  /*  const data = await getData(); */
 
   return (
     <>
-      <ReserveList reserveList={data} />
+      <ReserveList /* reserveList={data} */ />
     </>
   );
 }
