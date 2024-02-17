@@ -28,8 +28,10 @@ function ImageUpload() {
             videoElement.src = preview_URL;
             const timer = setInterval(() => {
               if (videoElement.readyState === 4) {
-                if (videoElement.duration > 20) {
-                  alert('동영상의 길이가 너무 깁니다.');
+                if (videoElement.duration > 31) {
+                  alert(
+                    '동영상의 길이가 너무 깁니다. 30초 이내인 영상 추가해주세요',
+                  );
                   URL.revokeObjectURL(preview_URL);
                 } else {
                   fileList.push({
@@ -52,7 +54,7 @@ function ImageUpload() {
         }
       }
     } else {
-      alert('이미지는 5장만 추가할 수 있습니다');
+      /* alert('이미지는 5장만 추가할 수 있습니다'); */
     }
     setFileList([...tmpFileList, ...fileList]);
 
@@ -78,9 +80,10 @@ function ImageUpload() {
       });
     };
   }, []);
+
   return (
     <>
-      <div className='flex-center'>
+      <div className='flex-center mb-12pxr gap-8pxr'>
         {fileList.map((list, index) => {
           return (
             <div key={index} className='relative flex h-80pxr w-80pxr'>
@@ -90,23 +93,25 @@ function ImageUpload() {
                   width={80}
                   height={80}
                   alt='이미지'
+                  className='rounded-xl'
                 />
               ) : (
                 <video
                   src={list.preview_URL}
                   autoPlay={false}
-                  controls={true}
+                  controls={false}
+                  className='rounded-xl'
                 />
               )}
               <div
-                className='absolute left-0pxr top-0pxr h-24pxr w-24pxr'
+                className='absolute right-0pxr top-0pxr h-18pxr w-18pxr cursor-pointer'
                 onClick={() => deleteImage(index)}
               >
                 <IconClose
                   width='100%'
                   height='100%'
                   viewBox='0 0 24 24'
-                  fill='#949494'
+                  fill='white'
                 />
               </div>
             </div>
@@ -116,14 +121,14 @@ function ImageUpload() {
       <div className='flex-center'>
         <label
           htmlFor='reviewImage'
-          className='flex-center flex h-56pxr w-108pxr flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border border-primary100 py-24pxr pl-24pxr pr-32pxr text-primary100 font-body2-semibold hover:bg-primary50'
+          className={`flex-center flex h-56pxr w-108pxr cursor-pointer flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border  py-24pxr pl-24pxr pr-32pxr  font-body2-semibold  ${fileList.length < 5 ? 'border-primary100 text-primary100 hover:bg-primary50' : 'bg-gray300 text-gray500'}`}
         >
           <div className='h-20pxr w-20pxr '>
             <IconPlusNon
               width='100%'
               height='100%'
               viewBox='0 0 24 24'
-              fill='#4F9E4F'
+              fill={fileList.length < 5 ? '#4F9E4F' : '#949494'}
             />
           </div>
           <input
@@ -135,6 +140,7 @@ function ImageUpload() {
             accept='video/*, image/*'
             multiple
             onChange={handleSaveImage}
+            disabled={fileList.length < 5 ? false : true}
           />
           추가
         </label>
