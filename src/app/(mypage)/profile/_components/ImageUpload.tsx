@@ -6,7 +6,6 @@ import {
   SetStateAction,
   useEffect,
   useRef,
-  useState,
 } from 'react';
 import { ImagesType, SurveyListsType } from './WriteReviewModal';
 
@@ -16,7 +15,6 @@ interface ImageUploadType {
 }
 
 function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
-  /* const [fileList, setFileList] = useState<ImagesType[]>([]); */
   let inputRef = useRef<HTMLInputElement>(null);
 
   const handleSaveImage = async (e: ChangeEvent<HTMLInputElement>) => {

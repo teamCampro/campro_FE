@@ -1,7 +1,7 @@
 'use client';
 
 import { IconStarHalf, IconStarScore } from '@/public/svgs';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { SurveyListsType } from './WriteReviewModal';
 
 interface ScoreType {

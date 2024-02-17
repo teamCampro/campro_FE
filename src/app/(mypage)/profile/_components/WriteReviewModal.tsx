@@ -61,6 +61,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     write: '',
   });
 
+  /* props */
   const propsList = {
     keywords,
     setKeywords,
@@ -68,6 +69,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     setScore,
   };
 
+  /* 더보기 */
   const handleScroll = () => {
     setIsScroll(true);
   };
@@ -76,8 +78,10 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     if (surveyLists.score !== 0 && surveyLists.selectList.length >= 3) {
       setisNext(true);
     }
+    console.log('후기 작성 완료!!!!');
+    /* 여기에 post 보내면 됨!!!!! */
   };
-
+  /* 리셋!! */
   const handleReset = () => {
     if (!isNext) {
       setScore(0);
@@ -93,18 +97,20 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     }
   };
 
+  /* 버튼 비활성화 후기작성 2단계에서는 리뷰만 달아도 통과 */
   const isDisabled = () => {
     if (
-      !isNext &&
-      surveyLists.score !== 0 &&
-      surveyLists.selectList.length >= 3
+      (!isNext &&
+        surveyLists.score !== 0 &&
+        surveyLists.selectList.length >= 3) ||
+      surveyLists.write
     ) {
       return false;
     } else {
       return true;
     }
   };
-  console.log(surveyLists);
+
   return (
     <ModalPortal>
       <ModalOutside

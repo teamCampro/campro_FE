@@ -1,14 +1,4 @@
-import { IconClose, IconPlusNon } from '@/public/svgs';
-import Image from 'next/image';
-import {
-  ChangeEvent,
-  Dispatch,
-  FocusEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 import ImageUpload from './ImageUpload';
 import { SurveyListsType } from './WriteReviewModal';
 
@@ -17,11 +7,6 @@ interface WriteReviewType {
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   writeReview: string;
   setWriteReview: Dispatch<SetStateAction<string>>;
-}
-interface ImagesType {
-  fileObject: File;
-  preview_URL: string;
-  type: string;
 }
 
 function WriteReview({
