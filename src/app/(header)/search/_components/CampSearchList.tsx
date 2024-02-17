@@ -1,12 +1,20 @@
 import CampPlaceItem from '../../../(header&footer)/_components/CampPlaceItem';
-import { CampPlaceType } from '../../../_utils/kakaoMarkerGenerator';
+
+type CampZone = {
+  id: number;
+  name: string;
+  address: string;
+  campImage: string;
+  minimumAmount: number;
+  keyword: string;
+};
 
 function CampSearchList({
   campPlaces,
   gridColumns,
   currentPage,
 }: {
-  campPlaces: CampPlaceType[];
+  campPlaces: CampZone[];
   gridColumns: string;
   currentPage: number;
 }) {

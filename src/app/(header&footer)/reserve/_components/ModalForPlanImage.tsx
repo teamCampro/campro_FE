@@ -31,7 +31,7 @@ function ModalForPlanImage({ onClose }: Props) {
               배치도
             </span>
           </div>
-          <div className='flex-center h-480pxr w-full'>
+          <div className='flex-center h-480pxr w-full bg-gray100'>
             <Image
               width={767}
               height={480}
