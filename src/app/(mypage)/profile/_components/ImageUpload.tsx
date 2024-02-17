@@ -1,15 +1,22 @@
 import { IconClose, IconPlusNon } from '@/public/svgs';
 import Image from 'next/image';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { ImagesType, SurveyListsType } from './WriteReviewModal';
 
-interface ImagesType {
-  fileObject: File;
-  preview_URL: string;
-  type: string;
+interface ImageUploadType {
+  surveyLists: SurveyListsType;
+  setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
 }
 
-function ImageUpload() {
-  const [fileList, setFileList] = useState<ImagesType[]>([]);
+function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
+  /* const [fileList, setFileList] = useState<ImagesType[]>([]); */
   let inputRef = useRef<HTMLInputElement>(null);
 
   const handleSaveImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +24,7 @@ function ImageUpload() {
     const tmpFileList: ImagesType[] = [];
     const files = e.target.files;
 
-    if (files && files.length < 6 && fileList.length < 5) {
+    if (files && files.length < 6 && surveyLists.images.length < 5) {
       for (let i = 0; i < files.length; i++) {
         const preview_URL = URL.createObjectURL(files[i]);
         const fileType = files[i].type.split('/')[0];
@@ -34,7 +41,7 @@ function ImageUpload() {
                   );
                   URL.revokeObjectURL(preview_URL);
                 } else {
-                  fileList.push({
+                  surveyLists.images.push({
                     fileObject: files[i],
                     preview_URL: preview_URL,
                     type: fileType,
@@ -46,7 +53,7 @@ function ImageUpload() {
             }, 500);
           });
         } else {
-          fileList.push({
+          surveyLists.images.push({
             fileObject: files[i],
             preview_URL: preview_URL,
             type: fileType,
@@ -56,7 +63,10 @@ function ImageUpload() {
     } else {
       /* alert('이미지는 5장만 추가할 수 있습니다'); */
     }
-    setFileList([...tmpFileList, ...fileList]);
+    setSurveyLists({
+      ...surveyLists,
+      images: [...tmpFileList, ...surveyLists.images],
+    });
 
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -64,9 +74,9 @@ function ImageUpload() {
   };
 
   const deleteImage = (index: number) => {
-    const tmpFileList = [...fileList];
+    const tmpFileList = [...surveyLists.images];
     tmpFileList.splice(index, 1);
-    setFileList(tmpFileList);
+    setSurveyLists({ ...surveyLists, images: tmpFileList });
 
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -75,7 +85,7 @@ function ImageUpload() {
 
   useEffect(() => {
     return () => {
-      fileList.forEach((item) => {
+      surveyLists.images.forEach((item) => {
         URL.revokeObjectURL(item.preview_URL);
       });
     };
@@ -84,7 +94,7 @@ function ImageUpload() {
   return (
     <>
       <div className='flex-center mb-12pxr gap-8pxr'>
-        {fileList.map((list, index) => {
+        {surveyLists.images.map((list, index) => {
           return (
             <div key={index} className='relative flex h-80pxr w-80pxr'>
               {list.type === 'image' ? (
@@ -121,14 +131,14 @@ function ImageUpload() {
       <div className='flex-center'>
         <label
           htmlFor='reviewImage'
-          className={`flex-center flex h-56pxr w-108pxr cursor-pointer flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border  py-24pxr pl-24pxr pr-32pxr  font-body2-semibold  ${fileList.length < 5 ? 'border-primary100 text-primary100 hover:bg-primary50' : 'bg-gray300 text-gray500'}`}
+          className={`flex-center flex h-56pxr w-108pxr cursor-pointer flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border  py-24pxr pl-24pxr pr-32pxr  font-body2-semibold  ${surveyLists.images.length < 5 ? 'border-primary100 text-primary100 hover:bg-primary50' : 'bg-gray300 text-gray500'}`}
         >
           <div className='h-20pxr w-20pxr '>
             <IconPlusNon
               width='100%'
               height='100%'
               viewBox='0 0 24 24'
-              fill={fileList.length < 5 ? '#4F9E4F' : '#949494'}
+              fill={surveyLists.images.length < 5 ? '#4F9E4F' : '#949494'}
             />
           </div>
           <input
@@ -140,7 +150,7 @@ function ImageUpload() {
             accept='video/*, image/*'
             multiple
             onChange={handleSaveImage}
-            disabled={fileList.length < 5 ? false : true}
+            disabled={surveyLists.images.length < 5 ? false : true}
           />
           추가
         </label>

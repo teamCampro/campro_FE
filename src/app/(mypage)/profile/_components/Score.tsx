@@ -7,20 +7,11 @@ import { SurveyListsType } from './WriteReviewModal';
 interface ScoreType {
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   surveyLists: SurveyListsType;
-  scoreFixed: number;
-  setScoreFixed: Dispatch<SetStateAction<number>>;
   score: number;
   setScore: Dispatch<SetStateAction<number>>;
 }
 
-function Score({
-  setSurveyLists,
-  surveyLists,
-  scoreFixed,
-  setScoreFixed,
-  score,
-  setScore,
-}: ScoreType) {
+function Score({ setSurveyLists, surveyLists, score, setScore }: ScoreType) {
   const handleLeftHalfEnter = (idx: number) => {
     setScore(idx + 0.5);
   };
@@ -30,18 +21,15 @@ function Score({
   };
 
   const handleStarClick = () => {
-    setScoreFixed(score);
+    setSurveyLists({ ...surveyLists, score: score });
   };
 
   const handleStarLeave = () => {
-    if (score !== scoreFixed) {
-      setScore(scoreFixed);
+    if (score !== surveyLists.score) {
+      setScore(surveyLists.score);
     }
   };
 
-  useEffect(() => {
-    setSurveyLists({ ...surveyLists, score: scoreFixed.toFixed(1) });
-  }, [scoreFixed]);
   return (
     <>
       <div className='flex-center'>
@@ -109,7 +97,8 @@ function Score({
       </div>
       <div className='text-center text-gray600 font-body2-medium'>
         <span className='text-black font-body1-bold'>
-          {scoreFixed ? scoreFixed.toFixed(1) : score.toFixed(1)} /
+          {surveyLists.score ? surveyLists.score.toFixed(1) : score.toFixed(1)}{' '}
+          /
         </span>
         5
       </div>

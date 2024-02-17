@@ -21,16 +21,24 @@ export interface ReviewKeywordType {
   isDone: boolean;
 }
 
+export interface ImagesType {
+  fileObject: File;
+  preview_URL: string;
+  type: string;
+}
+
 export interface SurveyListsType {
-  score: string;
+  score: number;
   selectList: string[];
+  images: ImagesType[];
+  write: string;
 }
 
 function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   const [isNext, setisNext] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
+  const [writeReview, setWriteReview] = useState('');
   const [score, setScore] = useState<number>(0);
-  const [scoreFixed, setScoreFixed] = useState(0);
   const [keywords, setKeywords] = useState<ReviewKeywordType[]>([
     { id: 1, keyword: '깨끗해요', isDone: false },
     { id: 2, keyword: '조용해서 쉬기 좋아요', isDone: false },
@@ -47,13 +55,13 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     { id: 13, keyword: '근처에 갈 곳이 많아요', isDone: false },
   ]);
   const [surveyLists, setSurveyLists] = useState<SurveyListsType>({
-    score: '',
+    score: score,
     selectList: [],
+    images: [],
+    write: '',
   });
 
   const propsList = {
-    scoreFixed,
-    setScoreFixed,
     keywords,
     setKeywords,
     score,
@@ -65,7 +73,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   };
 
   const handleButton = () => {
-    if (surveyLists.score !== '' && surveyLists.selectList.length >= 3) {
+    if (surveyLists.score !== 0 && surveyLists.selectList.length >= 3) {
       setisNext(true);
     }
   };
@@ -73,21 +81,22 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   const handleReset = () => {
     if (!isNext) {
       setScore(0);
-      setScoreFixed(0);
       setKeywords(
         keywords.map((keyword) => {
           return { ...keyword, isDone: false };
         }),
       );
-      setSurveyLists({ score: '', selectList: [] });
+      setSurveyLists({ ...surveyLists, score: 0, selectList: [] });
     } else {
+      setWriteReview('');
+      setSurveyLists({ ...surveyLists, images: [], write: '' });
     }
   };
 
   const isDisabled = () => {
     if (
       !isNext &&
-      surveyLists.score !== '' &&
+      surveyLists.score !== 0 &&
       surveyLists.selectList.length >= 3
     ) {
       return false;
@@ -95,7 +104,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
       return true;
     }
   };
-
+  console.log(surveyLists);
   return (
     <ModalPortal>
       <ModalOutside
@@ -171,7 +180,12 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                 ) : null}
               </ul>
               {isNext ? (
-                <WriteReview />
+                <WriteReview
+                  surveyLists={surveyLists}
+                  setSurveyLists={setSurveyLists}
+                  writeReview={writeReview}
+                  setWriteReview={setWriteReview}
+                />
               ) : (
                 <Survey
                   setSurveyLists={setSurveyLists}

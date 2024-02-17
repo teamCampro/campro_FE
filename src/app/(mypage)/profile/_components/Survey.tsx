@@ -9,8 +9,6 @@ interface SurveyType {
   handleScroll: () => void;
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   surveyLists: SurveyListsType;
-  scoreFixed: number;
-  setScoreFixed: Dispatch<SetStateAction<number>>;
   keywords: ReviewKeywordType[];
   setKeywords: Dispatch<SetStateAction<ReviewKeywordType[]>>;
   score: number;
@@ -22,8 +20,6 @@ function Survey({
   handleScroll,
   setSurveyLists,
   surveyLists,
-  scoreFixed,
-  setScoreFixed,
   keywords,
   setKeywords,
   score,
@@ -63,8 +59,6 @@ function Survey({
         <Score
           setSurveyLists={setSurveyLists}
           surveyLists={surveyLists}
-          scoreFixed={scoreFixed}
-          setScoreFixed={setScoreFixed}
           score={score}
           setScore={setScore}
         />
