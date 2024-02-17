@@ -40,6 +40,7 @@ const config: Config = {
         gradient:
           'linear-gradient(180deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.60) 75.9%)',
       },
+
       boxShadow: {
         categoryItem: '0px 4px 17px 0px rgba(0, 0, 0, 0.07)',
         searchBar: '0px 4px 23px 0px rgba(0, 0, 0, 0.07)',
@@ -50,6 +51,7 @@ const config: Config = {
       },
       backgroundColor: {
         'black-50': 'rgba(0, 0, 0, 0.50)',
+        'black-searchBar': 'rgba(0, 0, 0, 0.20)',
         'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
@@ -77,6 +79,7 @@ const config: Config = {
         '4': '4',
         '5': '5',
       },
+      brightness: {},
       gridTemplateColumns: {
         '1-col-288': 'repeat(1,minmax(288px,1fr))',
         '2-col-184': 'repeat(2,minmax(184px,1fr))',
@@ -149,6 +152,11 @@ const config: Config = {
       '1': '1',
       '3': '3',
       '7': '7',
+    },
+  },
+  variants: {
+    extend: {
+      brightness: ['hover'],
     },
   },
   plugins: [

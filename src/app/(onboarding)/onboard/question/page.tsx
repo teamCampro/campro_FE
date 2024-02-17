@@ -1,10 +1,10 @@
 'use client';
 
-import Tent from '@/../public/gifs/tent.gif';
 import usePagination from '@/hooks/usePagination';
 import { Pagination } from '@/src/app/_components';
 import axios from 'axios';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import OnboardingList from '../../_components/OnboardingList';
 
@@ -38,11 +38,16 @@ function Question() {
     '5': '',
   });
 
+  const router = useRouter();
+
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
   const [mockData, setMockData] = useState<OnboardingType[]>([]);
 
-  const onSubmitOnboard = () => setIsAnswering(false);
+  const onSubmitOnboard = () => {
+    setIsAnswering(false);
+    setTimeout(() => router.push('/'), 3000);
+  };
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -55,7 +60,6 @@ function Question() {
         console.error(e);
       }
     };
-
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -64,6 +68,18 @@ function Question() {
     updateCurrentPage(currentPage + 1);
     setTagState({ ...tagState, [id]: text });
   };
+
+  if (mockData.length < 1)
+    return (
+      <div className='flex-center custom-height bg-gray100'>
+        <Image
+          src='/gifs/campro_loading.gif'
+          width={150}
+          height={150}
+          alt='로딩 이미지'
+        />
+      </div>
+    );
 
   return (
     <div className='flex-center custom-height bg-gray100 mobile:items-start'>
@@ -92,7 +108,12 @@ function Question() {
               취향에 맞는 캠핑장을 보여드릴게요!
             </p>
 
-            <Image src={Tent.src} width={338} height={187} alt='로딩 이미지' />
+            <Image
+              src='/gifs/campro_loading.gif'
+              width={150}
+              height={150}
+              alt='로딩 이미지'
+            />
           </div>
         </div>
       )}

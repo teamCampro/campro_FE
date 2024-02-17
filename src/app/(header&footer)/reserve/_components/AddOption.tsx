@@ -15,7 +15,7 @@ export const Options = [
   {
     content_id: 3,
     content: ' 욕실세트(치약+일회용 칫솔)',
-    price: '1,000,000원',
+    price: '10,000원',
   },
 ];
 
@@ -36,16 +36,16 @@ function AddOption() {
       <h3 className=' text-black font-title3-semibold tabletMin:font-title1-semibold'>
         추가 옵션
       </h3>
-      <ul className='flex flex-col gap-16pxr'>
+      <ul className='flex flex-col gap-16pxr '>
         {Options.map((option) => (
           <li
             key={option.content_id}
-            className='flex-center flex-wrap justify-between'
+            className='flex-center w-full flex-wrap justify-between'
           >
             <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
               {option.content}
             </h3>
-            <div className='flex-center w-73pxr justify-between gap-16pxr tabletMin:w-97pxr'>
+            <div className='flex-center w-73pxr justify-between gap-16pxr mobile:gap-10pxr tabletMin:w-97pxr'>
               <button
                 type='button'
                 disabled={
@@ -62,8 +62,8 @@ function AddOption() {
                       : '#000000'
                   }
                   onClick={() => handleMinus(option.content_id)}
-                  width='100%'
-                  height='100%'
+                  width='20'
+                  height='20'
                   viewBox='0 0 24 24'
                 />
               </button>
@@ -72,15 +72,15 @@ function AddOption() {
               </span>
               <button
                 type='button'
-                disabled={count[option.content_id] >= 10 ? true : false}
+                disabled={count[option.content_id] >= 9 ? true : false}
                 className='h-20pxr w-20pxr cursor-pointer'
               >
                 <IconPlus
                   onClick={() => handlePlus(option.content_id)}
-                  width='100%'
-                  height='100%'
+                  width='20'
+                  height='20'
                   viewBox='0 0 24 24'
-                  fill={count[option.content_id] >= 10 ? '#949494' : '#000000'}
+                  fill={count[option.content_id] >= 9 ? '#949494' : '#000000'}
                 />
               </button>
             </div>

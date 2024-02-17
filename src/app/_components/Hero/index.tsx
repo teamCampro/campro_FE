@@ -5,7 +5,6 @@ import React from 'react';
 import heroImage from '@/public/avifs/hero.avif';
 import { useRouter } from 'next/navigation';
 import { Button, SearchBar } from '..';
-import { Suspense } from 'react';
 
 interface SearchParamsType {
   searchParams: {
