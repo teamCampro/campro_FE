@@ -1,11 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { pool } from '../../libs/mysql';
 
-export const GET = async ({
-  params,
-}: {
-  params: { campingZoneId: string };
-}) => {
+export const GET = async (
+  req: NextRequest,
+  { params }: { params: { campingZoneId: string } },
+) => {
   try {
     const db = await pool.getConnection();
 
