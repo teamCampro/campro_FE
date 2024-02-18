@@ -12,9 +12,9 @@ export const POST = async (req: NextRequest) => {
         INSERT INTO camping_zone (name, tel, boss_email, business_number, tour_number, facilities,
             season, open_day, address, camp_image, plan_image, intro)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        await db.execute(query, [czData.name, czData.tel, czData.boss_email, czData.business_number,
-        czData.tour_number, facilitiesString, seasonString, czData.open_day, czData.address, czData.camp_image,
-        czData.plan_image, czData.intro]);
+        await db.execute(query, [czData.name, czData.tel, czData.bossEmail, czData.businessNumber,
+        czData.tourNumber, facilitiesString, seasonString, czData.openDay, czData.address, czData.campImage,
+        czData.planImage, czData.intro]);
 
         db.release();
         return NextResponse.json({});
