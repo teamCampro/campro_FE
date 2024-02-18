@@ -55,7 +55,7 @@ function ReservationInfo({
         mannerTimeEnd={mannerTimeEnd}
       />
       <ul
-        className='flex scroll-mt-168pxr flex-col gap-16pxr bg-inherit mobile:scroll-mt-87pxr mobile:gap-20pxr mobile:px-20pxr mobile359:gap-16pxr mobile359:px-0pxr'
+        className='flex scroll-mt-168pxr flex-col gap-16pxr bg-inherit mobile:scroll-mt-87pxr mobile:gap-20pxr mobile359:gap-16pxr mobile359:px-0pxr'
         id='site'
       >
         {(showAll ? sites : sites.slice(0, 3)).map((site) => (

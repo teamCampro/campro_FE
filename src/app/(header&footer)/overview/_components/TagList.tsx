@@ -15,7 +15,7 @@ function TagList({ tag }: TagListProps) {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className='mt-32pxr flex flex-col gap-12pxr border-b border-b-gray200 pb-24pxr'>
+    <div className='flex flex-col gap-12pxr border-b border-b-gray200 pb-24pxr'>
       <div className='flex items-center justify-between'>
         <h3 className='text-gray-600 font-body2-semibold'>{tag.text}</h3>
         <button

@@ -11,7 +11,7 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
   return (
     <section className='flex scroll-mt-168pxr flex-col gap-16pxr'>
       <SectionTitle>시설/환경</SectionTitle>
-      <div className='relative flex h-134pxr w-full max-w-1440pxr flex-col gap-16pxr mobile:h-245pxr mobile:gap-16pxr tablet:gap-13pxr'>
+      <div className='relative flex h-134pxr w-full max-w-1440pxr flex-col gap-16pxr mobile:h-auto mobile:gap-16pxr tablet:gap-13pxr'>
         <div className='absolute -left-10pxr bottom-0pxr flex w-full justify-normal bg-inherit shadow-none mobile:static mobile:justify-center mobile:rounded-xl mobile:bg-white mobile:shadow-categoryItem tablet:justify-normal'>
           <ul className='flex w-full flex-1 gap-16pxr p-0pxr mobile:grid mobile:max-w-288pxr mobile:grid-cols-4 mobile:gap-24pxr mobile:gap-y-20pxr mobile:px-16pxr mobile:py-24pxr'>
             <Swiper

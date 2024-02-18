@@ -150,6 +150,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const FOOTER_ID = 'footer';
   const TARGET_SECTION_ID = '4';
   const IMAGE_SECTION_ID = 'image';
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -160,19 +161,13 @@ function Page({ searchParams, params }: SearchParamsType) {
         entries.forEach((entry) => {
           const { id } = entry.target;
           if (id === IMAGE_SECTION_ID) {
-            setIsSticky(!entry.isIntersecting);
+            setIsSticky(!entry.intersectionRatio);
           }
 
-          if (id === FOOTER_ID || id === TARGET_SECTION_ID) {
-            setShowSiteButton((prev) => !prev);
-          }
-          if (
-            entry.isIntersecting &&
-            entry.intersectionRatio > maxRatio &&
-            id !== FOOTER_ID
-          ) {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio;
             newActiveSection = id;
+            console.log(newActiveSection);
           }
         });
 
@@ -181,8 +176,8 @@ function Page({ searchParams, params }: SearchParamsType) {
         }
       },
       {
-        root: null,
-        rootMargin: '-160px 0px 0px 0px',
+        root: mainRef.current,
+        rootMargin: '-94px 0px 0px 0px',
         threshold: [0.25, 0.5, 1.0],
       },
     );
@@ -193,7 +188,7 @@ function Page({ searchParams, params }: SearchParamsType) {
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection, campingZone]);
+  }, [divRefs, activeSection, campingZone]);
 
   if (!campingZone)
     return (
@@ -208,13 +203,12 @@ function Page({ searchParams, params }: SearchParamsType) {
     );
   return (
     <>
-      <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
+      <div className='m-auto w-full max-w-1360pxr'>
         <SearchBarForOverview
           searchParams={searchParams}
           placeName={campingZone?.placeName}
           campId={campingZone?.id}
         />
-
         <SectionRef sectionRef={setDivRef} id='image'>
           <CampImage />
         </SectionRef>
@@ -230,28 +224,30 @@ function Page({ searchParams, params }: SearchParamsType) {
             <MiniMapContainer {...campingZone} />
           </aside>
           <div>
-            <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-              <SectionRef sectionRef={setDivRef} id='1'>
-                <CampSiteBasicInfo {...campingZone} />
+            <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
+              <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
+                <SectionRef sectionRef={setDivRef} id='1'>
+                  <CampSiteBasicInfo {...campingZone} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='2'>
+                  <CampSiteFacilities facilities={campingZone.facilities} />
+                </SectionRef>
+              </div>
+              <SectionRef sectionRef={setDivRef} id='3'>
+                <CampSiteMap planImage={campingZone.planImage} />
               </SectionRef>
-              <SectionRef sectionRef={setDivRef} id='2'>
-                <CampSiteFacilities facilities={campingZone.facilities} />
-              </SectionRef>
-            </div>
-            <SectionRef sectionRef={setDivRef} id='3'>
-              <CampSiteMap planImage={campingZone.planImage} />
-            </SectionRef>
-            <div className='flex flex-col gap-24pxr pt-24pxr'>
               <SectionRef sectionRef={setDivRef} id='4'>
                 <ReservationInfo {...campingZone} />
               </SectionRef>
             </div>
-            <SectionRef sectionRef={setDivRef} id='5'>
-              <UsageGuidelines {...campingZone} />
-            </SectionRef>
-            <SectionRef sectionRef={setDivRef} id='6'>
-              <CustomerReviews {...campingZone} />
-            </SectionRef>
+            <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
+              <SectionRef sectionRef={setDivRef} id='5'>
+                <UsageGuidelines {...campingZone} />
+              </SectionRef>
+              <SectionRef sectionRef={setDivRef} id='6'>
+                <CustomerReviews {...campingZone} />
+              </SectionRef>
+            </div>
           </div>
         </main>
         <div ref={setDivRef} id='footer' />
