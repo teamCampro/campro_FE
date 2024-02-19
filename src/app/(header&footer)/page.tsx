@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { CampPlaceSection, CategoryList, Header, Hero } from '../_components';
+import { getMainCampList } from '../_data/main/campList';
 
 interface SearchParamsType {
   searchParams: {
@@ -7,18 +9,8 @@ interface SearchParamsType {
 }
 
 async function Page({ searchParams }: SearchParamsType) {
-  const getCampList = async () => {
-    const response = await fetch(
-      `http://localhost:3000/api/camping-zone/main-list`,
-      {
-        cache: 'no-store',
-      },
-    );
-    return response.json();
-  };
-
-  const Data = await getCampList();
-
+  const data = await getMainCampList();
+  console.log(data);
   return (
     <div>
       <Hero searchParams={searchParams} />
@@ -27,7 +19,7 @@ async function Page({ searchParams }: SearchParamsType) {
           <CategoryList />
         </div>
         <div className='wide:flex-center pb-48pxr pt-64pxr'>
-          <CampPlaceSection data={Data} />
+          <CampPlaceSection data={data} />
         </div>
       </div>
     </div>
