@@ -19,6 +19,18 @@ const OWNER_INFORMATION_INPUTS = [
     label: '관광사업(야영장) 등록 번호',
     name: 'TourismBusinessRegistrationNumber',
   },
+  {
+    label: '대표자명',
+    name: 'RepresentativeName',
+  },
+  {
+    label: '상호명',
+    name: 'businessName',
+  },
+  {
+    label: '사업자 주소',
+    name: 'businessAdress',
+  },
 ];
 
 export default OWNER_INFORMATION_INPUTS;
