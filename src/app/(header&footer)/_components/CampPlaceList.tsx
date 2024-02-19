@@ -5,29 +5,31 @@ import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CampPlaceItem from './CampPlaceItem';
-import { CampPlaceMockData } from './CampPlaceSection';
+
+type CampZone = {
+  id: number;
+  name: string;
+  displayAddress: string;
+  campImage: string;
+  minimumAmount: number;
+  keyword: string;
+};
 
 interface Props {
-  campPlaces: CampPlaceMockData[];
-  type: string;
+  campPlaces: CampZone[];
+  type: number;
 }
 
 function CampPlaceList({ campPlaces, type }: Props) {
   let listName;
   switch (type) {
-    case 'matching':
+    case 0:
       listName = '홍길동님을 위한 캠핑장';
       break;
-    case 'secondMatching':
-      listName = '⛰️ 산 캠핑장 모음';
-      break;
-    case 'random':
-      listName = '⛰️ 산 캠핑장 모음';
-      break;
-    case 'hot':
+    case 1:
       listName = '인기 캠핑장';
       break;
-    case 'new':
+    case 2:
       listName = '새로 입점한 캠핑장';
       break;
   }

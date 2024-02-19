@@ -1,14 +1,16 @@
+'use client';
+
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
-import { CampPlaceType } from '@/src/app/_utils/kakaoMarkerGenerator';
+import { CampZoneForSearch } from '../page';
 
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
-  campPlaceData?: CampPlaceType[];
+  campPlaceData?: CampZoneForSearch[];
   region?: string;
 }
 
@@ -40,11 +42,12 @@ function KakaoMap({
   const dropShadow = isZoomButtonShadow
     ? 'drop-shadow-[0px_10px_10px_rgba(0,0,0,0.25)]'
     : '';
-
+  console.log(mapRef);
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.kakao) return;
+    /* if (typeof window === 'undefined' || !window.kakao) return; */
     kakao.maps.load(() => {
       if (!mapRef.current) return;
+      console.log('여기는 useEffect');
       const options = {
         center: new kakao.maps.LatLng(36.7140176374004, 128.10524294165157),
         level: 13,
@@ -61,18 +64,24 @@ function KakaoMap({
     if (!map) return;
     map.relayout();
     if (!campPlaceData) return;
+    console.log(campPlaceData[0]);
     if (campPlaceData.length !== 0) {
+      console.log(isRegion);
+      console.log('여기는 어디?');
       map.setCenter(
         new kakao.maps.LatLng(
-          isRegion ? 36.7140176374004 : campPlaceData[0].location.lat,
-          isRegion ? 128.10524294165157 : campPlaceData[0].location.lng,
+          isRegion ? 36.7140176374004 : Number(campPlaceData[0].lng),
+          isRegion ? 128.10524294165157 : Number(campPlaceData[0].lat),
         ),
       );
       map.setLevel(isRegion ? 13 : 8);
+
       return;
     }
+
     const geocoder = new kakao.maps.services.Geocoder();
-    if (!region) return
+    console.log('geocoder 통과');
+    if (!region) return;
     geocoder.addressSearch(region, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(

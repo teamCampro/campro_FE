@@ -8,19 +8,46 @@ import {
   Button,
   ErrorMessage,
 } from '@/components/index';
-import { FieldValues } from 'react-hook-form';
 import {
   emailValidate,
   passwordValidate,
 } from '../../_constants/inputValidate';
+import { ChangeEvent, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { signin } from '../../_data/sign/signin';
+
+export interface SigninInfo {
+  email: string;
+  password: string;
+}
 
 function LoginForm() {
+  const [signinInfo, setSigninInfo] = useState({
+    email: '',
+    password: '',
+  });
+
+  const signinMutation = useMutation({
+    mutationFn: () => signin(signinInfo),
+  });
+
+  const handleSubmit = () => {
+    signinMutation.mutate();
+  };
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    inputName: string,
+  ) => {
+    setSigninInfo((prev) => ({ ...prev, [inputName]: e.target.value }));
+  };
+
   return (
     <CommonForm
       mode='onBlur'
       className=' flex w-full flex-col gap-48pxr'
       defaultValues={{ email: '', password: '' }}
-      onSubmit={(data: FieldValues) => console.log(data)}
+      onSubmit={() => handleSubmit()}
     >
       <div className='flex w-full flex-col gap-24pxr '>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
@@ -34,6 +61,7 @@ function LoginForm() {
             name='email'
             placeholder='이메일을 입력해주세요'
             rules={emailValidate}
+            onChange={(e) => handleChange(e, 'email')}
           />
           <ErrorMessage name='email' />
         </InputContainer>
@@ -49,6 +77,7 @@ function LoginForm() {
             name='password'
             placeholder='비밀번호를 입력해주세요'
             rules={passwordValidate}
+            onChange={(e) => handleChange(e, 'password')}
           />
           <ErrorMessage name='password' />
         </InputContainer>

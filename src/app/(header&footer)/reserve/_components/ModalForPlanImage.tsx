@@ -31,13 +31,14 @@ function ModalForPlanImage({ onClose }: Props) {
               배치도
             </span>
           </div>
-
-          <Image
-            width={767}
-            height={480}
-            alt='배치도 이미지'
-            src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
-          />
+          <div className='flex-center h-480pxr w-full bg-gray100'>
+            <Image
+              width={767}
+              height={480}
+              alt='배치도 이미지'
+              src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
+            />
+          </div>
         </div>
       </ModalOutside>
     </ModalPortal>
