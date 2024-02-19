@@ -7,8 +7,9 @@ import PaymentAmount from '@/src/app/(header&footer)/reserve/_components/Payment
 import SiteInfo from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 import { useState } from 'react';
 import CancleReserverModal from './CancleReserverModal';
+import { ReserveListType } from '@/src/app/_constants/reserveList';
 
-function ReserveInfo() {
+function ReserveInfo({ campList }: { campList: ReserveListType }) {
   const [isClose, setIsClose] = useState(false);
 
   const handleModal = () => {
@@ -20,15 +21,15 @@ function ReserveInfo() {
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
         <h2 className='hidden font-h1-semibold tabletMin:block'>예약 상세</h2>
         <Button.Round
-          custom='!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 !rounded-md'
+          custom={`!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 !rounded-md ${campList.check_state == 2 ? 'hidden' : ''}`}
           onClick={handleModal}
         >
           예약 취소
         </Button.Round>
       </div>
       <div id='profile' className='flex flex-col gap-24pxr'>
-        <SiteInfo size='profile' />
-        <InfoAboutReserve />
+        <SiteInfo size='profile' campList={campList} />
+        <InfoAboutReserve campList={campList} />
         <InfoAboutBookingPerson />
         <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
           <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>

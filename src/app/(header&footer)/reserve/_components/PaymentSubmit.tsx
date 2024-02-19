@@ -24,7 +24,6 @@ function PaymentSubmit({ custom }: { custom: string }) {
     <>
       <Button.Round
         onClick={() => {
-          console.log(reqBody);
           setIsOpenModal(true);
         }}
         size='sm'
