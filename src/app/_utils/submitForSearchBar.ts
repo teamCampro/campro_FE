@@ -14,7 +14,6 @@ export const submitForSearch = (
   if (Array.isArray(data.date) && data.date.length === 2) {
     const locationOrPlace = Key && data[Key];
     const [checkInDate, checkOutDate] = data.date;
-    console.log('확인확인', data.group);
     const checkIn = formatDate(checkInDate);
     const checkOut = formatDate(checkOutDate);
 

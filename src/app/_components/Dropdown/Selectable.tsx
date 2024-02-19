@@ -19,7 +19,7 @@ import {
   setResetAllStandBy,
   setResetStandBy,
 } from '../../_utils/checkStandByState';
-
+import { useRouter } from 'next/navigation';
 interface TypeInfoType {
   id: number;
   type: string;
@@ -63,17 +63,22 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-  const checkList = useAppSelector((state) => state.styleSetting);
+
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+  const checkList = useAppSelector((state) => state.styleSetting);
+  const [currentTypes, setCurrentTypes] = useState('');
+  const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
   const [price, setPrice] = useState({
     startPrice: '',
     endPrice: '',
   });
 
   const textLength = children?.toString().length;
+  const router = useRouter();
+  console.log('현재유알엘', window.location.search);
 
   //dropdown열고&닫기
   const handleOpen = () => {
@@ -101,6 +106,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     };
     if (size !== 'mobile') {
       dispatch(setSelect({ list, types }));
+      setCurrentTypes(types);
+      setIsFinalCheckDone(true);
     } else {
       dispatch(setCheckStandBy({ types, list }));
     }
@@ -113,6 +120,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
       StandByList[types].map((list) => {
         dispatch(setSelect({ list, types }));
       });
+      setCurrentTypes(types);
+      setIsFinalCheckDone(true);
     } else {
       getNewPrice(types);
     }
@@ -147,7 +156,37 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const handleReset = (type: string) => {
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
+    removeAndRedirectUrl(type);
   };
+
+  const redirectUrl = (types: string) => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete(types);
+    const newValues = checkList.select[types].map((el) => el.type).join(',');
+    if (newValues) {
+      params.set(types, newValues);
+    }
+    const newSearch = params.toString();
+    router.push(`/search/?${newSearch}`);
+  };
+
+  const removeAndRedirectUrl = (typeToRemove: string) => {
+    const params = new URLSearchParams(window.location.search);
+    const filteredEntries = Array.from(params.entries()).filter(
+      ([key]) => key !== typeToRemove,
+    );
+    const newParams = new URLSearchParams();
+    filteredEntries.forEach(([key, value]) => newParams.set(key, value));
+    const newSearch = newParams.toString();
+    router.push(`/search/?${newSearch}`);
+  };
+
+  useEffect(() => {
+    if (currentTypes && isFinalCheckDone) {
+      redirectUrl(currentTypes);
+    }
+    setIsFinalCheckDone(false);
+  }, [checkList, currentTypes, isFinalCheckDone]);
 
   return (
     <>
