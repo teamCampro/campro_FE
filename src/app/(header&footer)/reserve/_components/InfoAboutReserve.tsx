@@ -3,9 +3,16 @@
 import { useAppSelector } from '@/hooks/redux';
 import { useSearchParams } from 'next/navigation';
 import getFormattedDate from '@/src/app/_utils/getFormattedDate';
-function InfoAboutReserve() {
+import { ReserveListType } from '@/src/app/_constants/reserveList';
+
+interface InfoAboutReserveType {
+  campList?: ReserveListType;
+}
+
+function InfoAboutReserve({ campList }: InfoAboutReserveType) {
   const reserveInfo = useAppSelector((state) => state.reserveInfo);
   const searchParams = useSearchParams();
+
   return (
     <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
       <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>
