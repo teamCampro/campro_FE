@@ -19,21 +19,26 @@ export const POST = async (req: NextRequest) => {
     let tmpResult: any = rows;
     const exists = tmpResult[0].cnt;
 
-    if (exists === 0) {
-      const hashingPW = await hashedPassword(userData.password);
-      const query2 =
-        'INSERT INTO user_info (email, phone, password, role, nickname) VALUES (?, ?, ?, ?, ?)';
-      await db.execute(query2, [
-        userData.email,
-        userData.phone,
-        hashingPW,
-        userData.role,
-        userData.nickname,
-      ]);
-      db.release();
-      return NextResponse.json({});
+    if (userData.role === 'USER' || userData.role === 'OWNER') {
+      if (exists === 0) {
+        const hashingPW = await hashedPassword(userData.password);
+        const query2 =
+          'INSERT INTO user_info (email, phone, password, role, nickname) VALUES (?, ?, ?, ?, ?)';
+        await db.execute(query2, [
+          userData.email,
+          userData.phone,
+          hashingPW,
+          userData.role,
+          userData.nickname,
+        ]);
+        db.release();
+        return NextResponse.json({});
+      } else {
+        const message = '입력하신 이메일은 이미 존재하는 이메일입니다.';
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
     } else {
-      const message = '입력하신 이메일은 이미 존재하는 이메일입니다.';
+      const message = 'role 입력 오류';
       return NextResponse.json({ error: message }, { status: 500 });
     }
   } catch (error) {

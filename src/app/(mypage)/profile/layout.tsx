@@ -4,6 +4,16 @@ import { LayoutType } from '../../_types';
 import ProfileHeader from './_components/ProfileHeader';
 import SideLists from './_components/SideLists';
 
+async function getData() {
+  const res = await fetch('/data/reserveListMockData.json');
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
 function Layout({ children }: LayoutType) {
   return (
     <div>

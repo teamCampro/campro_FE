@@ -11,13 +11,23 @@ import {
 import usePagination from '@/hooks/usePagination';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import kakaoMarkerGenerator, {
-  CampPlaceType,
-} from '../../_utils/kakaoMarkerGenerator';
+import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
 
+export type CampZoneForSearch = {
+  id: number;
+  name: string;
+  displayAddress: string;
+  address: string;
+  lat: number;
+  lng: number;
+  campImage: string;
+  minimumAmount: number;
+  keyword: string;
+};
+
 interface DataType {
-  result: CampPlaceType[];
+  result: CampZoneForSearch[];
 }
 
 interface SearchParamsType {
@@ -30,9 +40,9 @@ export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<CampPlaceType[]>([]);
+  const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
-  const { location, checkIn, checkOut, group: groupTest } = searchParams;
+
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
 
@@ -57,18 +67,14 @@ function Page({ searchParams }: SearchParamsType) {
   };
 
   useEffect(() => {
+    const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
       const response = await axios.get<DataType>(
-        `data/mapPositionsMockData.json`,
+        `http://localhost:3000/api/camping-zone/list?${queryString}`,
       );
-      const { result } = response.data;
-      const filteredResult =
-        location !== '전체' && checkIn && checkOut && location
-          ? result.filter((item) => item.address.includes(location))
-          : result;
-
-      setCampPlaceData(filteredResult);
-      updateTotalItems(filteredResult.length);
+      /*       console.log('쿼리스트링확인확인', queryString); */
+      setCampPlaceData(response.data.result);
+      updateTotalItems(response.data.result.length);
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,7 +102,7 @@ function Page({ searchParams }: SearchParamsType) {
       <div className='flex-center searchPageOverFlow h-full w-full'>
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : ' grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
+            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : 'grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
@@ -136,7 +142,7 @@ function Page({ searchParams }: SearchParamsType) {
           className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
         >
           <KakaoMap
-            region={location}
+            region={searchParams.location}
             map={map}
             setMap={setKakaoMap}
             mapSize={mapSize}

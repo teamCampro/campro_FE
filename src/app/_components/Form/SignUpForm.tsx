@@ -8,22 +8,60 @@ import {
   Button,
   ErrorMessage,
 } from '@/components/index';
-import { FieldValues } from 'react-hook-form';
 import {
   emailValidate,
   nicknameValidate,
   passwordValidate,
+  phoneValidate,
 } from '../../_constants/inputValidate';
 import SignUpCheckbox from '../checkBox/SignUpCheckBox';
 import BoxChecked from '@/public/svgs/checkbox.svg';
 import BoxEmpty from '@/public/svgs/checkboxEmpty.svg';
+import { useMutation } from '@tanstack/react-query';
+import { ChangeEvent, useState } from 'react';
+import { signup } from '../../_data/sign/signup';
+
+export interface SignupInfo {
+  email: string;
+  phone: string;
+  password: string;
+  role: 'USER' | 'OWNER';
+  nickname: string;
+}
+
 function SignUpForm() {
+  const [signupInfo, setSignupInfo] = useState<SignupInfo>({
+    email: '',
+    phone: '',
+    password: '',
+    role: 'USER',
+    nickname: '',
+  });
+  const signupMutation = useMutation({
+    mutationFn: () => signup(signupInfo),
+  });
+
+  const setRole = (role: 'USER' | 'OWNER') => {
+    setSignupInfo((prev) => ({ ...prev, role }));
+  };
+
+  const handleSubmit = () => {
+    signupMutation.mutate();
+  };
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    inputName: string,
+  ) => {
+    setSignupInfo((prev) => ({ ...prev, [inputName]: e.target.value }));
+  };
+
   return (
     <CommonForm
       className=' flex w-full flex-col gap-48pxr '
       mode='onBlur'
       defaultValues={{ email: '', password: '', passwordCheck: '' }}
-      onSubmit={(data: FieldValues) => console.log(data)}
+      onSubmit={() => handleSubmit()}
     >
       <div className='flex w-full flex-col gap-24pxr'>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
@@ -37,8 +75,24 @@ function SignUpForm() {
             name='email'
             placeholder='이메일을 입력해주세요'
             rules={emailValidate}
+            onChange={(e) => handleChange(e, 'email')}
           />
           <ErrorMessage name='email' />
+        </InputContainer>
+        <InputContainer className='flex w-full flex-col gap-8pxr'>
+          <Label
+            className='flex w-full text-gray400 font-body2-medium'
+            htmlFor='phone'
+          >
+            휴대폰 번호
+          </Label>
+          <CommonInput
+            name='phone'
+            placeholder='휴대폰 번호를 입력해주세요'
+            rules={phoneValidate}
+            onChange={(e) => handleChange(e, 'phone')}
+          />
+          <ErrorMessage name='phone' />
         </InputContainer>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
           <Label
@@ -51,6 +105,7 @@ function SignUpForm() {
             name='nickname'
             placeholder='닉네임을 입력해주세요'
             rules={nicknameValidate}
+            onChange={(e) => handleChange(e, 'nickname')}
           />
           <ErrorMessage name='nickname' />
         </InputContainer>
@@ -66,6 +121,7 @@ function SignUpForm() {
             name='password'
             placeholder='비밀번호를 입력해주세요'
             rules={passwordValidate}
+            onChange={(e) => handleChange(e, 'password')}
           />
           <ErrorMessage name='password' />
         </InputContainer>
@@ -90,6 +146,7 @@ function SignUpForm() {
                 name='user'
                 checkedIcon={<BoxChecked />}
                 uncheckedIcon={<BoxEmpty />}
+                setRole={setRole}
               />
               <Label className='text-white font-body2-medium' htmlFor='user'>
                 이용자
@@ -100,6 +157,7 @@ function SignUpForm() {
                 name='boss'
                 checkedIcon={<BoxChecked />}
                 uncheckedIcon={<BoxEmpty />}
+                setRole={setRole}
               />
               <Label className='text-white font-body2-medium' htmlFor='boss'>
                 사용자
