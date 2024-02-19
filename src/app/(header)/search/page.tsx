@@ -70,7 +70,7 @@ function Page({ searchParams }: SearchParamsType) {
     const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
       const response = await axios.get<DataType>(
-        `http://localhost:3000/api/camping-zone/list?${queryString}`,
+        `camping-zone/list?${queryString}`,
       );
       /*       console.log('쿼리스트링확인확인', queryString); */
       setCampPlaceData(response.data.result);
