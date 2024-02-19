@@ -9,7 +9,7 @@ import CampPlaceItem from './CampPlaceItem';
 type CampZone = {
   id: number;
   name: string;
-  address: string;
+  displayAddress: string;
   campImage: string;
   minimumAmount: number;
   keyword: string;

@@ -1,20 +1,11 @@
 'use client';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import CampPlaceList from './CampPlaceList';
 
-export interface CampPlaceMockData {
-  id: number;
-  placeName: string;
-  price: number;
-  address: string;
-  imgUrl: string;
-}
+import CampPlaceList from './CampPlaceList';
 
 type CampZone = {
   id: number;
   name: string;
-  address: string;
+  displayAddress: string;
   campImage: string;
   minimumAmount: number;
   keyword: string;
@@ -26,13 +17,6 @@ interface CampZoneData {
     popularList: CampZone[];
     recentList: CampZone[];
   };
-}
-
-export interface CampPlaceRawData {
-  id: number;
-  type: string;
-  result: CampPlaceMockData[];
-  data: CampZone[];
 }
 
 function CampPlaceSection({ data }: { data: CampZoneData }) {

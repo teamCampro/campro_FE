@@ -17,7 +17,7 @@ import KakaoMap from './_components/KakaoMap';
 export type CampZoneForSearch = {
   id: number;
   name: string;
-  address: string;
+  displayAddress: string;
   lat: number;
   lng: number;
   campImage: string;

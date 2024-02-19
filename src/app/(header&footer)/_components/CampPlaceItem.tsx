@@ -9,7 +9,7 @@ import { numberFormatter } from '../../_utils/numberFormatter';
 type CampZone = {
   id: number;
   name: string;
-  address: string;
+  displayAddress: string;
   campImage: string;
   minimumAmount: number;
   keyword: string;
@@ -22,6 +22,7 @@ interface Props {
 }
 
 function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
+  console.log(campPlace);
   const searchParams = useSearchParams();
   const responsiveClasses = isResponsive
     ? ''
@@ -77,7 +78,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
             {campPlace.name}
           </span>
           <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
-            {campPlace.address}
+            {campPlace.displayAddress}
           </span>
         </div>
         <div className='flex flex-col gap-8pxr'>
