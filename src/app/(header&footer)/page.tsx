@@ -5,7 +5,20 @@ interface SearchParamsType {
     [key: string]: string;
   };
 }
-function Page({ searchParams }: SearchParamsType) {
+
+async function Page({ searchParams }: SearchParamsType) {
+  const getCampList = async () => {
+    const response = await fetch(
+      `http://localhost:3000/api/camping-zone/main-list`,
+      {
+        cache: 'no-store',
+      },
+    );
+    return response.json();
+  };
+
+  const Data = await getCampList();
+
   return (
     <div>
       <Hero searchParams={searchParams} />
@@ -14,7 +27,7 @@ function Page({ searchParams }: SearchParamsType) {
           <CategoryList />
         </div>
         <div className='wide:flex-center pb-48pxr pt-64pxr'>
-          <CampPlaceSection />
+          <CampPlaceSection data={Data} />
         </div>
       </div>
     </div>

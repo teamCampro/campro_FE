@@ -4,14 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { formatDate } from '../../_utils/formatDate';
-import { CampPlaceMockData } from './CampPlaceSection';
+import { numberFormatter } from '../../_utils/numberFormatter';
 
+type CampZone = {
+  id: number;
+  name: string;
+  displayAddress: string;
+  campImage: string;
+  minimumAmount: number;
+  keyword: string;
+  lat?: string;
+  lng?: string;
+};
 interface Props {
-  campPlace: CampPlaceMockData;
+  campPlace: CampZone;
   isResponsive?: boolean;
 }
 
 function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
+  console.log(campPlace);
   const searchParams = useSearchParams();
   const responsiveClasses = isResponsive
     ? ''
@@ -49,8 +60,8 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               width: '100%',
               height: 'auto',
             }}
-            className={`rounded-3xl ${aspectClasses} hover:brightness-[0.7]`}
-            src={campPlace.imgUrl}
+            className={`rounded-3xl ${aspectClasses} aspect-340/220 hover:brightness-[0.7]`}
+            src={campPlace.campImage}
             alt='캠핑장 이미지'
           />
         </Link>
@@ -64,25 +75,30 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
           <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold mobile:font-caption1-semibold'>
-            {campPlace.placeName}
+            {campPlace.name}
           </span>
           <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
-            {campPlace.address}
+            {campPlace.displayAddress}
           </span>
         </div>
         <div className='flex flex-col gap-8pxr'>
           <div>
             <span className='text-gray800 font-title1-bold mobile:font-title3-bold'>
-              ₩{campPlace.price.toLocaleString()}
+              ₩{numberFormatter(String(campPlace.minimumAmount))}
             </span>
             <span className='text-20pxr text-gray800 font-title1 mobile:font-title3-medium'>
               원 부터
             </span>
           </div>
           <div className='flex gap-10pxr'>
-            <Chip>힐링/휴식</Chip>
+            {campPlace.keyword
+              ? [...campPlace.keyword.split(',')]
+                  .slice(0, 2)
+                  .map((item, index) => <Chip key={index}>{item}</Chip>)
+              : null}
+            {/* <Chip>힐링/휴식</Chip>
             <Chip>자연</Chip>
-            <Chip>숲</Chip>
+            <Chip>숲</Chip> */}
           </div>
         </div>
       </div>

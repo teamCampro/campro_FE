@@ -12,9 +12,11 @@ function Page() {
         </Link>
         <div className='flex w-full max-w-400pxr flex-col items-center justify-center  gap-24pxr'>
           <SignUpForm />
-          <p className='flex w-full items-center justify-center text-[#DFDFDF] font-body2-medium'>
-            이미 이메일이있으신가요?
-          </p>
+          <Link href='/signin'>
+            <p className='flex w-full items-center justify-center text-[#DFDFDF] font-body2-medium'>
+              이미 이메일이있으신가요?
+            </p>
+          </Link>
         </div>
       </div>
     </div>
