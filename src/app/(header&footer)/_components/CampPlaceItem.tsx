@@ -3,9 +3,7 @@ import { IconColoredHeart } from '@/public/svgs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-
 import { formatDate } from '../../_utils/formatDate';
-
 import { CampPlaceMockData } from './CampPlaceSection';
 
 interface Props {
