@@ -62,7 +62,6 @@ function KakaoMap({
 
   useEffect(() => {
     if (!map) return;
-    map.relayout();
 
     if (!campPlaceData) return;
 
@@ -104,6 +103,7 @@ function KakaoMap({
 
   useEffect(() => {
     if (!map) return;
+
     map.relayout();
   }, [mapSize, map]);
 
