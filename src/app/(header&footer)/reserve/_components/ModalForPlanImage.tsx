@@ -14,7 +14,7 @@ interface Props {
 function ModalForPlanImage({ onClose, planImage }: Props) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
-  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   return planImage && !isMobile ? (
     <ModalPortal>
       <ModalOutside
