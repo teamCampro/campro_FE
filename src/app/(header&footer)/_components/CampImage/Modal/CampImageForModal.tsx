@@ -8,9 +8,11 @@ import ModalAboutHeader from './ModalAboutHeader';
 function CampImageForModal({
   campImages,
   onClose,
+  title,
 }: {
   campImages: CampImageData[];
   onClose: () => void;
+  title: string;
 }) {
   const [mainImage, setMainImage] = useState<string>(campImages[0].imgUrl);
 
@@ -20,7 +22,7 @@ function CampImageForModal({
 
   return (
     <div className='flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
-      <ModalAboutHeader onClose={onClose} />
+      <ModalAboutHeader onClose={onClose} title={title} />
       <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
         <div className=' flex-center w-full'>
           {mainImage && (

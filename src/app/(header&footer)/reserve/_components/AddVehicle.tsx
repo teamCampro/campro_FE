@@ -2,22 +2,26 @@
 
 import Delete from '@/public/svgs/deleteVehicle.svg';
 import { IconPlusNon } from '@/public/svgs';
-import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { addVehicle, deleteVehicle } from '@/src/app/_slices/vehicleNumber';
+import { CommonForm, CommonInput, ErrorMessage } from '@/components/index';
+import { FieldValues } from 'react-hook-form';
+import { vehicleNumberValidate } from '@/src/app/_constants/inputValidate';
 
 function AddVehicle() {
-  const [vehicleNumber, setVehicleNumber] = useState('');
   const dispatch = useAppDispatch();
   const vehicleInfos = useAppSelector((state) => state.vehicleNumber);
 
   const handleAdd = (info: string) => {
     dispatch(addVehicle(info));
-    setVehicleNumber('');
   };
 
   const handleDelete = (info: string) => {
     dispatch(deleteVehicle(info));
+  };
+
+  const onSubmit = (data: FieldValues) => {
+    handleAdd(data.carNumber);
   };
 
   return (
@@ -45,19 +49,22 @@ function AddVehicle() {
             </button>
           </div>
         ))}
+      <CommonForm
+        onSubmit={onSubmit}
+        className='flex w-full  gap-12pxr'
+        mode='onBlur'
+      >
+        <div className='flex w-full max-w-334pxr flex-col gap-2pxr'>
+          <CommonInput
+            name='carNumber'
+            placeholder='차량 번호를 입력해주세요'
+            className='h-56pxr w-full max-w-334pxr rounded-lg border-none bg-gray100 p-16pxr '
+            rules={vehicleNumberValidate}
+          />
 
-      <div className='flex  w-full gap-12pxr'>
-        <input
-          value={vehicleNumber}
-          onChange={(e) => setVehicleNumber(e.target.value)}
-          name='carNumber'
-          placeholder='차량 번호를 입력해주세요'
-          className='h-56pxr w-full max-w-334pxr rounded-lg border-none bg-gray100 p-16pxr'
-        />
-        <button
-          onClick={() => handleAdd(vehicleNumber)}
-          className='flex-center flex h-56pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'
-        >
+          <ErrorMessage name='carNumber' />
+        </div>
+        <button className='flex-center flex h-56pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'>
           <div className='flex-center  w-20pxr'>
             <IconPlusNon
               fill='#949494'
@@ -70,7 +77,7 @@ function AddVehicle() {
             등록
           </p>
         </button>
-      </div>
+      </CommonForm>
     </div>
   );
 }
