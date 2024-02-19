@@ -106,7 +106,12 @@ function SiteInfo({ size, campList }: SiteInfoType) {
           </li>
         </ul>
       </div>
-      {isOpenModal && <ModalForPlanImage onClose={closeModal} />}
+      {isOpenModal && (
+        <ModalForPlanImage
+          onClose={closeModal}
+          planImage={[{ id: 0, imgUrl: campList.site.planImage }]}
+        />
+      )}
     </>
   );
 }
