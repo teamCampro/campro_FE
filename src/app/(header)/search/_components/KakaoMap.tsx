@@ -62,6 +62,7 @@ function KakaoMap({
 
   useEffect(() => {
     if (!map) return;
+    map.relayout();
 
     if (!campPlaceData) return;
 
@@ -100,12 +101,6 @@ function KakaoMap({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegion, campPlaceData, mapSize, map]);
-
-  useEffect(() => {
-    if (!map) return;
-
-    map.relayout();
-  }, [mapSize, map]);
 
   return (
     <div ref={mapRef} className='h-full w-full'>
