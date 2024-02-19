@@ -38,3 +38,6 @@ next-env.d.ts
 .eslintcache
 
 .env
+
+# local env files
+.env*
