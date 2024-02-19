@@ -9,7 +9,7 @@ import {
   SortDropdown,
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
-import axios from 'axios';
+import { axiosInstance } from '../../_utils/axiosInstance';
 import { useEffect, useState } from 'react';
 import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
@@ -69,7 +69,7 @@ function Page({ searchParams }: SearchParamsType) {
   useEffect(() => {
     const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
-      const response = await axios.get<DataType>(
+      const response = await axiosInstance.get<DataType>(
         `camping-zone/list?${queryString}`,
       );
       /*       console.log('쿼리스트링확인확인', queryString); */
