@@ -20,6 +20,8 @@ interface CampZoneData {
 }
 
 function CampPlaceSection({ data }: { data: CampZoneData }) {
+  console.log(data);
+  if (!data) return;
   const popularList = data.result.popularList;
   const recommendList = data.result.recommendList;
   const recentList = data.result.recentList;

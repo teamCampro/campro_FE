@@ -79,6 +79,9 @@ function ReserveList(/* { reserveList }: { reserveList: ReserveListType[] } */) 
             />
           );
         })}
+        {/* {Array.from({ length: 6 }, (s, i) => {
+          return <ReserveItem key={i} />;
+        })} */}
       </div>
     </>
   );
