@@ -30,7 +30,11 @@ function ModalAboutCampImage({ onClose, campImages }: Props) {
         onClose={onClose}
         custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
       >
-        <ModalForMobileCampImg onClose={onClose} campImages={campImages} />
+        <ModalForMobileCampImg
+          onClose={onClose}
+          campImages={campImages}
+          title='전체 사진'
+        />
       </ModalOutside>
     </ModalPortal>
   );
