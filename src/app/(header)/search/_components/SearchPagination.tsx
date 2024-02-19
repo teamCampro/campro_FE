@@ -57,7 +57,6 @@ function SearchPagination({ currentPage, totalItems, onUpdatePage }: Props) {
       </button>
       <div className='flex-center'>
         {pages.map((page, index) => {
-          console.log(page);
           return (
             <Fragment key={index}>
               {page === pages.length && islastHellip() ? (
