@@ -78,7 +78,6 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   const textLength = children?.toString().length;
   const router = useRouter();
-  console.log('현재유알엘', window.location.search);
 
   //dropdown열고&닫기
   const handleOpen = () => {
