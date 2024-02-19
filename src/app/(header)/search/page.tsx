@@ -42,6 +42,7 @@ function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
+  const [prevMarkers, setPrevMarkers] = useState<kakao.maps.Marker[]>([]);
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -66,11 +67,17 @@ function Page({ searchParams }: SearchParamsType) {
     setMapSize(size);
   };
 
+  const handlePrevMarker = (marker: kakao.maps.Marker[]) => {
+    setPrevMarkers((prevMarker) => [...prevMarker, ...marker]);
+  };
+
   useEffect(() => {
     const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
       const response = await axiosInstance.get<DataType>(
-        `camping-zone/list?${queryString}`,
+        searchParams.location === '전체'
+          ? 'camping-zone/list'
+          : `camping-zone/list?${queryString}`,
       );
       /*       console.log('쿼리스트링확인확인', queryString); */
       setCampPlaceData(response.data.result);
@@ -82,8 +89,14 @@ function Page({ searchParams }: SearchParamsType) {
 
   useEffect(() => {
     if (map && campPlaceData) {
-      kakaoMarkerGenerator({ map, campPlaceData });
+      kakaoMarkerGenerator({
+        map,
+        campPlaceData,
+        prevMarkers,
+        handlePrevMarker,
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
 
   return (
