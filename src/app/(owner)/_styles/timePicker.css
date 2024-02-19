@@ -1,5 +1,4 @@
 .react-datepicker__header {
-  display: none;
 }
 .react-datepicker__time-container,
 .react-datepicker__time-box,
@@ -8,6 +7,7 @@
 }
 
 .react-datepicker {
+  position: relative;
   border: 0.125rem solid #dfdfdf;
   border-radius: 1rem;
   overflow: hidden;
@@ -24,4 +24,9 @@
 
 .react-datepicker__time-list-item--selected {
   background-color: black !important;
+}
+
+.react-datepicker__navigation {
+  position: absolute !important;
+  right: 222px !important;
 }

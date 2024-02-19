@@ -6,6 +6,7 @@ const OWNER_REGISTRATION_ROUTES = {
     'information',
     'amenities',
     'operating-period',
+    'reservation-guide',
     'location',
     'second-step',
     'upload-images',

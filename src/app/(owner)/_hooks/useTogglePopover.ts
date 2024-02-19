@@ -7,6 +7,7 @@ function useTogglePopover() {
   const [groundType, setGroundType] = useState<GroundType>('');
   const [date, setDate] = useState<Date | null>(new Date());
   const [formmatedDate, setFormmatedDate] = useState<string>('');
+  const [formmatedFullDate, setFormmatedFullDate] = useState<string>('');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const handleClickPopover = () => {
@@ -17,8 +18,19 @@ function useTogglePopover() {
     if (date !== null) {
       const extractedDate =
         date.getHours() + ':' + String(date.getMinutes()).padStart(2, '0');
+      const extreactedFullDate =
+        date.getFullYear() +
+        '.' +
+        String(date.getMonth() + 1).padStart(2, '0') +
+        '.' +
+        String(date.getDate()).padStart(2, '0') +
+        ` ` +
+        date.getHours() +
+        ':' +
+        String(date.getMinutes()).padStart(2, '0');
       setDate(date);
       setFormmatedDate(extractedDate);
+      setFormmatedFullDate(extreactedFullDate);
       handleClickPopover();
     }
   };
@@ -41,6 +53,7 @@ function useTogglePopover() {
     setPopoverOpen,
     groundType,
     handleChangeGroundType,
+    formmatedFullDate,
   };
 }
 
