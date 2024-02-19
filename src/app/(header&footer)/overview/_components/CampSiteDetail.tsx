@@ -20,7 +20,7 @@ interface CampSiteDetailProps {
 function CampSiteDetail({ onClose, site, handleReserve }: CampSiteDetailProps) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
-      <div className='tablet flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:max-h-none mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
+      <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:max-h-none mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
         <div className='flex gap-16pxr'>
           <button type='button' onClick={onClose}>
             <IconClose fill='#949494' />

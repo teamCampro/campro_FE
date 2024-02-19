@@ -142,13 +142,12 @@ function Page({ searchParams, params }: SearchParamsType) {
       const data = await res.json();
       setCampingZone(data[params.id - 1]);
     };
+
     getCamp();
   }, [params.id]);
 
   const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
 
-  const FOOTER_ID = 'footer';
-  const TARGET_SECTION_ID = '4';
   const IMAGE_SECTION_ID = 'image';
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -167,7 +166,6 @@ function Page({ searchParams, params }: SearchParamsType) {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio;
             newActiveSection = id;
-            console.log(newActiveSection);
           }
         });
 
