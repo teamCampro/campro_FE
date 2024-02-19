@@ -17,7 +17,7 @@ export const GET = async (req: NextRequest) => {
     const userId = 1;
 
     let query =
-      'SELECT id, name, display_address as displayAddress, lat, lng, camp_image as campImage, 40000 as minimumAmount, keyword FROM camping_zone WHERE 1 = 1';
+      'SELECT id, name,  address, display_address as displayAddress, lat, lng, camp_image as campImage, 40000 as minimumAmount, keyword FROM camping_zone WHERE 1 = 1';
 
     if (location) {
       query += ` AND address LIKE '%${location}%'`;

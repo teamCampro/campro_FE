@@ -18,6 +18,7 @@ export type CampZoneForSearch = {
   id: number;
   name: string;
   displayAddress: string;
+  address: string;
   lat: number;
   lng: number;
   campImage: string;
