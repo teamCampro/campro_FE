@@ -3,7 +3,7 @@ import createMapPosition from './createMapPosition';
 import createMarkerImage from './createMarkerImage';
 import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
-
+import { CampZoneForSearch } from '../(header)/search/page';
 interface LocationType {
   lat: number;
   lng: number;
@@ -20,7 +20,7 @@ export interface CampPlaceType {
 
 interface Props {
   map: kakao.maps.Map;
-  campPlaceData: CampPlaceType[];
+  campPlaceData: CampZoneForSearch[];
 }
 
 function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
