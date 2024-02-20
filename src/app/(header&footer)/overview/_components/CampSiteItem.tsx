@@ -36,7 +36,10 @@ function CampSiteItem({
     },
     { text: `성인 ${maxPeople}룸`, icon: <IconTwoPeople /> },
     { text: parkingGuide.split(' ').join(''), icon: <IconCar /> },
-    { text: petYn ? '애완 동반' : '', icon: <IconPet /> },
+    {
+      text: petYn ? '애완 동반' : '',
+      icon: <IconPet className='fill-gray500' />,
+    },
     { text: `최소 ${min_nights}박`, icon: <IconTime /> },
   ];
   return (

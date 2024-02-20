@@ -33,7 +33,7 @@ function MiniMapContainer({ address, name, tour }: MiniMapContainerProps) {
   return (
     <>
       <button
-        className='flex text-second100 tabletMiddleMin:hidden'
+        className='flex-center !leading-none text-second100 tabletMiddleMin:hidden'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>

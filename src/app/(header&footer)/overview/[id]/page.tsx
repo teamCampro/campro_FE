@@ -82,7 +82,6 @@ interface SearchParamsType {
 function Page({ searchParams, params }: SearchParamsType) {
   const [isSticky, setIsSticky] = useState(false);
   const campImageRef = useRef<HTMLDivElement>(null);
-  const [showSiteButton, setShowSiteButton] = useState(true);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampingZone>();
 
@@ -125,7 +124,7 @@ function Page({ searchParams, params }: SearchParamsType) {
       {
         root: mainRef.current,
         rootMargin: '-94px 0px 0px 0px',
-        threshold: [0.2, 0.4, 0.5, 1.0],
+        threshold: [0.2, 0.5, 1.0],
       },
     );
     if (campImageRef.current) {
@@ -156,7 +155,6 @@ function Page({ searchParams, params }: SearchParamsType) {
   } = campingZone;
   const [detail] = campingZoneDetail;
   const imageUrls = JSON.parse(detail.imgUrls);
-  console.log(imageUrls);
   return (
     <>
       <div className='m-auto w-full max-w-1360pxr'>
@@ -168,14 +166,10 @@ function Page({ searchParams, params }: SearchParamsType) {
         <SectionRef sectionRef={setDivRef} id='image'>
           <CampImage imgUrls={imageUrls} />
         </SectionRef>
-        <AnchorMenu
-          isSticky={isSticky}
-          selectedMenu={activeSection}
-          showSiteButton={showSiteButton}
-        />
+        <AnchorMenu isSticky={isSticky} selectedMenu={activeSection} />
         <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
           <aside
-            className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-20pxr mobile:w-fit mobile359:right-16pxr tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
+            className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} mobile359:right-mopxr sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-23pxr mobile:w-fit tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
           >
             <MiniMapContainer {...detail} />
           </aside>

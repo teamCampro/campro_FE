@@ -29,7 +29,6 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
       .filter((item): item is FacilityItem => item !== null)
       .sort((a, b) => a.order - b.order);
   };
-  console.log(facilitiesArray);
 
   return (
     <section className='flex scroll-mt-168pxr flex-col gap-16pxr'>

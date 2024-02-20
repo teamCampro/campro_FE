@@ -60,7 +60,7 @@ const FACILITIES = {
     order: 7,
   },
   애견동반: {
-    icon: <IconPet />,
+    icon: <IconPet className='fill-gray100' />,
     order: 8,
   },
   침대: {

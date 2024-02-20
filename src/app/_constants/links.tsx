@@ -1,4 +1,12 @@
-import { IconGlamping, IconTent } from '@/public/svgs';
+import {
+  IconCampingCar,
+  IconCampnic,
+  IconChabak,
+  IconGlamping,
+  IconKidsCamping,
+  IconPet,
+  IconTent,
+} from '@/public/svgs';
 import { formatDate } from '../_utils/formatDate';
 
 function createQueryString(text: string) {
@@ -27,31 +35,31 @@ const LINKS = [
     id: 4,
     href: `/search?${createQueryString('오토캠핑')}`,
     text: '오토캠핑',
-    icon: <IconGlamping />,
+    icon: <IconCampingCar />,
   },
   {
     id: 5,
     href: `/search?${createQueryString('캠프닉')}`,
     text: '캠프닉',
-    icon: <IconGlamping />,
+    icon: <IconCampnic />,
   },
   {
     id: 6,
     href: `/search?${createQueryString('키즈 캠핑')}`,
     text: '키즈 캠핑',
-    icon: <IconGlamping />,
+    icon: <IconKidsCamping />,
   },
   {
     id: 7,
     href: `/search?${createQueryString('애견캠핑')}`,
     text: '애견캠핑',
-    icon: <IconGlamping />,
+    icon: <IconPet className='fill-black' />,
   },
   {
     id: 8,
     href: `/search?${createQueryString('차박')}`,
     text: '차박',
-    icon: <IconGlamping />,
+    icon: <IconChabak />,
   },
 ];
 
