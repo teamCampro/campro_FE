@@ -1,5 +1,5 @@
 'use client';
-import React, { FocusEvent, useRef } from 'react';
+import React, { FocusEvent, useEffect, useRef } from 'react';
 import OwnerTitle from '../../_components/OwnerTitle';
 import OwnerImageUploader from '../../_components/OwnerImageUploader';
 import OwnerInput from '../../_components/OwnerInput/OwnerInput';
@@ -44,6 +44,15 @@ function SiteRegistrationPage() {
     isPopoverOpen: isGroundTypePopoverOpen,
     setPopoverOpen: setGroundTypePopoverOpen,
   } = useTogglePopover();
+
+  useEffect(() => {
+    const childElement = document.querySelector('.react-datepicker');
+    console.log(childElement);
+    if (childElement) {
+      const parentElement = childElement.parentNode as HTMLDivElement;
+      parentElement.style.width = '100%';
+    }
+  }, [isCheckInPopoverOpen, isCheckOutPopoverOpen]);
 
   const handleFloorTypeBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
     if (!groundTypeRef.current) return;
@@ -194,7 +203,7 @@ function SiteRegistrationPage() {
                     handleClickPopover={handleClickCheckInPopover}
                   />
                   {isCheckInPopoverOpen && (
-                    <div className='absolute right-0pxr top-80pxr z-50'>
+                    <div className='absolute right-0pxr top-80pxr z-50 w-full'>
                       <DatePicker
                         inline
                         ref={checkInRef}
@@ -228,7 +237,7 @@ function SiteRegistrationPage() {
                     handleClickPopover={handleClickCheckOutPopover}
                   />
                   {isCheckOutPopoverOpen && (
-                    <div className='absolute right-0pxr top-80pxr z-50'>
+                    <div className='absolute right-0pxr top-80pxr z-50 w-full'>
                       <DatePicker
                         ref={checkOutRef}
                         inline

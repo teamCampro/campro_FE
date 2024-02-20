@@ -2,8 +2,8 @@ import React, { FocusEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
 
 interface Props {
   inputType?: HTMLInputTypeAttribute;
-  type?: 'default' | 'small';
-  value?: string;
+  type?: 'default' | 'small' | 'flexible';
+  value?: string | number;
   placeholder?: string;
   unit?: string;
   inputName?: string;
@@ -27,15 +27,25 @@ function OwnerInput({
   onChange,
   children,
 }: Props) {
-  const isSmallType = type === 'small';
-  const widthClassName = isSmallType ? 'w-230pxr' : 'w-500pxr';
+  const widthClassName = () => {
+    switch (type) {
+      case 'default':
+        return 'w-500pxr';
+
+      case 'small':
+        return 'w-230pxr';
+
+      case 'flexible':
+        return 'w-full';
+    }
+  };
 
   return (
-    <div className={`flex flex-col gap-7pxr ${widthClassName}`}>
+    <div className={`flex flex-col gap-7pxr ${widthClassName()}`}>
       <label className='text-20pxr font-semibold leading-8' htmlFor={inputName}>
         {inputName}
       </label>
-      <div className='relative'>
+      <div className='relative w-full'>
         <input
           type={inputType}
           id={inputName}
