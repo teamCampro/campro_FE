@@ -14,8 +14,12 @@ function Page() {
         <div className='flex w-full max-w-400pxr flex-col items-center justify-center '>
           <LoginForm />
           <div className=' mt-24pxr flex w-full justify-around text-gray300 font-body2-medium'>
-            <span>회원가입</span>
-            <span>아이디/비밀번호 찾기</span>
+            <Link href={'/signup'}>
+              <span>회원가입</span>
+            </Link>
+            <Link href={'#none'}>
+              <span>아이디/비밀번호 찾기</span>
+            </Link>
           </div>
           <div className='flex-center mb-50pxr mt-50pxr flex w-full gap-16pxr '>
             <div className='h-0pxr  w-full border border-b-white'></div>

@@ -114,6 +114,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   //pc&tablet 선택 확정
   const handleFinalCheck = (types: string) => {
+    console.log(types);
     dispatch(setReset(types));
     if (types !== 'prices') {
       StandByList[types].map((list) => {
@@ -228,7 +229,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             </ul>
             <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:m-auto mobile:hidden mobile:max-w-400pxr mobile:px-20pxr'>
               <div
-                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                 onClick={() => handleReset(typeInfo.name)}
               >
                 초기화
@@ -236,7 +237,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
               </div>
               <Button.Round
                 size='sm'
-                custom='w-174pxr h-56pxr'
+                custom={`w-174pxr h-56pxr ${StandByList[typeInfo.name].length > 0 ? '' : 'hover:!bg-gray300 hover:!text-gray500'}`}
+                disabled={StandByList[typeInfo.name].length > 0 ? false : true}
                 onClick={() => handleFinalCheck(typeInfo.name)}
               >
                 적용

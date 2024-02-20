@@ -11,7 +11,7 @@ interface Props {
 
 const toastOptions: ToastOptions = {
   position: 'top-center',
-  autoClose: 3000,
+  autoClose: 500,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
