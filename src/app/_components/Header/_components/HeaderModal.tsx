@@ -4,16 +4,39 @@ import { ModalOutside, ModalPortal } from '../..';
 import { IconArrowRightNon, IconPeople } from '@/public/svgs';
 import { USER_OPTIONS } from './HeaderDropdown';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface HeaderModalType {
-  handleClick: () => void;
+  handleModal: () => void;
+  profile: (
+    | {
+        id: number;
+        list: string;
+        link: string;
+        isDone: boolean;
+      }
+    | {
+        id: number;
+        list: string;
+        isDone: boolean;
+        link?: undefined;
+      }
+  )[];
+  handleClick: (id: number) => void;
 }
 
-function HeaderModal({ handleClick }: HeaderModalType) {
+function HeaderModal({ handleModal, profile, handleClick }: HeaderModalType) {
+  const pathName = usePathname();
+  const isPath = (link: string) => {
+    return pathName.split('/')[2]
+      ? link.includes(pathName.split('/')[2])
+      : link === '/profile';
+  };
+
   return (
     <ModalPortal>
       <ModalOutside
-        onClose={handleClick}
+        onClose={handleModal}
         custom='fixed flex-center justify-end !left-0pxr top-0pxr z-[1000] overflow-hidden bg-black-50'
       >
         <section className='h-screen w-242pxr bg-white'>
@@ -29,11 +52,13 @@ function HeaderModal({ handleClick }: HeaderModalType) {
             <h2 className='text-black font-body2-bold'>홍길동님</h2>
           </div>
           <ul className='flex flex-col gap-24pxr px-24pxr py-12pxr'>
-            {USER_OPTIONS.map((option) => {
+            {profile.map((option) => {
               return option.link ? (
-                <li key={option.id}>
+                <li key={option.id} onClick={() => handleClick(option.id)}>
                   <Link href={option.link} className='flex justify-between'>
-                    <h3 className='text-gray500 font-body1-bold'>
+                    <h3
+                      className={`${option.isDone || isPath(option.link) ? 'text-black' : 'text-gray500 '} font-body1-bold`}
+                    >
                       {option.list}
                     </h3>
                     <IconArrowRightNon
@@ -46,8 +71,11 @@ function HeaderModal({ handleClick }: HeaderModalType) {
                 <li
                   key={option.id}
                   className='flex cursor-pointer justify-between'
+                  onClick={() => handleClick(option.id)}
                 >
-                  <h3 className='text-gray500 font-body1-bold'>
+                  <h3
+                    className={`${option.isDone ? 'text-black' : 'text-gray500 '} font-body1-bold`}
+                  >
                     {option.list}
                   </h3>
                   <IconArrowRightNon fill='#949494' className='text-gray500' />

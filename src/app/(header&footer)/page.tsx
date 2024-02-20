@@ -10,7 +10,6 @@ interface SearchParamsType {
 
 async function Page({ searchParams }: SearchParamsType) {
   const data = await getMainCampList();
-  console.log(data);
   return (
     <div>
       <Hero searchParams={searchParams} />

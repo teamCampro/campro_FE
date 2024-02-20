@@ -105,7 +105,7 @@ function SearchFilter() {
                 </div>
                 <div className='flex-center justify-between gap-16pxr border-t border-b-white  mobile:border-0'>
                   <div
-                    className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                    className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                     onClick={handleReset}
                   >
                     초기화
@@ -115,6 +115,7 @@ function SearchFilter() {
                     size='sm'
                     custom='mobileMin:!w-174pxr !h-56pxr mobileMiddle:!w-214pxr mobileMiddle:w-full'
                     onClick={handleFinalCheck}
+                    disabled={selectArray.length > 0 ? false : true}
                   >
                     적용
                   </Button.Round>

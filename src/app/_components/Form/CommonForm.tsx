@@ -25,7 +25,6 @@ function CommonForm({
   //   e.stopPropagation();
   //   onSubmit(data);
   // };
-
   return (
     <FormProvider {...methods}>
       <form
