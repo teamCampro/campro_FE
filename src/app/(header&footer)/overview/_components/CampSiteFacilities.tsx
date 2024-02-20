@@ -1,5 +1,6 @@
-import { IconNavigationDown, IconNavigationUp, IconTent } from '@/public/svgs';
-import { useState } from 'react';
+import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
+import FACILITIES from '@/src/app/_constants/facilities';
+import { ReactElement, useState } from 'react';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionTitle from './SectionTitle';
@@ -7,10 +8,29 @@ import SectionTitle from './SectionTitle';
 interface CampSiteFacilitiesProps {
   facilities: string;
 }
+interface FacilityItem {
+  text: string;
+  icon: ReactElement;
+  order: number;
+}
 
 function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
-  const facilitiesArray = facilities.split(',');
   const [isOpen, setIsOpen] = useState(false);
+  const facilitiesArray = facilities.split(',');
+  const getIconsAndTextsByOrder = (
+    facilitiesArray: string[],
+  ): FacilityItem[] => {
+    return facilitiesArray
+      .map((text): FacilityItem | null =>
+        FACILITIES[text.trim() as keyof typeof FACILITIES]
+          ? { text, ...FACILITIES[text.trim() as keyof typeof FACILITIES] }
+          : null,
+      )
+      .filter((item): item is FacilityItem => item !== null)
+      .sort((a, b) => a.order - b.order);
+  };
+  console.log(facilitiesArray);
+
   return (
     <section className='flex scroll-mt-168pxr flex-col gap-16pxr'>
       <SectionTitle>시설/환경</SectionTitle>
@@ -27,20 +47,19 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
               }}
               id='category-swiper'
             >
-              {facilitiesArray.map((facility, i) => (
+              {getIconsAndTextsByOrder(facilitiesArray).map((facility, i) => (
                 <SwiperSlide
-                  key={facility}
+                  key={facility.text}
                   id='category-slide'
                   className={`shadow-test !w-126pxr rounded-xl mobile:!flex mobile:!w-auto mobile:justify-center mobile:shadow-none tablet:!w-114pxr ${i > 7 && !isOpen ? 'mobile:!hidden' : 'mobile:!flex'}`}
                 >
                   <li className='h-full w-auto mobile:w-48pxr'>
                     <div className='flex-center h-134pxr w-126pxr flex-col gap-16pxr rounded-xl bg-white mobile:h-68pxr mobile:w-48pxr mobile:shadow-none tablet:w-114pxr'>
-                      <IconTent
-                        className='h-28pxr w-28pxr fill-black mobile:h-24pxr mobile:w-24pxr'
-                        viewBox='0 0 24 24'
-                      />
+                      <div className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'>
+                        {facility.icon}
+                      </div>
                       <div className='text-nowrap text-gray800 font-body2-semibold mobile:font-caption1-medium'>
-                        {facility}
+                        {facility.text}
                       </div>
                     </div>
                   </li>
@@ -50,7 +69,7 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
           </ul>
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className='mobile:flex-center hidden gap-3pxr'
+            className={`${facilitiesArray.length > 8 && 'mobile:flex-center gap-3pxr'} hidden `}
           >
             {isOpen ? '접기' : '전체'}
             {isOpen ? <IconNavigationUp /> : <IconNavigationDown />}

@@ -28,9 +28,7 @@ function CampSiteBasicInfo({
       { text: '아늑해요', count: 369 },
     ],
   };
-  console.log(keyword);
   const keywords = keyword.split(',').filter(Boolean);
-  console.log(keywords);
   return (
     <article className='flex flex-col gap-24pxr'>
       <div className='flex flex-col gap-12pxr'>
