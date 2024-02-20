@@ -114,8 +114,11 @@ function SearchBarForOverview({
             {isRenderedButton && (
               <HookFormButton
                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr '
-              />
+                size='sm'
+                custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none   mobile:w-full !h-56pxr  tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr`}
+              >
+                검색
+              </HookFormButton>
             )}
           </CommonForm>
         </div>

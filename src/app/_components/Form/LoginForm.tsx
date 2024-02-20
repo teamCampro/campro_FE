@@ -84,7 +84,7 @@ function LoginForm() {
         </InputContainer>
       </div>
       <HookFormButton
-        custom='flex w-full bg-primary100 font-title3-bold text-white'
+        custom='flex w-full  bg-primary100 font-title3-bold text-white'
         size='md'
       >
         로그인

@@ -1,3 +1,5 @@
+'use client';
+
 import { IconArrowLeftNon } from '@/public/svgs';
 import { useRouter } from 'next/navigation';
 function HeaderContent() {
