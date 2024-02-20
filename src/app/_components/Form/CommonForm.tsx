@@ -8,8 +8,9 @@ interface CommonFormProps {
   children: ReactNode;
   onSubmit: SubmitHandler<FieldValues>;
   className?: string;
-  mode?: 'onChange' | 'onBlur' | 'onSubmit';
+  mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'all';
   defaultValues?: FieldValues;
+  reset?: boolean;
 }
 
 function CommonForm({
@@ -18,6 +19,7 @@ function CommonForm({
   className,
   mode = 'onBlur',
   defaultValues = {},
+  reset,
 }: CommonFormProps) {
   const methods = useForm({ mode, defaultValues });
 
@@ -25,7 +27,6 @@ function CommonForm({
   //   e.stopPropagation();
   //   onSubmit(data);
   // };
-
   return (
     <FormProvider {...methods}>
       <form
@@ -34,6 +35,9 @@ function CommonForm({
           e.stopPropagation();
           e.preventDefault();
           methods.handleSubmit(onSubmit)(e);
+          if (reset) {
+            methods.reset(defaultValues);
+          }
         }}
       >
         {children}

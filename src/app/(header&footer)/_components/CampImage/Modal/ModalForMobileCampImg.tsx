@@ -25,7 +25,7 @@ function ModalForMobileCampImg({
                     key={imgUrl + i}
                     className='flex min-h-138pxr w-full min-w-138pxr cursor-pointer object-cover object-center hover:brightness-[0.7]'
                     src={imgUrl}
-                    alt={`${imgUrl}`}
+                    alt={`${imgUrl}`} // TODO: 알트 수정 필요
                   />
                 ),
             )}

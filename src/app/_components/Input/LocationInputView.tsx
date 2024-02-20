@@ -27,7 +27,6 @@ function LocationInputView({
 }: Props): JSX.Element {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
-
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;

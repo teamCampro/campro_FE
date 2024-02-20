@@ -18,7 +18,7 @@ function CampImageForDesktop({ imgUrls }: { imgUrls: string[] }) {
             <div className='flex w-full'>
               {imgUrls[0] && imgUrls[0] !== '' && (
                 <Image
-                  className='flex w-full cursor-pointer object-cover hover:brightness-[0.7]'
+                  className='flex w-full cursor-pointer object-cover transition-all  hover:brightness-[0.7]'
                   width={580}
                   height={380}
                   src={imgUrls[0]}
