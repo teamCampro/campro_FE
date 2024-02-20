@@ -22,7 +22,6 @@ interface Props {
 }
 
 function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
-  console.log(campPlace);
   const searchParams = useSearchParams();
   const responsiveClasses = isResponsive
     ? ''
