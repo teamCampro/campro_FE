@@ -2,19 +2,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { CampImageData } from '../index';
 import ModalAboutHeader from './ModalAboutHeader';
 
 function CampImageForModal({
-  campImages,
+  imgUrls,
   onClose,
   title,
 }: {
-  campImages: CampImageData[];
+  imgUrls: string[];
   onClose: () => void;
   title: string;
 }) {
-  const [mainImage, setMainImage] = useState<string>(campImages[0].imgUrl);
+  const [mainImage, setMainImage] = useState<string>(imgUrls[0]);
 
   const handleClickImage = (img: string) => {
     setMainImage(img);
@@ -42,16 +41,16 @@ function CampImageForModal({
           className='!flex w-full items-start !gap-12pxr  bg-white !p-16pxr'
           slidesPerView='auto'
         >
-          {campImages.slice(0, Number(campImages.length)).map(
-            (item, i) =>
-              item.imgUrl && (
-                <SwiperSlide key={item.id}>
+          {imgUrls.slice(0, Number(imgUrls.length)).map(
+            (imgUrl, i) =>
+              imgUrl && (
+                <SwiperSlide key={imgUrl}>
                   <Image
-                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
-                    src={item.imgUrl}
+                    className={`${mainImage === imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
+                    src={imgUrl}
                     alt={`camp-image${i}`}
                     fill
-                    onClick={() => handleClickImage(item.imgUrl)}
+                    onClick={() => handleClickImage(imgUrl)}
                   />
                 </SwiperSlide>
               ),

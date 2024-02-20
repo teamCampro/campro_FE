@@ -4,31 +4,39 @@ import { IconCall, IconLocation } from '@/public/svgs';
 import TagList from './TagList';
 
 interface CampSiteBasicInfoProps {
-  types: string[];
+  keyword: string;
   placeName: string;
   address: string;
   tel: string;
   intro: string;
-  tag: {
-    text: string;
-    list: { text: string; count: number }[];
-  };
 }
 
 function CampSiteBasicInfo({
-  types,
+  keyword,
   placeName,
   address,
   tel,
   intro,
-  tag,
 }: CampSiteBasicInfoProps) {
+  const tag = {
+    text: '청결도 만족도가 높은 곳이에요',
+    list: [
+      { text: '깨끗해요', count: 738 },
+      { text: '매너 타임을 잘 지켜요', count: 1995 },
+      { text: '조용해요', count: 1337 },
+      { text: '사장님이 cs를 양보해요', count: 688 },
+      { text: '아늑해요', count: 369 },
+    ],
+  };
+  console.log(keyword);
+  const keywords = keyword.split(',').filter(Boolean);
+  console.log(keywords);
   return (
     <article className='flex flex-col gap-24pxr'>
       <div className='flex flex-col gap-12pxr'>
         <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr tablet:mr-80pxr'>
-          {types.map((type, i) => (
-            <Chip key={type + i}>{type}</Chip>
+          {keywords.map((word, i) => (
+            <Chip key={word + i}>{word}</Chip>
           ))}
         </div>
         <h2 className='font-h2-semibold mobile:font-title3-bold'>

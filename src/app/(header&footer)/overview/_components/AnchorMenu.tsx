@@ -24,7 +24,7 @@ function AnchorMenu({
   const hideButton = [FOOTER_ID, TARGET_SECTION_ID].includes(selectedMenu);
   const scrollToSection = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
+  console.log(hideButton, selectedMenu);
   return (
     <div
       className={`${isSticky ? 'block ' : 'hidden'} ${hideButton ? 'mobile:hidden' : 'mobile:flex mobile:h-88pxr'} sticky top-94pxr z-[25] flex h-64pxr w-full max-w-1360pxr items-center justify-between border-b border-t border-gray200 bg-white mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
