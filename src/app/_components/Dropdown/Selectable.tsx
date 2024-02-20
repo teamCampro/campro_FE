@@ -43,7 +43,7 @@ interface LengthType {
 export interface CheckStandByListType {
   [key: string]: InitialStateType[];
   stay: InitialStateType[];
-  home: InitialStateType[];
+  facilities: InitialStateType[];
   theme: InitialStateType[];
   trip: InitialStateType[];
 }
