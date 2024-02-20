@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosInstance } from '../../_utils/axiosInstance';
 
 export const getMainCampList = async () => {

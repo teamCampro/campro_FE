@@ -10,7 +10,6 @@ import {
 import { useRouter } from 'next/navigation';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
-import { useAppDispatch } from '@/hooks/redux';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
 interface SearchParamsType {
   searchParams: {

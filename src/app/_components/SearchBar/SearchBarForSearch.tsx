@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
-import { submitForSearch } from '../../_utils/submitForSearchBar';
+import { submitForSearchAndFilter } from '../../_utils/submitForSearchBar';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { formatDate } from '../../_utils/formatDate';
 import ModalForSearchBar from '../Modal/ModalForSearchBar';
@@ -35,7 +35,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const onSubmit = (data: FieldValues) => {
     const campType =
       searchParams.campType === 'undefined' ? undefined : searchParams.campType;
-    submitForSearch(data, router, 'search', 'location', campType);
+    submitForSearchAndFilter(data, router, 'search', 'location', campType);
   };
 
   const renderSearchBarForMobile = () => {
