@@ -63,16 +63,26 @@ function KakaoMap({
   useEffect(() => {
     if (!map) return;
     map.relayout();
+
     if (!campPlaceData) return;
 
     if (campPlaceData.length !== 0) {
-      map.setCenter(
-        new kakao.maps.LatLng(
-          isRegion ? 36.7140176374004 : Number(campPlaceData[0].lng),
-          isRegion ? 128.10524294165157 : Number(campPlaceData[0].lat),
-        ),
-      );
-      map.setLevel(isRegion ? 13 : 8);
+      const campPlaceDataLength = campPlaceData.length;
+      let sumLng = 0;
+      let sumLat = 0;
+
+      campPlaceData.forEach((place) => {
+        const { lng, lat } = place;
+
+        sumLng += Number(lng);
+        sumLat += Number(lat);
+      });
+
+      const averageLng = sumLng / campPlaceDataLength;
+      const averageLat = sumLat / campPlaceDataLength;
+      console.log(averageLng, averageLat);
+      map.setCenter(new kakao.maps.LatLng(averageLng, averageLat));
+      map.setLevel(isRegion ? 13 : 12);
 
       return;
     }
@@ -91,11 +101,6 @@ function KakaoMap({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegion, campPlaceData, mapSize, map]);
-
-  useEffect(() => {
-    if (!map) return;
-    map.relayout();
-  }, [mapSize, map]);
 
   return (
     <div ref={mapRef} className='h-full w-full'>

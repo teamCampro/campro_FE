@@ -4,6 +4,7 @@ import createMarkerImage from './createMarkerImage';
 import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
 import { CampZoneForSearch } from '../(header)/search/page';
+
 interface LocationType {
   lat: number;
   lng: number;
@@ -21,10 +22,23 @@ export interface CampPlaceType {
 interface Props {
   map: kakao.maps.Map;
   campPlaceData: CampZoneForSearch[];
+  prevMarkers: kakao.maps.Marker[];
+  handlePrevMarker: (marker: kakao.maps.Marker[]) => void;
 }
 
-function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
-  if (map) {
+function kakaoMarkerGenerator({
+  map,
+  campPlaceData,
+  prevMarkers,
+  handlePrevMarker,
+}: Props) {
+  prevMarkers.forEach((marker) => {
+    marker.setMap(null);
+  });
+
+  handlePrevMarker([]);
+
+  if (map && campPlaceData && campPlaceData.length > 0) {
     const positions = createMapPosition(campPlaceData);
 
     let selectedMarker: kakao.maps.Marker | null = null;
@@ -42,13 +56,15 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
           size: { width: 19, height: 25 },
         });
 
-        const marker = new window.kakao.maps.Marker({
+        const marker = new kakao.maps.Marker({
           map: map,
           position: positions[i].latlng,
           title: positions[i].title,
           image: markerImage,
           clickable: true,
         });
+
+        handlePrevMarker([marker]);
 
         const overlayElement = createOverlayElement(positions[i]);
 
@@ -75,11 +91,14 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
 
           if (isSelectedMarkerChanged) {
             !!selectedMarker && selectedMarker.setImage(markerImage);
+            !!selectedMarker && selectedMarker.setZIndex(0);
             marker.setImage(clickedMarkerImage);
           }
-
           selectedMarker = marker;
           selectedOverlay = overlay;
+          if (selectedMarker) {
+            selectedMarker.setZIndex(1);
+          }
         });
 
         kakao.maps.event.addListener(map, 'click', () => {
