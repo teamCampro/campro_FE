@@ -1037,5 +1037,3 @@ const createMockData = () => {
 
   return mockData;
 };
-
-console.log(JSON.stringify(createMockData()));
