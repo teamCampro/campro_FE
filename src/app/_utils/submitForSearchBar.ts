@@ -9,7 +9,7 @@ export const submitForSearch = (
   router: AppRouterInstance,
   pathName: string,
   Key?: string,
-  campType?: string,
+  stay?: string,
 ) => {
   if (Array.isArray(data.date) && data.date.length === 2) {
     const locationOrPlace = Key && data[Key];
@@ -26,8 +26,8 @@ export const submitForSearch = (
         : '';
     queryString += `checkIn=${checkIn}&checkOut=${checkOut}&adult=${groupObject.adult}&child=${groupObject.child}&pet=${groupObject.pet}`;
 
-    if (campType) {
-      queryString += campType ? `&campType=${campType}` : '';
+    if (stay) {
+      queryString += stay ? `&stay =${stay}` : '';
     }
 
     router.push(`/${pathName}?${queryString}`);
@@ -39,7 +39,7 @@ export const submitForSearchAndFilter = (
   router: AppRouterInstance,
   pathName: string,
   Key?: string,
-  campType?: string,
+  stay?: string,
 ) => {
   if (Array.isArray(data.date) && data.date.length === 2) {
     const locationOrPlace = Key && data[Key];
@@ -51,7 +51,7 @@ export const submitForSearchAndFilter = (
       typeof data.group === 'object' ? data.group : JSON.parse(data.group);
 
     const params = new URLSearchParams(window.location.search);
-    console.log('서치서치서치', params);
+
     if (Key && locationOrPlace) {
       params.set(Key, locationOrPlace);
     }
@@ -61,8 +61,8 @@ export const submitForSearchAndFilter = (
     params.set('child', groupObject.child.toString());
     params.set('pet', groupObject.pet.toString());
 
-    if (campType) {
-      params.set('campType', campType);
+    if (stay) {
+      params.set('stay ', stay);
     }
 
     const queryString = params.toString();

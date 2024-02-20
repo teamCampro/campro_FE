@@ -33,9 +33,9 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
   const onSubmit = (data: FieldValues) => {
-    const campType =
-      searchParams.campType === 'undefined' ? undefined : searchParams.campType;
-    submitForSearchAndFilter(data, router, 'search', 'location', campType);
+    const stay =
+      searchParams.stay === 'undefined' ? undefined : searchParams.stay;
+    submitForSearchAndFilter(data, router, 'search', 'location', stay);
   };
 
   const renderSearchBarForMobile = () => {

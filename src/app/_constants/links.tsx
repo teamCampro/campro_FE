@@ -2,7 +2,7 @@ import { IconGlamping, IconTent } from '@/public/svgs';
 import { formatDate } from '../_utils/formatDate';
 
 function createQueryString(text: string) {
-  return `location=전체&checkIn=${formatDate(new Date())}&checkOut=${formatDate(new Date(Date.now() + 1000 * 60 * 60 * 24))}&adult=2&child=0&pet=0&campType=${encodeURIComponent(text)}`;
+  return `location=전체&checkIn=${formatDate(new Date())}&checkOut=${formatDate(new Date(Date.now() + 1000 * 60 * 60 * 24))}&adult=2&child=0&pet=0&stay =${encodeURIComponent(text)}`;
 }
 const LINKS = [
   {
