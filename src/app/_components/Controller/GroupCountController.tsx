@@ -28,6 +28,21 @@ function GroupCountController({ name, groupCount, onRenderButton }: Props) {
       control={control}
       defaultValue={groupCount}
       name={name}
+      rules={{
+        required: true,
+        validate: (value) => {
+          const parsedValue =
+            typeof value === 'string' ? JSON.parse(value) : value;
+          if (
+            parsedValue.adult === 0 &&
+            parsedValue.child === 0 &&
+            parsedValue.pet === 0
+          ) {
+            return false;
+          }
+          return true;
+        },
+      }}
       render={({ field }) => (
         <GroupCountInputView field={field} onRenderButton={onRenderButton} />
       )}

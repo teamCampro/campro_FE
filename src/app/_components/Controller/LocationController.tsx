@@ -42,6 +42,7 @@ function LocationController({
       control={control}
       name={name}
       defaultValue={defaultValue ? defaultValue : ''}
+      rules={{ required: true }}
       render={({ field }) => (
         <LocationInputView
           field={field}

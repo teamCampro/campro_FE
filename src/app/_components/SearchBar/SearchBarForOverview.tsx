@@ -15,6 +15,7 @@ import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
 import PlaceController from '../Controller/PlaceController';
+import HookFormButton from '../Button/HookFormButton';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -111,14 +112,10 @@ function SearchBarForOverview({
               />
             </div>
             {isRenderedButton && (
-              <Button.Round
-                type='submit'
-                size='sm'
-                onClick={(e: MouseEvent) => e.stopPropagation()}
-                custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none tablet:max-w-134pxr desktop:max-w-134pxr `}
-              >
-                검색
-              </Button.Round>
+              <HookFormButton
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr '
+              />
             )}
           </CommonForm>
         </div>

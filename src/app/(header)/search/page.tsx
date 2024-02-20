@@ -79,7 +79,7 @@ function Page({ searchParams }: SearchParamsType) {
           ? 'camping-zone/list'
           : `camping-zone/list?${queryString}`,
       );
-      /*       console.log('쿼리스트링확인확인', queryString); */
+
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
     };
