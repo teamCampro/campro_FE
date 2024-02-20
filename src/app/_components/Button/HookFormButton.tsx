@@ -12,15 +12,16 @@ function HookFormButton({ size, custom = '', children, onClick }: Props) {
   const {
     formState: { isDirty, isValid },
   } = useFormContext();
-
+  const isDisabled = isValid && isDirty;
   return (
     <Button.Round
       type='submit'
       size={size}
       custom={custom}
-      disabled={!isValid && isDirty}
+      disabled={!isDisabled}
       onClick={onClick}
     >
+      {children}
       {children}
     </Button.Round>
   );

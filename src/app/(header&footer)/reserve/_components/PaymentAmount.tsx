@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-function PaymentAmount() {
+function PaymentAmount({ sitePrice }: { sitePrice: number }) {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const isProfile = pathName.includes('reserveList');
@@ -36,7 +36,7 @@ function PaymentAmount() {
     dispatch(
       setTotalPayment(
         totalPaymentForOptions +
-          45000 *
+          sitePrice *
             dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut')),
       ),
     );
@@ -57,13 +57,13 @@ function PaymentAmount() {
           <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
             {searchParams.get('checkIn') && searchParams.get('checkOut')
               ? (
-                  45000 *
+                  sitePrice *
                   dateDiff(
                     searchParams.get('checkIn'),
                     searchParams.get('checkOut'),
                   )
                 ).toLocaleString()
-              : '45,000'}
+              : sitePrice.toLocaleString()}
             원
           </span>
         </li>
