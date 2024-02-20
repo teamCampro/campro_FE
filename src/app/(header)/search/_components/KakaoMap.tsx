@@ -42,12 +42,12 @@ function KakaoMap({
   const dropShadow = isZoomButtonShadow
     ? 'drop-shadow-[0px_10px_10px_rgba(0,0,0,0.25)]'
     : '';
-  console.log(mapRef);
+
   useEffect(() => {
     /* if (typeof window === 'undefined' || !window.kakao) return; */
     kakao.maps.load(() => {
       if (!mapRef.current) return;
-      console.log('여기는 useEffect');
+
       const options = {
         center: new kakao.maps.LatLng(36.7140176374004, 128.10524294165157),
         level: 13,
@@ -63,24 +63,32 @@ function KakaoMap({
   useEffect(() => {
     if (!map) return;
     map.relayout();
+
     if (!campPlaceData) return;
-    console.log(campPlaceData[0]);
+
     if (campPlaceData.length !== 0) {
-      console.log(isRegion);
-      console.log('여기는 어디?');
-      map.setCenter(
-        new kakao.maps.LatLng(
-          isRegion ? 36.7140176374004 : Number(campPlaceData[0].lng),
-          isRegion ? 128.10524294165157 : Number(campPlaceData[0].lat),
-        ),
-      );
-      map.setLevel(isRegion ? 13 : 8);
+      const campPlaceDataLength = campPlaceData.length;
+      let sumLng = 0;
+      let sumLat = 0;
+
+      campPlaceData.forEach((place) => {
+        const { lng, lat } = place;
+
+        sumLng += Number(lng);
+        sumLat += Number(lat);
+      });
+
+      const averageLng = sumLng / campPlaceDataLength;
+      const averageLat = sumLat / campPlaceDataLength;
+      console.log(averageLng, averageLat);
+      map.setCenter(new kakao.maps.LatLng(averageLng, averageLat));
+      map.setLevel(isRegion ? 13 : 12);
 
       return;
     }
 
     const geocoder = new kakao.maps.services.Geocoder();
-    console.log('geocoder 통과');
+
     if (!region) return;
     geocoder.addressSearch(region, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
@@ -93,11 +101,6 @@ function KakaoMap({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegion, campPlaceData, mapSize, map]);
-
-  useEffect(() => {
-    if (!map) return;
-    map.relayout();
-  }, [mapSize, map]);
 
   return (
     <div ref={mapRef} className='h-full w-full'>
