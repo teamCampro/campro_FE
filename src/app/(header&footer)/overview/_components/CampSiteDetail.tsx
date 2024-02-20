@@ -6,47 +6,21 @@ import { IconClose } from '@/public/svgs';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CampingZone } from '../[id]/page';
+import { Site } from '../[id]/page';
 import SiteInfoList from './SiteInfoList';
 
-const siteInfos = [
-  {
-    title: '기본 정보',
-    infos: [
-      '입실 12:00 - 퇴실 11:00',
-      '2인 기준 (인원 추가 불가)',
-      '최소 1박',
-      '반려동물 숙박 불가',
-      '최소 1대 (텐트옆 주차)',
-      '트레일러 진입 가능',
-      '캠핑카 진입 불가',
-    ],
-  },
-  {
-    title: '시설/환경',
-    infos: ['공용 화장실', '공용 샤워실', '무료 와이파이', '매점', '바베큐'],
-  },
-];
-
-const images = [
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D',
-];
-
-function CampSiteDetail({
-  onClose,
-  campingZone,
-}: {
+interface CampSiteDetailProps {
   onClose: () => void;
-  campingZone: CampingZone;
-}) {
+  site: Site;
+  handleReserve: (siteId: number) => void;
+}
+
+function CampSiteDetail({ onClose, site, handleReserve }: CampSiteDetailProps) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
-      <div className='tablet flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:max-h-none mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
+      <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:max-h-none mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
         <div className='flex gap-16pxr'>
           <button type='button' onClick={onClose}>
             <IconClose fill='#949494' />
@@ -58,13 +32,14 @@ function CampSiteDetail({
         <div className='flex flex-col gap-32pxr mobile:gap-20pxr'>
           <div className='flex flex-col gap-28pxr mobile:gap-20pxr'>
             <Swiper
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
               id='detail-swiper'
-              modules={[Pagination]}
+              modules={[Pagination, Autoplay]}
               slidesPerView={1}
               pagination={true}
               className='h-full w-full'
             >
-              {campingZone.images.map((image, i) => (
+              {site.images.map((image, i) => (
                 <SwiperSlide key={image + i}>
                   <Image
                     width={320}
@@ -84,19 +59,19 @@ function CampSiteDetail({
               <div className='flex flex-col gap-24pxr mobile:gap-20pxr'>
                 <div className='flex flex-col gap-2pxr'>
                   <div className='flex gap-4pxr'>
-                    <Chip>{campingZone.type}</Chip>
+                    <Chip>{site.type}</Chip>
                   </div>
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
-                    {campingZone.name}
+                    {site.name}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
-                    {campingZone.area}
+                    {site.area}
                   </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
                   <span className='text-gray500 font-body2-medium'>
-                    {campingZone.size} ({campingZone.floor})
+                    {site.size} ({site.floor})
                   </span>
                 </div>
               </div>
@@ -104,23 +79,24 @@ function CampSiteDetail({
                 <SiteInfoList
                   title='기본 정보'
                   infos={[
-                    `입실 ${campingZone.checkInTime} - 퇴실 ${campingZone.checkOutTime}`,
-                    `${campingZone.baseGuests} 기준 (${campingZone.extraGuests ? '인원 추가 가능' : '인원 추가 불가'})`,
-                    `최소 ${campingZone.minStay}`,
-                    `반려동물 숙박 ${campingZone.allowPet ? '가능' : '불가'}`,
-                    `최소 ${campingZone.parkingLimit}대`,
-                    `트레일러 진입 ${campingZone.allowTrailer ? '가능' : '불가'}`,
-                    `캠핑카 진입 ${campingZone.allowCampingCar ? '가능' : '불가'}`,
+                    `입실 ${site.checkInTime} - 퇴실 ${site.checkOutTime}`,
+                    `${site.baseGuests} 기준 (${site.extraGuests ? '인원 추가 가능' : '인원 추가 불가'})`,
+                    `최소 ${site.minStay}`,
+                    `반려동물 숙박 ${site.allowPet ? '가능' : '불가'}`,
+                    `최소 ${site.parkingLimit}대`,
+                    `트레일러 진입 ${site.allowTrailer ? '가능' : '불가'}`,
+                    `캠핑카 진입 ${site.allowCampingCar ? '가능' : '불가'}`,
                   ]}
                 />
-                <SiteInfoList
-                  title='시설/환경'
-                  infos={campingZone.facilities}
-                />
+                <SiteInfoList title='시설/환경' infos={site.facilities} />
               </div>
             </div>
           </div>
-          <Button.Round size='sm' custom='w-full !h-56pxr'>
+          <Button.Round
+            size='sm'
+            custom='w-full !h-56pxr'
+            onClick={() => handleReserve(site.siteId)}
+          >
             예약하기
           </Button.Round>
         </div>

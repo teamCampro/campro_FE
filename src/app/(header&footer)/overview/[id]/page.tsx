@@ -1,6 +1,11 @@
 'use client';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
+import useRefs from '@/hooks/useRefs';
+import '@/src/app/_styles/toast.css';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CampImage from '../../_components/CampImage';
 import MiniMapContainer from '../../_components/MiniMapContainer';
 import AnchorMenu from '../_components/AnchorMenu';
@@ -11,9 +16,6 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '@/src/app/_styles/toast.css';
 export interface CampSite {
   id: number;
   placeName: string;
@@ -57,7 +59,7 @@ export interface CampSite {
 }
 
 export interface CampingZone {
-  campingZoneId: number;
+  id: number;
   name: string;
   allowPet: boolean;
   minStay: string;
@@ -95,6 +97,9 @@ export interface Site {
   facilities: string[];
   price: number;
   images: string[];
+  baseGuests: string;
+  extraGuests: number;
+  area: string;
 }
 
 export interface Review {
@@ -125,6 +130,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const [showSiteButton, setShowSiteButton] = useState(true);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampSite>();
+
   useEffect(() => {
     const getCamp = async () => {
       const res = await fetch('/data/overviewMockData.json');
@@ -136,26 +142,30 @@ function Page({ searchParams, params }: SearchParamsType) {
       const data = await res.json();
       setCampingZone(data[params.id - 1]);
     };
+
     getCamp();
   }, [params.id]);
-  const sectionRefs = {
-    section1: useRef<HTMLDivElement>(null),
-    section2: useRef<HTMLDivElement>(null),
-    section3: useRef<HTMLDivElement>(null),
-    section4: useRef<HTMLDivElement>(null),
-    section5: useRef<HTMLDivElement>(null),
-    section6: useRef<HTMLDivElement>(null),
-  };
+
+  const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
+
+  const IMAGE_SECTION_ID = 'image';
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         let maxRatio = 0;
         let newActiveSection = activeSection;
+
         entries.forEach((entry) => {
+          const { id } = entry.target;
+          if (id === IMAGE_SECTION_ID) {
+            setIsSticky(!entry.intersectionRatio);
+          }
+
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio;
-            newActiveSection = entry.target.id;
+            newActiveSection = id;
           }
         });
 
@@ -164,82 +174,42 @@ function Page({ searchParams, params }: SearchParamsType) {
         }
       },
       {
-        root: null,
-        rootMargin: '0px',
-        threshold: [0.2, 0.5, 1.0],
+        root: mainRef.current,
+        rootMargin: '-94px 0px 0px 0px',
+        threshold: [0.25, 0.5, 1.0],
       },
     );
-
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      Object.values(sectionRefs).forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection, campingZone]);
-
-  useEffect(() => {
-    const campImage = campImageRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsSticky(!entry.isIntersecting);
-        });
-      },
-      { threshold: [0.1, 0.3], rootMargin: '-98px 0px 0px 0px' },
-    );
-
-    if (campImage) {
-      observer.observe(campImage);
+    if (campImageRef.current) {
+      observer.observe(campImageRef.current);
     }
+    divRefs.forEach((ref) => ref && observer.observe(ref));
 
-    return () => {
-      if (campImage) {
-        observer.unobserve(campImage);
-      }
-    };
-  }, [campingZone]);
-
-  useEffect(() => {
-    const reserveRef = sectionRefs.section4.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setShowSiteButton(!entry.isIntersecting);
-        });
-      },
-      { threshold: [0.3], rootMargin: '50px' },
-    );
-
-    if (reserveRef) {
-      observer.observe(reserveRef);
-    }
-
-    return () => {
-      if (reserveRef) {
-        observer.unobserve(reserveRef);
-      }
-    };
+    return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection]);
-  if (!campingZone) return <div className='animate-spin text-120pxr'>😱</div>;
+  }, [divRefs, activeSection, campingZone]);
+
+  if (!campingZone)
+    return (
+      <div className='custom-height flex-center'>
+        <Image
+          width={140}
+          height={140}
+          src='/gifs/campro_loading.gif'
+          alt='로딩중입니다'
+        />
+      </div>
+    );
   return (
     <>
-      <div className='m-auto w-full max-w-1360pxr scroll-smooth'>
+      <div className='m-auto w-full max-w-1360pxr'>
         <SearchBarForOverview
           searchParams={searchParams}
           placeName={campingZone?.placeName}
           campId={campingZone?.id}
         />
-        <CampImage campImageRef={campImageRef} />
+        <SectionRef sectionRef={setDivRef} id='image'>
+          <CampImage />
+        </SectionRef>
         <AnchorMenu
           isSticky={isSticky}
           selectedMenu={activeSection}
@@ -252,30 +222,33 @@ function Page({ searchParams, params }: SearchParamsType) {
             <MiniMapContainer {...campingZone} />
           </aside>
           <div>
-            <div className='flex flex-col gap-32pxr pb-24pxr mobile:px-20pxr mobile359:px-16pxr'>
-              <SectionRef sectionRef={sectionRefs.section1} id='1'>
-                <CampSiteBasicInfo {...campingZone} />
+            <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
+              <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
+                <SectionRef sectionRef={setDivRef} id='1'>
+                  <CampSiteBasicInfo {...campingZone} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='2'>
+                  <CampSiteFacilities facilities={campingZone.facilities} />
+                </SectionRef>
+              </div>
+              <SectionRef sectionRef={setDivRef} id='3'>
+                <CampSiteMap planImage={campingZone.planImage} />
               </SectionRef>
-              <SectionRef sectionRef={sectionRefs.section2} id='2'>
-                <CampSiteFacilities facilities={campingZone.facilities} />
-              </SectionRef>
-            </div>
-            <SectionRef sectionRef={sectionRefs.section3} id='3'>
-              <CampSiteMap planImage={campingZone.planImage} />
-            </SectionRef>
-            <div className='flex flex-col gap-24pxr pt-24pxr'>
-              <SectionRef sectionRef={sectionRefs.section4} id='4'>
+              <SectionRef sectionRef={setDivRef} id='4'>
                 <ReservationInfo {...campingZone} />
               </SectionRef>
             </div>
-            <SectionRef sectionRef={sectionRefs.section5} id='5'>
-              <UsageGuidelines {...campingZone} />
-            </SectionRef>
-            <SectionRef sectionRef={sectionRefs.section6} id='6'>
-              <CustomerReviews {...campingZone} />
-            </SectionRef>
+            <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
+              <SectionRef sectionRef={setDivRef} id='5'>
+                <UsageGuidelines {...campingZone} />
+              </SectionRef>
+              <SectionRef sectionRef={setDivRef} id='6'>
+                <CustomerReviews {...campingZone} />
+              </SectionRef>
+            </div>
           </div>
         </main>
+        <div ref={setDivRef} id='footer' />
       </div>
       <ToastContainer className='overview-toast' />
     </>
