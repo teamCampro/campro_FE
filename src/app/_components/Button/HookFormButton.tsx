@@ -1,27 +1,27 @@
 'use client';
 import { useFormContext } from 'react-hook-form';
 import Button from '.';
+import { ButtonHTMLAttributes } from 'react';
 
-function HookFormButton({
-  className,
-  onClick,
-}: {
-  className: string;
-  onClick?: (e: React.MouseEvent<Element, MouseEvent>) => void;
-}) {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'sm' | 'md' | 'lg';
+  custom?: string;
+}
+
+function HookFormButton({ size, custom = '', children, onClick }: Props) {
   const {
-    formState: { isValid },
+    formState: { isDirty, isValid },
   } = useFormContext();
-
+  const isDisabled = isValid && isDirty;
   return (
     <Button.Round
       type='submit'
-      size='sm'
-      className={className}
-      disabled={!isValid}
+      size={size}
+      custom={custom}
+      disabled={!isDisabled}
       onClick={onClick}
     >
-      검색
+      {children}
     </Button.Round>
   );
 }

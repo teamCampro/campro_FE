@@ -10,6 +10,7 @@ interface CommonFormProps {
   className?: string;
   mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'all';
   defaultValues?: FieldValues;
+  reset?: boolean;
 }
 
 function CommonForm({
@@ -18,6 +19,7 @@ function CommonForm({
   className,
   mode = 'onBlur',
   defaultValues = {},
+  reset,
 }: CommonFormProps) {
   const methods = useForm({ mode, defaultValues });
 
@@ -34,6 +36,9 @@ function CommonForm({
           e.stopPropagation();
           e.preventDefault();
           methods.handleSubmit(onSubmit)(e);
+          if (reset) {
+            methods.reset(defaultValues);
+          }
         }}
       >
         {children}
