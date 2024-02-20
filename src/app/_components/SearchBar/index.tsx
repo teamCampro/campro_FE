@@ -52,7 +52,12 @@ function SearchBar({ searchParams }: SearchParamsType) {
             />
             <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
-          <HookFormButton className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full ' />
+          <HookFormButton
+            size='sm'
+            custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none `}
+          >
+            검색
+          </HookFormButton>
         </CommonForm>
       </div>
     </>
