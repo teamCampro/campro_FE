@@ -6,7 +6,7 @@ import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
 import { ReserveListType } from '@/src/app/_constants/reserveList';
 
-interface ReserveInfoData {
+export interface ReserveInfoData {
   name: string;
   address: string;
   tel: string;

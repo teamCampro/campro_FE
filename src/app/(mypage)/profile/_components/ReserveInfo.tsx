@@ -28,7 +28,7 @@ function ReserveInfo({ campList }: { campList: ReserveListType }) {
         </Button.Round>
       </div>
       <div id='profile' className='flex flex-col gap-24pxr'>
-        <SiteInfo size='profile' campList={campList} />
+        <SiteInfo size='profile' />
         <InfoAboutReserve campList={campList} />
         <InfoAboutBookingPerson />
         <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
@@ -76,7 +76,7 @@ function ReserveInfo({ campList }: { campList: ReserveListType }) {
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-            <PaymentAmount />
+            <PaymentAmount sitePrice={40000} />
             <div className='flex justify-between text-black font-body2-semibold'>
               <h2>총 결제금액</h2>
               <h2>130,000원</h2>
