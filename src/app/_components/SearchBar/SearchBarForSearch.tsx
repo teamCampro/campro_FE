@@ -29,6 +29,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isTotalInput, setIsTotalInput] = useState(false);
+
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
@@ -76,10 +77,10 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           setIsOpenModal(false);
           setIsTotalInput(false);
         }}
-        custom=' mobile:!items-start  mobile:!top-52pxr mobile:!bg-black-searchBar '
+        custom=' mobile:!items-start  mobile:!top-53pxr mobile:!bg-black-searchBar '
       >
         <CommonForm
-          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
+          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:!left-0pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
           onSubmit={onSubmit}
           mode='onChange'
         >
@@ -100,7 +101,12 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
             />
             <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
-          <HookFormButton className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr ' />
+          <HookFormButton
+            size='sm'
+            custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none   mobile:w-full !h-56pxr  tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr`}
+          >
+            검색
+          </HookFormButton>
         </CommonForm>
       </ModalForSearchBar>
     </>

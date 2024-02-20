@@ -78,7 +78,6 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     if (surveyLists.score !== 0 && surveyLists.selectList.length >= 3) {
       setisNext(true);
     }
-    console.log('후기 작성 완료!!!!');
     /* 여기에 post 보내면 됨!!!!! */
   };
   /* 리셋!! */

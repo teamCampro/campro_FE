@@ -59,7 +59,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               width: '100%',
               height: 'auto',
             }}
-            className={`rounded-3xl ${aspectClasses} aspect-340/220 hover:brightness-[0.7]`}
+            className={`rounded-3xl ${aspectClasses} aspect-340/220 transition-all hover:brightness-[0.7]`}
             src={campPlace.campImage}
             alt='캠핑장 이미지'
           />
