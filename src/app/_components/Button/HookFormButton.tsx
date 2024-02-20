@@ -22,6 +22,7 @@ function HookFormButton({ size, custom = '', children, onClick }: Props) {
       onClick={onClick}
     >
       {children}
+      {children}
     </Button.Round>
   );
 }

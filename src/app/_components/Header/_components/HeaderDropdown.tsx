@@ -36,7 +36,7 @@ function HeaderDropdown() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
-  const login = '민섭쨩쨩';
+  const login = '';
 
   const handleModal = () => {
     if (!isMobile) return;
@@ -49,6 +49,7 @@ function HeaderDropdown() {
 
   const handleClick = (id: number) => {
     dispatch(setProfileState(id));
+    handleModal();
   };
 
   return login ? (
@@ -86,7 +87,13 @@ function HeaderDropdown() {
           })}
         </ul>
       </div>
-      {isClose && <HeaderModal handleClick={handleModal} />}
+      {isClose && (
+        <HeaderModal
+          profile={profile}
+          handleClick={handleClick}
+          handleModal={handleModal}
+        />
+      )}
     </>
   ) : (
     <Link href='/signin'>

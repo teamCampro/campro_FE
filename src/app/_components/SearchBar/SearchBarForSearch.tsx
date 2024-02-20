@@ -29,6 +29,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isTotalInput, setIsTotalInput] = useState(false);
+
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
@@ -76,6 +77,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           setIsOpenModal(false);
           setIsTotalInput(false);
         }}
+        custom=' mobile:!items-start  mobile:!top-53pxr mobile:!bg-black-searchBar '
         custom=' mobile:!items-start  mobile:!top-53pxr mobile:!bg-black-searchBar '
       >
         <CommonForm
