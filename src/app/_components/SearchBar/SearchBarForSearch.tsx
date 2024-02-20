@@ -29,6 +29,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isTotalInput, setIsTotalInput] = useState(false);
+
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
@@ -76,10 +77,10 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
           setIsOpenModal(false);
           setIsTotalInput(false);
         }}
-        custom=' mobile:!items-start  mobile:!top-52pxr mobile:!bg-black-searchBar '
+        custom=' mobile:!items-start  mobile:!top-53pxr mobile:!bg-black-searchBar '
       >
         <CommonForm
-          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
+          className={`left-0pxr flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
           onSubmit={onSubmit}
           mode='onChange'
         >

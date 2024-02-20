@@ -47,7 +47,7 @@ function CampImageForModal({
               item.imgUrl && (
                 <SwiperSlide key={item.id}>
                   <Image
-                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
+                    className={`${mainImage === item.imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover transition-all hover:brightness-[0.7]`}
                     src={item.imgUrl}
                     alt={`camp-image${i}`}
                     fill
