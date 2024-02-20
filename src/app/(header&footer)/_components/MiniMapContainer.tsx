@@ -91,22 +91,30 @@ function MiniMapContainer({ address, placeName }: CampSite) {
             <div className='h-screen w-full bg-white tabletMin:rounded-2xl tabletMiddleMin:h-672pxr tabletMiddleMin:max-w-767pxr tablet1079:h-610pxr tablet1079:max-w-688pxr'>
               <div className='flex-center relative py-16pxr font-title3-semibold tabletMin:font-title1-bold'>
                 <div className='absolute left-20pxr top-1/2 h-26pxr w-26pxr -translate-y-1/2'>
-                  <IconExit
-                    width='100%'
-                    height='100%'
-                    viewBox='0 0 24 24'
-                    fill='#949494'
+                  <button
+                    type='button'
                     onClick={handleClose}
                     className='top-0 absolute hidden tabletMin:inline-block'
-                  />
-                  <IconArrowLeftNon
-                    width='100%'
-                    height='100%'
-                    viewBox='0 0 24 24'
-                    fill='#949494'
+                  >
+                    <IconExit
+                      width='100%'
+                      height='100%'
+                      viewBox='0 0 24 24'
+                      fill='#949494'
+                    />
+                  </button>
+                  <button
+                    type='button'
                     onClick={handleClose}
                     className='top-0 absolute inline-block tabletMin:hidden '
-                  />
+                  >
+                    <IconArrowLeftNon
+                      width='100%'
+                      height='100%'
+                      viewBox='0 0 24 24'
+                      fill='#949494'
+                    />
+                  </button>
                 </div>
                 <h3>{placeName}</h3>
               </div>

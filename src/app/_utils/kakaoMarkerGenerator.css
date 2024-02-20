@@ -27,6 +27,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem 0 1rem;
+
+  overflow: hidden;
 }
 
 .overlayInfoContainer {
@@ -41,6 +43,8 @@
   line-height: 140%;
   letter-spacing: -0.0088rem;
   color: #383838;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .overlayScoreContainer {
