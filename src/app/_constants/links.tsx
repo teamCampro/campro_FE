@@ -9,7 +9,7 @@ const LINKS = [
     id: 1,
     href: `/search?${createQueryString('텐트')}`,
     text: '텐트',
-    icon: <IconTent />,
+    icon: <IconTent className='fill-black' />,
   },
   {
     id: 2,
