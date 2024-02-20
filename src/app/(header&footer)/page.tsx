@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { CampPlaceSection, CategoryList, Header, Hero } from '../_components';
+import { CampPlaceSection, CategoryList, Hero } from '../_components';
 import { getMainCampList } from '../_data/main/campList';
 
 interface SearchParamsType {
@@ -10,6 +9,7 @@ interface SearchParamsType {
 
 async function Page({ searchParams }: SearchParamsType) {
   const data = await getMainCampList();
+
   return (
     <div>
       <Hero searchParams={searchParams} />

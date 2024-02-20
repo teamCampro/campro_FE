@@ -8,7 +8,7 @@ interface CommonFormProps {
   children: ReactNode;
   onSubmit: SubmitHandler<FieldValues>;
   className?: string;
-  mode?: 'onChange' | 'onBlur' | 'onSubmit';
+  mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'all';
   defaultValues?: FieldValues;
 }
 

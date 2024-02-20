@@ -10,8 +10,8 @@ import {
 import { useRouter } from 'next/navigation';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
-import { useAppDispatch } from '@/hooks/redux';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
+import HookFormButton from '../Button/HookFormButton';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -36,6 +36,7 @@ function SearchBar({ searchParams }: SearchParamsType) {
         <CommonForm
           className={`flex w-full justify-between rounded-2xl bg-white   px-28pxr py-32pxr  ${PAGE_TYPE.main}`}
           onSubmit={onSubmit}
+          mode='onChange'
         >
           <div
             className={`flex-center flex w-full flex-row gap-12pxr pb-20pxr mobile:flex-col mobile:px-20pxr mobile:pb-20pxr tablet:flex-row tablet:px-0pxr desktop:pb-0pxr ${INPUT_WRAPPER.main}`}
@@ -51,13 +52,7 @@ function SearchBar({ searchParams }: SearchParamsType) {
             />
             <GroupCountController name='group' groupCount={defaultGroupCount} />
           </div>
-          <Button.Round
-            type='submit'
-            size='sm'
-            custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none `}
-          >
-            검색
-          </Button.Round>
+          <HookFormButton className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full ' />
         </CommonForm>
       </div>
     </>

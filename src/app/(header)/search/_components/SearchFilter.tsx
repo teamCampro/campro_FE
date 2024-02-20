@@ -6,7 +6,7 @@ import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconFilter, IconReset } from '@/public/svgs';
 import { setDetailState } from '@/src/app/_utils/detailState';
 import { isModal } from '@/src/app/_utils/modalState';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapSizeType } from '../page';
 import { setResetAll, setSelect } from '../../../_utils/styleSetting';
 import {
@@ -14,6 +14,7 @@ import {
   setResetAllStandBy,
 } from '../../../_utils/checkStandByState';
 import DetailPanel from './DetailPanel';
+import { useRouter } from 'next/navigation';
 
 function SearchFilter() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -21,13 +22,15 @@ function SearchFilter() {
   const details = useAppSelector((state) => state.detail);
   const checkList = useAppSelector((state) => state.styleSetting);
   const StandByList = useAppSelector((state) => state.checkStandBy);
+  const [currentTypes, setCurrentTypes] = useState<string[] | null>(null);
+  const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
   const dispatch = useAppDispatch();
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-
+  const router = useRouter();
   //pc& tablet 열고 닫기
   const handleDropClick = (id: number) => {
     dispatch(setDetailState(id));
@@ -50,6 +53,7 @@ function SearchFilter() {
         });
       }
     });
+
     setIsDropdownVisible(false);
     dispatch(isModal(false));
   };
@@ -69,6 +73,9 @@ function SearchFilter() {
         });
       }
     });
+    const typeList = details.map((detail) => detail.name);
+    setCurrentTypes(typeList);
+    setIsFinalCheckDone(true);
     setIsDropdownVisible(false);
   };
 
@@ -81,6 +88,26 @@ function SearchFilter() {
       });
     }
   });
+
+  const redirectAllUrl = (types: string[]) => {
+    const params = new URLSearchParams(window.location.search);
+    types.forEach((type) => {
+      params.delete(type);
+      const newValues = checkList.select[type].map((el) => el.type).join(',');
+      if (newValues) {
+        params.set(type, newValues);
+      }
+    });
+    const newSearch = params.toString();
+    router.push(`/search/?${newSearch}`);
+  };
+
+  useEffect(() => {
+    if (currentTypes && isFinalCheckDone) {
+      redirectAllUrl(currentTypes);
+    }
+    setIsFinalCheckDone(false);
+  }, [currentTypes, isFinalCheckDone]);
 
   return (
     <div className='relative w-full'>
