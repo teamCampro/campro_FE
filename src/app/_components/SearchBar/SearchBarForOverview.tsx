@@ -3,19 +3,18 @@
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
-  Button,
   CommonForm,
   DatePickerController,
   GroupCountController,
 } from '@/src/app/_components';
 import { useParams, useRouter } from 'next/navigation';
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
-import PlaceController from '../Controller/PlaceController';
 import HookFormButton from '../Button/HookFormButton';
+import PlaceController from '../Controller/PlaceController';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -96,7 +95,7 @@ function SearchBarForOverview({
             >
               <PlaceController
                 name='place'
-                default={Number(path?.id) === campId ? placeName : ''}
+                default={placeName}
                 onRenderButton={renderButton}
               />
               <DatePickerController
