@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export type OwnerButtonType = 'prev' | 'next' | 'done';
+export type OwnerButtonType = 'prev' | 'next' | 'done' | 'registration';
 
 interface Props {
   type: OwnerButtonType;
@@ -32,6 +32,9 @@ function OwnerNavigateButton({
 
       case 'done':
         return { text: '완료', className: primaryClassName };
+
+      case 'registration':
+        return { text: '등록', className: primaryClassName };
     }
   };
 
@@ -43,6 +46,7 @@ function OwnerNavigateButton({
         whileHover={{ scale: 1.07 }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        className='w-full'
       >
         <button className={`${className} ${custom}`} onClick={onClick}>
           {text}

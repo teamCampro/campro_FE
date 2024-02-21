@@ -1,4 +1,9 @@
-import React, { FocusEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  HTMLInputTypeAttribute,
+  ReactNode,
+} from 'react';
 
 interface Props {
   inputType?: HTMLInputTypeAttribute;
@@ -10,7 +15,7 @@ interface Props {
   readOnly?: boolean;
   onFocus?: () => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   children?: ReactNode;
 }
 
@@ -52,7 +57,7 @@ function OwnerInput({
           className='h-74pxr w-full rounded-[20px] border-2 pl-20pxr pr-40pxr text-18pxr leading-8 focus:border-black focus:outline-none'
           value={value}
           min={0}
-          onChange={onChange}
+          onChange={(e) => onChange(e)}
           onFocus={onFocus}
           onBlur={(e) => {
             if (onBlur) {
