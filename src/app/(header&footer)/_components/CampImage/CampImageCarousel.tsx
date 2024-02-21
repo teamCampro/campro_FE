@@ -4,14 +4,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CampImageData } from '.';
 import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
-function CampImageCarousel({
-  campImages,
-}: {
-  campImages: CampImageData[] | null;
-}) {
+function CampImageCarousel({ imgUrls }: { imgUrls: string[] }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleRenderModal = () => setIsOpenModal(true);
@@ -35,14 +30,14 @@ function CampImageCarousel({
 
   return (
     <>
-      {campImages && (
+      {
         <Swiper {...swiperSettings}>
-          {campImages.slice(0, 5).map((item, i) =>
-            item.imgUrl ? (
-              <SwiperSlide className='flex w-full' key={item.id}>
+          {imgUrls?.slice(0, 5).map((imgUrl, i) =>
+            imgUrl ? (
+              <SwiperSlide className='flex w-full' key={imgUrl + i}>
                 <Image
                   className='flex w-full cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:rounded-none'
-                  src={item.imgUrl}
+                  src={imgUrl}
                   alt={`camp-image${i}`}
                   width={688}
                   height={398}
@@ -52,13 +47,10 @@ function CampImageCarousel({
             ) : null,
           )}
         </Swiper>
-      )}
+      }
 
       {isOpenModal && (
-        <ModalAboutCampImage
-          campImages={campImages}
-          onClose={handleCloseModal}
-        />
+        <ModalAboutCampImage imgUrls={imgUrls} onClose={handleCloseModal} />
       )}
     </>
   );

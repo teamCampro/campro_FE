@@ -15,6 +15,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { signin } from '../../_data/sign/signin';
+import HookFormButton from '../Button/HookFormButton';
 
 export interface SigninInfo {
   email: string;
@@ -82,13 +83,12 @@ function LoginForm() {
           <ErrorMessage name='password' />
         </InputContainer>
       </div>
-      <Button.Round
-        size='md'
-        type='submit'
+      <HookFormButton
         custom='flex w-full  bg-primary100 font-title3-bold text-white'
+        size='md'
       >
         로그인
-      </Button.Round>
+      </HookFormButton>
     </CommonForm>
   );
 }

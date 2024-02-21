@@ -17,14 +17,18 @@ function CategoryList() {
             modules={[FreeMode]}
             freeMode={true}
             enabled={false}
+            className='!box-border max-w-full !p-10pxr'
             breakpoints={{
               768: { enabled: true, slidesPerView: 'auto', spaceBetween: 0 },
-              1199: { slidesPerView: 8, spaceBetween: 16 },
             }}
             id='category-swiper'
           >
             {LINKS.map(({ href, text, icon, id }) => (
-              <SwiperSlide key={text} id='category-slide'>
+              <SwiperSlide
+                key={text}
+                id='category-slide'
+                className={`shadow-test !w-126pxr rounded-xl mobile:!flex mobile:!w-auto mobile:justify-center mobile:shadow-none tablet:!w-114pxr`}
+              >
                 <CategoryItem href={href} text={text} icon={icon} id={id} />
               </SwiperSlide>
             ))}

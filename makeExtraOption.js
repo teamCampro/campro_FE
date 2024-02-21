@@ -828,5 +828,3 @@ const makeOptions = (mapMock) => {
     return { id: mock.id, options: selectedOptions };
   });
 };
-
-console.log(JSON.stringify(makeOptions(mapMock)));

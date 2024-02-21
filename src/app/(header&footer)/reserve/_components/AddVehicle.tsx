@@ -7,6 +7,7 @@ import { addVehicle, deleteVehicle } from '@/src/app/_slices/vehicleNumber';
 import { CommonForm, CommonInput, ErrorMessage } from '@/components/index';
 import { FieldValues } from 'react-hook-form';
 import { vehicleNumberValidate } from '@/src/app/_constants/inputValidate';
+import HookFormButton from '@/components/Button/HookFormButton';
 
 function AddVehicle() {
   const dispatch = useAppDispatch();
@@ -50,9 +51,11 @@ function AddVehicle() {
           </div>
         ))}
       <CommonForm
+        reset
         onSubmit={onSubmit}
         className='flex w-full  gap-12pxr'
         mode='onBlur'
+        defaultValues={{ carNumber: '' }}
       >
         <div className='flex w-full max-w-334pxr flex-col gap-2pxr'>
           <CommonInput
@@ -64,7 +67,7 @@ function AddVehicle() {
 
           <ErrorMessage name='carNumber' />
         </div>
-        <button className='flex-center flex h-56pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'>
+        <HookFormButton custom='!flex-center !flex !w-108pxr !h-56pxr flex-nowrap gap-4pxr !rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'>
           <div className='flex-center  w-20pxr'>
             <IconPlusNon
               fill='#949494'
@@ -76,7 +79,7 @@ function AddVehicle() {
           <p className='flex-center  whitespace-nowrap leading-none font-body2-medium'>
             등록
           </p>
-        </button>
+        </HookFormButton>
       </CommonForm>
     </div>
   );

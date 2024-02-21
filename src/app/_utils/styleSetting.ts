@@ -9,7 +9,7 @@ interface StyleSettingType {
   select: {
     [key: string]: InitialStateType[];
     stay: InitialStateType[];
-    home: InitialStateType[];
+    facilities: InitialStateType[];
     prices: InitialStateType[];
     theme: InitialStateType[];
     trip: InitialStateType[];
@@ -17,7 +17,7 @@ interface StyleSettingType {
 }
 
 const initialState: StyleSettingType = {
-  select: { stay: [], home: [], theme: [], trip: [], prices: [] },
+  select: { stay: [], facilities: [], theme: [], trip: [], prices: [] },
 };
 
 export const styleSettingSlice = createSlice({
@@ -40,7 +40,7 @@ export const styleSettingSlice = createSlice({
       state.select[action.payload.types].push(action.payload.list);
     },
     setResetAll: (state) => {
-      state.select.home = [];
+      state.select.facilities = [];
       state.select.stay = [];
       state.select.theme = [];
       state.select.prices = [];

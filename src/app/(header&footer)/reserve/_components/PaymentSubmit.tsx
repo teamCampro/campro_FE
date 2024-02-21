@@ -1,4 +1,5 @@
-'use cient';
+'use client';
+
 import Button from '@/components/Button';
 import { useAppSelector } from '@/hooks/redux';
 import { useState } from 'react';
@@ -25,7 +26,6 @@ function PaymentSubmit({ custom }: { custom: string }) {
       <Button.Round
         onClick={() => {
           setIsOpenModal(true);
-          console.log(reqBody);
         }}
         size='sm'
         custom={custom}

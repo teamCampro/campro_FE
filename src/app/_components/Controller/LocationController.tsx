@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { LocationInputView } from '@/components/index';
 
@@ -42,6 +42,7 @@ function LocationController({
       control={control}
       name={name}
       defaultValue={defaultValue ? defaultValue : ''}
+      rules={{ required: true }}
       render={({ field }) => (
         <LocationInputView
           field={field}

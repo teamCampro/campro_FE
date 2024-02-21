@@ -3,7 +3,7 @@ import createMapPosition from './createMapPosition';
 import createMarkerImage from './createMarkerImage';
 import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
-import { CampZoneForSearch, SearchParamsType } from '../(header)/search/page';
+import { CampZoneForSearch } from '../(header)/search/page';
 
 interface LocationType {
   lat: number;
