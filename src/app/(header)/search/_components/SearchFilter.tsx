@@ -111,15 +111,13 @@ function SearchFilter() {
 
   return (
     <div className='relative w-full'>
-      {isMobile && (
-        <button
-          type='button'
-          onClick={handleOpen}
-          className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium'
-        >
-          <IconFilter />
-        </button>
-      )}
+      <button
+        type='button'
+        onClick={handleOpen}
+        className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium tabletMin:hidden '
+      >
+        <IconFilter />
+      </button>
       {(!isMobile || isDropdownVisible) && (
         <ModalForMobile
           headerContent='상세 보기'
