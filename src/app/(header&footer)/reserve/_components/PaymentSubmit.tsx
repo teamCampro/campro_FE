@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { useAppSelector } from '@/hooks/redux';
 import { useState } from 'react';
 import ModalForPaymentSubmit from './ModalForPaymentSubmit';
+
 function PaymentSubmit({ custom }: { custom: string }) {
   const isAllChecked = useAppSelector((state) => state.isAllChecked);
   const [isOpenModal, setIsOpenModal] = useState(false);
