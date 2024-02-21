@@ -67,7 +67,7 @@ function AddVehicle() {
 
           <ErrorMessage name='carNumber' custom='mt-4pxr' />
         </div>
-        <HookFormButton custom='!flex-center !flex !w-108pxr !h-56pxr flex-nowrap gap-4pxr !rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'>
+        <HookFormButton custom='!flex-center !w-108pxr !h-56pxr gap-4pxr !rounded-[99px] border border-gray300 disabled:pointer-events-none py-24pxr pl-24pxr pr-32pxr font-body2-medium'>
           <div className='flex-center  w-20pxr'>
             <IconPlusNon
               fill='#949494'
@@ -76,9 +76,9 @@ function AddVehicle() {
               viewBox='0 0 24 24'
             />
           </div>
-          <p className='flex-center  whitespace-nowrap leading-none font-body2-medium'>
+          <span className='flex-center whitespace-nowrap leading-none font-body2-medium'>
             등록
-          </p>
+          </span>
         </HookFormButton>
       </CommonForm>
     </div>

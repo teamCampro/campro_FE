@@ -52,7 +52,11 @@ function SearchPagination({ currentPage, totalItems, onUpdatePage }: Props) {
 
   return (
     <div className='flex-center gap-20pxr pb-59pxr text-gray500'>
-      <button type='button' disabled={currentPage === 1 ? true : false}>
+      <button
+        type='button'
+        className='cursor-pointer'
+        disabled={currentPage === 1 ? true : false}
+      >
         <IconNavigationLeft onClick={() => handleClickPage(currentPage - 1)} />
       </button>
       <div className='flex-center'>
@@ -83,6 +87,7 @@ function SearchPagination({ currentPage, totalItems, onUpdatePage }: Props) {
       </div>
       <button
         type='button'
+        className='cursor-pointer'
         disabled={currentPage === Math.ceil(totalItems / 18) ? true : false}
       >
         <IconNavigationRight onClick={() => handleClickPage(currentPage + 1)} />

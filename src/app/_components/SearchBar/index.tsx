@@ -54,7 +54,7 @@ function SearchBar({ searchParams }: SearchParamsType) {
           </div>
           <HookFormButton
             size='sm'
-            custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none `}
+            custom={`mobile:w-full tablet:w-full disabled:pointer-events-none !h-56pxr mobile:rounded-t-none `}
           >
             검색
           </HookFormButton>
