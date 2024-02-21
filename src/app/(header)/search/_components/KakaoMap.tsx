@@ -80,7 +80,7 @@ function KakaoMap({
 
       const averageLng = sumLng / campPlaceDataLength;
       const averageLat = sumLat / campPlaceDataLength;
-      console.log(averageLng, averageLat);
+
       map.setCenter(
         isRegion
           ? new kakao.maps.LatLng(36.7140176374004, 128.10524294165157)
