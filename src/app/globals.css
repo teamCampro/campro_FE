@@ -296,13 +296,6 @@ body {
   width: 48px;
 }
 
-@media (min-width: 1200px) {
-  #category-slide {
-    width: 126px !important;
-    padding: 0 0 10px 10px !important;
-  }
-}
-
 @media (max-width: 767px) {
   #category-swiper {
     display: contents !important;
@@ -341,13 +334,15 @@ body {
 
 @media (min-width: 768px) {
   #category-slide {
-    width: 114px !important;
-    padding: 0 0 10px 10px !important;
-    margin-right: 14px;
+    /* width: 114px !important; */
+    /* padding: 10px !important; */
+    /* height: 134px !important; */
+    margin-right: 12px;
   }
 
   #category-swiper {
     margin: 0px !important;
+    /* padding: 8px 0px !important; */
   }
 }
 
@@ -372,7 +367,7 @@ body {
 @media (min-width: 1200px) {
   #category-slide {
     width: 126px !important;
-    padding: 0 0 10px 10px !important;
+    margin-right: 16px;
   }
 }
 
@@ -611,4 +606,15 @@ input[id='checkTable']:checked::before {
   .mypage {
     grid-template-columns: minmax(138px, 162px) minmax(138px, 162px);
   }
+}
+
+.shadow-test {
+  box-shadow: 0px 4px 17px 0px rgba(0, 0, 0, 0.07);
+  /* 0px 4px 17px 0px rgba(0, 0, 0, 0.07); */
+}
+
+.facility-icon svg,
+.facility-icon svg path {
+  width: 28px;
+  height: 28px;
 }
