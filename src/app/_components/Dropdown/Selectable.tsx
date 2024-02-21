@@ -114,7 +114,6 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
   //pc&tablet 선택 확정
   const handleFinalCheck = (types: string) => {
-    console.log(types);
     dispatch(setReset(types));
     if (types !== 'prices') {
       StandByList[types].map((list) => {
