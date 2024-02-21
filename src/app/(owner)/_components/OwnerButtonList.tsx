@@ -1,15 +1,18 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Config } from '../_constants/ownerListButtons';
 import { ButtonPageType } from './OwnerButton/OwnerSelectButton';
 import OwnerButton from './OwnerButton';
 import getStorageItems from '../_utils/getStorageItems';
+import { SelectedButtonsType } from '../owner/registration/operating-period/page';
 
 interface Props {
   pageName: ButtonPageType;
   config: Config[];
   buttonType?: 'small';
   isSingleSelection?: boolean;
+  selectedButtons: SelectedButtonsType;
+  onClick: (pageName: ButtonPageType, buttons: string[]) => void;
 }
 
 function OwnerButtonList({
@@ -17,26 +20,27 @@ function OwnerButtonList({
   config,
   buttonType,
   isSingleSelection,
+  selectedButtons,
+  onClick,
 }: Props) {
-  const [selectedButtons, setSelectedButtons] = useState<string[]>([]);
-
   const handleButtonClick = (buttonText: string) => {
     if (isSingleSelection) {
-      setSelectedButtons([buttonText]);
+      onClick(pageName, [buttonText]);
     } else {
-      setSelectedButtons(
-        selectedButtons.includes(buttonText)
-          ? selectedButtons.filter(
+      onClick(
+        pageName,
+        selectedButtons[pageName].includes(buttonText)
+          ? selectedButtons[pageName].filter(
               (selectedButton) => selectedButton !== buttonText,
             )
-          : [...selectedButtons, buttonText],
+          : [...selectedButtons[pageName], buttonText],
       );
     }
   };
 
   useEffect(() => {
     const items = getStorageItems(pageName);
-    setSelectedButtons(items);
+    onClick(pageName, items);
   }, [pageName]);
 
   return (
@@ -47,7 +51,7 @@ function OwnerButtonList({
           key={item.buttonText}
           buttonText={item.buttonText}
           type={buttonType}
-          isSelected={selectedButtons.includes(item.buttonText)}
+          isSelected={selectedButtons[pageName].includes(item.buttonText)}
           onClick={handleButtonClick}
         >
           {item.Image}

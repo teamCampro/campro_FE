@@ -1,7 +1,6 @@
 'use client';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode } from 'react';
 import registrationStorageHandler from '../../_utils/registrationStorageHandler';
-import getStorageItems from '../../_utils/getStorageItems';
 import { motion } from 'framer-motion';
 
 export type ButtonPageType =
