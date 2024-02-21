@@ -1,8 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { toast, ToastOptions } from 'react-toastify';
-import { Slide } from 'react-toastify';
+import { Slide, toast, ToastOptions } from 'react-toastify';
 
 interface Props {
   children: ReactNode;
@@ -36,7 +35,7 @@ function Copy({ children, copyTarget }: Props) {
   return (
     <span
       onClick={handleCopy}
-      className='cursor-pointer !leading-none text-second100 font-body2-semibold'
+      className='cursor-pointer text-nowrap !leading-none text-second100 font-body2-semibold'
     >
       {children}
     </span>
