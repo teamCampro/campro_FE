@@ -65,7 +65,7 @@ function AddVehicle() {
             rules={vehicleNumberValidate}
           />
 
-          <ErrorMessage name='carNumber' />
+          <ErrorMessage name='carNumber' custom='mt-4pxr' />
         </div>
         <HookFormButton custom='!flex-center !flex !w-108pxr !h-56pxr flex-nowrap gap-4pxr !rounded-[99px] border border-gray300 py-24pxr pl-24pxr pr-32pxr font-body2-medium hover:bg-primary50'>
           <div className='flex-center  w-20pxr'>

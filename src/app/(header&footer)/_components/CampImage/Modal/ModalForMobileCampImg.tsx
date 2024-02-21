@@ -12,7 +12,9 @@ function ModalForMobileCampImg({
 }) {
   return (
     imgUrls && (
-      <div className='fixed left-0pxr top-0pxr z-[1000] flex h-screen  w-full  flex-col overflow-auto bg-white p-16pxr'>
+      <div
+        className={`fixed left-0pxr top-0pxr z-[1000] flex h-screen  w-full  flex-col overflow-auto bg-white  ${title !== '전체 사진' ? 'pt-16pxr' : 'p-16pxr'}`}
+      >
         <ModalAboutHeader onClose={onClose} title={title} />
         {title === '전체 사진' ? (
           <div className='grid w-full grid-cols-2 gap-12pxr'>
@@ -25,7 +27,7 @@ function ModalForMobileCampImg({
                     key={imgUrl + i}
                     className='flex min-h-138pxr w-full min-w-138pxr cursor-pointer object-cover object-center hover:brightness-[0.7]'
                     src={imgUrl}
-                    alt={`${imgUrl}`} // TODO: 알트 수정 필요
+                    alt={`${imgUrl}`}
                   />
                 ),
             )}

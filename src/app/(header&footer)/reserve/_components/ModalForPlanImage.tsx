@@ -20,7 +20,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
         onClose={onClose}
         custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full flex-center overflow-hidden bg-black-50 mobile:items-center px-20pxr'
       >
-        <div className='flex   max-w-767pxr flex-col items-start rounded-2xl bg-white'>
+        <div className='flex max-w-767pxr flex-col items-start rounded-[16px] bg-white'>
           <div className='flex-center pxr flex h-70pxr w-full px-20pxr py-16pxr'>
             <div className='flex-center h-26pxr w-26pxr'>
               <IconExit
@@ -36,7 +36,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
               배치도
             </span>
           </div>
-          <div className='flex-center h-480pxr w-full max-w-767pxr bg-gray100'>
+          <div className='flex-center h-480pxr w-full max-w-767pxr rounded-b-2xl bg-gray100'>
             <Image
               width={767}
               height={480}
