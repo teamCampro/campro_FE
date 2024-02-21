@@ -84,6 +84,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const campImageRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampingZone>();
+  const [hideButton, setHideButton] = useState(true);
 
   useEffect(() => {
     const getCamp = async () => {
@@ -95,9 +96,8 @@ function Page({ searchParams, params }: SearchParamsType) {
   }, [params.id]);
 
   const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
-
+  const [hideRefs, setHideRefs] = useRefs<HTMLDivElement>();
   const IMAGE_SECTION_ID = 'image';
-  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,7 +108,7 @@ function Page({ searchParams, params }: SearchParamsType) {
         entries.forEach((entry) => {
           const { id } = entry.target;
           if (id === IMAGE_SECTION_ID) {
-            setIsSticky(!entry.intersectionRatio);
+            setIsSticky(!(entry.intersectionRatio > 0.1));
           }
 
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
@@ -122,9 +122,9 @@ function Page({ searchParams, params }: SearchParamsType) {
         }
       },
       {
-        root: mainRef.current,
+        root: null,
         rootMargin: '-94px 0px 0px 0px',
-        threshold: [0.2, 0.5, 1.0],
+        threshold: [0.3, 0.5, 1.0],
       },
     );
     if (campImageRef.current) {
@@ -134,7 +134,26 @@ function Page({ searchParams, params }: SearchParamsType) {
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [divRefs, activeSection, campingZone]);
+  }, [activeSection, campingZone]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setHideButton(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-94px 0px 0px 0px',
+        threshold: [1],
+      },
+    );
+
+    hideRefs.forEach((ref) => ref && observer.observe(ref));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [campingZone]);
 
   if (!campingZone)
     return (
@@ -157,65 +176,71 @@ function Page({ searchParams, params }: SearchParamsType) {
   const imageUrls = JSON.parse(detail.imgUrls);
   return (
     <>
-      <div className='m-auto w-full max-w-1360pxr'>
+      <main className='px-40pxr mobile:p-0pxr'>
         <SearchBarForOverview
           searchParams={searchParams}
           placeName={detail.name}
           campId={params.id}
         />
-        <SectionRef sectionRef={setDivRef} id='image'>
-          <CampImage imgUrls={imageUrls} />
-        </SectionRef>
-        <AnchorMenu isSticky={isSticky} selectedMenu={activeSection} />
-        <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
-          <aside
-            className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} mobile359:right-mopxr sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-23pxr mobile:w-fit tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
-          >
-            <MiniMapContainer {...detail} />
-          </aside>
-          <div>
-            <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
-              <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
-                <SectionRef sectionRef={setDivRef} id='1'>
-                  <CampSiteBasicInfo
-                    keyword={detail.keyword}
-                    placeName={detail.name}
-                    address={detail.address}
-                    tel={detail.tel}
-                    intro={detail.intro}
+        <AnchorMenu
+          isSticky={isSticky}
+          selectedMenu={activeSection}
+          hideButton={hideButton}
+        />
+        <div className='m-auto w-full max-w-1360pxr'>
+          <SectionRef sectionRef={setDivRef} id='image'>
+            <CampImage imgUrls={imageUrls} />
+          </SectionRef>
+          <section className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
+            <aside
+              className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} mobile359:right-mopxr sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-23pxr mobile:w-fit tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
+            >
+              <MiniMapContainer {...detail} />
+            </aside>
+            <div>
+              <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
+                <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
+                  <SectionRef sectionRef={setDivRef} id='1'>
+                    <CampSiteBasicInfo
+                      keyword={detail.keyword}
+                      placeName={detail.name}
+                      address={detail.address}
+                      tel={detail.tel}
+                      intro={detail.intro}
+                    />
+                  </SectionRef>
+                  <SectionRef sectionRef={setDivRef} id='2'>
+                    <CampSiteFacilities facilities={detail.facilities} />
+                  </SectionRef>
+                </div>
+                <SectionRef sectionRef={setDivRef} id='3'>
+                  <CampSiteMap planImage={detail.planImage} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='4'>
+                  <ReservationInfo
+                    openTime={detail.openTime}
+                    nextOpen={detail.nextOpenDate}
+                    mannerTimeStart={detail.mannerTimeStart}
+                    mannerTimeEnd={detail.mannerTimeEnd}
+                    siteList={siteList}
+                    imageUrls={imageUrls}
                   />
                 </SectionRef>
-                <SectionRef sectionRef={setDivRef} id='2'>
-                  <CampSiteFacilities facilities={detail.facilities} />
+              </div>
+              <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
+                <SectionRef sectionRef={setDivRef} id='5'>
+                  <UsageGuidelines {...detail} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='6'>
+                  <CustomerReviews reviews={reviewList} />
                 </SectionRef>
               </div>
-              <SectionRef sectionRef={setDivRef} id='3'>
-                <CampSiteMap planImage={detail.planImage} />
-              </SectionRef>
-              <SectionRef sectionRef={setDivRef} id='4'>
-                <ReservationInfo
-                  openTime={detail.openTime}
-                  nextOpen={detail.nextOpenDate}
-                  mannerTimeStart={detail.mannerTimeStart}
-                  mannerTimeEnd={detail.mannerTimeEnd}
-                  siteList={siteList}
-                  imageUrls={imageUrls}
-                />
-              </SectionRef>
             </div>
-            <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
-              <SectionRef sectionRef={setDivRef} id='5'>
-                <UsageGuidelines {...detail} />
-              </SectionRef>
-              <SectionRef sectionRef={setDivRef} id='6'>
-                <CustomerReviews reviews={reviewList} />
-              </SectionRef>
-            </div>
-          </div>
-        </main>
-        <div ref={setDivRef} id='footer' />
-      </div>
-      <ToastContainer className='overview-toast' />
+          </section>
+        </div>
+        <ToastContainer className='overview-toast' />
+        <div ref={setHideRefs} id='footer' />
+      </main>
     </>
   );
 }

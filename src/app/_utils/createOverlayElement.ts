@@ -1,4 +1,8 @@
+import { formatDate } from './formatDate';
+import { SearchParamsType } from '../(header)/search/page';
+
 interface DataType {
+  id: number;
   title: string;
   latlng: kakao.maps.LatLng;
   imgUrl: string;
@@ -6,15 +10,40 @@ interface DataType {
   address: string;
 }
 
-function createOverlayElement(data: DataType) {
+function createOverlayElement(
+  searchParams: {
+    [key: string]: string;
+  },
+  data: DataType,
+) {
+  const checkInValue = searchParams.checkIn;
+  const checkInDate = checkInValue ? new Date(checkInValue) : new Date();
+
+  const checkOutValue = searchParams.checkOut;
+  const checkOutDate = checkOutValue
+    ? new Date(checkOutValue)
+    : new Date(Date.now() + 1000 * 60 * 60 * 24);
+
+  const newSearchParams = new URLSearchParams({
+    checkIn: formatDate(checkInDate),
+    checkOut: formatDate(checkOutDate),
+    adult: searchParams.adult || '2',
+    child: searchParams.child || '0',
+    pet: searchParams.pet || '0',
+  });
+
   const createElement = (
     tag: string,
     className: string,
     content = '',
-  ): HTMLElement => {
+    href = '',
+  ): HTMLElement | HTMLAnchorElement => {
     const element = document.createElement(tag);
     element.className = className;
     element.innerHTML = content;
+    if (href && tag === 'a') {
+      (element as HTMLAnchorElement).href = href;
+    }
     return element;
   };
 
@@ -31,8 +60,10 @@ function createOverlayElement(data: DataType) {
 
   const createOverlayContent = (data: DataType): HTMLDivElement => {
     const overlayWrapper = createElement(
-      'div',
+      'a',
       'overlayWrapper',
+      '',
+      `/overview/${data.id}?${newSearchParams.toString()}`,
     ) as HTMLDivElement;
 
     const image = createImage('overlayImage', data.imgUrl);
