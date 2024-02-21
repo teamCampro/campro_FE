@@ -30,7 +30,7 @@ interface DataType {
   result: CampZoneForSearch[];
 }
 
-interface SearchParamsType {
+export interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
@@ -42,7 +42,8 @@ function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
-  const [prevMarkers, setPrevMarkers] = useState<kakao.maps.Marker[]>([]);
+  const [prevClusterer, setPrevClusterer] =
+    useState<kakao.maps.MarkerClusterer>();
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -67,8 +68,8 @@ function Page({ searchParams }: SearchParamsType) {
     setMapSize(size);
   };
 
-  const handlePrevMarker = (marker: kakao.maps.Marker[]) => {
-    setPrevMarkers((prevMarker) => [...prevMarker, ...marker]);
+  const handlePrevClusterer = (clusterer: kakao.maps.MarkerClusterer) => {
+    setPrevClusterer(clusterer);
   };
 
   useEffect(() => {
@@ -90,10 +91,11 @@ function Page({ searchParams }: SearchParamsType) {
   useEffect(() => {
     if (map && campPlaceData) {
       kakaoMarkerGenerator({
+        searchParams,
         map,
         campPlaceData,
-        prevMarkers,
-        handlePrevMarker,
+        prevClusterer,
+        handlePrevClusterer,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
