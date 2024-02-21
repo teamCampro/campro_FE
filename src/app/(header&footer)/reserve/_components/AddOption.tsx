@@ -46,15 +46,7 @@ function AddOption() {
               {option.content}
             </h3>
             <div className='flex-center w-73pxr justify-between gap-16pxr mobile:gap-10pxr tabletMin:w-97pxr'>
-              <button
-                type='button'
-                disabled={
-                  count[option.content_id] === 0 || !count[option.content_id]
-                    ? true
-                    : false
-                }
-                className='h-20pxr w-20pxr cursor-pointer'
-              >
+              <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconMinus
                   fill={
                     count[option.content_id] === 0 || !count[option.content_id]
@@ -70,11 +62,7 @@ function AddOption() {
               <span className='font-medium font-body2-medium tabletMin:font-body1-medium'>
                 {count[option.content_id] || 0}
               </span>
-              <button
-                type='button'
-                disabled={count[option.content_id] >= 9 ? true : false}
-                className='h-20pxr w-20pxr cursor-pointer'
-              >
+              <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconPlus
                   onClick={() => handlePlus(option.content_id)}
                   width='20'
