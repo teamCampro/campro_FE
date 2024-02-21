@@ -37,12 +37,14 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
             </span>
           </div>
           <div className='flex-center h-480pxr w-full max-w-767pxr rounded-b-2xl bg-gray100'>
-            <Image
-              width={767}
-              height={480}
-              alt='배치도 이미지'
-              src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
-            />
+            <a href={planImage[0]} target='_blank'>
+              <Image
+                width={767}
+                height={480}
+                alt='배치도 이미지'
+                src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
+              />
+            </a>
           </div>
         </div>
       </ModalOutside>

@@ -1,15 +1,16 @@
 'use client';
 import AllPictureIcon from '@/public/svgs/pic.svg';
 import Image from 'next/image';
-import { useState } from 'react';
 import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
-function CampImageForDesktop({ imgUrls }: { imgUrls: string[] }) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+interface Props {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  imgUrls: string[];
+}
 
-  const handleRenderModal = () => setIsOpenModal(true);
-  const handleCloseModal = () => setIsOpenModal(false);
-
+function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
   return (
     <>
       {imgUrls && (
@@ -47,7 +48,7 @@ function CampImageForDesktop({ imgUrls }: { imgUrls: string[] }) {
           <button
             type='button'
             className='flex-center absolute bottom-20pxr right-20pxr  gap-4pxr rounded-[999px] border-gray300 bg-white py-12pxr  pl-20pxr pr-14pxr'
-            onClick={handleRenderModal}
+            onClick={onOpen}
           >
             <p className='whitespace-nowrap text-[#555] font-body2-semibold'>
               모든 사진
@@ -58,9 +59,7 @@ function CampImageForDesktop({ imgUrls }: { imgUrls: string[] }) {
         </div>
       )}
 
-      {isOpenModal && (
-        <ModalAboutCampImage imgUrls={imgUrls} onClose={handleCloseModal} />
-      )}
+      {isOpen && <ModalAboutCampImage imgUrls={imgUrls} onClose={onClose} />}
     </>
   );
 }
