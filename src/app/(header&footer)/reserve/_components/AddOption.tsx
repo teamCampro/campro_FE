@@ -45,7 +45,7 @@ function AddOption() {
             <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
               {option.content}
             </h3>
-            <div className='flex-center w-73pxr justify-between gap-16pxr mobile:gap-10pxr tabletMin:w-97pxr'>
+            <div className='flex-center w-73pxr  gap-16pxr mobile:gap-4pxr tabletMin:w-97pxr'>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconMinus
                   fill={
@@ -59,9 +59,9 @@ function AddOption() {
                   viewBox='0 0 24 24'
                 />
               </button>
-              <span className='font-medium font-body2-medium tabletMin:font-body1-medium'>
+              <p className='!flex-center !h-25pxr !w-25pxr   !leading-none font-body2-medium tabletMin:font-body1-medium'>
                 {count[option.content_id] || 0}
-              </span>
+              </p>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconPlus
                   onClick={() => handlePlus(option.content_id)}
