@@ -3,7 +3,7 @@ import createMapPosition from './createMapPosition';
 import createMarkerImage from './createMarkerImage';
 import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
-import { CampZoneForSearch } from '../(header)/search/page';
+import { CampZoneForSearch, SearchParamsType } from '../(header)/search/page';
 
 interface LocationType {
   lat: number;
@@ -20,23 +20,25 @@ export interface CampPlaceType {
 }
 
 interface Props {
+  searchParams: {
+    [key: string]: string;
+  };
   map: kakao.maps.Map;
   campPlaceData: CampZoneForSearch[];
-  prevMarkers: kakao.maps.Marker[];
-  handlePrevMarker: (marker: kakao.maps.Marker[]) => void;
+  prevClusterer: kakao.maps.MarkerClusterer | undefined;
+  handlePrevClusterer: (clusterer: kakao.maps.MarkerClusterer) => void;
 }
 
 function kakaoMarkerGenerator({
+  searchParams,
   map,
   campPlaceData,
-  prevMarkers,
-  handlePrevMarker,
+  prevClusterer,
+  handlePrevClusterer,
 }: Props) {
-  prevMarkers.forEach((marker) => {
-    marker.setMap(null);
-  });
-
-  handlePrevMarker([]);
+  if (prevClusterer) {
+    prevClusterer.clear();
+  }
 
   if (map && campPlaceData && campPlaceData.length > 0) {
     const positions = createMapPosition(campPlaceData);
@@ -45,6 +47,13 @@ function kakaoMarkerGenerator({
 
     if (positions) {
       let selectedOverlay: kakao.maps.CustomOverlay | null = null;
+
+      const clusterer = new kakao.maps.MarkerClusterer({
+        map: map,
+        averageCenter: true,
+        minLevel: 12,
+      });
+
       for (let i = 0; i < positions.length; i++) {
         const markerImage = createMarkerImage({
           src: '/svgs/markerGray.svg',
@@ -57,16 +66,16 @@ function kakaoMarkerGenerator({
         });
 
         const marker = new kakao.maps.Marker({
-          map: map,
           position: positions[i].latlng,
           title: positions[i].title,
           image: markerImage,
           clickable: true,
         });
 
-        handlePrevMarker([marker]);
+        clusterer.addMarker(marker);
+        handlePrevClusterer(clusterer);
 
-        const overlayElement = createOverlayElement(positions[i]);
+        const overlayElement = createOverlayElement(searchParams, positions[i]);
 
         const overlay = createCustomOverlay({
           marker,

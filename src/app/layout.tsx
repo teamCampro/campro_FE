@@ -23,7 +23,7 @@ export default function RootLayout({
           <ReactQueryProviders>
             <Script
               strategy='beforeInteractive'
-              src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false&libraries=services`}
+              src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false&libraries=services,clusterer`}
             />
             {children}
             <div id='modal' />

@@ -81,24 +81,16 @@ function KakaoMap({
       const averageLng = sumLng / campPlaceDataLength;
       const averageLat = sumLat / campPlaceDataLength;
       console.log(averageLng, averageLat);
-      map.setCenter(new kakao.maps.LatLng(averageLng, averageLat));
+      map.setCenter(
+        isRegion
+          ? new kakao.maps.LatLng(36.7140176374004, 128.10524294165157)
+          : new kakao.maps.LatLng(averageLng, averageLat),
+      );
       map.setLevel(isRegion ? 13 : 12);
 
       return;
     }
 
-    const geocoder = new kakao.maps.services.Geocoder();
-
-    if (!region) return;
-    geocoder.addressSearch(region, function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(
-          parseFloat(result[0].y),
-          parseFloat(result[0].x),
-        );
-        map.setCenter(coords);
-      }
-    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegion, campPlaceData, mapSize, map]);
 
