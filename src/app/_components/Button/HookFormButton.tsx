@@ -1,7 +1,7 @@
 'use client';
+import { ButtonHTMLAttributes } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Button from '.';
-import { ButtonHTMLAttributes } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';

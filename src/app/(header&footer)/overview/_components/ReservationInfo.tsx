@@ -1,38 +1,41 @@
+'use client';
+
 import { ModalOutside, ModalPortal } from '@/components/index';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { CampSite, Site } from '../[id]/page';
+import { CampingZoneSite } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampSiteDetail from './CampSiteDetail';
 import CampSiteItem from './CampSiteItem';
 
+interface ReservationInfoProps {
+  siteList: CampingZoneSite[];
+  openTime: string;
+  nextOpen: string;
+  mannerTimeStart: string;
+  mannerTimeEnd: string;
+  imageUrls: string[];
+}
+
 function ReservationInfo({
-  campingZones,
+  siteList,
   openTime,
   nextOpen,
   mannerTimeStart,
   mannerTimeEnd,
-}: CampSite) {
-  const [selectedSite, setSelectedSite] = useState<Site | null>(null);
+  imageUrls,
+}: ReservationInfoProps) {
+  const [selectedSite, setSelectedSite] = useState<CampingZoneSite | null>(
+    null,
+  );
   const [showAll, setShowAll] = useState(false);
-  const sites = campingZones
-    .map((campingZone) =>
-      campingZone.sites.map((site) => ({
-        ...site,
-        baseGuests: campingZone.baseGuests,
-        campingZoneId: campingZone.id,
-        extraGuests: campingZone.extraGuests,
-        area: campingZone.area,
-      })),
-    )
-    .flat();
 
   const router = useRouter();
   const { id: campingZoneId } = useParams();
   const searchParams = useSearchParams();
 
-  const openSiteModal = (site: Site) => setSelectedSite(site);
+  const openSiteModal = (site: CampingZoneSite) => setSelectedSite(site);
 
   const handleReserve = (id: number) => {
     const paramsKeys = ['checkIn', 'checkOut', 'adult', 'child', 'pet'];
@@ -58,17 +61,17 @@ function ReservationInfo({
         className='flex scroll-mt-168pxr flex-col gap-16pxr bg-inherit mobile:scroll-mt-87pxr mobile:gap-20pxr mobile359:gap-16pxr mobile359:px-0pxr'
         id='site'
       >
-        {(showAll ? sites : sites.slice(0, 3)).map((site) => (
+        {(showAll ? siteList : siteList.slice(0, 3)).map((site) => (
           <CampSiteItem
-            key={`${site.campingZoneId} ${site.siteId}`}
+            key={site.id}
             site={site}
             openSiteModal={openSiteModal}
             handleReserve={handleReserve}
           />
         ))}
       </ul>
-      {sites.length > 2 && (
-        <div className='contents mobile:block mobile:px-36pxr mobile359:px-16pxr'>
+      {siteList.length > 2 && (
+        <div className='contents mobile:block mobile:px-16pxr'>
           <button
             type='button'
             className='flex-center w-full gap-10pxr rounded-lg border border-gray200 bg-white px-40pxr py-12pxr text-gray700 font-caption1-semibold'
@@ -90,6 +93,7 @@ function ReservationInfo({
             <CampSiteDetail
               onClose={() => setSelectedSite(null)}
               site={selectedSite}
+              imageUrls={imageUrls}
               handleReserve={handleReserve}
             />
           </ModalOutside>
