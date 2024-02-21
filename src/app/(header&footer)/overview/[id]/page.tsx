@@ -98,7 +98,6 @@ function Page({ searchParams, params }: SearchParamsType) {
   const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
   const [hideRefs, setHideRefs] = useRefs<HTMLDivElement>();
   const IMAGE_SECTION_ID = 'image';
-  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
