@@ -30,6 +30,7 @@ function OperatingPeriodPage() {
                 pageName='operating_days'
                 config={daysConfig}
                 buttonType='small'
+                isSingleSelection
               />
             </div>
           </div>

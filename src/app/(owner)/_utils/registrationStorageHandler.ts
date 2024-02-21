@@ -68,17 +68,11 @@ function registrationStorageHandler({
       const daysItems = getStorageItems('operating_days');
 
       if (isClicked) {
-        localStorage.setItem(
-          'operating_days',
-          JSON.stringify(daysItems.filter((value) => buttonText !== value)),
-        );
+        localStorage.setItem('operating_days', JSON.stringify([buttonText]));
         return;
       }
 
-      localStorage.setItem(
-        'operating_days',
-        JSON.stringify([...daysItems, buttonText]),
-      );
+      localStorage.setItem('operating_days', JSON.stringify([buttonText]));
       return;
   }
 }
