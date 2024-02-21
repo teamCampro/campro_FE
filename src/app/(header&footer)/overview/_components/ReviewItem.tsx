@@ -1,23 +1,11 @@
 import { IconNavigationDown, IconStar } from '@/public/svgs';
+import getTimeDiff from '@/src/app/_utils/getTimeDiff';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Review } from '../[id]/page';
 
 interface ReviewItemProps {
   review: Review;
-  // content: {
-  //   nickName: string;
-  //   createdAt: string;
-  //   siteName: string;
-  //   group: {
-  //     adult: number;
-  //     child: number;
-  //     pet: number;
-  //   };
-  //   content: string;
-  //   score: number;
-  //   tag: string;
-  // };
 }
 function ReviewItem({ review }: ReviewItemProps) {
   const [showAll, setShowAll] = useState(false);
@@ -34,7 +22,6 @@ function ReviewItem({ review }: ReviewItemProps) {
 
     return parts.join(', ');
   };
-  const getTimeString = () => new Date(review.updateTime).toString();
   return (
     <li className='flex flex-col gap-12pxr'>
       <div className='flex flex-col gap-16pxr'>
@@ -43,7 +30,7 @@ function ReviewItem({ review }: ReviewItemProps) {
             {review.userId}
           </h6>
           <span className='!leading-none text-gray500 font-caption2-medium'>
-            {getTimeString()}
+            {getTimeDiff(new Date(review.startTime))}
           </span>
         </div>
         <ul>
@@ -57,7 +44,7 @@ function ReviewItem({ review }: ReviewItemProps) {
               }}
               className='aspect-square rounded-2xl'
               src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D'
-              alt='dd'
+              alt={`${review.userId}님의 이용후기 사진`}
             />
           </li>
         </ul>

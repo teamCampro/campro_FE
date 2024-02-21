@@ -3,7 +3,6 @@ import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
 import useRefs from '@/hooks/useRefs';
 import { getOverview } from '@/src/app/_data/overview/overview';
 import '@/src/app/_styles/toast.css';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +16,8 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
+import Loading from '@/components/Loading';
+
 export type CampingZoneSite = {
   minNights: number;
   id: number;
@@ -84,6 +85,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const campImageRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampingZone>();
+  const [hideButton, setHideButton] = useState(true);
 
   useEffect(() => {
     const getCamp = async () => {
@@ -95,9 +97,8 @@ function Page({ searchParams, params }: SearchParamsType) {
   }, [params.id]);
 
   const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
-
+  const [hideRefs, setHideRefs] = useRefs<HTMLDivElement>();
   const IMAGE_SECTION_ID = 'image';
-  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -107,9 +108,8 @@ function Page({ searchParams, params }: SearchParamsType) {
 
         entries.forEach((entry) => {
           const { id } = entry.target;
-          console.log(id);
           if (id === IMAGE_SECTION_ID) {
-            setIsSticky(!entry.intersectionRatio);
+            setIsSticky(!(entry.intersectionRatio > 0.1));
           }
 
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
@@ -123,9 +123,9 @@ function Page({ searchParams, params }: SearchParamsType) {
         }
       },
       {
-        root: mainRef.current,
+        root: null,
         rootMargin: '-94px 0px 0px 0px',
-        threshold: [0.2, 0.5, 1.0],
+        threshold: [0.3, 0.5, 1.0],
       },
     );
     if (campImageRef.current) {
@@ -135,19 +135,28 @@ function Page({ searchParams, params }: SearchParamsType) {
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [divRefs, activeSection, campingZone]);
+  }, [activeSection, campingZone]);
 
-  if (!campingZone)
-    return (
-      <div className='custom-height flex-center'>
-        <Image
-          width={140}
-          height={140}
-          src='/gifs/campro_loading.gif'
-          alt='로딩중입니다'
-        />
-      </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setHideButton(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-94px 0px 0px 0px',
+        threshold: [1],
+      },
     );
+
+    hideRefs.forEach((ref) => ref && observer.observe(ref));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [campingZone]);
+
+  if (!campingZone) return <Loading />;
 
   const {
     campingZoneDetail,
@@ -164,7 +173,11 @@ function Page({ searchParams, params }: SearchParamsType) {
           placeName={detail.name}
           campId={params.id}
         />
-        <AnchorMenu isSticky={isSticky} selectedMenu={activeSection} />
+        <AnchorMenu
+          isSticky={isSticky}
+          selectedMenu={activeSection}
+          hideButton={hideButton}
+        />
         <div className='m-auto w-full max-w-1360pxr'>
           <SectionRef sectionRef={setDivRef} id='image'>
             <CampImage imgUrls={imageUrls} />
@@ -217,7 +230,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           </section>
         </div>
         <ToastContainer className='overview-toast' />
-        <div ref={setDivRef} id='footer' />
+        <div ref={setHideRefs} id='footer' />
       </main>
     </>
   );
