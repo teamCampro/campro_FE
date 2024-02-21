@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ReserveStateType } from './ReserveList';

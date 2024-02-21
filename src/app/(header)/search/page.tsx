@@ -3,6 +3,7 @@
 import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import {
   CampSearchList,
+  Loading,
   MapSizeButtons,
   SearchFilter,
   SearchPagination,
@@ -40,7 +41,9 @@ export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
+  const [campPlaceData, setCampPlaceData] = useState<
+    CampZoneForSearch[] | null
+  >(null);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const [prevClusterer, setPrevClusterer] =
     useState<kakao.maps.MarkerClusterer>();
@@ -100,6 +103,8 @@ function Page({ searchParams }: SearchParamsType) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
+
+  if (!campPlaceData) return <Loading />;
 
   return (
     <>
