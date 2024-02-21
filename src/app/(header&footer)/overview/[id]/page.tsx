@@ -84,6 +84,7 @@ function Page({ searchParams, params }: SearchParamsType) {
   const campImageRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('');
   const [campingZone, setCampingZone] = useState<CampingZone>();
+  const [hideButton, setHideButton] = useState(true);
 
   useEffect(() => {
     const getCamp = async () => {
@@ -95,9 +96,8 @@ function Page({ searchParams, params }: SearchParamsType) {
   }, [params.id]);
 
   const [divRefs, setDivRef] = useRefs<HTMLDivElement>();
-
+  const [hideRefs, setHideRefs] = useRefs<HTMLDivElement>();
   const IMAGE_SECTION_ID = 'image';
-  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -107,9 +107,8 @@ function Page({ searchParams, params }: SearchParamsType) {
 
         entries.forEach((entry) => {
           const { id } = entry.target;
-          console.log(id);
           if (id === IMAGE_SECTION_ID) {
-            setIsSticky(!entry.intersectionRatio);
+            setIsSticky(!(entry.intersectionRatio > 0.1));
           }
 
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
@@ -123,9 +122,9 @@ function Page({ searchParams, params }: SearchParamsType) {
         }
       },
       {
-        root: mainRef.current,
+        root: null,
         rootMargin: '-94px 0px 0px 0px',
-        threshold: [0.2, 0.5, 1.0],
+        threshold: [0.3, 0.5, 1.0],
       },
     );
     if (campImageRef.current) {
@@ -135,7 +134,26 @@ function Page({ searchParams, params }: SearchParamsType) {
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [divRefs, activeSection, campingZone]);
+  }, [activeSection, campingZone]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setHideButton(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-94px 0px 0px 0px',
+        threshold: [1],
+      },
+    );
+
+    hideRefs.forEach((ref) => ref && observer.observe(ref));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [campingZone]);
 
   if (!campingZone)
     return (
@@ -164,7 +182,11 @@ function Page({ searchParams, params }: SearchParamsType) {
           placeName={detail.name}
           campId={params.id}
         />
-        <AnchorMenu isSticky={isSticky} selectedMenu={activeSection} />
+        <AnchorMenu
+          isSticky={isSticky}
+          selectedMenu={activeSection}
+          hideButton={hideButton}
+        />
         <div className='m-auto w-full max-w-1360pxr'>
           <SectionRef sectionRef={setDivRef} id='image'>
             <CampImage imgUrls={imageUrls} />
@@ -217,7 +239,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           </section>
         </div>
         <ToastContainer className='overview-toast' />
-        <div ref={setDivRef} id='footer' />
+        <div ref={setHideRefs} id='footer' />
       </main>
     </>
   );
