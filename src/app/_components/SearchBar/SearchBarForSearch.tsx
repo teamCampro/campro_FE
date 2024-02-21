@@ -58,18 +58,16 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
 
   return (
     <>
-      {isMobile && (
-        <div className={`  inline-block  w-full`}>
-          <input
-            name='total'
-            className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
-            readOnly
-            placeholder='입력해주세요'
-            value={getSearchBarValue({ searchParams, page: 'search' })}
-            onClick={renderSearchBarForMobile}
-          />
-        </div>
-      )}
+      <div className={`inline-block w-full tabletMin:hidden`}>
+        <input
+          name='total'
+          className='w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
+          readOnly
+          placeholder='입력해주세요'
+          value={getSearchBarValue({ searchParams, page: 'search' })}
+          onClick={renderSearchBarForMobile}
+        />
+      </div>
 
       <ModalForSearchBar
         open={isOpenModal}

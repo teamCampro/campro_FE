@@ -3,7 +3,6 @@ import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
 import useRefs from '@/hooks/useRefs';
 import { getOverview } from '@/src/app/_data/overview/overview';
 import '@/src/app/_styles/toast.css';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +16,8 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
+import Loading from '@/components/Loading';
+
 export type CampingZoneSite = {
   minNights: number;
   id: number;
@@ -155,17 +156,7 @@ function Page({ searchParams, params }: SearchParamsType) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [campingZone]);
 
-  if (!campingZone)
-    return (
-      <div className='custom-height flex-center'>
-        <Image
-          width={140}
-          height={140}
-          src='/gifs/campro_loading.gif'
-          alt='로딩중입니다'
-        />
-      </div>
-    );
+  if (!campingZone) return <Loading />;
 
   const {
     campingZoneDetail,
