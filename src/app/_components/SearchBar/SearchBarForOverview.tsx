@@ -3,19 +3,18 @@
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
-  Button,
   CommonForm,
   DatePickerController,
   GroupCountController,
 } from '@/src/app/_components';
 import { useParams, useRouter } from 'next/navigation';
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { INPUT_WRAPPER, PAGE_TYPE } from '../../_constants/inputStyle';
 import getSearchBarValue from '../../_utils/getSearchBarValue';
 import { submitForSearch } from '../../_utils/submitForSearchBar';
-import PlaceController from '../Controller/PlaceController';
 import HookFormButton from '../Button/HookFormButton';
+import PlaceController from '../Controller/PlaceController';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -96,7 +95,7 @@ function SearchBarForOverview({
             >
               <PlaceController
                 name='place'
-                default={Number(path?.id) === campId ? placeName : ''}
+                default={placeName}
                 onRenderButton={renderButton}
               />
               <DatePickerController
@@ -114,8 +113,11 @@ function SearchBarForOverview({
             {isRenderedButton && (
               <HookFormButton
                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                className='!h-56pxr mobile:w-full mobile:rounded-t-none tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr '
-              />
+                size='sm'
+                custom={`mobile:w-full tablet:w-full !h-56pxr mobile:rounded-t-none   mobile:w-full !h-56pxr  tablet:w-full tablet:max-w-134pxr desktop:max-w-134pxr`}
+              >
+                검색
+              </HookFormButton>
             )}
           </CommonForm>
         </div>

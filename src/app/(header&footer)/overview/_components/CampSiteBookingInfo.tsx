@@ -18,14 +18,14 @@ function CampSiteBookingInfo({
         <li>
           · 매너 타임 :
           <span>
-            {mannerTimeStart} - {mannerTimeEnd}
+            {mannerTimeStart} - {mannerTimeEnd} (모든 타입 동일)
           </span>
         </li>
         <li>
-          · 오픈 주기 : <span>{openTime}</span>
+          · 오픈 주기 : <span>{openTime} (80개월 단위)</span>
         </li>
         <li>
-          · 다음 예약 오픈일 : <span>{nextOpen}</span>
+          · 다음 예약 오픈일 : <span>2040.02.20 오후 24시</span>
         </li>
       </ul>
     </article>

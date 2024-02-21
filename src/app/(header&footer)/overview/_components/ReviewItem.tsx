@@ -1,23 +1,25 @@
 import { IconNavigationDown, IconStar } from '@/public/svgs';
 import Image from 'next/image';
 import { useState } from 'react';
+import { Review } from '../[id]/page';
 
 interface ReviewItemProps {
-  content: {
-    nickName: string;
-    createdAt: string;
-    siteName: string;
-    group: {
-      adult: number;
-      child: number;
-      pet: number;
-    };
-    content: string;
-    score: number;
-    tag: string;
-  };
+  review: Review;
+  // content: {
+  //   nickName: string;
+  //   createdAt: string;
+  //   siteName: string;
+  //   group: {
+  //     adult: number;
+  //     child: number;
+  //     pet: number;
+  //   };
+  //   content: string;
+  //   score: number;
+  //   tag: string;
+  // };
 }
-function ReviewItem({ content }: ReviewItemProps) {
+function ReviewItem({ review }: ReviewItemProps) {
   const [showAll, setShowAll] = useState(false);
   const getGroupInfo = (group: {
     adult: number;
@@ -32,15 +34,16 @@ function ReviewItem({ content }: ReviewItemProps) {
 
     return parts.join(', ');
   };
+  const getTimeString = () => new Date(review.updateTime).toString();
   return (
     <li className='flex flex-col gap-12pxr'>
       <div className='flex flex-col gap-16pxr'>
         <div className='flex items-end gap-4pxr'>
           <h6 className='!leading-none text-gray700 font-caption1-semibold'>
-            {content.nickName}
+            {review.userId}
           </h6>
           <span className='!leading-none text-gray500 font-caption2-medium'>
-            {content.createdAt}
+            {getTimeString()}
           </span>
         </div>
         <ul>
@@ -61,18 +64,16 @@ function ReviewItem({ content }: ReviewItemProps) {
         <div className='flex flex-col gap-8pxr mobile:pr-20pxr mobile359:pr-16pxr'>
           <div>
             <h6 className='text-gray700 font-caption1-semibold'>
-              객실명 : {content.siteName}
+              객실명 : 임시
             </h6>
-            <h6 className='text-gray700 font-caption1-semibold'>
-              타입 : {getGroupInfo(content.group)}
-            </h6>
+            <h6 className='text-gray700 font-caption1-semibold'>타입 : 임시</h6>
           </div>
           <p className='text-gray500 font-body2'>
-            {showAll ? content.content : content.content.slice(0, 500)}
+            {showAll ? review.description : review.description.slice(0, 500)}
           </p>
         </div>
       </div>
-      {!showAll && content.content.length > 500 && (
+      {!showAll && review.description.length > 500 && (
         <button
           type='button'
           className='flex h-auto w-auto items-center gap-2pxr text-gray600 font-caption2-semibold'
@@ -93,10 +94,10 @@ function ReviewItem({ content }: ReviewItemProps) {
           <span className='inline-block h-14pxr w-14pxr'>
             <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
           </span>
-          {content.score}
+          {review.star}
         </li>
         <div className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none font-caption2-medium'>
-          {content.tag}
+          {review.reviewKeyword.split(',')[0]}
         </div>
       </ul>
     </li>

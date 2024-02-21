@@ -1,7 +1,7 @@
 'use client';
 
-import { IconArrowLeftNon, IconClose } from '@/public/svgs';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import { IconArrowLeftNon, IconClose } from '@/public/svgs';
 function ModalAboutHeader({
   onClose,
   title,

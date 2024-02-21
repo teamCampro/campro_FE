@@ -1,14 +1,13 @@
 'use client';
 
-import { IconExit } from '@/public/svgs';
-import Image from 'next/image';
 import { ModalOutside, ModalPortal } from '@/components/index';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import { IconExit } from '@/public/svgs';
+import Image from 'next/image';
 import ModalForMobileCampImg from '../../_components/CampImage/Modal/ModalForMobileCampImg';
-import { CampImageData } from '../../_components/CampImage';
 interface Props {
   onClose: () => void;
-  planImage: CampImageData[] | null;
+  planImage: string[];
 }
 
 function ModalForPlanImage({ onClose, planImage }: Props) {
@@ -56,7 +55,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
       >
         <ModalForMobileCampImg
           onClose={onClose}
-          campImages={planImage}
+          imgUrls={planImage}
           title='배치도'
         />
       </ModalOutside>
