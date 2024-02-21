@@ -13,30 +13,26 @@ const anchorMenus = [
 function AnchorMenu({
   isSticky,
   selectedMenu,
+  hideButton,
 }: {
   isSticky: boolean;
   selectedMenu: string;
+  hideButton: boolean;
 }) {
-  const FOOTER_ID = 'footer';
   const TARGET_SECTION_ID = '4';
-  console.log(selectedMenu);
-  const hideButton = [FOOTER_ID, TARGET_SECTION_ID].includes(selectedMenu);
   const scrollToSection = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   return (
     <div
-      className={`${isSticky ? 'block ' : 'hidden'} ${hideButton ? 'mobile:hidden' : 'mobile:flex mobile:h-88pxr'} mobile:flex-center sticky top-94pxr z-[25] flex h-64pxr w-full items-center  bg-white mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
+      className={`${isSticky ? 'block ' : 'hidden'} ${hideButton || selectedMenu === TARGET_SECTION_ID ? 'mobile:hidden' : 'mobile:flex mobile:h-88pxr'} mobile:flex-center sticky top-94pxr z-[25] flex h-64pxr w-full items-center  bg-white mobile:fixed mobile:bottom-0pxr mobile:top-auto mobile:justify-center mobile:border-none mobile:px-20pxr mobile:shadow-overViewButton`}
     >
       <div className='flex-center h-64pxr w-full border-gray200 tabletMin:m-auto tabletMin:max-w-1360pxr tabletMin:justify-between tabletMin:border-b tabletMin:border-t'>
         <ul className='flex mobile:hidden'>
           {anchorMenus.map(({ id, text }, i) => {
-            const isMenuSelected = selectedMenu === id;
-            const isLastMenuAndFooterSelected =
-              i === anchorMenus.length - 1 && selectedMenu === FOOTER_ID;
             return (
               <li key={id}>
                 <button
-                  className={`${isMenuSelected || isLastMenuAndFooterSelected ? 'text-primary100' : 'text-gray500'} px-16pxr py-23pxr text-gray500 font-body2-medium`}
+                  className={`${selectedMenu === id ? 'text-primary100' : 'text-gray500'} px-16pxr py-23pxr text-gray500 font-body2-medium`}
                   onClick={() => scrollToSection(id)}
                 >
                   {text}
@@ -48,7 +44,7 @@ function AnchorMenu({
 
         <Button.Round
           size='sm'
-          custom={`p-16pxr font-caption1-semibold tablet:p-20pxr !w-170pxr !h-40pxr tablet:h-40pxr mobile:!w-280pxr mobile:!h-56pxr ${hideButton ? 'mobile:hidden' : 'mobile:flex'}`}
+          custom={`p-16pxr font-caption1-semibold tablet:p-20pxr !w-170pxr !h-40pxr tablet:h-40pxr mobile:!w-280pxr mobile:!h-56pxr ${selectedMenu === TARGET_SECTION_ID ? 'mobile:hidden' : 'mobile:flex'}`}
           onClick={() => scrollToSection('site')}
         >
           사이트 선택
