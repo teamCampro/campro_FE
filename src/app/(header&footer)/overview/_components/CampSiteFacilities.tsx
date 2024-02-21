@@ -40,6 +40,7 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
               modules={[FreeMode]}
               freeMode={true}
               enabled={false}
+              slidesOffsetBefore={10}
               className='!box-border max-w-full !p-10pxr'
               breakpoints={{
                 768: { enabled: true, slidesPerView: 'auto', spaceBetween: 0 },

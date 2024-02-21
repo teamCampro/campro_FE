@@ -88,7 +88,7 @@ function Survey({
           className={`flex-center mt-12pxr ${isScroll ? 'hidden' : ''}`}
           onClick={handleScroll}
         >
-          <button className='flex-center flex h-44pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 px-20pxr py-12pxr font-body2-medium hover:bg-primary50'>
+          <button className='flex-center flex h-44pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 px-20pxr py-12pxr text-gray500 font-body2-medium'>
             <div className='h-20pxr w-20pxr'>
               <IconPlusNon
                 width='100%'
@@ -97,9 +97,9 @@ function Survey({
                 fill='#949494'
               />
             </div>
-            <p className='whitespace-nowrap  text-gray500 font-caption1-medium'>
-              더 보기
-            </p>
+            <span className='whitespace-nowrap font-caption1-medium'>
+              더보기
+            </span>
           </button>
         </div>
       </div>
