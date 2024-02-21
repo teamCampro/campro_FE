@@ -2,6 +2,8 @@ export const VALIDATE: { [key: string]: RegExp } = {
   userEmail:
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   userPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+  userPhone: /^010-\d{4}-\d{4}$/,
+  vehicleNumber: /^\d{2,3}\s*[가-힣]{1}\s*\d{4}$/gm,
 };
 
 export const requiredValidate = {
@@ -19,6 +21,16 @@ export const emailValidate = {
   pattern: {
     value: VALIDATE.userEmail,
     message: '이메일 형식으로 작성해주세요.',
+  },
+};
+export const phoneValidate = {
+  required: {
+    value: true,
+    message: '휴대폰 번호를 입력해주세요.',
+  },
+  pattern: {
+    value: VALIDATE.userPhone,
+    message: '010-XXXX-XXXX 형식으로 입력 해주세요.',
   },
 };
 
@@ -59,5 +71,12 @@ export const nicknameValidate = {
   minLength: {
     value: 3,
     message: '닉네임은 3자 이상 작성해주세요',
+  },
+};
+
+export const vehicleNumberValidate = {
+  pattern: {
+    value: VALIDATE.vehicleNumber,
+    message: '잘못된 차량 번호입니다.',
   },
 };

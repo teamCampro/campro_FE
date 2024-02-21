@@ -11,11 +11,7 @@ export interface CampImageData {
   imgUrl: string;
 }
 
-function CampImage({
-  campImageRef,
-}: {
-  campImageRef: React.RefObject<HTMLDivElement>;
-}) {
+function CampImage() {
   const [campImages, setCampImages] = useState<CampImageData[] | null>(null);
 
   useEffect(() => {
@@ -25,7 +21,6 @@ function CampImage({
           `/data/campImageMockData.json`,
         );
         setCampImages(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -38,7 +33,7 @@ function CampImage({
   const isCarousel = typeof window !== 'undefined' ? tabletMediaQuery : false;
 
   return (
-    <section ref={campImageRef}>
+    <section>
       {isCarousel ? (
         <CampImageCarousel campImages={campImages} />
       ) : (

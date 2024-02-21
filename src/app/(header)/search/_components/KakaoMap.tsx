@@ -1,14 +1,16 @@
+'use client';
+
 import { IconMapMinus, IconMapPlus } from '@/public/svgs';
 import { useEffect, useRef } from 'react';
 import { MapSizeType } from '../page';
-import { CampPlaceType } from '@/src/app/_utils/kakaoMarkerGenerator';
+import { CampZoneForSearch } from '../page';
 
 interface Props {
   map: kakao.maps.Map | null;
   setMap: (map: kakao.maps.Map) => void;
   mapSize?: MapSizeType;
   isZoomButtonShadow?: boolean;
-  campPlaceData?: CampPlaceType[];
+  campPlaceData?: CampZoneForSearch[];
   region?: string;
 }
 
@@ -42,9 +44,10 @@ function KakaoMap({
     : '';
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.kakao) return;
+    /* if (typeof window === 'undefined' || !window.kakao) return; */
     kakao.maps.load(() => {
       if (!mapRef.current) return;
+
       const options = {
         center: new kakao.maps.LatLng(36.7140176374004, 128.10524294165157),
         level: 13,
@@ -60,19 +63,33 @@ function KakaoMap({
   useEffect(() => {
     if (!map) return;
     map.relayout();
+
     if (!campPlaceData) return;
+
     if (campPlaceData.length !== 0) {
-      map.setCenter(
-        new kakao.maps.LatLng(
-          isRegion ? 36.7140176374004 : campPlaceData[0].location.lat,
-          isRegion ? 128.10524294165157 : campPlaceData[0].location.lng,
-        ),
-      );
-      map.setLevel(isRegion ? 13 : 8);
+      const campPlaceDataLength = campPlaceData.length;
+      let sumLng = 0;
+      let sumLat = 0;
+
+      campPlaceData.forEach((place) => {
+        const { lng, lat } = place;
+
+        sumLng += Number(lng);
+        sumLat += Number(lat);
+      });
+
+      const averageLng = sumLng / campPlaceDataLength;
+      const averageLat = sumLat / campPlaceDataLength;
+      console.log(averageLng, averageLat);
+      map.setCenter(new kakao.maps.LatLng(averageLng, averageLat));
+      map.setLevel(isRegion ? 13 : 12);
+
       return;
     }
+
     const geocoder = new kakao.maps.services.Geocoder();
-    if (!region) return
+
+    if (!region) return;
     geocoder.addressSearch(region, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(
@@ -84,11 +101,6 @@ function KakaoMap({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegion, campPlaceData, mapSize, map]);
-
-  useEffect(() => {
-    if (!map) return;
-    map.relayout();
-  }, [mapSize, map]);
 
   return (
     <div ref={mapRef} className='h-full w-full'>

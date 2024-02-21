@@ -36,27 +36,33 @@ function CommonInput({
   } = useFormContext();
 
   const inputCss = (isError: boolean, className?: string) =>
-    `outline-0 box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400 focus-within:border-#5534DA   ${isError ? 'border-red-500' : 'border-gray-500'} ${className ? className : ''}`;
+    `outline-0 box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400   ${isError ? 'border-red-500' : 'border-gray-500'} ${className ? className : ''}`;
+
+  const registerOptions = () => {
+    switch (name) {
+      case 'passwordCheck':
+        return {
+          ...passwordCheckValidate,
+          validate: (value: string) =>
+            value === watch('password') || '비밀번호가 일치하지 않습니다.',
+        };
+      default:
+        return {
+          ...rules,
+          onChange,
+          onBlur,
+        };
+    }
+  };
 
   return (
     <input
-      {...register(
-        name,
-        name === 'passwordCheck'
-          ? {
-              ...passwordCheckValidate,
-              validate: (value) =>
-                value === watch('password') || '비밀번호가 일치하지 않습니다.',
-            }
-          : rules,
-      )}
+      {...register(name, registerOptions())}
       type={name === 'password' || name === 'passwordCheck' ? 'password' : type}
       placeholder={placeholder}
       className={inputCss(errors[name] ? true : false, className)}
       readOnly={readOnly}
       defaultValue={defaultValue}
-      onChange={onChange}
-      onBlur={onBlur}
     />
   );
 }

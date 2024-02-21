@@ -1,4 +1,4 @@
-import { IconAllTime, IconDay, IconWeekend } from "@/public/svgs";
+import { IconAllTime, IconDay, IconWeekend } from '@/public/svgs';
 
 const daysConfig = [
   {
@@ -15,4 +15,4 @@ const daysConfig = [
   },
 ];
 
-export default daysConfig
+export default daysConfig;

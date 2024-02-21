@@ -1,14 +1,13 @@
-import { CampPlaceType } from './kakaoMarkerGenerator';
+import { CampZoneForSearch } from '../(header)/search/page';
 
-function createMapPosition(campPlaceData: CampPlaceType[]) {
+function createMapPosition(campPlaceData: CampZoneForSearch[]) {
   return campPlaceData?.map((data) => {
-    const { location } = data;
-
+    const { lat, lng } = data;
     return {
-      title: data.placeName,
-      latlng: new window.kakao.maps.LatLng(location.lat, location.lng),
-      imgUrl: data.imgUrl,
-      price: data.price,
+      title: data.name,
+      latlng: new window.kakao.maps.LatLng(Number(lng), Number(lat)),
+      imgUrl: data.campImage,
+      price: data.minimumAmount,
       address: data.address,
     };
   });

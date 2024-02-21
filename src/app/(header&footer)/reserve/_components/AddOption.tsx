@@ -15,7 +15,7 @@ export const Options = [
   {
     content_id: 3,
     content: ' 욕실세트(치약+일회용 칫솔)',
-    price: '1,000,000원',
+    price: '10,000원',
   },
 ];
 
