@@ -87,7 +87,7 @@ function CampSiteDetail({
                   infos={[
                     `입실 ${site.checkInTime} - 퇴실 ${site.checkOutTime}`,
                     `${site.maxPeople}인 기준 (${true ? '인원 추가 가능' : '인원 추가 불가'})`,
-                    `최소 ${site.min_nights}박`,
+                    `최소 ${site.minNights}박`,
                     `반려동물 숙박 ${site.petYn === 1 ? '가능' : '불가'}`,
                     `최소 ${site.parkingGuide}대`,
                     `트레일러 진입 ${true ? '가능' : '불가'}`,

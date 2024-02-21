@@ -18,7 +18,7 @@ import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
 export type CampingZoneSite = {
-  min_nights: number;
+  minNights: number;
   id: number;
   parentSiteName: string;
   childSiteName: string;

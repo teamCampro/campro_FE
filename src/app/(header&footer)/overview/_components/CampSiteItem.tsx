@@ -21,7 +21,7 @@ function CampSiteItem({
   openSiteModal,
   handleReserve,
 }: CampSiteItemProps) {
-  const { campingType, maxPeople, parkingGuide, petYn, min_nights } = site;
+  const { campingType, maxPeople, parkingGuide, petYn, minNights } = site;
   const infos = [
     {
       text: campingType,
@@ -40,7 +40,7 @@ function CampSiteItem({
       text: petYn ? '애완 동반' : '',
       icon: <IconPet className='fill-gray500' />,
     },
-    { text: `최소 ${min_nights}박`, icon: <IconTime /> },
+    { text: `최소 ${minNights}박`, icon: <IconTime /> },
   ];
   return (
     <li>
@@ -75,7 +75,7 @@ function CampSiteItem({
                   입실 {site.checkInTime} - 퇴실 {site.checkOutTime}
                 </span>
                 <span className='text-gray500 font-caption2-medium'>
-                  {site.min_nights}박 기준
+                  {site.minNights}박 기준
                 </span>
               </div>
             </div>
