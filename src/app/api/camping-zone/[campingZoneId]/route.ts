@@ -22,7 +22,7 @@ export const GET = async (
     const [campingZoneDetail] = await db.execute(query, [campingZoneId]);
 
     const query2 = `SELECT parent_site_name parentSiteName, child_site_name childSiteName, check_in_time checkInTime, check_out_time checkOutTime,
-    price, camping_type campingType, max_people maxPeople, parking_guide parkingGuide, pet_yn petYn, id, minNights minNights
+    price, camping_type campingType, max_people maxPeople, parking_guide parkingGuide, pet_yn petYn, id, min_nights minNights
     FROM camping_zone_site
     WHERE camping_zone_id = ?
   `;
