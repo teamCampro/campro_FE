@@ -107,6 +107,7 @@ function Page({ searchParams, params }: SearchParamsType) {
 
         entries.forEach((entry) => {
           const { id } = entry.target;
+          console.log(id);
           if (id === IMAGE_SECTION_ID) {
             setIsSticky(!entry.intersectionRatio);
           }
@@ -157,65 +158,67 @@ function Page({ searchParams, params }: SearchParamsType) {
   const imageUrls = JSON.parse(detail.imgUrls);
   return (
     <>
-      <div className='m-auto w-full max-w-1360pxr'>
+      <main className='px-40pxr mobile:p-0pxr'>
         <SearchBarForOverview
           searchParams={searchParams}
           placeName={detail.name}
           campId={params.id}
         />
-        <SectionRef sectionRef={setDivRef} id='image'>
-          <CampImage imgUrls={imageUrls} />
-        </SectionRef>
         <AnchorMenu isSticky={isSticky} selectedMenu={activeSection} />
-        <main className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
-          <aside
-            className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} mobile359:right-mopxr sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-23pxr mobile:w-fit tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
-          >
-            <MiniMapContainer {...detail} />
-          </aside>
-          <div>
-            <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
-              <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
-                <SectionRef sectionRef={setDivRef} id='1'>
-                  <CampSiteBasicInfo
-                    keyword={detail.keyword}
-                    placeName={detail.name}
-                    address={detail.address}
-                    tel={detail.tel}
-                    intro={detail.intro}
+        <div className='m-auto w-full max-w-1360pxr'>
+          <SectionRef sectionRef={setDivRef} id='image'>
+            <CampImage imgUrls={imageUrls} />
+          </SectionRef>
+          <section className='relative flex w-full flex-row-reverse justify-between gap-40pxr pt-40pxr mobile:relative mobile:pt-20pxr tablet:justify-start tablet1079:relative tablet1079:flex-row'>
+            <aside
+              className={`${isSticky ? 'top-169pxr' : 'top-40pxr'} mobile359:right-mopxr sticky flex h-fit w-340pxr flex-col gap-24pxr mobile:absolute mobile:right-20pxr mobile:top-23pxr mobile:w-fit tablet1079:absolute tablet1079:right-0pxr tablet1079:top-40pxr tablet1079:w-fit`}
+            >
+              <MiniMapContainer {...detail} />
+            </aside>
+            <div>
+              <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
+                <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
+                  <SectionRef sectionRef={setDivRef} id='1'>
+                    <CampSiteBasicInfo
+                      keyword={detail.keyword}
+                      placeName={detail.name}
+                      address={detail.address}
+                      tel={detail.tel}
+                      intro={detail.intro}
+                    />
+                  </SectionRef>
+                  <SectionRef sectionRef={setDivRef} id='2'>
+                    <CampSiteFacilities facilities={detail.facilities} />
+                  </SectionRef>
+                </div>
+                <SectionRef sectionRef={setDivRef} id='3'>
+                  <CampSiteMap planImage={detail.planImage} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='4'>
+                  <ReservationInfo
+                    openTime={detail.openTime}
+                    nextOpen={detail.nextOpenDate}
+                    mannerTimeStart={detail.mannerTimeStart}
+                    mannerTimeEnd={detail.mannerTimeEnd}
+                    siteList={siteList}
+                    imageUrls={imageUrls}
                   />
                 </SectionRef>
-                <SectionRef sectionRef={setDivRef} id='2'>
-                  <CampSiteFacilities facilities={detail.facilities} />
+              </div>
+              <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
+                <SectionRef sectionRef={setDivRef} id='5'>
+                  <UsageGuidelines {...detail} />
+                </SectionRef>
+                <SectionRef sectionRef={setDivRef} id='6'>
+                  <CustomerReviews reviews={reviewList} />
                 </SectionRef>
               </div>
-              <SectionRef sectionRef={setDivRef} id='3'>
-                <CampSiteMap planImage={detail.planImage} />
-              </SectionRef>
-              <SectionRef sectionRef={setDivRef} id='4'>
-                <ReservationInfo
-                  openTime={detail.openTime}
-                  nextOpen={detail.nextOpenDate}
-                  mannerTimeStart={detail.mannerTimeStart}
-                  mannerTimeEnd={detail.mannerTimeEnd}
-                  siteList={siteList}
-                  imageUrls={imageUrls}
-                />
-              </SectionRef>
             </div>
-            <div className='flex flex-col gap-24pxr mobile359:gap-24pxr'>
-              <SectionRef sectionRef={setDivRef} id='5'>
-                <UsageGuidelines {...detail} />
-              </SectionRef>
-              <SectionRef sectionRef={setDivRef} id='6'>
-                <CustomerReviews reviews={reviewList} />
-              </SectionRef>
-            </div>
-          </div>
-        </main>
+          </section>
+        </div>
+        <ToastContainer className='overview-toast' />
         <div ref={setDivRef} id='footer' />
-      </div>
-      <ToastContainer className='overview-toast' />
+      </main>
     </>
   );
 }

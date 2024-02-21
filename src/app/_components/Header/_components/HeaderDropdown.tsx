@@ -36,7 +36,7 @@ function HeaderDropdown() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
-  const login = '';
+  const login = '민섭';
 
   const handleModal = () => {
     if (!isMobile) return;
