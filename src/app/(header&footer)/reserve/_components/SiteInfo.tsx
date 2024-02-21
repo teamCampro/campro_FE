@@ -117,12 +117,12 @@ function SiteInfo({ size, campList }: SiteInfoType) {
           </li>
         </ul>
       </div>
-      {/* {isOpenModal && (
+      {isOpenModal && (
         <ModalForPlanImage
           onClose={closeModal}
-          planImage={[{ id: 0, imgUrl: campList.site.planImage }]}
+          planImage={['https://camping.dpto.or.kr/images/sub/new_map1.jpg']}
         />
-      )} */}
+      )}
     </>
   );
 }

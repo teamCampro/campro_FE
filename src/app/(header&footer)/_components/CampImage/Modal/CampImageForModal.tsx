@@ -25,26 +25,28 @@ function CampImageForModal({
       <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
         <div className=' flex-center w-full'>
           {mainImage && (
-            <Image
-              className='flex w-full  cursor-pointer'
-              src={mainImage}
-              width={586}
-              height={356}
-              alt='메인 캠프 이미지'
-              style={{ objectFit: 'cover' }}
-            />
+            <a href={mainImage} target='_blank'>
+              <Image
+                className='flex w-full  cursor-pointer hover:brightness-[0.7]'
+                src={mainImage}
+                width={586}
+                height={356}
+                alt='메인 캠프 이미지'
+                style={{ objectFit: 'cover' }}
+              />
+            </a>
           )}
         </div>
 
         <Swiper
           id='campImage-swiper'
-          className='!flex w-full items-start !gap-12pxr  bg-white !p-16pxr'
+          className='!flex w-full items-start   bg-white !py-16pxr !pl-16pxr !pr-4pxr'
           slidesPerView='auto'
         >
           {imgUrls.slice(0, Number(imgUrls.length)).map(
             (imgUrl, i) =>
               imgUrl && (
-                <SwiperSlide key={imgUrl}>
+                <SwiperSlide key={imgUrl + i} className='mr-12pxr'>
                   <Image
                     className={`${mainImage === imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
                     src={imgUrl}
