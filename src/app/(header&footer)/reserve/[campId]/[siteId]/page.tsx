@@ -31,7 +31,7 @@ async function Page({ params }: SearchParamsType) {
             <RoundButton custom='w-full bg-white border border-gray200 font-body2-semibold !h-46pxr rounded-lg'>
               이용 안내 보기
             </RoundButton>
-            <SiteInfo size='mobile' campList={reserveData.result} />
+            <SiteInfo size='mobile' campList={reserveData?.result} />
             <InfoAboutReserve />
             <InfoAboutBookingPerson />
             <AddVehicle />
@@ -45,13 +45,16 @@ async function Page({ params }: SearchParamsType) {
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />
                 <TermsAgreement />
-                <PaymentSubmit custom='w-full hidden disabled:pointer-events-none tabletMin:flex-center !h-56pxr' />
+                <PaymentSubmit
+                  params={params}
+                  custom='w-full hidden  tabletMin:flex-center !h-56pxr'
+                />
               </div>
             </div>
           </section>
         </main>
         <div className='fixed bottom-8pxr left-0pxr w-full bg-white px-20pxr py-16pxr shadow-reserve tabletMin:hidden'>
-          <PaymentSubmit custom='w-full !h-56pxr' />
+          <PaymentSubmit params={params} custom='w-full !h-56pxr' />
         </div>
       </div>
     </>

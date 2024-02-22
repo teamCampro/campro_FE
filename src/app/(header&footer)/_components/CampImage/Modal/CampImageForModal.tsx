@@ -25,7 +25,17 @@ function CampImageForModal({
       <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
         <div className=' flex-center w-full'>
           {mainImage && (
-            <a href={mainImage} target='_blank'>
+            <a
+              href={mainImage}
+              onClick={(event) => {
+                event.preventDefault();
+                window.open(
+                  mainImage,
+                  '_blank',
+                  `width=${window.innerWidth},height=${window.innerHeight},scrollbars=no`,
+                );
+              }}
+            >
               <Image
                 className='flex w-full  cursor-pointer hover:brightness-[0.7]'
                 src={mainImage}
