@@ -41,9 +41,7 @@ export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<
-    CampZoneForSearch[] | null
-  >(null);
+  const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const [prevClusterer, setPrevClusterer] =
     useState<kakao.maps.MarkerClusterer>();
