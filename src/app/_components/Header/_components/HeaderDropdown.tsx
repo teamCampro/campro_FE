@@ -3,10 +3,12 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconPeople } from '@/public/svgs';
+import { getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { setProfileState } from '@/src/app/_utils/profileState';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderModal from './HeaderModal';
 
 interface UserOptionsType {
@@ -26,6 +28,7 @@ export const USER_OPTIONS: UserOptionsType[] = [
 
 function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const pathName = usePathname();
   const isOnboard = pathName.includes('onboard');
   const profile = useAppSelector((state) => state.profile);
@@ -36,8 +39,6 @@ function HeaderDropdown() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
-  const login = '민섭';
-
   const handleModal = () => {
     if (!isMobile) return;
     setIsClose(!isClose);
@@ -46,13 +47,29 @@ function HeaderDropdown() {
   const handleClose = () => {
     setIsClose(false);
   };
-
+  const queryClient = useQueryClient();
   const handleClick = (id: number) => {
     dispatch(setProfileState(id));
     handleModal();
   };
+  useEffect(() => {
+    const userId = window.localStorage.getItem('userId');
+    setIsLogin(!!userId);
+  }, []);
 
-  return login ? (
+  const { data: userInfo, isPending } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+    enabled: isLogin,
+  });
+
+  const handleLogout = () => {
+    queryClient.removeQueries();
+    setIsLogin(false);
+    window.localStorage.removeItem('userId');
+  };
+
+  return isLogin ? (
     <>
       <div className='flex-center group h-40pxr' onClick={handleModal}>
         <div className='h-24pxr w-24pxr cursor-pointer tabletMin:h-32pxr tabletMin:w-32pxr'>
@@ -80,6 +97,7 @@ function HeaderDropdown() {
               <li
                 key={option.id}
                 className='flex-center h-34pxr w-full cursor-pointer justify-start px-20pxr text-gray500 font-body2-medium hover:text-primary100'
+                onClick={handleLogout}
               >
                 {option.list}
               </li>
@@ -89,7 +107,9 @@ function HeaderDropdown() {
       </div>
       {isClose && (
         <HeaderModal
+          userInfo={userInfo}
           profile={profile}
+          handleLogout={handleLogout}
           handleClick={handleClick}
           handleModal={handleModal}
         />
