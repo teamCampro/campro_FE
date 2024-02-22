@@ -89,7 +89,7 @@ function Page({ searchParams }: SearchParamsType) {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, [JSON.stringify(searchParams)]);
 
   useEffect(() => {
     if (map && campPlaceData) {

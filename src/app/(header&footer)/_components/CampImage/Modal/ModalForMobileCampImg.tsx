@@ -21,7 +21,18 @@ function ModalForMobileCampImg({
             {imgUrls.map(
               (imgUrl, i) =>
                 imgUrl && (
-                  <a href={imgUrl} target='_blank' key={imgUrl + i}>
+                  <a
+                    href={imgUrl}
+                    key={imgUrl + i}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      window.open(
+                        imgUrl,
+                        '_blank',
+                        `width=${window.innerWidth},height=${window.innerHeight},scrollbars=no`,
+                      );
+                    }}
+                  >
                     <Image
                       width={138}
                       height={138}
@@ -35,7 +46,17 @@ function ModalForMobileCampImg({
           </div>
         ) : (
           <div className=' flex-center relative flex  h-screen w-full bg-gray100'>
-            <a href={imgUrls[0]} target='_blank'>
+            <a
+              href={imgUrls[0]}
+              onClick={(event) => {
+                event.preventDefault();
+                window.open(
+                  imgUrls[0],
+                  '_blank',
+                  `width=${window.innerWidth},height=${window.innerHeight},scrollbars=no`,
+                );
+              }}
+            >
               <Image
                 width={767}
                 height={480}
