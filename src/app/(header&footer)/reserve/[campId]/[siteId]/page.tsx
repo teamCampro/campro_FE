@@ -31,7 +31,7 @@ async function Page({ params }: SearchParamsType) {
             <RoundButton custom='w-full bg-white border border-gray200 font-body2-semibold !h-46pxr rounded-lg'>
               이용 안내 보기
             </RoundButton>
-            <SiteInfo size='mobile' campList={reserveData.result} />
+            <SiteInfo size='mobile' siteInfo={reserveData.result} />
             <InfoAboutReserve />
             <InfoAboutBookingPerson />
             <AddVehicle />
@@ -40,8 +40,8 @@ async function Page({ params }: SearchParamsType) {
           </section>
           <section>
             <div className='flex flex-col gap-24pxr border-t pt-24pxr tabletMin:rounded-2xl tabletMin:border tabletMin:border-gray300 tabletMin:p-24pxr'>
-              <SiteInfo size='pc' campList={reserveData?.result} />
-              <PaymentAmount sitePrice={reserveData?.result?.price} />
+              <SiteInfo size='pc' siteInfo={reserveData.result} />
+              <PaymentAmount sitePrice={reserveData.result.price} />
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />
                 <TermsAgreement />

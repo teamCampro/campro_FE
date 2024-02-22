@@ -5,7 +5,7 @@ import { UserInfo, getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { useQuery } from '@tanstack/react-query';
 
 interface InfoAboutBookingPersonType {
-  userDecideInfo: UserInfoType;
+  userDecideInfo?: UserInfoType;
 }
 
 function InfoAboutBookingPerson({

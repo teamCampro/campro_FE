@@ -10,7 +10,6 @@ import { Loading } from '@/components/index';
 export interface ReserveStateType {
   id: number;
   name: string;
-  isDone: boolean;
   status: string;
 }
 
@@ -20,13 +19,12 @@ interface ReserveListType {
 }
 
 function ReserveList({ userReserveData, status }: ReserveListType) {
-  console.log(userReserveData);
   const [reserveState, setReserveState] = useState<ReserveStateType[]>([
-    { id: 1, name: '전체', status: 'all', isDone: true },
-    { id: 2, name: '예약대기', status: 'RESERVE_WAITING', isDone: false },
-    { id: 3, name: '예약완료', status: 'RESERVE_COMPLETE', isDone: false },
-    { id: 4, name: '이용완료', status: 'SERVICE_COMPLETE', isDone: false },
-    { id: 5, name: '예약취소', status: 'RESERVE_CANCEL', isDone: false },
+    { id: 1, name: '전체', status: 'all' },
+    { id: 2, name: '예약대기', status: 'RESERVE_WAITING' },
+    { id: 3, name: '예약완료', status: 'RESERVE_COMPLETE' },
+    { id: 4, name: '이용완료', status: 'SERVICE_COMPLETE' },
+    { id: 5, name: '예약취소', status: 'RESERVE_CANCEL' },
   ]);
 
   if (!userReserveData) return <Loading />;
@@ -35,10 +33,9 @@ function ReserveList({ userReserveData, status }: ReserveListType) {
       <h2 className='mb-24pxr hidden font-title1-bold tabletMin:block'>
         예약내역
       </h2>
-      <ReserveStateLists reserveState={reserveState} />
+      <ReserveStateLists status={status} reserveState={reserveState} />
       <div className='flex flex-col gap-16pxr '>
         {userReserveData.map((list) => {
-          console.log(list);
           return (
             <ReserveItem
               key={list.id}

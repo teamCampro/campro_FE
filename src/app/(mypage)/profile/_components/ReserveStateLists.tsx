@@ -7,8 +7,12 @@ import Link from 'next/link';
 
 interface ReserveStateListsType {
   reserveState: ReserveStateType[];
+  status: string;
 }
-function ReserveStateLists({ reserveState }: ReserveStateListsType) {
+function ReserveStateLists({
+  reserveState,
+  status = 'all',
+}: ReserveStateListsType) {
   const getStatusQuery = (status: string = 'all') => {
     if (status === 'all') {
       return '/profile/reserveList';
@@ -16,7 +20,6 @@ function ReserveStateLists({ reserveState }: ReserveStateListsType) {
       return `/profile/reserveList?status=${status}`;
     }
   };
-
   return (
     <Swiper
       modules={[FreeMode]}
@@ -39,10 +42,15 @@ function ReserveStateLists({ reserveState }: ReserveStateListsType) {
             <SwiperSlide
               key={list.id}
               style={{ width: 'auto', display: 'inline-block' }}
-              className={`cursor-pointer rounded-full border px-20pxr py-12pxr hover:border-primary100 hover:text-primary100 ${list.isDone ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
+              className={`h-46pxr w-68pxr cursor-pointer rounded-full border  hover:border-primary100 hover:text-primary100 ${status === list.status ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
             >
-              <li>
-                <Link href={getStatusQuery(list.status)}>{list.name}</Link>
+              <li /* className='h-46pxr w-68pxr' */>
+                <Link
+                  className='inline-block  h-full w-full px-20pxr py-12pxr'
+                  href={getStatusQuery(list.status)}
+                >
+                  {list.name}
+                </Link>
               </li>
             </SwiperSlide>
           );

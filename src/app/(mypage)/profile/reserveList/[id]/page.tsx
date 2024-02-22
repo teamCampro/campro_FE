@@ -1,13 +1,30 @@
+'use client';
+
 import getOneReserve from '@/src/app/_data/profile/getOneReserve';
 import ReserveInfo from '../../_components/ReserveInfo';
+import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { Loading } from '@/components/index';
 
-async function Page({ params }: { params: { id: number } }) {
+function Page({ params }: { params: { id: number } }) {
   const { id: reserveId } = params;
-  const getDetailReserve = await getOneReserve(1, reserveId);
 
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
+  }
+  const { data: getDetailReserve } = useQuery({
+    queryKey: ['detailReserve ', userId, reserveId],
+    queryFn: () => getOneReserve(userId, reserveId),
+    staleTime: 60 * 1000,
+  });
+
+  if (!getDetailReserve) return <Loading />;
   return (
     <>
-      <ReserveInfo getDetailReserve={getDetailReserve} />
+      <Suspense fallback={<Loading />}>
+        <ReserveInfo getDetailReserve={getDetailReserve} />
+      </Suspense>
     </>
   );
 }

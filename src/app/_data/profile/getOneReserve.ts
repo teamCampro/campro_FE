@@ -1,6 +1,6 @@
 import { axiosInstance } from '../../_utils/axiosInstance';
 
-const getOneReserve = async (userId: number, reservationId: number) => {
+const getOneReserve = async (userId: string, reservationId: number) => {
   try {
     const response = await axiosInstance.get(
       `user/${userId}/reservation/${reservationId}`,

@@ -66,6 +66,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     userName,
     userPhone,
   } = getDetailReserve;
+
   const [isClose, setIsClose] = useState(false);
 
   const siteInfo: ReserveInfoData = {
@@ -85,7 +86,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     stayEndAt: getOneFormatDate(stayEndAt),
   };
 
-  const userInfo: UserInfoType = {
+  const userDecideInfo: UserInfoType = {
     userName,
     userPhone,
   };
@@ -108,7 +109,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
       <div id='profile' className='flex flex-col gap-24pxr'>
         <SiteInfo size='profile' siteInfo={siteInfo} />
         <InfoAboutReserve reservePersonInfo={reservePersonInfo} />
-        <InfoAboutBookingPerson userInfo={userInfo} />
+        <InfoAboutBookingPerson userDecideInfo={userDecideInfo} />
         <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
           <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>
             차량 추가
@@ -116,7 +117,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
           <div className='flex items-center justify-start gap-24pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
             차량번호
             <span className='text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
-              가나109231
+              {carInfo}
             </span>
           </div>
         </div>
@@ -142,13 +143,14 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
               <li className='flex-center justify-start gap-35pxr text-gray600 font-body2-medium'>
                 <h4 className='whitespace-nowrap'>결제 일시</h4>
                 <span className='text-gray800 font-body2-medium'>
-                  2024.12.28(토) 14:29
+                  {getOneFormatDate(reservedAt, true)}
                 </span>
               </li>
               <li className='flex-center justify-start gap-35pxr text-gray600 font-body2-medium'>
                 <h4 className='whitespace-nowrap'>결제 수단</h4>
                 <span className='text-gray800 font-body2-medium'>
-                  현대 ****-****-**21
+                  {/* 현대 ****-****-**21 */}
+                  {payMethod}
                 </span>
               </li>
             </ul>

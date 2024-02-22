@@ -1,7 +1,9 @@
-import getReserveList from '@/src/app/_data/profile/getReserveList';
+'use client';
 import ReserveList from '../_components/ReserveList';
 import { Suspense } from 'react';
 import Loading from '@/src/app/Loading';
+import getReserveList from '@/src/app/_data/profile/getReserveList';
+import { useQuery } from '@tanstack/react-query';
 
 interface ProfilePageType {
   searchParams: {
@@ -9,10 +11,18 @@ interface ProfilePageType {
   };
 }
 
-export default async function Page({ searchParams }: ProfilePageType) {
+function Page({ searchParams }: ProfilePageType) {
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
+  }
   const { status } = searchParams;
-  const userReserveData = await getReserveList('1', status);
 
+  const { data: userReserveData } = useQuery({
+    queryKey: ['userReserve', userId, status],
+    queryFn: () => getReserveList(userId, status),
+    staleTime: 60 * 1000,
+  });
   return (
     <>
       <Suspense fallback={<Loading />}>
@@ -21,3 +31,4 @@ export default async function Page({ searchParams }: ProfilePageType) {
     </>
   );
 }
+export default Page;
