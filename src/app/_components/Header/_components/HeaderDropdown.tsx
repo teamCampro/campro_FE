@@ -5,7 +5,7 @@ import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconPeople } from '@/public/svgs';
 import { getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { setProfileState } from '@/src/app/_utils/profileState';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -47,29 +47,29 @@ function HeaderDropdown() {
   const handleClose = () => {
     setIsClose(false);
   };
-
+  const queryClient = useQueryClient();
   const handleClick = (id: number) => {
     dispatch(setProfileState(id));
     handleModal();
   };
   useEffect(() => {
-    // 컴포넌트가 마운트된 후에 localStorage를 체크
     const userId = window.localStorage.getItem('userId');
     setIsLogin(!!userId);
   }, []);
 
-  const {
-    data: userInfo,
-    isError,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: userInfo, isPending } = useQuery({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
     enabled: isLogin,
   });
 
-  return userInfo ? (
+  const handleLogout = () => {
+    queryClient.removeQueries();
+    setIsLogin(false);
+    window.localStorage.removeItem('userId');
+  };
+
+  return isLogin ? (
     <>
       <div className='flex-center group h-40pxr' onClick={handleModal}>
         <div className='h-24pxr w-24pxr cursor-pointer tabletMin:h-32pxr tabletMin:w-32pxr'>
@@ -97,6 +97,7 @@ function HeaderDropdown() {
               <li
                 key={option.id}
                 className='flex-center h-34pxr w-full cursor-pointer justify-start px-20pxr text-gray500 font-body2-medium hover:text-primary100'
+                onClick={handleLogout}
               >
                 {option.list}
               </li>
@@ -108,6 +109,7 @@ function HeaderDropdown() {
         <HeaderModal
           userInfo={userInfo}
           profile={profile}
+          handleLogout={handleLogout}
           handleClick={handleClick}
           handleModal={handleModal}
         />

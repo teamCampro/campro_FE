@@ -29,12 +29,14 @@ interface HeaderModalType {
     role: string;
     nickname: string;
   };
+  handleLogout: () => void;
 }
 
 function HeaderModal({
   handleModal,
   profile,
   handleClick,
+  handleLogout,
   userInfo,
 }: HeaderModalType) {
   const pathName = usePathname();
@@ -82,7 +84,7 @@ function HeaderModal({
                 <li
                   key={option.id}
                   className='flex cursor-pointer justify-between'
-                  onClick={() => handleClick(option.id)}
+                  onClick={handleLogout}
                 >
                   <h3
                     className={`${option.isDone ? 'text-black' : 'text-gray500 '} font-body1-bold`}
