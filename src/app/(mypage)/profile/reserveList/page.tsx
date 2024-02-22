@@ -1,9 +1,10 @@
 'use client';
 import ReserveList from '../_components/ReserveList';
 import { Suspense } from 'react';
-import Loading from '@/src/app/Loading';
+
 import getReserveList from '@/src/app/_data/profile/getReserveList';
 import { useQuery } from '@tanstack/react-query';
+import { Loading } from '@/components/index';
 
 interface ProfilePageType {
   searchParams: {
