@@ -1,22 +1,30 @@
+'use client';
+
+import getOneReserve from '@/src/app/_data/profile/getOneReserve';
 import ReserveInfo from '../../_components/ReserveInfo';
+import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { Loading } from '@/components/index';
 
-async function getData() {
-  const res = await fetch(
-    `http://localhost:3000/data/reserveListMockData.json`,
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+function Page({ params }: { params: { id: number } }) {
+  const { id: reserveId } = params;
+
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
   }
+  const { data: getDetailReserve } = useQuery({
+    queryKey: ['detailReserve ', userId, reserveId],
+    queryFn: () => getOneReserve(userId, reserveId),
+    staleTime: 60 * 1000,
+  });
 
-  return res.json();
-}
-
-async function Page({ params }: { params: { id: number } }) {
-  const data = await getData();
-
+  if (!getDetailReserve) return <Loading />;
   return (
     <>
-      <ReserveInfo campList={data[params.id - 1]} />
+      <Suspense fallback={<Loading />}>
+        <ReserveInfo getDetailReserve={getDetailReserve} />
+      </Suspense>
     </>
   );
 }
