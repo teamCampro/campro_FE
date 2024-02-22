@@ -3,15 +3,14 @@
 import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import {
   CampSearchList,
-  Loading,
   MapSizeButtons,
   SearchFilter,
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
 import usePagination from '@/hooks/usePagination';
+import { Suspense, useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
-import { useEffect, useState } from 'react';
 import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
 
@@ -45,6 +44,7 @@ function Page({ searchParams }: SearchParamsType) {
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const [prevClusterer, setPrevClusterer] =
     useState<kakao.maps.MarkerClusterer>();
+  const [loading, setLoading] = useState(true);
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -76,6 +76,7 @@ function Page({ searchParams }: SearchParamsType) {
   useEffect(() => {
     const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
+      setLoading(true);
       const response = await axiosInstance.get<DataType>(
         searchParams.location === '전체'
           ? 'camping-zone/list'
@@ -84,6 +85,7 @@ function Page({ searchParams }: SearchParamsType) {
 
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
+      setLoading(false);
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,8 +104,6 @@ function Page({ searchParams }: SearchParamsType) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
 
-  if (!campPlaceData) return <Loading />;
-
   return (
     <>
       <MapSizeButtons
@@ -117,57 +117,59 @@ function Page({ searchParams }: SearchParamsType) {
           <SearchFilter />
         </div>
       </div>
-      <div className='flex-center searchPageOverFlow h-full w-full'>
-        {mapSize !== 'map' && (
-          <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : 'grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
-          >
-            <div className='flex items-center justify-around'>
-              <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
-                전체 {campPlaceData?.length || 0}
-              </h3>
-              <SortDropdown />
-            </div>
+      <Suspense fallback={<div>미녀기</div>}>
+        <div className='flex-center searchPageOverFlow h-full w-full'>
+          {mapSize !== 'map' && (
+            <div
+              className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : 'grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
+            >
+              <div className='flex items-center justify-around'>
+                <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
+                  전체 {campPlaceData?.length || 0}
+                </h3>
+                <SortDropdown />
+              </div>
 
-            <div className='flex w-full flex-col gap-48pxr mobile:gap-64pxr tablet:gap-64pxr'>
-              {campPlaceData.length > 0 ? (
-                <>
-                  <CampSearchList
-                    currentPage={currentPage}
-                    campPlaces={campPlaceData}
-                    gridColumns={mapBasis[mapSize].list}
-                  />
-                  <SearchPagination
-                    currentPage={currentPage}
-                    totalItems={totalItems}
-                    onUpdatePage={updateCurrentPage}
-                  />
-                </>
-              ) : (
-                <div className='flex-center h-500pxr flex-col'>
-                  <h3 className='text-gray600 font-h2-semibold'>
-                    모든 캠핑장 예약이 마감됐어요
-                  </h3>
-                  <div className='text-gray500 font-body1-medium'>
-                    다른 일정/지역으로 재검색 해보는 건 어떨까요?
+              <div className='flex w-full flex-col gap-48pxr mobile:gap-64pxr tablet:gap-64pxr'>
+                {campPlaceData.length > 0 ? (
+                  <>
+                    <CampSearchList
+                      currentPage={currentPage}
+                      campPlaces={campPlaceData}
+                      gridColumns={mapBasis[mapSize].list}
+                    />
+                    <SearchPagination
+                      currentPage={currentPage}
+                      totalItems={totalItems}
+                      onUpdatePage={updateCurrentPage}
+                    />
+                  </>
+                ) : (
+                  <div className='flex-center h-500pxr flex-col'>
+                    <h3 className='text-gray600 font-h2-semibold'>
+                      모든 캠핑장 예약이 마감됐어요
+                    </h3>
+                    <div className='text-gray500 font-body1-medium'>
+                      다른 일정/지역으로 재검색 해보는 건 어떨까요?
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
+          )}
+          <div
+            className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
+          >
+            <KakaoMap
+              region={searchParams.location}
+              map={map}
+              setMap={setKakaoMap}
+              mapSize={mapSize}
+              campPlaceData={campPlaceData}
+            />
           </div>
-        )}
-        <div
-          className={`relative h-full shrink-0 grow-1 tablet1002:basis-348pxr tablet1199:basis-381pxr desktop1440:basis-664pxr ${mapBasis[mapSize].map}`}
-        >
-          <KakaoMap
-            region={searchParams.location}
-            map={map}
-            setMap={setKakaoMap}
-            mapSize={mapSize}
-            campPlaceData={campPlaceData}
-          />
         </div>
-      </div>
+      </Suspense>
     </>
   );
 }
