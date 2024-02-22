@@ -1,22 +1,13 @@
+import getOneReserve from '@/src/app/_data/profile/getOneReserve';
 import ReserveInfo from '../../_components/ReserveInfo';
 
-async function getData() {
-  const res = await fetch(
-    `http://localhost:3000/data/reserveListMockData.json`,
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
 async function Page({ params }: { params: { id: number } }) {
-  const data = await getData();
+  const { id: reserveId } = params;
+  const getDetailReserve = await getOneReserve(1, reserveId);
 
   return (
     <>
-      <ReserveInfo campList={data[params.id - 1]} />
+      <ReserveInfo getDetailReserve={getDetailReserve} />
     </>
   );
 }

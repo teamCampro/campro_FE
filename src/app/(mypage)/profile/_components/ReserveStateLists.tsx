@@ -3,15 +3,20 @@
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ReserveStateType } from './ReserveList';
+import Link from 'next/link';
 
 interface ReserveStateListsType {
-  handleClick: (id: number) => void;
   reserveState: ReserveStateType[];
 }
-function ReserveStateLists({
-  handleClick,
-  reserveState,
-}: ReserveStateListsType) {
+function ReserveStateLists({ reserveState }: ReserveStateListsType) {
+  const getStatusQuery = (status: string = 'all') => {
+    if (status === 'all') {
+      return '/profile/reserveList';
+    } else {
+      return `/profile/reserveList?status=${status}`;
+    }
+  };
+
   return (
     <Swiper
       modules={[FreeMode]}
@@ -35,9 +40,10 @@ function ReserveStateLists({
               key={list.id}
               style={{ width: 'auto', display: 'inline-block' }}
               className={`cursor-pointer rounded-full border px-20pxr py-12pxr hover:border-primary100 hover:text-primary100 ${list.isDone ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
-              onClick={() => handleClick(list.id)}
             >
-              <li>{list.name}</li>
+              <li>
+                <Link href={getStatusQuery(list.status)}>{list.name}</Link>
+              </li>
             </SwiperSlide>
           );
         })}

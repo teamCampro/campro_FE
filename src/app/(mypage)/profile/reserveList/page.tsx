@@ -1,23 +1,23 @@
+import getReserveList from '@/src/app/_data/profile/getReserveList';
 import ReserveList from '../_components/ReserveList';
+import { Suspense } from 'react';
+import Loading from '@/src/app/Loading';
 
-//api연결시 차후에 쓸 함수
-/* async function getData() { 
-  const res = await fetch(
-    'http://localhost:3000/data/reserveListMockData.json',
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+interface ProfilePageType {
+  searchParams: {
+    status: string;
+  };
+}
 
-  return res.json();
-} */
-
-export default async function Page() {
-  /*  const data = await getData(); */
+export default async function Page({ searchParams }: ProfilePageType) {
+  const { status } = searchParams;
+  const userReserveData = await getReserveList('1', status);
 
   return (
     <>
-      <ReserveList /* reserveList={data} */ />
+      <Suspense fallback={<Loading />}>
+        <ReserveList userReserveData={userReserveData} status={status} />
+      </Suspense>
     </>
   );
 }

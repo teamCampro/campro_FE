@@ -1,9 +1,15 @@
+import { UserInfoType } from '@/src/app/(mypage)/profile/_components/ReserveInfo';
+
 const user = {
   name: '홍길동',
   phoneNumber: '010-1234-7897',
 };
 
-function InfoAboutBookingPerson() {
+interface InfoAboutBookingPersonType {
+  userInfo: UserInfoType;
+}
+
+function InfoAboutBookingPerson({ userInfo }: InfoAboutBookingPersonType) {
   return (
     <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
       <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>

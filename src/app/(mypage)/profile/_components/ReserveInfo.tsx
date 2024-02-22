@@ -4,13 +4,91 @@ import Button from '@/components/Button';
 import InfoAboutBookingPerson from '@/src/app/(header&footer)/reserve/_components/InfoAboutBookingPerson';
 import InfoAboutReserve from '@/src/app/(header&footer)/reserve/_components/InfoAboutReserve';
 import PaymentAmount from '@/src/app/(header&footer)/reserve/_components/PaymentAmount';
-import SiteInfo from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
+import SiteInfo, {
+  ReserveInfoData,
+} from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 import { useState } from 'react';
 import CancleReserverModal from './CancleReserverModal';
-import { ReserveListType } from '@/src/app/_constants/reserveList';
+import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
 
-function ReserveInfo({ campList }: { campList: ReserveListType }) {
+interface ReserveInfoType {
+  getDetailReserve: {
+    campingZoneName: string;
+    address: string;
+    campingZoneTel: string;
+    campingZoneSiteName: string;
+    maxPeople: number;
+    campingZoneSitePrice: number;
+    adult: number;
+    child: number;
+    pet: number;
+    stayStartAt: string;
+    stayEndAt: string;
+    carInfo: string;
+    reservedAt: string;
+    payMethod: string;
+    status: string;
+    userName: string;
+    userPhone: string;
+  };
+}
+
+export interface ReservePersonInfoType {
+  adult: number;
+  child: number;
+  pet: number;
+  stayStartAt: string;
+  stayEndAt: string;
+}
+
+export interface UserInfoType {
+  userName: string;
+  userPhone: string;
+}
+
+function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
+  const {
+    campingZoneName,
+    address,
+    campingZoneTel,
+    campingZoneSiteName,
+    maxPeople,
+    campingZoneSitePrice,
+    adult,
+    child,
+    pet,
+    stayStartAt,
+    stayEndAt,
+    carInfo,
+    reservedAt,
+    payMethod,
+    status,
+    userName,
+    userPhone,
+  } = getDetailReserve;
   const [isClose, setIsClose] = useState(false);
+
+  const siteInfo: ReserveInfoData = {
+    name: campingZoneName,
+    address: address,
+    tel: campingZoneTel,
+    parentSiteName: campingZoneSiteName,
+    maxPeople: String(maxPeople),
+    price: campingZoneSitePrice,
+  };
+
+  const reservePersonInfo: ReservePersonInfoType = {
+    adult,
+    child,
+    pet,
+    stayStartAt: getOneFormatDate(stayStartAt),
+    stayEndAt: getOneFormatDate(stayEndAt),
+  };
+
+  const userInfo: UserInfoType = {
+    userName,
+    userPhone,
+  };
 
   const handleModal = () => {
     setIsClose(!isClose);
@@ -21,16 +99,16 @@ function ReserveInfo({ campList }: { campList: ReserveListType }) {
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
         <h2 className='hidden font-h1-semibold tabletMin:block'>예약 상세</h2>
         <Button.Round
-          custom={`!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 tabletMin:hover:!text-primary100 !rounded-md ${campList.check_state == 2 ? 'hidden' : ''}`}
+          custom={`!w-108pxr bg-white border border-gray200 font-caption1-semibold !h-36pxr hidden tabletMin:flex !text-gray500 tabletMin:hover:!text-primary100 !rounded-md ${status == 'SERVICE_COMPLETE' || status == 'RESERVE_CANCEL' ? 'hidden' : ''}`}
           onClick={handleModal}
         >
           예약 취소
         </Button.Round>
       </div>
       <div id='profile' className='flex flex-col gap-24pxr'>
-        <SiteInfo size='profile' />
-        <InfoAboutReserve campList={campList} />
-        <InfoAboutBookingPerson />
+        <SiteInfo size='profile' siteInfo={siteInfo} />
+        <InfoAboutReserve reservePersonInfo={reservePersonInfo} />
+        <InfoAboutBookingPerson userInfo={userInfo} />
         <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
           <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>
             차량 추가

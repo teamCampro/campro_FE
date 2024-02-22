@@ -16,7 +16,7 @@ import CustomerReviews from '../_components/CustomerReviews';
 import ReservationInfo from '../_components/ReservationInfo';
 import SectionRef from '../_components/SectionRef';
 import UsageGuidelines from '../_components/UsageGuidelines';
-import Loading from '@/components/Loading';
+import Loading from '@/src/app/Loading';
 
 export type CampingZoneSite = {
   minNights: number;

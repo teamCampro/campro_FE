@@ -35,4 +35,4 @@ export { default as ModalOutside } from './Modal/ModalOutside';
 export { default as ModalPortal } from './Modal/ModalPortal';
 export { default as Pagination } from './Pagination';
 export { default as SearchBar } from './SearchBar';
-export { default as Loading } from './Loading';
+export { default as Loading } from '../Loading';

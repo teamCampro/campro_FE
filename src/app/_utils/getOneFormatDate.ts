@@ -1,4 +1,4 @@
-const getOneFormatDate = (dateString: Date) => {
+const getOneFormatDate = (dateString: string) => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const date = new Date(dateString);
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
