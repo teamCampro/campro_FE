@@ -9,6 +9,7 @@ export const signin = async (signinInfo: SigninInfo) => {
       password,
     });
     if (response && response.status === 200) {
+      window.localStorage.setItem('userId', response.data.result.userId);
       window.location.href = '/';
     }
   } catch (error) {
