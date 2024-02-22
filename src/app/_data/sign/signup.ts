@@ -1,16 +1,9 @@
+import { FieldValues } from 'react-hook-form';
 import { axiosInstance } from '../../_utils/axiosInstance';
-import { SignupInfo } from '@/components/Form/SignUpForm';
 
-export const signup = async (signupInfo: SignupInfo) => {
+export const signup = async (signupInfo: FieldValues) => {
   try {
-    const { email, phone, password, role, nickname } = signupInfo;
-    const response = await axiosInstance.post(`sign/sign-up`, {
-      email,
-      phone,
-      password,
-      role,
-      nickname,
-    });
+    const response = await axiosInstance.post(`sign/sign-up`, signupInfo);
     if (response && response.status === 200) {
       window.location.href = '/signin';
     }
