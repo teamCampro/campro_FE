@@ -1,3 +1,5 @@
+'use client';
+
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
 import FACILITIES from '@/src/app/_constants/facilities';
 import { ReactElement, useState } from 'react';
