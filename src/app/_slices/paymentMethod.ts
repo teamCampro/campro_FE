@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface PaymentMethodState {
-  method: string;
+  method: 'NO_BANK_BOOK' | 'CREDIT_CARD' | 'EASY_PAYMENT' | '';
 }
 
 const initialState: PaymentMethodState = { method: '' };
