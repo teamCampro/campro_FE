@@ -37,7 +37,17 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
             </span>
           </div>
           <div className='flex-center h-480pxr w-full max-w-767pxr rounded-b-2xl bg-gray100'>
-            <a href={planImage[0]} target='_blank'>
+            <a
+              href={planImage[0]}
+              onClick={(event) => {
+                event.preventDefault();
+                window.open(
+                  planImage[0],
+                  '_blank',
+                  `width=${window.innerWidth},height=${window.innerHeight},scrollbars=no`,
+                );
+              }}
+            >
               <Image
                 width={767}
                 height={480}
