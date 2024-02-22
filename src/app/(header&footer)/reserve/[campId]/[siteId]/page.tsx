@@ -45,13 +45,16 @@ async function Page({ params }: SearchParamsType) {
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />
                 <TermsAgreement />
-                <PaymentSubmit custom='w-full hidden disabled:pointer-events-none tabletMin:flex-center !h-56pxr' />
+                <PaymentSubmit
+                  params={params}
+                  custom='w-full hidden disabled:pointer-events-none tabletMin:flex-center !h-56pxr'
+                />
               </div>
             </div>
           </section>
         </main>
         <div className='fixed bottom-8pxr left-0pxr w-full bg-white px-20pxr py-16pxr shadow-reserve tabletMin:hidden'>
-          <PaymentSubmit custom='w-full !h-56pxr' />
+          <PaymentSubmit params={params} custom='w-full !h-56pxr' />
         </div>
       </div>
     </>
