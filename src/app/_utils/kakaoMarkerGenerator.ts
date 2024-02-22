@@ -4,6 +4,7 @@ import createMarkerImage from './createMarkerImage';
 import createOverlayElement from './createOverlayElement';
 import './kakaoMarkerGenerator.css';
 import { CampZoneForSearch } from '../(header)/search/page';
+
 interface LocationType {
   lat: number;
   lng: number;
@@ -19,18 +20,40 @@ export interface CampPlaceType {
 }
 
 interface Props {
+  searchParams: {
+    [key: string]: string;
+  };
   map: kakao.maps.Map;
   campPlaceData: CampZoneForSearch[];
+  prevClusterer: kakao.maps.MarkerClusterer | undefined;
+  handlePrevClusterer: (clusterer: kakao.maps.MarkerClusterer) => void;
 }
 
-function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
-  if (map) {
+function kakaoMarkerGenerator({
+  searchParams,
+  map,
+  campPlaceData,
+  prevClusterer,
+  handlePrevClusterer,
+}: Props) {
+  if (prevClusterer) {
+    prevClusterer.clear();
+  }
+
+  if (map && campPlaceData && campPlaceData.length > 0) {
     const positions = createMapPosition(campPlaceData);
 
     let selectedMarker: kakao.maps.Marker | null = null;
 
     if (positions) {
       let selectedOverlay: kakao.maps.CustomOverlay | null = null;
+
+      const clusterer = new kakao.maps.MarkerClusterer({
+        map: map,
+        averageCenter: true,
+        minLevel: 12,
+      });
+
       for (let i = 0; i < positions.length; i++) {
         const markerImage = createMarkerImage({
           src: '/svgs/markerGray.svg',
@@ -42,15 +65,17 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
           size: { width: 19, height: 25 },
         });
 
-        const marker = new window.kakao.maps.Marker({
-          map: map,
+        const marker = new kakao.maps.Marker({
           position: positions[i].latlng,
           title: positions[i].title,
           image: markerImage,
           clickable: true,
         });
 
-        const overlayElement = createOverlayElement(positions[i]);
+        clusterer.addMarker(marker);
+        handlePrevClusterer(clusterer);
+
+        const overlayElement = createOverlayElement(searchParams, positions[i]);
 
         const overlay = createCustomOverlay({
           marker,
@@ -75,11 +100,14 @@ function kakaoMarkerGenerator({ map, campPlaceData }: Props) {
 
           if (isSelectedMarkerChanged) {
             !!selectedMarker && selectedMarker.setImage(markerImage);
+            !!selectedMarker && selectedMarker.setZIndex(0);
             marker.setImage(clickedMarkerImage);
           }
-
           selectedMarker = marker;
           selectedOverlay = overlay;
+          if (selectedMarker) {
+            selectedMarker.setZIndex(1);
+          }
         });
 
         kakao.maps.event.addListener(map, 'click', () => {

@@ -85,6 +85,18 @@ function DatePickerController({
     <Controller
       control={control}
       name={name}
+      rules={{
+        validate: (value) => {
+          if (
+            Array.isArray(value) &&
+            value.length === 2 &&
+            value.every((v) => v instanceof Date)
+          ) {
+            return true;
+          }
+          return false;
+        },
+      }}
       render={({ field }) => {
         setFieldRef(field);
         const handleDateInputClick = () => {

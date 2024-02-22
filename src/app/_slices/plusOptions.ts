@@ -14,7 +14,7 @@ const plusOptionCountSlice = createSlice({
       if (!state[action.payload]) {
         state[action.payload] = 1;
       } else {
-        state[action.payload]++;
+        if (state[action.payload] < 9) state[action.payload]++;
       }
     },
     minus: (state, action) => {

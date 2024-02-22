@@ -10,6 +10,7 @@ export const POST = async (req: NextRequest) => {
         const [rows] = await db.execute(query, [signInUserData.email]);
         let tmpResult: any = rows;
         const userEmailExists = tmpResult[0].cnt;
+        
 
         if (userEmailExists === 0) {
             const message = '입력하신 이메일은 가입되지 않은 이메일입니다.'
@@ -17,15 +18,17 @@ export const POST = async (req: NextRequest) => {
         }
 
         else {
-            const passwordQuery = 'SELECT password FROM user_info WHERE email = ?';
+            const passwordQuery = 'SELECT id, password FROM user_info WHERE email = ?';
             const [passwordRows] = await db.execute(passwordQuery, [signInUserData.email]);
             db.release();
             let tmpPasswordResult: any = passwordRows;
             const savedPassword = tmpPasswordResult[0].password;
             const passwordMatch = await bcrypt.compare(signInUserData.password, savedPassword);
-
+            const result = {
+                userId: tmpPasswordResult[0].id
+            }
             if (passwordMatch) {
-                return NextResponse.json({});
+                return NextResponse.json({result});
             }
 
             else {

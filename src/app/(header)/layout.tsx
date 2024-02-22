@@ -1,6 +1,6 @@
 import { Header } from '../_components';
-import { LayoutType } from '../_types';
 import '../_styles/datePicker.css';
+import { LayoutType } from '../_types';
 
 function Layout({ children }: LayoutType) {
   return (

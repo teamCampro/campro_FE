@@ -8,7 +8,7 @@ export interface InitialStateType {
 interface CheckStandByType {
   [key: string]: InitialStateType[];
   stay: InitialStateType[];
-  home: InitialStateType[];
+  facilities: InitialStateType[];
   prices: InitialStateType[];
   theme: InitialStateType[];
   trip: InitialStateType[];
@@ -16,7 +16,7 @@ interface CheckStandByType {
 
 const initialState: CheckStandByType = {
   stay: [],
-  home: [],
+  facilities: [],
   prices: [],
   theme: [],
   trip: [],
@@ -35,7 +35,7 @@ export const checkStandBySlice = createSlice({
       );
     },
     setResetAllStandBy: (state) => {
-      state.home = [];
+      state.facilities = [];
       state.stay = [];
       state.prices = [];
       state.theme = [];

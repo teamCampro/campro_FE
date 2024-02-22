@@ -14,8 +14,8 @@ function CampSiteMap({ planImage }: CampSiteMapProps) {
           src={planImage}
           alt='배치도'
           priority
-          width={174}
-          height={174}
+          width={980}
+          height={520}
           style={{
             width: '100%',
             height: 'auto',

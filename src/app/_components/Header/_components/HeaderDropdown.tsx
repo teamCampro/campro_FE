@@ -1,13 +1,13 @@
 'use client';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconPeople } from '@/public/svgs';
+import { setProfileState } from '@/src/app/_utils/profileState';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import HeaderModal from './HeaderModal';
-import useMediaQueries from '@/hooks/useMediaQueries';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { setProfileState } from '@/src/app/_utils/profileState';
 
 interface UserOptionsType {
   id: number;
@@ -36,7 +36,7 @@ function HeaderDropdown() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
 
-  const login = '민섭쨩쨩';
+  const login = '민섭';
 
   const handleModal = () => {
     if (!isMobile) return;
@@ -49,6 +49,7 @@ function HeaderDropdown() {
 
   const handleClick = (id: number) => {
     dispatch(setProfileState(id));
+    handleModal();
   };
 
   return login ? (
@@ -67,9 +68,8 @@ function HeaderDropdown() {
         >
           {profile.map((option) => {
             return option.link ? (
-              <Link className='w-full' href={option.link}>
+              <Link className='w-full' href={option.link} key={option.id}>
                 <li
-                  key={option.id}
                   className='flex-center h-34pxr cursor-pointer justify-start whitespace-nowrap px-20pxr text-gray800 font-body2-medium hover:text-primary100'
                   onClick={() => handleClick(option.id)}
                 >
@@ -87,7 +87,13 @@ function HeaderDropdown() {
           })}
         </ul>
       </div>
-      {isClose && <HeaderModal handleClick={handleModal} />}
+      {isClose && (
+        <HeaderModal
+          profile={profile}
+          handleClick={handleClick}
+          handleModal={handleModal}
+        />
+      )}
     </>
   ) : (
     <Link href='/signin'>

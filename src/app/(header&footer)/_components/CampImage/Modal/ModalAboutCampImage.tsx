@@ -2,26 +2,29 @@
 
 import { ModalOutside, ModalPortal } from '@/components/index';
 import useMediaQueries from '@/hooks/useMediaQueries';
-import { CampImageData } from '../index';
 import CampImageForModal from './CampImageForModal';
 import ModalForMobileCampImg from './ModalForMobileCampImg';
 
 interface Props {
   onClose: () => void;
-  campImages: CampImageData[] | null;
+  imgUrls: string[];
 }
 
-function ModalAboutCampImage({ onClose, campImages }: Props) {
+function ModalAboutCampImage({ onClose, imgUrls }: Props) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : false;
-  return campImages && !isMobile ? (
+  return imgUrls && !isMobile ? (
     <ModalPortal>
       <ModalOutside
         onClose={onClose}
         custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
       >
-        <CampImageForModal campImages={campImages} onClose={onClose} />
+        <CampImageForModal
+          imgUrls={imgUrls}
+          onClose={onClose}
+          title='전체 사진'
+        />
       </ModalOutside>
     </ModalPortal>
   ) : (
@@ -30,7 +33,11 @@ function ModalAboutCampImage({ onClose, campImages }: Props) {
         onClose={onClose}
         custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
       >
-        <ModalForMobileCampImg onClose={onClose} campImages={campImages} />
+        <ModalForMobileCampImg
+          onClose={onClose}
+          imgUrls={imgUrls}
+          title='전체 사진'
+        />
       </ModalOutside>
     </ModalPortal>
   );

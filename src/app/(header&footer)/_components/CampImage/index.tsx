@@ -1,47 +1,38 @@
 'use client';
 
 import useMediaQueries from '@/hooks/useMediaQueries';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import CampImageCarousel from './CampImageCarousel';
 import CampImageForDesktop from './CampImageForDesktop';
-
+import { useState } from 'react';
 export interface CampImageData {
   id: number;
   imgUrl: string;
 }
 
-function CampImage({
-  campImageRef,
-}: {
-  campImageRef: React.RefObject<HTMLDivElement>;
-}) {
-  const [campImages, setCampImages] = useState<CampImageData[] | null>(null);
-
-  useEffect(() => {
-    const getCampImage = async () => {
-      try {
-        const response = await axios.get<CampImageData[]>(
-          `/data/campImageMockData.json`,
-        );
-        setCampImages(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCampImage();
-  }, []);
-
+function CampImage({ imgUrls }: { imgUrls: string[] }) {
   const tabletMediaQuery = useMediaQueries({ breakpoint: 1079 })?.mediaQuery
     .matches;
   const isCarousel = typeof window !== 'undefined' ? tabletMediaQuery : false;
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const handleRenderModal = () => setIsOpenModal(true);
+  const handleCloseModal = () => setIsOpenModal(false);
   return (
-    <section ref={campImageRef}>
+    <section>
       {isCarousel ? (
-        <CampImageCarousel campImages={campImages} />
+        <CampImageCarousel
+          imgUrls={imgUrls}
+          isOpen={isOpenModal}
+          onOpen={handleRenderModal}
+          onClose={handleCloseModal}
+        />
       ) : (
-        <CampImageForDesktop campImages={campImages} />
+        <CampImageForDesktop
+          imgUrls={imgUrls}
+          isOpen={isOpenModal}
+          onOpen={handleRenderModal}
+          onClose={handleCloseModal}
+        />
       )}
     </section>
   );

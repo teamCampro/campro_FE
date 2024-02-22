@@ -48,7 +48,7 @@ function TermsAgreement() {
   }, [isChecked]);
 
   return (
-    <div className='flex flex-col rounded-lg  bg-gray100 px-20pxr py-16pxr'>
+    <div className='flex flex-col rounded-lg bg-gray100 px-20pxr py-16pxr'>
       <div
         className={`border-gary300  flex items-center  justify-between gap-4pxr  ${isOpen ? 'mb-12pxr border-b pb-12pxr' : ''}`}
       >
@@ -64,7 +64,7 @@ function TermsAgreement() {
           약관 전체 동의
           <span className='ml-2pxr text-error'>(필수)</span>
         </label>
-        <div onClick={handleToggle}>
+        <div onClick={handleToggle} className='cursor-pointer'>
           {isOpen ? <IconArrowDown /> : <IconArrowRightNon />}
         </div>
       </div>

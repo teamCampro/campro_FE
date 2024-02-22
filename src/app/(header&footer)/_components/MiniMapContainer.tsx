@@ -11,10 +11,15 @@ import {
   IconFullPage,
 } from '@/public/svgs';
 import { useState } from 'react';
-import { CampSite } from '../overview/[id]/page';
 import MinikakaoMap from './MinikakaoMap';
 
-function MiniMapContainer({ address, placeName }: CampSite) {
+interface MiniMapContainerProps {
+  tour: string;
+  address: string;
+  name: string;
+}
+
+function MiniMapContainer({ address, name, tour }: MiniMapContainerProps) {
   const [isClose, setIsClose] = useState(false);
   const handleClick = () => {
     setIsClose(!isClose);
@@ -23,10 +28,12 @@ function MiniMapContainer({ address, placeName }: CampSite) {
   const handleClose = () => {
     setIsClose(false);
   };
+
+  const tourList = tour.split(',');
   return (
     <>
       <button
-        className='flex text-second100 tabletMiddleMin:hidden'
+        className='flex-center !leading-none text-second100 tabletMiddleMin:hidden'
         onClick={handleClick}
       >
         지도<span className='hidden tabletMin:inline-block'>보기</span>
@@ -51,7 +58,7 @@ function MiniMapContainer({ address, placeName }: CampSite) {
         <div className='flex-center h-63pxr justify-between px-20pxr py-18pxr'>
           <h3 className='text-gray600 font-body2-medium'>{address}</h3>
           <Copy copyTarget={address}>
-            <div className='flex-center gap-2pxr text-second100 font-body2-medium'>
+            <div className='flex-center gap-2pxr text-nowrap text-second100 font-body2-medium'>
               <div className='h-16pxr w-16pxr'>
                 <IconCopy
                   width='100%'
@@ -68,18 +75,15 @@ function MiniMapContainer({ address, placeName }: CampSite) {
       <div className='flex flex-col gap-12pxr px-20pxr mobile:hidden tablet1079:hidden'>
         <h5 className='font-body1-bold'>주변 관광지</h5>
         <ul className='flex w-full flex-col gap-12pxr'>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
-            · 나무석상
-            <span className='text-gray500 font-body2-medium'>2km</span>
-          </li>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
-            · 자연친숲 계곡
-            <span className='text-gray500 font-body2-medium'>2km</span>
-          </li>
-          <li className='flex justify-between text-gray600 font-body2-medium'>
-            · gs편의점 솔치점
-            <span className='text-gray500 font-body2-medium'>2km</span>
-          </li>
+          {tourList.map((tour) => (
+            <li
+              key={tour}
+              className='flex justify-between text-gray600 font-body2-medium'
+            >
+              · {tour}
+              <span className='text-gray500 font-body2-medium'>2km</span>
+            </li>
+          ))}
         </ul>
       </div>
       {isClose && (
@@ -91,24 +95,32 @@ function MiniMapContainer({ address, placeName }: CampSite) {
             <div className='h-screen w-full bg-white tabletMin:rounded-2xl tabletMiddleMin:h-672pxr tabletMiddleMin:max-w-767pxr tablet1079:h-610pxr tablet1079:max-w-688pxr'>
               <div className='flex-center relative py-16pxr font-title3-semibold tabletMin:font-title1-bold'>
                 <div className='absolute left-20pxr top-1/2 h-26pxr w-26pxr -translate-y-1/2'>
-                  <IconExit
-                    width='100%'
-                    height='100%'
-                    viewBox='0 0 24 24'
-                    fill='#949494'
+                  <button
+                    type='button'
                     onClick={handleClose}
                     className='top-0 absolute hidden tabletMin:inline-block'
-                  />
-                  <IconArrowLeftNon
-                    width='100%'
-                    height='100%'
-                    viewBox='0 0 24 24'
-                    fill='#949494'
+                  >
+                    <IconExit
+                      width='100%'
+                      height='100%'
+                      viewBox='0 0 24 24'
+                      fill='#949494'
+                    />
+                  </button>
+                  <button
+                    type='button'
                     onClick={handleClose}
                     className='top-0 absolute inline-block tabletMin:hidden '
-                  />
+                  >
+                    <IconArrowLeftNon
+                      width='100%'
+                      height='100%'
+                      viewBox='0 0 24 24'
+                      fill='#949494'
+                    />
+                  </button>
                 </div>
-                <h3>{placeName}</h3>
+                <h3>{name}</h3>
               </div>
               <MinikakaoMap location={address} size='modal' isClose={isClose} />
             </div>

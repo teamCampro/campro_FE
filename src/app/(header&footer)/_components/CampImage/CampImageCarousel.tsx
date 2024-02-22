@@ -4,19 +4,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CampImageData } from '.';
 import ModalAboutCampImage from './Modal/ModalAboutCampImage';
 
-function CampImageCarousel({
-  campImages,
-}: {
-  campImages: CampImageData[] | null;
-}) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+interface Props {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  imgUrls: string[];
+}
 
-  const handleRenderModal = () => setIsOpenModal(true);
-  const handleCloseModal = () => setIsOpenModal(false);
-
+function CampImageCarousel({ imgUrls, onOpen, onClose, isOpen }: Props) {
   const swiperSettings = {
     className: 'flex w-full max-w-1360pxr',
     modules: [Navigation, Pagination, A11y, Autoplay],
@@ -35,31 +32,26 @@ function CampImageCarousel({
 
   return (
     <>
-      {campImages && (
+      {
         <Swiper {...swiperSettings}>
-          {campImages.slice(0, 5).map((item, i) =>
-            item.imgUrl ? (
-              <SwiperSlide className='flex w-full' key={item.id}>
+          {imgUrls?.slice(0, 5).map((imgUrl, i) =>
+            imgUrl ? (
+              <SwiperSlide className='flex w-full' key={imgUrl + i}>
                 <Image
                   className='flex w-full cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:rounded-none'
-                  src={item.imgUrl}
+                  src={imgUrl}
                   alt={`camp-image${i}`}
                   width={688}
                   height={398}
-                  onClick={handleRenderModal}
+                  onClick={onOpen}
                 />
               </SwiperSlide>
             ) : null,
           )}
         </Swiper>
-      )}
+      }
 
-      {isOpenModal && (
-        <ModalAboutCampImage
-          campImages={campImages}
-          onClose={handleCloseModal}
-        />
-      )}
+      {isOpen && <ModalAboutCampImage imgUrls={imgUrls} onClose={onClose} />}
     </>
   );
 }

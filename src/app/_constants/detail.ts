@@ -6,7 +6,7 @@ export interface DetailType {
 interface DetailListType {
   [key: string]: DetailType[];
   stay: DetailType[];
-  home: DetailType[];
+  facilities: DetailType[];
   theme: DetailType[];
   trip: DetailType[];
 }
@@ -22,7 +22,7 @@ const TYPE: DetailListType = {
     { id: 7, type: '애견캠핑' },
     { id: 8, type: '차박' },
   ],
-  home: [
+  facilities: [
     { id: 9, type: '바베큐' },
     { id: 10, type: '모닥불' },
     { id: 11, type: '매점' },

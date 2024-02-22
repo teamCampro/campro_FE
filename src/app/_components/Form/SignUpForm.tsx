@@ -20,6 +20,7 @@ import BoxEmpty from '@/public/svgs/checkboxEmpty.svg';
 import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, useState } from 'react';
 import { signup } from '../../_data/sign/signup';
+import HookFormButton from '../Button/HookFormButton';
 
 export interface SignupInfo {
   email: string;
@@ -166,13 +167,12 @@ function SignUpForm() {
           </div>
         </div>
       </div>
-      <Button.Round
+      <HookFormButton
+        custom='flex w-full  bg-primary100 font-title3-bold text-white'
         size='md'
-        type='submit'
-        custom='flex w-full bg-primary100 font-title3-bold text-white'
       >
         회원가입 완료
-      </Button.Round>
+      </HookFormButton>
     </CommonForm>
   );
 }

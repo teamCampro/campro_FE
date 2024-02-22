@@ -19,7 +19,7 @@ import {
   setResetAllStandBy,
   setResetStandBy,
 } from '../../_utils/checkStandByState';
-
+import { useRouter } from 'next/navigation';
 interface TypeInfoType {
   id: number;
   type: string;
@@ -43,7 +43,7 @@ interface LengthType {
 export interface CheckStandByListType {
   [key: string]: InitialStateType[];
   stay: InitialStateType[];
-  home: InitialStateType[];
+  facilities: InitialStateType[];
   theme: InitialStateType[];
   trip: InitialStateType[];
 }
@@ -63,17 +63,21 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-  const checkList = useAppSelector((state) => state.styleSetting);
+
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+  const checkList = useAppSelector((state) => state.styleSetting);
+  const [currentTypes, setCurrentTypes] = useState('');
+  const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
   const [price, setPrice] = useState({
     startPrice: '',
     endPrice: '',
   });
 
   const textLength = children?.toString().length;
+  const router = useRouter();
 
   //dropdown열고&닫기
   const handleOpen = () => {
@@ -101,6 +105,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     };
     if (size !== 'mobile') {
       dispatch(setSelect({ list, types }));
+      setCurrentTypes(types);
+      setIsFinalCheckDone(true);
     } else {
       dispatch(setCheckStandBy({ types, list }));
     }
@@ -113,6 +119,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
       StandByList[types].map((list) => {
         dispatch(setSelect({ list, types }));
       });
+      setCurrentTypes(types);
+      setIsFinalCheckDone(true);
     } else {
       getNewPrice(types);
     }
@@ -147,7 +155,37 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const handleReset = (type: string) => {
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
+    removeAndRedirectUrl(type);
   };
+
+  const redirectUrl = (types: string) => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete(types);
+    const newValues = checkList.select[types].map((el) => el.type).join(',');
+    if (newValues) {
+      params.set(types, newValues);
+    }
+    const newSearch = params.toString();
+    router.push(`/search/?${newSearch}`);
+  };
+
+  const removeAndRedirectUrl = (typeToRemove: string) => {
+    const params = new URLSearchParams(window.location.search);
+    const filteredEntries = Array.from(params.entries()).filter(
+      ([key]) => key !== typeToRemove,
+    );
+    const newParams = new URLSearchParams();
+    filteredEntries.forEach(([key, value]) => newParams.set(key, value));
+    const newSearch = newParams.toString();
+    router.push(`/search/?${newSearch}`);
+  };
+
+  useEffect(() => {
+    if (currentTypes && isFinalCheckDone) {
+      redirectUrl(currentTypes);
+    }
+    setIsFinalCheckDone(false);
+  }, [checkList, currentTypes, isFinalCheckDone]);
 
   return (
     <>
@@ -190,7 +228,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             </ul>
             <div className='flex-center h-88pxr gap-8pxr border-t border-b-white px-20pxr py-16pxr mobile:m-auto mobile:hidden mobile:max-w-400pxr mobile:px-20pxr'>
               <div
-                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                 onClick={() => handleReset(typeInfo.name)}
               >
                 초기화
@@ -198,7 +236,8 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
               </div>
               <Button.Round
                 size='sm'
-                custom='w-174pxr h-56pxr'
+                custom={`w-174pxr h-56pxr ${StandByList[typeInfo.name].length > 0 ? '' : 'hover:!bg-gray300 hover:!text-gray500'}`}
+                disabled={StandByList[typeInfo.name].length > 0 ? false : true}
                 onClick={() => handleFinalCheck(typeInfo.name)}
               >
                 적용

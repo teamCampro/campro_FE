@@ -78,7 +78,6 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
     if (surveyLists.score !== 0 && surveyLists.selectList.length >= 3) {
       setisNext(true);
     }
-    console.log('후기 작성 완료!!!!');
     /* 여기에 post 보내면 됨!!!!! */
   };
   /* 리셋!! */
@@ -204,7 +203,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
             </div>
             <div className='flex-center h-88pxr justify-between gap-14pxr border-t border-b-white px-20pxr py-16pxr'>
               <div
-                className='flex-center gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
                 onClick={handleReset}
               >
                 초기화
@@ -219,7 +218,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
               </div>
               <Button.Round
                 size='sm'
-                custom='!w-full text-white !h-56pxr !flex-shrink'
+                custom='!w-full disabled:pointer-events-none text-white !h-56pxr !flex-shrink'
                 onClick={handleButton}
                 disabled={isDisabled()}
               >

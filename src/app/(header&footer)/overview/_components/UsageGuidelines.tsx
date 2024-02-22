@@ -1,40 +1,59 @@
-import { CampSite } from '../[id]/page';
 import SectionTitle from './SectionTitle';
 
-function UsageGuidelines({ ownerInfo, guide }: CampSite) {
+interface UsageGuidelinesProps {
+  guide: string;
+  refundGuide: string;
+  bossName: string;
+  bossCompanyName: string;
+  bossAddress: string;
+  bossEmail: string;
+  businessNumber: string;
+  tourNumber: string;
+}
+
+function UsageGuidelines({
+  guide,
+  refundGuide,
+  bossName,
+  bossCompanyName,
+  bossAddress,
+  bossEmail,
+  businessNumber,
+  tourNumber,
+}: UsageGuidelinesProps) {
   return (
     <section className='flex flex-col gap-16pxr pt-24pxr mobile:px-20pxr'>
       <SectionTitle>이용안내</SectionTitle>
       <div
         className='text-gray500 font-caption1-medium'
-        dangerouslySetInnerHTML={{ __html: guide.usage }}
+        dangerouslySetInnerHTML={{ __html: guide }}
       ></div>
       <SectionTitle>취소/환불 규정</SectionTitle>
       <div
         className='text-gray500 font-caption1-medium'
-        dangerouslySetInnerHTML={{ __html: guide.refund }}
+        dangerouslySetInnerHTML={{ __html: refundGuide }}
       ></div>
       <div className='flex flex-col gap-16pxr'>
         <SectionTitle>판매자 정보</SectionTitle>
         <ul className='text-gray500 font-body2-medium'>
           <li>
-            대표자: <span>{ownerInfo.ownerName}</span>
+            대표자: <span>{bossName}</span>
           </li>
           <li>
-            상호명: <span>{ownerInfo.placeName}</span>
+            상호명: <span>{bossCompanyName}</span>
           </li>
           <li>
-            사업자 주소: <span>{ownerInfo.address}</span>
+            사업자 주소: <span>{bossAddress}</span>
           </li>
           <li>
-            이메일: <span>{ownerInfo.email}</span>
+            이메일: <span>{bossEmail}</span>
           </li>
           <li>
-            사업자 등록 번호: <span>{ownerInfo.ownerRegistrationNumber}</span>
+            사업자 등록 번호: <span>{businessNumber}</span>
           </li>
           <li>
             관광사업(야영장) 등록번호:
-            <span>{ownerInfo.placeRegistrationNumber}</span>
+            <span>{tourNumber}</span>
           </li>
         </ul>
       </div>
