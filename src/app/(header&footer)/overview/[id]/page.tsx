@@ -1,22 +1,24 @@
 'use client';
+import Loading from '@/components/Loading';
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
+import {
+  AnchorMenu,
+  CampImage,
+  CampSiteBasicInfo,
+  CampSiteFacilities,
+  CampSiteMap,
+  CustomerReviews,
+  MiniMapContainer,
+  ReservationInfo,
+  SectionRef,
+  UsageGuidelines,
+} from '@/components/index';
 import useRefs from '@/hooks/useRefs';
 import { getOverview } from '@/src/app/_data/overview/overview';
 import '@/src/app/_styles/toast.css';
 import { useEffect, useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CampImage from '../../_components/CampImage';
-import MiniMapContainer from '../../_components/MiniMapContainer';
-import AnchorMenu from '../_components/AnchorMenu';
-import CampSiteBasicInfo from '../_components/CampSiteBasicInfo';
-import CampSiteFacilities from '../_components/CampSiteFacilities';
-import CampSiteMap from '../_components/CampSiteMap';
-import CustomerReviews from '../_components/CustomerReviews';
-import ReservationInfo from '../_components/ReservationInfo';
-import SectionRef from '../_components/SectionRef';
-import UsageGuidelines from '../_components/UsageGuidelines';
-import Loading from '@/components/Loading';
 
 export type CampingZoneSite = {
   minNights: number;

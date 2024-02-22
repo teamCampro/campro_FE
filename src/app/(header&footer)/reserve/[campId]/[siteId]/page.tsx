@@ -1,17 +1,20 @@
-import SiteInfo from '../../_components/SiteInfo';
-import HeaderAboutReserve from '../../_components/HeaderAboutReserve';
-import InfoAboutReserve from '../../_components/InfoAboutReserve';
-import InfoAboutBookingPerson from '../../_components/InfoAboutBookingPerson';
-import AddVehicle from '../../_components/AddVehicle';
-import AddOption from '../../_components/AddOption';
-import PaymentMethod from '../../_components/PaymentMethod';
-import TotalPayment from '../../_components/TotalPayment';
-import TermsAgreement from '../../_components/TermsAgreement';
-import PaymentSubmit from '../../_components/PaymentSubmit';
-import PaymentAmount from '../../_components/PaymentAmount';
-import HeaderContent from '../../_components/HeaderContent';
-import getReservationInfo from '@/src/app/_data/reserve/getReservationInfo';
+import {
+  AddOption,
+  AddVehicle,
+  HeaderAboutReserve,
+  HeaderContent,
+  InfoAboutBookingPerson,
+  InfoAboutReserve,
+  PaymentAmount,
+  PaymentMethod,
+  PaymentSubmit,
+  SiteInfo,
+  TermsAgreement,
+  TotalPayment,
+} from '@/components/index';
+
 import RoundButton from '@/components/Button/RoundButton';
+import getReservationInfo from '@/src/app/_data/reserve/getReservationInfo';
 interface SearchParamsType {
   params: { campId: string; siteId: string };
 }
