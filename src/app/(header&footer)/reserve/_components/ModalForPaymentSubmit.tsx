@@ -1,16 +1,21 @@
 'use client';
 
 import { ModalOutside, ModalPortal, Button } from '@/components/index';
-
+import { useRouter } from 'next/navigation';
 interface Props {
   onClose: () => void;
 }
 
-function ModalForPaymentSubmit({ onClose }: Props) {
+function ModalForPaymentSubmit() {
+  const router = useRouter();
+
+  const moveMyPage = () => {
+    router.push('/profile/reserveList');
+  };
   return (
     <ModalPortal>
       <ModalOutside
-        onClose={onClose}
+        onClose={moveMyPage}
         custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full flex-center overflow-hidden bg-black-50 mobile:items-center'
       >
         <div className=' fixed z-[1000] flex  w-300pxr flex-col rounded-xl border-gray200 bg-white px-20pxr pb-20pxr pt-32pxr'>
@@ -27,7 +32,7 @@ function ModalForPaymentSubmit({ onClose }: Props) {
             예약내역에서 취소/상황을 알 수 있어요
           </p>
           <Button.Round
-            onClick={onClose}
+            onClick={moveMyPage}
             size='sm'
             custom='w-260pxr h-48pxr py-14pxr px-20pxr rounded-[8px] flex-center relative z-[1000]'
           >

@@ -1,9 +1,13 @@
 'use client';
 
+import { useAppSelector } from '@/hooks/redux';
 import { UserInfo, getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 function InfoAboutBookingPerson() {
+  const router = useRouter();
   const {
     data: userInfo,
     isLoading,
@@ -12,6 +16,11 @@ function InfoAboutBookingPerson() {
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
   });
+  const logoutState = useAppSelector((state) => state.profile);
+  useEffect(() => {
+    const { isDone } = logoutState[4];
+    if (isDone) router.push('/signin');
+  }, [logoutState, router]);
   return (
     <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
       <h3 className='text-black font-title3-semibold tabletMin:font-title1-semibold'>

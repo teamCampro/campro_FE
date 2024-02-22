@@ -64,6 +64,7 @@ function HeaderDropdown() {
   });
 
   const handleLogout = () => {
+    dispatch(setProfileState(5));
     queryClient.removeQueries();
     setIsLogin(false);
     window.localStorage.removeItem('userId');
