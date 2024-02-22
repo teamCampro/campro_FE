@@ -10,11 +10,11 @@ export const POST = async (req: NextRequest) => {
         const campSubImagesString = JSON.stringify(czData.campSubImages);
 
         const czInsertQuery = `
-        INSERT INTO camping_zone (name, tel, boss_email, business_number, tour_number, facilities,
+        INSERT INTO camping_zone (name, tel, boss_id, boss_email, business_number, tour_number, facilities,
             season, open_day, address, camp_image, plan_image, intro)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        const czInsertResult: any = await db.execute(czInsertQuery, [czData.name, czData.tel, czData.bossEmail, czData.businessNumber,
-        czData.tourNumber, facilitiesString, seasonString, czData.openDay, czData.address, czData.campImage,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        const czInsertResult: any = await db.execute(czInsertQuery, [czData.name, czData.tel, czData.bossId,
+        czData.bossEmail, czData.businessNumber, czData.tourNumber, facilitiesString, seasonString, czData.openDay, czData.address, czData.campImage,
         czData.planImage, czData.intro]);
 
         const czDataImageId = czInsertResult[0].insertId;
