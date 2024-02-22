@@ -3,6 +3,7 @@
 import SearchBarForSearch from '@/components/SearchBar/SearchBarForSearch';
 import {
   CampSearchList,
+  Loading,
   MapSizeButtons,
   SearchFilter,
   SearchPagination,
@@ -40,11 +41,12 @@ export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [campPlaceData, setCampPlaceData] = useState<CampZoneForSearch[]>([]);
+  const [campPlaceData, setCampPlaceData] = useState<
+    CampZoneForSearch[] | null
+  >(null);
   const [mapSize, setMapSize] = useState<MapSizeType>('half');
   const [prevClusterer, setPrevClusterer] =
     useState<kakao.maps.MarkerClusterer>();
-  const [loading, setLoading] = useState(true);
 
   const { currentPage, totalItems, updateCurrentPage, updateTotalItems } =
     usePagination({});
@@ -76,7 +78,6 @@ function Page({ searchParams }: SearchParamsType) {
   useEffect(() => {
     const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
     const fetch = async () => {
-      setLoading(true);
       const response = await axiosInstance.get<DataType>(
         searchParams.location === '전체'
           ? 'camping-zone/list'
@@ -85,11 +86,10 @@ function Page({ searchParams }: SearchParamsType) {
 
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
-      setLoading(false);
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, [JSON.stringify(searchParams)]);
 
   useEffect(() => {
     if (map && campPlaceData) {
@@ -103,6 +103,7 @@ function Page({ searchParams }: SearchParamsType) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
+  if (!campPlaceData) return <Loading />;
 
   return (
     <>
