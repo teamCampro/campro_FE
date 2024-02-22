@@ -42,6 +42,7 @@ export { default as MapSizeButtons } from '../(header)/search/_components/MapSiz
 export { default as SearchFilter } from '../(header)/search/_components/SearchFilter';
 export { default as SearchPagination } from '../(header)/search/_components/SearchPagination';
 export { default as SortDropdown } from '../(header)/search/_components/SortDropdown';
+export { default as Loading } from '../_components/Loading';
 export { default as Button } from './Button';
 export { default as CategoryItem } from './CategoryItem';
 export { default as CategoryList } from './CategoryList';
