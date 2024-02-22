@@ -3,7 +3,6 @@ import ReactQueryProviders from './_utils/ReactQueryProviders';
 import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
 
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Script from 'next/script';
 import './_styles/carousel.css';
 
@@ -28,7 +27,6 @@ export default function RootLayout({
             />
             {children}
             <div id='modal' />
-            <ReactQueryDevtools initialIsOpen={false} />
           </ReactQueryProviders>
         </ReduxProvider>
       </body>
