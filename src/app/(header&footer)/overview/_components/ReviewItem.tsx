@@ -1,3 +1,5 @@
+'use client';
+
 import { IconNavigationDown, IconStar } from '@/public/svgs';
 import getTimeDiff from '@/src/app/_utils/getTimeDiff';
 import Image from 'next/image';

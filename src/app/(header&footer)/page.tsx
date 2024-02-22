@@ -1,4 +1,4 @@
-import { CampPlaceSection, CategoryList, Hero } from '../_components';
+import { CampPlaceSection, CategoryList, Hero } from '@/components/index';
 import { getMainCampList } from '../_data/main/campList';
 
 interface SearchParamsType {
