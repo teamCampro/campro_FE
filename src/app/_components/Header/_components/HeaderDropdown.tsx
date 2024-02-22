@@ -3,10 +3,12 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconPeople } from '@/public/svgs';
+import { getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { setProfileState } from '@/src/app/_utils/profileState';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderModal from './HeaderModal';
 
 interface UserOptionsType {
@@ -26,6 +28,7 @@ export const USER_OPTIONS: UserOptionsType[] = [
 
 function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const pathName = usePathname();
   const isOnboard = pathName.includes('onboard');
   const profile = useAppSelector((state) => state.profile);
@@ -35,8 +38,6 @@ function HeaderDropdown() {
     .matches;
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
-
-  const login = '민섭';
 
   const handleModal = () => {
     if (!isMobile) return;
@@ -51,8 +52,24 @@ function HeaderDropdown() {
     dispatch(setProfileState(id));
     handleModal();
   };
+  useEffect(() => {
+    // 컴포넌트가 마운트된 후에 localStorage를 체크
+    const userId = window.localStorage.getItem('userId');
+    setIsLogin(!!userId);
+  }, []);
 
-  return login ? (
+  const {
+    data: userInfo,
+    isError,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+    enabled: isLogin,
+  });
+
+  return userInfo ? (
     <>
       <div className='flex-center group h-40pxr' onClick={handleModal}>
         <div className='h-24pxr w-24pxr cursor-pointer tabletMin:h-32pxr tabletMin:w-32pxr'>
@@ -89,6 +106,7 @@ function HeaderDropdown() {
       </div>
       {isClose && (
         <HeaderModal
+          userInfo={userInfo}
           profile={profile}
           handleClick={handleClick}
           handleModal={handleModal}

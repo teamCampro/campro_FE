@@ -1,10 +1,9 @@
 'use client';
 
-import { ModalOutside, ModalPortal } from '../..';
 import { IconArrowRightNon, IconPeople } from '@/public/svgs';
-import { USER_OPTIONS } from './HeaderDropdown';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ModalOutside, ModalPortal } from '../..';
 
 interface HeaderModalType {
   handleModal: () => void;
@@ -23,9 +22,21 @@ interface HeaderModalType {
       }
   )[];
   handleClick: (id: number) => void;
+  userInfo: {
+    name: string;
+    email: string;
+    tel: string;
+    role: string;
+    nickname: string;
+  };
 }
 
-function HeaderModal({ handleModal, profile, handleClick }: HeaderModalType) {
+function HeaderModal({
+  handleModal,
+  profile,
+  handleClick,
+  userInfo,
+}: HeaderModalType) {
   const pathName = usePathname();
   const isPath = (link: string) => {
     return pathName.split('/')[2]
@@ -49,7 +60,7 @@ function HeaderModal({ handleModal, profile, handleClick }: HeaderModalType) {
                 fill='black'
               />
             </div>
-            <h2 className='text-black font-body2-bold'>홍길동님</h2>
+            <h2 className='text-black font-body2-bold'>{userInfo.nickname}</h2>
           </div>
           <ul className='flex flex-col gap-24pxr px-24pxr py-12pxr'>
             {profile.map((option) => {
