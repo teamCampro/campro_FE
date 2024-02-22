@@ -4,21 +4,21 @@ import { IconCall, IconLocation, IconStar } from '@/public/svgs';
 import Image from 'next/image';
 import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
-import { ReserveListType } from '@/src/app/_constants/reserveList';
+import { usePathname } from 'next/navigation';
 
 export interface ReserveInfoData {
   name: string;
   address: string;
   tel: string;
   parentSiteName: string;
-  childSiteName: string;
+  childSiteName?: string;
   maxPeople: string;
   price: number;
 }
 
 interface SiteInfoType {
   size: 'mobile' | 'pc' | 'profile';
-  campList?: ReserveInfoData;
+  siteInfo: ReserveInfoData;
 }
 
 interface SizeOptionType {
@@ -33,12 +33,11 @@ const SIZE_OPTION: SizeOptionType = {
   profile: 'flex',
 };
 
-function SiteInfo({ size, campList }: SiteInfoType) {
+function SiteInfo({ size, siteInfo }: SiteInfoType) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
-  if (!campList) return; // 차후에 예약페이지 데이터가 있으면 지울것
-  //현재 컴포넌트 예약페이지 & 예약내역 같이 사용중임
+
   return (
     <>
       <div
@@ -56,7 +55,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
 
           <div className='flex flex-col'>
             <h3 className='text-gray800 font-title2-semibold'>
-              {campList.name}
+              {siteInfo.name}
             </h3>
             <small className='flex text-gray500 font-caption2-medium'>
               <div className='h-16pxr w-16pxr'>
@@ -75,7 +74,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  <div className='reserve-lineOver'>{campList.address}</div>
+                  <div className='reserve-lineOver'>{siteInfo.address}</div>
                 </h3>
               </li>
               <li className='flex gap-4pxr'>
@@ -88,7 +87,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  {campList.tel}
+                  {siteInfo.tel}
                 </h3>
               </li>
             </ul>
@@ -99,7 +98,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
               <h4 className='font-body1-bold'>
-                {campList.parentSiteName} - {campList.childSiteName}
+                {siteInfo.parentSiteName} - {siteInfo.childSiteName}
               </h4>
               <div
                 onClick={openModal}
@@ -112,7 +111,7 @@ function SiteInfo({ size, campList }: SiteInfoType) {
           <li className='flex-center justify-start gap-28pxr text-gray500 font-body2-semibold'>
             기준 인원
             <span className='text-gray700 font-body1'>
-              최대 {campList.maxPeople}인
+              최대 {siteInfo.maxPeople}인
             </span>
           </li>
         </ul>

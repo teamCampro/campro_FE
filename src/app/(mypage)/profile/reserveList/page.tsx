@@ -1,23 +1,35 @@
+'use client';
 import ReserveList from '../_components/ReserveList';
+import { Suspense } from 'react';
 
-//api연결시 차후에 쓸 함수
-/* async function getData() { 
-  const res = await fetch(
-    'http://localhost:3000/data/reserveListMockData.json',
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+import getReserveList from '@/src/app/_data/profile/getReserveList';
+import { useQuery } from '@tanstack/react-query';
+import { Loading } from '@/components/index';
+
+interface ProfilePageType {
+  searchParams: {
+    status: string;
+  };
+}
+
+function Page({ searchParams }: ProfilePageType) {
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
   }
+  const { status } = searchParams;
 
-  return res.json();
-} */
-
-export default async function Page() {
-  /*  const data = await getData(); */
-
+  const { data: userReserveData } = useQuery({
+    queryKey: ['userReserve', userId, status],
+    queryFn: () => getReserveList(userId, status),
+    staleTime: 60 * 1000,
+  });
   return (
     <>
-      <ReserveList /* reserveList={data} */ />
+      <Suspense fallback={<Loading />}>
+        <ReserveList userReserveData={userReserveData} status={status} />
+      </Suspense>
     </>
   );
 }
+export default Page;
