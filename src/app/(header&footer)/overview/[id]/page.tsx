@@ -1,5 +1,5 @@
 'use client';
-import Loading from '@/components/Loading';
+
 import SearchBarForOverview from '@/components/SearchBar/SearchBarForOverview';
 import {
   AnchorMenu,
@@ -8,6 +8,7 @@ import {
   CampSiteFacilities,
   CampSiteMap,
   CustomerReviews,
+  Loading,
   MiniMapContainer,
   ReservationInfo,
   SectionRef,
