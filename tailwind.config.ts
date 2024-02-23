@@ -55,7 +55,7 @@ const config: Config = {
         'white-100': 'rgba(255, 255, 255, 1)',
       },
       colors: {
-        primary100: '#4F9E4F',
+        primary100: '#3E874E',
         primary50: '#C4DBC4',
         emred: '#655DC6',
         error: '#DA1E28',

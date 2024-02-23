@@ -26,7 +26,7 @@ function Footer() {
           <li>주소: 서울특별시 강남구 삼성로 123 1층</li>
           <li>고객센터: 02-1234-5678</li>
         </ul>
-        <Link className='button-careCenter' href='#none'>
+        <Link className='button-careCenter tabletMin:buttonHover' href='#none'>
           고객센터
           <IconArrowRightNon className='w-20pxr' fill='#949494' />
         </Link>
