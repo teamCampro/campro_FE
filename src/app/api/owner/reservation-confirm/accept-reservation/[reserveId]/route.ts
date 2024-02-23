@@ -13,7 +13,7 @@ export const PATCH = async (
 
 		if (reservationStatus === 'RESERVE_WAITING') {
 			const query = `UPDATE reservation SET status = 'RESERVE_COMPLETE' WHERE id = ?`;
-			await db.execute(query, reserveId);
+			await db.execute(query, [reserveId]);
 
 			db.release();
 			return NextResponse.json({});
