@@ -20,17 +20,26 @@ function CampImageForModal({
   };
 
   return (
-    <div className='flex w-full  max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
+    <div className='flex h-542pxr  w-full max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
       <ModalAboutHeader onClose={onClose} title={title} />
       <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
-        <div className=' flex-center w-full'>
+        <div className='relative  h-400pxr w-586pxr'>
           {mainImage && (
-            <a href={mainImage} target='_blank'>
+            <a
+              href={mainImage}
+              onClick={(event) => {
+                event.preventDefault();
+                window.open(
+                  mainImage,
+                  '_blank',
+                  `width=${window.innerWidth},height=${window.innerHeight},scrollbars=no`,
+                );
+              }}
+            >
               <Image
                 className='flex w-full  cursor-pointer hover:brightness-[0.7]'
                 src={mainImage}
-                width={586}
-                height={356}
+                fill
                 alt='메인 캠프 이미지'
                 style={{ objectFit: 'cover' }}
               />

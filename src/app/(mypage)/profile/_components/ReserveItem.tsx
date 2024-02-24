@@ -5,30 +5,35 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import WriteReviewModal from './WriteReviewModal';
-import { ReserveListType } from '@/src/app/_constants/reserveList';
 import getFormattedDate from '@/src/app/_utils/getFormattedDate';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
 import { ReserveStateType } from './ReserveList';
+import { ReservationListType } from '@/src/app/_constants/reserveList';
+import { useQuery } from '@tanstack/react-query';
+import getOneReserve from '@/src/app/_data/profile/getOneReserve';
 
 interface ReserveItemType {
-  list: ReserveListType;
+  list: ReservationListType;
   reserveState: ReserveStateType[];
+  status: string;
 }
 
-function ReserveItem({ list, reserveState }: ReserveItemType) {
+function ReserveItem({ list, reserveState, status }: ReserveItemType) {
   const [isClose, setIsClose] = useState(false);
 
   const handleModal = () => {
     setIsClose(!isClose);
   };
 
-  const checkState = (check: number) => {
+  const checkState = (check: string) => {
     switch (check) {
-      case 0:
+      case 'RESERVE_WAITING':
         return '예약대기';
-      case 1:
+      case 'RESERVE_COMPLETE':
         return '예약완료';
-      case 2:
+      case 'RESERVE_CANCEL':
+        return '예약취소';
+      case 'SERVICE_COMPLETE':
         return '이용완료';
     }
   };
@@ -39,7 +44,7 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
         className={`flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row`}
       >
         <Image
-          src={list.image}
+          src={'' /* list.image */}
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
@@ -49,13 +54,13 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
           <div className='profile-width flex w-full flex-col gap-16pxr'>
             <div className=''>
               <h3 className='text-primary100 font-body2-bold'>
-                {checkState(list.check_state)}
+                {checkState(status)}
               </h3>
               <h2 className='profile-lineOver whitespace-nowrap text-gray800 font-title1-bold'>
-                {list.placeName}
+                {list.campingZoneName}
               </h2>
               <div className='text-gray600 font-body2-medium'>
-                {`${list.site.campingZoneName} | ${list.site.siteName}`}
+                {list.campingZoneSiteName}
               </div>
             </div>
             <div className='flex items-end justify-start gap-16pxr'>
@@ -64,7 +69,7 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
                   입실
                 </small>
                 <h3 className='text-800 font-body1-bold'>
-                  {getOneFormatDate(list.start_day)}
+                  {getOneFormatDate(list.stayStartAt)}
                 </h3>
               </div>
               <div className='text-800 font-title3-bold'>-</div>
@@ -73,13 +78,13 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
                   퇴실
                 </small>
                 <h3 className='text-800 font-body1-bold'>
-                  {getOneFormatDate(list.end_day)}
+                  {getOneFormatDate(list.stayEndAt)}
                 </h3>
               </div>
             </div>
           </div>
           <div className='flex flex-row-reverse justify-start gap-12pxr tabletMin:flex-col'>
-            {list.check_state === 2 ? (
+            {status === 'SERVICE_COMPLETE' ? (
               <Button.Round
                 size='md'
                 custom='!h-36pxr px-24pxr py-8pxr whitespace-nowrap !rounded-md !font-caption1-semibold bg-white text-gray700 border border-gray300 !bg-white hover:border-primary100 w-1/2 tabletMin:!w-106pxr'
@@ -89,8 +94,8 @@ function ReserveItem({ list, reserveState }: ReserveItemType) {
               </Button.Round>
             ) : null}
             <Link
-              href={`/profile/reserveList/${list.orderId}`}
-              className={`${list.check_state !== 2 ? 'w-full' : 'w-1/2'}`}
+              href={`/profile/reserveList/${list.id}`}
+              className={`${status !== 'SERVICE_COMPLETE' ? 'w-full' : 'w-1/2'}`}
               passHref
             >
               <Button.Round

@@ -1,4 +1,4 @@
-import { CampPlaceSection, CategoryList, Hero } from '../_components';
+import { CampPlaceSection, CategoryList, Hero } from '@/components/index';
 import { getMainCampList } from '../_data/main/campList';
 
 interface SearchParamsType {
@@ -13,11 +13,11 @@ async function Page({ searchParams }: SearchParamsType) {
   return (
     <div>
       <Hero searchParams={searchParams} />
-      <div className='flex w-full flex-col bg-gray-100 pl-40pxr pt-104pxr mobile:pl-16pxr'>
-        <div className='flex-center'>
+      <div className='flex w-full flex-col bg-gray-100  pt-104pxr '>
+        <div className='flex-center pl-40pxr mobile:pl-16pxr'>
           <CategoryList />
         </div>
-        <div className='wide:flex-center pb-48pxr pt-64pxr'>
+        <div className='wide:flex-center pb-48pxr pl-40pxr pt-64pxr mobile:pl-0pxr'>
           <CampPlaceSection data={data} />
         </div>
       </div>

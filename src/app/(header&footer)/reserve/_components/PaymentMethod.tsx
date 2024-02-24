@@ -15,20 +15,20 @@ function PaymentMethod() {
       <ul className='flex-center justify-start gap-16pxr'>
         <li>
           <Button.Round
-            onClick={() => dispatch(setPaymentMethod('무통장 입금'))}
-            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700 ${payment.method === '무통장 입금' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
+            onClick={() => dispatch(setPaymentMethod('NO_BANK_BOOK'))}
+            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700 ${payment.method === 'NO_BANK_BOOK' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
           >
             무통장 입금
           </Button.Round>
         </li>
         <li>
           <Button.Round
-            onClick={() => dispatch(setPaymentMethod('신용카드 결제'))}
-            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700  ${payment.method === '신용카드 결제' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
+            onClick={() => dispatch(setPaymentMethod('CREDIT_CARD'))}
+            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700  ${payment.method === 'CREDIT_CARD' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
           >
             신용카드
             <span
-              className={`hidden tabletMin:inline-block ${payment.method === '신용카드 결제' ? 'bg-#C4DBC4 border-primary100 text-primary100' : ''}`}
+              className={`hidden tabletMin:inline-block ${payment.method === 'CREDIT_CARD' ? 'bg-#C4DBC4 border-primary100 text-primary100' : ''}`}
             >
               결제
             </span>
@@ -36,8 +36,8 @@ function PaymentMethod() {
         </li>
         <li>
           <Button.Round
-            onClick={() => dispatch(setPaymentMethod('간편 결제'))}
-            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700 ${payment.method === '간편 결제' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
+            onClick={() => dispatch(setPaymentMethod('EASY_PAYMENT'))}
+            custom={`reserve-button !h-46pxr px-40pxr py-12pxr bg-white border hover:border-primary100 font-body2-semibold text-gray700 ${payment.method === 'EASY_PAYMENT' ? 'bg-primary50 border-primary100 text-primary100' : ''}`}
           >
             간편 결제
           </Button.Round>
