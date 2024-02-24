@@ -18,6 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
+      <meta name='viewport' content='width=device-width,initial-scale=1'></meta>
       <body className='font-pre' suppressHydrationWarning={true}>
         <ReduxProvider>
           <ReactQueryProviders>
