@@ -21,6 +21,7 @@ interface SearchParamsType {
 
 async function Page({ params }: SearchParamsType) {
   const reserveData = await getReservationInfo(params.siteId);
+  console.log(reserveData.additionalOptions);
 
   return (
     <>
@@ -46,7 +47,7 @@ async function Page({ params }: SearchParamsType) {
               <SiteInfo size='pc' siteInfo={reserveData.result} />
               <PaymentAmount
                 sitePrice={reserveData.result.price}
-                optionList={reserveData.result.additionalOptions}
+                optionList={reserveData?.result?.additionalOptions}
               />
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />

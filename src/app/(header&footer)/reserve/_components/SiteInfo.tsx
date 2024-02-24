@@ -53,7 +53,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       >
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
           <Image
-            src={siteInfo.siteImage}
+            src={siteInfo?.siteImage}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
@@ -127,7 +127,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       {isOpenModal && (
         <ModalForPlanImage
           onClose={closeModal}
-          planImage={[siteInfo.planImage]}
+          planImage={[siteInfo?.planImage]}
         />
       )}
     </>
