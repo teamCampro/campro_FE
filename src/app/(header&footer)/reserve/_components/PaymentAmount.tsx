@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { Options } from './AddOption';
+
 import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -20,7 +20,7 @@ function PaymentAmount({
   const dispatch = useAppDispatch();
 
   const totalPaymentForOptions = optionList.reduce((acc, option) => {
-    const countForOption = Number(count[option.id] || 0);
+    const countForOption = Number(count[option.optionId] || 0);
     const priceForOption = Number(String(option.price).replace(/[,원]/g, ''));
     return acc + countForOption * priceForOption;
   }, 0);
@@ -83,12 +83,13 @@ function PaymentAmount({
         </li>
         {optionList.map((option) => (
           <li
-            key={option.id}
+            key={option.optionId}
             className='flex-center justify-between text-gray600 font-body2-medium '
           >
-            {option?.name} {count[option.id] ? `x ${count[option.id]}` : ''}
+            {option?.optionName}
+            {count[option.optionId] ? `x ${count[option.optionId]}` : ''}
             <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
-              {count[option.id] ? option.price : '0원'}
+              {count[option.optionId] ? option.price : '0원'}
             </span>
           </li>
         ))}

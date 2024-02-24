@@ -3,31 +3,17 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { IconPlus, IconMinus } from '@/public/svgs';
 import { minus, plus } from '@/src/app/_slices/plusOptions';
-
-export const Options = [
-  { content_id: 0, content: '장작 세트', price: '20,000원' },
-  { content_id: 1, content: '전기 장판', price: '20,000원' },
-  {
-    content_id: 2,
-    content: '이불세트(덮는 이불 2장)',
-    price: '20,000원',
-  },
-  {
-    content_id: 3,
-    content: ' 욕실세트(치약+일회용 칫솔)',
-    price: '10,000원',
-  },
-];
+import { numberFormatter } from '@/src/app/_utils/numberFormatter';
 
 type additionalOption = {
-  id: number;
-  name: string;
+  optionId: number;
+  optionName: string;
   price: number;
 };
 function AddOption({ optionList }: { optionList: additionalOption[] }) {
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
-
+  console.log(optionList);
   const handlePlus = (id: number) => {
     dispatch(plus(id));
   };
@@ -44,41 +30,41 @@ function AddOption({ optionList }: { optionList: additionalOption[] }) {
       <ul className='flex flex-col gap-16pxr '>
         {optionList.map((option) => (
           <li
-            key={option.id}
+            key={option.optionId}
             className='flex-center w-full flex-wrap justify-between'
           >
             <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
-              {option.name}
+              {option.optionName}
             </h3>
             <div className='flex-center w-73pxr  gap-16pxr mobile:gap-4pxr tabletMin:w-97pxr'>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconMinus
                   fill={
-                    count[option.id] === 0 || !count[option.id]
+                    count[option.optionId] === 0 || !count[option.optionId]
                       ? '#949494'
                       : '#000000'
                   }
-                  onClick={() => handleMinus(option.id)}
+                  onClick={() => handleMinus(option.optionId)}
                   width='20'
                   height='20'
                   viewBox='0 0 24 24'
                 />
               </button>
               <p className='!flex-center !h-25pxr !w-25pxr   !leading-none font-body2-medium tabletMin:font-body1-medium'>
-                {count[option.id] || 0}
+                {count[option.optionId] || 0}
               </p>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconPlus
-                  onClick={() => handlePlus(option.id)}
+                  onClick={() => handlePlus(option.optionId)}
                   width='20'
                   height='20'
                   viewBox='0 0 24 24'
-                  fill={count[option.id] >= 9 ? '#949494' : '#000000'}
+                  fill={count[option.optionId] >= 9 ? '#949494' : '#000000'}
                 />
               </button>
             </div>
-            <h3 className='basis-78pxr font-body2-bold tabletMin:font-body1-bold'>
-              {option.price}
+            <h3 className='flex basis-78pxr justify-end font-body2-bold tabletMin:font-body1-bold'>
+              {numberFormatter(String(option.price))}원
             </h3>
           </li>
         ))}

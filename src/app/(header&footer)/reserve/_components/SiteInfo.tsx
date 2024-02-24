@@ -7,8 +7,8 @@ import ModalForPlanImage from './ModalForPlanImage';
 import { usePathname } from 'next/navigation';
 
 export type additionalOption = {
-  id: number;
-  name: string;
+  optionId: number;
+  optionName: string;
   price: number;
 };
 export interface ReserveInfoData {
@@ -52,13 +52,13 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          <Image
+          {/* <Image
             src={siteInfo?.siteImage}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
             className='rounded-xl'
-          />
+          /> */}
           <div className='flex flex-col'>
             <h3 className='text-gray800 font-title2-semibold'>
               {siteInfo.name}
