@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
-import { OnboardingType, QuestionType } from '../onboard/question/page';
 import { Fragment } from 'react';
+import { OnboardingType, QuestionType } from '../onboard/question/page';
 
 interface Props {
   items: OnboardingType;
@@ -19,7 +19,7 @@ function OnboardingItem({
 }: Props) {
   const handleClickChoices = (id: number, text: string) => {
     onClickChoices(text, id);
-    if (id === 5) onSubmitOnboard();
+    if (id === 4) onSubmitOnboard();
   };
 
   const selectTagLog = (selectTag: string, questionId: number) => {

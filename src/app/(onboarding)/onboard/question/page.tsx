@@ -2,6 +2,7 @@
 
 import usePagination from '@/hooks/usePagination';
 import { Pagination } from '@/src/app/_components';
+import postOnboardingResult from '@/src/app/_data/onboarding/onboarding';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -21,21 +22,17 @@ export interface ChoicesType {
 
 export interface QuestionType {
   [key: string]: string;
-  '1': string;
-  '2': string;
-  '3': string;
-  '4': string;
-  '5': string;
 }
 
 function Question() {
+  const [userId, setUserId] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
   const [isAnswering, setIsAnswering] = useState(true);
   const [tagState, setTagState] = useState<QuestionType>({
     '1': '',
     '2': '',
     '3': '',
     '4': '',
-    '5': '',
   });
 
   const router = useRouter();
@@ -44,10 +41,10 @@ function Question() {
     usePagination({});
   const [mockData, setMockData] = useState<OnboardingType[]>([]);
 
-  const onSubmitOnboard = () => {
+  const onSubmitOnboard = async () => {
     setIsAnswering(false);
-    setTimeout(() => router.push('/'), 3000);
   };
+
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -60,13 +57,21 @@ function Question() {
         console.error(e);
       }
     };
+    const localUserId = window.localStorage.getItem('userId') || 0;
+    setUserId(+localUserId);
+    setIsLogin(!!localUserId);
+
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (!isAnswering) postOnboardingResult(userId, Object.values(tagState));
+  }, [isAnswering, tagState, userId]);
+
   const handleClickChoices = (text: string, id: number) => {
+    setTagState((prev) => ({ ...prev, [id]: text }));
     updateCurrentPage(currentPage + 1);
-    setTagState({ ...tagState, [id]: text });
   };
 
   if (mockData.length < 1)
