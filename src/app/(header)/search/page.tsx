@@ -54,7 +54,7 @@ function Page({ searchParams }: SearchParamsType) {
   const mapBasis = {
     half: {
       map: 'basis-424pxr desktop1440:flex-grow-3 mobile767:basis-314pxr mobile:hidden mobile767:block',
-      list: 'desktop:grid-cols-2-col-340 desktop1440:grid-cols-2-col-340',
+      list: 'desktop:grid-cols-2-col-340 desktop1440:grid-cols-2-col-340 desktop1920:grid-cols-3-col-340 ',
     },
     map: { map: 'flex-1 w-full', list: 'hidden' },
     list: {
@@ -121,7 +121,7 @@ function Page({ searchParams }: SearchParamsType) {
       <div className={`flex-center ${mapSize === 'list' ? '':'searchPageOverFlow'} h-full w-full`}>
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr' : ''} ${mapSize === 'list' ?  '' :'overflow-y-scroll'}`}
+            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr  desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''} ${mapSize === 'list' ?  '' :'overflow-y-scroll'}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
