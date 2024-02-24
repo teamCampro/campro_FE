@@ -32,7 +32,7 @@ export const POST = async (req: NextRequest) => {
 		VALUES (?,?,?,?)`;
 
 		const czSiteMapExecute = async () => {
-			await Promise.all(czSiteData.option.map(async (optionData: any, index: any) => {
+			await Promise.all(czSiteData.options.map(async (optionData: any, index: any) => {
 				await db.execute(additionalOptionQuery, [
 					czSiteId,
 					optionData.optionName,
