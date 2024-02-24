@@ -4,6 +4,7 @@ import Image from 'next/image';
 import OwnerButton from './OwnerButton';
 
 interface Props {
+  isLoading: boolean;
   images: string[];
   inputRef: RefObject<HTMLInputElement>;
   gridType?: 'horizontal' | 'default';
@@ -17,6 +18,7 @@ interface Props {
 }
 
 function ImageUploader({
+  isLoading,
   images,
   inputRef,
   gridType = 'default',
@@ -39,7 +41,9 @@ function ImageUploader({
     : 'grid grid-cols-3 gap-25pxr';
 
   return (
-    <div className='flex flex-col items-center gap-25pxr'>
+    <div
+      className={`${isLoading ? 'flex flex-col items-center gap-25pxr opacity-40' : 'flex flex-col items-center gap-25pxr'}`}
+    >
       <form
         className={largeTypeClassName}
         onSubmit={(e) => e.preventDefault()}
@@ -48,7 +52,7 @@ function ImageUploader({
       >
         <OwnerButton.ImageHover
           style={{
-            display: images.length === 0 || isHovered[0] ? 'initial' : 'none',
+            display: images?.length === 0 || isHovered[0] ? 'initial' : 'none',
           }}
           onClick={onClickUpload}
         >

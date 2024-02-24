@@ -4,10 +4,11 @@ import registrationStorageHandler from '../../_utils/registrationStorageHandler'
 import { motion } from 'framer-motion';
 
 export type ButtonPageType =
-  | 'theme'
   | 'amenities'
   | 'operating_period'
-  | 'operating_days';
+  | 'operating_days'
+  | 'environment'
+  | 'categories';
 
 interface Props {
   type?: 'small';
@@ -48,7 +49,7 @@ function OwnerSelectButton({
           onClick(buttonText);
         }}
       >
-        {children}
+        <div className='flex-center h-51pxr w-51pxr'>{children}</div>
         <p className='text-21pxr font-semibold'>{buttonText}</p>
       </button>
     </motion.div>

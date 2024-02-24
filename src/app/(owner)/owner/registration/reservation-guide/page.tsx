@@ -251,7 +251,7 @@ function ReservationGuidePage() {
               <div className='flex gap-39pxr'>
                 <OwnerInput
                   type='flexible'
-                  inputName='매년/매월/매일'
+                  inputName='매월/매일'
                   onChange={() => console.log('changed!')}
                   value={openPeriodUnit.unit}
                   onFocus={() => {
@@ -277,7 +277,7 @@ function ReservationGuidePage() {
 
                 <OwnerInput
                   type='flexible'
-                  inputName='주기'
+                  inputName='예약 가능 기간'
                   onChange={() => console.log('changed!')}
                   readOnly
                   value={`${openPeriod.period}개월`}
@@ -300,33 +300,35 @@ function ReservationGuidePage() {
                 </OwnerInput>
               </div>
               <div className='flex gap-39pxr'>
-                <OwnerInput
-                  type='flexible'
-                  inputName='일'
-                  onChange={() => console.log('changed!')}
-                  value={openPeriodDay.day}
-                  readOnly
-                  onFocus={() => setPeriodDaysPopoverOpen(true)}
-                  onBlur={(e) => handlePeriodDaysBlur(e)}
-                >
-                  <OwnerButton.Popover
-                    isPopoverOpen={isPeriodDaysPopoverOpen}
-                    handleClickPopover={handleClickPeriodDays}
-                  />
-                  <div className='absolute right-0pxr top-80pxr z-50 w-full'>
-                    {isPeriodDaysPopoverOpen && (
-                      <OwnerPeriodDaysPopover
-                        periodDaysRef={periodDaysRef}
-                        selectedPeriodDay={openPeriodDay.day}
-                        onClick={handleChangePeriodDays}
-                      />
-                    )}
-                  </div>
-                </OwnerInput>
+                {openPeriodUnit.unit !== '매일' && (
+                  <OwnerInput
+                    type='flexible'
+                    inputName='일'
+                    onChange={() => console.log('changed!')}
+                    value={openPeriodDay.day}
+                    readOnly
+                    onFocus={() => setPeriodDaysPopoverOpen(true)}
+                    onBlur={(e) => handlePeriodDaysBlur(e)}
+                  >
+                    <OwnerButton.Popover
+                      isPopoverOpen={isPeriodDaysPopoverOpen}
+                      handleClickPopover={handleClickPeriodDays}
+                    />
+                    <div className='absolute right-0pxr top-80pxr z-50 w-full'>
+                      {isPeriodDaysPopoverOpen && (
+                        <OwnerPeriodDaysPopover
+                          periodDaysRef={periodDaysRef}
+                          selectedPeriodDay={openPeriodDay.day}
+                          onClick={handleChangePeriodDays}
+                        />
+                      )}
+                    </div>
+                  </OwnerInput>
+                )}
 
                 <OwnerInput
                   inputType='text'
-                  inputName='시'
+                  inputName='시간'
                   onChange={() => console.log('changed')}
                   value={openPeriodHours.time}
                   type='flexible'

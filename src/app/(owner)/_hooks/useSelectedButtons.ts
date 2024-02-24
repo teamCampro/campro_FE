@@ -6,8 +6,9 @@ function useSelectedButtons() {
   const [selectedButtons, setSelectedButtons] = useState<SelectedButtonsType>({
     operating_period: [],
     operating_days: [],
-    theme: [],
+    environment: [],
     amenities: [],
+    categories: [],
   });
 
   const handleSelectedButtons = (

@@ -2,7 +2,8 @@ const OWNER_REGISTRATION_ROUTES = {
   baseRoute: '/owner/registration/',
   routes: [
     'first-step',
-    'theme',
+    'environment',
+    'categories',
     'information',
     'amenities',
     'operating-period',

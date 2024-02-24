@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "@tanstack/react-query": "^5.17.19",
+    "aws-sdk": "^2.1563.0",
     "axios": "^1.6.5",
     "bcrypt": "^5.1.1",
     "date-fns": "^3.3.1",

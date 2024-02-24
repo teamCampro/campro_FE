@@ -11,7 +11,7 @@ function OwnerGroundTypePopover({ groundTypeRef, onClick }: Props) {
   return (
     <ul
       ref={groundTypeRef}
-      className='absolute top-80pxr flex w-500pxr justify-center gap-10pxr rounded-2xl border-2 bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)]'
+      className='absolute top-80pxr z-50 flex w-500pxr justify-center gap-10pxr rounded-2xl border-2 bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)]'
     >
       {GROUND_TYPE.map((ground, index) => {
         return (

@@ -54,7 +54,7 @@ function OwnerButtonList({
           isSelected={selectedButtons[pageName].includes(item.buttonText)}
           onClick={handleButtonClick}
         >
-          {item.Image}
+          {item.image}
         </OwnerButton.Select>
       ))}
     </>
