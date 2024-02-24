@@ -52,7 +52,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
                 width={767}
                 height={480}
                 alt='배치도 이미지'
-                src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
+                src={planImage[0]}
               />
             </a>
           </div>

@@ -7,7 +7,7 @@ function HeaderAboutReserve() {
   return (
     <div className='mb-16pxr flex flex-col gap-32pxr '>
       <h2 className='text-block hidden justify-start gap-12pxr font-title3-semibold tabletMin:flex tabletMin:items-center tabletMin:justify-start tabletMin:font-h1-semibold'>
-        <div className=' flex-center !h-48pxr !w-56pxr cursor-pointer  rounded-full border border-gray300 bg-white'>
+        <div className=' flex-center !h-48pxr !w-48pxr cursor-pointer rounded-full border border-gray300 bg-white'>
           <div className='h-24pxr w-24pxr'>
             <IconArrowLeftNon
               width='100%'

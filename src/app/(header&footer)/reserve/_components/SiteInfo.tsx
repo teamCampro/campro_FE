@@ -6,6 +6,11 @@ import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
 import { usePathname } from 'next/navigation';
 
+export type additionalOption = {
+  id: number;
+  name: string;
+  price: number;
+};
 export interface ReserveInfoData {
   name: string;
   address: string;
@@ -14,6 +19,9 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
+  planImage: string; // 해당 캠핑장 배치도 이미지
+  siteImage: string; // 해당 사이트 이미지
+  additionalOptions: additionalOption[]; // 추가 옵션
 }
 
 interface SiteInfoType {
@@ -37,32 +45,32 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
-
+  const reviewList = false;
   return (
     <>
       <div
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          {/* <div className='relative h-140pxr w-140pxr rounded-xl border'> */}
-          {/* <Image
-            src={campList.image}
+          <Image
+            src={siteInfo.siteImage}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
             className='rounded-xl'
-          /> */}
-
+          />
           <div className='flex flex-col'>
             <h3 className='text-gray800 font-title2-semibold'>
               {siteInfo.name}
             </h3>
-            <small className='flex text-gray500 font-caption2-medium'>
-              <div className='h-16pxr w-16pxr'>
-                <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
-              </div>
-              <span>{`7.2 (257)`}</span>
-            </small>
+            {reviewList && (
+              <small className='flex text-gray500 font-caption2-medium'>
+                <div className='h-16pxr w-16pxr'>
+                  <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
+                </div>
+                <span>{`7.2 (257)`}</span>
+              </small>
+            )}
             <ul className='mt-20pxr flex flex-col gap-8pxr'>
               <li className='flex  gap-4pxr '>
                 <h3 className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
@@ -119,7 +127,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       {isOpenModal && (
         <ModalForPlanImage
           onClose={closeModal}
-          planImage={['https://camping.dpto.or.kr/images/sub/new_map1.jpg']}
+          planImage={[siteInfo.planImage]}
         />
       )}
     </>

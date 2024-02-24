@@ -38,13 +38,16 @@ async function Page({ params }: SearchParamsType) {
             <InfoAboutReserve />
             <InfoAboutBookingPerson />
             <AddVehicle />
-            <AddOption />
+            <AddOption optionList={reserveData.result.additionalOptions} />
             <PaymentMethod />
           </section>
           <section>
             <div className='flex flex-col gap-24pxr border-t pt-24pxr tabletMin:rounded-2xl tabletMin:border tabletMin:border-gray300 tabletMin:p-24pxr'>
               <SiteInfo size='pc' siteInfo={reserveData.result} />
-              <PaymentAmount sitePrice={reserveData.result.price} />
+              <PaymentAmount
+                sitePrice={reserveData.result.price}
+                optionList={reserveData.result.additionalOptions}
+              />
               <div className='flex flex-col gap-24pxr'>
                 <TotalPayment />
                 <TermsAgreement />

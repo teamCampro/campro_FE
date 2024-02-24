@@ -5,17 +5,23 @@ import { Options } from './AddOption';
 import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
 import { usePathname, useSearchParams } from 'next/navigation';
-
-function PaymentAmount({ sitePrice }: { sitePrice: number }) {
+import { additionalOption } from './SiteInfo';
+function PaymentAmount({
+  sitePrice,
+  optionList,
+}: {
+  sitePrice: number;
+  optionList: additionalOption[];
+}) {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const isProfile = pathName.includes('reserveList');
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
 
-  const totalPaymentForOptions = Options.reduce((acc, option) => {
-    const countForOption = Number(count[option.content_id] || 0);
-    const priceForOption = Number(option.price.replace(/[,원]/g, ''));
+  const totalPaymentForOptions = optionList.reduce((acc, option) => {
+    const countForOption = Number(count[option.id] || 0);
+    const priceForOption = Number(String(option.price).replace(/[,원]/g, ''));
     return acc + countForOption * priceForOption;
   }, 0);
 
@@ -40,7 +46,7 @@ function PaymentAmount({ sitePrice }: { sitePrice: number }) {
             dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut')),
       ),
     );
-  }, [totalPaymentForOptions, dispatch]);
+  }, [totalPaymentForOptions, dispatch, searchParams, sitePrice]);
 
   return (
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
@@ -75,15 +81,14 @@ function PaymentAmount({ sitePrice }: { sitePrice: number }) {
             {totalPaymentForOptions.toLocaleString()}원
           </span>
         </li>
-        {Options.map((option) => (
+        {optionList.map((option) => (
           <li
-            key={option.content_id}
+            key={option.id}
             className='flex-center justify-between text-gray600 font-body2-medium '
           >
-            {option?.content}{' '}
-            {count[option.content_id] ? `x ${count[option.content_id]}` : ''}
+            {option?.name} {count[option.id] ? `x ${count[option.id]}` : ''}
             <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
-              {count[option.content_id] ? option.price : '0원'}
+              {count[option.id] ? option.price : '0원'}
             </span>
           </li>
         ))}

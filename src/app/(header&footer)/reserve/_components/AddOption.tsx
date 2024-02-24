@@ -19,7 +19,12 @@ export const Options = [
   },
 ];
 
-function AddOption() {
+type additionalOption = {
+  id: number;
+  name: string;
+  price: number;
+};
+function AddOption({ optionList }: { optionList: additionalOption[] }) {
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
 
@@ -37,38 +42,38 @@ function AddOption() {
         추가 옵션
       </h3>
       <ul className='flex flex-col gap-16pxr '>
-        {Options.map((option) => (
+        {optionList.map((option) => (
           <li
-            key={option.content_id}
+            key={option.id}
             className='flex-center w-full flex-wrap justify-between'
           >
             <h3 className='reserve-options font-body2-medium tabletMin:font-body1-medium'>
-              {option.content}
+              {option.name}
             </h3>
             <div className='flex-center w-73pxr  gap-16pxr mobile:gap-4pxr tabletMin:w-97pxr'>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconMinus
                   fill={
-                    count[option.content_id] === 0 || !count[option.content_id]
+                    count[option.id] === 0 || !count[option.id]
                       ? '#949494'
                       : '#000000'
                   }
-                  onClick={() => handleMinus(option.content_id)}
+                  onClick={() => handleMinus(option.id)}
                   width='20'
                   height='20'
                   viewBox='0 0 24 24'
                 />
               </button>
               <p className='!flex-center !h-25pxr !w-25pxr   !leading-none font-body2-medium tabletMin:font-body1-medium'>
-                {count[option.content_id] || 0}
+                {count[option.id] || 0}
               </p>
               <button type='button' className='h-20pxr w-20pxr cursor-pointer'>
                 <IconPlus
-                  onClick={() => handlePlus(option.content_id)}
+                  onClick={() => handlePlus(option.id)}
                   width='20'
                   height='20'
                   viewBox='0 0 24 24'
-                  fill={count[option.content_id] >= 9 ? '#949494' : '#000000'}
+                  fill={count[option.id] >= 9 ? '#949494' : '#000000'}
                 />
               </button>
             </div>
