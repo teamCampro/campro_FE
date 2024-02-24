@@ -13,20 +13,39 @@ function registrationStorageHandler({
   isClicked,
 }: Props) {
   switch (pageName) {
-    case 'theme':
-      const themeItems = getStorageItems('theme');
+    case 'activities':
+      const activitiesItems = getStorageItems('activities');
 
       if (isClicked) {
         localStorage.setItem(
-          'theme',
-          JSON.stringify(themeItems.filter((value) => buttonText !== value)),
+          'activities',
+          JSON.stringify(
+            activitiesItems.filter((value) => buttonText !== value),
+          ),
         );
         return;
       }
 
       localStorage.setItem(
-        'theme',
-        JSON.stringify([...themeItems, buttonText]),
+        'activities',
+        JSON.stringify([...activitiesItems, buttonText]),
+      );
+      return;
+
+    case 'stayTerm':
+      const stayTermItems = getStorageItems('stayTerm');
+
+      if (isClicked) {
+        localStorage.setItem(
+          'stayTerm',
+          JSON.stringify(stayTermItems.filter((value) => buttonText !== value)),
+        );
+        return;
+      }
+
+      localStorage.setItem(
+        'stayTerm',
+        JSON.stringify([...stayTermItems, buttonText]),
       );
       return;
 

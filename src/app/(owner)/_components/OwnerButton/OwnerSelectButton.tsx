@@ -8,7 +8,10 @@ export type ButtonPageType =
   | 'operating_period'
   | 'operating_days'
   | 'environment'
-  | 'categories';
+  | 'categories'
+  | 'ownerOnboarding'
+  | 'activities'
+  | 'stayTerm';
 
 interface Props {
   type?: 'small';

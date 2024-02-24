@@ -15,6 +15,13 @@ function EnvironmentPage() {
     );
   }, [selectedButtons.environment]);
 
+  useEffect(() => {
+    localStorage.setItem(
+      'ownerOnboarding',
+      JSON.stringify(selectedButtons.ownerOnboarding),
+    );
+  }, [selectedButtons.ownerOnboarding]);
+
   return (
     <div className='flex flex-col items-center gap-110pxr'>
       <OwnerTitle>캠핑장 주변 환경을 선택 해주세요.</OwnerTitle>

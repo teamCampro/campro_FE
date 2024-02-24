@@ -9,6 +9,9 @@ function useSelectedButtons() {
     environment: [],
     amenities: [],
     categories: [],
+    ownerOnboarding: [],
+    activities: [],
+    stayTerm: [],
   });
 
   const handleSelectedButtons = (
