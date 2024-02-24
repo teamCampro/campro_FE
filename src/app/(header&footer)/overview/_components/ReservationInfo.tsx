@@ -71,7 +71,7 @@ function ReservationInfo({
         ))}
       </ul>
       {siteList.length > 2 && (
-        <div className='contents mobile:block mobile:px-16pxr'>
+        <div className='contents mobile:block mobile359:px-16pxr'>
           <button
             type='button'
             className='flex-center w-full gap-10pxr rounded-lg border border-gray200 bg-white px-40pxr py-12pxr text-gray700 font-caption1-semibold'

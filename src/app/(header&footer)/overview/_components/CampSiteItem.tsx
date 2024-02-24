@@ -53,12 +53,12 @@ function CampSiteItem({
               width: '100%',
               height: 'auto',
             }}
-            className='aspect-square rounded-2xl mobile:aspect-340/220 mobile:rounded-b-none mobile359:rounded-none'
+            className='aspect-square rounded-2xl mobile:aspect-square mobile:rounded-b-none mobile359:rounded-none'
             src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D'
             alt={site.childSiteName}
           />
         </div>
-        <div className='camp-site flex w-full flex-col gap-20pxr mobile:gap-16pxr mobile:p-16pxr mobile:pb-24pxr'>
+        <div className='camp-site flex w-full flex-col gap-12pxr mobile:gap-16pxr mobile:p-16pxr mobile:pb-24pxr'>
           <div className='flex h-auto w-full flex-col gap-16pxr rounded-xl bg-white p-16pxr mobile:contents mobile:bg-gray100 mobile:p-0pxr'>
             <div className='mobile:camp-site-info flex flex-col border-gray300 mobile:border-b mobile:pb-16pxr'>
               <div className='flex items-center justify-between '>

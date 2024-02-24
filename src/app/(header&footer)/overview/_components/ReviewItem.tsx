@@ -79,13 +79,13 @@ function ReviewItem({ review }: ReviewItemProps) {
         </button>
       )}
       <ul className='flex gap-4pxr'>
-        <li className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none font-caption2-medium'>
+        <li className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none text-gray600 font-caption2-medium'>
           <span className='inline-block h-14pxr w-14pxr'>
             <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
           </span>
           {review.star}
         </li>
-        <div className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none font-caption2-medium'>
+        <div className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none text-gray600 font-caption2-medium'>
           {review.reviewKeyword.split(',')[0]}
         </div>
       </ul>

@@ -2,7 +2,7 @@
 
 import Button from '@/components/Button';
 import Chip from '@/components/Chip';
-import { IconClose } from '@/public/svgs';
+import { IconArrowLeftNon, IconClose } from '@/public/svgs';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -26,16 +26,23 @@ function CampSiteDetail({
 }: CampSiteDetailProps) {
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
-      <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:h-screen mobile:max-h-none mobile:overflow-scroll mobile:rounded-none mobile:px-20pxr mobile:pb-16pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
-        <div className='flex gap-16pxr'>
-          <button type='button' onClick={onClose}>
+      <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:relative mobile:h-screen  mobile:max-h-none mobile:justify-between mobile:overflow-auto mobile:rounded-none mobile:px-0pxr mobile:pb-0pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
+        <div className='flex gap-16pxr mobile:px-20pxr'>
+          <button type='button' onClick={onClose} className='mobile:hidden'>
             <IconClose fill='#949494' />
+          </button>
+          <button
+            type='button'
+            onClick={onClose}
+            className='hidden text-gray500 mobile:block'
+          >
+            <IconArrowLeftNon />
           </button>
           <h4 className='flex-1 text-center text-black font-title1-bold'>
             상세 정보
           </h4>
         </div>
-        <div className='flex flex-col gap-32pxr mobile:gap-20pxr'>
+        <div className='flex flex-col gap-32pxr mobile:h-auto mobile:gap-20pxr mobile:px-20pxr'>
           <div className='flex flex-col gap-28pxr mobile:gap-20pxr'>
             <Swiper
               autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -101,6 +108,8 @@ function CampSiteDetail({
               </div>
             </div>
           </div>
+        </div>
+        <div className='h-auto w-full bg-white px-20pxr py-16pxr mobile:sticky mobile:bottom-0pxr mobile:z-10 mobile:w-full mobile:shadow-overViewButton'>
           <Button.Round
             size='sm'
             custom='w-full !h-56pxr'

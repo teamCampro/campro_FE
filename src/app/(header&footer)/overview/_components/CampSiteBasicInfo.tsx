@@ -19,7 +19,7 @@ function CampSiteBasicInfo({
   intro,
 }: CampSiteBasicInfoProps) {
   const tag = {
-    text: '청결도 만족도가 높은 곳이에요',
+    text: '"청결도, 만족도가 높은 곳이에요"',
     list: [
       { text: '깨끗해요', count: 738 },
       { text: '매너 타임을 잘 지켜요', count: 1995 },
@@ -28,7 +28,7 @@ function CampSiteBasicInfo({
       { text: '아늑해요', count: 369 },
     ],
   };
-  const keywords = keyword.split(',').filter(Boolean);
+  const keywords = keyword.split(',').filter(Boolean).slice(4);
   return (
     <article className='flex flex-col gap-24pxr'>
       <div className='flex flex-col gap-12pxr'>
