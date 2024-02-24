@@ -19,7 +19,7 @@ export const GET = async (
 
     const [row] = await db.execute(query, [campingZoneSiteId]);
 
-    const selectAdditionalOptionsQuery = `SELECT option_name optionName, price
+    const selectAdditionalOptionsQuery = `SELECT id optionId, option_name optionName, price
                                             FROM camping_zone_site_additional_option
                                            WHERE camping_zone_site_id = ?
                                            ORDER BY option_order;`;
