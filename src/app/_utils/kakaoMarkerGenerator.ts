@@ -72,22 +72,26 @@ function kakaoMarkerGenerator({
           clickable: true,
         });
 
-        const styles = [{
-          width : '52px', height : '52px',
-          background: 'url(/svgs/markerClustererSmall.svg) no-repeat',
-          color: '#fff',
-          textAlign: 'center',
-          lineHeight: '54px'
-      }, {
-          width : '72px', height : '72px',
-          background: 'url(/svgs/markerClustererLarge.svg) no-repeat',
-          color: '#fff',
-          textAlign: 'center',
-          lineHeight: '74px'
-      }
-  ];
+        const styles = [
+          {
+            width: '52px',
+            height: '52px',
+            background: 'url(/svgs/markerClustererSmall.svg) no-repeat',
+            color: '#fff',
+            textAlign: 'center',
+            lineHeight: '54px',
+          },
+          {
+            width: '72px',
+            height: '72px',
+            background: 'url(/svgs/markerClustererLarge.svg) no-repeat',
+            color: '#fff',
+            textAlign: 'center',
+            lineHeight: '74px',
+          },
+        ];
 
-        clusterer.setStyles(styles)
+        clusterer.setStyles(styles);
         clusterer.addMarker(marker);
         handlePrevClusterer(clusterer);
 
