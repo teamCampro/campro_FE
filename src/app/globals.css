@@ -164,14 +164,15 @@ body {
   white-space: nowrap;
 }
 
+
 @media (min-width: 825px) and (max-width: 1030px) {
-  .reserve-lineOver {
+  #siteInfo .reserve-lineOver {
     width: 160px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 824px) {
-  .reserve-lineOver {
+  #siteInfo .reserve-lineOver {
     width: 120px;
   }
   .reserve-options {
@@ -617,4 +618,64 @@ input[id='checkTable']:checked::before {
 .facility-icon svg path {
   width: 28px;
   height: 28px;
+}
+
+
+/* radio 스타일 */
+.selectRadio {
+  position: relative;
+
+}
+.selectRadio label {
+  font-size: 20px;
+  color: white;
+  vertical-align: middle;
+  
+}
+          
+.selectRadio input[type="radio"] {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.selectRadio input[type="radio"]+label {
+  position: absolute;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;  
+}
+          
+.selectRadio input[type="radio"]+label:before {
+  content: '\2713';
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+background-color: white;
+  border: 1px solid #cacece;
+  border-radius: 100%;
+  box-shadow: none;
+  z-index: 2;
+}
+.selectRadio input[type="radio"]:checked+label:before {
+  background-color: #4F9E4F;
+} 
+          
+.selectRadio input[type="radio"]:checked+label:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  /* background: #4F9E4F; */
+  border-radius: 100%;
+  box-shadow: none;
 }

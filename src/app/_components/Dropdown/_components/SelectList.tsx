@@ -43,14 +43,27 @@ function SelectList({ types }: SelectListType) {
     <>
       {types &&
         DETAIL[types].map((list) => {
+          console.log(list)
           return (
             <li key={list.id}>
+              {types === 'trip' ? <div className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'} selectRadio`}>
+              {list.type}
+                  <input
+                    type='radio'
+                    name='radioList'
+                    id={list.type}
+                    value={list.type}
+                    /* checked={checkOption(types, list)} */
+                    onChange={(e) => handleCheck(e, list, types)}
+                  />
+                  <label htmlFor={list.type}></label>
+                </div> :
               <label
                 htmlFor={list.type}
                 className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
               >
                 {list.type}
-                <div>
+                 <div>
                   <input
                     type='checkbox'
                     name='checkList'
@@ -60,7 +73,7 @@ function SelectList({ types }: SelectListType) {
                     onChange={(e) => handleCheck(e, list, types)}
                   />
                 </div>
-              </label>
+              </label>}
             </li>
           );
         })}

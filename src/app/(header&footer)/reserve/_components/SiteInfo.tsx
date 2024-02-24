@@ -65,7 +65,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
             </small>
             <ul className='mt-20pxr flex flex-col gap-8pxr'>
               <li className='flex  gap-4pxr '>
-                <h3 className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
+                <h3 id='siteInfo' className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
                   <span className='inline-block h-20pxr w-20pxr'>
                     <IconLocation
                       width='100%'

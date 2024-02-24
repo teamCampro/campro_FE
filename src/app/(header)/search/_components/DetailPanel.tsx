@@ -2,6 +2,7 @@
 
 import Selectable from '@/components/Dropdown/Selectable';
 import { useAppSelector } from '@/hooks/redux';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconFilter } from '@/public/svgs';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +13,12 @@ interface DetailPanelType {
 }
 
 function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
+  const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
+    .matches;
+
+  const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const details = useAppSelector((state) => state.detail);
+  const checkList = useAppSelector((state) => state.styleSetting);
 
   return (
     <div className='w-full bg-white'>
@@ -40,16 +46,19 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
           >
             {details.map((detail) => {
               const textLength = detail.type.length > 2;
+              const {name} = detail
               return (
                 <SwiperSlide
+                style={{ width: 'auto', display: 'inline-block' }}
                   key={detail.id}
                   className={`${textLength ? '!w-121pxr' : '!w-90pxr'}  mobile:!w-full`}
                 >
                   <Selectable
                     handleDropClick={handleDropClick}
                     typeInfo={detail}
+                    selectLength={checkList.select[name].length > 0}
                   >
-                    {detail.type}
+                    {checkList.select[name].length > 0 && !isMobile ?  checkList.select[name].map(list => list.type) : detail.type}
                   </Selectable>
                 </SwiperSlide>
               );

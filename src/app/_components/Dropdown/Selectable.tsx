@@ -32,6 +32,7 @@ interface Props {
   children: ReactNode;
   typeInfo: TypeInfoType;
   handleDropClick: (id: number) => void;
+  selectLength:boolean;
 }
 
 interface LengthType {
@@ -54,11 +55,11 @@ export interface PriceType {
 }
 
 const LENTH: LengthType = {
-  '2': 'w-90pxr',
+  '2': '!w-90pxr',
   '5': 'w-121pxr',
 };
 
-function Selectable({ children, typeInfo, handleDropClick }: Props) {
+function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
@@ -190,15 +191,16 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
+        className={`h-48pxr ${textLength && !isMobile ? LENTH[textLength] : ''} relative rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
         ref={buttomRef}
       >
         <div
+        id='selectable'
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
           <h3
-            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold`}
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold ${selectLength ? 'reserve-lineOver' : ''}`}
           >
             {children}
           </h3>
