@@ -59,24 +59,24 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               width: '100%',
               height: 'auto',
             }}
-            className={`rounded-3xl ${aspectClasses} aspect-340/220 transition-all hover:brightness-[0.7]`}
+            className={`rounded-3xl ${aspectClasses} aspect-340/220 transition-all hover:brightness-[0.7] mobile:aspect-square`}
             src={campPlace.campImage}
             alt='캠핑장 이미지'
           />
         </Link>
         <button
           type='button'
-          className='absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-gray800 bg-opacity-50 fill-gray100 p-7pxr'
+          className='absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-gray800 bg-opacity-50 fill-gray100 p-7pxr mobile:h-28pxr mobile:w-28pxr'
         >
           <IconColoredHeart className='absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 transform fill-none stroke-gray100 hover:fill-primary100 hover:stroke-primary100' />
         </button>
       </div>
       <div className='flex flex-col gap-2pxr'>
         <div className='flex gap-4pxr'>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold mobile:font-caption1-semibold'>
+          <span className='flex-center overflow-hidden text-ellipsis whitespace-nowrap font-body2-semibold mobile:font-caption1-semibold'>
             {campPlace.name}
           </span>
-          <span className='overflow-hidden text-ellipsis whitespace-nowrap font-medium text-gray500 font-caption1-medium'>
+          <span className='flex-center overflow-hidden text-ellipsis   whitespace-nowrap  font-medium text-gray500 font-caption1-medium'>
             {campPlace.displayAddress}
           </span>
         </div>
@@ -89,7 +89,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               원 부터
             </span>
           </div>
-          <div className='flex gap-10pxr'>
+          <div className='flex gap-4pxr'>
             {campPlace.keyword
               ? [...campPlace.keyword.split(',')]
                   .slice(0, 2)
