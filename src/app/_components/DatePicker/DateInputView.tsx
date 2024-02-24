@@ -14,7 +14,7 @@ const DateInputView = forwardRef<HTMLInputElement, DateInputProps>(
           ref={ref}
           name='date'
           placeholder='날짜를 입력해주세요'
-          className=' w-full cursor-pointer whitespace-nowrap rounded-[8px] bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
+          className=' w-full cursor-pointer whitespace-nowrap rounded-[8px] bg-gray100 py-16pxr pl-48pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
           readOnly
           value={value}
         />
