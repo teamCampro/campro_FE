@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import useSelectedButtons from '../../../_hooks/useSelectedButtons';
 import OwnerTitle from '../../../_components/OwnerTitle';
 import OwnerButtonList from '../../../_components/OwnerButtonList';
@@ -7,10 +7,6 @@ import STAY_TERM from '../../../_constants/ownerStayTerm';
 
 function StayTermPage() {
   const { selectedButtons, handleSelectedButtons } = useSelectedButtons();
-
-  useEffect(() => {
-    localStorage.setItem('stayTerm', JSON.stringify(selectedButtons.stayTerm));
-  }, [selectedButtons.stayTerm]);
 
   return (
     <div>

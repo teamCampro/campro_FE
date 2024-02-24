@@ -32,6 +32,25 @@ function registrationStorageHandler({
       );
       return;
 
+    case 'categories':
+      const categoriesItems = getStorageItems('categories');
+
+      if (isClicked) {
+        localStorage.setItem(
+          'categories',
+          JSON.stringify(
+            categoriesItems.filter((value) => buttonText !== value),
+          ),
+        );
+        return;
+      }
+
+      localStorage.setItem(
+        'categories',
+        JSON.stringify([...categoriesItems, buttonText]),
+      );
+      return;
+
     case 'stayTerm':
       const stayTermItems = getStorageItems('stayTerm');
 
@@ -43,10 +62,7 @@ function registrationStorageHandler({
         return;
       }
 
-      localStorage.setItem(
-        'stayTerm',
-        JSON.stringify([...stayTermItems, buttonText]),
-      );
+      localStorage.setItem('stayTerm', JSON.stringify([buttonText]));
       return;
 
     case 'amenities':
@@ -64,6 +80,22 @@ function registrationStorageHandler({
         'amenities',
         JSON.stringify([...amenityItems, buttonText]),
       );
+      return;
+
+    case 'environment':
+      const environmentItems = getStorageItems('environment');
+
+      if (isClicked) {
+        localStorage.setItem(
+          'environment',
+          JSON.stringify(
+            environmentItems.filter((value) => buttonText !== value),
+          ),
+        );
+        return;
+      }
+
+      localStorage.setItem('environment', JSON.stringify([buttonText]));
       return;
 
     case 'operating_period':

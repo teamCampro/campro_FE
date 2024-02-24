@@ -8,20 +8,6 @@ import CAMPING_ENVIRONMENT from '../../../_constants/ownerCampingEnvironment';
 function EnvironmentPage() {
   const { selectedButtons, handleSelectedButtons } = useSelectedButtons();
 
-  useEffect(() => {
-    localStorage.setItem(
-      'environment',
-      JSON.stringify(selectedButtons.environment),
-    );
-  }, [selectedButtons.environment]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      'ownerOnboarding',
-      JSON.stringify(selectedButtons.ownerOnboarding),
-    );
-  }, [selectedButtons.ownerOnboarding]);
-
   return (
     <div className='flex flex-col items-center gap-110pxr'>
       <OwnerTitle>캠핑장 주변 환경을 선택 해주세요.</OwnerTitle>

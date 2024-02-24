@@ -8,13 +8,6 @@ import CAMPING_CATEGORIES from '../../../_constants/ownerCampingCategories';
 function CategoriesPage() {
   const { selectedButtons, handleSelectedButtons } = useSelectedButtons();
 
-  useEffect(() => {
-    localStorage.setItem(
-      'categories',
-      JSON.stringify(selectedButtons.categories),
-    );
-  }, [selectedButtons.categories]);
-
   return (
     <div className='flex flex-col items-center gap-110pxr'>
       <OwnerTitle>캠핑장 유형을 선택 해주세요.</OwnerTitle>

@@ -1,9 +1,7 @@
 import {
   IconBadminton,
   IconBbq,
-  IconBoardGame,
   IconCooking,
-  IconNothing,
   IconSoccerField,
   IconTrampoline,
   IconWalkingPath,
@@ -38,14 +36,6 @@ const CAMPING_ACTIVITIES = [
   {
     image: <IconBbq />,
     buttonText: '바베큐',
-  },
-  {
-    image: <IconBoardGame />,
-    buttonText: '보드게임',
-  },
-  {
-    image: <IconNothing />,
-    buttonText: '없음',
   },
 ];
 

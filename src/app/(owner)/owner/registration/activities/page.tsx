@@ -8,13 +8,6 @@ import useSelectedButtons from '../../../_hooks/useSelectedButtons';
 function ActivitiesPage() {
   const { selectedButtons, handleSelectedButtons } = useSelectedButtons();
 
-  useEffect(() => {
-    localStorage.setItem(
-      'activities',
-      JSON.stringify(selectedButtons.activities),
-    );
-  }, [selectedButtons.activities]);
-
   return (
     <div>
       <div className='flex flex-col items-center gap-110pxr'>

@@ -160,7 +160,10 @@ function SiteRegistrationPage() {
     e: ChangeEvent<HTMLInputElement>,
     key: 'optionName' | 'optionPrice',
   ) => {
-    setAdditionalOption((prev) => ({ ...prev, [key]: e.target.value }));
+    setAdditionalOption((prev) => ({
+      ...prev,
+      [key]: key === 'optionPrice' ? Number(e.target.value) : e.target.value,
+    }));
     handleChangeInputValues({ key: 'options', value: inputValues.options });
   };
 
