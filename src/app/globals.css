@@ -674,7 +674,4 @@ input[id='checkTable']:checked::before {
   border-radius: 100%;
 }
 
-.selectRadio input[type="radio"]:checked+label:before {
-  background-color: #4F9E4F;
-} 
           

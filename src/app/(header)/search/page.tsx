@@ -14,6 +14,9 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
 import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
+import { useDispatch } from 'react-redux';
+import { setResetAll } from '../../_utils/styleSetting';
+import { setResetAllStandBy } from '../../_utils/checkStandByState';
 
 export type CampZoneForSearch = {
   id: number;
@@ -40,6 +43,7 @@ export interface SearchParamsType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
+  const dispatch = useDispatch();
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<
     CampZoneForSearch[] | null
@@ -101,6 +105,10 @@ function Page({ searchParams }: SearchParamsType) {
         handlePrevClusterer,
       });
     }
+    return (()=> {
+      dispatch(setResetAll())
+      dispatch(setResetAllStandBy())
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
   if (!campPlaceData) return <Loading />;

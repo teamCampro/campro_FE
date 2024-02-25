@@ -14,10 +14,12 @@ import {
   setResetAllStandBy,
 } from '../../../_utils/checkStandByState';
 import DetailPanel from './DetailPanel';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import TYPE from '@/src/app/_constants/detail';
 
 function SearchFilter() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const searchParams = useSearchParams();
   const selectArray: string[] = [];
   const details = useAppSelector((state) => state.detail);
   const checkList = useAppSelector((state) => state.styleSetting);
@@ -31,6 +33,7 @@ function SearchFilter() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const router = useRouter();
+
   //pc& tablet 열고 닫기
   const handleDropClick = (id: number) => {
     dispatch(setDetailState(id));
@@ -49,6 +52,7 @@ function SearchFilter() {
       const { name: types } = detail;
       if (checkList.select[types].length > 0) {
         checkList.select[types].map((list) => {
+          if(StandByList[types].includes(list)) return;
           dispatch(setCheckStandBy({ types, list }));
         });
       }
@@ -61,8 +65,11 @@ function SearchFilter() {
   const handleReset = () => {
     dispatch(setResetAll());
     dispatch(setResetAllStandBy());
-  };
+    const queryString = `location=${searchParams.get('location')}&checkIn=${searchParams.get('checkIn')}&checkOut=${searchParams.get('checkOut')}&adult=${searchParams.get('adult')}&child=${searchParams.get('child')}&pet=${searchParams.get('pet')}`;
 
+    router.push(`/search/?${queryString}`);
+  };
+ 
   //모바일 최종 적용 누를때
   const handleFinalCheck = () => {
     details.forEach((detail) => {
@@ -82,12 +89,33 @@ function SearchFilter() {
   //모바일 상세 필터 선택한 옵션 보여주기
   details.forEach((detail) => {
     const { name: types } = detail;
-    if(isMobile && StandByList[types].length < 0) {
+    /* 쿼리스트링에 값이 있을경우 새로고침해도 유지 */
+    if(StandByList[types].length <= 0 && checkList.select[types].length <= 0) {
+      
+      const searchResult = searchParams.getAll(types);
+     
+      if(searchResult.length > 0) {
+        const searchResultArray = searchResult[0].split(',')
+   
+        TYPE[types].map(list => {
+          searchResultArray.forEach(result => {
+            if(list.type === result) {
+              selectArray.push(list.type);
+              dispatch(setSelect({ list, types }));
+            }
+          })
+        }) 
+      }
+    }
+   
+    if(isMobile && StandByList[types].length <= 0) {
       checkList.select[types].map((list) => {
+        if(StandByList[types].includes(list)) return;
         dispatch(setCheckStandBy({ types, list }));
       });
     }
     if (StandByList[types].length > 0) {
+
       StandByList[types].map((list) => {
         if(selectArray.includes(list.type)) return;
         selectArray.push(list.type);
@@ -97,9 +125,10 @@ function SearchFilter() {
 
   const redirectAllUrl = (types: string[]) => {
     const params = new URLSearchParams(window.location.search);
+    
     types.forEach((type) => {
       params.delete(type);
-      const newValues = checkList.select[type].map((el) => el.type).join(',');
+      const newValues = StandByList[type].map((el) => el.type).join(',');
       if (newValues) {
         params.set(type, newValues);
       }
@@ -114,7 +143,7 @@ function SearchFilter() {
     }
     setIsFinalCheckDone(false);
   }, [currentTypes, isFinalCheckDone]);
-console.log(selectArray)
+
   return (
     <div className='relative w-full'>
       <button

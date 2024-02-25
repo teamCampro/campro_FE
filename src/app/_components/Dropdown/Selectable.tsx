@@ -7,7 +7,7 @@ import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   InitialStateType,
@@ -68,7 +68,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const checkList = useAppSelector((state) => state.styleSetting);
   const [currentTypes, setCurrentTypes] = useState('');
   const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
@@ -88,8 +88,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
       dispatch(setResetAllStandBy());
     }
 
-    if (checkList.select[types].length > 0) {
-      console.log('추가됨')
+    if (!isMobile && checkList.select[types].length > 0) {
       checkList.select[types].map((list) => {
         dispatch(setCheckStandBy({ types, list }));
       });
@@ -97,7 +96,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
 
     handleDropClick(typeInfo.id);
   };
-console.log(checkList)
+
   //가격 객체 새로 만들어서 대기상태와 확정상태로 넣기
   const getNewPrice = (types: string, size = 'pc') => {
     const list = {

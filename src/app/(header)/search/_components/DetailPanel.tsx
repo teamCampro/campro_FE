@@ -46,7 +46,6 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
           >
             {details.map((detail) => {
               const textLength = detail.type.length > 2;
-              console.log(detail.type)
               const {name} = detail
               return (
                 <SwiperSlide
