@@ -10,7 +10,7 @@ import SiteInfo, {
 import { useState } from 'react';
 import CancleReserverModal from './CancleReserverModal';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
-
+import { additionalOption } from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 interface ReserveInfoType {
   getDetailReserve: {
     campingZoneName: string;
@@ -30,6 +30,9 @@ interface ReserveInfoType {
     status: string;
     userName: string;
     userPhone: string;
+    planImage: string; // 해당 캠핑장 배치도 이미지
+    siteImage: string; // 해당 사이트 이미지
+    additionalOptions: additionalOption[]; // 추가 옵션
   };
 }
 
@@ -65,6 +68,9 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     status,
     userName,
     userPhone,
+    planImage,
+    siteImage,
+    additionalOptions,
   } = getDetailReserve;
 
   const [isClose, setIsClose] = useState(false);
@@ -76,6 +82,9 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     parentSiteName: campingZoneSiteName,
     maxPeople: String(maxPeople),
     price: campingZoneSitePrice,
+    planImage,
+    siteImage,
+    additionalOptions,
   };
 
   const reservePersonInfo: ReservePersonInfoType = {
@@ -156,7 +165,10 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-            <PaymentAmount sitePrice={40000} />
+            <PaymentAmount
+              sitePrice={40000}
+              optionList={siteInfo.additionalOptions}
+            />
             <div className='flex justify-between text-black font-body2-semibold'>
               <h2>총 결제금액</h2>
               <h2>130,000원</h2>

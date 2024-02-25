@@ -61,13 +61,13 @@ function AddVehicle() {
           <CommonInput
             name='carNumber'
             placeholder='차량 번호를 입력해주세요'
-            className='h-56pxr w-full max-w-334pxr rounded-lg border-none bg-gray100 p-16pxr '
+            className='h-56pxr w-full max-w-334pxr rounded-lg   !bg-gray100 p-16pxr'
             rules={vehicleNumberValidate}
           />
 
           <ErrorMessage name='carNumber' custom='mt-4pxr' />
         </div>
-        <HookFormButton custom='!flex-center !w-108pxr !h-56pxr gap-4pxr !rounded-[99px] border border-gray300 disabled:pointer-events-none py-24pxr pl-24pxr pr-32pxr font-body2-medium'>
+        <HookFormButton custom='!flex-center !w-108pxr !h-56pxr gap-4pxr !rounded-[99px] border border-gray300 disabled:pointer-events-none py-24pxr pl-24pxr pr-32pxr font-body2-medium !bg-white !cursor-pointer'>
           <div className='flex-center  w-20pxr'>
             <IconPlusNon
               fill='#949494'
@@ -76,7 +76,7 @@ function AddVehicle() {
               viewBox='0 0 24 24'
             />
           </div>
-          <span className='flex-center whitespace-nowrap leading-none font-body2-medium'>
+          <span className='flex-center whitespace-nowrap leading-none text-gray600 font-body2-medium '>
             등록
           </span>
         </HookFormButton>

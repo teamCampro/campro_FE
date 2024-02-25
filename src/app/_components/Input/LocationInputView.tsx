@@ -71,7 +71,7 @@ function LocationInputView({
   return (
     <>
       <div onClick={handleClick} className='relative flex w-full flex-110'>
-        <div className=' flex w-full  gap-4pxr'>
+        <div className='flex w-full'>
           <IconLocation className='absolute left-16pxr top-16pxr ' />
           <input
             onClick={onRenderButton}
@@ -81,7 +81,7 @@ function LocationInputView({
             onChange={handleInputChange}
             value={value}
             placeholder='어디로 갈까요?'
-            className=' w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 py-16pxr pl-44pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
+            className='  w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 py-16pxr pl-48pxr pr-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
           />
         </div>
         {isDropdownVisible && (
@@ -90,7 +90,7 @@ function LocationInputView({
             footerContent={
               <Button.Round
                 size='md'
-                custom='bg-primary100 relative z-99 text-white max-w-[335px] flex w-full'
+                custom='bg-primary100 relative z-99 text-white  !font-title3-bold !flex !w-full'
                 onClick={(e: React.MouseEvent<HTMLElement>) => {
                   e.stopPropagation();
                   handleSelectLocation(selectedItem as string);

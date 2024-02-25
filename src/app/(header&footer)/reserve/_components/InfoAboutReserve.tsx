@@ -16,7 +16,7 @@ function InfoAboutReserve({ reservePersonInfo }: InfoAboutReserveType) {
     if (reservePersonInfo) {
       return `${reservePersonInfo.stayStartAt} - ${reservePersonInfo.stayEndAt}`;
     }
-    getFormattedDate([
+    return getFormattedDate([
       new Date(searchParams.get('checkIn') || new Date()),
       new Date(
         searchParams.get('checkOut') ||
