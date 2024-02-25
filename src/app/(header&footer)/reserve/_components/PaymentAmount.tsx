@@ -43,14 +43,14 @@ function PaymentAmount({ sitePrice }: { sitePrice: number }) {
   }, [totalPaymentForOptions, dispatch]);
 
   return (
-    <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
+    <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-20pxr'>
       <h3
-        className={`text-black  ${isProfile ? 'font-title1-semibold' : 'font-title3-semibold'}`}
+        className={`leading-[160%] text-black  ${isProfile ? 'font-title1-semibold' : 'font-title3-semibold'}`}
       >
         결제 금액
       </h3>
       <ul className='flex flex-col gap-12pxr'>
-        <li className='flex-center justify-between text-gray600 font-body2-medium'>
+        <li className='flex-center justify-between leading-[140%] text-gray600 font-body2-medium'>
           객실 1개 x
           {dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut'))}
           박
@@ -69,7 +69,7 @@ function PaymentAmount({ sitePrice }: { sitePrice: number }) {
         </li>
       </ul>
       <ul className='flex flex-col gap-8pxr'>
-        <li className='flex-center justify-between text-gray600 font-body2-semibold '>
+        <li className='flex-center justify-between leading-[140%] text-gray600 font-body2-semibold'>
           추가 옵션
           <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
             {totalPaymentForOptions.toLocaleString()}원

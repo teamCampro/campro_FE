@@ -14,6 +14,7 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
+  siteImage: string;
 }
 
 interface SiteInfoType {
@@ -44,28 +45,28 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          {/* <div className='relative h-140pxr w-140pxr rounded-xl border'> */}
-          {/* <Image
-            src={campList.image}
-            width={140}
-            height={140}
-            alt='캠핑장 사이트 이미지'
-            className='rounded-xl'
-          /> */}
-
+          <div className='h-140pxr w-140pxr overflow-hidden rounded-xl'>
+            <Image
+              src={siteInfo.siteImage}
+              width={140}
+              height={140}
+              alt='캠핑장 사이트 이미지'
+              className='h-full w-full object-cover'
+            />
+          </div>
           <div className='flex flex-col'>
-            <h3 className='text-gray800 font-title2-semibold'>
+            <h3 className='leading-[160%] text-gray800 font-title2-semibold'>
               {siteInfo.name}
             </h3>
             <small className='flex text-gray500 font-caption2-medium'>
-              <div className='h-16pxr w-16pxr'>
+              {/* {<div className='h-16pxr w-16pxr'>
                 <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
-              </div>
-              <span>{`7.2 (257)`}</span>
+              </div>} 
+              <span>{`7.2 (257)`}</span> */}
             </small>
             <ul className='mt-20pxr flex flex-col gap-8pxr'>
               <li className='flex  gap-4pxr '>
-                <h3 className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
+                <h3 className='flex-center h-22pxr w-full justify-start gap-2pxr !leading-none text-gray600 font-body2-medium'>
                   <span className='inline-block h-20pxr w-20pxr'>
                     <IconLocation
                       width='100%'
@@ -74,11 +75,13 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  <div className='reserve-lineOver'>{siteInfo.address}</div>
+                  <div className='reserve-lineOver leading-[140%]'>
+                    {siteInfo.address}
+                  </div>
                 </h3>
               </li>
               <li className='flex gap-4pxr'>
-                <h3 className='flex-center justify-start !leading-none text-gray600 font-body2-medium '>
+                <h3 className='flex-center justify-start gap-2pxr !leading-none text-gray600 font-body2-medium'>
                   <span className='inline-block h-20pxr w-20pxr'>
                     <IconCall
                       width='100%'
@@ -87,18 +90,19 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                       fill='#949494'
                     />
                   </span>
-                  {siteInfo.tel}
+                  <div className='leading-[140%]'>{siteInfo.tel}</div>
                 </h3>
               </li>
             </ul>
           </div>
         </figure>
         <ul className='flex flex-col gap-12pxr pb-24pxr'>
-          <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
+          <li className='flex-center justify-start gap-16pxr leading-[140%] text-gray500 font-body2-semibold'>
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
               <h4 className='font-body1-bold'>
-                {siteInfo.parentSiteName} - {siteInfo.childSiteName}
+                {siteInfo.parentSiteName}
+                {siteInfo.childSiteName}
               </h4>
               <div
                 onClick={openModal}

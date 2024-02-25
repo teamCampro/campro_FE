@@ -41,7 +41,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
   return (
     <>
       <figure
-        className={`flex flex-col justify-start gap-24pxr rounded-xl border p-24pxr tabletMin:flex-row`}
+        className={`flex flex-col justify-start gap-16pxr rounded-xl border p-24pxr tabletMin:flex-row tabletMin:gap-24pxr`}
       >
         <Image
           src={'' /* list.image */}
@@ -51,33 +51,33 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
           className='rounded-xl'
         />
         <div className='flex w-full flex-col justify-between mobile:gap-20pxr tabletMin:flex-row'>
-          <div className='profile-width flex w-full flex-col gap-16pxr'>
+          <div className='profile-width flex w-full flex-col gap-12pxr'>
             <div className=''>
-              <h3 className='text-primary100 font-body2-bold'>
-                {checkState(status)}
+              <h3 className='leading-[140%] text-primary100 font-body2-bold'>
+                {'예약 대기' || checkState(status)}
               </h3>
-              <h2 className='profile-lineOver whitespace-nowrap text-gray800 font-title1-bold'>
+              <h2 className='profile-lineOver whitespace-nowrap leading-[160%] text-gray800 font-title1-bold'>
                 {list.campingZoneName}
               </h2>
-              <div className='text-gray600 font-body2-medium'>
+              <div className='leading-[140%] text-gray600 font-body2-medium'>
                 {list.campingZoneSiteName}
               </div>
             </div>
             <div className='flex items-end justify-start gap-16pxr'>
-              <div>
-                <small className='text-gray500 font-caption2-semibold'>
+              <div className='flex flex-col'>
+                <small className='leading-[140%] text-gray500 font-caption2-semibold'>
                   입실
                 </small>
-                <h3 className='text-800 font-body1-bold'>
+                <h3 className='text-800 leading-[140%] font-body1-bold'>
                   {getOneFormatDate(list.stayStartAt)}
                 </h3>
               </div>
-              <div className='text-800 font-title3-bold'>-</div>
-              <div>
-                <small className='text-gray500 font-caption2-semibold'>
+              <div className='text-800 leading-[140%] font-title3-bold'>-</div>
+              <div className='flex flex-col'>
+                <small className='leading-[140%] text-gray500 font-caption2-semibold'>
                   퇴실
                 </small>
-                <h3 className='text-800 font-body1-bold'>
+                <h3 className='text-800 leading-[140%] font-body1-bold'>
                   {getOneFormatDate(list.stayEndAt)}
                 </h3>
               </div>
