@@ -15,6 +15,7 @@ import {
   additionalOptionFinal,
 } from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 import switchPayMethod from '@/src/app/_utils/switchPayMethod';
+import { useAppSelector } from '@/hooks/redux';
 interface ReserveInfoType {
   getDetailReserve: {
     campingZoneName: string;
@@ -84,7 +85,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
   } = getDetailReserve;
 
   const [isClose, setIsClose] = useState(false);
-
+  const totalPrice = useAppSelector((state) => state.totalPrice);
   const siteInfo: ReserveInfoData = {
     name: campingZoneName,
     address: address,
@@ -119,7 +120,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
   const handleModal = () => {
     setIsClose(!isClose);
   };
-  console.log(additionalOptions);
+
   return (
     <>
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
@@ -182,13 +183,13 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-            {/* <PaymentAmountForDetail
+            <PaymentAmountForDetail
               sitePrice={campingZoneSitePrice}
               aboutPay={aboutPay}
-            /> */}
+            />
             <div className='flex justify-between text-black font-body2-semibold'>
               <h2>총 결제금액</h2>
-              <h2>130,000원</h2>
+              <h2>{totalPrice.total.toLocaleString()}원</h2>
             </div>
           </div>
           <Button.Round

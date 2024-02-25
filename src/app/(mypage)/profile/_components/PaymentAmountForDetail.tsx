@@ -3,6 +3,9 @@
 import { numberFormatter } from '@/src/app/_utils/numberFormatter';
 import { usePathname } from 'next/navigation';
 import { AboutPayType } from './ReserveInfo';
+import { useAppDispatch } from '@/hooks/redux';
+import { setTotalPrice } from '@/src/app/_slices/totalPrice';
+import { useEffect } from 'react';
 function PaymentAmountForDetail({
   sitePrice,
   aboutPay,
@@ -10,10 +13,14 @@ function PaymentAmountForDetail({
   sitePrice: number;
   aboutPay: AboutPayType;
 }) {
+  console.log(aboutPay.additionalOptions);
   const pathName = usePathname();
   const isProfile = pathName.includes('reserveList');
+  const dispatch = useAppDispatch();
+
   const totalOptionPrice = aboutPay.additionalOptions.reduce(
     (acc, option) => acc + option.price,
+    0,
   );
 
   function dateDiff(date1: string | null, date2: string | null) {
@@ -29,6 +36,13 @@ function PaymentAmountForDetail({
       return 1;
     }
   }
+
+  useEffect(() => {
+    setTotalPrice(
+      sitePrice * dateDiff(aboutPay.stayStartAt, aboutPay.stayEndAt) +
+        totalOptionPrice,
+    );
+  }, []);
 
   return (
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
@@ -49,22 +63,20 @@ function PaymentAmountForDetail({
         <li className='flex-center justify-between text-gray600 font-body2-semibold '>
           추가 옵션
           <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
-            {totalPaymentForOptions.toLocaleString()}원
+            {totalOptionPrice.toLocaleString()}원
           </span>
         </li>
-        {optionList.map(
+        {aboutPay.additionalOptions.map(
           (option) =>
-            count[option.optionId] > 0 && (
+            option.amount && (
               <li
                 key={option.optionId}
                 className='flex-center justify-between text-gray600 font-body2-medium '
               >
                 {option?.optionName}
-                {count[option.optionId] ? `x ${count[option.optionId]}` : ''}
+                {option.amount ? `x ${option.amount}` : ''}
                 <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
-                  {count[option.optionId] &&
-                    numberFormatter(String(option.price))}
-                  원
+                  {option.amount && numberFormatter(String(option.price))}원
                 </span>
               </li>
             ),
