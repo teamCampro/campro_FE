@@ -13,7 +13,7 @@ type additionalOption = {
 function AddOption({ optionList }: { optionList: additionalOption[] }) {
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
-  console.log(optionList);
+
   const handlePlus = (id: number) => {
     dispatch(plus(id));
   };
