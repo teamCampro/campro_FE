@@ -112,3 +112,5 @@ export { default as IconTwoPeople } from './two-people.svg';
 export { default as IconWalkingPath } from './walkingPath.svg';
 export { default as IconWaterPlay } from './waterPlay.svg';
 export { default as IconCampWifi } from './wifi.svg';
+export { default as IconCheckboxEmpty } from './checkboxEmpty.svg';
+export { default as IconCheckbox } from './checkbox.svg';

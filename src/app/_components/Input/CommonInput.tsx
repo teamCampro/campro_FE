@@ -36,7 +36,7 @@ function CommonInput({
   } = useFormContext();
 
   const inputCss = (isError: boolean, className?: string) =>
-    `outline-0 box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400   ${isError ? '!border-red-500' : '!border-gray-500'} ${className ? className : ''}`;
+    `outline-0   box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400   ${isError ? '!border-red-500' : '!border-none'} ${className ? className : ''}`;
 
   const registerOptions = () => {
     switch (name) {
@@ -63,6 +63,7 @@ function CommonInput({
       className={inputCss(errors[name] ? true : false, className)}
       readOnly={readOnly}
       defaultValue={defaultValue}
+      autoComplete='off'
     />
   );
 }

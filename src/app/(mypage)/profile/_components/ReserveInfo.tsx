@@ -3,14 +3,19 @@
 import Button from '@/components/Button';
 import InfoAboutBookingPerson from '@/src/app/(header&footer)/reserve/_components/InfoAboutBookingPerson';
 import InfoAboutReserve from '@/src/app/(header&footer)/reserve/_components/InfoAboutReserve';
-import PaymentAmount from '@/src/app/(header&footer)/reserve/_components/PaymentAmount';
+import PaymentAmountForDetail from './PaymentAmountForDetail';
 import SiteInfo, {
   ReserveInfoData,
 } from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 import { useState } from 'react';
 import CancleReserverModal from './CancleReserverModal';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
-
+import {
+  additionalOption,
+  additionalOptionFinal,
+} from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
+import switchPayMethod from '@/src/app/_utils/switchPayMethod';
+import { useAppSelector } from '@/hooks/redux';
 interface ReserveInfoType {
   getDetailReserve: {
     campingZoneName: string;
@@ -30,7 +35,11 @@ interface ReserveInfoType {
     status: string;
     userName: string;
     userPhone: string;
-    siteImage: string;
+
+    planImage: string; // 해당 캠핑장 배치도 이미지
+    siteImage: string; // 해당 사이트 이미지
+    additionalOptions: additionalOptionFinal[]; // 추가 옵션
+
   };
 }
 
@@ -45,6 +54,12 @@ export interface ReservePersonInfoType {
 export interface UserInfoType {
   userName: string;
   userPhone: string;
+}
+
+export interface AboutPayType {
+  stayStartAt: string;
+  stayEndAt: string;
+  additionalOptions: additionalOptionFinal[];
 }
 
 function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
@@ -66,11 +81,16 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     status,
     userName,
     userPhone,
+
+    planImage,
     siteImage,
+    additionalOptions,
+
   } = getDetailReserve;
 
   const [isClose, setIsClose] = useState(false);
-
+  const totalPrice = useAppSelector((state) => state.totalPrice);
+  console.log(totalPrice.total);
   const siteInfo: ReserveInfoData = {
     name: campingZoneName,
     address: address,
@@ -78,8 +98,14 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     parentSiteName: campingZoneSiteName,
     maxPeople: String(maxPeople),
     price: campingZoneSitePrice,
+
     siteImage:
       siteImage && siteImage.length > 0 ? JSON.parse(siteImage)[0] : '',
+
+    planImage,
+ 
+    additionalOptions,
+
   };
 
   const reservePersonInfo: ReservePersonInfoType = {
@@ -93,6 +119,12 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
   const userDecideInfo: UserInfoType = {
     userName,
     userPhone,
+  };
+
+  const aboutPay: AboutPayType = {
+    stayStartAt,
+    stayEndAt,
+    additionalOptions,
   };
 
   const handleModal = () => {
@@ -122,8 +154,10 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
           </h3>
           <div className='flex items-center justify-start gap-24pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
             차량번호
+
             <span className='leading-[140%] text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
               {carInfo}
+
             </span>
           </div>
         </div>
@@ -132,12 +166,15 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             추가 옵션
           </h3>
           <ul className='flex flex-col gap-16pxr'>
-            <li className='leading-[140%] text-gray800 font-body2-semibold tabletMin:font-body1-medium '>
-              숫불 세트(고기2인분+식기)
-            </li>
-            <li className='leading-[140%] text-gray800 font-body2-semibold tabletMin:font-body1-medium'>
-              장작 세트
-            </li>
+
+            {additionalOptions.map((option) => (
+              <li
+                key={option.optionId}
+                className='text-gray800 font-body2-semibold tabletMin:font-body1-medium'
+              >
+                {option.optionName}
+              </li>
+            ))}
           </ul>
         </div>
         <div className='flex flex-col justify-between tabletMin:flex-row'>
@@ -155,17 +192,21 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
               <li className='flex-center justify-start gap-35pxr leading-[140%] text-gray500 font-body2-semibold'>
                 <h4 className='whitespace-nowrap'>결제 수단</h4>
                 <span className='text-gray800 font-body2-medium'>
-                  {/* 현대 ****-****-**21 */}
-                  {payMethod}
+                  {switchPayMethod(payMethod)}
                 </span>
               </li>
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-            <PaymentAmount sitePrice={40000} />
-            <div className='flex justify-between leading-[140%] text-black font-body2-semibold'>
+
+            <PaymentAmountForDetail
+              sitePrice={campingZoneSitePrice}
+              aboutPay={aboutPay}
+            />
+            <div className='flex justify-between text-black font-body2-semibold'>
+
               <h2>총 결제금액</h2>
-              <h2>130,000원</h2>
+              <h2>{totalPrice.total.toLocaleString()}원</h2>
             </div>
           </div>
           <Button.Round
