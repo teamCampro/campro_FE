@@ -26,11 +26,9 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
-
-  planImage: string; // 해당 캠핑장 배치도 이미지
-  siteImage: string; // 해당 사이트 이미지
-  additionalOptions: additionalOption[]; // 추가 옵션
-
+  planImage: string;
+  siteImage: string;
+  additionalOptions: additionalOption[];
 }
 
 interface SiteInfoType {
@@ -55,15 +53,15 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
   const reviewList = false;
+
   return (
     <>
       <div
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
-
         <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
           <Image
-            src={JSON.parse(siteInfo?.siteImage)[0]}
+            src={JSON.parse(siteInfo.siteImage)[0] || ''}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
