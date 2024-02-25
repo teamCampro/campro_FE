@@ -56,7 +56,7 @@ const config: Config = {
       },
       colors: {
         primary100: '#3E874E',
-        primary50: '#C4DBC4',
+        primary50: '#E9F1E9',
         emred: '#655DC6',
         error: '#DA1E28',
         second50: '#DFD5C2',

@@ -7,7 +7,7 @@ import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
 import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import {
   InitialStateType,
@@ -32,6 +32,7 @@ interface Props {
   children: ReactNode;
   typeInfo: TypeInfoType;
   handleDropClick: (id: number) => void;
+  selectLength:boolean;
 }
 
 interface LengthType {
@@ -49,8 +50,8 @@ export interface CheckStandByListType {
 }
 
 export interface PriceType {
-  startPrice: string;
-  endPrice: string;
+  startPrice: number;
+  endPrice: number;
 }
 
 const LENTH: LengthType = {
@@ -58,7 +59,7 @@ const LENTH: LengthType = {
   '5': 'w-121pxr',
 };
 
-function Selectable({ children, typeInfo, handleDropClick }: Props) {
+function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
@@ -67,16 +68,15 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const divRef = useRef<HTMLDivElement>(null);
   const buttomRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const checkList = useAppSelector((state) => state.styleSetting);
   const [currentTypes, setCurrentTypes] = useState('');
   const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
   const [price, setPrice] = useState({
-    startPrice: '',
-    endPrice: '',
+    startPrice: 0,
+    endPrice: 0,
   });
 
-  const textLength = children?.toString().length;
   const router = useRouter();
 
   //dropdown열고&닫기
@@ -86,9 +86,10 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
 
     if (!isMobile) {
       dispatch(setResetAllStandBy());
+      setPrice({startPrice:0, endPrice:0})
     }
 
-    if (checkList.select[types].length > 0) {
+    if (!isMobile && checkList.select[types].length > 0) {
       checkList.select[types].map((list) => {
         dispatch(setCheckStandBy({ types, list }));
       });
@@ -187,18 +188,25 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
     setIsFinalCheckDone(false);
   }, [checkList, currentTypes, isFinalCheckDone]);
 
+const isTextLength = () => {
+  if(!children) return
+  return children.toString().length > 3;
+}
+
+
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && LENTH[textLength]} relative w-121pxr rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
+        className={`h-48pxr ${isTextLength() && !isMobile ? LENTH[5] : LENTH[2]} relative rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
         ref={buttomRef}
       >
         <div
+        id='selectable'
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
           <h3
-            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold`}
+            className={`whitespace-nowrap text-gray600 ${typeInfo.isDone ? 'text-primary100' : 'text-gray300'} font-body2-medium mobile:text-black mobile:font-title3-semibold ${selectLength ? 'reserve-lineOver' : ''}`}
           >
             {children}
           </h3>
@@ -212,7 +220,7 @@ function Selectable({ children, typeInfo, handleDropClick }: Props) {
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'} ${typeInfo.name === 'trip' ? '!h-200pxr' : ''}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
