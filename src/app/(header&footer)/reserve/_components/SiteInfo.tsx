@@ -72,31 +72,31 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
               </small>
             )}
             <ul className='mt-20pxr flex flex-col gap-8pxr'>
-              <li className='flex  gap-4pxr '>
-                <h3 className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
-                  <span className='inline-block h-20pxr w-20pxr'>
-                    <IconLocation
-                      width='100%'
-                      height='100%'
-                      viewBox='0 0 24 24'
-                      fill='#949494'
-                    />
-                  </span>
-                  <div className='reserve-lineOver'>{siteInfo.address}</div>
-                </h3>
+              <li className=' flex h-22pxr gap-4pxr'>
+                <span className='flex-center h-22pxr w-22pxr'>
+                  <IconLocation
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='#949494'
+                  />
+                </span>
+                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                  {siteInfo.address}
+                </div>
               </li>
-              <li className='flex gap-4pxr'>
-                <h3 className='flex-center justify-start !leading-none text-gray600 font-body2-medium '>
-                  <span className='inline-block h-20pxr w-20pxr'>
-                    <IconCall
-                      width='100%'
-                      height='100%'
-                      viewBox='0 0 24 24'
-                      fill='#949494'
-                    />
-                  </span>
+              <li className=' flex h-22pxr gap-4pxr'>
+                <span className='flex-center h-22pxr w-22pxr'>
+                  <IconCall
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='#949494'
+                  />
+                </span>
+                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
                   {siteInfo.tel}
-                </h3>
+                </div>
               </li>
             </ul>
           </div>

@@ -75,9 +75,8 @@ export const nicknameValidate = {
 };
 
 export const vehicleNumberValidate = {
-  required: { value: true, message: '' },
   pattern: {
     value: VALIDATE.vehicleNumber,
-    message: '잘못된 차량 번호입니다.',
+    message: '차량번호를 확인해주세요.',
   },
 };

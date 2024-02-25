@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { additionalOption } from './SiteInfo';
+import { numberFormatter } from '@/src/app/_utils/numberFormatter';
 function PaymentAmount({
   sitePrice,
   optionList,
@@ -81,18 +82,23 @@ function PaymentAmount({
             {totalPaymentForOptions.toLocaleString()}원
           </span>
         </li>
-        {optionList.map((option) => (
-          <li
-            key={option.optionId}
-            className='flex-center justify-between text-gray600 font-body2-medium '
-          >
-            {option?.optionName}
-            {count[option.optionId] ? `x ${count[option.optionId]}` : ''}
-            <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
-              {count[option.optionId] ? option.price : '0원'}
-            </span>
-          </li>
-        ))}
+        {optionList.map(
+          (option) =>
+            count[option.optionId] > 0 && (
+              <li
+                key={option.optionId}
+                className='flex-center justify-between text-gray600 font-body2-medium '
+              >
+                {option?.optionName}
+                {count[option.optionId] ? `x ${count[option.optionId]}` : ''}
+                <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
+                  {count[option.optionId] &&
+                    numberFormatter(String(option.price))}
+                  원
+                </span>
+              </li>
+            ),
+        )}
       </ul>
     </div>
   );
