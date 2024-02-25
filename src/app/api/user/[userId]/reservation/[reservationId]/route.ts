@@ -23,10 +23,13 @@ export const GET = async (
 
     const reservationDetail: any = row;
 
-    const selectAdditionalOptionsQuery = `SELECT option_name optionName, price
-        FROM camping_zone_site_additional_option
+    const selectAdditionalOptionsQuery = `
+      SELECT czsao.option_name optionName, czsao.price, rsao.amount
+      FROM camping_zone_site_additional_option czsao
+      INNER JOIN reservation_selected_additional_option rsao
+      ON rsao.option_id = czsao.id
       WHERE camping_zone_site_id = ?
-      ORDER BY option_order;`;
+      ORDER BY czsao.option_order;`;
 
     const [additionalOptions] = await db.execute(selectAdditionalOptionsQuery, [
       reservationDetail[0].czsId,
