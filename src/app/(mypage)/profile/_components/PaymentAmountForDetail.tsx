@@ -38,9 +38,11 @@ function PaymentAmountForDetail({
   }
 
   useEffect(() => {
-    setTotalPrice(
-      sitePrice * dateDiff(aboutPay.stayStartAt, aboutPay.stayEndAt) +
-        totalOptionPrice,
+    dispatch(
+      setTotalPrice(
+        sitePrice * dateDiff(aboutPay.stayStartAt, aboutPay.stayEndAt) +
+          totalOptionPrice,
+      ),
     );
   }, []);
 
