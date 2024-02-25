@@ -11,6 +11,13 @@ export type additionalOption = {
   optionName: string;
   price: number;
 };
+
+export type additionalOptionFinal = {
+  optionId: number;
+  optionName: string;
+  price: number;
+  amount: number;
+};
 export interface ReserveInfoData {
   name: string;
   address: string;
@@ -19,9 +26,11 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
+
   planImage: string; // 해당 캠핑장 배치도 이미지
   siteImage: string; // 해당 사이트 이미지
   additionalOptions: additionalOption[]; // 추가 옵션
+
 }
 
 interface SiteInfoType {
@@ -51,15 +60,16 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       <div
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
-        <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          {/* <Image
-            src={siteInfo?.siteImage}
+
+        <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
+          <Image
+            src={JSON.parse(siteInfo?.siteImage)[0]}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
-            className='rounded-xl'
-          /> */}
-          <div className='flex flex-col'>
+            className='aspect-square rounded-xl'
+          />
+          <div className='flex  flex-col items-start'>
             <h3 className='text-gray800 font-title2-semibold'>
               {siteInfo.name}
             </h3>
@@ -71,7 +81,9 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                 <span>{`7.2 (257)`}</span>
               </small>
             )}
-            <ul className='mt-20pxr flex flex-col gap-8pxr'>
+            <ul
+              className={`${reviewList ? 'mt-20pxr' : 'mt-37pxr'} flex flex-col gap-8pxr`}
+            >
               <li className=' flex h-22pxr gap-4pxr'>
                 <span className='flex-center h-22pxr w-22pxr'>
                   <IconLocation
@@ -102,11 +114,12 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
           </div>
         </figure>
         <ul className='flex flex-col gap-12pxr pb-24pxr'>
-          <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
+          <li className='flex-center justify-start gap-16pxr leading-[140%] text-gray500 font-body2-semibold'>
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
               <h4 className='font-body1-bold'>
-                {siteInfo.parentSiteName} - {siteInfo.childSiteName}
+                {siteInfo.parentSiteName}
+                {siteInfo.childSiteName}
               </h4>
               <div
                 onClick={openModal}

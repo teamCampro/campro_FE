@@ -86,6 +86,7 @@ export { default as IconPersonalShower } from './personalShower.svg';
 export { default as IconPersonalToilet } from './personalToilet.svg';
 export { default as IconPet } from './pet.svg';
 export { default as IconPlay } from './play.svg';
+export { default as IconMinusNon } from './minus-non.svg';
 export { default as IconPlusNon } from './plus-non.svg';
 export { default as IconPlus } from './plus.svg';
 export { default as IconPublicToilet } from './publicToilet.svg';
