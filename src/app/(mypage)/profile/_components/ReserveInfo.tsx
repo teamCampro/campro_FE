@@ -3,14 +3,18 @@
 import Button from '@/components/Button';
 import InfoAboutBookingPerson from '@/src/app/(header&footer)/reserve/_components/InfoAboutBookingPerson';
 import InfoAboutReserve from '@/src/app/(header&footer)/reserve/_components/InfoAboutReserve';
-import PaymentAmount from '@/src/app/(header&footer)/reserve/_components/PaymentAmount';
+import PaymentAmountForDetail from './PaymentAmountForDetail';
 import SiteInfo, {
   ReserveInfoData,
 } from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
 import { useState } from 'react';
 import CancleReserverModal from './CancleReserverModal';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
-import { additionalOption } from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
+import {
+  additionalOption,
+  additionalOptionFinal,
+} from '@/src/app/(header&footer)/reserve/_components/SiteInfo';
+import switchPayMethod from '@/src/app/_utils/switchPayMethod';
 interface ReserveInfoType {
   getDetailReserve: {
     campingZoneName: string;
@@ -32,7 +36,7 @@ interface ReserveInfoType {
     userPhone: string;
     planImage: string; // 해당 캠핑장 배치도 이미지
     siteImage: string; // 해당 사이트 이미지
-    additionalOptions: additionalOption[]; // 추가 옵션
+    additionalOptions: additionalOptionFinal[]; // 추가 옵션
   };
 }
 
@@ -47,6 +51,12 @@ export interface ReservePersonInfoType {
 export interface UserInfoType {
   userName: string;
   userPhone: string;
+}
+
+export interface AboutPayType {
+  stayStartAt: string;
+  stayEndAt: string;
+  additionalOptions: additionalOptionFinal[];
 }
 
 function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
@@ -100,10 +110,16 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     userPhone,
   };
 
+  const aboutPay: AboutPayType = {
+    stayStartAt,
+    stayEndAt,
+    additionalOptions,
+  };
+
   const handleModal = () => {
     setIsClose(!isClose);
   };
-
+  console.log(additionalOptions);
   return (
     <>
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
@@ -126,7 +142,7 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
           <div className='flex items-center justify-start gap-24pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
             차량번호
             <span className='text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
-              {carInfo}
+              {JSON.parse(carInfo).join(', ')}
             </span>
           </div>
         </div>
@@ -135,12 +151,14 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             추가 옵션
           </h3>
           <ul className='flex flex-col gap-16pxr'>
-            <li className='text-gray800 font-body2-semibold tabletMin:font-body1-medium'>
-              숫불 세트(고기2인분+식기)
-            </li>
-            <li className='text-gray800 font-body2-semibold tabletMin:font-body1-medium'>
-              장작 세트
-            </li>
+            {additionalOptions.map((option) => (
+              <li
+                key={option.optionId}
+                className='text-gray800 font-body2-semibold tabletMin:font-body1-medium'
+              >
+                {option.optionName}
+              </li>
+            ))}
           </ul>
         </div>
         <div className='flex flex-col justify-between tabletMin:flex-row'>
@@ -158,17 +176,16 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
               <li className='flex-center justify-start gap-35pxr text-gray600 font-body2-medium'>
                 <h4 className='whitespace-nowrap'>결제 수단</h4>
                 <span className='text-gray800 font-body2-medium'>
-                  {/* 현대 ****-****-**21 */}
-                  {payMethod}
+                  {switchPayMethod(payMethod)}
                 </span>
               </li>
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-            <PaymentAmount
-              sitePrice={40000}
-              optionList={siteInfo.additionalOptions}
-            />
+            {/* <PaymentAmountForDetail
+              sitePrice={campingZoneSitePrice}
+              aboutPay={aboutPay}
+            /> */}
             <div className='flex justify-between text-black font-body2-semibold'>
               <h2>총 결제금액</h2>
               <h2>130,000원</h2>

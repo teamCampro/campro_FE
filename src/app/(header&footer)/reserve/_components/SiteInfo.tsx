@@ -11,6 +11,13 @@ export type additionalOption = {
   optionName: string;
   price: number;
 };
+
+export type additionalOptionFinal = {
+  optionId: number;
+  optionName: string;
+  price: number;
+  amount: number;
+};
 export interface ReserveInfoData {
   name: string;
   address: string;
@@ -52,13 +59,13 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
         <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          {/* <Image
-            src={siteInfo?.siteImage}
+          <Image
+            src={JSON.parse(siteInfo?.siteImage)[0]}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
             className='rounded-xl'
-          /> */}
+          />
           <div className='flex flex-col'>
             <h3 className='text-gray800 font-title2-semibold'>
               {siteInfo.name}
@@ -71,7 +78,9 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                 <span>{`7.2 (257)`}</span>
               </small>
             )}
-            <ul className='mt-20pxr flex flex-col gap-8pxr'>
+            <ul
+              className={`${reviewList ? 'mt-20pxr' : 'mt-20pxr'} flex flex-col gap-8pxr`}
+            >
               <li className=' flex h-22pxr gap-4pxr'>
                 <span className='flex-center h-22pxr w-22pxr'>
                   <IconLocation

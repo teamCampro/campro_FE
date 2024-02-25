@@ -1,28 +1,20 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-
-import { useEffect } from 'react';
-import { setTotalPayment } from '@/src/app/_slices/totalPayment';
-import { useSearchParams } from 'next/navigation';
-import { additionalOption } from './SiteInfo';
 import { numberFormatter } from '@/src/app/_utils/numberFormatter';
-function PaymentAmount({
+import { usePathname } from 'next/navigation';
+import { AboutPayType } from './ReserveInfo';
+function PaymentAmountForDetail({
   sitePrice,
-  optionList,
+  aboutPay,
 }: {
   sitePrice: number;
-  optionList: additionalOption[];
+  aboutPay: AboutPayType;
 }) {
-  const searchParams = useSearchParams();
-  const count = useAppSelector((state) => state.plusOptionCount);
-  const dispatch = useAppDispatch();
-
-  const totalPaymentForOptions = optionList.reduce((acc, option) => {
-    const countForOption = Number(count[option.optionId] || 0);
-    const priceForOption = Number(String(option.price).replace(/[,원]/g, ''));
-    return acc + countForOption * priceForOption;
-  }, 0);
+  const pathName = usePathname();
+  const isProfile = pathName.includes('reserveList');
+  const totalOptionPrice = aboutPay.additionalOptions.reduce(
+    (acc, option) => acc + option.price,
+  );
 
   function dateDiff(date1: string | null, date2: string | null) {
     if (date1 && date2) {
@@ -37,35 +29,19 @@ function PaymentAmount({
       return 1;
     }
   }
-  useEffect(() => {
-    dispatch(
-      setTotalPayment(
-        totalPaymentForOptions +
-          sitePrice *
-            dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut')),
-      ),
-    );
-  }, [totalPaymentForOptions, dispatch, searchParams, sitePrice]);
 
   return (
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
-      <h3 className='text-black   font-title3-semibold'>결제 금액</h3>
+      <h3
+        className={`text-black  ${isProfile ? 'font-title1-semibold' : 'font-title3-semibold'}`}
+      >
+        결제 금액
+      </h3>
       <ul className='flex flex-col gap-12pxr'>
         <li className='flex-center justify-between text-gray600 font-body2-medium'>
-          객실 1개 x
-          {dateDiff(searchParams.get('checkIn'), searchParams.get('checkOut'))}
-          박
+          객실 1개 x{dateDiff(aboutPay.stayStartAt, aboutPay.stayEndAt)}박
           <span className='whitespace-nowrap text-gray600 font-body2-semibold'>
-            {searchParams.get('checkIn') && searchParams.get('checkOut')
-              ? (
-                  sitePrice *
-                  dateDiff(
-                    searchParams.get('checkIn'),
-                    searchParams.get('checkOut'),
-                  )
-                ).toLocaleString()
-              : sitePrice.toLocaleString()}
-            원
+            {sitePrice * dateDiff(aboutPay.stayStartAt, aboutPay.stayEndAt)}원
           </span>
         </li>
       </ul>
@@ -97,5 +73,4 @@ function PaymentAmount({
     </div>
   );
 }
-
-export default PaymentAmount;
+export default PaymentAmountForDetail;
