@@ -82,8 +82,14 @@ function SearchFilter() {
   //모바일 상세 필터 선택한 옵션 보여주기
   details.forEach((detail) => {
     const { name: types } = detail;
+    if(isMobile && StandByList[types].length < 0) {
+      checkList.select[types].map((list) => {
+        dispatch(setCheckStandBy({ types, list }));
+      });
+    }
     if (StandByList[types].length > 0) {
       StandByList[types].map((list) => {
+        if(selectArray.includes(list.type)) return;
         selectArray.push(list.type);
       });
     }

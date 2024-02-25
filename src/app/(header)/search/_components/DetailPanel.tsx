@@ -46,12 +46,13 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
           >
             {details.map((detail) => {
               const textLength = detail.type.length > 2;
+              console.log(detail.type)
               const {name} = detail
               return (
                 <SwiperSlide
                 style={{ width: 'auto', display: 'inline-block' }}
                   key={detail.id}
-                  className={`${textLength ? '!w-121pxr' : '!w-90pxr'}  mobile:!w-full`}
+                  className={`  mobile:!w-full`}
                 >
                   <Selectable
                     handleDropClick={handleDropClick}

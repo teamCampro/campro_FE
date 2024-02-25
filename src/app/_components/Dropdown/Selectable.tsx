@@ -55,7 +55,7 @@ export interface PriceType {
 }
 
 const LENTH: LengthType = {
-  '2': '!w-90pxr',
+  '2': 'w-90pxr',
   '5': 'w-121pxr',
 };
 
@@ -77,7 +77,6 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
     endPrice: '',
   });
 
-  const textLength = children?.toString().length;
   const router = useRouter();
 
   //dropdown열고&닫기
@@ -90,6 +89,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
     }
 
     if (checkList.select[types].length > 0) {
+      console.log('추가됨')
       checkList.select[types].map((list) => {
         dispatch(setCheckStandBy({ types, list }));
       });
@@ -97,7 +97,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
 
     handleDropClick(typeInfo.id);
   };
-
+console.log(checkList)
   //가격 객체 새로 만들어서 대기상태와 확정상태로 넣기
   const getNewPrice = (types: string, size = 'pc') => {
     const list = {
@@ -188,10 +188,16 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
     setIsFinalCheckDone(false);
   }, [checkList, currentTypes, isFinalCheckDone]);
 
+const isTextLength = () => {
+  if(!children) return
+  return children.toString().length > 3;
+}
+
+
   return (
     <>
       <div
-        className={`h-48pxr ${textLength && !isMobile ? LENTH[textLength] : ''} relative rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
+        className={`h-48pxr ${isTextLength() && !isMobile ? LENTH[5] : LENTH[2]} relative rounded-full border bg-white font-medium mobile:flex mobile:h-full mobile:w-full mobile:flex-col mobile:rounded-none mobile:border-none ${typeInfo.isDone ? 'border-primary100' : 'border-gray300'}`}
         ref={buttomRef}
       >
         <div
@@ -214,7 +220,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto  px-20pxr pb-20pxr pt-24pxr  mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'} ${typeInfo.name === 'trip' ? '!h-200pxr' : ''}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
