@@ -6,11 +6,14 @@ export const PATCH = async (
 	{ params }: { params: { reserveId: string } },
 ) => {
 	try {
-		const rStatusData = await req.json();
 		const db = await pool.getConnection();
 		const { reserveId } = params;
-		const reservationStatus = rStatusData.status;
 
+		const reserveStatusQuery = `SELECT status FROM reservation WHERE id = ?`;
+
+		const reserveStatusResult: any = await db.execute(reserveStatusQuery, [reserveId]);
+		const reservationStatus = reserveStatusResult[0][0].status;
+		
 		if (reservationStatus === 'RESERVE_WAITING') {
 			const query = `UPDATE reservation SET status = 'RESERVE_COMPLETE' WHERE id = ?`;
 			await db.execute(query, [reserveId]);
@@ -23,7 +26,7 @@ export const PATCH = async (
 			const statusErrorMessage = '예약 대기 상태 아님';
 			return NextResponse.json({ error: statusErrorMessage }, { status: 500 });
 		}
-		
+
 	}
 	catch (error) {
 		return NextResponse.json({ error }, { status: 500 });

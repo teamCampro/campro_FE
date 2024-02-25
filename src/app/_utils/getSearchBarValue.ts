@@ -22,6 +22,6 @@ export default function getSearchBarValue({
     pet = '0',
   } = searchParams;
   return (location && checkIn && checkOut) || adult || child || pet
-    ? `${page === 'search' ? location : place}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${adult}명, 아동 ${child}명, 펫 ${pet}마리`
+    ? `${page === 'search' ? location : place}, ${getFormattedDate([new Date(checkIn), new Date(checkOut)])}, 성인 ${adult}명, 아동 ${child}명, 애견 ${pet}마리`
     : '';
 }

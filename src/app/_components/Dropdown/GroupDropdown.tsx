@@ -58,7 +58,7 @@ function GroupDropdown({ group, onChangeGroup, onClose, isMobile }: Props) {
   return (
     <div
       ref={dropdownRef}
-      className='absolute right-0pxr top-71pxr z-[100] flex w-407pxr flex-col items-start gap-24pxr rounded-[20px] bg-white px-40pxr py-32pxr shadow-searchBar mobile:relative mobile:top-0pxr mobile:flex mobile:w-full  mobile:rounded-[0]'
+      className={`absolute right-0pxr top-71pxr z-[100] flex w-407pxr flex-col items-start gap-24pxr rounded-[20px] bg-white px-40pxr py-32pxr ${isMobile ? '!shadow-none' : '!shadow-searchBar'} mobile:relative mobile:top-0pxr mobile:flex mobile:w-full  mobile:rounded-[0]`}
     >
       <div className='flex w-full flex-col items-start gap-16pxr'>
         <div className='flex w-full items-center justify-between'>

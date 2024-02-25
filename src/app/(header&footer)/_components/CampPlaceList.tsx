@@ -35,30 +35,32 @@ function CampPlaceList({ campPlaces, type }: Props) {
   }
 
   return (
-    <div className='flex flex-col gap-12pxr'>
-      <div className='flex justify-between '>
-        <h1 className='font-title1-semibold mobile:font-body1-semibold'>
+    <div className='flex max-w-1440pxr flex-col gap-12pxr'>
+      <div className=' flex justify-between'>
+        <h1 className=' font-title1-semibold mobile:pl-16pxr mobile:font-body1-semibold'>
           {listName}
         </h1>
         <button
           type='button'
-          className='flex items-center  text-gray500 font-body2-medium mobile:font-caption2-semibold'
+          className='flex items-center  text-gray500 font-body2-medium mobile:pr-16pxr mobile:font-caption2-semibold tabletMin:pr-32pxr'
         >
           <span className='mobile:hidden '>전체보기</span>
           <span className='hidden mobile:block'>전체</span>
-          <span className='inline-block h-20pxr w-20pxr'>
+          <span className='inline-block h-20pxr w-20pxr mobile:h-16pxr  mobile:w-16pxr'>
             <IconArrowRightNon width='100%' height='100%' viewBox='0 0 24 24' />
           </span>
         </button>
       </div>
       <div>
         <Swiper
+          id='campList-swiper'
           modules={[FreeMode]}
           freeMode={true}
           slidesPerView='auto'
           spaceBetween={12}
           breakpoints={{
-            768: { spaceBetween: 16 },
+            320: { slidesOffsetBefore: 16 },
+            768: { spaceBetween: 16, slidesOffsetBefore: 0 },
           }}
         >
           {campPlaces?.map((campPlace) => (
