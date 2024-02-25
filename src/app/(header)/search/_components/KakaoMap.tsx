@@ -86,7 +86,7 @@ function KakaoMap({
           ? new kakao.maps.LatLng(36.7140176374004, 128.10524294165157)
           : new kakao.maps.LatLng(averageLng, averageLat),
       );
-      map.setLevel(isRegion ? 13 : 12);
+      map.setLevel(12);
 
       return;
     }
