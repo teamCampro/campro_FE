@@ -1,12 +1,17 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Score from './Score';
 import Button from '@/components/Button';
-import { IconPlusNon } from '@/public/svgs';
+import {
+  IconMapMinus,
+  IconMinus,
+  IconMinusNon,
+  IconPlusNon,
+} from '@/public/svgs';
 import { ReviewKeywordType, SurveyListsType } from './WriteReviewModal';
 
 interface SurveyType {
-  isScroll: boolean;
-  handleScroll: () => void;
+  isToggleScroll: boolean;
+  handleToggleScroll: () => void;
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
   surveyLists: SurveyListsType;
   keywords: ReviewKeywordType[];
@@ -16,8 +21,8 @@ interface SurveyType {
 }
 
 function Survey({
-  isScroll,
-  handleScroll,
+  isToggleScroll,
+  handleToggleScroll,
   setSurveyLists,
   surveyLists,
   keywords,
@@ -55,7 +60,9 @@ function Survey({
   return (
     <>
       <div className='mt-24pxr flex flex-col gap-8pxr'>
-        <h3 className='text-black font-body1-bold'>전체 만족도는 어땠나요?</h3>
+        <h3 className='leading-[140%] text-black font-body1-bold'>
+          전체 만족도는 어땠나요?
+        </h3>
         <Score
           setSurveyLists={setSurveyLists}
           surveyLists={surveyLists}
@@ -64,29 +71,51 @@ function Survey({
         />
       </div>
       <div className='mt-24pxr'>
-        <h3 className='text-black font-body1-bold'>어떤 점이 좋았나요?</h3>
-        <h4 className='mt-4pxr text-gray500 font-caption1-medium'>
+        <h3 className='leading-[140%] text-black font-body1-bold'>
+          어떤 점이 좋았나요?
+        </h3>
+        <h4 className='mt-4pxr leading-[140%] text-gray500 font-caption1-medium'>
           이 캠핑장에 어울리는 키워드를 최대 3개까지 골라주세요
         </h4>
-        <ul
-          className={`mypage mt-16pxr grid h-212pxr justify-between gap-12pxr  ${isScroll ? '' : 'overflow-hidden'}`}
-        >
-          {keywords.map((keyword) => {
-            return (
-              <Button.Round
-                key={keyword.id}
-                size='lg'
-                custom={`${keyword.isDone ? 'bg-primary50 text-primary100 border border-primary100' : ''} hover:font-caption1-semibold hover:border hover:border-primary100 !w-full !h-44pxr rounded-lg font-caption1-medium text-gray600`}
-                onClick={() => handleClick(keyword)}
-              >
-                {keyword.keyword}
-              </Button.Round>
-            );
-          })}
-        </ul>
+        <div>
+          <ul
+            className={`mypage  mt-16pxr grid  justify-between gap-12pxr  ${isToggleScroll ? 'h-full' : 'h-212pxr overflow-hidden'}`}
+          >
+            {keywords.map((keyword) => {
+              return (
+                <Button.Round
+                  key={keyword.id}
+                  size='lg'
+                  custom={`${keyword.isDone ? 'bg-primary50 text-primary100 border border-primary100' : ''} hover:font-caption1-semibold hover:border hover:border-primary100 !w-full !h-44pxr rounded-lg font-caption1-medium text-gray600`}
+                  onClick={() => handleClick(keyword)}
+                >
+                  {keyword.keyword}
+                </Button.Round>
+              );
+            })}
+          </ul>
+          <div
+            className={`flex-center bottom-10pxr mt-12pxr  ${isToggleScroll ? '' : 'hidden'}`}
+            onClick={handleToggleScroll}
+          >
+            <button className='flex-center flex h-44pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 px-20pxr py-12pxr text-gray500 font-body2-medium'>
+              <div className='h-20pxr w-20pxr'>
+                <IconMinusNon
+                  width='100%'
+                  height='100%'
+                  viewBox='0 0 24 24'
+                  fill='#949494'
+                />
+              </div>
+              <span className='whitespace-nowrap leading-[140%] font-caption1-medium'>
+                접기
+              </span>
+            </button>
+          </div>
+        </div>
         <div
-          className={`flex-center mt-12pxr ${isScroll ? 'hidden' : ''}`}
-          onClick={handleScroll}
+          className={`flex-center mt-12pxr ${isToggleScroll ? 'hidden' : ''}`}
+          onClick={handleToggleScroll}
         >
           <button className='flex-center flex h-44pxr flex-nowrap gap-4pxr rounded-[99px] border border-gray300 px-20pxr py-12pxr text-gray500 font-body2-medium'>
             <div className='h-20pxr w-20pxr'>
@@ -97,8 +126,8 @@ function Survey({
                 fill='#949494'
               />
             </div>
-            <span className='whitespace-nowrap font-caption1-medium'>
-              더보기
+            <span className='whitespace-nowrap leading-[140%] font-caption1-medium'>
+              더 보기
             </span>
           </button>
         </div>

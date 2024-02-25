@@ -26,9 +26,11 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
+
   planImage: string; // 해당 캠핑장 배치도 이미지
   siteImage: string; // 해당 사이트 이미지
   additionalOptions: additionalOption[]; // 추가 옵션
+
 }
 
 interface SiteInfoType {
@@ -58,6 +60,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       <div
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
+
         <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
           <Image
             src={JSON.parse(siteInfo?.siteImage)[0]}
@@ -111,11 +114,12 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
           </div>
         </figure>
         <ul className='flex flex-col gap-12pxr pb-24pxr'>
-          <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
+          <li className='flex-center justify-start gap-16pxr leading-[140%] text-gray500 font-body2-semibold'>
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
               <h4 className='font-body1-bold'>
-                {siteInfo.parentSiteName} - {siteInfo.childSiteName}
+                {siteInfo.parentSiteName}
+                {siteInfo.childSiteName}
               </h4>
               <div
                 onClick={openModal}
