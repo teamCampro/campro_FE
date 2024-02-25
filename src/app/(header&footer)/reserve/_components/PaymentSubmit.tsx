@@ -16,7 +16,7 @@ function PaymentSubmit({ custom, params }: PaymentSubmitProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const closeModal = () => setIsOpenModal(false);
   const vehicle = useAppSelector((state) => state.vehicleNumber);
-  // const plusOption = useAppSelector((state) => state.plusOptionCount);
+  const plusOption = useAppSelector((state) => state.plusOptionCount);
   // const payment = useAppSelector((state) => state.totalPayment);
   const payMethod = useAppSelector((state) => state.paymentMethod);
 
@@ -24,6 +24,12 @@ function PaymentSubmit({ custom, params }: PaymentSubmitProps) {
   const router = useRouter();
 
   const [userId, setUserId] = useState<number>(0);
+
+  const optionBody = Object.entries(plusOption).map(
+    ([optionId, optionAmount]) => {
+      return { optionId: Number(optionId), optionAmount };
+    },
+  );
 
   const reqBody = {
     campingZoneId: Number(params.campId),
@@ -36,10 +42,12 @@ function PaymentSubmit({ custom, params }: PaymentSubmitProps) {
     pet: Number(searchParams.get('pet')),
     payMethod: payMethod.method,
     carInfo: JSON.stringify(vehicle),
+    options: optionBody,
   };
 
   const submitReservationDetail = async () => {
     try {
+      console.log(reqBody);
       await postReservationDetail(reqBody);
 
       setIsOpenModal(true);
