@@ -28,7 +28,7 @@ function CampPlaceSection({ data }: { data: CampZoneData }) {
   return (
     <div className='flex max-w-1440pxr flex-col gap-28pxr '>
       {campPlaces.map((item, index) => (
-        <div key={index} className='flex flex-col gap-28pxr'>
+        <div key={index} className='flex flex-col gap-28pxr  '>
           <CampPlaceList campPlaces={item} type={index} />
         </div>
       ))}

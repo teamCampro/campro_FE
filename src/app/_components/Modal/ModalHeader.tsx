@@ -6,7 +6,7 @@ interface Props {
 
 function ModalHeader({ children }: Props) {
   return (
-    <div className=' flex-center w-full rounded-t-[16px] bg-white px-20pxr py-16pxr  mobile:z-[99] '>
+    <div className=' flex-center w-full rounded-t-[16px] border border-b-gray300 bg-white px-20pxr py-16pxr text-gray-600 font-body2-semibold mobile:z-[99]'>
       {children}
     </div>
   );

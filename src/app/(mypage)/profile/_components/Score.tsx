@@ -1,7 +1,7 @@
 'use client';
 
 import { IconStarHalf, IconStarScore } from '@/public/svgs';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { SurveyListsType } from './WriteReviewModal';
 
 interface ScoreType {
@@ -30,6 +30,11 @@ function Score({ setSurveyLists, surveyLists, score, setScore }: ScoreType) {
     }
   };
 
+  useEffect(() => {
+    setSurveyLists({ ...surveyLists, score: score });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [score, setSurveyLists]);
+
   return (
     <>
       <div className='flex-center'>
@@ -45,24 +50,24 @@ function Score({ setSurveyLists, surveyLists, score, setScore }: ScoreType) {
               Math.floor(score) === index ? (
                 <>
                   <IconStarScore
-                    key={index}
+                    key={`star_${index}`}
                     width='100%'
                     height='100%'
                     viewBox='0 0 37 36'
                     fill='#DFDFDF'
                   />
                   <IconStarHalf
-                    key={index}
+                    key={`half_${index}`}
                     width='100%'
                     height='100%'
                     viewBox='0 0 37 36'
-                    fill='gold'
+                    fill='#FFAD0A'
                     className='absolute left-0pxr top-0pxr'
                   />
                 </>
               ) : index + 1 > score ? (
                 <IconStarScore
-                  key={index}
+                  key={`star_${index}`}
                   width='100%'
                   height='100%'
                   viewBox='0 0 37 36'
@@ -71,11 +76,11 @@ function Score({ setSurveyLists, surveyLists, score, setScore }: ScoreType) {
                 />
               ) : (
                 <IconStarScore
-                  key={index}
+                  key={`star_${index}`}
                   width='100%'
                   height='100%'
                   viewBox='0 0 37 36'
-                  fill='gold'
+                  fill='#FFAD0A'
                   className='absolute'
                 />
               )}

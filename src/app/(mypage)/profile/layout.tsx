@@ -23,7 +23,7 @@ function Layout({ children }: LayoutType) {
         <section className='border-r border-gray200 mobile:hidden'>
           <SideLists />
         </section>
-        <section className='scrollbar-hide p-20pxr tabletMin:overflow-y-auto tabletMin:p-40pxr'>
+        <section className='scrollbar-hide px-20pxr pb-48pxr pt-20pxr tabletMin:overflow-y-auto tabletMin:px-40pxr tabletMin:pb-48pxr tabletMin:pt-40pxr'>
           {children}
         </section>
       </main>

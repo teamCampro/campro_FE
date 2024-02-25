@@ -3,15 +3,23 @@
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ReserveStateType } from './ReserveList';
+import Link from 'next/link';
 
 interface ReserveStateListsType {
-  handleClick: (id: number) => void;
   reserveState: ReserveStateType[];
+  status: string;
 }
 function ReserveStateLists({
-  handleClick,
   reserveState,
+  status = 'all',
 }: ReserveStateListsType) {
+  const getStatusQuery = (status: string = 'all') => {
+    if (status === 'all') {
+      return '/profile/reserveList';
+    } else {
+      return `/profile/reserveList?status=${status}`;
+    }
+  };
   return (
     <Swiper
       modules={[FreeMode]}
@@ -28,16 +36,22 @@ function ReserveStateLists({
         },
       }}
     >
-      <ul className='flex justify-start gap-12pxr text-gray600 font-body2-semibold'>
+      <ul className='flex justify-start gap-12pxr text-gray600'>
         {reserveState.map((list) => {
           return (
             <SwiperSlide
               key={list.id}
               style={{ width: 'auto', display: 'inline-block' }}
-              className={`cursor-pointer rounded-full border px-20pxr py-12pxr hover:border-primary100 hover:text-primary100 ${list.isDone ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
-              onClick={() => handleClick(list.id)}
+              className={`h-46pxr w-68pxr cursor-pointer rounded-full border hover:border-primary100 hover:text-primary100 ${status === list.status ? 'border-primary100 text-primary100 font-body2-bold' : 'border-gray300 text-gray600 font-body2-semibold'}`}
             >
-              <li>{list.name}</li>
+              <li /* className='h-46pxr w-68pxr' */>
+                <Link
+                  className='inline-block h-full w-full px-20pxr py-12pxr'
+                  href={getStatusQuery(list.status)}
+                >
+                  {list.name}
+                </Link>
+              </li>
             </SwiperSlide>
           );
         })}

@@ -1,88 +1,75 @@
 'use client';
 
-import { ReserveListType } from '@/src/app/_constants/reserveList';
+import { ReservationListType } from '@/src/app/_constants/reserveList';
 import ReserveItem from './ReserveItem';
 import ReserveStateLists from './ReserveStateLists';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Loading } from '@/components/index';
+import Link from 'next/link';
+import {
+  IconArrowRight,
+  IconArrowRightNon,
+  IconArrowRightNormal,
+} from '@/public/svgs';
 
 export interface ReserveStateType {
   id: number;
   name: string;
-  isDone: boolean;
+  status: string;
 }
 
-function ReserveList(/* { reserveList }: { reserveList: ReserveListType[] } */) {
-  /* api 연결되면 차후에 useEffect, newReserveList 지울것 현 페이지 상위 부모에서 서버사이드로 보낼것  reserveListstate 값에는 props로 받아온값 넣어둘것 null 제거*/
-  const [reserveList, setReserveList] = useState<ReserveListType[] | null>(
-    null,
-  );
-  const [newReserveList, setNewReserveList] = useState<
-    ReserveListType[] | null
-  >(reserveList ? reserveList : null);
+interface ReserveListType {
+  userReserveData: ReservationListType[];
+  status: string;
+}
+
+function ReserveList({ userReserveData, status }: ReserveListType) {
   const [reserveState, setReserveState] = useState<ReserveStateType[]>([
-    { id: 10, name: '전체', isDone: true },
-    { id: 0, name: '예약대기', isDone: false },
-    { id: 1, name: '예약완료', isDone: false },
-    { id: 2, name: '이용완료', isDone: false },
+    { id: 1, name: '전체', status: 'all' },
+    { id: 2, name: '예약대기', status: 'RESERVE_WAITING' },
+    { id: 3, name: '예약완료', status: 'RESERVE_COMPLETE' },
+    { id: 4, name: '예약취소', status: 'RESERVE_CANCEL' },
+    { id: 5, name: '이용완료', status: 'SERVICE_COMPLETE' },
   ]);
-
-  const handleClick = (id: number) => {
-    setReserveState(
-      reserveState.map((list) => {
-        return list.id === id
-          ? { ...list, isDone: true }
-          : { ...list, isDone: false };
-      }),
-    );
-    if (reserveList) {
-      setNewReserveList(
-        reserveList.filter((list) => {
-          if (id !== 10) {
-            return list.check_state === id;
-          }
-          return reserveList;
-        }),
-      );
-    }
-  };
-
-  /* api 연결되면 차후에 useEffect 지울것 현 페이지 상위 부모에서 서버사이드로 보낼것 */
-  const getReserveData = async () => {
-    const reserveData = await axios.get(
-      'http://localhost:3000/data/reserveListMockData.json',
-    );
-    const { data } = reserveData;
-    setReserveList(data);
-  };
-
-  useEffect(() => {
-    getReserveData();
-  }, []);
 
   return (
     <>
       <h2 className='mb-24pxr hidden font-title1-bold tabletMin:block'>
         예약내역
       </h2>
-      <ReserveStateLists
-        handleClick={handleClick}
-        reserveState={reserveState}
-      />
-      <div className='flex flex-col gap-16pxr '>
-        {(newReserveList ? newReserveList : reserveList)?.map((list) => {
-          return (
-            <ReserveItem
-              key={list.orderId}
-              reserveState={reserveState}
-              list={list}
-            />
-          );
-        })}
-        {/* {Array.from({ length: 6 }, (s, i) => {
-          return <ReserveItem key={i} />;
-        })} */}
-      </div>
+      <ReserveStateLists status={status} reserveState={reserveState} />
+      {userReserveData ? (
+        <div className='flex flex-col gap-16pxr '>
+          {userReserveData.map((list) => {
+            return (
+              <ReserveItem
+                key={list.id}
+                reserveState={reserveState}
+                list={list}
+                status={status}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className='flex-center flex-col gap-20pxr pt-108pxr mobile:pt-24pxr'>
+          <div className='mobile:flex-center mobile:flex-col'>
+            <h2 className='text-32pxr leading-[160%] text-gray600 font-h2-semibold mobile:text-22pxr mobile:font-title2-semibold'>
+              아직 예약 내역이 없어요
+            </h2>
+            <p className='text-18pxr leading-[140%] text-gray500 font-body1-medium mobile:text-14pxr mobile:font-caption1-medium'>
+              나에게 맞는 캠핑장을 찾아보는 건 어떨까요?
+            </p>
+          </div>
+          <Link className='mobile:hidden' href='/'>
+            <button className='flex-center gap-4pxr rounded-full border border-gray300 py-12pxr pl-20pxr pr-14pxr leading-[140%] text-gray600 font-body2-semibold'>
+              캠핑장 예약하기
+              <IconArrowRightNon fill='#949494' className='text-gray500' />
+            </button>
+          </Link>
+        </div>
+      )}
     </>
   );
 }

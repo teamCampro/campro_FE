@@ -10,7 +10,7 @@ export const GET = async (
 
     const { userId, reservationId } = params;
 
-    let query = `SELECT cz.name campingZoneName, cz.address, cz.tel campingZoneTel, czs.name campingZoneSiteName, czs.max_people maxPeople, czs.price campingZoneSitePrice, 
+    let query = `SELECT cz.name campingZoneName, cz.address, cz.tel campingZoneTel, cz.plan_image planImage, r.id rId, czs.name campingZoneSiteName, czs.site_image siteImage, czs.max_people maxPeople, czs.price campingZoneSitePrice, 
                   r.adult, r.child, r.pet, r.stay_start_at stayStartAt, r.stay_end_at stayEndAt, r.car_info carInfo, r.reserved_at reservedAt, 
                   r.pay_method payMethod, r.status, ui.name userName, ui.phone userPhone
                    FROM reservation r
@@ -22,6 +22,18 @@ export const GET = async (
     const [row] = await db.execute(query, [reservationId, userId]);
 
     const reservationDetail: any = row;
+
+    const selectAdditionalOptionsQuery = `
+      SELECT czsao.option_name optionName, czsao.price, rsao.amount
+      FROM camping_zone_site_additional_option czsao
+      INNER JOIN reservation_selected_additional_option rsao
+      ON rsao.option_id = czsao.id
+      WHERE rsao.reservation_id = ?
+      ORDER BY czsao.option_order;`;
+
+    const [additionalOptions] = await db.execute(selectAdditionalOptionsQuery, [
+      reservationDetail[0].rId,
+    ]);
 
     const result = {
       campingZoneName: reservationDetail[0].campingZoneName,
@@ -41,6 +53,9 @@ export const GET = async (
       status: reservationDetail[0].status,
       userName: reservationDetail[0].userName,
       userPhone: reservationDetail[0].userPhone,
+      planImage: reservationDetail[0].planImage,
+      siteImage: reservationDetail[0].siteImage,
+      additionalOptions,
     };
 
     db.release();

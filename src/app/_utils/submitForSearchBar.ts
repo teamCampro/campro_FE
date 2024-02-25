@@ -61,10 +61,6 @@ export const submitForSearchAndFilter = (
     params.set('child', groupObject.child.toString());
     params.set('pet', groupObject.pet.toString());
 
-    if (stay) {
-      params.set('stay ', stay);
-    }
-
     const queryString = params.toString();
 
     router.push(`/${pathName}?${queryString}`);

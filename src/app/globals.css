@@ -618,3 +618,15 @@ input[id='checkTable']:checked::before {
   width: 28px;
   height: 28px;
 }
+
+/* @media (min-width: 320px) and (max-width: 767px) {
+  #campList-swiper {
+    margin-left: 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #campList-swiper {
+    margin-left: 40px !important;
+  }
+} */

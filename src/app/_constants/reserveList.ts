@@ -1,4 +1,4 @@
-export interface ReserveListType {
+/* export interface ReserveListType {
   orderId: number;
   placeName: string;
   address: string;
@@ -48,4 +48,13 @@ interface OrderInfoType {
 interface ReviewsType {
   score: string;
   totalCount: number;
+}
+ */
+
+export interface ReservationListType {
+  id: number;
+  campingZoneName: string;
+  campingZoneSiteName: string;
+  stayStartAt: string;
+  stayEndAt: string;
 }

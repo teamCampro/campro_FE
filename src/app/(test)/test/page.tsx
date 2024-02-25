@@ -17,8 +17,13 @@ function Page() {
       await axios.post(`/api/test`, { email: 'test' });
     };
 
+    const patchFetch = async () => {
+      await axios.patch(`/api/user/3/reservation/10/cancel`, { email: 'test' });
+    };
+
     getFetch();
     postFetch();
+    patchFetch();
   }, []);
 
   console.log(data);

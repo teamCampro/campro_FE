@@ -52,7 +52,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
                 width={767}
                 height={480}
                 alt='배치도 이미지'
-                src='https://camping.dpto.or.kr/images/sub/new_map1.jpg'
+                src={planImage[0]}
               />
             </a>
           </div>
@@ -63,7 +63,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
     <ModalPortal>
       <ModalOutside
         onClose={onClose}
-        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile: justify-center mobile:items-center cursor-pointer'
+        custom='fixed left-0pxr top-0pxr z-[1000] flex h-screen w-full items-center justify-center overflow-hidden bg-black-50 px-40pxr  mobile:justify-center mobile:items-center cursor-pointer'
       >
         <ModalForMobileCampImg
           onClose={onClose}
