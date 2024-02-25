@@ -11,8 +11,8 @@ interface PriceTableType {
   price: PriceType;
   setPrice: Dispatch<
     SetStateAction<{
-      startPrice: string;
-      endPrice: string;
+      startPrice: number
+      endPrice: number;
     }>
   >;
   getNewPrice: (type: string, size: string) => void;

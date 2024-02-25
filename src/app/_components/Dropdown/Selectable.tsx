@@ -50,8 +50,8 @@ export interface CheckStandByListType {
 }
 
 export interface PriceType {
-  startPrice: string;
-  endPrice: string;
+  startPrice: number;
+  endPrice: number;
 }
 
 const LENTH: LengthType = {
@@ -73,8 +73,8 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
   const [currentTypes, setCurrentTypes] = useState('');
   const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
   const [price, setPrice] = useState({
-    startPrice: '',
-    endPrice: '',
+    startPrice: 0,
+    endPrice: 0,
   });
 
   const router = useRouter();
@@ -86,6 +86,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
 
     if (!isMobile) {
       dispatch(setResetAllStandBy());
+      setPrice({startPrice:0, endPrice:0})
     }
 
     if (!isMobile && checkList.select[types].length > 0) {

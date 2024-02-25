@@ -14,8 +14,8 @@ interface PriceInputType {
   price: PriceType;
   setPrice: Dispatch<
     SetStateAction<{
-      startPrice: string;
-      endPrice: string;
+      startPrice: number;
+      endPrice: number;
     }>
   >;
   name: string;
@@ -29,26 +29,32 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
   const checkList = useAppSelector((state) => state.styleSetting);
   const StandByList = useAppSelector((state) => state.checkStandBy);
   const [isFocus, setIsFocus] = useState(false);
+  const [livePrice, setLivePrice] = useState()
+
   const handleFocus = () => {
     setIsFocus(!isFocus);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    /* e.target.value; */
+    e.target.value;
+    const { value, name } = e.target;
+    const priceNubmer = numberFormatter(value);
+    setPrice({ ...price, [name]: priceNubmer });
     //value값 사용하기위해 적용(차후에 리셋할 때 defaultValue값 없어지게 사용 예정)
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     const priceNubmer = numberFormatter(value);
+    console.log(priceNubmer)
     setPrice({ ...price, [name]: priceNubmer });
     setIsFocus(false);
   };
 
-  let applyStartPrice = '';
-  let applyEndPrice = '';
+/*   let applyStartPrice = 0;
+  let applyEndPrice = 0; */
   //각 가격 적용눌렀을 때 화면에 보여지는 값
-  if (checkList.select.prices.length > 0) {
+  /* if (checkList.select.prices.length > 0) {
     const checkPriceSplit = checkList.select.prices[0].type.split('-');
 
     applyStartPrice = checkPriceSplit[0].replace('원', '');
@@ -58,14 +64,15 @@ function PriceInput({ name, setPrice, price }: PriceInputType) {
 
     applyStartPrice = StandByPriceSplit[0].replace('원', '');
     applyEndPrice = StandByPriceSplit[1].replace('원', '');
-  }
+  } */
 
   return (
     <div className='flex-center h-54pxr w-116pxr rounded-lg bg-gray100 p-16pxr mobile:gap-4pxr  mobile:bg-white mobile344:w-full mobileMiddle:w-full'>
       <input
         className='w-66pxr bg-gray100 text-right text-gray800 outline-0 font-body2-medium mobile:w-full mobile:bg-white'
         name={name}
-        defaultValue={name === 'startPrice' ? applyStartPrice : applyEndPrice}
+        value={name === 'startPrice' ? price.startPrice :  price.endPrice}
+        /* value={name === 'startPrice' ? applyStartPrice : applyEndPrice} */
         onFocus={handleFocus}
         onChange={handleChange}
         onBlur={handleBlur}
