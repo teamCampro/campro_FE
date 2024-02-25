@@ -11,6 +11,7 @@ import paymentMethodSlice from '../_slices/paymentMethod';
 import reserveInfoSlice from '../_slices/reserveInfo';
 import profileStateSlice from '../_utils/profileState';
 import isAllCheckedSlice from '../_slices/isAllChecked';
+import totalPriceSlice from '../_slices/totalPrice';
 const store = configureStore({
   reducer: {
     counter: counterSlice,
@@ -25,6 +26,7 @@ const store = configureStore({
     reserveInfo: reserveInfoSlice,
     profile: profileStateSlice,
     isAllChecked: isAllCheckedSlice,
+    totalPrice: totalPriceSlice,
   },
 });
 

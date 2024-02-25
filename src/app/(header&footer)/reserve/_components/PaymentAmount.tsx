@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 
 import { useEffect } from 'react';
 import { setTotalPayment } from '@/src/app/_slices/totalPayment';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { additionalOption } from './SiteInfo';
 import { numberFormatter } from '@/src/app/_utils/numberFormatter';
 function PaymentAmount({
@@ -15,8 +15,6 @@ function PaymentAmount({
   optionList: additionalOption[];
 }) {
   const searchParams = useSearchParams();
-  const pathName = usePathname();
-  const isProfile = pathName.includes('reserveList');
   const count = useAppSelector((state) => state.plusOptionCount);
   const dispatch = useAppDispatch();
 
@@ -51,11 +49,7 @@ function PaymentAmount({
 
   return (
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-24pxr'>
-      <h3
-        className={`text-black  ${isProfile ? 'font-title1-semibold' : 'font-title3-semibold'}`}
-      >
-        결제 금액
-      </h3>
+      <h3 className='text-black   font-title3-semibold'>결제 금액</h3>
       <ul className='flex flex-col gap-12pxr'>
         <li className='flex-center justify-between text-gray600 font-body2-medium'>
           객실 1개 x
