@@ -1,48 +1,116 @@
 import React from 'react';
-import OwnerModalWrapper from './OwnerModalWrapper';
 import OwnerReservationSection from './OwnerReservationSection';
 import OwnerReservationSectionContent from './OwnerReservationSectionContent';
 import OwnerReservationAdditionalOptionCard from './OwnerReservationAdditionalOptionCard';
 import OwnerReservationPayment from './OwnerReservationPayment';
+import formattedDate from '../../_utils/formattedDate';
 
-function OwnerModalContent() {
+interface AdditionalOptionType {
+  name: string;
+  price: number;
+}
+
+interface ReservationDetailInfo {
+  campingZoneName: string;
+  address: string;
+  campingZoneTel: string;
+  campingZoneSiteName: string;
+  maxPeople: number;
+  campingZoneSitePrice: number;
+  adult: number;
+  child: number;
+  pet: number;
+  stayStartAt: string;
+  stayEndAt: string;
+  carInfo: string;
+  reservedAt: string;
+  payMethod: string;
+  status: string;
+  userName: string;
+  userPhone: string;
+  planImage: string;
+  siteImage: string;
+  additionalOptions: AdditionalOptionType[];
+}
+
+interface Props {
+  reservationDetailInfo: {
+    adult: number;
+    carInfo: string;
+    child: number;
+    czSiteName: string;
+    pet: number;
+    reservedAt: string;
+    selectedAdditionalOptionResult: AdditionalOptionType[];
+    userName: string;
+    userPhone: string;
+    payMethod: string;
+  };
+}
+
+function OwnerModalContent({ reservationDetailInfo }: Props) {
+  const {
+    adult,
+    carInfo,
+    child,
+    czSiteName,
+    pet,
+    reservedAt,
+    selectedAdditionalOptionResult,
+    userName,
+    userPhone,
+    payMethod,
+  } = reservationDetailInfo;
+  console.log(carInfo, JSON.parse(carInfo));
+
+  const date = String(new Date(reservedAt));
+  const paymentDate = formattedDate(date);
   return (
     <div className='flex'>
       <div className='flex w-296pxr flex-col gap-44pxr'>
         <OwnerReservationSection sectionName='예약 정보'>
           <OwnerReservationSectionContent
             label='인원'
-            content='성인 99명, 아이 99명'
+            content={`성인 ${adult}명, 아이 ${child}명`}
           />
           <OwnerReservationSectionContent
             label='일정'
             content='12.29(토) - 12.29(토)'
           />
-          <OwnerReservationSectionContent label='반려동물' content='1마리' />
+          <OwnerReservationSectionContent
+            label='반려동물'
+            content={`${pet}마리`}
+          />
           <OwnerReservationSectionContent
             label='사이트'
-            content='A 사이트 | A1-08'
+            content={`${czSiteName}`}
           />
         </OwnerReservationSection>
         <OwnerReservationSection sectionName='예약자 정보'>
           <OwnerReservationSectionContent label='예약자명' content='홍길동' />
           <OwnerReservationSectionContent
             label='휴대폰 번호'
-            content='010-1234-5678'
+            content={`${userPhone}`}
           />
         </OwnerReservationSection>
         <OwnerReservationSection sectionName='차량'>
-          <OwnerReservationSectionContent label='차량' content='가나1234567' />
+          {JSON.parse(carInfo).map((carNumber: string, index: number) => (
+            <OwnerReservationSectionContent
+              key={index}
+              label='차량'
+              content={carNumber}
+            />
+          ))}
         </OwnerReservationSection>
 
         <OwnerReservationSection sectionName='결제 정보'>
           <OwnerReservationSectionContent
             label='결제 일시'
-            content='2024.02.12(월) 12:45'
+            content={`${paymentDate}`}
           />
           <OwnerReservationSectionContent
             label='결제 수단'
-            content='현대 ****-****-**21'
+            content={`${payMethod}`}
           />
         </OwnerReservationSection>
       </div>

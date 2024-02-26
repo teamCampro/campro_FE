@@ -8,7 +8,6 @@ const OWNER_REGISTRATION_ROUTES = {
     'stay-term',
     'information',
     'amenities',
-    'operating-period',
     'reservation-guide',
     'location',
     'second-step',
