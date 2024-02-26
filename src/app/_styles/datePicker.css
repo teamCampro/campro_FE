@@ -342,10 +342,6 @@
   background-color: #ffffff !important;
 }
 
-.react-datepicker__day.sunday:not(.react-datepicker__day--outside-month) {
-  color: red !important;
-}
-
 .react-datepicker__day--keyboard-selected.react-datepicker__day--selecting-range-start.react-datepicker__day--in-selecting-range.react-datepicker__day--selecting-range-end {
   border-radius: 50% !important;
 }
@@ -473,4 +469,11 @@
 
 .react-datepicker__day--in-range {
   color: black !important;
+}
+
+.react-datepicker__day.sunday:not(.react-datepicker__day--outside-month) {
+  color: red !important;
+}
+.react-datepicker__day.sunday.react-datepicker__day--disabled {
+  color: #ccc !important;
 }
