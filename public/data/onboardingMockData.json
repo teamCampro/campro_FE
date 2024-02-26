@@ -17,10 +17,10 @@
       { "text": "텐트" },
       { "text": "글램핑" },
       { "text": "카라반" },
-      { "text": "오토 캠핑" },
+      { "text": "오토캠핑" },
       { "text": "캠프닉" },
-      { "text": "키즈 캠핑" },
-      { "text": "애견 캠핑" },
+      { "text": "키즈캠핑" },
+      { "text": "애견캠핑" },
       { "text": "차박" }
     ],
     "selectionType": "multiple"
@@ -29,28 +29,30 @@
     "id": 3,
     "question": "어느 것이 중요하신가요?",
     "choices": [
-      { "text": "개인 화장실" },
-      { "text": "개인 샤워실" },
-      { "text": "장비 대여" },
+      { "text": "매점" },
+      { "text": "와이파이" },
+      { "text": "장비대여" },
+      { "text": "개수대" },
+      { "text": "TV" },
+      { "text": "난방기구" },
       { "text": "에어컨" },
-      { "text": "난방시설" },
-      { "text": "애견 동반" },
-      { "text": "전기" },
-      { "text": "매점" }
+      { "text": "전기", "displayText": "전기공급" },
+      { "text": "침대", "displayText": "숙박환경" }
     ],
     "selectionType": "multiple"
   },
   {
     "id": 4,
-    "question": "어떤 활동을 좋아하시나요?",
+    "question": "캠핑장에서 어떤 활동을 하고 싶은가요?",
     "choices": [
+      { "text": "놀이시설" },
       { "text": "물놀이" },
-      { "text": "산책" },
-      { "text": "트램펄린" },
-      { "text": "배드민턴" },
-      { "text": "풋살, 족구" },
-      { "text": "요리" },
-      { "text": "바베큐" }
+      { "text": "바베큐" },
+      { "text": "트램플린" },
+      { "text": "산책로", "displayText": "산책" },
+      { "text": "운동시설", "displayText": "풋살" },
+      { "text": "운동시설", "displayText": "배드민턴" },
+      { "text": "취사도구", "displayText": "요리" }
     ],
     "selectionType": "multiple"
   },

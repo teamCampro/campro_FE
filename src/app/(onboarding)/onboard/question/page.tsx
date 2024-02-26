@@ -12,6 +12,7 @@ import OnboardingList from '../../_components/OnboardingList';
 export interface ChoiceType {
   text: string;
   isOptional?: boolean;
+  displayText?: string;
 }
 
 export interface OnboardingType {
@@ -66,7 +67,8 @@ function Question() {
   };
 
   const handlePage = (direction: 'prev' | 'next') => {
-    if (currentPage === totalItems) setIsAnswering(false);
+    if (direction === 'next' && currentPage === totalItems)
+      setIsAnswering(false);
     updateCurrentPage(direction === 'prev' ? currentPage - 1 : currentPage + 1);
   };
 
@@ -99,7 +101,8 @@ function Question() {
     };
 
     fetch();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
   useEffect(() => {
     const onSubmitOnboard = async () => {
@@ -107,11 +110,15 @@ function Question() {
         const texts = answerArray.map((a: ChoiceType) => a.text);
         return acc.concat(texts);
       }, []);
-      await postOnboardingResult(userId, allAnswers);
+
+      const uniqueAnswers = allAnswers.filter(
+        (answer: AnswersType, i: number) => allAnswers.indexOf(answer) === i,
+      );
+      await postOnboardingResult(userId, uniqueAnswers);
       setTimeout(() => router.push('/'), 3000);
     };
     if (!isAnswering) onSubmitOnboard();
-  }, [isAnswering]);
+  }, [answers, isAnswering, router, userId]);
 
   if (questions.length < 1) return <Loading />;
 

@@ -38,15 +38,15 @@ function OnboardingList({
             <div className='flex flex-col gap-16pxr'>
               {choices.map((choice) => (
                 <Button.Round
-                  key={choice.text}
+                  key={choice.displayText || choice.text}
                   size='lg'
-                  custom={`${answers[id].includes(choice) ? 'bg-primary50 ' : ''} hover:font-body1-bold`}
+                  custom={`${answers[id].includes(choice) && 'bg-primary50'} hover:font-body1-bold`}
                   onClick={() => {
                     handleChoice(id, choice, selectionType);
                     if (selectionType === 'single') handlePage('next');
                   }}
                 >
-                  {choice.text}
+                  {choice.displayText || choice.text}
                 </Button.Round>
               ))}
             </div>
