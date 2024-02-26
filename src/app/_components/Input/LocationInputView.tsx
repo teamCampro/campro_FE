@@ -72,7 +72,10 @@ function LocationInputView({
     <>
       <div onClick={handleClick} className='relative flex w-full flex-110'>
         <div className='flex w-full'>
-          <IconLocation className='absolute left-16pxr top-16pxr ' />
+          <IconLocation
+            fill='black'
+            className='absolute left-16pxr top-16pxr '
+          />
           <input
             onClick={onRenderButton}
             readOnly={mobileMediaQuery && mobileMediaQuery}

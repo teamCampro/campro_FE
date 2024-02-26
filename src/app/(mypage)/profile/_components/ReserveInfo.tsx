@@ -88,7 +88,6 @@ function ReserveInfo({ getDetailReserve, reserveId }: ReserveInfoType) {
 
   const [isClose, setIsClose] = useState(false);
   const totalPrice = useAppSelector((state) => state.totalPrice);
-
   const siteInfo: ReserveInfoData = {
     name: campingZoneName,
     address: address,
