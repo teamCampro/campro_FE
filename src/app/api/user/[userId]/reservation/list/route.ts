@@ -14,7 +14,8 @@ export const GET = async (
                    FROM reservation r
                   INNER JOIN camping_zone cz ON r.camping_zone_id = cz.id
                   INNER JOIN camping_zone_site czs ON r.camping_zone_site_id = czs.id
-                  WHERE r.user_id = ?`;
+                  WHERE r.user_id = ?
+                  ORDER BY r.reserved_at DESC`;
 
     if (status) {
       query += ` AND r.status = ?`;

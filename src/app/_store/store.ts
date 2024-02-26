@@ -12,6 +12,7 @@ import reserveInfoSlice from '../_slices/reserveInfo';
 import profileStateSlice from '../_utils/profileState';
 import isAllCheckedSlice from '../_slices/isAllChecked';
 import totalPriceSlice from '../_slices/totalPrice';
+import isOpenLoginRequiredModalSlice from '../_slices/isOpenLoginRequiredModal';
 const store = configureStore({
   reducer: {
     counter: counterSlice,
@@ -27,6 +28,7 @@ const store = configureStore({
     profile: profileStateSlice,
     isAllChecked: isAllCheckedSlice,
     totalPrice: totalPriceSlice,
+    isOpenLoginRequiredModal: isOpenLoginRequiredModalSlice,
   },
 });
 

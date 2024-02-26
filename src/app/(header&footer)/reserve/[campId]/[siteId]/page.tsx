@@ -21,7 +21,6 @@ interface SearchParamsType {
 
 async function Page({ params }: SearchParamsType) {
   const reserveData = await getReservationInfo(params.siteId);
-  console.log(reserveData.additionalOptions);
 
   return (
     <>

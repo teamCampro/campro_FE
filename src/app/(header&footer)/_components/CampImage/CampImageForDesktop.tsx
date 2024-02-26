@@ -22,6 +22,7 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                   className='flex w-full cursor-pointer rounded-l-2xl object-cover  transition-all hover:brightness-[0.7]'
                   width={580}
                   height={380}
+                  quality={100}
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
                 />

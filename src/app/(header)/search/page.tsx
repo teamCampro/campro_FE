@@ -14,6 +14,9 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
 import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
+import { useAppDispatch } from '@/hooks/redux';
+import { setResetAll } from '../../_utils/styleSetting';
+import { setResetAllStandBy } from '../../_utils/checkStandByState';
 
 export type CampZoneForSearch = {
   id: number;
@@ -40,6 +43,7 @@ export interface SearchParamsType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
+  const dispatch = useAppDispatch();
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<
     CampZoneForSearch[] | null
@@ -54,7 +58,7 @@ function Page({ searchParams }: SearchParamsType) {
   const mapBasis = {
     half: {
       map: 'basis-424pxr desktop1440:flex-grow-3 mobile767:basis-314pxr mobile:hidden mobile767:block',
-      list: 'desktop:grid-cols-2-col-340 desktop1440:grid-cols-auto-fill-min-340 desktop1920:grid-cols-3-col-340 ',
+      list: 'desktop:grid-cols-2-col-340 desktop1440:grid-cols-2-col-340 desktop1920:grid-cols-3-col-340 ',
     },
     map: { map: 'flex-1 w-full', list: 'hidden' },
     list: {
@@ -75,15 +79,29 @@ function Page({ searchParams }: SearchParamsType) {
     setPrevClusterer(clusterer);
   };
 
+  const getSearchFilter = (queryString: string) => {
+    const { stay, facilities, prices, theme, trip } = searchParams;
+
+    /*  if (stay) queryString += `&stay=${searchParams.stay}`; */
+    if (facilities) queryString += `&facilities=${searchParams.facilities}`;
+    if (theme) queryString += `&theme=${searchParams.theme}`;
+    /*   if (prices) queryString += `&prices=${searchParams.prices}`;
+    if (trip) queryString += `&trip=${searchParams.trip}`; */
+    return queryString;
+  };
+
   useEffect(() => {
-    const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
+    let queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
+
+    const newQueryString = getSearchFilter(queryString);
+
     const fetch = async () => {
       const response = await axiosInstance.get<DataType>(
         searchParams.location === '전체'
           ? 'camping-zone/list'
-          : `camping-zone/list?${queryString}`,
+          : `camping-zone/list?${newQueryString}`,
       );
-
+      console.log(response);
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
     };
@@ -101,8 +119,13 @@ function Page({ searchParams }: SearchParamsType) {
         handlePrevClusterer,
       });
     }
+    return () => {
+      dispatch(setResetAll());
+      dispatch(setResetAllStandBy());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
+
   if (!campPlaceData) return <Loading />;
 
   return (
@@ -110,7 +133,7 @@ function Page({ searchParams }: SearchParamsType) {
       <MapSizeButtons
         handleMapSize={(mapSize: MapSizeType) => handleMapSize(mapSize)}
       />
-      <div className='border-bg-gray200 relative z-[99] border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
+      <div className='border-bg-gray200 relative z-[99] gap-12pxr border-b bg-white px-40pxr pb-28pxr pt-20pxr mobile:flex mobile:p-16pxr'>
         <div className='m-auto w-full max-w-1360pxr'>
           <SearchBarForSearch searchParams={searchParams} />
         </div>
@@ -118,10 +141,12 @@ function Page({ searchParams }: SearchParamsType) {
           <SearchFilter />
         </div>
       </div>
-      <div className='flex-center searchPageOverFlow h-full w-full'>
+      <div
+        className={`flex-center ${mapSize === 'list' ? '' : 'searchPageOverFlow'} h-full w-full`}
+      >
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? 'grow-0' : 'grow-0 basis-auto'}  basis-776pxr flex-col gap-24pxr overflow-y-scroll px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr mobile767:grow-1 mobile767:basis-412pxr tablet1002:basis-420pxr tablet1199:basis-622pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr desktop1440:flex-grow-7 desktop1440:basis-776pxr' : ''}`}
+            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr  desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? '' : 'overflow-y-scroll'}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
@@ -137,6 +162,7 @@ function Page({ searchParams }: SearchParamsType) {
                     currentPage={currentPage}
                     campPlaces={campPlaceData}
                     gridColumns={mapBasis[mapSize].list}
+                    mapSize={mapSize}
                   />
                   <SearchPagination
                     currentPage={currentPage}

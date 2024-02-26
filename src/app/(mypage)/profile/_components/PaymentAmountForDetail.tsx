@@ -13,7 +13,6 @@ function PaymentAmountForDetail({
   sitePrice: number;
   aboutPay: AboutPayType;
 }) {
-  console.log(aboutPay.additionalOptions);
   const pathName = usePathname();
   const isProfile = pathName.includes('reserveList');
   const dispatch = useAppDispatch();

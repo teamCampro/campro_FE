@@ -67,11 +67,11 @@ function MapFloatingButton({ onMapResize }: Props) {
   const extractButtonImage = (MapSize: MapSizeType) => {
     switch (MapSize) {
       case 'half':
-        return <IconListAndMap />;
+        return <IconListAndMap fill='#555555' />;
       case 'list':
-        return <IconList />;
+        return <IconList fill='#555555' />;
       case 'map':
-        return <IconMap />;
+        return <IconMap fill='#555555' />;
     }
   };
 
@@ -89,7 +89,7 @@ function MapFloatingButton({ onMapResize }: Props) {
           </span>
         </div>
         {toggleFloating ? (
-          <IconNavigationDown />
+          <IconNavigationDown fill='#555555' />
         ) : (
           <IconNavigationUp className='text-gray500' />
         )}

@@ -164,14 +164,15 @@ body {
   white-space: nowrap;
 }
 
+
 @media (min-width: 825px) and (max-width: 1030px) {
-  .reserve-lineOver {
+  #siteInfo .reserve-lineOver {
     width: 160px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 824px) {
-  .reserve-lineOver {
+  #siteInfo .reserve-lineOver {
     width: 120px;
   }
   .reserve-options {
@@ -619,14 +620,58 @@ input[id='checkTable']:checked::before {
   height: 28px;
 }
 
-/* @media (min-width: 320px) and (max-width: 767px) {
-  #campList-swiper {
-    margin-left: 0 !important;
-  }
+
+/* radio 스타일 */
+.selectRadio {
+  position: relative;
+
+}
+.selectRadio label {
+  font-size: 20px;
+  color: white;
+  
+}
+          
+.selectRadio input[type="radio"] {
+  width: 24px;
+  height: 24px;
+ 
+  border: 0;
+}
+.selectRadio input[type="radio"]+label {
+  width:24px;
+  height:24px;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;  
+}
+          
+.selectRadio input[type="radio"]+label:before {
+  content: '\2713';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  background-color: #4F9E4F;
+  border: 1px solid #cacece;
+  border-radius: 100%;
 }
 
-@media (min-width: 768px) {
-  #campList-swiper {
-    margin-left: 40px !important;
-  }
-} */
+.selectRadio input[type="radio"]+label.labelStyle:before {
+  content: '';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  background-color: #dfdfdf;
+  border: 1px solid #cacece;
+  border-radius: 100%;
+}
+
+          

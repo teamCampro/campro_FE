@@ -11,18 +11,18 @@ const MAP_OPTIONS: {
   {
     text: '목록+지도',
     mapSize: 'half',
-    mobileIcon: <IconSearchList />,
-    icon: <IconSearchHalf />,
+    mobileIcon: <IconSearchList fill='#555555' />,
+    icon: <IconSearchHalf fill='#555555' />,
   },
   {
     text: '목록만',
     mapSize: 'list',
-    icon: <IconSearchList />,
+    icon: <IconSearchList fill='#555555' />,
   },
   {
     text: '지도만',
     mapSize: 'map',
-    icon: <IconSearchMap />,
+    icon: <IconSearchMap fill='#555555' />,
   },
 ];
 

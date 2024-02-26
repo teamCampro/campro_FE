@@ -2,8 +2,20 @@
 
 import Button from '@/components/Button';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+function Page() {
+  const router = useRouter();
 
-function page() {
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
+  }
+
+  useEffect(() => {
+    if (!userId) return router.push('/');
+  }, [userId]);
+
   return (
     <div className='custom-height justify-center bg-gray100 bg-onboard bg-cover bg-center bg-no-repeat pt-201pxr mobile:pt-64pxr'>
       <div className='flex flex-col items-center gap-108pxr mobile:gap-64pxr'>
@@ -29,4 +41,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

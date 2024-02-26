@@ -7,18 +7,20 @@ import { IconFilter, IconReset } from '@/public/svgs';
 import { setDetailState } from '@/src/app/_utils/detailState';
 import { isModal } from '@/src/app/_utils/modalState';
 import { useState, useEffect } from 'react';
-import { MapSizeType } from '../page';
 import { setResetAll, setSelect } from '../../../_utils/styleSetting';
 import {
   setCheckStandBy,
   setResetAllStandBy,
 } from '../../../_utils/checkStandByState';
 import DetailPanel from './DetailPanel';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import TYPE from '@/src/app/_constants/detail';
 
 function SearchFilter() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const searchParams = useSearchParams();
   const selectArray: string[] = [];
+  const [isPriceReset, setIsPriceReset] = useState(false);
   const details = useAppSelector((state) => state.detail);
   const checkList = useAppSelector((state) => state.styleSetting);
   const StandByList = useAppSelector((state) => state.checkStandBy);
@@ -31,6 +33,7 @@ function SearchFilter() {
 
   const isMobile = typeof window !== 'undefined' ? mobileMediaQuery : true;
   const router = useRouter();
+
   //pc& tablet 열고 닫기
   const handleDropClick = (id: number) => {
     dispatch(setDetailState(id));
@@ -49,6 +52,7 @@ function SearchFilter() {
       const { name: types } = detail;
       if (checkList.select[types].length > 0) {
         checkList.select[types].map((list) => {
+          if (StandByList[types].includes(list)) return;
           dispatch(setCheckStandBy({ types, list }));
         });
       }
@@ -57,10 +61,14 @@ function SearchFilter() {
     setIsDropdownVisible(false);
     dispatch(isModal(false));
   };
-
+  /* 모바일 리셋 */
   const handleReset = () => {
     dispatch(setResetAll());
     dispatch(setResetAllStandBy());
+    setIsPriceReset(true);
+    const queryString = `location=${searchParams.get('location')}&checkIn=${searchParams.get('checkIn')}&checkOut=${searchParams.get('checkOut')}&adult=${searchParams.get('adult')}&child=${searchParams.get('child')}&pet=${searchParams.get('pet')}`;
+
+    router.push(`/search/?${queryString}`);
   };
 
   //모바일 최종 적용 누를때
@@ -82,8 +90,43 @@ function SearchFilter() {
   //모바일 상세 필터 선택한 옵션 보여주기
   details.forEach((detail) => {
     const { name: types } = detail;
+    /* 쿼리스트링에 값이 있을경우 새로고침해도 유지 */
+    if (StandByList[types].length <= 0 && checkList.select[types].length <= 0) {
+      const searchResult = searchParams.getAll(types);
+      const searchPriceResult = searchParams.get(types);
+
+      if (searchResult.length > 0) {
+        const searchResultArray = searchResult[0].split(',');
+        if (types !== 'prices') {
+          TYPE[types].map((list) => {
+            searchResultArray.forEach((result) => {
+              if (list.type === result) {
+                selectArray.push(list.type);
+                dispatch(setSelect({ list, types }));
+              }
+            });
+          });
+        } else {
+          if (!searchPriceResult) return;
+          selectArray.push(searchPriceResult);
+          const list = {
+            id: 0,
+            type: searchPriceResult,
+          };
+          dispatch(setSelect({ list, types: 'prices' }));
+        }
+      }
+    }
+
+    if (isMobile && StandByList[types].length <= 0) {
+      checkList.select[types].map((list) => {
+        if (StandByList[types].includes(list)) return;
+        dispatch(setCheckStandBy({ types, list }));
+      });
+    }
     if (StandByList[types].length > 0) {
       StandByList[types].map((list) => {
+        if (selectArray.includes(list.type)) return;
         selectArray.push(list.type);
       });
     }
@@ -93,7 +136,7 @@ function SearchFilter() {
     const params = new URLSearchParams(window.location.search);
     types.forEach((type) => {
       params.delete(type);
-      const newValues = checkList.select[type].map((el) => el.type).join(',');
+      const newValues = StandByList[type].map((el) => el.type).join(',');
       if (newValues) {
         params.set(type, newValues);
       }
@@ -114,9 +157,9 @@ function SearchFilter() {
       <button
         type='button'
         onClick={handleOpen}
-        className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium tabletMin:hidden '
+        className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full border border-gray300 bg-white font-medium tabletMin:hidden '
       >
-        <IconFilter />
+        <IconFilter fill='#949494' />
       </button>
       {(!isMobile || isDropdownVisible) && (
         <ModalForMobile
@@ -152,6 +195,8 @@ function SearchFilter() {
           <DetailPanel
             handleDropClick={handleDropClick}
             handleOpen={handleOpen}
+            isPriceReset={isPriceReset}
+            setIsPriceReset={setIsPriceReset}
           />
         </ModalForMobile>
       )}
