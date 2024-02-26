@@ -86,8 +86,8 @@ function Selectable({
   const dispatch = useAppDispatch();
   const checkList = useAppSelector((state) => state.styleSetting);
   const [currentTypes, setCurrentTypes] = useState('');
+  const [isError, setIsError] = useState(false);
   const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
-  /*   const [isPriceReset, setIsPriceReset] = useState(false); */
   const [price, setPrice] = useState({
     startPrice: '0',
     endPrice: '0',
@@ -150,7 +150,12 @@ function Selectable({
       setCurrentTypes(types);
       setIsFinalCheckDone(true);
     } else {
-      getNewPrice(types);
+      if (
+        sumOfMoney.startPrice.replaceAll(',', '') <
+        sumOfMoney.endPrice.replaceAll(',', '')
+      ) {
+        getNewPrice(types);
+      }
     }
     if (StandByList[types].length <= 0) {
       dispatch(setDetailState(typeInfo.id));
@@ -184,12 +189,14 @@ function Selectable({
 
   //초기화
   const handleReset = (type: string) => {
-    setIsPriceReset(true);
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
+
+    setIsPriceReset(true);
     removeAndRedirectUrl(type);
   };
 
+  /* 필터 적용 눌렀을 떄 쿼리스트링 적용 */
   const redirectUrl = (types: string) => {
     const params = new URLSearchParams(window.location.search);
     params.delete(types);
@@ -200,7 +207,7 @@ function Selectable({
     const newSearch = params.toString();
     router.push(`/search/?${newSearch}`);
   };
-
+  /* 쿼리스트링 제거 */
   const removeAndRedirectUrl = (typeToRemove: string) => {
     const params = new URLSearchParams(window.location.search);
     const filteredEntries = Array.from(params.entries()).filter(
@@ -227,7 +234,7 @@ function Selectable({
   const isDisabled = (type: string) => {
     switch (type) {
       case 'prices':
-        return sumOfMoney.endPrice && sumOfMoney.endPrice !== '0'
+        return sumOfMoney.endPrice && sumOfMoney.endPrice !== '0' && !isError
           ? false
           : true;
       default:
@@ -279,6 +286,8 @@ function Selectable({
                   setIsPriceReset={setIsPriceReset}
                   sumOfMoney={sumOfMoney}
                   setSumOfMoney={setSumOfMoney}
+                  isError={isError}
+                  setIsError={setIsError}
                 />
               )}
             </ul>
@@ -292,7 +301,7 @@ function Selectable({
               </div>
               <Button.Round
                 size='sm'
-                custom={`w-174pxr h-56pxr ${StandByList[typeInfo.name].length > 0 ? '' : 'hover:!bg-gray300 hover:!text-gray500'}`}
+                custom={`w-174pxr h-56pxr disabled:pointer-events-none`}
                 disabled={isDisabled(typeInfo.name)}
                 onClick={() => handleFinalCheck(typeInfo.name)}
               >

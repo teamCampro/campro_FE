@@ -27,6 +27,8 @@ interface PriceTableType {
       endPrice: string;
     }>
   >;
+  isError: boolean;
+  setIsError: Dispatch<SetStateAction<boolean>>;
 }
 
 function PriceTable({
@@ -38,8 +40,9 @@ function PriceTable({
   setIsPriceReset,
   sumOfMoney,
   setSumOfMoney,
+  isError,
+  setIsError,
 }: PriceTableType) {
-  const [isError, setIsError] = useState(false);
   const dispatch = useDispatch();
 
   //모바일일 때 설정한 가격 대기상태로 넣기
@@ -53,7 +56,7 @@ function PriceTable({
       <div className='flex-center justify-between mobile:gap-12pxr tabletMin:flex-col tabletMin:items-end mobile344:flex-wrap mobileMiddle:gap-4pxr'>
         <div className='flex-center w-full justify-between gap-4pxr'>
           <PriceInput
-            name='startPrice'
+            names='startPrice'
             setPrice={setPrice}
             price={price}
             setIsError={setIsError}
@@ -61,10 +64,11 @@ function PriceTable({
             setIsPriceReset={setIsPriceReset}
             sumOfMoney={sumOfMoney}
             setSumOfMoney={setSumOfMoney}
+            isError={isError}
           />
           <div className='w-16pxr flex-shrink-0 border-b-2 border-b-gray700 mobileMiddle:w-12pxr'></div>
           <PriceInput
-            name='endPrice'
+            names='endPrice'
             setPrice={setPrice}
             price={price}
             setIsError={setIsError}
@@ -72,6 +76,7 @@ function PriceTable({
             setIsPriceReset={setIsPriceReset}
             sumOfMoney={sumOfMoney}
             setSumOfMoney={setSumOfMoney}
+            isError={isError}
           />
         </div>
         <small

@@ -158,9 +158,9 @@ function SearchFilter() {
       <button
         type='button'
         onClick={handleOpen}
-        className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full bg-white font-medium tabletMin:hidden '
+        className='flex-center h-48pxr w-56pxr cursor-pointer gap-4pxr rounded-full border border-gray300 bg-white font-medium tabletMin:hidden '
       >
-        <IconFilter />
+        <IconFilter fill='#949494' />
       </button>
       {(!isMobile || isDropdownVisible) && (
         <ModalForMobile
