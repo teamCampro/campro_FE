@@ -51,6 +51,7 @@ function CampSiteDetail({
               slidesPerView={1}
               pagination={true}
               className='h-full w-full'
+              spaceBetween={12}
             >
               {imageUrls.map((image, i) => (
                 <SwiperSlide key={image + i}>
