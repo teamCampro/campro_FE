@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { IconArrowDown, IconArrowRightNon, IconArrowUp } from '@/public/svgs';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { IconArrowDown, IconArrowRightNon, IconArrowUp } from '@/public/svgs';
 import { setIsAllChecked } from '@/src/app/_slices/isAllChecked';
+import { useEffect, useState } from 'react';
 
 type CheckboxNames = 'manage' | 'refund' | 'private' | 'thirdPerson';
 
@@ -96,7 +96,7 @@ function TermsAgreement() {
                 <span className='ml-2pxr text-error'>(필수)</span>
               </label>
             </div>
-            <IconArrowRightNon />
+            <IconArrowRightNon width={20} height={20} />
           </li>
           <li className='flex justify-between gap-4pxr'>
             <div className='flex w-full gap-8pxr'>
@@ -115,7 +115,7 @@ function TermsAgreement() {
                 <span className='ml-2pxr text-error'>(필수)</span>
               </label>
             </div>
-            <IconArrowRightNon />
+            <IconArrowRightNon width={20} height={20} />
           </li>
           <li className='flex justify-between gap-4pxr'>
             <div className='flex w-full gap-8pxr'>
@@ -134,7 +134,7 @@ function TermsAgreement() {
                 <span className='ml-2pxr text-error'>(필수)</span>
               </label>
             </div>
-            <IconArrowRightNon />
+            <IconArrowRightNon width={20} height={20} />
           </li>
           <li className='flex justify-between gap-4pxr'>
             <div className='flex w-full gap-8pxr'>
@@ -153,7 +153,7 @@ function TermsAgreement() {
                 <span className='ml-2pxr text-error'>(필수)</span>
               </label>
             </div>
-            <IconArrowRightNon />
+            <IconArrowRightNon width={20} height={20} />
           </li>
         </ul>
       )}
