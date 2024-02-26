@@ -62,4 +62,5 @@ export interface ReservationListType {
     | 'RESERVE_COMPLETE'
     | 'RESERVE_CANCEL'
     | 'SERVICE_COMPLETE';
+  siteImage: string;
 }

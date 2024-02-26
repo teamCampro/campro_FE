@@ -50,16 +50,14 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
         return 'tetxt-[#555]';
     }
   };
-
+  console.log(list.siteImage);
   return (
     <>
       <figure
         className={`flex flex-col justify-start gap-16pxr rounded-xl border p-24pxr tabletMin:flex-row tabletMin:gap-24pxr`}
       >
         <Image
-          src={
-            'https://gocamping.or.kr/upload/camp/100015/thumb/thumb_1000_2030bbRKPAcdMGKxAxtmMWxD.jpg' /* list.image */
-          }
+          src={list?.siteImage ? JSON.parse(list.siteImage)[0] : ''}
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
