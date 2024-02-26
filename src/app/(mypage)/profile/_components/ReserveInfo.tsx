@@ -80,7 +80,6 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     status,
     userName,
     userPhone,
-
     planImage,
     siteImage,
     additionalOptions,

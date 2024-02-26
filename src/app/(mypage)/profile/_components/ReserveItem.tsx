@@ -38,6 +38,19 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
     }
   };
 
+  const statusColor = (check: string) => {
+    switch (check) {
+      case 'RESERVE_WAITING':
+        return 'text-[#7d6f5a]';
+      case 'RESERVE_COMPLETE':
+        return 'text-primary100';
+      case 'RESERVE_CANCEL':
+        return 'text-red-500';
+      case 'SERVICE_COMPLETE':
+        return 'tetxt-[#555]';
+    }
+  };
+
   return (
     <>
       <figure
@@ -53,8 +66,10 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
         <div className='flex w-full flex-col justify-between mobile:gap-20pxr tabletMin:flex-row'>
           <div className='profile-width flex w-full flex-col gap-12pxr'>
             <div className=''>
-              <h3 className='leading-[140%] text-primary100 font-body2-bold'>
-                {'예약 대기' || checkState(status)}
+              <h3
+                className={`leading-[140%] text-primary100 font-body2-bold ${statusColor(list.status)}`}
+              >
+                {checkState(list.status)}
               </h3>
               <h2 className='profile-lineOver whitespace-nowrap leading-[160%] text-gray800 font-title1-bold'>
                 {list.campingZoneName}
