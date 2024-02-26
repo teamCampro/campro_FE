@@ -21,9 +21,10 @@ export const GET = async (
 
     const [campingZoneDetail] = await db.execute(query, [campingZoneId]);
 
-    const query2 = `SELECT name campingZoneSiteName, check_in_time checkInTime, check_out_time checkOutTime,
-    price, camping_type campingType, max_people maxPeople, parking_guide parkingGuide, pet_yn petYn, id, min_nights minNights, site_image siteImage
-    FROM camping_zone_site
+    const query2 = `SELECT name siteName, img_urls siteImgUrls, site_image siteImage, check_in_time checkInTime, check_out_time checkOutTime,
+    price, camping_type campingType, max_people maxPeople, parking_guide parkingGuide, pet_yn petYn, czs.id, min_nights minNights
+    FROM camping_zone_site czs
+    INNER JOIN camping_zone_site_sub_image czssi ON czs.id = czssi.camping_zone_site_id 
     WHERE camping_zone_id = ?
   `;
     const query3 = `SELECT id reviewId, user_id userId, start_time startTime, update_time updateTime, star, review_keyword reviewKeyword, description FROM review WHERE camp_id = ?

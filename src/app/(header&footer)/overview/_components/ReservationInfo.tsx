@@ -15,7 +15,7 @@ interface ReservationInfoProps {
   nextOpen: string;
   mannerTimeStart: string;
   mannerTimeEnd: string;
-  imageUrls: string[];
+  imageUrls: string;
 }
 
 function ReservationInfo({
@@ -24,7 +24,6 @@ function ReservationInfo({
   nextOpen,
   mannerTimeStart,
   mannerTimeEnd,
-  imageUrls,
 }: ReservationInfoProps) {
   const [selectedSite, setSelectedSite] = useState<CampingZoneSite | null>(
     null,

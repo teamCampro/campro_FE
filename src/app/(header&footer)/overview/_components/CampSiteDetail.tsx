@@ -24,8 +24,8 @@ function CampSiteDetail({
 }: CampSiteDetailProps) {
   if (!selectedSite) return;
   const {
-    siteImage,
-    campingZoneSiteName,
+    siteImgUrls,
+    siteName,
     campingType,
     checkInTime,
     checkOutTime,
@@ -35,6 +35,7 @@ function CampSiteDetail({
     parkingGuide,
     id,
   } = selectedSite;
+  console.log(siteImgUrls);
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
       <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:relative mobile:h-screen  mobile:max-h-none mobile:justify-between mobile:overflow-auto mobile:rounded-none mobile:px-0pxr mobile:pb-0pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
@@ -64,7 +65,7 @@ function CampSiteDetail({
               className='h-full w-full'
               spaceBetween={12}
             >
-              {JSON.parse(siteImage).map((image: string, i: number) => (
+              {JSON.parse(siteImgUrls).map((image: string, i: number) => (
                 <SwiperSlide key={image + i}>
                   <Image
                     width={320}
@@ -75,7 +76,7 @@ function CampSiteDetail({
                     }}
                     className='aspect-719/291 rounded-xl mobile:aspect-320/197 tablet:aspect-2/1'
                     src={image}
-                    alt={campingZoneSiteName}
+                    alt={siteName}
                   />
                 </SwiperSlide>
               ))}
@@ -87,7 +88,7 @@ function CampSiteDetail({
                     <Chip>{campingType}</Chip>
                   </div>
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
-                    {campingZoneSiteName}
+                    {siteName}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
                     임시 구역

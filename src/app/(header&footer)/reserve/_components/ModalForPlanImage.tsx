@@ -52,7 +52,6 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
                 width={767}
                 height={480}
                 alt='배치도 이미지'
-                className='rounded-b-2xl'
                 src={planImage[0]}
               />
             </a>

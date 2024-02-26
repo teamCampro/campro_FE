@@ -1,37 +1,57 @@
-import { OnboardingType, QuestionType } from '../onboard/question/page';
-import OnboardingItem from './OnboardingItem';
+import Button from '@/components/Button';
+import {
+  AnswersType,
+  ChoiceType,
+  OnboardingType,
+} from '../onboard/question/page';
 
 interface Props {
-  mockData: OnboardingType[];
+  questions: OnboardingType[];
   currentPage: number;
-  onClickChoices: (text: string, id: number) => void;
-  onSubmitOnboard: () => void;
-  tagState: QuestionType;
+  handleChoice: (
+    questionId: number,
+    answer: ChoiceType,
+    selectionType: 'single' | 'multiple' | 'optional',
+  ) => void;
+  handlePage: (direction: 'prev' | 'next') => void;
+  answers: AnswersType;
 }
 
 function OnboardingList({
-  mockData,
+  questions,
   currentPage,
-  onClickChoices,
-  onSubmitOnboard,
-  tagState,
+  handleChoice,
+  handlePage,
+  answers,
 }: Props) {
   return (
     <ul>
-      {mockData.slice(currentPage - 1, currentPage).map((value) => (
-        <li className='flex-center flex-col gap-40pxr' key={value.id}>
-          <h4 className='text-gray900 font-title1-bold '>{value.question}</h4>
-          <div className='flex flex-col gap-16pxr'>
-            <OnboardingItem
-              items={value}
-              onClickChoices={onClickChoices}
-              onSubmitOnboard={onSubmitOnboard}
-              questionId={value.id}
-              tagState={tagState}
-            />
-          </div>
-        </li>
-      ))}
+      {questions
+        .slice(currentPage - 1, currentPage)
+        .map(({ id, question, choices, selectionType }) => (
+          <li className='flex-center flex-col gap-40pxr' key={id}>
+            <h4 className='text-gray900 text-center font-title1-bold mobile:font-title3-semibold'>
+              {question}
+              <br />
+              {selectionType === 'multiple' && '모두 선택해주세요'}
+            </h4>
+            <div className='flex flex-col gap-16pxr'>
+              {choices.map((choice) => (
+                <Button.Round
+                  key={choice.displayText || choice.text}
+                  size='lg'
+                  custom={`${answers[id].includes(choice) && 'bg-primary50'} hover:font-body1-bold`}
+                  onClick={() => {
+                    handleChoice(id, choice, selectionType);
+                    if (selectionType === 'single') handlePage('next');
+                  }}
+                >
+                  {choice.displayText || choice.text}
+                </Button.Round>
+              ))}
+            </div>
+          </li>
+        ))}
     </ul>
   );
 }

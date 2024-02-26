@@ -27,8 +27,8 @@ function CampSiteItem({
     parkingGuide,
     petYn,
     minNights,
-    siteImage: siteImageJson,
-    campingZoneSiteName,
+    siteImgUrls: imgUrls,
+    siteName,
   } = site;
   const infos = [
     {
@@ -50,9 +50,7 @@ function CampSiteItem({
     },
     { text: `최소 ${minNights}박`, icon: <IconTime /> },
   ];
-  if (!siteImageJson) return;
-  const siteImage = JSON.parse(siteImageJson);
-  console.log(siteImage);
+  const siteImgUrls = JSON.parse(imgUrls);
   return (
     <li>
       <article className='flex gap-20pxr rounded-2xl bg-gray100 p-24pxr mobile:flex-col mobile:gap-0pxr mobile:p-0pxr mobile359:rounded-none'>
@@ -65,15 +63,15 @@ function CampSiteItem({
               height: 'auto',
             }}
             className='aspect-square rounded-2xl mobile:aspect-340/220 mobile:rounded-b-none mobile359:rounded-none'
-            src={siteImage[0]}
-            alt={campingZoneSiteName}
+            src={siteImgUrls[0]}
+            alt={siteName}
           />
         </div>
         <div className='camp-site flex w-full flex-col gap-12pxr mobile:gap-16pxr mobile:p-16pxr mobile:pb-24pxr'>
           <div className='flex h-auto w-full flex-col gap-16pxr rounded-xl bg-white p-16pxr mobile:contents mobile:bg-gray100 mobile:p-0pxr'>
             <div className='mobile:camp-site-info flex flex-col border-gray300 mobile:border-b mobile:pb-16pxr'>
               <div className='flex items-center justify-between '>
-                <h6 className='font-title3-bold'>{campingZoneSiteName}</h6>
+                <h6 className='font-title3-bold'>{siteName}</h6>
                 <span className='text-nowrap text-black font-body1-bold mobile:font-title3-semibold'>
                   {site.price.toLocaleString('ko-KR', {
                     maximumFractionDigits: 4,
@@ -119,7 +117,7 @@ function CampSiteItem({
             </ul>
             <button
               type='button'
-              className='flex cursor-pointer items-center gap-2pxr text-nowrap text-second100 font-caption1-semibold'
+              className='flex h-full cursor-pointer items-center gap-2pxr text-nowrap text-second100 font-caption1-semibold mobile:h-20pxr'
               onClick={() => openSiteModal(site)}
             >
               상세정보

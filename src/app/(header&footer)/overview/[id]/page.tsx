@@ -23,9 +23,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export type CampingZoneSite = {
   minNights: number;
-  campingZoneSiteName: string;
+  siteName: string;
   id: number;
-  siteImage: string;
+  siteImgUrls: string;
   campingZoneName: string;
   checkInTime: string;
   checkOutTime: string;
