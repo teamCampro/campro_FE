@@ -166,6 +166,7 @@ function PriceInput({
         onChange={handleChange}
         onBlur={handleBlur}
         type='text'
+        pattern='\d*'
       />
       <h3
         className={`${isFocus || price ? 'text-gray-700' : 'text-gray500'}  font-body2-medium`}
