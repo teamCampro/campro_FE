@@ -10,8 +10,7 @@ export const GET = async (
 
     const { userId } = params;
     const status = await req.nextUrl.searchParams.get('status');
-
-    let query = `SELECT r.id, cz.name campingZoneName, czs.name campingZoneSiteName, r.stay_start_at stayStartAt, r.stay_end_at stayEndAt, r.status
+    let query = `SELECT r.id, cz.name campingZoneName, czs.name campingZoneSiteName, r.stay_start_at stayStartAt, r.stay_end_at stayEndAt, r.status, czs.site_image siteImage
                    FROM reservation r
                   INNER JOIN camping_zone cz ON r.camping_zone_id = cz.id
                   INNER JOIN camping_zone_site czs ON r.camping_zone_site_id = czs.id
