@@ -1,18 +1,18 @@
-import { SigninInfo } from '@/components/Form/LoginForm';
+import axios from 'axios';
+import { FieldValues } from 'react-hook-form';
 import { axiosInstance } from '../../_utils/axiosInstance';
 
-export const signin = async (signinInfo: SigninInfo) => {
-  const { email, password } = signinInfo;
+export const signin = async (signinInfo: FieldValues) => {
   try {
-    const response = await axiosInstance.post(`sign/sign-in`, {
-      email,
-      password,
-    });
+    const response = await axiosInstance.post(`sign/sign-in`, signinInfo);
     if (response && response.status === 200) {
       window.localStorage.setItem('userId', response.data.result.userId);
       window.location.href = '/';
     }
   } catch (error) {
     console.error(error);
+    if (axios.isAxiosError(error) && error.response) {
+      return error.response.data.error;
+    }
   }
 };
