@@ -36,7 +36,7 @@ export interface SurveyListsType {
 
 function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   const [isNext, setisNext] = useState(false);
-  const [isScroll, setIsScroll] = useState(false);
+  const [isToggleScroll, setToggleScroll] = useState(false);
   const [writeReview, setWriteReview] = useState('');
   const [score, setScore] = useState<number>(0);
   const [keywords, setKeywords] = useState<ReviewKeywordType[]>([
@@ -70,8 +70,8 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
   };
 
   /* 더보기 */
-  const handleScroll = () => {
-    setIsScroll(true);
+  const handleToggleScroll = () => {
+    setToggleScroll(!isToggleScroll);
   };
 
   const handleButton = () => {
@@ -129,7 +129,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
           </h2>
           <div className='flex h-full w-full flex-col justify-between gap-32pxr'>
             <div
-              className={`flex h-full flex-col ${isScroll ? 'scrollbar-hide overflow-y-scroll' : ''}  px-16pxr  pt-16pxr tabletMin:px-28pxr tabletMin:pt-24pxr`}
+              className={`flex h-full flex-col ${isToggleScroll ? 'scrollbar-hide overflow-y-scroll' : ''} px-16pxr pt-16pxr tabletMin:px-28pxr tabletMin:pt-24pxr`}
             >
               <div
                 className='hidden h-24pxr w-24pxr cursor-pointer tabletMin:block'
@@ -142,23 +142,23 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                   fill='white'
                 />
               </div>
-              <h3 className='text-black font-title2-semibold tabletMin:mt-24pxr'>
+              <h3 className='leading-[160%] text-black font-title2-semibold tabletMin:mt-16pxr'>
                 자연숲 캠핑장은 어떠셨나요?
               </h3>
-              <h4 className='mb-20pxr mt-2pxr text-gray500 font-caption1-medium'>
+              <h4 className='mb-20pxr mt-2pxr leading-[140%] text-gray500 font-caption1-medium'>
                 캠핑장 이용 경험을 공유해 주세요
               </h4>
               <ul
                 className={`flex flex-col gap-4pxr ${isNext ? '' : 'rounded-lg bg-gray100 px-16pxr py-12pxr'}`}
               >
-                <li className='text-gray500 font-caption1-medium'>
-                  객실명: <span>A사이드 | A1-8구역</span>
+                <li className='leading-[140%] text-gray500 font-caption1-medium'>
+                  객실명: <span>A1-8구역</span>
                 </li>
-                <li className='text-gray500 font-caption1-medium'>
+                <li className='leading-[140%] text-gray500 font-caption1-medium'>
                   유형: <span>2인</span>
                 </li>
                 {isNext ? (
-                  <li>
+                  <li className='pt-4pxr'>
                     <ul className='flex-center flex-wrap justify-start gap-4pxr'>
                       <li className='flex-center bg-gray100 px-6pxr py-2pxr !leading-none text-gray600 font-caption2-medium'>
                         <div className='w-16xpr h-16pxr'>
@@ -174,7 +174,7 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
                         return (
                           <li
                             key={index}
-                            className='whitespace-nowrap bg-gray100 px-6pxr py-2pxr text-gray600 font-caption2-medium'
+                            className='whitespace-nowrap bg-gray100 px-6pxr py-2pxr leading-[140%] text-gray600 font-caption2-medium'
                           >
                             {list}
                           </li>
@@ -194,8 +194,8 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
               ) : (
                 <Survey
                   setSurveyLists={setSurveyLists}
-                  isScroll={isScroll}
-                  handleScroll={handleScroll}
+                  isToggleScroll={isToggleScroll}
+                  handleToggleScroll={handleToggleScroll}
                   surveyLists={surveyLists}
                   {...propsList}
                 />
@@ -203,11 +203,11 @@ function WriteReviewModal({ handleClick }: WriteReviewModalType) {
             </div>
             <div className='flex-center h-88pxr justify-between gap-14pxr border-t border-b-white px-20pxr py-16pxr'>
               <div
-                className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-title3-semibold'
+                className='flex-center cursor-pointer gap-4pxr whitespace-nowrap pl-12pxr pr-6pxr text-gray500 font-body1-medium'
                 onClick={handleReset}
               >
                 초기화
-                <div className='h-24pxr w-24pxr'>
+                <div className='h-18pxr w-18pxr text-[#C8C8C8]'>
                   <IconReset
                     width='100%'
                     height='100%'

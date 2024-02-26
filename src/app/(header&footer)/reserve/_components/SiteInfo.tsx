@@ -6,6 +6,18 @@ import { useState } from 'react';
 import ModalForPlanImage from './ModalForPlanImage';
 import { usePathname } from 'next/navigation';
 
+export type additionalOption = {
+  optionId: number;
+  optionName: string;
+  price: number;
+};
+
+export type additionalOptionFinal = {
+  optionId: number;
+  optionName: string;
+  price: number;
+  amount: number;
+};
 export interface ReserveInfoData {
   name: string;
   address: string;
@@ -14,6 +26,9 @@ export interface ReserveInfoData {
   childSiteName?: string;
   maxPeople: string;
   price: number;
+  planImage: string;
+  siteImage: string;
+  additionalOptions: additionalOption[];
 }
 
 interface SiteInfoType {
@@ -37,68 +52,72 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
+  const reviewList = false;
 
   return (
     <>
       <div
         className={`border-bg-gray300 flex-col gap-24pxr border-b ${SIZE_OPTION[size]}`}
       >
-        <figure className='flex-center justify-start gap-16pxr tabletMin:gap-24pxr'>
-          {/* <div className='relative h-140pxr w-140pxr rounded-xl border'> */}
-          {/* <Image
-            src={campList.image}
+        <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
+          <Image
+            src={siteInfo.siteImage ? JSON.parse(siteInfo.siteImage)[0] : ''}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
-            className='rounded-xl'
-          /> */}
-
-          <div className='flex flex-col'>
+            className='aspect-square rounded-xl'
+          />
+          <div className='flex  flex-col items-start'>
             <h3 className='text-gray800 font-title2-semibold'>
               {siteInfo.name}
             </h3>
-            <small className='flex text-gray500 font-caption2-medium'>
-              <div className='h-16pxr w-16pxr'>
-                <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
-              </div>
-              <span>{`7.2 (257)`}</span>
-            </small>
-            <ul className='mt-20pxr flex flex-col gap-8pxr'>
-              <li className='flex  gap-4pxr '>
-                <h3 className='flex-center h-22pxr w-full justify-start !leading-none text-gray600 font-body2-medium'>
-                  <span className='inline-block h-20pxr w-20pxr'>
-                    <IconLocation
-                      width='100%'
-                      height='100%'
-                      viewBox='0 0 24 24'
-                      fill='#949494'
-                    />
-                  </span>
-                  <div className='reserve-lineOver'>{siteInfo.address}</div>
-                </h3>
+            {reviewList && (
+              <small className='flex text-gray500 font-caption2-medium'>
+                <div className='h-16pxr w-16pxr'>
+                  <IconStar width='100%' height='100%' viewBox='0 0 24 24' />
+                </div>
+                <span>{`7.2 (257)`}</span>
+              </small>
+            )}
+            <ul
+              className={`${reviewList ? 'mt-20pxr' : 'mt-37pxr'} flex flex-col gap-8pxr`}
+            >
+              <li className=' flex h-22pxr gap-4pxr'>
+                <span className='flex-center h-22pxr w-22pxr'>
+                  <IconLocation
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='#949494'
+                  />
+                </span>
+                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                  {siteInfo.address}
+                </div>
               </li>
-              <li className='flex gap-4pxr'>
-                <h3 className='flex-center justify-start !leading-none text-gray600 font-body2-medium '>
-                  <span className='inline-block h-20pxr w-20pxr'>
-                    <IconCall
-                      width='100%'
-                      height='100%'
-                      viewBox='0 0 24 24'
-                      fill='#949494'
-                    />
-                  </span>
+              <li className=' flex h-22pxr gap-4pxr'>
+                <span className='flex-center h-22pxr w-22pxr'>
+                  <IconCall
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='#949494'
+                  />
+                </span>
+                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
                   {siteInfo.tel}
-                </h3>
+                </div>
               </li>
             </ul>
           </div>
         </figure>
         <ul className='flex flex-col gap-12pxr pb-24pxr'>
-          <li className='flex-center justify-start gap-16pxr text-gray500 font-body2-semibold'>
+          <li className='flex-center justify-start gap-16pxr leading-[140%] text-gray500 font-body2-semibold'>
             예약 사이트
             <span className='flex-center gap-4pxr text-gray700 font-body1'>
               <h4 className='font-body1-bold'>
-                {siteInfo.parentSiteName} - {siteInfo.childSiteName}
+                {siteInfo.parentSiteName}
+                {siteInfo.childSiteName}
               </h4>
               <div
                 onClick={openModal}
@@ -119,7 +138,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       {isOpenModal && (
         <ModalForPlanImage
           onClose={closeModal}
-          planImage={['https://camping.dpto.or.kr/images/sub/new_map1.jpg']}
+          planImage={[siteInfo?.planImage]}
         />
       )}
     </>

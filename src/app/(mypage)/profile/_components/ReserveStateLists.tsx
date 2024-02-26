@@ -36,17 +36,17 @@ function ReserveStateLists({
         },
       }}
     >
-      <ul className='flex justify-start gap-12pxr text-gray600 font-body2-semibold'>
+      <ul className='flex justify-start gap-12pxr text-gray600'>
         {reserveState.map((list) => {
           return (
             <SwiperSlide
               key={list.id}
               style={{ width: 'auto', display: 'inline-block' }}
-              className={`h-46pxr w-68pxr cursor-pointer rounded-full border  hover:border-primary100 hover:text-primary100 ${status === list.status ? 'border-primary100 text-primary100' : 'border-gray300 text-gray600'}`}
+              className={`h-46pxr w-68pxr cursor-pointer rounded-full border hover:border-primary100 hover:text-primary100 ${status === list.status ? 'border-primary100 text-primary100 font-body2-bold' : 'border-gray300 text-gray600 font-body2-semibold'}`}
             >
               <li /* className='h-46pxr w-68pxr' */>
                 <Link
-                  className='inline-block  h-full w-full px-20pxr py-12pxr'
+                  className='inline-block h-full w-full px-20pxr py-12pxr'
                   href={getStatusQuery(list.status)}
                 >
                   {list.name}
