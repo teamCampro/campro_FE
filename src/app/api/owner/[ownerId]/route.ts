@@ -15,9 +15,8 @@ export const GET = async (
 
 		let userInfo: any = row;
 
-		const czQuery = `SELECT cz.id campingZoneId, cz.name campingZoneName
-    FROM user_info ui INNER JOIN camping_zone cz ON cz.boss_id = ui.id
-    WHERE ui.id = ?`;
+		const czQuery = `SELECT id campingZoneId, name campingZoneName FROM camping_zone cz
+    WHERE cz.boss_id = ?`;
 
 		const [ownerCampingZoneList]: any = await db.execute(czQuery, [ownerId]);
 
