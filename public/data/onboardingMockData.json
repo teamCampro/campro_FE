@@ -3,48 +3,76 @@
     "id": 1,
     "question": "어떤 환경을 선호 하시나요?",
     "choices": [
-      { "id": 1, "text": "산/숲" },
-      { "id": 2, "text": "바다" },
-      { "id": 3, "text": "도심" },
-      { "id": 4, "text": "계곡" }
-    ]
+      { "text": "산/숲" },
+      { "text": "바다" },
+      { "text": "도심" },
+      { "text": "계곡" }
+    ],
+    "selectionType": "single"
   },
   {
     "id": 2,
-    "question": "어떤 유형의 캠핑을 선호 하시나요? 모두 선택해 주세요",
+    "question": "어떤 유형의 캠핑을 선호 하시나요?",
     "choices": [
-      { "id": 1, "text": "텐트" },
-      { "id": 2, "text": "글램핑" },
-      { "id": 3, "text": "카라반" },
-      { "id": 4, "text": "오토 캠핑" },
-      { "id": 5, "text": "캠프닉" },
-      { "id": 6, "text": "키즈 캠핑" },
-      { "id": 7, "text": "애견 캠핑" },
-      { "id": 8, "text": "차박" }
-    ]
+      { "text": "텐트" },
+      { "text": "글램핑" },
+      { "text": "카라반" },
+      { "text": "오토 캠핑" },
+      { "text": "캠프닉" },
+      { "text": "키즈 캠핑" },
+      { "text": "애견 캠핑" },
+      { "text": "차박" }
+    ],
+    "selectionType": "multiple"
   },
   {
     "id": 3,
-    "question": "어떤 활동을 좋아하시나요?",
+    "question": "어느 것이 중요하신가요?",
     "choices": [
-      { "id": 1, "text": "물놀이" },
-      { "id": 2, "text": "산책" },
-      { "id": 3, "text": "트램펄린" },
-      { "id": 4, "text": "배드민턴" },
-      { "id": 5, "text": "풋살, 족구" },
-      { "id": 6, "text": "요리" },
-      { "id": 7, "text": "바베큐" },
-      { "id": 8, "text": "보드게임" },
-      { "id": 9, "text": "없음" }
-    ]
+      { "text": "개인 화장실" },
+      { "text": "개인 샤워실" },
+      { "text": "장비 대여" },
+      { "text": "에어컨" },
+      { "text": "난방시설" },
+      { "text": "애견 동반" },
+      { "text": "전기" },
+      { "text": "매점" }
+    ],
+    "selectionType": "multiple"
   },
   {
     "id": 4,
-    "question": "어떤 캠핑 스타일을 좋아하시나요? 모두 선택해 주세요.",
+    "question": "어떤 활동을 좋아하시나요?",
     "choices": [
-      { "id": 1, "text": "당일치기" },
-      { "id": 2, "text": "1~3박 정도의 숙박 캠핑" },
-      { "id": 3, "text": "일주일 이의 장기 숙박 캠핑" }
-    ]
+      { "text": "물놀이" },
+      { "text": "산책" },
+      { "text": "트램펄린" },
+      { "text": "배드민턴" },
+      { "text": "풋살, 족구" },
+      { "text": "요리" },
+      { "text": "바베큐" }
+    ],
+    "selectionType": "multiple"
+  },
+  {
+    "id": 5,
+    "question": "어떤 캠핑 스타일을 선호 하시나요?",
+    "choices": [
+      { "text": "당일치기" },
+      { "text": "1~3박 정도의 숙박 캠핑" },
+      { "text": "일주일 이상의 장기 숙박 캠핑" }
+    ],
+    "selectionType": "single"
+  },
+  {
+    "id": 6,
+    "question": "어떤 캠핑 스타일을 선호하시나요?",
+    "choices": [
+      { "text": "나홀로" },
+      { "text": "연인" },
+      { "text": "가족" },
+      { "text": "애견동반", "isOptional": true }
+    ],
+    "selectionType": "optional"
   }
 ]

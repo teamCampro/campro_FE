@@ -1,42 +1,34 @@
 import Button from '@/components/Button';
 import { Fragment } from 'react';
-import { OnboardingType, QuestionType } from '../onboard/question/page';
 
 interface Props {
-  items: OnboardingType;
+  choices: string[];
   onClickChoices: (text: string, id: number) => void;
   onSubmitOnboard: () => void;
   questionId: number;
-  tagState: QuestionType;
+  answers: string[];
 }
 
 function OnboardingItem({
-  items,
+  choices,
   onClickChoices,
   onSubmitOnboard,
   questionId,
-  tagState,
+  answers,
 }: Props) {
   const handleClickChoices = (id: number, text: string) => {
     onClickChoices(text, id);
     if (id === 4) onSubmitOnboard();
   };
 
-  const selectTagLog = (selectTag: string, questionId: number) => {
-    if (tagState[questionId] == selectTag) {
-      return true;
-    }
-    return false;
-  };
-
-  return items.choices.map((choice) => (
-    <Fragment key={choice.id}>
+  return choices.map((choice) => (
+    <Fragment key={choice}>
       <Button.Round
         size='lg'
-        custom={`${selectTagLog(choice.text, questionId) ? 'bg-primary50 ' : ''} hover:font-body1-bold`}
-        onClick={() => handleClickChoices(questionId, choice.text)}
+        custom={`${answers.includes(choice) ? 'bg-primary50 ' : ''} hover:font-body1-bold`}
+        onClick={() => handleClickChoices(questionId, choice)}
       >
-        {choice.text}
+        {choice}
       </Button.Round>
     </Fragment>
   ));
