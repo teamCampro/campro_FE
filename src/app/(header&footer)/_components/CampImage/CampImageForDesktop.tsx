@@ -22,6 +22,7 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                   className='flex w-full cursor-pointer object-cover transition-all  hover:brightness-[0.7]'
                   width={580}
                   height={380}
+                  quality={100}
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
                 />
@@ -36,6 +37,7 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                       <Image
                         width={256}
                         height={192}
+                        quality={100}
                         className='aspect-256/192 flex w-full cursor-pointer object-cover hover:brightness-[0.7]'
                         src={imgUrl}
                         key={imgUrl + i}

@@ -28,7 +28,7 @@ function InfoAboutBookingPerson({
 
   useEffect(() => {
     const { isDone } = logoutState[4];
-    if (isDone) router.push('/signin');
+    if (isDone) router.push('/');
   }, [logoutState, router]);
 
   return (

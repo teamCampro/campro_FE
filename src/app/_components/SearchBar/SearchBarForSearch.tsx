@@ -78,7 +78,7 @@ function SearchBarForSearch({ searchParams }: SearchParamsType) {
         custom=' mobile:!items-start  mobile:!top-53pxr mobile:!bg-black-searchBar '
       >
         <CommonForm
-          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr px-40pxr mobile:!left-0pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
+          className={`flex w-full justify-between  rounded-b-2xl bg-white  ${PAGE_TYPE.search} w-full max-w-1480pxr  mobile:!left-0pxr mobile:px-0pxr  ${isTotalInput ? 'mobile:inline-block' : 'mobile:invisible mobile:!absolute'} `}
           onSubmit={onSubmit}
           mode='onChange'
         >

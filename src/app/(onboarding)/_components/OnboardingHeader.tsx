@@ -1,5 +1,4 @@
 import HeaderDropdown from '@/components/Header/_components/HeaderDropdown';
-import { IconPeople } from '@/public/svgs';
 import Link from 'next/link';
 
 function OnBoardingHeader() {

@@ -1,8 +1,12 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { SubmitHandler, FieldValues } from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 
 interface CommonFormProps {
   children: ReactNode;
@@ -23,10 +27,6 @@ function CommonForm({
 }: CommonFormProps) {
   const methods = useForm({ mode, defaultValues });
 
-  // const sasdawdas = (data: FieldValues, e: SubmitEvent) => {
-  //   e.stopPropagation();
-  //   onSubmit(data);
-  // };
   return (
     <FormProvider {...methods}>
       <form

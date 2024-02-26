@@ -1,28 +1,45 @@
-import { IconArrowLeftGray } from '@/public/svgs';
+import { IconArrowLeftCircle, IconArrowRightCircle } from '@/public/svgs';
 
 interface Props {
   currentPage: number;
   totalItems: number;
-  onUpdatePage: (pageNumber: number) => void;
+  onUpdatePage: (direction: 'prev' | 'next') => void;
+  showRightArrow: boolean;
+  rightArrowDisabled: boolean;
 }
 
-function Pagination({ currentPage, totalItems, onUpdatePage }: Props) {
+function Pagination({
+  currentPage,
+  totalItems,
+  onUpdatePage,
+  showRightArrow,
+  rightArrowDisabled,
+}: Props) {
   const disabled = currentPage <= 1;
   return (
-    <div className='flex w-103pxr items-center gap-16pxr'>
-      {
-        <button
-          type='button'
-          disabled={disabled}
-          className={`${disabled ? 'text-gray400' : 'text-gray600'}`}
-          onClick={() => onUpdatePage(currentPage - 1)}
-        >
-          <IconArrowLeftGray />
-        </button>
-      }
-      <p className='pr-10pxr'>
+    <div className='flex  items-center gap-16pxr'>
+      <button
+        type='button'
+        disabled={disabled}
+        onClick={() => onUpdatePage('prev')}
+      >
+        <IconArrowLeftCircle
+          className={`${disabled ? 'fill-gray400' : 'fill-gray600'}`}
+        />
+      </button>
+      <p className=''>
         {currentPage} / {totalItems}
       </p>
+      <button
+        type='button'
+        className={showRightArrow ? 'block' : 'hidden'}
+        disabled={rightArrowDisabled}
+        onClick={() => onUpdatePage('next')}
+      >
+        <IconArrowRightCircle
+          className={`${rightArrowDisabled ? 'fill-gray400' : 'fill-gray600'}`}
+        />
+      </button>
     </div>
   );
 }

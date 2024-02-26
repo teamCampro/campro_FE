@@ -26,7 +26,6 @@ function ImageUpload({
     e.preventDefault();
     const tmpFileList: ImagesType[] = [];
     const files = e.target.files;
-    console.log(surveyLists.images);
     if (
       files &&
       files.length <= maxFileCount &&

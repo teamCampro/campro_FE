@@ -1,52 +1,80 @@
 [
   {
     "id": 1,
-    "question": "어떤 여행을 선호하시나요?",
+    "question": "어떤 환경을 선호 하시나요?",
     "choices": [
-      {"id": 1, "text": "배낭 여행"},
-      {"id": 2, "text": "리조트 휴양"},
-      {"id": 3, "text": "도시 탐험"},
-      {"id": 4, "text" : "상관없다"}
-    ]
+      { "text": "산/숲" },
+      { "text": "바다" },
+      { "text": "도심" },
+      { "text": "계곡" }
+    ],
+    "selectionType": "single"
   },
   {
     "id": 2,
-    "question": "어떤 음식을 선호하시나요?",
+    "question": "어떤 유형의 캠핑을 선호 하시나요?",
     "choices": [
-      {"id": 1, "text": "한식"},
-      {"id": 2, "text": "양식"},
-      {"id": 3, "text": "아시아 음식"},
-      {"id": 4, "text" : "다양한 음식 좋아함"}
-    ]
+      { "text": "텐트" },
+      { "text": "글램핑" },
+      { "text": "카라반" },
+      { "text": "오토캠핑" },
+      { "text": "캠프닉" },
+      { "text": "키즈캠핑" },
+      { "text": "애견캠핑" },
+      { "text": "차박" }
+    ],
+    "selectionType": "multiple"
   },
   {
     "id": 3,
-    "question": "어떤 활동을 좋아하시나요?",
+    "question": "어느 것이 중요하신가요?",
     "choices": [
-      {"id": 1, "text": "등산"},
-      {"id": 2, "text": "수영"},
-      {"id": 3, "text": "예술 및 문화 체험"},
-      {"id": 4, "text" : "다양한 활동 시도"}
-    ]
+      { "text": "매점" },
+      { "text": "와이파이" },
+      { "text": "장비대여" },
+      { "text": "개수대" },
+      { "text": "TV" },
+      { "text": "난방기구" },
+      { "text": "에어컨" },
+      { "text": "전기", "displayText": "전기공급" },
+      { "text": "침대", "displayText": "숙박환경" }
+    ],
+    "selectionType": "multiple"
   },
   {
     "id": 4,
-    "question": "어떤 교통 수단을 선호하시나요?",
+    "question": "캠핑장에서 어떤 활동을 하고 싶은가요?",
     "choices": [
-      {"id": 1, "text": "자동차"},
-      {"id": 2, "text": "기차"},
-      {"id": 3, "text": "비행기"},
-      {"id": 4, "text" : "대중 교통 수단"}
-    ]
+      { "text": "놀이시설" },
+      { "text": "물놀이" },
+      { "text": "바베큐" },
+      { "text": "트램플린" },
+      { "text": "산책로", "displayText": "산책" },
+      { "text": "운동시설", "displayText": "풋살" },
+      { "text": "운동시설", "displayText": "배드민턴" },
+      { "text": "취사도구", "displayText": "요리" }
+    ],
+    "selectionType": "multiple"
   },
   {
     "id": 5,
-    "question": "어떤 날씨를 좋아하시나요?",
+    "question": "어떤 캠핑 스타일을 선호 하시나요?",
     "choices": [
-      {"id": 1, "text": "따뜻한 날씨"},
-      {"id": 2, "text": "시원한 가을 날씨"},
-      {"id": 3, "text": "서늘한 겨울 날씨"},
-      {"id": 4, "text" : "다양한 날씨 좋아함"}
-    ]
+      { "text": "당일치기" },
+      { "text": "1~3박 정도의 숙박 캠핑" },
+      { "text": "일주일 이상의 장기 숙박 캠핑" }
+    ],
+    "selectionType": "single"
+  },
+  {
+    "id": 6,
+    "question": "어떤 캠핑 스타일을 선호하시나요?",
+    "choices": [
+      { "text": "나홀로" },
+      { "text": "연인" },
+      { "text": "가족" },
+      { "text": "애견동반", "isOptional": true }
+    ],
+    "selectionType": "optional"
   }
 ]

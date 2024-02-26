@@ -6,20 +6,26 @@ import Button from '.';
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   custom?: string;
+  hasError?: boolean;
 }
 
-function HookFormButton({ size, custom = '', children, onClick }: Props) {
+function HookFormButton({
+  size,
+  custom = '',
+  children,
+  onClick,
+  hasError,
+}: Props) {
   const {
-    formState: { isDirty, isValid },
+    formState: { isDirty, isValid, errors },
   } = useFormContext();
   const isDisabled = isValid && isDirty;
-
   return (
     <Button.Round
       type='submit'
       size={size}
       custom={custom}
-      disabled={!isDisabled}
+      disabled={!isDisabled || hasError}
       onClick={onClick}
     >
       {children}
