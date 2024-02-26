@@ -70,7 +70,7 @@ function ReservationInfo({
           />
         ))}
       </ul>
-      {siteList.length > 2 && (
+      {siteList.length > 3 && (
         <div className='contents mobile:block mobile359:px-16pxr'>
           <button
             type='button'
@@ -92,8 +92,7 @@ function ReservationInfo({
           >
             <CampSiteDetail
               onClose={() => setSelectedSite(null)}
-              site={selectedSite}
-              imageUrls={imageUrls}
+              selectedSite={selectedSite}
               handleReserve={handleReserve}
             />
           </ModalOutside>

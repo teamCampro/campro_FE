@@ -13,17 +13,28 @@ import SiteInfoList from './SiteInfoList';
 
 interface CampSiteDetailProps {
   onClose: () => void;
-  site: CampingZoneSite;
+  selectedSite: CampingZoneSite | null;
   handleReserve: (siteId: number) => void;
-  imageUrls: string[];
 }
 
 function CampSiteDetail({
   onClose,
-  site,
+  selectedSite,
   handleReserve,
-  imageUrls,
 }: CampSiteDetailProps) {
+  if (!selectedSite) return;
+  const {
+    siteImage,
+    campingZoneSiteName,
+    campingType,
+    checkInTime,
+    checkOutTime,
+    maxPeople,
+    minNights,
+    petYn,
+    parkingGuide,
+    id,
+  } = selectedSite;
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
       <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:relative mobile:h-screen  mobile:max-h-none mobile:justify-between mobile:overflow-auto mobile:rounded-none mobile:px-0pxr mobile:pb-0pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
@@ -53,7 +64,7 @@ function CampSiteDetail({
               className='h-full w-full'
               spaceBetween={12}
             >
-              {imageUrls.map((image, i) => (
+              {JSON.parse(siteImage).map((image: string, i: number) => (
                 <SwiperSlide key={image + i}>
                   <Image
                     width={320}
@@ -64,7 +75,7 @@ function CampSiteDetail({
                     }}
                     className='aspect-719/291 rounded-xl mobile:aspect-320/197 tablet:aspect-2/1'
                     src={image}
-                    alt='dd'
+                    alt={campingZoneSiteName}
                   />
                 </SwiperSlide>
               ))}
@@ -73,10 +84,10 @@ function CampSiteDetail({
               <div className='flex flex-col gap-24pxr mobile:gap-20pxr'>
                 <div className='flex flex-col gap-2pxr'>
                   <div className='flex gap-4pxr'>
-                    <Chip>{site.campingType}</Chip>
+                    <Chip>{campingType}</Chip>
                   </div>
                   <h4 className='text-32pxr font-semibold leading-[1.4] tracking-[0.32px] text-black'>
-                    {site.parentSiteName}
+                    {campingZoneSiteName}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
                     임시 구역
@@ -85,7 +96,7 @@ function CampSiteDetail({
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
                   <span className='text-gray500 font-body2-medium'>
-                    임시 크기 (임시 바닥)
+                    4.5x10m (파쇄석)
                   </span>
                 </div>
               </div>
@@ -93,11 +104,11 @@ function CampSiteDetail({
                 <SiteInfoList
                   title='기본 정보'
                   infos={[
-                    `입실 ${site.checkInTime} - 퇴실 ${site.checkOutTime}`,
-                    `${site.maxPeople}인 기준 (${true ? '인원 추가 가능' : '인원 추가 불가'})`,
-                    `최소 ${site.minNights}박`,
-                    `반려동물 숙박 ${site.petYn === 1 ? '가능' : '불가'}`,
-                    `최소 ${site.parkingGuide}대`,
+                    `입실 ${checkInTime} - 퇴실 ${checkOutTime}`,
+                    `${maxPeople}인 기준 (${true ? '인원 추가 가능' : '인원 추가 불가'})`,
+                    `최소 ${minNights}박`,
+                    `반려동물 숙박 ${petYn === 1 ? '가능' : '불가'}`,
+                    `최소 ${parkingGuide}대`,
                     `트레일러 진입 ${true ? '가능' : '불가'}`,
                     `캠핑카 진입 ${true ? '가능' : '불가'}`,
                   ]}
@@ -114,7 +125,7 @@ function CampSiteDetail({
           <Button.Round
             size='sm'
             custom='w-full !h-56pxr'
-            onClick={() => handleReserve(site.id)}
+            onClick={() => handleReserve(id)}
           >
             예약하기
           </Button.Round>
