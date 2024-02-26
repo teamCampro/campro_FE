@@ -48,10 +48,10 @@ function PaymentAmount({
   }, [totalPaymentForOptions, dispatch, searchParams, sitePrice]);
 
   return (
-
-
     <div className='flex flex-col gap-12pxr border-b-2 border-dashed pb-20pxr'>
-      <h3 className='text-black leading-[160%]  font-title3-semibold'>결제 금액</h3>
+      <h3 className='leading-[160%] text-black  font-title3-semibold'>
+        결제 금액
+      </h3>
 
       <ul className='flex flex-col gap-12pxr'>
         <li className='flex-center justify-between leading-[140%] text-gray600 font-body2-medium'>
@@ -90,7 +90,9 @@ function PaymentAmount({
                 {count[option.optionId] ? `x ${count[option.optionId]}` : ''}
                 <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
                   {count[option.optionId] &&
-                    numberFormatter(String(option.price))}
+                    numberFormatter(
+                      String(option.price * count[option.optionId]),
+                    )}
                   원
                 </span>
               </li>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ReactQueryProviders from './_utils/ReactQueryProviders';
 import ReduxProvider from './_utils/ReduxProvider';
 import './globals.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Script from 'next/script';
 import './_styles/carousel.css';
@@ -26,6 +27,8 @@ export default function RootLayout({
               src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false&libraries=services,clusterer`}
             />
             {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+
             <div id='modal' />
           </ReactQueryProviders>
         </ReduxProvider>

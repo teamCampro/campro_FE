@@ -19,7 +19,7 @@ function PaymentAmountForDetail({
   const dispatch = useAppDispatch();
 
   const totalOptionPrice = aboutPay.additionalOptions.reduce(
-    (acc, option) => acc + option.price,
+    (acc, option) => acc + option.price * option.amount,
     0,
   );
 
@@ -78,7 +78,9 @@ function PaymentAmountForDetail({
                 {option?.optionName}
                 {option.amount ? `x ${option.amount}` : ''}
                 <span className='whitespace-nowrap text-gray500 font-body2-semibold'>
-                  {option.amount && numberFormatter(String(option.price))}원
+                  {option.amount &&
+                    numberFormatter(String(option.price * option.amount))}
+                  원
                 </span>
               </li>
             ),
