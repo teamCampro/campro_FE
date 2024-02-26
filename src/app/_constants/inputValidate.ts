@@ -14,20 +14,12 @@ export const requiredValidate = {
 };
 
 export const emailValidate = {
-  required: {
-    value: true,
-    message: '이메일을 입력해주세요.',
-  },
   pattern: {
     value: VALIDATE.userEmail,
-    message: '이메일 형식으로 작성해주세요.',
+    message: '올바른 이메일 형식으로 입력해주세요.',
   },
 };
 export const phoneValidate = {
-  required: {
-    value: true,
-    message: '휴대폰 번호를 입력해주세요.',
-  },
   pattern: {
     value: VALIDATE.userPhone,
     message: '010-XXXX-XXXX 형식으로 입력 해주세요.',
@@ -35,26 +27,13 @@ export const phoneValidate = {
 };
 
 export const passwordValidate = {
-  required: {
-    value: true,
-    message: '비밀번호를 입력해주세요.',
-  },
   pattern: {
     value: VALIDATE.userPassword,
-    message: '숫자, 영문자조합으로 8자리 이상으로 작성해주세요',
-  },
-  minLength: {
-    value: 8,
-    message: '8자 이상 작성해주세요',
+    message: '비밀번호를 확인해주세요',
   },
 };
 
-export const passwordCheckValidate = {
-  required: {
-    value: true,
-    message: '비밀번호를 한번 더 입력해주세요.',
-  },
-};
+export const passwordCheckValidate = {};
 
 export const ownerValidate = {
   required: {
@@ -64,13 +43,9 @@ export const ownerValidate = {
 };
 
 export const nicknameValidate = {
-  required: {
-    value: true,
-    message: '닉네임을 입력해주세요.',
-  },
   minLength: {
-    value: 3,
-    message: '닉네임은 3자 이상 작성해주세요',
+    value: 2,
+    message: '이름은 2자 이상 작성해주세요',
   },
 };
 

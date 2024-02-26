@@ -11,9 +11,10 @@ export const GET = async (
 		const db = await pool.getConnection();
 
 		const { ownerId, reserveId } = params;
-		const query = `SELECT r.adult, r.child, r.stay_start_at StayStartAt, r.stay_end_at StayEndAt,
+		const query = `SELECT r.adult, r.child, r.stay_start_at stayStartAt, r.stay_end_at stayEndAt,
 		r.pet, czs.name czSiteName, ui.name userName, ui.phone userPhone,r.car_info carInfo,
-		r.reserved_at reservedAt, r.pay_method payMethod, r.id rId
+		r.reserved_at reservedAt, r.pay_method payMethod, r.id rId, czs.price campingZoneSitePrice,
+		TIMESTAMPDIFF(DAY,r.stay_start_at,r.stay_end_at) stayNights
 		FROM reservation r
 		INNER JOIN camping_zone_site czs ON r.camping_zone_site_id = czs.id
 		INNER JOIN camping_zone cz ON czs.camping_zone_id=cz.id
@@ -35,7 +36,7 @@ export const GET = async (
 		const [selectedAdditionalOptionResult] = await db.execute(selectedAdditionalOptionQuery,[
 			ownerReservationResult[0].rId
 		])
-
+		const carInfo = JSON.stringify(ownerReservationResult[0].carInfo);
 		const result = {
 			adult: ownerReservationResult[0].adult,
 			child: ownerReservationResult[0].child,
@@ -45,9 +46,11 @@ export const GET = async (
 			czSiteName: ownerReservationResult[0].czSiteName,
 			userName: ownerReservationResult[0].userName,
 			userPhone: ownerReservationResult[0].userPhone,
-			carInfo: ownerReservationResult[0].carInfo,
+			carInfo,
 			reservedAt: ownerReservationResult[0].reservedAt,
 			payMethod: ownerReservationResult[0].payMethod,
+			campingZoneSitePrice: ownerReservationResult[0].campingZoneSitePrice,
+			stayNights: ownerReservationResult[0].stayNights + '박',
 			selectedAdditionalOptionResult,
 		}
 		db.release();
