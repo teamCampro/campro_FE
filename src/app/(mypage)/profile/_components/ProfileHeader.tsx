@@ -1,7 +1,7 @@
 'use client';
 
 import HeaderDropdown from '@/components/Header/_components/HeaderDropdown';
-import { IconArrowLeftNon, IconPeople } from '@/public/svgs';
+import { IconArrowLeftNon } from '@/public/svgs';
 import { useRouter } from 'next/navigation';
 
 function ProfileHeader() {
