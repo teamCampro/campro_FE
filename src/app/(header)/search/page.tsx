@@ -79,15 +79,29 @@ function Page({ searchParams }: SearchParamsType) {
     setPrevClusterer(clusterer);
   };
 
+  const getSearchFilter = (queryString: string) => {
+    const { stay, facilities, prices, theme, trip } = searchParams;
+
+    /*  if (stay) queryString += `&stay=${searchParams.stay}`; */
+    if (facilities) queryString += `&facilities=${searchParams.facilities}`;
+    if (theme) queryString += `&theme=${searchParams.theme}`;
+    /*   if (prices) queryString += `&prices=${searchParams.prices}`;
+    if (trip) queryString += `&trip=${searchParams.trip}`; */
+    return queryString;
+  };
+
   useEffect(() => {
-    const queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
+    let queryString = `location=${searchParams.location}&checkIn=${searchParams.checkIn}&checkOut=${searchParams.checkOut}&adult=${searchParams.adult}&child=${searchParams.child}&pet=${searchParams.pet}`;
+
+    const newQueryString = getSearchFilter(queryString);
+
     const fetch = async () => {
       const response = await axiosInstance.get<DataType>(
         searchParams.location === '전체'
           ? 'camping-zone/list'
-          : `camping-zone/list?${queryString}`,
+          : `camping-zone/list?${newQueryString}`,
       );
-
+      console.log(response);
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
     };
