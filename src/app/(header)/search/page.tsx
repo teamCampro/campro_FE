@@ -105,12 +105,13 @@ function Page({ searchParams }: SearchParamsType) {
         handlePrevClusterer,
       });
     }
-    return (()=> {
-      dispatch(setResetAll())
-      dispatch(setResetAllStandBy())
-    })
+    return () => {
+      dispatch(setResetAll());
+      dispatch(setResetAllStandBy());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, campPlaceData]);
+
   if (!campPlaceData) return <Loading />;
 
   return (
@@ -126,10 +127,12 @@ function Page({ searchParams }: SearchParamsType) {
           <SearchFilter />
         </div>
       </div>
-      <div className={`flex-center ${mapSize === 'list' ? '':'searchPageOverFlow'} h-full w-full`}>
+      <div
+        className={`flex-center ${mapSize === 'list' ? '' : 'searchPageOverFlow'} h-full w-full`}
+      >
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'desktop1440:max-w-1132pxr  desktop1920:flex-grow-7 desktop1440:basis-776pxr' : ''} ${mapSize === 'list' ?  '' :'overflow-y-scroll'}`}
+            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr  desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? '' : 'overflow-y-scroll'}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>

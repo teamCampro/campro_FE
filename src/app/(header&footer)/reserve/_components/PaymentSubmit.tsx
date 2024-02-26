@@ -47,7 +47,6 @@ function PaymentSubmit({ custom, params }: PaymentSubmitProps) {
 
   const submitReservationDetail = async () => {
     try {
-      console.log(reqBody);
       await postReservationDetail(reqBody);
 
       setIsOpenModal(true);

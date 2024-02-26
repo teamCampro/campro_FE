@@ -1,11 +1,17 @@
 'use client';
 
 import { IconArrowUp, IconReset } from '@/public/svgs';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Button } from '..';
 import SelectList from './_components/SelectList';
 import PriceTable from './_components/PriceTable';
-import { useDispatch } from 'react-redux';
 import { setClose, setDetailState } from '../../_utils/detailState';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
@@ -32,7 +38,9 @@ interface Props {
   children: ReactNode;
   typeInfo: TypeInfoType;
   handleDropClick: (id: number) => void;
-  selectLength:boolean;
+  selectLength: boolean;
+  isPriceReset: boolean;
+  setIsPriceReset: Dispatch<SetStateAction<boolean>>;
 }
 
 interface LengthType {
@@ -50,8 +58,8 @@ export interface CheckStandByListType {
 }
 
 export interface PriceType {
-  startPrice: number;
-  endPrice: number;
+  startPrice: string;
+  endPrice: string;
 }
 
 const LENTH: LengthType = {
@@ -59,7 +67,14 @@ const LENTH: LengthType = {
   '5': 'w-121pxr',
 };
 
-function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props) {
+function Selectable({
+  children,
+  typeInfo,
+  handleDropClick,
+  selectLength,
+  isPriceReset,
+  setIsPriceReset,
+}: Props) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
@@ -72,9 +87,14 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
   const checkList = useAppSelector((state) => state.styleSetting);
   const [currentTypes, setCurrentTypes] = useState('');
   const [isFinalCheckDone, setIsFinalCheckDone] = useState(false);
+  /*   const [isPriceReset, setIsPriceReset] = useState(false); */
   const [price, setPrice] = useState({
-    startPrice: 0,
-    endPrice: 0,
+    startPrice: '0',
+    endPrice: '0',
+  });
+  const [sumOfMoney, setSumOfMoney] = useState({
+    startPrice: price.startPrice,
+    endPrice: price.endPrice,
   });
 
   const router = useRouter();
@@ -86,7 +106,8 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
 
     if (!isMobile) {
       dispatch(setResetAllStandBy());
-      setPrice({startPrice:0, endPrice:0})
+      setPrice({ startPrice: '0', endPrice: '0' });
+      setSumOfMoney({ startPrice: '0', endPrice: '0' });
     }
 
     if (!isMobile && checkList.select[types].length > 0) {
@@ -104,11 +125,16 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
       id: 0,
       type: `${price.startPrice}원-${price.endPrice}원`,
     };
+
     if (size !== 'mobile') {
       dispatch(setSelect({ list, types }));
       setCurrentTypes(types);
       setIsFinalCheckDone(true);
     } else {
+      if (price.endPrice === '0') {
+        setIsPriceReset(true);
+        return;
+      }
       dispatch(setCheckStandBy({ types, list }));
     }
   };
@@ -116,6 +142,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
   //pc&tablet 선택 확정
   const handleFinalCheck = (types: string) => {
     dispatch(setReset(types));
+
     if (types !== 'prices') {
       StandByList[types].map((list) => {
         dispatch(setSelect({ list, types }));
@@ -125,7 +152,10 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
     } else {
       getNewPrice(types);
     }
-
+    if (StandByList[types].length <= 0) {
+      dispatch(setDetailState(typeInfo.id));
+      return removeAndRedirectUrl(types);
+    }
     dispatch(setDetailState(typeInfo.id));
   };
 
@@ -154,6 +184,7 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
 
   //초기화
   const handleReset = (type: string) => {
+    setIsPriceReset(true);
     dispatch(setReset(type));
     dispatch(setResetStandBy(type));
     removeAndRedirectUrl(type);
@@ -188,11 +219,24 @@ function Selectable({ children, typeInfo, handleDropClick,selectLength }: Props)
     setIsFinalCheckDone(false);
   }, [checkList, currentTypes, isFinalCheckDone]);
 
-const isTextLength = () => {
-  if(!children) return
-  return children.toString().length > 3;
-}
+  const isTextLength = () => {
+    if (!children) return;
+    return children.toString().length > 3;
+  };
 
+  const isDisabled = (type: string) => {
+    switch (type) {
+      case 'prices':
+        return sumOfMoney.endPrice && sumOfMoney.endPrice !== '0'
+          ? false
+          : true;
+      default:
+        return StandByList[typeInfo.name].length > 0 ||
+          checkList.select[typeInfo.name].length > 0
+          ? false
+          : true;
+    }
+  };
 
   return (
     <>
@@ -201,7 +245,7 @@ const isTextLength = () => {
         ref={buttomRef}
       >
         <div
-        id='selectable'
+          id='selectable'
           className='flex cursor-pointer items-center gap-3pxr py-12pxr pl-20pxr pr-14pxr mobile:justify-between mobile344:px-24pxr mobileMiddle:px-40pxr'
           onClick={handleOpen}
         >
@@ -220,7 +264,7 @@ const isTextLength = () => {
             ref={divRef}
           >
             <ul
-              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : 'h-98pxr mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-78pxr'} ${typeInfo.name === 'trip' ? '!h-200pxr' : ''}`}
+              className={`scrollbar-hide flex w-320pxr flex-col justify-between gap-20pxr overflow-auto px-20pxr pb-20pxr pt-24pxr mobile:w-full mobile:overflow-y-auto mobile:bg-gray100  ${typeInfo.name !== 'prices' ? 'h-249pxr mobile:h-221pxr mobile:px-40pxr' : ' mobile:px-16pxr mobile:py-12pxr  mobile344:h-full mobileMiddle:h-full'} ${typeInfo.name === 'trip' ? '!h-200pxr' : ''}`}
               data-name='drap'
             >
               {typeInfo.name !== 'prices' ? (
@@ -231,6 +275,10 @@ const isTextLength = () => {
                   price={price}
                   getNewPrice={getNewPrice}
                   types={typeInfo.name}
+                  isPriceReset={isPriceReset}
+                  setIsPriceReset={setIsPriceReset}
+                  sumOfMoney={sumOfMoney}
+                  setSumOfMoney={setSumOfMoney}
                 />
               )}
             </ul>
@@ -245,7 +293,7 @@ const isTextLength = () => {
               <Button.Round
                 size='sm'
                 custom={`w-174pxr h-56pxr ${StandByList[typeInfo.name].length > 0 ? '' : 'hover:!bg-gray300 hover:!text-gray500'}`}
-                disabled={StandByList[typeInfo.name].length > 0 ? false : true}
+                disabled={isDisabled(typeInfo.name)}
                 onClick={() => handleFinalCheck(typeInfo.name)}
               >
                 적용

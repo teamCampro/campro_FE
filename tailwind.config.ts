@@ -121,6 +121,7 @@ const config: Config = {
       mobile411: { min: '320px', max: '411px' },
       mobile725: { min: '412px', max: '725px' },
       mobileMiddle: { min: '345px', max: '767px' },
+      mobileMiddleMin: '345px',
       tablet: {
         min: '768px',
         max: '1199px',

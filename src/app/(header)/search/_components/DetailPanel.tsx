@@ -4,15 +4,23 @@ import Selectable from '@/components/Dropdown/Selectable';
 import { useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import { IconFilter } from '@/public/svgs';
+import { Dispatch, SetStateAction } from 'react';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface DetailPanelType {
   handleDropClick: (id: number) => void;
   handleOpen: () => void;
+  isPriceReset: boolean;
+  setIsPriceReset: Dispatch<SetStateAction<boolean>>;
 }
 
-function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
+function DetailPanel({
+  handleDropClick,
+  handleOpen,
+  isPriceReset,
+  setIsPriceReset,
+}: DetailPanelType) {
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
 
@@ -45,20 +53,23 @@ function DetailPanel({ handleDropClick, handleOpen }: DetailPanelType) {
             }}
           >
             {details.map((detail) => {
-              const textLength = detail.type.length > 2;
-              const {name} = detail
+              const { name } = detail;
               return (
                 <SwiperSlide
-                style={{ width: 'auto', display: 'inline-block' }}
+                  style={{ width: 'auto', display: 'inline-block' }}
                   key={detail.id}
-                  className={`  mobile:!w-full`}
+                  className={`mobile:!w-full`}
                 >
                   <Selectable
                     handleDropClick={handleDropClick}
                     typeInfo={detail}
                     selectLength={checkList.select[name].length > 0}
+                    isPriceReset={isPriceReset}
+                    setIsPriceReset={setIsPriceReset}
                   >
-                    {checkList.select[name].length > 0 && !isMobile ?  checkList.select[name].map(list => list.type) : detail.type}
+                    {checkList.select[name].length > 0 && !isMobile
+                      ? checkList.select[name].map((list) => list.type)
+                      : detail.type}
                   </Selectable>
                 </SwiperSlide>
               );

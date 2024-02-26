@@ -39,7 +39,6 @@ interface ReserveInfoType {
     planImage: string; // 해당 캠핑장 배치도 이미지
     siteImage: string; // 해당 사이트 이미지
     additionalOptions: additionalOptionFinal[]; // 추가 옵션
-
   };
 }
 
@@ -85,12 +84,10 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
     planImage,
     siteImage,
     additionalOptions,
-
   } = getDetailReserve;
 
   const [isClose, setIsClose] = useState(false);
   const totalPrice = useAppSelector((state) => state.totalPrice);
-  console.log(totalPrice.total);
   const siteInfo: ReserveInfoData = {
     name: campingZoneName,
     address: address,
@@ -103,9 +100,8 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
       siteImage && siteImage.length > 0 ? JSON.parse(siteImage)[0] : '',
 
     planImage,
- 
-    additionalOptions,
 
+    additionalOptions,
   };
 
   const reservePersonInfo: ReservePersonInfoType = {
@@ -154,10 +150,8 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
           </h3>
           <div className='flex items-center justify-start gap-24pxr text-gray500 font-caption1-semibold tabletMin:font-body2-semibold'>
             차량번호
-
             <span className='leading-[140%] text-gray800 font-body2-semibold tabletMin:font-body1-bold'>
               {carInfo}
-
             </span>
           </div>
         </div>
@@ -166,7 +160,6 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             추가 옵션
           </h3>
           <ul className='flex flex-col gap-16pxr'>
-
             {additionalOptions.map((option) => (
               <li
                 key={option.optionId}
@@ -198,13 +191,11 @@ function ReserveInfo({ getDetailReserve }: ReserveInfoType) {
             </ul>
           </div>
           <div className='flex w-full flex-col gap-12pxr tabletMin:pl-32pxr'>
-
             <PaymentAmountForDetail
               sitePrice={campingZoneSitePrice}
               aboutPay={aboutPay}
             />
             <div className='flex justify-between text-black font-body2-semibold'>
-
               <h2>총 결제금액</h2>
               <h2>{totalPrice.total.toLocaleString()}원</h2>
             </div>
