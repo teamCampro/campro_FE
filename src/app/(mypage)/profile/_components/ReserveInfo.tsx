@@ -123,7 +123,7 @@ function ReserveInfo({ getDetailReserve, reserveId }: ReserveInfoType) {
   const handleModal = () => {
     setIsClose(!isClose);
   };
-
+  console.log('킹갓대호대호', carInfo);
   return (
     <>
       <div className='flex-center justify-between tabletMin:mb-32pxr'>
@@ -141,7 +141,7 @@ function ReserveInfo({ getDetailReserve, reserveId }: ReserveInfoType) {
         <SiteInfo size='profile' siteInfo={siteInfo} />
         <InfoAboutReserve reservePersonInfo={reservePersonInfo} />
         <InfoAboutBookingPerson userDecideInfo={userDecideInfo} />
-        {carInfo && (
+        {JSON.parse(carInfo).length > 0 && (
           <div className='flex flex-col gap-16pxr border-b border-gray200 pb-24pxr'>
             <h3 className='leading-[160%] text-black font-title3-semibold tabletMin:font-title1-semibold'>
               차량 추가

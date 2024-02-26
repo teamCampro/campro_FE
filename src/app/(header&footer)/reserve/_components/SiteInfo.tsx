@@ -61,7 +61,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       >
         <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
           <Image
-            src={siteInfo.siteImage ? siteInfo.siteImage : ''}
+            src={siteInfo.siteImage ? JSON.parse(siteInfo.siteImage)[0] : ''}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
