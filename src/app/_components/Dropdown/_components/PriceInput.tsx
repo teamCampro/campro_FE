@@ -61,6 +61,7 @@ function PriceInput({
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const { value, name } = e.target;
 
     if (isNaN(Number(value.replaceAll(',', '')))) {
@@ -73,6 +74,7 @@ function PriceInput({
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const { value, name } = e.target;
 
     const priceNubmer = numberFormatter(value.replace(/(^0+)/, ''));
