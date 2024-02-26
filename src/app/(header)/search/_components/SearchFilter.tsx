@@ -134,7 +134,6 @@ function SearchFilter() {
 
   const redirectAllUrl = (types: string[]) => {
     const params = new URLSearchParams(window.location.search);
-
     types.forEach((type) => {
       params.delete(type);
       const newValues = StandByList[type].map((el) => el.type).join(',');

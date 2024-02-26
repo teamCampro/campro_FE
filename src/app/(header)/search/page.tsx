@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
 import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
 import KakaoMap from './_components/KakaoMap';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@/hooks/redux';
 import { setResetAll } from '../../_utils/styleSetting';
 import { setResetAllStandBy } from '../../_utils/checkStandByState';
 
@@ -43,7 +43,7 @@ export interface SearchParamsType {
 export type MapSizeType = 'half' | 'map' | 'list';
 
 function Page({ searchParams }: SearchParamsType) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [campPlaceData, setCampPlaceData] = useState<
     CampZoneForSearch[] | null
