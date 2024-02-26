@@ -1,12 +1,45 @@
 'use client';
 
 import { Button, ModalOutside, ModalPortal } from '@/components/index';
-
+import deleteReserve from '@/src/app/_data/profile/deleteReserve';
+import { useRouter } from 'next/navigation';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
 interface CancleReserverModalType {
   handleClick: () => void;
+  reserveId: number;
+  status: string;
 }
 
-function CancleReserverModal({ handleClick }: CancleReserverModalType) {
+function CancleReserverModal({
+  handleClick,
+  reserveId,
+}: CancleReserverModalType) {
+  const router = useRouter();
+  let userId = '';
+  if (typeof window !== 'undefined') {
+    userId = window.localStorage.getItem('userId') || '';
+  }
+
+  const queryClient = useQueryClient();
+
+  const deleteReserveMutation = useMutation({
+    mutationFn: ({
+      userId,
+      reserveId,
+    }: {
+      userId: number;
+      reserveId: number;
+    }) => deleteReserve(Number(userId), reserveId),
+    onSuccess: () => {
+      console.log('성공함', userId + '');
+      queryClient.invalidateQueries({
+        queryKey: ['userReserve', userId + '', null],
+      });
+      router.push('/profile/reserveList');
+    },
+  });
+
   return (
     <ModalPortal>
       <ModalOutside
@@ -25,7 +58,12 @@ function CancleReserverModal({ handleClick }: CancleReserverModalType) {
             <Button.Round custom='!w-125pxr px-20pxr py-14pxr bg-white border border-gray200 font-caption1-semibold !h-48pxr flex !text-gray500 !rounded-lg hover:!bg-primary100 hover:!text-white'>
               아니오
             </Button.Round>
-            <Button.Round custom='!w-125pxr px-20pxr py-14pxr bg-white border border-gray200 font-caption1-semibold !h-48pxr flex !text-gray500 !rounded-lg hover:!bg-primary100 hover:!text-white'>
+            <Button.Round
+              onClick={() =>
+                deleteReserveMutation.mutate({ userId: +userId, reserveId })
+              }
+              custom='!w-125pxr px-20pxr py-14pxr bg-white border border-gray200 font-caption1-semibold !h-48pxr flex !text-gray500 !rounded-lg hover:!bg-primary100 hover:!text-white'
+            >
               취소할래요
             </Button.Round>
           </div>

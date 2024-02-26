@@ -23,7 +23,10 @@ function Page({ params }: { params: { id: number } }) {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <ReserveInfo getDetailReserve={getDetailReserve} />
+        <ReserveInfo
+          getDetailReserve={getDetailReserve}
+          reserveId={reserveId}
+        />
       </Suspense>
     </>
   );
