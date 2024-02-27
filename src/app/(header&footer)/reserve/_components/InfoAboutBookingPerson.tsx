@@ -28,7 +28,8 @@ function InfoAboutBookingPerson({
 
   useEffect(() => {
     const { isDone } = logoutState[4];
-    if (isDone) router.push('/');
+    const userId = localStorage.getItem('userId');
+    if (!userId && isDone) return router.push('/');
   }, [logoutState, router]);
 
   return (
