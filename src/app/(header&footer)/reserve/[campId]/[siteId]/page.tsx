@@ -41,7 +41,9 @@ async function Page({ params }: SearchParamsType) {
             <InfoAboutReserve />
             <InfoAboutBookingPerson />
             <AddVehicle />
-            <AddOption optionList={reserveData.result.additionalOptions} />
+            {reserveData.result.addtionalOptions && (
+              <AddOption optionList={reserveData.result.additionalOptions} />
+            )}
             <PaymentMethod />
           </section>
           <section>

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ReserveItem from './ReserveItem';
 import ReserveStateLists from './ReserveStateLists';
-
+import { Loading } from '@/components/index';
 export interface ReserveStateType {
   id: number;
   name: string;
@@ -16,9 +16,10 @@ export interface ReserveStateType {
 interface ReserveListType {
   userReserveData: ReservationListType[];
   status: string;
+  isLoading: boolean;
 }
 
-function ReserveList({ userReserveData, status }: ReserveListType) {
+function ReserveList({ userReserveData, status, isLoading }: ReserveListType) {
   const [reserveState, setReserveState] = useState<ReserveStateType[]>([
     { id: 1, name: '전체', status: 'all' },
     { id: 2, name: '예약대기', status: 'RESERVE_WAITING' },
@@ -33,7 +34,9 @@ function ReserveList({ userReserveData, status }: ReserveListType) {
         예약내역
       </h2>
       <ReserveStateLists status={status} reserveState={reserveState} />
-      {userReserveData ? (
+      {isLoading ? (
+        <Loading />
+      ) : userReserveData && userReserveData.length > 0 ? (
         <div className='flex flex-col gap-16pxr '>
           {userReserveData.map((list) => {
             return (
