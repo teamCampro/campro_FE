@@ -8,7 +8,7 @@ import { ModalOutside, ModalPortal } from '@/components/index';
 import OwnerModalContent from './OwnerModal/OwnerModalContent';
 import OwnerModalWrapper from './OwnerModal/OwnerModalWrapper';
 import { motion } from 'framer-motion';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getReservationDetail } from '../../_data/owner/getReservationDetail';
 import { patchReservationReject } from '../../_data/owner/patchReservationReject';
 import patchReservationAccept from '../../_data/owner/patchReservationAccept';
@@ -67,12 +67,18 @@ function OwnerReservationCard({
       }),
   });
 
+  const queryClient = useQueryClient();
+
   const acceptMutation = useMutation({
     mutationFn: () => patchReservationAccept(reservationId),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['reservationList'] }),
   });
 
   const rejectMutation = useMutation({
     mutationFn: () => patchReservationReject(reservationId),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['reservationList'] }),
   });
 
   const handleClick = () => {
