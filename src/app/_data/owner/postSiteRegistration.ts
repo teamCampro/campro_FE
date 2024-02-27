@@ -40,8 +40,8 @@ export const postSiteRegistration = async (siteInfo: SiteInputType) => {
         options,
       },
     );
-    const { data } = response;
     if (response.status === 200) {
+      const { data } = response;
       window.location.href = '/owner';
       return data;
     }

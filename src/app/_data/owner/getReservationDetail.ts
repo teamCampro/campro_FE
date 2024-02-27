@@ -13,8 +13,10 @@ export const getReservationDetail = async ({
     const response = await axiosInstance.get(
       `owner/${ownerId}/reservation/${reserveId}`,
     );
-    const { data } = response;
+
     if (response.status === 200) {
+      const { data } = response;
+
       return data.result;
     }
   } catch (error) {

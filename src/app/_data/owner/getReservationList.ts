@@ -23,9 +23,10 @@ export const getReservationList = async (ownerId: string) => {
     const response = await axiosInstance.get<OwnerReservationResponse>(
       `owner/${ownerId}/reservation/list`,
     );
-    const { data } = response;
 
     if (response.status === 200) {
+      const { data } = response;
+
       return data.result;
     }
   } catch (error) {

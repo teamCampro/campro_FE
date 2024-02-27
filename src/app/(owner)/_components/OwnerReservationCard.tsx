@@ -8,8 +8,10 @@ import { ModalOutside, ModalPortal } from '@/components/index';
 import OwnerModalContent from './OwnerModal/OwnerModalContent';
 import OwnerModalWrapper from './OwnerModal/OwnerModalWrapper';
 import { motion } from 'framer-motion';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { getReservationDetail } from '../../_data/owner/getReservationDetail';
+import { patchReservationReject } from '../../_data/owner/patchReservationReject';
+import patchReservationAccept from '../../_data/owner/patchReservationAccept';
 
 export type ReservationType =
   | 'RESERVE_WAITING'
@@ -64,7 +66,14 @@ function OwnerReservationCard({
         reserveId: reservationId,
       }),
   });
-  console.log(data);
+
+  const acceptMutation = useMutation({
+    mutationFn: () => patchReservationAccept(reservationId),
+  });
+
+  const rejectMutation = useMutation({
+    mutationFn: () => patchReservationReject(reservationId),
+  });
 
   const handleClick = () => {
     setIsModalOpen(!isModalOpen);
@@ -130,6 +139,7 @@ function OwnerReservationCard({
             size='large'
             type='accept'
             isDisabled={isDisabled()}
+            onClick={() => acceptMutation.mutate()}
           >
             수락
           </OwnerButton.Reservation>
@@ -137,6 +147,7 @@ function OwnerReservationCard({
             size='large'
             type='reject'
             isDisabled={isDisabled()}
+            onClick={() => rejectMutation.mutate()}
           >
             취소
           </OwnerButton.Reservation>
