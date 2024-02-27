@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import useMediaQueries from '@/hooks/useMediaQueries';
-import { IconPeople } from '@/public/svgs';
+import { IconPeople, IconPeopleFill } from '@/public/svgs';
 import { getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { setProfileState } from '@/src/app/_utils/profileState';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -73,11 +73,11 @@ function HeaderDropdown() {
     <>
       <div className='flex-center group h-40pxr' onClick={handleModal}>
         <div className='h-24pxr w-24pxr cursor-pointer tabletMin:h-32pxr tabletMin:w-32pxr'>
-          <IconPeople
+          <IconPeopleFill
             width='100%'
             height='100%'
             viewBox='0 0 24 24'
-            fill='black'
+            className='fill-gray700'
           />
         </div>
         <ul
@@ -117,7 +117,7 @@ function HeaderDropdown() {
     </>
   ) : (
     <Link href='/signin'>
-      <IconPeople className='hidden mobile:block' />
+      <IconPeople className='hidden fill-gray700 mobile:block' />
       <span className='block mobile:hidden'>로그인/회원가입</span>
     </Link>
   );
