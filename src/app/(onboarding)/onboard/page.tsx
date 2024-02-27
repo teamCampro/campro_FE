@@ -4,17 +4,17 @@ import Button from '@/components/Button';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/hooks/redux';
 function Page() {
   const router = useRouter();
 
-  let userId = '';
-  if (typeof window !== 'undefined') {
-    userId = window.localStorage.getItem('userId') || '';
-  }
+  const logoutState = useAppSelector((state) => state.profile);
 
   useEffect(() => {
-    if (!userId) return router.push('/');
-  }, [userId]);
+    const { isDone } = logoutState[4];
+    const userId = localStorage.getItem('userId');
+    if (!userId && isDone) return router.push('/');
+  }, [logoutState, router]);
 
   return (
     <div className='custom-height justify-center bg-gray100 bg-onboard bg-cover bg-center bg-no-repeat pt-201pxr mobile:pt-64pxr'>

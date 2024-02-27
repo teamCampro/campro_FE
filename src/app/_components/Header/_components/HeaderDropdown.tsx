@@ -63,11 +63,12 @@ function HeaderDropdown() {
     enabled: isLogin,
   });
 
-  const handleLogout = () => {
+  const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
     dispatch(setProfileState(5));
     queryClient.removeQueries();
     setIsLogin(false);
     window.localStorage.removeItem('userId');
+    e.stopPropagation();
   };
 
   return isLogin ? (

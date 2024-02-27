@@ -29,8 +29,12 @@ function Hero({ searchParams }: SearchParamsType) {
   const closeModal = () => dispatch(isOpen(false));
 
   const handleButtonClick = () => {
-    if (!userId) return dispatch(isOpen(true));
-    router.push('/onboard');
+    if (userId) {
+      router.push('/onboard');
+    } else {
+      localStorage.setItem('redirectAfterLogin', '/onboard');
+      dispatch(isOpen(true));
+    }
   };
 
   return (
