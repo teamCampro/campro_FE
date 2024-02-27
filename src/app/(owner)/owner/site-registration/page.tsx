@@ -111,7 +111,11 @@ function SiteRegistrationPage() {
     options: [],
   });
 
-  const userId = localStorage.getItem('userId');
+  const userId = () => {
+    if (typeof window === 'undefined') return;
+    return localStorage.getItem('userId');
+  };
+
   const { data: ownerInfo } = useQuery<OwnerInfoType>({
     queryKey: ['ownerInfo'],
     queryFn: () => getOwnerInfo(Number(userId)),

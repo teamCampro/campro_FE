@@ -7,7 +7,7 @@ const s3 = new AWS.S3({
   region: process.env.AWS_REGION,
 });
 
-export const runtime = 'experimental-edge';
+// export const runtime = 'edge';
 
 export const POST = async (req: NextRequest) => {
   const { fileName, fileType } = await req.json();
