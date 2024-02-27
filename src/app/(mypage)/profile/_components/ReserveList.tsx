@@ -1,17 +1,11 @@
 'use client';
 
+import { IconArrowRightNon } from '@/public/svgs';
 import { ReservationListType } from '@/src/app/_constants/reserveList';
+import Link from 'next/link';
+import { useState } from 'react';
 import ReserveItem from './ReserveItem';
 import ReserveStateLists from './ReserveStateLists';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Loading } from '@/components/index';
-import Link from 'next/link';
-import {
-  IconArrowRight,
-  IconArrowRightNon,
-  IconArrowRightNormal,
-} from '@/public/svgs';
 
 export interface ReserveStateType {
   id: number;
@@ -65,7 +59,12 @@ function ReserveList({ userReserveData, status }: ReserveListType) {
           <Link className='mobile:hidden' href='/'>
             <button className='flex-center gap-4pxr rounded-full border border-gray300 py-12pxr pl-20pxr pr-14pxr leading-[140%] text-gray600 font-body2-semibold'>
               캠핑장 예약하기
-              <IconArrowRightNon fill='#949494' className='text-gray500' />
+              <IconArrowRightNon
+                width={24}
+                height={24}
+                fill='#949494'
+                className='text-gray500'
+              />
             </button>
           </Link>
         </div>

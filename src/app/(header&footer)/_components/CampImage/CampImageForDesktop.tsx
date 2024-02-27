@@ -15,14 +15,13 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
     <>
       {imgUrls && (
         <div className='relative flex w-full max-w-1360pxr'>
-          <div className='grid w-full grid-cols-2 gap-12pxr'>
-            <div className='flex w-full'>
+          <div className='grid h-auto w-full grid-cols-2  gap-12pxr'>
+            <div className='relative flex h-full w-full'>
               {imgUrls[0] && imgUrls[0] !== '' && (
                 <Image
-                  className='flex w-full cursor-pointer object-cover transition-all  hover:brightness-[0.7]'
-                  width={580}
-                  height={380}
-                  quality={100}
+                  priority
+                  className='aspect-580/398 cursor-pointer rounded-l-2xl transition-all hover:brightness-[0.7] tablet:aspect-688/398'
+                  fill
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
                 />
@@ -35,12 +34,12 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                   (imgUrl, i) =>
                     imgUrl && (
                       <Image
+                        priority
                         width={256}
                         height={192}
-                        quality={100}
-                        className='aspect-256/192 flex w-full cursor-pointer object-cover hover:brightness-[0.7]'
-                        src={imgUrl}
                         key={imgUrl + i}
+                        className={`flex aspect-256/192 w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 1 && 'rounded-tr-2xl'} ${i === 3 && 'rounded-br-2xl'}`}
+                        src={imgUrl}
                         alt={`${imgUrl}`}
                       />
                     ),

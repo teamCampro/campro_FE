@@ -19,7 +19,7 @@ function CampSiteBasicInfo({
   intro,
 }: CampSiteBasicInfoProps) {
   const tag = {
-    text: '청결도 만족도가 높은 곳이에요',
+    text: '"청결도, 만족도가 높은 곳이에요"',
     list: [
       { text: '깨끗해요', count: 738 },
       { text: '매너 타임을 잘 지켜요', count: 1995 },
@@ -28,13 +28,22 @@ function CampSiteBasicInfo({
       { text: '아늑해요', count: 369 },
     ],
   };
-  const keywords = keyword.split(',').filter(Boolean);
+  const keywords = keyword.split(',').filter(Boolean).slice(4);
   return (
     <article className='flex flex-col gap-24pxr'>
       <div className='flex flex-col gap-12pxr'>
-        <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr tablet:mr-80pxr'>
+        <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr mobile:gap-4pxr tablet:mr-80pxr'>
           {keywords.map((word, i) => (
-            <Chip key={word + i}>{word}</Chip>
+            <Chip key={word + i}>
+              {word.trim().length === 4 && word.indexOf('캠핑') > -1 ? (
+                <>
+                  {word.trim().slice(0, 2)}
+                  <span className='mobile:hidden'>캠핑</span>
+                </>
+              ) : (
+                <>{word}</>
+              )}
+            </Chip>
           ))}
         </div>
         <h2 className='font-h2-semibold mobile:font-title3-bold'>

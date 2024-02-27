@@ -5,7 +5,7 @@ interface SiteInfoListProps {
 
 function SiteInfoList({ title, infos }: SiteInfoListProps) {
   return (
-    <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
+    <div className='flex flex-col gap-12pxr bg-white mobile:border-gray200 mobile:pb-0pxr'>
       <h6 className='text-black font-body1-bold'>{title}</h6>
       <ul className='flex flex-col gap-8pxr'>
         {infos.map((info, i) => (

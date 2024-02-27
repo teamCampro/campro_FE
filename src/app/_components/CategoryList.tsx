@@ -12,7 +12,7 @@ function CategoryList() {
         원하는 캠핑을 찾아보세요
       </h3>
       <div className='absolute -left-10pxr bottom-0pxr flex w-full bg-inherit shadow-none mobile:static mobile:justify-center mobile:rounded-xl mobile:bg-white mobile:shadow-categoryItem tablet:justify-normal'>
-        <ul className='flex w-full flex-1 justify-center gap-16pxr p-0pxr mobile:grid mobile:max-w-288pxr mobile:grid-cols-4 mobile:gap-24pxr mobile:gap-y-20pxr mobile:px-16pxr mobile:py-24pxr'>
+        <ul className='flex w-full flex-1 justify-center gap-16pxr p-0pxr mobile:grid mobile:grid-cols-4 mobile:gap-12pxr mobile:gap-y-20pxr mobile:px-16pxr mobile:py-24pxr'>
           <Swiper
             modules={[FreeMode]}
             freeMode={true}

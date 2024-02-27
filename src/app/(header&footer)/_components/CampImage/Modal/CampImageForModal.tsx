@@ -20,10 +20,10 @@ function CampImageForModal({
   };
 
   return (
-    <div className='flex h-542pxr  w-full max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
+    <div className='flex h-542pxr w-full max-w-1008pxr flex-col items-start rounded-[16px] bg-white pt-16pxr'>
       <ModalAboutHeader onClose={onClose} title={title} />
-      <div className='flex w-full flex-col items-center justify-center  bg-gray100 '>
-        <div className='relative  h-400pxr w-586pxr'>
+      <div className='b flex w-full flex-col items-center justify-center rounded-b-2xl bg-gray100'>
+        <div className='relative h-400pxr w-586pxr'>
           {mainImage && (
             <a
               href={mainImage}
@@ -37,7 +37,7 @@ function CampImageForModal({
               }}
             >
               <Image
-                className='flex w-full  cursor-pointer hover:brightness-[0.7]'
+                className='flex w-full cursor-pointer hover:brightness-[0.7]'
                 src={mainImage}
                 fill
                 alt='메인 캠프 이미지'
@@ -49,7 +49,7 @@ function CampImageForModal({
 
         <Swiper
           id='campImage-swiper'
-          className='!flex w-full items-start   bg-white !py-16pxr !pl-16pxr !pr-4pxr'
+          className='!flex w-full items-start rounded-b-2xl !py-16pxr !pl-16pxr !pr-4pxr first-line:bg-white'
           slidesPerView='auto'
         >
           {imgUrls.slice(0, Number(imgUrls.length)).map(

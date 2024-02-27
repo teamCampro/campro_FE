@@ -31,7 +31,7 @@ function SelectList({ types }: SelectListType) {
       if (StandByList[types].includes(list)) return;
       /* 여행타입은 중복체크되면 안됨 */
       if (types === 'trip' && StandByList['trip'].length > 0) {
-        dispatch(setResetStandBy('trip'))
+        dispatch(setResetStandBy('trip'));
       }
       dispatch(setCheckStandBy({ types, list }));
     } else {
@@ -49,8 +49,11 @@ function SelectList({ types }: SelectListType) {
         DETAIL[types].map((list) => {
           return (
             <li key={list.id}>
-              {types === 'trip' ? <div className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'} selectRadio`}>
-              {list.type}
+              {types === 'trip' ? (
+                <div
+                  className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'} selectRadio`}
+                >
+                  {list.type}
                   <input
                     type='radio'
                     name='radioList'
@@ -60,24 +63,29 @@ function SelectList({ types }: SelectListType) {
                     /* checked={checkOption(types, list)} */
                     onChange={(e) => handleCheck(e, list, types)}
                   />
-                  <label htmlFor={list.type} className={`${StandByList[types].some((item) => item.id === list.id) ? '' : 'labelStyle'}`}></label>
-                </div> :
-              <label
-                htmlFor={list.type}
-                className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
-              >
-                {list.type}
-                 <div>
-                  <input
-                    type='checkbox'
-                    name='checkList'
-                    id={list.type}
-                    value={list.type}
-                    checked={checkOption(types, list)}
-                    onChange={(e) => handleCheck(e, list, types)}
-                  />
+                  <label
+                    htmlFor={list.type}
+                    className={`${StandByList[types].some((item) => item.id === list.id) ? '' : 'labelStyle'}`}
+                  ></label>
                 </div>
-              </label>}
+              ) : (
+                <label
+                  htmlFor={list.type}
+                  className={`flex-center relative justify-between font-body1-medium  ${StandByList[types].some((item) => item.id === list.id) ? 'text-primary100' : 'text-gray800'}`}
+                >
+                  {list.type}
+                  <div>
+                    <input
+                      type='checkbox'
+                      name='checkList'
+                      id={list.type}
+                      value={list.type}
+                      checked={checkOption(types, list)}
+                      onChange={(e) => handleCheck(e, list, types)}
+                    />
+                  </div>
+                </label>
+              )}
             </li>
           );
         })}
