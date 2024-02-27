@@ -1,19 +1,33 @@
-import { CampPlaceSection, CategoryList, Hero } from '@/components/index';
-import { getMainCampList } from '../_data/main/campList';
+'use client';
 
+import { CampPlaceSection, CategoryList, Hero } from '@/components/index';
+import { useEffect, useState } from 'react';
+import { getMainCampList } from '../_data/main/campList';
+import { CampZoneData } from './_components/CampPlaceSection';
+import { useAppSelector } from '@/hooks/redux';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
 }
 
-async function Page({ searchParams }: SearchParamsType) {
-  const data = await getMainCampList();
+function Page({ searchParams }: SearchParamsType) {
+  const [data, setData] = useState<CampZoneData | null>(null);
+
+  const logoutState = useAppSelector((state) => state.profile);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await getMainCampList();
+      setData(res);
+    };
+    fetch();
+  }, [logoutState]);
 
   return (
     <div>
       <Hero searchParams={searchParams} />
-      <div className='flex w-full flex-col bg-gray-100  pt-104pxr '>
+      <div className='flex w-full flex-col bg-gray-100 pt-104pxr '>
         <div className='flex-center pl-40pxr mobile:pl-16pxr'>
           <CategoryList />
         </div>

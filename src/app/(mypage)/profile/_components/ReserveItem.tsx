@@ -50,7 +50,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
         return 'tetxt-[#555]';
     }
   };
-  console.log(list.siteImage);
+
   return (
     <>
       <figure
@@ -61,7 +61,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
-          className='rounded-xl'
+          className='aspect-square rounded-xl'
         />
         <div className='flex w-full flex-col justify-between mobile:gap-20pxr tabletMin:flex-row'>
           <div className='profile-width flex w-full flex-col gap-12pxr'>
