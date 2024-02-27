@@ -36,7 +36,7 @@ export const GET = async (req: NextRequest) => {
       query += ` AND czs.max_people >= ${adult + child}`;
     }
 
-    if (pet) {
+    if (pet !== '0') {
       query += ` AND czs.pet_yn IS TRUE`;
     }
 

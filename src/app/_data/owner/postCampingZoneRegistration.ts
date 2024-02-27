@@ -64,10 +64,14 @@ export const postCampingZoneRegistration = async () => {
       intro: localStorage.getItem('introduction'),
       mannerTimeStart: localStorage.getItem('mannerTimeStart'),
       mannerTimeEnd: localStorage.getItem('mannerTimeEnd'),
-      openTime: '2개월',
+      openTime: localStorage.getItem('openTime'),
       onboardingKeyword: getOnboardingKeywords(),
       guide: localStorage.getItem('informationUse'),
       refundGuide: localStorage.getItem('cancellationRefundPolicy'),
+      lng: localStorage.getItem('lng'),
+      lat: localStorage.getItem('lat'),
+      displayAddress: localStorage.getItem('displayAddress'),
+      bossAddress: localStorage.getItem('businessAdress'),
     };
     const {
       name,
@@ -88,8 +92,12 @@ export const postCampingZoneRegistration = async () => {
       onboardingKeyword,
       guide,
       refundGuide,
+      lng,
+      lat,
+      displayAddress,
+      bossAddress,
     } = body;
-    await axiosInstance.post(`owner/camping-zone/register`, {
+    const response = await axiosInstance.post(`owner/camping-zone/register`, {
       name,
       tel,
       bossId,
@@ -108,7 +116,14 @@ export const postCampingZoneRegistration = async () => {
       onboardingKeyword,
       guide,
       refundGuide,
+      lng,
+      lat,
+      displayAddress,
+      bossAddress,
     });
+    if (response.status === 200) {
+      window.location.href = '/owner';
+    }
   } catch (error) {
     console.error(error);
   }

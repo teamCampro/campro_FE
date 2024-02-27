@@ -111,14 +111,9 @@ function SiteRegistrationPage() {
     options: [],
   });
 
-  const userId = () => {
-    if (typeof window === 'undefined') return;
-    return localStorage.getItem('userId');
-  };
-
   const { data: ownerInfo } = useQuery<OwnerInfoType>({
     queryKey: ['ownerInfo'],
-    queryFn: () => getOwnerInfo(Number(userId)),
+    queryFn: () => getOwnerInfo(Number(localStorage.getItem('userId'))),
   });
 
   const [additionalOption, setAdditionalOption] = useState<AddtionalOptionType>(
