@@ -4,7 +4,6 @@ const OWNER_REGISTRATION_ROUTES = {
     'first-step',
     'environment',
     'categories',
-    'activities',
     'stay-term',
     'information',
     'amenities',
