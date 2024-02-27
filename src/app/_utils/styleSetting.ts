@@ -24,18 +24,6 @@ export const styleSettingSlice = createSlice({
   name: 'styleSetting',
   initialState,
   reducers: {
-    /* setSelect: (state, action) => {
-      state.select[action.payload.types] = state.select[
-        action.payload.types
-      ].map((item) => {
-        if (item.id === action.payload.list.id) {
-          return { ...item, isDone: !item.isDone };
-        } else if (item.isDone) {
-          return { ...item, isDone: false };
-        }
-        return item;
-      });
-    }, */
     setSelect: (state, action) => {
       state.select[action.payload.types].push(action.payload.list);
     },
@@ -54,7 +42,3 @@ export const styleSettingSlice = createSlice({
 
 export const { setSelect, setResetAll, setReset } = styleSettingSlice.actions;
 export default styleSettingSlice.reducer;
-
-/* setSelect: (state, action) => {
-      state.select[action.payload.types].push(action.payload.list);
-    }, */

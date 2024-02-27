@@ -12,17 +12,25 @@ import { ImagesType, SurveyListsType } from './WriteReviewModal';
 interface ImageUploadType {
   surveyLists: SurveyListsType;
   setSurveyLists: Dispatch<SetStateAction<SurveyListsType>>;
+  maxFileCount: number;
 }
 
-function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
+function ImageUpload({
+  surveyLists,
+  setSurveyLists,
+  maxFileCount,
+}: ImageUploadType) {
   let inputRef = useRef<HTMLInputElement>(null);
 
   const handleSaveImage = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const tmpFileList: ImagesType[] = [];
     const files = e.target.files;
-
-    if (files && files.length < 6 && surveyLists.images.length < 5) {
+    if (
+      files &&
+      files.length <= maxFileCount &&
+      surveyLists.images.length <= maxFileCount
+    ) {
       for (let i = 0; i < files.length; i++) {
         const preview_URL = URL.createObjectURL(files[i]);
         const fileType = files[i].type.split('/')[0];
@@ -59,7 +67,7 @@ function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
         }
       }
     } else {
-      /* alert('이미지는 5장만 추가할 수 있습니다'); */
+      alert(`이미지는 ${maxFileCount}장만 추가할 수 있습니다`);
     }
     setSurveyLists({
       ...surveyLists,
@@ -112,7 +120,7 @@ function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
                 />
               )}
               <div
-                className='absolute right-0pxr top-0pxr h-18pxr w-18pxr cursor-pointer'
+                className='absolute right-4pxr top-4pxr h-18pxr w-18pxr cursor-pointer'
                 onClick={() => deleteImage(index)}
               >
                 <IconClose
@@ -129,14 +137,16 @@ function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
       <div className='flex-center'>
         <label
           htmlFor='reviewImage'
-          className={`flex-center flex h-56pxr w-108pxr cursor-pointer flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border  py-24pxr pl-24pxr pr-32pxr  font-body2-semibold  ${surveyLists.images.length < 5 ? 'border-primary100 text-primary100 hover:bg-primary50' : 'bg-gray300 text-gray500'}`}
+          className={`flex-center flex h-56pxr w-108pxr cursor-pointer flex-nowrap gap-4pxr whitespace-nowrap rounded-[99px] border  py-24pxr pl-24pxr pr-32pxr  font-body2-semibold  ${surveyLists.images.length < maxFileCount ? 'border-primary100 text-primary100 hover:bg-primary50' : 'bg-gray300 text-gray500'}`}
         >
           <div className='h-20pxr w-20pxr '>
             <IconPlusNon
               width='100%'
               height='100%'
               viewBox='0 0 24 24'
-              fill={surveyLists.images.length < 5 ? '#4F9E4F' : '#949494'}
+              fill={
+                surveyLists.images.length < maxFileCount ? '#4F9E4F' : '#949494'
+              }
             />
           </div>
           <input
@@ -148,7 +158,7 @@ function ImageUpload({ surveyLists, setSurveyLists }: ImageUploadType) {
             accept='video/*, image/*'
             multiple
             onChange={handleSaveImage}
-            disabled={surveyLists.images.length < 5 ? false : true}
+            disabled={surveyLists.images.length < maxFileCount ? false : true}
           />
           추가
         </label>

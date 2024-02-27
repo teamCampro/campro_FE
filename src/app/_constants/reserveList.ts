@@ -57,4 +57,10 @@ export interface ReservationListType {
   campingZoneSiteName: string;
   stayStartAt: string;
   stayEndAt: string;
+  status:
+    | 'RESERVE_WAITING'
+    | 'RESERVE_COMPLETE'
+    | 'RESERVE_CANCEL'
+    | 'SERVICE_COMPLETE';
+  siteImage: string;
 }

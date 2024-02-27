@@ -56,7 +56,7 @@ const config: Config = {
       },
       colors: {
         primary100: '#3E874E',
-        primary50: '#C4DBC4',
+        primary50: '#E9F1E9',
         emred: '#655DC6',
         error: '#DA1E28',
         second50: '#DFD5C2',
@@ -99,6 +99,8 @@ const config: Config = {
       },
       aspectRatio: {
         '2/1': '2 / 1',
+        '580/398': '580/398',
+        '360/312': '360 / 312',
         '256/192': '256 / 192',
         '288/184': '288 / 184',
         '320/197': '320 / 197',
@@ -121,6 +123,7 @@ const config: Config = {
       mobile411: { min: '320px', max: '411px' },
       mobile725: { min: '412px', max: '725px' },
       mobileMiddle: { min: '345px', max: '767px' },
+      mobileMiddleMin: '345px',
       tablet: {
         min: '768px',
         max: '1199px',

@@ -1,31 +1,32 @@
-import { NextRequest, NextResponse } from "next/server";
-import { pool } from "@/src/app/api/libs/mysql";
+import { NextRequest, NextResponse } from 'next/server';
+import { pool } from '@/src/app/api/libs/mysql';
 
 export const PATCH = async (
-	req: NextRequest,
-	{ params }: { params: { reserveId: string } },
+  req: NextRequest,
+  { params }: { params: { reserveId: string } },
 ) => {
-	try {
-		const rStatusData = await req.json();
-		const db = await pool.getConnection();
-		const { reserveId } = params;
-		const reservationStatus = rStatusData.status;
+  try {
+    const db = await pool.getConnection();
+    const { reserveId } = params;
 
-		if (reservationStatus === 'RESERVE_WAITING') {
-			const query = `UPDATE reservation SET status = 'RESERVE_COMPLETE' WHERE id = ?`;
-			await db.execute(query, [reserveId]);
+    const reserveStatusQuery = `SELECT status FROM reservation WHERE id = ?`;
 
-			db.release();
-			return NextResponse.json({});
-		}
+    const reserveStatusResult: any = await db.execute(reserveStatusQuery, [
+      reserveId,
+    ]);
+    const reservationStatus = reserveStatusResult[0][0].status;
 
-		else {
-			const statusErrorMessage = '예약 대기 상태 아님';
-			return NextResponse.json({ error: statusErrorMessage }, { status: 500 });
-		}
-		
-	}
-	catch (error) {
-		return NextResponse.json({ error }, { status: 500 });
-	}
-}
+    if (reservationStatus === 'RESERVE_WAITING') {
+      const query = `UPDATE reservation SET status = 'RESERVE_COMPLETE' WHERE id = ?`;
+      await db.execute(query, [reserveId]);
+
+      db.release();
+      return NextResponse.json({});
+    } else {
+      const statusErrorMessage = '예약 대기 상태 아님';
+      return NextResponse.json({ error: statusErrorMessage }, { status: 500 });
+    }
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+};

@@ -1,5 +1,4 @@
 import HeaderDropdown from '@/components/Header/_components/HeaderDropdown';
-import { IconPeople } from '@/public/svgs';
 import Link from 'next/link';
 
 function OnBoardingHeader() {
@@ -17,7 +16,7 @@ function OnBoardingHeader() {
             캠핑 테스트
           </h3>
         </div>
-        <div className='flex-center relative'>
+        <div className='relative flex items-center justify-end text-gray500 font-title3-semibold'>
           <HeaderDropdown />
         </div>
       </div>

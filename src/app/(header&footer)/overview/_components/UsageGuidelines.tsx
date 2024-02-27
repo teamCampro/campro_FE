@@ -22,17 +22,21 @@ function UsageGuidelines({
   tourNumber,
 }: UsageGuidelinesProps) {
   return (
-    <section className='flex flex-col gap-16pxr pt-24pxr mobile:px-20pxr'>
-      <SectionTitle>이용안내</SectionTitle>
-      <div
-        className='text-gray500 font-caption1-medium'
-        dangerouslySetInnerHTML={{ __html: guide }}
-      ></div>
-      <SectionTitle>취소/환불 규정</SectionTitle>
-      <div
-        className='text-gray500 font-caption1-medium'
-        dangerouslySetInnerHTML={{ __html: refundGuide }}
-      ></div>
+    <section className='flex flex-col gap-32pxr pt-24pxr mobile:px-20pxr'>
+      <div className='flex flex-col gap-16pxr'>
+        <SectionTitle>이용안내</SectionTitle>
+        <div
+          className='text-gray500 font-caption1-medium'
+          dangerouslySetInnerHTML={{ __html: guide }}
+        ></div>
+      </div>
+      <div className='flex flex-col gap-16pxr'>
+        <SectionTitle>취소/환불 규정</SectionTitle>
+        <div
+          className='text-gray500 font-caption1-medium'
+          dangerouslySetInnerHTML={{ __html: refundGuide }}
+        ></div>
+      </div>
       <div className='flex flex-col gap-16pxr'>
         <SectionTitle>판매자 정보</SectionTitle>
         <ul className='text-gray500 font-body2-medium'>

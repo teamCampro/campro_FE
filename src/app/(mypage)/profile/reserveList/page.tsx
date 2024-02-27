@@ -23,6 +23,7 @@ function Page({ searchParams }: ProfilePageType) {
     queryKey: ['userReserve', userId, status],
     queryFn: () => getReserveList(userId, status),
     staleTime: 60 * 1000,
+    refetchOnMount: 'always',
   });
   return (
     <>

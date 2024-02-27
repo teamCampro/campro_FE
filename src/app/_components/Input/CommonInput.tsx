@@ -1,12 +1,11 @@
 'use client';
 
-import { useFormContext } from 'react-hook-form';
-import {
-  requiredValidate,
-  passwordCheckValidate,
-} from '../../_constants/inputValidate';
-import { RegisterOptions } from 'react-hook-form';
 import { ChangeEvent } from 'react';
+import { RegisterOptions, useFormContext } from 'react-hook-form';
+import {
+  passwordCheckValidate,
+  requiredValidate,
+} from '../../_constants/inputValidate';
 interface Props {
   name: string;
   type?: string;
@@ -17,6 +16,8 @@ interface Props {
   defaultValue?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
+  maxLength?: number;
+  hasError?: boolean;
 }
 function CommonInput({
   name,
@@ -26,8 +27,10 @@ function CommonInput({
   readOnly,
   rules = requiredValidate,
   defaultValue,
+  maxLength,
   onChange,
   onBlur,
+  hasError,
 }: Props) {
   const {
     register,
@@ -36,7 +39,7 @@ function CommonInput({
   } = useFormContext();
 
   const inputCss = (isError: boolean, className?: string) =>
-    `outline-0 box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400   ${isError ? '!border-red-500' : '!border-gray-500'} ${className ? className : ''}`;
+    `outline-0   box-border flex w-full gap-8pxr rounded-[8px] border px-16pxr py-11pxr  text-[1rem]  placeholder:text-gray400   ${isError ? '!border-red-500' : '!border-none'} ${className ? className : ''}`;
 
   const registerOptions = () => {
     switch (name) {
@@ -60,9 +63,11 @@ function CommonInput({
       {...register(name, registerOptions())}
       type={name === 'password' || name === 'passwordCheck' ? 'password' : type}
       placeholder={placeholder}
-      className={inputCss(errors[name] ? true : false, className)}
+      className={inputCss(errors[name] || hasError ? true : false, className)}
       readOnly={readOnly}
       defaultValue={defaultValue}
+      autoComplete='off'
+      maxLength={maxLength}
     />
   );
 }

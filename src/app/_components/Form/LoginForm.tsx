@@ -7,8 +7,8 @@ import {
   InputContainer,
   Label,
 } from '@/components/index';
-import { useMutation } from '@tanstack/react-query';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
+import { FieldValues } from 'react-hook-form';
 import {
   emailValidate,
   passwordValidate,
@@ -22,32 +22,18 @@ export interface SigninInfo {
 }
 
 function LoginForm() {
-  const [signinInfo, setSigninInfo] = useState({
-    email: '',
-    password: '',
-  });
-
-  const signinMutation = useMutation({
-    mutationFn: () => signin(signinInfo),
-  });
-
-  const handleSubmit = () => {
-    signinMutation.mutate();
-  };
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    inputName: string,
-  ) => {
-    setSigninInfo((prev) => ({ ...prev, [inputName]: e.target.value }));
+  const [errorMessage, setErrorMessage] = useState('');
+  const handleSubmit = async (values: FieldValues) => {
+    const message = await signin(values);
+    if (message) setErrorMessage(message);
   };
 
   return (
     <CommonForm
       mode='onBlur'
-      className=' flex w-full flex-col gap-48pxr'
+      className='flex w-full flex-col gap-48pxr'
       defaultValues={{ email: '', password: '' }}
-      onSubmit={() => handleSubmit()}
+      onSubmit={handleSubmit}
     >
       <div className='flex w-full flex-col gap-24pxr '>
         <InputContainer className='flex w-full flex-col gap-8pxr'>
@@ -58,33 +44,44 @@ function LoginForm() {
             이메일
           </Label>
           <CommonInput
+            onChange={(e) => {
+              setErrorMessage('');
+              return e.target.value;
+            }}
             name='email'
             placeholder='이메일을 입력해주세요'
             rules={emailValidate}
-            onChange={(e) => handleChange(e, 'email')}
+            className='h-56pxr placeholder:!text-gray500'
+            hasError={!!errorMessage}
           />
-          <ErrorMessage name='email' />
+          <ErrorMessage name='email' errorMessage={errorMessage} />
         </InputContainer>
 
         <InputContainer className='flex w-full flex-col gap-8pxr'>
           <Label
-            className='flex  text-gray400 font-body2-medium'
+            className='flex text-gray400 font-body2-medium'
             htmlFor='password'
           >
             비밀번호
           </Label>
           <CommonInput
+            onChange={(e) => {
+              setErrorMessage('');
+              return e.target.value;
+            }}
             name='password'
             placeholder='비밀번호를 입력해주세요'
             rules={passwordValidate}
-            onChange={(e) => handleChange(e, 'password')}
+            className='h-56pxr placeholder:!text-gray500'
+            hasError={!!errorMessage}
           />
           <ErrorMessage name='password' />
         </InputContainer>
       </div>
       <HookFormButton
-        custom='flex w-full  bg-primary100 font-title3-bold text-white'
+        custom='flex w-full bg-primary100 font-title3-bold text-white !h-56pxr'
         size='md'
+        hasError={!!errorMessage}
       >
         로그인
       </HookFormButton>

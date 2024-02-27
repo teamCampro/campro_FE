@@ -11,6 +11,10 @@ interface ReqType {
   pet: number;
   payMethod: 'NO_BANK_BOOK' | 'CREDIT_CARD' | 'EASY_PAYMENT' | '';
   carInfo: string;
+  options: {
+    optionId: number;
+    optionAmount: number;
+  }[];
 }
 
 const postReservationDetail = async (req: ReqType) => {

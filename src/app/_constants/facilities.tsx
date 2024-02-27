@@ -24,87 +24,87 @@ import {
 
 const FACILITIES = {
   개수대: {
-    icon: <IconSink />,
+    icon: <IconSink className='fill-gray600' />,
     order: 1,
   },
   화장실: {
-    icon: <IconPublicToilet />,
+    icon: <IconPublicToilet className='fill-gray600' />,
     order: 2,
   },
   내부화장실: {
-    icon: <IconPersonalToilet />,
+    icon: <IconPersonalToilet className='fill-gray600' />,
     order: 2,
   },
   샤워실: {
-    icon: <IconCampShower />,
+    icon: <IconCampShower className='fill-gray600' />,
     order: 3,
   },
   내부샤워실: {
-    icon: <IconPersonalShower />,
+    icon: <IconPersonalShower className='fill-gray600' />,
     order: 3,
   },
   와이파이: {
-    icon: <IconCampWifi />,
+    icon: <IconCampWifi className='fill-gray600' />,
     order: 4,
   },
   바베큐: {
-    icon: <IconBbq />,
+    icon: <IconBbq className='fill-gray600' />,
     order: 5,
   },
   취사도구: {
-    icon: <IconCooking />,
+    icon: <IconCooking className='fill-gray600' />,
     order: 6,
   },
   매점: {
-    icon: <IconStore />,
+    icon: <IconStore className='fill-gray600' />,
     order: 7,
   },
   애견동반: {
-    icon: <IconPet className='fill-gray100' />,
+    icon: <IconPet className='fill-gray600' />,
     order: 8,
   },
   침대: {
-    icon: <IconCampBed />,
+    icon: <IconCampBed className='fill-gray600' />,
     order: 9,
   },
   전기: {
-    icon: <IconElectricity />,
+    icon: <IconElectricity className='fill-gray600' />,
     order: 10,
   },
   에어컨: {
-    icon: <IconAirConditional />,
+    icon: <IconAirConditional className='fill-gray600' />,
     order: 11,
   },
   난방기구: {
-    icon: <IconHeating />,
+    icon: <IconHeating className='fill-gray600' />,
     order: 12,
   },
   TV: {
-    icon: <IconTv />,
+    icon: <IconTv className='fill-gray600' />,
     order: 13,
   },
   산책로: {
-    icon: <IconWalkingPath />,
+    icon: <IconWalkingPath className='fill-gray600' />,
     order: 14,
   },
   운동시설: {
-    icon: <IconExercise />,
+    icon: <IconExercise className='fill-gray600' />,
     order: 15,
   },
   놀이시설: {
-    icon: <IconPlay />,
+    icon: <IconPlay className='fill-gray600' />,
     order: 16,
   },
   물놀이: {
-    icon: <IconWaterPlay />,
+    icon: <IconWaterPlay className='fill-gray600' />,
     order: 16,
   },
   트램플린: {
-    icon: <IconTrampoline />,
+    icon: <IconTrampoline className='fill-gray600' />,
     order: 16,
   },
   장비대여: {
-    icon: <IconRental />,
+    icon: <IconRental className='fill-gray600' />,
     order: 16,
   },
 };

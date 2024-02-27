@@ -33,7 +33,12 @@ function SideLists() {
               >
                 {option.list}
               </h3>
-              <IconArrowRightNon fill='#949494' className='text-gray500' />
+              <IconArrowRightNon
+                width={24}
+                height={24}
+                fill='#949494'
+                className='text-gray500'
+              />
             </Link>
           </li>
         ) : (
@@ -46,7 +51,12 @@ function SideLists() {
             >
               {option.list}
             </h3>
-            <IconArrowRightNon fill='#949494' className='text-gray500' />
+            <IconArrowRightNon
+              width={24}
+              height={24}
+              fill='#949494'
+              className='text-gray500'
+            />
           </li>
         );
       })}
