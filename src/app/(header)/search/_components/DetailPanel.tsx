@@ -34,7 +34,7 @@ function DetailPanel({
         <h3 className='flex-center relative z-10 mr-12pxr h-48pxr basis-59pxr whitespace-nowrap bg-white font-body2-semibold mobile:hidden'>
           상세필터
         </h3>
-        <div className='filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:border-b mobile:border-t mobile:border-gray300 mobile:px-0pxr'>
+        <div className='filterHidden flex flex-grow-2 gap-6pxr mobile:w-full mobile:flex-col mobile:border-b mobile:border-gray300 mobile:px-0pxr'>
           <Swiper
             modules={[FreeMode]}
             freeMode={true}
