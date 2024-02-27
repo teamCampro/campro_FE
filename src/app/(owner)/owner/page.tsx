@@ -8,12 +8,25 @@ import { OwnerInfoType } from './site-registration/page';
 import { getOwnerInfo } from '../../_data/owner/getOwnerInfo';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../(header)/search/loading';
+import { useRouter } from 'next/navigation';
 
 function LandingPage() {
+  const router = useRouter();
   const { data: ownerInfo } = useQuery<OwnerInfoType>({
     queryKey: ['ownerInfo'],
     queryFn: () => getOwnerInfo(Number(localStorage.getItem('userId'))),
   });
+
+  useEffect(() => {
+    if (!ownerInfo) return;
+    if (ownerInfo.ownerCampingZoneList.length === 0) {
+      const landToRegistration = setTimeout(() => {
+        router.push('/owner/registration/first-step');
+      }, 3000);
+
+      return () => clearTimeout(landToRegistration);
+    }
+  }, [ownerInfo, router]);
 
   if (!ownerInfo) return <Loading />;
   return (
