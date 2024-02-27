@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button, Footer, Header } from './_components';
 import CircleButton from './_components/Button/CircleButton';
+import React from 'react';
 
 function NotFound() {
   return (
