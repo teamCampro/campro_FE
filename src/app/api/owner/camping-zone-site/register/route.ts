@@ -10,15 +10,15 @@ export const POST = async (req: NextRequest) => {
     const siteSizeString = JSON.stringify(czSiteData.siteSize);
 
     const czSiteInsertQuery = `
-INSERT INTO camping_zone_site (camping_zone_id, name, min_nights, min_people, floor_type, pet_yn,
-price, theme, camping_type, max_parking, site_size, check_in_time, check_out_time, site_image)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+INSERT INTO camping_zone_site (camping_zone_id, name, min_nights, min_people, max_people, floor_type, pet_yn, price, theme, camping_type, max_parking, site_size, check_in_time, check_out_time, site_image)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const czSiteInsertResult: any = await db.execute(czSiteInsertQuery, [
       czSiteData.campingZoneId,
       czSiteData.name,
       czSiteData.minNights,
       czSiteData.minPeople,
+      czSiteData.maxPeople,
       czSiteData.floorType,
       czSiteData.petYN,
       czSiteData.price,
