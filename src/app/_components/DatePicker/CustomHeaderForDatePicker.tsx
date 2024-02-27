@@ -49,6 +49,8 @@ function CustomHeaderForDatePicker({
         <div className='font-title3-semibold'>{`${getYear(date)} ${MONTHS[getMonth(date)]}`}</div>
         <button type='button'>
           <IconArrowRightNon
+            width={24}
+            height={24}
             onClick={increaseMonth}
             disabled={nextMonthButtonDisabled}
           />

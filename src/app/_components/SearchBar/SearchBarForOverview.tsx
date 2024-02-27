@@ -63,9 +63,9 @@ function SearchBarForOverview({
   }, [searchParams]);
 
   return (
-    <div className='px-auto sticky top-0pxr z-30 w-full bg-white '>
+    <div className='px-auto sticky top-0pxr z-30 w-full bg-white'>
       {isMobile && (
-        <div className='w-full bg-white mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr'>
+        <div className='w-full bg-white mobile:top-0pxr mobile:z-30 mobile:bg-white mobile:p-16pxr '>
           <input
             name='total'
             className='relative w-full cursor-pointer whitespace-nowrap rounded-lg bg-gray100 px-16pxr py-16pxr text-black placeholder-gray500 outline-none font-body2-semibold placeholder:font-body2-medium'
@@ -81,7 +81,7 @@ function SearchBarForOverview({
         </div>
       )}
       <div
-        className='flex-center border-bpx-200pxr z-30 m-auto w-full max-w-1360pxr mobile:border-gray200 mobile:p-0pxr'
+        className='flex-center z-30 mx-auto mb-40pxr w-full max-w-1360pxr border-b mobile:mb-0pxr mobile:border-gray200 mobile:p-0pxr'
         onClick={() => onBackdropClick()}
       >
         <CommonForm
