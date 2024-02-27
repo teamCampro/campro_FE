@@ -53,9 +53,9 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
                 <SwiperSlide
                   key={facility.text}
                   id='category-slide'
-                  className={`shadow-test !w-126pxr rounded-xl mobile:!flex mobile:!w-auto mobile:justify-center mobile:shadow-none tablet:!w-114pxr ${i > 7 && !isOpen ? 'mobile:!hidden' : 'mobile:!flex'}`}
+                  className={`shadow-test !w-126pxr rounded-xl mobile:!flex mobile:!h-68pxr mobile:!w-auto mobile:justify-center mobile:shadow-none tablet:!w-114pxr ${i > 7 && !isOpen ? 'mobile:!hidden' : 'mobile:!flex'}`}
                 >
-                  <li className='h-full w-auto mobile:w-48pxr'>
+                  <li className='h-full w-auto  mobile:w-48pxr'>
                     <div className='flex-center h-134pxr w-126pxr flex-col gap-16pxr rounded-xl bg-white mobile:h-68pxr mobile:w-48pxr mobile:shadow-none tablet:w-114pxr'>
                       <div className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'>
                         {facility.icon}

@@ -89,11 +89,17 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               원 부터
             </span>
           </div>
-          <div className='flex gap-4pxr'>
+          <div className='flex flex-wrap gap-4pxr'>
             {campPlace.keyword
               ? [...campPlace.keyword.split(',')]
-                  .slice(0, 2)
-                  .map((item, index) => <Chip key={index}>{item}</Chip>)
+                  .slice(0, 3)
+                  .map((item, index) => (
+                    <Chip key={index}>
+                      {item.length === 4 && item.indexOf('캠핑') > -1
+                        ? item.slice(2)
+                        : item}
+                    </Chip>
+                  ))
               : null}
             {/* <Chip>힐링/휴식</Chip>
             <Chip>자연</Chip>

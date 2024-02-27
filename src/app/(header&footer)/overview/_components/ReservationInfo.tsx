@@ -1,23 +1,23 @@
 'use client';
 
+import LoginRequiredModal from '@/components/Modal/LoginRequiredModal';
 import { ModalOutside, ModalPortal } from '@/components/index';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
+import { isOpen } from '@/src/app/_slices/isOpenLoginRequiredModal';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { CampingZoneSite } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampSiteDetail from './CampSiteDetail';
 import CampSiteItem from './CampSiteItem';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { isOpen } from '@/src/app/_slices/isOpenLoginRequiredModal';
-import LoginRequiredModal from '@/components/Modal/LoginRequiredModal';
 interface ReservationInfoProps {
   siteList: CampingZoneSite[];
   openTime: string;
   nextOpen: string;
   mannerTimeStart: string;
   mannerTimeEnd: string;
-  imageUrls: string[];
+  imageUrls: string;
 }
 
 function ReservationInfo({
@@ -26,7 +26,6 @@ function ReservationInfo({
   nextOpen,
   mannerTimeStart,
   mannerTimeEnd,
-  imageUrls,
 }: ReservationInfoProps) {
   const [selectedSite, setSelectedSite] = useState<CampingZoneSite | null>(
     null,
@@ -89,7 +88,7 @@ function ReservationInfo({
             />
           ))}
         </ul>
-        {siteList.length > 2 && (
+        {siteList.length > 3 && (
           <div className='contents mobile:block mobile:px-16pxr'>
             <button
               type='button'
@@ -111,8 +110,7 @@ function ReservationInfo({
             >
               <CampSiteDetail
                 onClose={() => setSelectedSite(null)}
-                site={selectedSite}
-                imageUrls={imageUrls}
+                selectedSite={selectedSite}
                 handleReserve={handleReserve}
               />
             </ModalOutside>

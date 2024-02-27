@@ -21,7 +21,15 @@ function CampSiteItem({
   openSiteModal,
   handleReserve,
 }: CampSiteItemProps) {
-  const { campingType, maxPeople, parkingGuide, petYn, minNights } = site;
+  const {
+    campingType,
+    maxPeople,
+    parkingGuide,
+    petYn,
+    minNights,
+    siteImgUrls: imgUrls,
+    siteName,
+  } = site;
   const infos = [
     {
       text: campingType,
@@ -35,13 +43,14 @@ function CampSiteItem({
       ),
     },
     { text: `성인 ${maxPeople}룸`, icon: <IconTwoPeople /> },
-    { text: parkingGuide.split(' ').join(''), icon: <IconCar /> },
+    { text: parkingGuide, icon: <IconCar /> },
     {
       text: petYn ? '애완 동반' : '',
       icon: <IconPet className='fill-gray500' />,
     },
     { text: `최소 ${minNights}박`, icon: <IconTime /> },
   ];
+  const siteImgUrls = JSON.parse(imgUrls);
   return (
     <li>
       <article className='flex gap-20pxr rounded-2xl bg-gray100 p-24pxr mobile:flex-col mobile:gap-0pxr mobile:p-0pxr mobile359:rounded-none'>
@@ -54,15 +63,15 @@ function CampSiteItem({
               height: 'auto',
             }}
             className='aspect-square rounded-2xl mobile:aspect-340/220 mobile:rounded-b-none mobile359:rounded-none'
-            src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfDB8MHx8fDA%3D'
-            alt={site.childSiteName}
+            src={siteImgUrls[0]}
+            alt={siteName}
           />
         </div>
-        <div className='camp-site flex w-full flex-col gap-20pxr mobile:gap-16pxr mobile:p-16pxr mobile:pb-24pxr'>
+        <div className='camp-site flex w-full flex-col gap-12pxr mobile:gap-16pxr mobile:p-16pxr mobile:pb-24pxr'>
           <div className='flex h-auto w-full flex-col gap-16pxr rounded-xl bg-white p-16pxr mobile:contents mobile:bg-gray100 mobile:p-0pxr'>
             <div className='mobile:camp-site-info flex flex-col border-gray300 mobile:border-b mobile:pb-16pxr'>
               <div className='flex items-center justify-between '>
-                <h6 className='font-title3-bold'>{site.childSiteName}</h6>
+                <h6 className='font-title3-bold'>{siteName}</h6>
                 <span className='text-nowrap text-black font-body1-bold mobile:font-title3-semibold'>
                   {site.price.toLocaleString('ko-KR', {
                     maximumFractionDigits: 4,
@@ -89,7 +98,7 @@ function CampSiteItem({
               </Button.Round>
             </div>
           </div>
-          <div className='camp-site-facilities flex h-auto items-center justify-between mobile:items-start mobile:pb-4pxr'>
+          <div className='camp-site-facilities flex h-auto items-center justify-between gap-12pxr mobile:items-start mobile:pb-4pxr'>
             <ul className='flex flex-wrap gap-12pxr mobile:grid mobile:grid-cols-2 mobile:gap-20pxr mobile:gap-y-4pxr'>
               {infos.map(
                 (info) =>
@@ -108,7 +117,7 @@ function CampSiteItem({
             </ul>
             <button
               type='button'
-              className='flex h-full cursor-pointer items-start gap-2pxr text-nowrap text-second100 font-caption1-semibold'
+              className='flex h-full cursor-pointer items-center gap-2pxr text-nowrap text-second100 font-caption1-semibold mobile:h-20pxr'
               onClick={() => openSiteModal(site)}
             >
               상세정보
