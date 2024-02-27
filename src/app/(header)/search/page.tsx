@@ -9,14 +9,14 @@ import {
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
+import { useAppDispatch } from '@/hooks/redux';
 import usePagination from '@/hooks/usePagination';
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
-import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
-import KakaoMap from './_components/KakaoMap';
-import { useAppDispatch } from '@/hooks/redux';
-import { setResetAll } from '../../_utils/styleSetting';
 import { setResetAllStandBy } from '../../_utils/checkStandByState';
+import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
+import { setResetAll } from '../../_utils/styleSetting';
+import KakaoMap from './_components/KakaoMap';
 
 export type CampZoneForSearch = {
   id: number;
@@ -81,12 +81,11 @@ function Page({ searchParams }: SearchParamsType) {
 
   const getSearchFilter = (queryString: string) => {
     const { stay, facilities, prices, theme, trip } = searchParams;
-
-    /*  if (stay) queryString += `&stay=${searchParams.stay}`; */
+    if (stay) queryString += `&stay=${searchParams.stay}`;
     if (facilities) queryString += `&facilities=${searchParams.facilities}`;
     if (theme) queryString += `&theme=${searchParams.theme}`;
-    /*   if (prices) queryString += `&prices=${searchParams.prices}`;
-    if (trip) queryString += `&trip=${searchParams.trip}`; */
+    if (prices) queryString += `&prices=${searchParams.prices}`;
+    if (trip) queryString += `&trip=${searchParams.trip}`;
     return queryString;
   };
 
@@ -101,7 +100,7 @@ function Page({ searchParams }: SearchParamsType) {
           ? 'camping-zone/list'
           : `camping-zone/list?${newQueryString}`,
       );
-      console.log(response);
+      /*       console.log(response); */
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
     };
@@ -146,7 +145,7 @@ function Page({ searchParams }: SearchParamsType) {
       >
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr  desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? '' : 'overflow-y-scroll'}`}
+            className={`scrollbar-hide flex h-full flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? 'mobile:w-full' : 'overflow-y-scroll'}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>

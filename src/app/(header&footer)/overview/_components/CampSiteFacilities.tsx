@@ -71,7 +71,7 @@ function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
           </ul>
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className={`${facilitiesArray.length > 8 && 'mobile:flex-center gap-3pxr'} hidden `}
+            className={`${facilitiesArray.length > 8 ? 'mobile:flex-center gap-3pxr' : ''} hidden `}
           >
             {isOpen ? '접기' : '전체'}
             {isOpen ? <IconNavigationUp /> : <IconNavigationDown />}
