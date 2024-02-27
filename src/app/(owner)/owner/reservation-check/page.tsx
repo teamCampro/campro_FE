@@ -43,7 +43,7 @@ function ReservationCheckPage() {
     queryFn: () => getReservationList(userId),
   });
   const reservationData = data?.ownerReservationList;
-  console.log(reservationData);
+
   useEffect(() => {
     const types = [
       'RESERVE_WAITING',

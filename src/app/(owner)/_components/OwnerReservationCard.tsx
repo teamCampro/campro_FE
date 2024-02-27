@@ -12,6 +12,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getReservationDetail } from '../../_data/owner/getReservationDetail';
 import { patchReservationReject } from '../../_data/owner/patchReservationReject';
 import patchReservationAccept from '../../_data/owner/patchReservationAccept';
+import { OwnerReservation } from '../../_data/owner/getReservationList';
 
 export type ReservationType =
   | 'RESERVE_WAITING'
@@ -71,14 +72,72 @@ function OwnerReservationCard({
 
   const acceptMutation = useMutation({
     mutationFn: () => patchReservationAccept(reservationId),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['reservationList'] }),
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['reservationList'] });
+      const prevData = queryClient.getQueryData(['reservationList']);
+
+      queryClient.setQueryData(
+        ['reservationList'],
+        (oldData: { ownerReservationList: OwnerReservation[] }) => {
+          const updatedData = {
+            ownerReservationList: oldData.ownerReservationList.map(
+              (reservation) => {
+                return reservation.id === reservationId
+                  ? { ...reservation, status: 'RESERVE_COMPLETE' }
+                  : reservation;
+              },
+            ),
+          };
+
+          return updatedData;
+        },
+      );
+
+      return { prevData };
+    },
+    onError: (error, variables, context) => {
+      if (context) {
+        queryClient.setQueryData(['reservationList'], context.prevData);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['reservationList'] });
+    },
   });
 
   const rejectMutation = useMutation({
     mutationFn: () => patchReservationReject(reservationId),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['reservationList'] }),
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['reservationList'] });
+      const prevData = queryClient.getQueryData(['reservationList']);
+
+      queryClient.setQueryData(
+        ['reservationList'],
+        (oldData: { ownerReservationList: OwnerReservation[] }) => {
+          const updatedData = {
+            ownerReservationList: oldData.ownerReservationList.map(
+              (reservation) => {
+                return reservation.id === reservationId
+                  ? { ...reservation, status: 'RESERVE_CANCEL' }
+                  : reservation;
+              },
+            ),
+          };
+
+          return updatedData;
+        },
+      );
+
+      return { prevData };
+    },
+    onError: (error, variables, context) => {
+      if (context) {
+        queryClient.setQueryData(['reservationList'], context.prevData);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['reservationList'] });
+    },
   });
 
   const handleClick = () => {
