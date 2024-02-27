@@ -84,6 +84,7 @@ const config: Config = {
         '1-col-288': 'repeat(1,minmax(288px,1fr))',
         '2-col-184': 'repeat(2,minmax(184px,1fr))',
         '2-col-340': 'repeat(2,minmax(340px,1fr))',
+        '2-col-151': 'repeat(2,minmax(151px,1fr))',
         '3-col-184': 'repeat(3,minmax(184px,1fr))',
         '3-col-340': 'repeat(3,minmax(340px,1fr))',
         '4-col-340': 'repeat(4,minmax(340px,1fr))',
