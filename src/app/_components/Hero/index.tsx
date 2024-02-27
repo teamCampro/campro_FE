@@ -8,6 +8,7 @@ import { Button, SearchBar } from '..';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { isOpen } from '../../_slices/isOpenLoginRequiredModal';
 import LoginRequiredModal from '../Modal/LoginRequiredModal';
+import { setRedirectUrl } from '../../_slices/redirectUrl';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -29,8 +30,12 @@ function Hero({ searchParams }: SearchParamsType) {
   const closeModal = () => dispatch(isOpen(false));
 
   const handleButtonClick = () => {
-    if (!userId) return dispatch(isOpen(true));
-    router.push('/onboard');
+    if (userId) {
+      router.push('/onboard');
+    } else {
+      dispatch(setRedirectUrl('/onboard'));
+      dispatch(isOpen(true));
+    }
   };
 
   return (

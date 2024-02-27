@@ -5,7 +5,7 @@ import Link from 'next/link';
 function OnBoardingHeader() {
   return (
     <nav className='mobile:w-full mobile:border-b mobile:border-gray200'>
-      <div className='custom-header m-auto grid h-80pxr max-w-1440pxr px-40pxr mobile:h-52pxr mobile:gap-1pxr mobile:px-20pxr mobile:py-0pxr'>
+      <div className='custom-header m-auto grid h-80pxr max-w-1440pxr items-center px-40pxr mobile:h-52pxr mobile:gap-1pxr mobile:px-20pxr mobile:py-0pxr'>
         <div className=' custom-header-logo flex items-center justify-center gap-15pxr '>
           <Link href='/'>
             <Image
@@ -21,7 +21,7 @@ function OnBoardingHeader() {
             캠핑 테스트
           </h3>
         </div>
-        <div className='relative flex items-center justify-end text-gray500 font-title3-semibold'>
+        <div className='relative ml-auto text-gray500 font-title3-semibold'>
           <HeaderDropdown />
         </div>
       </div>
