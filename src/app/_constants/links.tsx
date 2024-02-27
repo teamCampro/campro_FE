@@ -45,8 +45,8 @@ const LINKS = [
   },
   {
     id: 6,
-    href: `/search?${createQueryString('키즈 캠핑')}`,
-    text: '키즈 캠핑',
+    href: `/search?${createQueryString('키즈캠핑')}`,
+    text: '키즈캠핑',
     icon: <IconKidsCamping fill='#555555' />,
   },
   {

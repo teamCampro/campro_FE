@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
@@ -18,6 +17,7 @@ function CampImageCarousel({ imgUrls, onOpen, onClose, isOpen }: Props) {
     className: 'flex w-full max-w-1360pxr',
     modules: [Navigation, Pagination, A11y, Autoplay],
     slidesPerView: 1,
+    spaceBetween: 12,
     autoplay: {
       delay: 3000,
       disableOnInteraction: false,
@@ -36,9 +36,9 @@ function CampImageCarousel({ imgUrls, onOpen, onClose, isOpen }: Props) {
         <Swiper {...swiperSettings}>
           {imgUrls?.slice(0, 5).map((imgUrl, i) =>
             imgUrl ? (
-              <SwiperSlide className='flex w-full' key={imgUrl + i}>
+              <SwiperSlide className='' key={imgUrl + i}>
                 <Image
-                  className='flex w-full cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:rounded-none'
+                  className='flex aspect-688/398 w-full cursor-pointer rounded-2xl hover:brightness-[0.7] mobile:aspect-360/312 mobile:rounded-none'
                   src={imgUrl}
                   alt={`camp-image${i}`}
                   width={688}

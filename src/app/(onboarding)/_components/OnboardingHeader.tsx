@@ -16,7 +16,7 @@ function OnBoardingHeader() {
             캠핑 테스트
           </h3>
         </div>
-        <div className='flex-center relative'>
+        <div className='relative flex items-center justify-end text-gray500 font-title3-semibold'>
           <HeaderDropdown />
         </div>
       </div>

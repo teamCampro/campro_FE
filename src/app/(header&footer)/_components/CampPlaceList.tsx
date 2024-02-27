@@ -42,12 +42,17 @@ function CampPlaceList({ campPlaces, type }: Props) {
         </h1>
         <button
           type='button'
-          className='flex items-center  text-gray500 font-body2-medium mobile:pr-16pxr mobile:font-caption2-semibold tabletMin:pr-32pxr'
+          className='flex items-center text-gray500 font-body2-medium mobile:pr-16pxr mobile:font-caption2-semibold tabletMin:pr-32pxr'
         >
           <span className='mobile:hidden '>전체보기</span>
           <span className='hidden mobile:block'>전체</span>
           <span className='inline-block h-20pxr w-20pxr mobile:h-16pxr  mobile:w-16pxr'>
-            <IconArrowRightNon width='100%' height='100%' viewBox='0 0 24 24' />
+            <IconArrowRightNon
+              width='100%'
+              height='100%'
+              viewBox='0 0 24 24'
+              className='fill-gray500'
+            />
           </span>
         </button>
       </div>

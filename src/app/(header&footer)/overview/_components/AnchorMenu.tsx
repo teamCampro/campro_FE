@@ -44,7 +44,7 @@ function AnchorMenu({
 
         <Button.Round
           size='sm'
-          custom={`p-16pxr font-caption1-semibold tablet:p-20pxr !w-170pxr !h-40pxr tablet:h-40pxr mobile:!w-280pxr mobile:!h-56pxr ${selectedMenu === TARGET_SECTION_ID ? 'mobile:hidden' : 'mobile:flex'}`}
+          custom={`mobile:font-body2-semibold p-16pxr font-caption1-semibold tablet:p-20pxr !w-170pxr !h-40pxr tablet:h-40pxr mobile:!w-full mobile:!h-56pxr ${selectedMenu === TARGET_SECTION_ID ? 'mobile:hidden' : 'mobile:flex'}`}
           onClick={() => scrollToSection('site')}
         >
           사이트 선택
