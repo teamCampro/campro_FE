@@ -1,5 +1,4 @@
 import React from 'react';
-import { AddtionalOptionType } from '../../owner/site-registration/page';
 import { AdditionalOptionType } from './OwnerModalContent';
 
 interface Props {
@@ -43,12 +42,12 @@ function OwnerReservationPayment({
             </div>
             <div className='flex flex-col gap-8pxr'>
               {additionalOptions.map((option, index) => {
-                const { name, amount, price } = option;
+                const { optionName, amount, price } = option;
 
                 return (
                   <div key={index} className='flex w-full justify-between'>
                     <span className='text-gray-600 font-body2-medium'>
-                      {name} x{amount}
+                      {optionName} x{amount}
                     </span>
                     <span className='text-gray500 font-body2-medium'>
                       {price.toLocaleString()}원

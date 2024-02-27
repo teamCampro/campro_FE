@@ -6,7 +6,7 @@ import OwnerReservationPayment from './OwnerReservationPayment';
 import formattedDate from '../../_utils/formattedDate';
 
 export interface AdditionalOptionType {
-  name: string;
+  optionName: string;
   price: number;
   amount: number;
 }
@@ -107,7 +107,7 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
             <div className='grid h-232pxr w-232pxr grid-cols-2 place-items-center gap-x-15pxr gap-y-22pxr'>
               {selectedAdditionalOptionResult.map((option, index) => (
                 <OwnerReservationAdditionalOptionCard
-                  optionName={option.name}
+                  optionName={option.optionName}
                   quantity={option.amount}
                   key={index}
                 />

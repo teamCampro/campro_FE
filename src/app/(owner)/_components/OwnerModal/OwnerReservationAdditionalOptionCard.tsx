@@ -21,11 +21,11 @@ function OwnerReservationAdditionalOptionCard({ quantity, optionName }: Props) {
     { name: '욕실', icon: <IconToothbrushPaste /> },
   ];
 
-  const filteredOption = optionMap.filter((option) =>
+  const filteredOption = optionMap.find((option) =>
     optionName.includes(option.name),
   );
 
-  const icon = filteredOption[0]?.icon;
+  const icon = filteredOption ? filteredOption.icon : <IconCampFire />;
 
   return (
     <div className='flex-center h-105pxr w-108pxr flex-col gap-6pxr rounded-2xl border border-gray500 bg-white p-10pxr shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
