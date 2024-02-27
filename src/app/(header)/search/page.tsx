@@ -9,14 +9,14 @@ import {
   SearchPagination,
   SortDropdown,
 } from '@/components/index';
+import { useAppDispatch } from '@/hooks/redux';
 import usePagination from '@/hooks/usePagination';
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../_utils/axiosInstance';
-import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
-import KakaoMap from './_components/KakaoMap';
-import { useAppDispatch } from '@/hooks/redux';
-import { setResetAll } from '../../_utils/styleSetting';
 import { setResetAllStandBy } from '../../_utils/checkStandByState';
+import kakaoMarkerGenerator from '../../_utils/kakaoMarkerGenerator';
+import { setResetAll } from '../../_utils/styleSetting';
+import KakaoMap from './_components/KakaoMap';
 
 export type CampZoneForSearch = {
   id: number;
@@ -146,7 +146,7 @@ function Page({ searchParams }: SearchParamsType) {
       >
         {mapSize !== 'map' && (
           <div
-            className={`scrollbar-hide flex h-full pb-40pxr ${mapSize === 'half' ? '' : ''} flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr  desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? '' : 'overflow-y-scroll'}`}
+            className={`scrollbar-hide flex h-full flex-col gap-24pxr px-40pxr pb-40pxr pt-16pxr mobile:px-16pxr tablet:grow-1 tablet:px-40pxr ${mapSize === 'half' ? 'basis-776pxr desktop1440:max-w-1132pxr desktop1920:flex-grow-7' : ''} ${mapSize === 'list' ? 'mobile:w-full' : 'overflow-y-scroll'}`}
           >
             <div className='flex items-center justify-around'>
               <h3 className='text-black font-title1-semibold mobile:font-body1-semibold'>
