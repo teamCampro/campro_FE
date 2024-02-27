@@ -19,7 +19,11 @@ function CustomerReviews({ reviews }: { reviews: Review[] }) {
             </div>
             <button className='flex items-center text-gray500 font-caption1-medium mobile:font-caption2-medium'>
               전체 보기
-              <IconArrowRightNon width={16} height={16} />
+              <IconArrowRightNon
+                width={16}
+                height={16}
+                className='fill-gray500'
+              />
             </button>
           </div>
           <ul className='flex flex-col gap-24pxr mobile:gap-20pxr'>

@@ -36,9 +36,9 @@ function CampImageCarousel({ imgUrls, onOpen, onClose, isOpen }: Props) {
         <Swiper {...swiperSettings}>
           {imgUrls?.slice(0, 5).map((imgUrl, i) =>
             imgUrl ? (
-              <SwiperSlide className='flex w-full' key={imgUrl + i}>
+              <SwiperSlide className='' key={imgUrl + i}>
                 <Image
-                  className='flex w-full cursor-pointer rounded-2xl object-cover hover:brightness-[0.7] mobile:aspect-360/312 mobile:rounded-none'
+                  className='flex aspect-688/398 w-full cursor-pointer rounded-2xl hover:brightness-[0.7] mobile:aspect-360/312 mobile:rounded-none'
                   src={imgUrl}
                   alt={`camp-image${i}`}
                   width={688}
