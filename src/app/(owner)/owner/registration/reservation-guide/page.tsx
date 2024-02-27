@@ -183,6 +183,12 @@ function ReservationGuidePage() {
     );
   }, [openPeriod]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mannerTimeStart = localStorage.getItem('mannerTimeStart');
+    const mannerTimeEnd = localStorage.getItem('mannerTimeEnd');
+  }, []);
+
   return (
     <div className='flex h-screen flex-col items-center'>
       <div className='flex flex-col items-center gap-120pxr'>
