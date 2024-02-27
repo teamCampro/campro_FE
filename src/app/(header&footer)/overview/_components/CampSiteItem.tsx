@@ -126,6 +126,7 @@ function CampSiteItem({
                   width='100%'
                   height='100%'
                   viewBox='0 0 24 24'
+                  className='fill-second100'
                 />
               </span>
             </button>

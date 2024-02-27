@@ -26,9 +26,19 @@ function TagList({ tag }: TagListProps) {
           {showAll ? '접기' : '전체보기'}
           <span className='inline-block h-16pxr w-16pxr'>
             {showAll ? (
-              <IconArrowUp width='100%' height='100%' viewBox='0 0 24 24' />
+              <IconArrowUp
+                width='100%'
+                height='100%'
+                viewBox='0 0 24 24'
+                className='fill-gray500'
+              />
             ) : (
-              <IconArrowDown width='100%' height='100%' viewBox='0 0 24 24' />
+              <IconArrowDown
+                width='100%'
+                height='100%'
+                viewBox='0 0 24 24'
+                className='fill-gray500'
+              />
             )}
           </span>
         </button>

@@ -16,10 +16,10 @@ function Footer() {
 
   return (
     <footer
-      className={`h-133pxr w-full bg-gray200 mobile:h-167pxr ${isMobile && isReserve ? 'hidden' : 'flex '}`}
+      className={`h-133pxr w-full bg-gray200 px-48pxr py-24pxr mobile:h-167pxr ${isMobile && isReserve ? 'hidden' : 'flex'}`}
     >
-      <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr px-48pxr py-24pxr mobile:px-16pxr'>
-        <ul className='text-gray500 font-caption2-medium'>
+      <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr mobile:items-start  '>
+        <ul className='text-gray500 font-caption2'>
           <li>상호명: 캠프로</li>
           <li>대표명: 홍길동</li>
           <li>통신판매신고번호: 2024-서울중고-0000</li>

@@ -1,9 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { IconComming, IconPeople } from '@/public/svgs';
-import { usePathname } from 'next/navigation';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import { IconComming } from '@/public/svgs';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import HeaderDropdown from './_components/HeaderDropdown';
 
 function Header() {
@@ -21,12 +22,24 @@ function Header() {
     >
       <div className='m-auto flex h-80pxr max-w-1440pxr items-center justify-between gap-24pxr px-40pxr py-18pxr mobile:h-52pxr mobile:gap-10pxr mobile:px-20pxr mobile:py-[9.5px]'>
         <Link href='/' className='flex items-center gap-15pxr'>
-          <div className='flex-center w-62pxr bg-primary100 px-10pxr py-8pxr text-white font-title2-semibold'>
-            로고
-          </div>
-          <h1 className='block h-full text-black font-title3-semibold mobile:hidden'>
-            CamPro
-          </h1>
+          <Image
+            priority
+            quality={100}
+            src='/logo/campro.png'
+            alt='캠프로 로고'
+            width={154}
+            height={25}
+            className='mobile:hidden'
+          />
+          <Image
+            priority
+            quality={100}
+            src='/logo/campro_symbol.png'
+            alt='캠프로 로고'
+            width={22}
+            height={25}
+            className='hidden mobile:block'
+          />
         </Link>
         <ul className='align-center flex items-center justify-between gap-48pxr font-title3-bold mobile:gap-16pxr mobile:font-caption1-semibold'>
           <li className='leading-0 shrink-0 text-primary100'>
