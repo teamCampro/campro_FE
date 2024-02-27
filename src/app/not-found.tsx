@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button, Footer, Header } from './_components';
 import CircleButton from './_components/Button/CircleButton';
 
@@ -23,12 +24,14 @@ function NotFound() {
             주소의 변경 혹은 삭제로 인해 사용하실 수 없습니다.
           </div>
         </p>
-        <CircleButton
-          size='md'
-          custom='!bg-transparent !text-gray600 !font-body2-semibold border border-gray300 !w-192pxr !h-56pxr mt-38pxr '
-        >
-          메인으로 가기
-        </CircleButton>
+        <Link href={'/'} className='mt-38pxr ' passHref>
+          <CircleButton
+            size='md'
+            custom='!bg-transparent !text-gray600 !font-body2-semibold border border-gray300 !w-192pxr !h-56pxr '
+          >
+            메인으로 가기
+          </CircleButton>
+        </Link>
       </div>
       <Footer />
     </>
