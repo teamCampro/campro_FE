@@ -81,12 +81,11 @@ function Page({ searchParams }: SearchParamsType) {
 
   const getSearchFilter = (queryString: string) => {
     const { stay, facilities, prices, theme, trip } = searchParams;
-
-    /*  if (stay) queryString += `&stay=${searchParams.stay}`; */
+    if (stay) queryString += `&stay=${searchParams.stay}`;
     if (facilities) queryString += `&facilities=${searchParams.facilities}`;
     if (theme) queryString += `&theme=${searchParams.theme}`;
-    /*   if (prices) queryString += `&prices=${searchParams.prices}`;
-    if (trip) queryString += `&trip=${searchParams.trip}`; */
+    if (prices) queryString += `&prices=${searchParams.prices}`;
+    if (trip) queryString += `&trip=${searchParams.trip}`;
     return queryString;
   };
 
@@ -101,7 +100,7 @@ function Page({ searchParams }: SearchParamsType) {
           ? 'camping-zone/list'
           : `camping-zone/list?${newQueryString}`,
       );
-      console.log(response);
+      /*       console.log(response); */
       setCampPlaceData(response.data.result);
       updateTotalItems(response.data.result.length);
     };

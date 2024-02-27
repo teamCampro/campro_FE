@@ -108,8 +108,8 @@ function Selectable({
       dispatch(setResetAllStandBy());
       setPrice({ startPrice: '0', endPrice: '0' });
       setSumOfMoney({ startPrice: '0', endPrice: '0' });
-      console.log('dropdown열고&닫기 pc sumOfMoney', sumOfMoney);
-      console.log('dropdown열고&닫기 pc price', price);
+      /*     console.log('dropdown열고&닫기 pc sumOfMoney', sumOfMoney);
+      console.log('dropdown열고&닫기 pc price', price); */
     }
 
     if (!isMobile && checkList.select[types].length > 0) {
@@ -127,21 +127,21 @@ function Selectable({
       id: 0,
       type: `${price.startPrice}원-${price.endPrice}원`,
     };
-    console.log('getNewPrice에 담을 list', list);
+    /*     console.log('getNewPrice에 담을 list', list); */
     if (size !== 'mobile') {
       dispatch(setSelect({ list, types }));
       setCurrentTypes(types);
       setIsFinalCheckDone(true);
-      console.log('checklist에 담기', checkList);
+      /*    console.log('checklist에 담기', checkList); */
     } else {
       if (price.endPrice === '0') {
         setIsPriceReset(true);
         return;
       }
       dispatch(setCheckStandBy({ types, list }));
-      console.log('모바일stanby에 담기', StandByList);
+      /*   console.log('모바일stanby에 담기', StandByList); */
     }
-    console.log('조건문 나온 후 checklist에 담기 확인 ', checkList);
+    /*     console.log('조건문 나온 후 checklist에 담기 확인 ', checkList); */
   };
 
   //pc&tablet 선택 확정
@@ -155,12 +155,12 @@ function Selectable({
       setCurrentTypes(types);
       setIsFinalCheckDone(true);
     } else {
-      console.log('가격 확정');
+      /*       console.log('가격 확정'); */
       if (
         sumOfMoney.startPrice.replaceAll(',', '') <
         sumOfMoney.endPrice.replaceAll(',', '')
       ) {
-        console.log('getNewPrice 이동');
+        /*      console.log('getNewPrice 이동'); */
         getNewPrice(types);
       }
     }
@@ -234,7 +234,7 @@ function Selectable({
       redirectUrl(currentTypes);
     }
     setIsFinalCheckDone(false);
-    console.log('useEffect에서 checklist에 담기 확인 ', checkList);
+    /*   console.log('useEffect에서 checklist에 담기 확인 ', checkList); */
     return () => {};
   }, [checkList, currentTypes, isFinalCheckDone]);
 

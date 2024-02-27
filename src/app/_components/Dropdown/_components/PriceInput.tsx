@@ -109,8 +109,8 @@ function PriceInput({
       applyEndPrice = checkPriceSplit[1].replace('원', '');
       setPrice({ startPrice: applyStartPrice, endPrice: applyEndPrice });
       setSumOfMoney({ startPrice: applyStartPrice, endPrice: applyEndPrice });
-      console.log('input에 남기기위해 디코딩 완료pc price', price);
-      console.log('input에 남기기위해 디코딩 완료pc sumOfMoney', sumOfMoney);
+      /* console.log('input에 남기기위해 디코딩 완료pc price', price);
+      console.log('input에 남기기위해 디코딩 완료pc sumOfMoney', sumOfMoney); */
     } else if (
       isMobile &&
       StandByList.prices.length > 0 &&
@@ -157,11 +157,6 @@ function PriceInput({
     sumOfMoney.endPrice,
   ]);
 
-  /*   console.log('price', price);
-  console.log('checkList', checkList);
-  console.log('isPriceReset', isPriceReset);
-  console.log('sumOfMoney', sumOfMoney);
-  console.log('stanby', StandByList); */
   return (
     <div
       className={`flex-center h-54pxr w-116pxr rounded-lg border bg-gray100 p-16pxr  mobile:gap-4pxr mobile:bg-white mobile344:w-full mobileMiddle:w-full ${isError ? 'border-error' : ''}`}
