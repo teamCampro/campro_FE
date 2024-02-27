@@ -7,7 +7,7 @@ export const signin = async (signinInfo: FieldValues) => {
     const response = await axiosInstance.post(`sign/sign-in`, signinInfo);
     if (response && response.status === 200) {
       window.localStorage.setItem('userId', response.data.result.userId);
-      window.location.href = '/';
+      return null;
     }
   } catch (error) {
     console.error(error);

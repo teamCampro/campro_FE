@@ -42,7 +42,7 @@ function OnboardingList({
                 <Button.Round
                   key={choice.displayText || choice.text}
                   size='lg'
-                  custom={`${answers[id].includes(choice) && 'bg-primary50'} hover:font-body1-bold mobile:hover:font-body1-medium ${choices.length > 4 ? 'mobile:w-auto mobile:max-w-318pxr' : ''} `}
+                  custom={`${answers[id].includes(choice) ? 'bg-primary50' : ''} hover:font-body1-bold mobile:hover:font-body1-medium ${choices.length > 4 ? 'mobile:w-auto mobile:max-w-318pxr' : ''} `}
                   onClick={() => {
                     handleChoice(id, choice, selectionType);
                     if (selectionType === 'single') handlePage('next');
