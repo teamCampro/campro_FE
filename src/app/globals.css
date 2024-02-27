@@ -164,7 +164,6 @@ body {
   white-space: nowrap;
 }
 
-
 @media (min-width: 825px) and (max-width: 1030px) {
   #siteInfo .reserve-lineOver {
     width: 160px;
@@ -562,7 +561,7 @@ input[id='checkTable']:checked::before {
 }
 
 .profile-screen {
-  height: calc(100vh - 133px - 81px);
+  min-height: calc(100vh - 133px - 81px);
 }
 
 @media (min-width: 901px) and (max-width: 1199px) {
@@ -620,35 +619,32 @@ input[id='checkTable']:checked::before {
   height: 28px;
 }
 
-
 /* radio 스타일 */
 .selectRadio {
   position: relative;
-
 }
 .selectRadio label {
   font-size: 20px;
   color: white;
-  
 }
-          
-.selectRadio input[type="radio"] {
+
+.selectRadio input[type='radio'] {
   width: 24px;
   height: 24px;
- 
+
   border: 0;
 }
-.selectRadio input[type="radio"]+label {
-  width:24px;
-  height:24px;
+.selectRadio input[type='radio'] + label {
+  width: 24px;
+  height: 24px;
   display: inline-block;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;  
+  -ms-user-select: none;
 }
-          
-.selectRadio input[type="radio"]+label:before {
+
+.selectRadio input[type='radio'] + label:before {
   content: '\2713';
   display: flex;
   justify-content: center;
@@ -656,12 +652,12 @@ input[id='checkTable']:checked::before {
   width: 24px;
   height: 24px;
   text-align: center;
-  background-color: #4F9E4F;
+  background-color: #4f9e4f;
   border: 1px solid #cacece;
   border-radius: 100%;
 }
 
-.selectRadio input[type="radio"]+label.labelStyle:before {
+.selectRadio input[type='radio'] + label.labelStyle:before {
   content: '';
   display: flex;
   justify-content: center;
@@ -674,4 +670,13 @@ input[id='checkTable']:checked::before {
   border-radius: 100%;
 }
 
-          
+/* 404 */
+.not-found-screen {
+  min-height: calc(100vh - 133px - 81px);
+}
+
+@media (max-width: 767px) {
+  .not-found-screen {
+    min-height: calc(100vh - 168px - 52px);
+  }
+}

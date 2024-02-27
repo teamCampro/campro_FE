@@ -35,12 +35,14 @@ function OnboardingList({
               <br />
               {selectionType === 'multiple' && '모두 선택해주세요'}
             </h4>
-            <div className='flex flex-col gap-16pxr'>
+            <div
+              className={`flex flex-col gap-16pxr ${choices.length > 4 && 'grid grid-cols-2 mobile:grid-cols-2-col-151'}`}
+            >
               {choices.map((choice) => (
                 <Button.Round
                   key={choice.displayText || choice.text}
                   size='lg'
-                  custom={`${answers[id].includes(choice) && 'bg-primary50'} hover:font-body1-bold`}
+                  custom={`${answers[id].includes(choice) && 'bg-primary50'} hover:font-body1-bold mobile:hover:font-body1-medium ${choices.length > 4 ? 'mobile:w-auto mobile:max-w-318pxr' : ''} `}
                   onClick={() => {
                     handleChoice(id, choice, selectionType);
                     if (selectionType === 'single') handlePage('next');
