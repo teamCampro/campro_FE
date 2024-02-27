@@ -29,7 +29,7 @@ interface HeaderModalType {
     role: string;
     nickname: string;
   };
-  handleLogout: () => void;
+  handleLogout: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 function HeaderModal({

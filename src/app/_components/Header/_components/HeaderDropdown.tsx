@@ -10,7 +10,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import HeaderModal from './HeaderModal';
-
+import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
+import { setIsLogin } from '@/src/app/_slices/isLogin';
 interface UserOptionsType {
   id: number;
   list: string;
@@ -28,10 +29,11 @@ export const USER_OPTIONS: UserOptionsType[] = [
 
 function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+
   const pathName = usePathname();
   const profile = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
+  const isLogin = useAppSelector((state) => state.isLogin);
 
   const mobileMediaQuery = useMediaQueries({ breakpoint: 767 })?.mediaQuery
     .matches;
@@ -53,7 +55,7 @@ function HeaderDropdown() {
   };
   useEffect(() => {
     const userId = window.localStorage.getItem('userId');
-    setIsLogin(!!userId);
+    dispatch(setIsLogin(!!userId));
   }, []);
 
   const { data: userInfo, isPending } = useQuery({
@@ -62,11 +64,13 @@ function HeaderDropdown() {
     enabled: isLogin,
   });
 
-  const handleLogout = () => {
+  const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
     dispatch(setProfileState(5));
     queryClient.removeQueries();
-    setIsLogin(false);
+    dispatch(setIsLogin(false));
     window.localStorage.removeItem('userId');
+    dispatch(setRedirectUrl('/'));
+    e.stopPropagation();
   };
 
   return isLogin ? (
