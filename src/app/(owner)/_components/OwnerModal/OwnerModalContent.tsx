@@ -8,43 +8,25 @@ import formattedDate from '../../_utils/formattedDate';
 interface AdditionalOptionType {
   name: string;
   price: number;
-}
-
-interface ReservationDetailInfo {
-  campingZoneName: string;
-  address: string;
-  campingZoneTel: string;
-  campingZoneSiteName: string;
-  maxPeople: number;
-  campingZoneSitePrice: number;
-  adult: number;
-  child: number;
-  pet: number;
-  stayStartAt: string;
-  stayEndAt: string;
-  carInfo: string;
-  reservedAt: string;
-  payMethod: string;
-  status: string;
-  userName: string;
-  userPhone: string;
-  planImage: string;
-  siteImage: string;
-  additionalOptions: AdditionalOptionType[];
+  amount: number;
 }
 
 interface Props {
   reservationDetailInfo: {
     adult: number;
-    carInfo: string;
     child: number;
-    czSiteName: string;
+    stayStartAt: string;
+    stayEndAt: string;
     pet: number;
-    reservedAt: string;
-    selectedAdditionalOptionResult: AdditionalOptionType[];
+    czSiteName: string;
     userName: string;
     userPhone: string;
+    carInfo: string;
+    reservedAt: string;
     payMethod: string;
+    campingZoneSitePrice: number;
+    stayNights: string;
+    selectedAdditionalOptionResult: AdditionalOptionType[];
   };
 }
 
@@ -52,19 +34,26 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
   const {
     adult,
     carInfo,
+    stayStartAt,
+    stayEndAt,
     child,
     czSiteName,
     pet,
     reservedAt,
-    selectedAdditionalOptionResult,
     userName,
     userPhone,
+    campingZoneSitePrice,
     payMethod,
+    stayNights,
+    selectedAdditionalOptionResult,
   } = reservationDetailInfo;
-  console.log(carInfo, JSON.parse(carInfo));
 
+  console.log(reservationDetailInfo);
   const date = String(new Date(reservedAt));
-  const paymentDate = formattedDate(date);
+  const formattedReservedAt = formattedDate(date);
+  const newDate = new Date();
+  const paymentDate = String(newDate.getFullYear()) + '.' + formattedReservedAt;
+
   return (
     <div className='flex'>
       <div className='flex w-296pxr flex-col gap-44pxr'>
@@ -75,22 +64,19 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
           />
           <OwnerReservationSectionContent
             label='일정'
-            content='12.29(토) - 12.29(토)'
+            content={`${formattedDate(stayStartAt)} - ${formattedDate(stayEndAt)}`}
           />
           <OwnerReservationSectionContent
             label='반려동물'
             content={`${pet}마리`}
           />
-          <OwnerReservationSectionContent
-            label='사이트'
-            content={`${czSiteName}`}
-          />
+          <OwnerReservationSectionContent label='사이트' content={czSiteName} />
         </OwnerReservationSection>
         <OwnerReservationSection sectionName='예약자 정보'>
-          <OwnerReservationSectionContent label='예약자명' content='홍길동' />
+          <OwnerReservationSectionContent label='예약자명' content={userName} />
           <OwnerReservationSectionContent
             label='휴대폰 번호'
-            content={`${userPhone}`}
+            content={userPhone}
           />
         </OwnerReservationSection>
         <OwnerReservationSection sectionName='차량'>
@@ -118,30 +104,13 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
         <OwnerReservationSection sectionName='추가 옵션'>
           <div className='flex-center h-232pxr overflow-y-scroll'>
             <div className='grid h-232pxr w-232pxr grid-cols-2 place-items-center gap-x-15pxr gap-y-22pxr'>
-              <OwnerReservationAdditionalOptionCard
-                optionName='숯불세트'
-                quantity={2}
-              />
-              <OwnerReservationAdditionalOptionCard
-                optionName='이불세트'
-                quantity={3}
-              />
-              <OwnerReservationAdditionalOptionCard
-                optionName='욕실세트'
-                quantity={1}
-              />
-              <OwnerReservationAdditionalOptionCard
-                optionName='장작세트'
-                quantity={5}
-              />
-              <OwnerReservationAdditionalOptionCard
-                optionName='장작세트'
-                quantity={5}
-              />
-              <OwnerReservationAdditionalOptionCard
-                optionName='장작세트'
-                quantity={5}
-              />
+              {selectedAdditionalOptionResult.map((option, index) => (
+                <OwnerReservationAdditionalOptionCard
+                  optionName={option.name}
+                  quantity={option.amount}
+                  key={index}
+                />
+              ))}
             </div>
           </div>
         </OwnerReservationSection>
