@@ -3,10 +3,11 @@ import { CampZoneForSearch } from '../(header)/search/page';
 function createMapPosition(campPlaceData: CampZoneForSearch[]) {
   return campPlaceData?.map((data) => {
     const { lat, lng } = data;
+    console.log(campPlaceData);
     return {
       id: data.id,
       title: data.name,
-      latlng: new window.kakao.maps.LatLng(Number(lng), Number(lat)),
+      latlng: new window.kakao.maps.LatLng(Number(lat), Number(lng)),
       imgUrl: data.campImage,
       price: data.minimumAmount,
       address: data.address,

@@ -4,13 +4,16 @@
 .react-datepicker__time-container,
 .react-datepicker__time-box,
 .react-datepicker__time {
-  width: 14.125rem !important;
+  width: 100% !important;
 }
 
 .react-datepicker {
+  width: inherit !important;
+  position: relative;
   border: 0.125rem solid #dfdfdf;
   border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
 .react-datepicker__time-list-item {

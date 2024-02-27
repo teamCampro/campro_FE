@@ -1,18 +1,28 @@
 'use client';
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, SetStateAction, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageUploader from './ImageUploader';
 import useUploadImageHover from '../_hooks/useUploadImageHover';
+import uploadFile from '../../_utils/uploadToS3';
+import loadingGif from '@/public/gifs/campro_loading.gif';
+import Image from 'next/image';
 
 interface Props {
   maxImages: number;
   gridType?: 'horizontal' | 'default';
+  images: string[];
+  onSetImages: (images: SetStateAction<string[]>) => void;
 }
 
-function OwnerImageUploader({ maxImages, gridType }: Props) {
+function OwnerImageUploader({
+  maxImages,
+  gridType,
+  images,
+  onSetImages,
+}: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { isHovered, handleMouseEnter, handleMouseLeave } =
     useUploadImageHover();
 
@@ -23,28 +33,31 @@ function OwnerImageUploader({ maxImages, gridType }: Props) {
     inputRef.current.click();
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
 
     const leftCount = files.length + images.length - maxImages;
 
     if (leftCount <= 0) {
-      Array.from(files).forEach((file) => {
-        const imageUrl = URL.createObjectURL(file);
-        setImages((prevImages) => [...prevImages, imageUrl]);
-      });
-      return;
-    }
+      setIsLoading(true);
+      const uploadedImages: string[] = await Promise.all(
+        Array.from(files).map(async (file) => {
+          const imageUrl = await uploadFile(file);
+          return imageUrl;
+        }),
+      );
 
-    return toast.error(`이미지가 ${Math.abs(leftCount)}개 초과 되었습니다.`);
+      onSetImages((prev) => [...prev, ...uploadedImages]);
+      setIsLoading(false);
+    } else {
+      toast.error(`이미지가 ${Math.abs(leftCount)}개 초과 되었습니다.`);
+    }
   };
 
   const handleCancelClick = (image: string) => {
     URL.revokeObjectURL(image);
-    setImages((prevImages) =>
-      prevImages.filter((prevImage) => prevImage !== image),
-    );
+    onSetImages(images.filter((prevImage) => prevImage !== image));
 
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -54,11 +67,22 @@ function OwnerImageUploader({ maxImages, gridType }: Props) {
   const handleSetMainImage = (index: number) => {
     const newImages = [...images];
     [newImages[0], newImages[index]] = [newImages[index], newImages[0]];
-    setImages(newImages);
+    onSetImages(newImages);
   };
 
   return (
     <div>
+      {isLoading && (
+        <div className='fixed left-1/2 top-1/2 z-[9999] -translate-x-1/2 -translate-y-1/2'>
+          <Image
+            width={150}
+            height={150}
+            src={loadingGif}
+            alt='로딩 이미지'
+            objectFit='cover'
+          />
+        </div>
+      )}
       <ImageUploader
         images={images}
         inputRef={inputRef}
@@ -70,6 +94,7 @@ function OwnerImageUploader({ maxImages, gridType }: Props) {
         onMouseLeave={handleMouseLeave}
         onClickUpload={handleClickUpload}
         gridType={gridType}
+        isLoading={isLoading}
       />
 
       <ToastContainer

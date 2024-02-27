@@ -36,7 +36,7 @@ function OwnerInputList({ listData }: Props) {
           </Label>
           <CommonInput
             name={input.name}
-            className='!h-65pxr !rounded-[16px] !text-18pxr focus:border-2 focus:border-black'
+            className='!h-65pxr !rounded-[16px] !border-2 border-black !text-18pxr focus:border-2 focus:border-black'
             rules={ownerValidate}
             onBlur={(e) => handleChangeOwnerInputValue(e, input.name)}
             defaultValue={handleOwnerInputDefaultValue(input.name)}

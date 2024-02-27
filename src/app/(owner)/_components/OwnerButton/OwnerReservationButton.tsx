@@ -16,7 +16,8 @@ function OwnerReservationButton({
   children,
 }: Props) {
   const buttonConfig = {
-    primary: 'w-108pxr px-24pxr py-8pxr font-caption1-semibold border',
+    primary:
+      'w-108pxr px-24pxr py-8pxr font-caption1-semibold border hover:bg-gray100 hover:border-black',
     large: 'w-231pxr px-24pxr py-8pxr font-caption1-semibold border',
 
     accept: {
