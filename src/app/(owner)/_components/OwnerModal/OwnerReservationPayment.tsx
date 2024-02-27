@@ -1,36 +1,23 @@
 import React from 'react';
+import { AddtionalOptionType } from '../../owner/site-registration/page';
+import { AdditionalOptionType } from './OwnerModalContent';
 
-function OwnerReservationPayment() {
-  const mocktak = {
-    stayDays: 2,
-    price: 40000,
-    additionalOptions: [
-      {
-        optionName: '바베큐 세트',
-        quantity: 1,
-        price: 20000,
-      },
-      {
-        optionName: '이불 세트',
-        quantity: 4,
-        price: 6000,
-      },
-      {
-        optionName: '장작 세트',
-        quantity: 3,
-        price: 15000,
-      },
-    ],
-  };
+interface Props {
+  stayNights: number;
+  czSitePrice: number;
+  additionalOptions: AdditionalOptionType[];
+}
 
-  const additionalTotalPrice = mocktak.additionalOptions.reduce(
-    (total, option) => {
-      return total + option.price * option.quantity;
-    },
-    0,
-  );
+function OwnerReservationPayment({
+  stayNights,
+  czSitePrice,
+  additionalOptions,
+}: Props) {
+  const additionalTotalPrice = additionalOptions.reduce((total, option) => {
+    return total + option.price * option.amount;
+  }, 0);
 
-  const totalPrice = mocktak.price * mocktak.stayDays + additionalTotalPrice;
+  const totalPrice = czSitePrice * stayNights + additionalTotalPrice;
 
   return (
     <div className='flex h-full w-304pxr flex-col items-center gap-16pxr rounded-2xl border border-[#B9B9B9] px-13pxr py-20pxr'>
@@ -39,10 +26,10 @@ function OwnerReservationPayment() {
         <div className='flex flex-col gap-12pxr'>
           <div className='flex w-full justify-between'>
             <span className='text-16pxr font-semibold leading-[22.4px] text-gray600'>
-              {mocktak.stayDays}박
+              {stayNights}박
             </span>
             <span className='text-16pxr font-semibold leading-[22.4px] text-gray600'>
-              {(mocktak.price * mocktak.stayDays).toLocaleString()}원
+              {(czSitePrice * stayNights).toLocaleString()}원
             </span>
           </div>
           <div className='flex flex-col gap-8pxr'>
@@ -55,13 +42,13 @@ function OwnerReservationPayment() {
               </span>
             </div>
             <div className='flex flex-col gap-8pxr'>
-              {mocktak.additionalOptions.map((option, index) => {
-                const { optionName, quantity, price } = option;
+              {additionalOptions.map((option, index) => {
+                const { name, amount, price } = option;
 
                 return (
                   <div key={index} className='flex w-full justify-between'>
                     <span className='text-gray-600 font-body2-medium'>
-                      {optionName} x{quantity}
+                      {name} x{amount}
                     </span>
                     <span className='text-gray500 font-body2-medium'>
                       {price.toLocaleString()}원

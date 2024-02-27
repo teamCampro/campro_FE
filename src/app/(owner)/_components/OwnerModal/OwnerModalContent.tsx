@@ -5,7 +5,7 @@ import OwnerReservationAdditionalOptionCard from './OwnerReservationAdditionalOp
 import OwnerReservationPayment from './OwnerReservationPayment';
 import formattedDate from '../../_utils/formattedDate';
 
-interface AdditionalOptionType {
+export interface AdditionalOptionType {
   name: string;
   price: number;
   amount: number;
@@ -25,7 +25,7 @@ interface Props {
     reservedAt: string;
     payMethod: string;
     campingZoneSitePrice: number;
-    stayNights: string;
+    stayNights: number;
     selectedAdditionalOptionResult: AdditionalOptionType[];
   };
 }
@@ -53,6 +53,7 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
   const formattedReservedAt = formattedDate(date);
   const newDate = new Date();
   const paymentDate = String(newDate.getFullYear()) + '.' + formattedReservedAt;
+  const carNumber = JSON.parse(JSON.parse(carInfo));
 
   return (
     <div className='flex'>
@@ -80,7 +81,7 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
           />
         </OwnerReservationSection>
         <OwnerReservationSection sectionName='차량'>
-          {JSON.parse(carInfo).map((carNumber: string, index: number) => (
+          {carNumber.map((carNumber: string, index: number) => (
             <OwnerReservationSectionContent
               key={index}
               label='차량'
@@ -114,7 +115,11 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
             </div>
           </div>
         </OwnerReservationSection>
-        <OwnerReservationPayment />
+        <OwnerReservationPayment
+          stayNights={stayNights}
+          czSitePrice={campingZoneSitePrice}
+          additionalOptions={selectedAdditionalOptionResult}
+        />
       </div>
     </div>
   );
