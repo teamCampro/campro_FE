@@ -15,14 +15,13 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
     <>
       {imgUrls && (
         <div className='relative flex w-full max-w-1360pxr'>
-          <div className='grid w-full grid-cols-2 gap-12pxr'>
-            <div className='flex w-full'>
+          <div className='grid h-auto w-full grid-cols-2  gap-12pxr'>
+            <div className='relative flex h-full w-full'>
               {imgUrls[0] && imgUrls[0] !== '' && (
                 <Image
                   priority
-                  className='flex aspect-580/398 w-full cursor-pointer rounded-l-2xl transition-all  hover:brightness-[0.7] tablet:aspect-688/398'
-                  width={580}
-                  height={398}
+                  className='aspect-580/398 cursor-pointer rounded-l-2xl transition-all hover:brightness-[0.7] tablet:aspect-688/398'
+                  fill
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
                 />

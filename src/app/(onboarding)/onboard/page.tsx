@@ -2,8 +2,8 @@
 
 import Button from '@/components/Button';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 function Page() {
   const router = useRouter();
 
@@ -14,7 +14,7 @@ function Page() {
 
   useEffect(() => {
     if (!userId) return router.push('/');
-  }, [userId]);
+  }, [router, userId]);
 
   return (
     <div className='custom-height justify-center bg-gray100 bg-onboard bg-cover bg-center bg-no-repeat pt-201pxr mobile:pt-64pxr'>
