@@ -28,11 +28,25 @@ const OWNER_INPUT_MAP_DATA = [
     key: 'minPeople',
   },
   {
+    label: '최대 숙박 인원',
+    placeholder: '최대 숙박 인원을 입력해주세요. ex) 4',
+    unit: '명',
+    inputType: 'number',
+    key: 'maxPeople',
+  },
+  {
     label: '최대 주차 가능 수',
     placeholder: '최대 주차 가능 수를 입력해주세요. ex) 2',
     unit: '대',
     inputType: 'number',
     key: 'maxParking',
+  },
+  {
+    label: '주차 가이드',
+    placeholder: 'ex) 텐트 옆 주차',
+    unit: '',
+    inputType: 'text',
+    key: 'parkingGuide',
   },
 ];
 

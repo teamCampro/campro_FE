@@ -36,6 +36,8 @@ export interface SiteInputType {
   price: number;
   minNights: number;
   minPeople: number;
+  maxPeople: number;
+  parkingGuide: string;
   campingCategory: string;
   campingTheme: string;
   maxParking: number;
@@ -99,6 +101,7 @@ function SiteRegistrationPage() {
     price: 0,
     minNights: 0,
     minPeople: 0,
+    maxPeople: 0,
     campingCategory: '',
     campingTheme: '',
     maxParking: 0,
@@ -109,6 +112,7 @@ function SiteRegistrationPage() {
     siteSize: [0, 0],
     siteImages: [''],
     options: [],
+    parkingGuide: '',
   });
 
   const { data: ownerInfo } = useQuery<OwnerInfoType>({
