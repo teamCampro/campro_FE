@@ -3,6 +3,7 @@ import {
   IconBbq,
   IconCampBed,
   IconCampShower,
+  IconCampSink,
   IconCampWifi,
   IconCooking,
   IconElectricity,
@@ -14,7 +15,6 @@ import {
   IconPlay,
   IconPublicToilet,
   IconRental,
-  IconSink,
   IconStore,
   IconTrampoline,
   IconTv,
@@ -24,7 +24,7 @@ import {
 
 const FACILITIES = {
   개수대: {
-    icon: <IconSink className='fill-gray600' />,
+    icon: <IconCampSink className='fill-gray600' />,
     order: 1,
   },
   화장실: {
