@@ -30,7 +30,6 @@ function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const pathName = usePathname();
-  const isOnboard = pathName.includes('onboard');
   const profile = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
 
@@ -82,7 +81,7 @@ function HeaderDropdown() {
           />
         </div>
         <ul
-          className={`flex-center invisible absolute left-[49%] ${isOnboard ? 'top-60pxr' : 'top-40pxr'} z-[99999] w-113pxr -translate-x-1/2 flex-col rounded-xl border border-gray-300 bg-white py-16pxr group-hover:visible mobile:hidden`}
+          className={`flex-center invisible absolute left-[49%] top-40pxr z-[99999] w-113pxr -translate-x-1/2 flex-col rounded-xl border border-gray-300 bg-white py-16pxr group-hover:visible mobile:hidden`}
         >
           {profile.map((option) => {
             return option.link ? (
