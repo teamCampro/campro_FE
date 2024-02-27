@@ -11,7 +11,9 @@ export type ButtonPageType =
   | 'categories'
   | 'ownerOnboarding'
   | 'activities'
-  | 'stayTerm';
+  | 'stayTerm'
+  | 'uploadImages'
+  | 'uploadSiteImage';
 
 interface Props {
   type?: 'small';

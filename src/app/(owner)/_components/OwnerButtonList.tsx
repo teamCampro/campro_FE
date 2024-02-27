@@ -4,7 +4,8 @@ import { Config } from '../_constants/ownerListButtons';
 import { ButtonPageType } from './OwnerButton/OwnerSelectButton';
 import OwnerButton from './OwnerButton';
 import getStorageItems from '../_utils/getStorageItems';
-import { SelectedButtonsType } from '../owner/registration/operating-period/page';
+
+export type SelectedButtonsType = Record<ButtonPageType, string[]>;
 
 interface Props {
   pageName: ButtonPageType;

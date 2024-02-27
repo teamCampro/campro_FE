@@ -9,7 +9,7 @@ const OWNER_INFORMATION_INPUTS = [
   },
   {
     label: '이메일',
-    name: 'eamil',
+    name: 'email',
   },
   {
     label: '사업자 등록 번호',

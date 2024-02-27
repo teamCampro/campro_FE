@@ -97,34 +97,6 @@ function registrationStorageHandler({
 
       localStorage.setItem('environment', JSON.stringify([buttonText]));
       return;
-
-    case 'operating_period':
-      const periodItems = getStorageItems('operating_period');
-
-      if (isClicked) {
-        localStorage.setItem(
-          'operating_period',
-          JSON.stringify(periodItems.filter((value) => buttonText !== value)),
-        );
-        return;
-      }
-
-      localStorage.setItem(
-        'operating_period',
-        JSON.stringify([...periodItems, buttonText]),
-      );
-      return;
-
-    case 'operating_days':
-      const daysItems = getStorageItems('operating_days');
-
-      if (isClicked) {
-        localStorage.setItem('operating_days', JSON.stringify([buttonText]));
-        return;
-      }
-
-      localStorage.setItem('operating_days', JSON.stringify([buttonText]));
-      return;
   }
 }
 

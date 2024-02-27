@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export type GroundType = '파쇄석' | '잔디' | '흙' | '데크' | '';
 export type PeriodUnitType = '매월' | '매일' | '';

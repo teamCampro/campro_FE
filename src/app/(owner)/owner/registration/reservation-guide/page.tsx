@@ -1,5 +1,5 @@
 'use client';
-import React, { FocusEvent, useEffect, useRef } from 'react';
+import React, { ChangeEvent, FocusEvent, useEffect, useRef } from 'react';
 import OwnerTitle from '../../../_components/OwnerTitle';
 import OwnerInputForm from '../../../_components/OwnerInput/OwnerInputForm';
 import OwnerInput from '../../../_components/OwnerInput/OwnerInput';
@@ -147,17 +147,17 @@ function ReservationGuidePage() {
       return true;
     };
 
-    const next = nextPeriod(31);
+    const next = nextPeriod(openPeriodDay.day);
     if (!next) {
-      console.log('삐뽀삐뽀 다음 주기 31이 없음');
+      console.log(`삐뽀삐뽀 다음 주기 ${openPeriodDay.day}이 없음`);
     } else {
       console.log('있음');
     }
-  }, []);
+  }, [openPeriodDay]);
 
   useEffect(() => {
     const childElement = document.querySelector('.react-datepicker');
-    console.log(childElement);
+
     if (childElement) {
       const parentElement = childElement.parentNode as HTMLDivElement;
       parentElement.style.width = '100%';
@@ -167,6 +167,14 @@ function ReservationGuidePage() {
     isMannerTimeStartPopoverOpen,
     isMannerTimeEndPopoverOpen,
   ]);
+
+  useEffect(() => {
+    localStorage.setItem('mannerTimeStart', mannerTimeStartFormmatedDate);
+  }, [mannerTimeStartFormmatedDate]);
+
+  useEffect(() => {
+    localStorage.setItem('mannerTimeEnd', mannerTimeEndFormmatedDate);
+  }, [mannerTimeEndFormmatedDate]);
 
   return (
     <div className='flex h-screen flex-col items-center'>
@@ -178,7 +186,6 @@ function ReservationGuidePage() {
               <OwnerInput
                 inputType='text'
                 inputName='매너 타임 시작'
-                onChange={() => console.log('changed')}
                 value={mannerTimeStartFormmatedDate}
                 type='flexible'
                 onFocus={() => {
@@ -199,9 +206,9 @@ function ReservationGuidePage() {
                       ref={mannerTimeStartRef}
                       inline
                       selected={mannerTimeStartDate}
-                      onChange={(date) =>
-                        handleChangeMannerTimeStartDatePicker(date)
-                      }
+                      onChange={(date) => {
+                        handleChangeMannerTimeStartDatePicker(date);
+                      }}
                       showTimeSelect
                       showTimeSelectOnly
                       timeIntervals={30}
