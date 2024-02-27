@@ -57,7 +57,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
         className={`flex flex-col justify-start gap-16pxr rounded-xl border p-24pxr tabletMin:flex-row tabletMin:gap-24pxr`}
       >
         <Image
-          src={list?.siteImage ? JSON.parse(list.siteImage)[0] : ''}
+          src={list?.siteImage ? list.siteImage : ''}
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
