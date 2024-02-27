@@ -52,21 +52,24 @@ function ReservationInfo({
   const closeModal = () => dispatch(isOpen(false));
 
   const handleReserve = (id: number) => {
-    if (!userId) {
-      return dispatch(isOpen(true));
-    }
-
     const paramsKeys = ['checkIn', 'checkOut', 'adult', 'child', 'pet'];
     const newSearchParams = new URLSearchParams();
+
     paramsKeys.forEach((key) => {
       const value = searchParams.get(key);
       if (value) newSearchParams.set(key, value);
     });
 
-    router.push(
-      `/reserve/${campingZoneId}/${id}?${newSearchParams.toString()}`,
-    );
+    const redirectUrl = `/reserve/${campingZoneId}/${id}?${newSearchParams.toString()}`;
+
+    if (userId) {
+      router.push(redirectUrl);
+    } else {
+      localStorage.setItem('redirectAfterLogin', redirectUrl);
+      dispatch(isOpen(true));
+    }
   };
+
   return (
     <>
       <section className='flex flex-col gap-24pxr'>
