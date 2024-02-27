@@ -15,7 +15,7 @@ export const GET = async (
     if (status) {
       query += ` AND r.status = ?`;
     }
-    query += ' ORDER BY r.reserved_at DESC';
+    query += ' ORDER BY r.id DESC';
 
     const queryValues = status ? [userId, status] : [userId];
     const [reservationList] = await db.execute(query, queryValues);
