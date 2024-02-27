@@ -6,15 +6,15 @@ import {
 } from '@/public/svgs';
 
 export interface Config {
-  Image: JSX.Element;
+  image: JSX.Element;
   buttonText: string;
 }
 
 const themeConfig = [
-  { Image: <IconFireplace />, buttonText: '아늑한' },
-  { Image: <IconPets />, buttonText: '반려동물 출입 가능' },
-  { Image: <IconJumpingPerson />, buttonText: '활기찬' },
-  { Image: <IconInstagram />, buttonText: '감성적' },
+  { image: <IconFireplace />, buttonText: '아늑한' },
+  { image: <IconPets />, buttonText: '자연적' },
+  { image: <IconJumpingPerson />, buttonText: '활기찬' },
+  { image: <IconInstagram />, buttonText: '감성적' },
 ];
 
 export default themeConfig;

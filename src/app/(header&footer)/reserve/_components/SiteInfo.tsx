@@ -61,7 +61,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
       >
         <figure className='flex justify-start gap-16pxr tabletMin:gap-24pxr'>
           <Image
-            src={siteInfo.siteImage ? JSON.parse(siteInfo.siteImage)[0] : ''}
+            src={siteInfo.siteImage ? siteInfo.siteImage : ''}
             width={140}
             height={140}
             alt='캠핑장 사이트 이미지'
@@ -91,7 +91,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                     fill='#949494'
                   />
                 </span>
-                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                <div className='reserve-lineOver  text-gray600 font-body2-medium'>
                   {siteInfo.address}
                 </div>
               </li>
@@ -104,7 +104,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                     fill='#949494'
                   />
                 </span>
-                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                <div className='reserve-lineOver  text-gray600  font-body2-medium '>
                   {siteInfo.tel}
                 </div>
               </li>

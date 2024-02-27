@@ -8,11 +8,11 @@ interface Props {
 function OwnerReservationStatus({ status }: Props) {
   const statusConfig = () => {
     switch (status) {
-      case 'accepted':
+      case 'RESERVE_COMPLETE':
         return { className: 'text-primary100', buttonText: '예약 승인' };
-      case 'pending':
+      case 'RESERVE_WAITING':
         return { className: 'text-[#BA8600]', buttonText: '예약 대기' };
-      case 'rejected':
+      case 'RESERVE_CANCEL':
         return { className: 'text-error', buttonText: '예약 거절' };
       default:
         return { className: '', buttonText: '' };

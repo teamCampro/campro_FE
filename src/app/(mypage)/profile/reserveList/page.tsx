@@ -1,10 +1,8 @@
 'use client';
 import ReserveList from '../_components/ReserveList';
-import { Suspense } from 'react';
 
 import getReserveList from '@/src/app/_data/profile/getReserveList';
 import { useQuery } from '@tanstack/react-query';
-import { Loading } from '@/components/index';
 
 interface ProfilePageType {
   searchParams: {
@@ -19,7 +17,7 @@ function Page({ searchParams }: ProfilePageType) {
   }
   const { status } = searchParams;
 
-  const { data: userReserveData } = useQuery({
+  const { data: userReserveData, isLoading } = useQuery({
     queryKey: ['userReserve', userId, status],
     queryFn: () => getReserveList(userId, status),
     staleTime: 60 * 1000,
@@ -27,9 +25,11 @@ function Page({ searchParams }: ProfilePageType) {
   });
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <ReserveList userReserveData={userReserveData} status={status} />
-      </Suspense>
+      <ReserveList
+        userReserveData={userReserveData}
+        status={status}
+        isLoading={isLoading}
+      />
     </>
   );
 }

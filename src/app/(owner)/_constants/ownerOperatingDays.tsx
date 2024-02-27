@@ -2,15 +2,15 @@ import { IconAllTime, IconDay, IconWeekend } from '@/public/svgs';
 
 const daysConfig = [
   {
-    Image: <IconDay />,
+    image: <IconDay />,
     buttonText: '평일',
   },
   {
-    Image: <IconWeekend />,
+    image: <IconWeekend />,
     buttonText: '주말',
   },
   {
-    Image: <IconAllTime />,
+    image: <IconAllTime />,
     buttonText: '평일 + 주말',
   },
 ];

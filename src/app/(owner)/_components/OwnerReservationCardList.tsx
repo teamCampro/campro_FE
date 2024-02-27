@@ -2,38 +2,39 @@
 
 import React from 'react';
 import OwnerReservationCard from './OwnerReservationCard';
-import { ReservationData } from '../owner/reservation-check/page';
+import { OwnerReservation } from '../../_data/owner/getReservationList';
 
 interface Props {
-  reservationData: ReservationData[];
+  reservationData: OwnerReservation[] | undefined;
 }
 
 function OwnerReservationCardList({ reservationData }: Props) {
   return (
     <div className='grid w-1100pxr grid-cols-2 place-items-center gap-x-45pxr gap-y-30pxr mobile:grid-cols-1 tablet:grid-cols-1'>
-      {reservationData.map((reservation, index) => {
-        const {
-          imageUrl,
-          type,
-          siteArea,
-          site,
-          clientName,
-          checkIn,
-          checkOut,
-        } = reservation;
-        return (
-          <OwnerReservationCard
-            key={index}
-            imageUrl={imageUrl}
-            type={type}
-            siteArea={siteArea}
-            site={site}
-            clientName={clientName}
-            checkIn={checkIn}
-            checkOut={checkOut}
-          />
-        );
-      })}
+      {reservationData &&
+        reservationData.map((reservation, index) => {
+          const {
+            campingZoneImage,
+            status,
+            siteName,
+            userName,
+            stayStartAt,
+            stayEndAt,
+            id,
+          } = reservation;
+          return (
+            <OwnerReservationCard
+              key={index}
+              imageUrl={campingZoneImage}
+              type={status}
+              site={siteName}
+              clientName={userName}
+              checkIn={stayStartAt}
+              checkOut={stayEndAt}
+              reservationId={id}
+            />
+          );
+        })}
     </div>
   );
 }

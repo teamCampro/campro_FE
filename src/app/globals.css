@@ -162,46 +162,72 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: block;
+  width: 200px;
+}
+
+@media (min-width: 1031px) and (max-width: 1279px) {
+  #reserve .reserve-lineOver {
+    width: 200px !important;
+  }
 }
 
 @media (min-width: 825px) and (max-width: 1030px) {
   #reserve .reserve-lineOver {
-    width: 160px;
+    width: 140px !important;
   }
 }
 
 @media (min-width: 768px) and (max-width: 824px) {
   #reserve .reserve-lineOver {
-    width: 120px;
-  }
-  .reserve-options {
-    flex-basis: 200px;
+    width: 120px !important;
   }
 }
 
-@media (min-width: 370px) and (max-width: 432px) {
+@media (min-width: 472px) and (max-width: 767px) {
   #reserve .reserve-lineOver {
-    width: 160px;
-  }
-  #profile .reserve-lineOver {
-    width: 160px;
+    width: 500px !important;
   }
 }
-@media (min-width: 340px) and (max-width: 370px) {
+
+@media (min-width: 370px) and (max-width: 471px) {
   #reserve .reserve-lineOver {
-    width: 120px;
+    width: 160px !important;
   }
   #profile .reserve-lineOver {
-    width: 120px;
+    width: 160px !important;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 369px) {
+  #reserve .reserve-lineOver {
+    width: 110px !important;
+  }
+  #profile .reserve-lineOver {
+    width: 120px !important;
   }
 }
 
 @media (min-width: 320px) and (max-width: 340px) {
   #reserve .reserve-lineOver {
-    width: 110px;
+    width: 90px !important;
   }
   #profile .reserve-lineOver {
-    width: 110px;
+    width: 90px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  #reserve .reserve-lineOver {
+    display: flex !important;
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 500px) {
+  #profile .reserve-lineOver {
+    display: flex !important;
+    width: 100% !important;
   }
 }
 

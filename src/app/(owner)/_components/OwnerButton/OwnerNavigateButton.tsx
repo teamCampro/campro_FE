@@ -1,16 +1,24 @@
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 
-export type OwnerButtonType = 'prev' | 'next' | 'done';
+export type OwnerButtonType = 'prev' | 'next' | 'done' | 'registration';
 
 interface Props {
   type: OwnerButtonType;
   customWidth?: string;
   custom?: string;
+  onClick?: () => void;
 }
 
-function OwnerNavigateButton({ type, customWidth = '', custom = '' }: Props) {
+function OwnerNavigateButton({
+  type,
+  customWidth = '',
+  custom = '',
+  onClick,
+}: Props) {
   const primaryClassName =
-    'text-28pxr w-130pxr py-10pxr px-20pxr flex-center rounded-2xl bg-gray700 text-white hover:bg-black transition ease-in-out active:py-5pxr active:px-15pxr active:w-115pxr duration-400';
+    'text-28pxr w-130pxr py-10pxr px-20pxr flex-center rounded-2xl bg-gray700 text-white hover:bg-black ';
   const prevClassName =
     'text-28pxr font-semibold w-130pxr py-10pxr flex-center';
 
@@ -24,6 +32,9 @@ function OwnerNavigateButton({ type, customWidth = '', custom = '' }: Props) {
 
       case 'done':
         return { text: '완료', className: primaryClassName };
+
+      case 'registration':
+        return { text: '등록', className: primaryClassName };
     }
   };
 
@@ -31,7 +42,16 @@ function OwnerNavigateButton({ type, customWidth = '', custom = '' }: Props) {
 
   return (
     <div className={`flex-center w-130pxr ${customWidth}`}>
-      <button className={`${className} ${custom}`}>{text}</button>
+      <motion.div
+        whileHover={{ scale: 1.07 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        className='w-full'
+      >
+        <button className={`${className} ${custom}`} onClick={onClick}>
+          {text}
+        </button>
+      </motion.div>
     </div>
   );
 }

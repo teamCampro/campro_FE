@@ -29,8 +29,11 @@ async function Page({ params }: SearchParamsType) {
       </h2>
       <div className='m-auto mb-125pxr mt-24pxr max-w-1400pxr px-20pxr tabletMin:mt-40pxr tabletMin:px-40pxr'>
         <HeaderAboutReserve />
-        <main className='reserve flex flex-col gap-24pxr tabletMin:grid'>
-          <section id='reserve' className='flex flex-col gap-24pxr'>
+        <main
+          id='reserve'
+          className='reserve flex flex-col gap-24pxr tabletMin:grid'
+        >
+          <section className='flex flex-col gap-24pxr'>
             <RoundButton custom='w-full bg-white border border-gray200 font-body2-semibold !h-46pxr rounded-lg'>
               이용 안내 보기
             </RoundButton>
@@ -38,7 +41,9 @@ async function Page({ params }: SearchParamsType) {
             <InfoAboutReserve />
             <InfoAboutBookingPerson />
             <AddVehicle />
-            <AddOption optionList={reserveData.result.additionalOptions} />
+            {reserveData.result.addtionalOptions && (
+              <AddOption optionList={reserveData.result.additionalOptions} />
+            )}
             <PaymentMethod />
           </section>
           <section>
