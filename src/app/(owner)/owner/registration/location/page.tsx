@@ -42,9 +42,15 @@ function LocationPage() {
       const isReadyMap = status === kakao.maps.services.Status.OK && map;
 
       if (isReadyMap) {
-        const { x, y } = result[0];
+        const { x, y, address } = result[0];
+        const { region_1depth_name, region_2depth_name } = address;
+        localStorage.setItem(
+          'displayAddress',
+          `${region_1depth_name} ${region_2depth_name}`,
+        );
         const coords = new kakao.maps.LatLng(Number(y), Number(x));
-
+        localStorage.setItem('lat', y);
+        localStorage.setItem('lng', x);
         const markerImage = createMarkerImage({
           src: '/svgs/markerGray.svg',
           size: { width: 19, height: 25 },

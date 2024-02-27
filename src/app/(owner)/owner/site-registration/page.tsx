@@ -1,6 +1,5 @@
 'use client';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import { ownerInputBlurHandler } from '../../_utils/OwnerInputBlurHandler';
 import OwnerTitle from '../../_components/OwnerTitle';
@@ -21,8 +20,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import vi from 'date-fns/locale/vi';
 import '../../_styles/timePicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { postSiteRegistration } from '@/src/app/_data/owner/postSiteRegistration';
+import { getOwnerInfo } from '@/src/app/_data/owner/getOwnerInfo';
 
 registerLocale('vi', vi);
 
@@ -73,8 +73,21 @@ type InputValuesKeyType =
   | 'siteImages'
   | 'options';
 
+interface OwnerCampingZone {
+  campingZoneId: number;
+  campingZoneName: string;
+}
+
+export interface OwnerInfoType {
+  name: string;
+  email: string;
+  phone: string;
+  role: 'OWNER';
+  nickname: string;
+  ownerCampingZoneList: OwnerCampingZone[];
+}
+
 function SiteRegistrationPage() {
-  const router = useRouter();
   const groundTypeRef = useRef<null | HTMLUListElement>(null);
   const campingCategoryRef = useRef<null | HTMLUListElement>(null);
   const campingThemeRef = useRef<null | HTMLUListElement>(null);
@@ -97,6 +110,13 @@ function SiteRegistrationPage() {
     siteImages: [''],
     options: [],
   });
+
+  const userId = localStorage.getItem('userId');
+  const { data: ownerInfo } = useQuery<OwnerInfoType>({
+    queryKey: ['ownerInfo'],
+    queryFn: () => getOwnerInfo(Number(userId)),
+  });
+
   const [additionalOption, setAdditionalOption] = useState<AddtionalOptionType>(
     { optionName: '', optionPrice: 0 },
   );
@@ -182,7 +202,6 @@ function SiteRegistrationPage() {
     value,
     valueType,
   }: HandleChangeInputValuesPropsType) => {
-    console.log(value);
     setInputValues((prev) => ({
       ...prev,
       [key]:
@@ -244,7 +263,11 @@ function SiteRegistrationPage() {
   }, [isCheckInPopoverOpen, isCheckOutPopoverOpen]);
 
   const siteRegistrationMutation = useMutation({
-    mutationFn: () => postSiteRegistration(inputValues),
+    mutationFn: () =>
+      postSiteRegistration({
+        siteInfo: inputValues,
+        campingZoneId: ownerInfo?.ownerCampingZoneList[0].campingZoneId,
+      }),
   });
 
   return (

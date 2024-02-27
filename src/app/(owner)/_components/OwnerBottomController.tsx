@@ -45,12 +45,12 @@ function OwnerBottomController() {
             <Link href={prevPageRoute}>
               <OwnerButton.Navigate type='prev' />
             </Link>
-            <Link href={'/owner'}>
-              <OwnerButton.Navigate
-                type='done'
-                onClick={() => registrationMutation.mutate()}
-              />
-            </Link>
+            {/* <Link href={'/owner'}> */}
+            <OwnerButton.Navigate
+              type='done'
+              onClick={() => registrationMutation.mutate()}
+            />
+            {/* </Link> */}
           </div>
         );
 

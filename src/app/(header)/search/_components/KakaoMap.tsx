@@ -84,7 +84,7 @@ function KakaoMap({
       map.setCenter(
         isRegion
           ? new kakao.maps.LatLng(36.7140176374004, 128.10524294165157)
-          : new kakao.maps.LatLng(averageLng, averageLat),
+          : new kakao.maps.LatLng(averageLat, averageLng),
       );
       map.setLevel(mapSize == 'half' && region !== '전체' ? 11 : 12);
 

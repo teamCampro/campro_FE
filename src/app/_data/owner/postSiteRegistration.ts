@@ -1,7 +1,15 @@
 import { SiteInputType } from '../../(owner)/owner/site-registration/page';
 import { axiosInstance } from '../../_utils/axiosInstance';
 
-export const postSiteRegistration = async (siteInfo: SiteInputType) => {
+interface RequestType {
+  siteInfo: SiteInputType;
+  campingZoneId: number | undefined;
+}
+
+export const postSiteRegistration = async ({
+  siteInfo,
+  campingZoneId,
+}: RequestType) => {
   const {
     siteImages,
     siteName,
@@ -23,7 +31,7 @@ export const postSiteRegistration = async (siteInfo: SiteInputType) => {
     const response = await axiosInstance.post(
       `owner/camping-zone-site/register`,
       {
-        campingZoneId: 1,
+        campingZoneId,
         siteImages,
         name: siteName,
         minNights,

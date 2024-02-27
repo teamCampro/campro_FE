@@ -12,6 +12,7 @@ interface Props {
 function OwnerLayout({ children }: Props) {
   const pathName = usePathname();
   const isRegistrationPage = pathName.includes('/owner/registration');
+  const isOwnerPage = pathName === '/owner';
   return (
     <div className='px-80pxr'>
       <OwnerHeader>
@@ -19,6 +20,8 @@ function OwnerLayout({ children }: Props) {
           <button className='flex-center h-50pxr w-136pxr text-20pxr font-semibold'>
             저장 후 나가기
           </button>
+        ) : isOwnerPage ? (
+          ''
         ) : (
           <Link href={'/owner'}>
             <button className='flex-center h-50pxr w-170pxr text-20pxr font-semibold'>

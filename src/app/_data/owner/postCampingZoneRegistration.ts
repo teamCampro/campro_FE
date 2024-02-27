@@ -8,7 +8,7 @@ export const postCampingZoneRegistration = async () => {
 
       if (uploadImages === null) return '';
 
-      const mainImage = uploadImages ? uploadImages[0] : '';
+      const mainImage = uploadImages ? JSON.parse(uploadImages)[0] : '';
 
       return mainImage;
     };
@@ -17,7 +17,7 @@ export const postCampingZoneRegistration = async () => {
 
       if (uploadImages === null) return [];
 
-      const subImages = JSON.parse(uploadImages).unshift();
+      const subImages = JSON.parse(uploadImages).slice(1);
 
       return subImages;
     };
@@ -58,19 +58,56 @@ export const postCampingZoneRegistration = async () => {
       tourNumber: localStorage.getItem('TourismBusinessRegistrationNumber'),
       facilities: localStorage.getItem('amenities'),
       address: localStorage.getItem('location'),
-      campImage: () => getLocalStorageMainImage(),
-      campSubImages: () => getLocalStorageSubImages(),
+      campImage: getLocalStorageMainImage(),
+      campSubImages: getLocalStorageSubImages(),
       planImage: localStorage.getItem('uploadSiteImage'),
       intro: localStorage.getItem('introduction'),
       mannerTimeStart: localStorage.getItem('mannerTimeStart'),
       mannerTimeEnd: localStorage.getItem('mannerTimeEnd'),
       openTime: '2개월',
-      onboardingKeyword: () => getOnboardingKeywords(),
+      onboardingKeyword: getOnboardingKeywords(),
       guide: localStorage.getItem('informationUse'),
       refundGuide: localStorage.getItem('cancellationRefundPolicy'),
     };
+    const {
+      name,
+      tel,
+      bossId,
+      bossEmail,
+      businessNumber,
+      tourNumber,
+      facilities,
+      address,
+      campImage,
+      campSubImages,
+      planImage,
+      intro,
+      mannerTimeEnd,
+      mannerTimeStart,
+      openTime,
+      onboardingKeyword,
+      guide,
+      refundGuide,
+    } = body;
     await axiosInstance.post(`owner/camping-zone/register`, {
-      body,
+      name,
+      tel,
+      bossId,
+      bossEmail,
+      businessNumber,
+      tourNumber,
+      facilities,
+      address,
+      campImage,
+      campSubImages,
+      planImage,
+      intro,
+      mannerTimeEnd,
+      mannerTimeStart,
+      openTime,
+      onboardingKeyword,
+      guide,
+      refundGuide,
     });
   } catch (error) {
     console.error(error);
