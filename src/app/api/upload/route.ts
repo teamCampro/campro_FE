@@ -7,7 +7,7 @@ const s3 = new AWS.S3({
   region: process.env.AWS_REGION,
 });
 
-export const config = {
+export const runtime = {
   runtime: 'experimental-edge',
 };
 
