@@ -91,7 +91,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                     fill='#949494'
                   />
                 </span>
-                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                <div className='reserve-lineOver  text-gray600 font-body2-medium'>
                   {siteInfo.address}
                 </div>
               </li>
@@ -104,7 +104,7 @@ function SiteInfo({ size, siteInfo }: SiteInfoType) {
                     fill='#949494'
                   />
                 </span>
-                <div className='reserve-lineOver flex items-center  text-gray600 font-body2-medium'>
+                <div className='reserve-lineOver  text-gray600  font-body2-medium '>
                   {siteInfo.tel}
                 </div>
               </li>
