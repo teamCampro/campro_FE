@@ -65,10 +65,7 @@ function PriceInput({
     const { value, name } = e.target;
 
     if (isNaN(Number(value.replaceAll(',', '')))) {
-      return setSumOfMoney({
-        startPrice: '0',
-        endPrice: '0',
-      });
+      return;
     }
     setSumOfMoney({ ...sumOfMoney, [name]: value.replaceAll(',', '') });
   };
@@ -76,7 +73,6 @@ function PriceInput({
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { value, name } = e.target;
-
     const priceNubmer = numberFormatter(value.replace(/(^0+)/, ''));
 
     setPrice({ ...price, [name]: priceNubmer });
@@ -95,7 +91,7 @@ function PriceInput({
     return Number(number.replaceAll(',', ''));
   };
 
-  useEffect(() => {
+  const getPriceDecode = () => {
     //각 가격 적용눌렀을 때 화면에 보여지는 값
     let applyStartPrice = '0';
     let applyEndPrice = '0';
@@ -113,12 +109,13 @@ function PriceInput({
       applyEndPrice = checkPriceSplit[1].replace('원', '');
       setPrice({ startPrice: applyStartPrice, endPrice: applyEndPrice });
       setSumOfMoney({ startPrice: applyStartPrice, endPrice: applyEndPrice });
+      console.log('input에 남기기위해 디코딩 완료pc price', price);
+      console.log('input에 남기기위해 디코딩 완료pc sumOfMoney', sumOfMoney);
     } else if (
       isMobile &&
       StandByList.prices.length > 0 &&
       StandByList.prices[0].type.includes(sumOfMoney.startPrice) &&
-      StandByList.prices[0].type.includes(sumOfMoney.endPrice) &&
-      isPriceReset
+      StandByList.prices[0].type.includes(sumOfMoney.endPrice)
     ) {
       const StandByPriceSplit = StandByList.prices[0].type.split('-');
 
@@ -127,6 +124,10 @@ function PriceInput({
       setPrice({ startPrice: applyStartPrice, endPrice: applyEndPrice });
       setSumOfMoney({ startPrice: applyStartPrice, endPrice: applyEndPrice });
     }
+  };
+
+  useEffect(() => {
+    getPriceDecode();
 
     if (
       checkList.select.prices.length <= 0 &&
@@ -141,6 +142,7 @@ function PriceInput({
         endPrice: '0',
       });
       setPrice({
+        ...price,
         startPrice: '0',
         endPrice: '0',
       });
@@ -154,6 +156,12 @@ function PriceInput({
     sumOfMoney.startPrice,
     sumOfMoney.endPrice,
   ]);
+
+  /*   console.log('price', price);
+  console.log('checkList', checkList);
+  console.log('isPriceReset', isPriceReset);
+  console.log('sumOfMoney', sumOfMoney);
+  console.log('stanby', StandByList); */
   return (
     <div
       className={`flex-center h-54pxr w-116pxr rounded-lg border bg-gray100 p-16pxr  mobile:gap-4pxr mobile:bg-white mobile344:w-full mobileMiddle:w-full ${isError ? 'border-error' : ''}`}
@@ -169,6 +177,8 @@ function PriceInput({
         onBlur={handleBlur}
         type='text'
         pattern='\d*'
+        inputMode='numeric'
+        autoComplete='off'
       />
       <h3
         className={`${isFocus || price ? 'text-gray-700' : 'text-gray500'}  font-body2-medium`}
