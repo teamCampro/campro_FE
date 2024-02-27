@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { SelectedButtonsType } from '../owner/registration/operating-period/page';
 import { ButtonPageType } from '../_components/OwnerButton/OwnerSelectButton';
+import { SelectedButtonsType } from '../_components/OwnerButtonList';
 
 function useSelectedButtons() {
   const [selectedButtons, setSelectedButtons] = useState<SelectedButtonsType>({
@@ -12,6 +12,8 @@ function useSelectedButtons() {
     ownerOnboarding: [],
     activities: [],
     stayTerm: [],
+    uploadImages: [],
+    uploadSiteImage: [],
   });
 
   const handleSelectedButtons = (
