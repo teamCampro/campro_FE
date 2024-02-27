@@ -2,9 +2,9 @@
 
 import Button from '@/components/Button';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/hooks/redux';
+import { useEffect } from 'react';
 function Page() {
   const router = useRouter();
 

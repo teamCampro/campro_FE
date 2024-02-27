@@ -49,7 +49,7 @@ export const GET = async (
       reservedAt: ownerReservationResult[0].reservedAt,
       payMethod: ownerReservationResult[0].payMethod,
       campingZoneSitePrice: ownerReservationResult[0].campingZoneSitePrice,
-      stayNights: ownerReservationResult[0].stayNights + '박',
+      stayNights: ownerReservationResult[0].stayNights,
       selectedAdditionalOptionResult,
     };
     db.release();
