@@ -11,6 +11,7 @@ import { CampingZoneSite } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampSiteDetail from './CampSiteDetail';
 import CampSiteItem from './CampSiteItem';
+import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
 interface ReservationInfoProps {
   siteList: CampingZoneSite[];
   openTime: string;
@@ -38,6 +39,7 @@ function ReservationInfo({
 
   const openSiteModal = (site: CampingZoneSite) => setSelectedSite(site);
   const dispatch = useAppDispatch();
+  const redirectUrl = useAppSelector((state) => state.redirectUrl);
   const isOpenModalLoginModal = useAppSelector(
     (state) => state.isOpenLoginRequiredModal,
   );
@@ -64,7 +66,7 @@ function ReservationInfo({
     if (userId) {
       router.push(redirectUrl);
     } else {
-      localStorage.setItem('redirectAfterLogin', redirectUrl);
+      dispatch(setRedirectUrl(redirectUrl));
       dispatch(isOpen(true));
     }
   };

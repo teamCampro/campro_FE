@@ -8,6 +8,7 @@ import { Button, SearchBar } from '..';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { isOpen } from '../../_slices/isOpenLoginRequiredModal';
 import LoginRequiredModal from '../Modal/LoginRequiredModal';
+import { setRedirectUrl } from '../../_slices/redirectUrl';
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
@@ -32,7 +33,7 @@ function Hero({ searchParams }: SearchParamsType) {
     if (userId) {
       router.push('/onboard');
     } else {
-      localStorage.setItem('redirectAfterLogin', '/onboard');
+      dispatch(setRedirectUrl('/onboard'));
       dispatch(isOpen(true));
     }
   };

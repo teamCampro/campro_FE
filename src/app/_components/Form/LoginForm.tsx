@@ -16,7 +16,7 @@ import {
 import { signin } from '../../_data/sign/signin';
 import HookFormButton from '../Button/HookFormButton';
 import { useRouter } from 'next/navigation';
-import { useAppDispatch } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { isOpen } from '../../_slices/isOpenLoginRequiredModal';
 export interface SigninInfo {
   email: string;
@@ -27,14 +27,15 @@ function LoginForm() {
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const redirectUrl = useAppSelector((state) => state.redirectUrl);
+
   const handleSubmit = async (values: FieldValues) => {
     const message = await signin(values);
     if (message) {
       setErrorMessage(message);
     } else {
-      const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
       dispatch(isOpen(false));
-      router.push(redirectUrl);
+      router.push(redirectUrl || '/');
     }
   };
 

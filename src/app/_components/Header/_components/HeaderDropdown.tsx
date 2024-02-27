@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import HeaderModal from './HeaderModal';
+import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
 
 interface UserOptionsType {
   id: number;
@@ -68,6 +69,7 @@ function HeaderDropdown() {
     queryClient.removeQueries();
     setIsLogin(false);
     window.localStorage.removeItem('userId');
+    dispatch(setRedirectUrl('/'));
     e.stopPropagation();
   };
 
