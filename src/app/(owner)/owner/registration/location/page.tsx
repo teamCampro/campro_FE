@@ -163,14 +163,14 @@ function LocationPage() {
             />
           </div>
         )}
-        <div className='h-[140%]'>
-          <OwnerAddTour
-            onChange={handleChangeTourPlaceInput}
-            onClickAddButton={handleClickAddTourPlaceButton}
-            onClickRemoveButton={handleClickRemoveTourPlaceButton}
-            tourPlaces={tourPlaces}
-          />
-        </div>
+      </div>
+      <div className='h-[140%]'>
+        <OwnerAddTour
+          onChange={handleChangeTourPlaceInput}
+          onClickAddButton={handleClickAddTourPlaceButton}
+          onClickRemoveButton={handleClickRemoveTourPlaceButton}
+          tourPlaces={tourPlaces}
+        />
       </div>
       <ToastContainer
         className='!w-400pxr'
