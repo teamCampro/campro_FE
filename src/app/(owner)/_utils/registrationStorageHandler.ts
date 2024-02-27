@@ -13,21 +13,56 @@ function registrationStorageHandler({
   isClicked,
 }: Props) {
   switch (pageName) {
-    case 'theme':
-      const themeItems = getStorageItems('theme');
+    case 'activities':
+      const activitiesItems = getStorageItems('activities');
 
       if (isClicked) {
         localStorage.setItem(
-          'theme',
-          JSON.stringify(themeItems.filter((value) => buttonText !== value)),
+          'activities',
+          JSON.stringify(
+            activitiesItems.filter((value) => buttonText !== value),
+          ),
         );
         return;
       }
 
       localStorage.setItem(
-        'theme',
-        JSON.stringify([...themeItems, buttonText]),
+        'activities',
+        JSON.stringify([...activitiesItems, buttonText]),
       );
+      return;
+
+    case 'categories':
+      const categoriesItems = getStorageItems('categories');
+
+      if (isClicked) {
+        localStorage.setItem(
+          'categories',
+          JSON.stringify(
+            categoriesItems.filter((value) => buttonText !== value),
+          ),
+        );
+        return;
+      }
+
+      localStorage.setItem(
+        'categories',
+        JSON.stringify([...categoriesItems, buttonText]),
+      );
+      return;
+
+    case 'stayTerm':
+      const stayTermItems = getStorageItems('stayTerm');
+
+      if (isClicked) {
+        localStorage.setItem(
+          'stayTerm',
+          JSON.stringify(stayTermItems.filter((value) => buttonText !== value)),
+        );
+        return;
+      }
+
+      localStorage.setItem('stayTerm', JSON.stringify([buttonText]));
       return;
 
     case 'amenities':
@@ -47,38 +82,20 @@ function registrationStorageHandler({
       );
       return;
 
-    case 'operating_period':
-      const periodItems = getStorageItems('operating_period');
+    case 'environment':
+      const environmentItems = getStorageItems('environment');
 
       if (isClicked) {
         localStorage.setItem(
-          'operating_period',
-          JSON.stringify(periodItems.filter((value) => buttonText !== value)),
+          'environment',
+          JSON.stringify(
+            environmentItems.filter((value) => buttonText !== value),
+          ),
         );
         return;
       }
 
-      localStorage.setItem(
-        'operating_period',
-        JSON.stringify([...periodItems, buttonText]),
-      );
-      return;
-
-    case 'operating_days':
-      const daysItems = getStorageItems('operating_days');
-
-      if (isClicked) {
-        localStorage.setItem(
-          'operating_days',
-          JSON.stringify(daysItems.filter((value) => buttonText !== value)),
-        );
-        return;
-      }
-
-      localStorage.setItem(
-        'operating_days',
-        JSON.stringify([...daysItems, buttonText]),
-      );
+      localStorage.setItem('environment', JSON.stringify([buttonText]));
       return;
   }
 }

@@ -16,15 +16,15 @@ function OwnerReservationCounts({ total, pending, rejected, accepted }: Props) {
         <p className='text-16pxr font-bold'>{total}개</p>
       </div>
       <div className='flex justify-between'>
-        <OwnerReservationStatus status='pending' />
+        <OwnerReservationStatus status='RESERVE_WAITING' />
         <p className='text-16pxr font-bold'>{pending}개</p>
       </div>
       <div className='flex justify-between'>
-        <OwnerReservationStatus status='accepted' />
+        <OwnerReservationStatus status='RESERVE_COMPLETE' />
         <p className='text-16pxr font-bold'>{accepted}개</p>
       </div>
       <div className='flex justify-between'>
-        <OwnerReservationStatus status='rejected' />
+        <OwnerReservationStatus status='RESERVE_CANCEL' />
         <p className='text-16pxr font-bold'>{rejected}개</p>
       </div>
     </div>

@@ -16,7 +16,9 @@ function OwnerModalWrapper({ onCloseClick, children }: Props) {
           <IconExitX className='absolute right-16pxr top-16pxr' />
         </button>
       </div>
-      <div className='bg-white px-40pxr pb-32pxr pt-24pxr'>{children}</div>
+      <div className='h-650pxr w-688pxr overflow-y-scroll bg-white px-40pxr pb-32pxr pt-24pxr'>
+        {children}
+      </div>
     </div>
   );
 }

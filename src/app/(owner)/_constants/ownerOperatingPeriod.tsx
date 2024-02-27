@@ -2,19 +2,19 @@ import { IconFall, IconSpring, IconSummer, IconWinter } from '@/public/svgs';
 
 const periodConfig = [
   {
-    Image: <IconSpring />,
+    image: <IconSpring />,
     buttonText: '봄',
   },
   {
-    Image: <IconSummer />,
+    image: <IconSummer />,
     buttonText: '여름',
   },
   {
-    Image: <IconFall />,
+    image: <IconFall />,
     buttonText: '가을',
   },
   {
-    Image: <IconWinter />,
+    image: <IconWinter />,
     buttonText: '겨울',
   },
 ];

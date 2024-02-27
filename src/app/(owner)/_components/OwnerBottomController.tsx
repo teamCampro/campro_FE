@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import OWNER_REGISTRATION_ROUTES from '../_constants/ownerRegistrationRoutes';
 import OwnerButton from './OwnerButton';
+import { useMutation } from '@tanstack/react-query';
+import { postCampingZoneRegistration } from '../../_data/owner/postCampingZoneRegistration';
 
 function OwnerBottomController() {
   const pathName = usePathname();
@@ -22,6 +24,10 @@ function OwnerBottomController() {
   const firstPageRoute = routes[0];
   const lastPageRoute = routes[routes.length - 1];
 
+  const registrationMutation = useMutation({
+    mutationFn: () => postCampingZoneRegistration(),
+  });
+
   const button = () => {
     switch (true) {
       case pathName.includes(firstPageRoute):
@@ -39,9 +45,12 @@ function OwnerBottomController() {
             <Link href={prevPageRoute}>
               <OwnerButton.Navigate type='prev' />
             </Link>
-            <Link href={'/'}>
-              <OwnerButton.Navigate type='done' />
-            </Link>
+            {/* <Link href={'/owner'}> */}
+            <OwnerButton.Navigate
+              type='done'
+              onClick={() => registrationMutation.mutate()}
+            />
+            {/* </Link> */}
           </div>
         );
 

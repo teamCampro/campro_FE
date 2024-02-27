@@ -1,6 +1,6 @@
 'use client';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 
 interface Props {
   isPopoverOpen: boolean;
