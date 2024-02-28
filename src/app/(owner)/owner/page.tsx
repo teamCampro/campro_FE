@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import OwnerTitle from '../_components/OwnerTitle';
 import OwnerButton from '../_components/OwnerButton';
 import OWNER_LINK_BUTTONS from '../_constants/ownerLinkButtons';
@@ -8,16 +8,25 @@ import { OwnerInfoType } from './site-registration/page';
 import { getOwnerInfo } from '../../_data/owner/getOwnerInfo';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../(header)/search/loading';
+import { useRouter } from 'next/navigation';
 
 function LandingPage() {
-  const userId = () => {
-    if (typeof window === 'undefined') return;
-    return localStorage.getItem('userId');
-  };
+  const router = useRouter();
   const { data: ownerInfo } = useQuery<OwnerInfoType>({
     queryKey: ['ownerInfo'],
-    queryFn: () => getOwnerInfo(Number(userId)),
+    queryFn: () => getOwnerInfo(Number(localStorage.getItem('userId'))),
   });
+
+  useEffect(() => {
+    if (!ownerInfo) return;
+    if (ownerInfo.ownerCampingZoneList.length === 0) {
+      const landToRegistration = setTimeout(() => {
+        router.push('/owner/registration/first-step');
+      }, 3000);
+
+      return () => clearTimeout(landToRegistration);
+    }
+  }, [ownerInfo, router]);
 
   if (!ownerInfo) return <Loading />;
   return (

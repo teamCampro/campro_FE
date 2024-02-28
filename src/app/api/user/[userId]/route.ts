@@ -21,8 +21,9 @@ export const GET = async (
       phone: userInfo[0].phone,
       role: userInfo[0].role,
       nickname: userInfo[0].nickname,
+      onboard: userInfo[0].onboarding_keyword,
     };
-
+    console.log(result);
     db.release();
     return NextResponse.json({ result });
   } catch (error) {
