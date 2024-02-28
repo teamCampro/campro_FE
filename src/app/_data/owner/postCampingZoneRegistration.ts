@@ -48,6 +48,24 @@ export const postCampingZoneRegistration = async () => {
         ...parsedStayTerm,
       ];
     };
+
+    const getKeywords = () => {
+      const environment = localStorage.getItem('environment');
+      const amenities = localStorage.getItem('amenities');
+      const categories = localStorage.getItem('categories');
+      const stayTerm = localStorage.getItem('stayTerm');
+
+      if (
+        environment === null ||
+        amenities === null ||
+        categories === null ||
+        stayTerm === null
+      )
+        return '';
+
+      return `${JSON.parse(environment).join(',')},${JSON.parse(amenities).join(',')},${JSON.parse(categories).join(',')},${JSON.parse(stayTerm).join(',')}`;
+    };
+
     const stringTour = () => {
       if (typeof window === undefined) return '';
       return localStorage.getItem('tourPlaces') || '';
@@ -68,6 +86,7 @@ export const postCampingZoneRegistration = async () => {
       mannerTimeStart: localStorage.getItem('mannerTimeStart'),
       mannerTimeEnd: localStorage.getItem('mannerTimeEnd'),
       openTime: localStorage.getItem('openTime'),
+      keyword: getKeywords(),
       onboardingKeyword: getOnboardingKeywords(),
       guide: localStorage.getItem('informationUse'),
       refundGuide: localStorage.getItem('cancellationRefundPolicy'),
