@@ -1,3 +1,7 @@
+import {
+  defaultGuide,
+  defaultRefundGuide,
+} from '@/src/app/_constants/defaultGuide';
 import SectionTitle from './SectionTitle';
 
 interface UsageGuidelinesProps {
@@ -27,7 +31,9 @@ function UsageGuidelines({
         <SectionTitle>이용안내</SectionTitle>
         <div
           className='text-gray500 font-caption1-medium'
-          dangerouslySetInnerHTML={{ __html: guide.replaceAll('\n', '<br/>') }}
+          dangerouslySetInnerHTML={{
+            __html: guide ? guide.replaceAll('\n', '<br/>') : defaultGuide,
+          }}
         ></div>
       </div>
       <div className='flex flex-col gap-16pxr'>
@@ -35,7 +41,9 @@ function UsageGuidelines({
         <div
           className='text-gray500 font-caption1-medium'
           dangerouslySetInnerHTML={{
-            __html: refundGuide.replaceAll('\n', '<br/>'),
+            __html: refundGuide
+              ? refundGuide.replaceAll('\n', '<br/>')
+              : defaultRefundGuide,
           }}
         ></div>
       </div>
@@ -49,7 +57,7 @@ function UsageGuidelines({
             상호명: <span>{bossCompanyName || '민간'}</span>
           </li>
           <li>
-            사업자 주소: <span>{bossAddress}</span>
+            사업자 주소: <span>{bossAddress || '서울특별시 캠프로'}</span>
           </li>
           <li>
             이메일: <span>{bossEmail}</span>
