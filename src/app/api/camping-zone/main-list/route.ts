@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { pool } from '../../libs/mysql';
 
 export const GET = async (req: NextRequest) => {
-  const userId = await req.nextUrl.searchParams.get('userId');
+  const userId = req.nextUrl.searchParams.get('userId');
 
   try {
     const db = await pool.getConnection();

@@ -1,3 +1,5 @@
+'use client';
+
 import Chip from '@/components/Chip';
 import { IconColoredHeart } from '@/public/svgs';
 import Image from 'next/image';
