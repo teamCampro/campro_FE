@@ -5,7 +5,8 @@ import 'swiper/css/free-mode';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CampPlaceItem from './CampPlaceItem';
-
+import { useQuery } from '@tanstack/react-query';
+import { getUserInfo } from '../../_data/sign/getUserInfo';
 type CampZone = {
   id: number;
   name: string;
@@ -16,20 +17,21 @@ type CampZone = {
 };
 
 interface Props {
-  campPlaces: CampZone[];
-  type: number;
+  campPlaces?: CampZone[];
+  type: string;
+  userName?: string;
 }
 
-function CampPlaceList({ campPlaces, type }: Props) {
-  let listName;
+function CampPlaceList({ campPlaces, type, userName }: Props) {
+  let listName = '';
   switch (type) {
-    case 0:
-      listName = '홍길동님을 위한 캠핑장';
+    case 'recommend':
+      listName = `${userName}님을 위한 캠핑장`;
       break;
-    case 1:
+    case 'popular':
       listName = '인기 캠핑장';
       break;
-    case 2:
+    case 'recent':
       listName = '새로 입점한 캠핑장';
       break;
   }

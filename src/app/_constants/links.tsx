@@ -1,4 +1,5 @@
 import {
+  IconAutoCamping,
   IconCampingCar,
   IconCampnic,
   IconChabak,
@@ -23,7 +24,7 @@ const LINKS = [
     id: 2,
     href: `/search?${createQueryString('카라반')}`,
     text: '카라반',
-    icon: <IconGlamping fill='#555555' />,
+    icon: <IconCampingCar fill='#555555' />,
   },
   {
     id: 3,
@@ -35,7 +36,7 @@ const LINKS = [
     id: 4,
     href: `/search?${createQueryString('오토캠핑')}`,
     text: '오토캠핑',
-    icon: <IconCampingCar fill='#555555' />,
+    icon: <IconAutoCamping fill='#555555' />,
   },
   {
     id: 5,
