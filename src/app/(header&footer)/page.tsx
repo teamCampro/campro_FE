@@ -1,5 +1,6 @@
 import { CampPlaceSection, CategoryList, Hero } from '@/components/index';
 import { getMainCampList } from '../_data/main/campList';
+import { cookies } from 'next/headers';
 
 interface SearchParamsType {
   searchParams: {
@@ -8,7 +9,9 @@ interface SearchParamsType {
 }
 
 async function Page({ searchParams }: SearchParamsType) {
-  const data = await getMainCampList();
+  const cookieStore = cookies();
+  const userId = cookieStore.get('userId');
+  const data = await getMainCampList(userId ? userId.value : null);
 
   return (
     <div>

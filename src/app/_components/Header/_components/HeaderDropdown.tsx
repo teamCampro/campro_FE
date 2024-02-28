@@ -7,11 +7,12 @@ import { getUserInfo } from '@/src/app/_data/sign/getUserInfo';
 import { setProfileState } from '@/src/app/_utils/profileState';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import HeaderModal from './HeaderModal';
 import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
 import { setIsLogin } from '@/src/app/_slices/isLogin';
+
 interface UserOptionsType {
   id: number;
   list: string;
@@ -29,7 +30,7 @@ export const USER_OPTIONS: UserOptionsType[] = [
 
 function HeaderDropdown() {
   const [isClose, setIsClose] = useState(false);
-
+  const router = useRouter();
   const pathName = usePathname();
   const profile = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
@@ -68,8 +69,11 @@ function HeaderDropdown() {
     dispatch(setProfileState(5));
     queryClient.removeQueries();
     dispatch(setIsLogin(false));
+    const userId = window.localStorage.getItem('userId');
+    document.cookie = `userId=${userId}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     window.localStorage.removeItem('userId');
     dispatch(setRedirectUrl('/'));
+    router.refresh();
     e.stopPropagation();
   };
 
