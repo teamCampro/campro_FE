@@ -15,11 +15,13 @@ interface CampSiteDetailProps {
   onClose: () => void;
   selectedSite: CampingZoneSite | null;
   handleReserve: (siteId: number) => void;
+  facilities: string[];
 }
 
 function CampSiteDetail({
   onClose,
   selectedSite,
+  facilities,
   handleReserve,
 }: CampSiteDetailProps) {
   if (!selectedSite) return;
@@ -30,12 +32,15 @@ function CampSiteDetail({
     checkInTime,
     checkOutTime,
     maxPeople,
+    minPeople,
     minNights,
     petYn,
     parkingGuide,
+    floorType,
+    siteSize,
     id,
+    maxParking,
   } = selectedSite;
-  console.log(siteImgUrls);
   return (
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mobile:inset-0pxr mobile:translate-x-0pxr mobile:translate-y-0pxr'>
       <div className='flex h-auto max-h-1008pxr w-full max-w-1008pxr flex-col gap-16pxr rounded-2xl bg-white px-24pxr pb-28pxr pt-16pxr mobile:relative mobile:h-screen  mobile:max-h-none mobile:justify-between mobile:overflow-auto mobile:rounded-none mobile:px-0pxr mobile:pb-0pxr tablet:max-w-767pxr tablet1002:max-w-688pxr'>
@@ -91,13 +96,13 @@ function CampSiteDetail({
                     {siteName}
                   </h4>
                   <span className='text-gray500 font-caption1-medium'>
-                    임시 구역
+                    하단 구역
                   </span>
                 </div>
                 <div className='flex flex-col gap-12pxr mobile:border-b mobile:border-gray200 mobile:pb-20pxr'>
                   <h6 className='font-body1-bold'>크기</h6>
                   <span className='text-gray500 font-body2-medium'>
-                    4.5x10m (파쇄석)
+                    {JSON.parse(siteSize).join('x')}m ({floorType})
                   </span>
                 </div>
               </div>
@@ -106,17 +111,15 @@ function CampSiteDetail({
                   title='기본 정보'
                   infos={[
                     `입실 ${checkInTime} - 퇴실 ${checkOutTime}`,
-                    `${maxPeople}인 기준 (${true ? '인원 추가 가능' : '인원 추가 불가'})`,
+                    `${maxPeople}인 기준 (${maxPeople - minPeople > 0 ? '인원 추가 가능' : '인원 추가 불가'})`,
                     `최소 ${minNights}박`,
                     `반려동물 숙박 ${petYn === 1 ? '가능' : '불가'}`,
-                    `최소 ${parkingGuide}대`,
-                    `트레일러 진입 ${true ? '가능' : '불가'}`,
-                    `캠핑카 진입 ${true ? '가능' : '불가'}`,
+                    `최소 ${maxParking || 1}대`,
                   ]}
                 />
                 <SiteInfoList
                   title='시설/환경'
-                  infos={['임시시설1', '임시시설2', '임시시설3', '임시시설4']}
+                  infos={facilities.slice(0, 7)}
                 />
               </div>
             </div>
