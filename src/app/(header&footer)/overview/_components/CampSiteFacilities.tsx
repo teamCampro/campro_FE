@@ -18,7 +18,8 @@ interface FacilityItem {
 
 function CampSiteFacilities({ facilities }: CampSiteFacilitiesProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const facilitiesArray = facilities.split(',');
+  const facilitiesArray = JSON.parse(JSON.parse(facilities));
+  console.log('facilitiesArray: ', facilitiesArray);
   const getIconsAndTextsByOrder = (
     facilitiesArray: string[],
   ): FacilityItem[] => {
