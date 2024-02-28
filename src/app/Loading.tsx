@@ -1,13 +1,22 @@
 import Image from 'next/image';
+import Lottie from 'react-lottie-player';
+import animationData from '@/public/lodingImage.json';
 
 function Loading() {
+  /* lodingImage */
   return (
     <div className='custom-height flex-center'>
-      <Image
+      {/* <Image
         width={140}
         height={140}
         src='/gifs/campro_loading.gif'
         alt='로딩중입니다'
+      /> */}
+      <Lottie
+        loop
+        animationData={animationData}
+        play
+        style={{ backgroundColor: 'white' }}
       />
     </div>
   );
