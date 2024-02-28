@@ -10,7 +10,19 @@ function UploadSiteImage() {
   const { images, handleSetImages } = useControlImages();
 
   useEffect(() => {
-    localStorage.setItem('uploadSiteImage', images[0] || '');
+    if (typeof window === 'undefined') return;
+
+    const localStorageSiteImage = localStorage.getItem('uploadSiteImage');
+
+    if (localStorageSiteImage) {
+      handleSetImages([localStorageSiteImage]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (images) {
+      localStorage.setItem('uploadSiteImage', images[0] || '');
+    }
   }, [images]);
 
   return (

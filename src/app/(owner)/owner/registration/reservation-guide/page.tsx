@@ -1,5 +1,5 @@
 'use client';
-import React, { ChangeEvent, FocusEvent, useEffect, useRef } from 'react';
+import React, { FocusEvent, useEffect, useRef } from 'react';
 import OwnerTitle from '../../../_components/OwnerTitle';
 import OwnerInputForm from '../../../_components/OwnerInput/OwnerInputForm';
 import OwnerInput from '../../../_components/OwnerInput/OwnerInput';
@@ -175,6 +175,19 @@ function ReservationGuidePage() {
   useEffect(() => {
     localStorage.setItem('mannerTimeEnd', mannerTimeEndFormmatedDate);
   }, [mannerTimeEndFormmatedDate]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'openTime',
+      JSON.stringify(openPeriod.period) + '개월',
+    );
+  }, [openPeriod]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mannerTimeStart = localStorage.getItem('mannerTimeStart');
+    const mannerTimeEnd = localStorage.getItem('mannerTimeEnd');
+  }, []);
 
   return (
     <div className='flex h-screen flex-col items-center'>

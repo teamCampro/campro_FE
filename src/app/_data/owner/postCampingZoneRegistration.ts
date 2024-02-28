@@ -48,7 +48,10 @@ export const postCampingZoneRegistration = async () => {
         ...parsedStayTerm,
       ];
     };
-
+    const stringTour = () => {
+      if (typeof window === undefined) return '';
+      return localStorage.getItem('tourPlaces') || '';
+    };
     const body = {
       name: localStorage.getItem('campPlaceName'),
       tel: localStorage.getItem('phoneNumber'),
@@ -64,51 +67,23 @@ export const postCampingZoneRegistration = async () => {
       intro: localStorage.getItem('introduction'),
       mannerTimeStart: localStorage.getItem('mannerTimeStart'),
       mannerTimeEnd: localStorage.getItem('mannerTimeEnd'),
-      openTime: '2개월',
+      openTime: localStorage.getItem('openTime'),
       onboardingKeyword: getOnboardingKeywords(),
       guide: localStorage.getItem('informationUse'),
       refundGuide: localStorage.getItem('cancellationRefundPolicy'),
+      lng: localStorage.getItem('lng'),
+      lat: localStorage.getItem('lat'),
+      displayAddress: localStorage.getItem('displayAddress'),
+      bossAddress: localStorage.getItem('businessAdress'),
+      tour: JSON.parse(stringTour()).join(','),
     };
-    const {
-      name,
-      tel,
-      bossId,
-      bossEmail,
-      businessNumber,
-      tourNumber,
-      facilities,
-      address,
-      campImage,
-      campSubImages,
-      planImage,
-      intro,
-      mannerTimeEnd,
-      mannerTimeStart,
-      openTime,
-      onboardingKeyword,
-      guide,
-      refundGuide,
-    } = body;
-    await axiosInstance.post(`owner/camping-zone/register`, {
-      name,
-      tel,
-      bossId,
-      bossEmail,
-      businessNumber,
-      tourNumber,
-      facilities,
-      address,
-      campImage,
-      campSubImages,
-      planImage,
-      intro,
-      mannerTimeEnd,
-      mannerTimeStart,
-      openTime,
-      onboardingKeyword,
-      guide,
-      refundGuide,
-    });
+    const response = await axiosInstance.post(
+      `owner/camping-zone/register`,
+      body,
+    );
+    if (response.status === 200) {
+      window.location.href = '/owner';
+    }
   } catch (error) {
     console.error(error);
   }
