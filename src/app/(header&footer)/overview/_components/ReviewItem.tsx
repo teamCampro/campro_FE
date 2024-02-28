@@ -29,7 +29,7 @@ function ReviewItem({ review }: ReviewItemProps) {
       <div className='flex flex-col gap-16pxr'>
         <div className='flex items-end gap-4pxr'>
           <h6 className='!leading-none text-gray700 font-caption1-semibold'>
-            {review.userId}
+            {review.nickname}
           </h6>
           <span className='!leading-none text-gray500 font-caption2-medium'>
             {getTimeDiff(new Date(review.startTime))}
@@ -86,7 +86,11 @@ function ReviewItem({ review }: ReviewItemProps) {
           {review.star}
         </li>
         <div className='flex-center w-auto gap-2pxr rounded-sm bg-gray100 px-6pxr py-4pxr !leading-none text-gray600 font-caption2-medium'>
-          {review.reviewKeyword.split(',')[0]}
+          {
+            review.reviewKeyword
+              .split(',')
+              .map((s) => s.trim().replace(/^'+|'+$/g, ''))[0]
+          }
         </div>
       </ul>
     </li>
