@@ -16,7 +16,7 @@ function Footer() {
 
   return (
     <footer
-      className={`h-133pxr w-full bg-gray200 px-48pxr py-24pxr mobile:h-167pxr ${isMobile && isReserve ? 'hidden' : 'flex'}`}
+      className={`h-133pxr w-full bg-gray200 px-48pxr py-24pxr mobile:h-167pxr mobile:px-16pxr ${isMobile && isReserve ? 'hidden' : 'flex'}`}
     >
       <div className='flex-center m-auto w-1440pxr justify-between gap-16pxr mobile:items-start  '>
         <ul className='text-gray500 font-caption2'>
