@@ -8,7 +8,7 @@ export const GET = async (req: NextRequest) => {
     const db = await pool.getConnection();
 
     const [popularList] = await db.execute(
-      `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, keyword
+      `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, onboarding_keyword as onboardingKeyword
       FROM camping_zone cz
      INNER JOIN (
     SELECT czs.camping_zone_id, MIN(czs.price) minimumAmount
@@ -20,7 +20,7 @@ export const GET = async (req: NextRequest) => {
     );
 
     const [recentList] = await db.execute(
-      `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, keyword
+      `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, onboarding_keyword as onboardingKeyword
       FROM camping_zone cz
      INNER JOIN (
     SELECT czs.camping_zone_id, MIN(czs.price) minimumAmount
@@ -31,13 +31,31 @@ export const GET = async (req: NextRequest) => {
      ORDER BY created_at DESC
      LIMIT 7`,
     );
-
+    let popularAnyList: any = popularList;
+    let recentAnyList: any = recentList;
+    const recommendAnyList: any = await getRecommendList(db, userId);
     db.release();
     return NextResponse.json({
       result: {
-        recommendList: await getRecommendList(db, userId),
-        popularList,
-        recentList,
+        recommendList: recommendAnyList.map((item: any) => {
+          console.log(item);
+          return {
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
+        }),
+        popularList: popularAnyList.map((item: any) => {
+          return {
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
+        }),
+        recentList: recentAnyList.map((item: any) => {
+          return {
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
+        }),
       },
     });
   } catch (error) {
@@ -104,13 +122,13 @@ const getRecommendList = async (db: any, userId: string | null) => {
       displayAddress: cz.displayAddress,
       campImage: cz.campImage,
       minimumAmount: cz.minimumAmount,
-      keyword: cz.keyword,
+      onboardingKeyword: cz.onboardingKeyword,
     }));
 };
 
 const getDefaultRecommendList = async (db: any) => {
   const [recommendList] = await db.execute(
-    `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, keyword
+    `SELECT id, name, display_address as displayAddress, camp_image as campImage, a.minimumAmount, onboarding_keyword AS onboardingKeyword
     FROM camping_zone cz
    INNER JOIN (
   SELECT czs.camping_zone_id, MIN(czs.price) minimumAmount
