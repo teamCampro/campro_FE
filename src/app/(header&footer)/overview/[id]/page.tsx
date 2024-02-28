@@ -188,7 +188,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           selectedMenu={activeSection}
           hideButton={hideButton}
         />
-        <div className='m-auto w-full max-w-1360pxr pt-40pxr'>
+        <div className='m-auto max-w-1360pxr pt-40pxr'>
           <SectionRef sectionRef={setDivRef} id='image'>
             <CampImage imgUrls={imageUrls} />
           </SectionRef>
