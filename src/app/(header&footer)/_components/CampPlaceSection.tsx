@@ -9,7 +9,7 @@ export type CampZone = {
   displayAddress: string;
   campImage: string;
   minimumAmount: number;
-  keyword: string;
+  onboardingKeyword: string[];
 };
 
 export interface CampZoneData {

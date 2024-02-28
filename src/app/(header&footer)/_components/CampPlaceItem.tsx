@@ -14,7 +14,7 @@ type CampZone = {
   displayAddress: string;
   campImage: string;
   minimumAmount: number;
-  keyword: string;
+  onboardingKeyword: string[];
   lat?: string;
   lng?: string;
 };
@@ -47,6 +47,7 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
     child: searchParams.get('child') || '0',
     pet: searchParams.get('pet') || '0',
   });
+
   return (
     <li key={campPlace.id} className='flex w-full flex-col gap-16pxr'>
       <div className='relative '>
@@ -92,10 +93,10 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
             </span>
           </div>
           <div className='flex flex-wrap gap-4pxr'>
-            {campPlace.keyword
-              ? [...campPlace.keyword.split(',')]
+            {campPlace.onboardingKeyword
+              ? campPlace.onboardingKeyword
                   .slice(0, 3)
-                  .map((item, index) => (
+                  .map((item: string, index: number) => (
                     <Chip key={index}>
                       {item.length === 4 && item.indexOf('캠핑') > -1
                         ? item.slice(2)
