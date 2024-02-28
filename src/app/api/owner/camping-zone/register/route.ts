@@ -12,8 +12,8 @@ export const POST = async (req: NextRequest) => {
     const czInsertQuery = `
         INSERT INTO camping_zone (name, lat, lng, tel, display_address, boss_id, boss_email,
             boss_address, business_number, tour_number, facilities, onboarding_keyword, address,
-            camp_image, plan_image, manner_time_start, manner_time_end, open_time, intro, guide, refund_guide, tour)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            camp_image, plan_image, manner_time_start, manner_time_end, open_time, intro, guide, refund_guide, tour, keyword)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const czInsertResult: any = await db.execute(czInsertQuery, [
       czData.name,
       czData.lat,
@@ -37,6 +37,7 @@ export const POST = async (req: NextRequest) => {
       czData.guide,
       czData.refundGuide,
       czData.tour,
+      czData.keyword,
     ]);
 
     const czDataImageId = czInsertResult[0].insertId;
