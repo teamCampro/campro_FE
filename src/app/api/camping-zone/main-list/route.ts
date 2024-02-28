@@ -38,19 +38,23 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json({
       result: {
         recommendList: recommendAnyList.map((item: any) => {
+          console.log(item);
           return {
-            ...item, onboardingKeyword: JSON.parse(item.onboardingKeyword)
-          }
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
         }),
         popularList: popularAnyList.map((item: any) => {
           return {
-            ...item, onboardingKeyword: JSON.parse(item.onboardingKeyword)
-          }
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
         }),
         recentList: recentAnyList.map((item: any) => {
           return {
-            ...item, onboardingKeyword: JSON.parse(item.onboardingKeyword)
-          }
+            ...item,
+            onboardingKeyword: JSON.parse(item.onboardingKeyword),
+          };
         }),
       },
     });
@@ -118,7 +122,7 @@ const getRecommendList = async (db: any, userId: string | null) => {
       displayAddress: cz.displayAddress,
       campImage: cz.campImage,
       minimumAmount: cz.minimumAmount,
-      keyword: cz.keyword,
+      onboardingKeyword: cz.onboardingKeyword,
     }));
 };
 

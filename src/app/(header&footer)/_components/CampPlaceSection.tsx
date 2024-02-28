@@ -52,7 +52,7 @@ function CampPlaceSection({ data }: { data: CampZoneData | null }) {
           <CampPlaceList
             campPlaces={item.campPlaces}
             type={item.type}
-            userName={userInfo?.name}
+            userName={userInfo?.nickname}
           />
         </div>
       ))}
