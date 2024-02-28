@@ -5,12 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import WriteReviewModal from './WriteReviewModal';
-import getFormattedDate from '@/src/app/_utils/getFormattedDate';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
 import { ReserveStateType } from './ReserveList';
 import { ReservationListType } from '@/src/app/_constants/reserveList';
-import { useQuery } from '@tanstack/react-query';
-import getOneReserve from '@/src/app/_data/profile/getOneReserve';
+
 
 interface ReserveItemType {
   list: ReservationListType;
@@ -50,7 +48,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
         return 'tetxt-[#555]';
     }
   };
-  console.log(list.siteImage);
+
   return (
     <>
       <figure
@@ -61,7 +59,7 @@ function ReserveItem({ list, reserveState, status }: ReserveItemType) {
           width={140}
           height={140}
           alt='캠핑장 사이트 이미지'
-          className='rounded-xl'
+          className='aspect-square rounded-xl'
         />
         <div className='flex w-full flex-col justify-between mobile:gap-20pxr tabletMin:flex-row'>
           <div className='profile-width flex w-full flex-col gap-12pxr'>
