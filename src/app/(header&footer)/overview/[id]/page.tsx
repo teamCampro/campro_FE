@@ -32,8 +32,12 @@ export type CampingZoneSite = {
   price: number;
   campingType: string;
   maxPeople: number;
+  minPeople: number;
   parkingGuide: string;
   petYn: number;
+  maxParking: number;
+  siteSize: string;
+  floorType: string;
 };
 
 interface CampingZone {
@@ -75,6 +79,7 @@ export type Review = {
   star: number;
   reviewKeyword: string;
   description: string;
+  nickname: string;
 };
 
 interface SearchParamsType {
@@ -124,6 +129,7 @@ function Page({ searchParams, params }: SearchParamsType) {
 
         if (newActiveSection !== activeSection) {
           setActiveSection(newActiveSection);
+          setHideButton(newActiveSection === '4');
         }
       },
       {
@@ -158,7 +164,7 @@ function Page({ searchParams, params }: SearchParamsType) {
     hideRefs.forEach((ref) => ref && observer.observe(ref));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [campingZone]);
+  }, [campingZone, activeSection]);
 
   if (!campingZone) return <Loading />;
 
@@ -182,7 +188,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           selectedMenu={activeSection}
           hideButton={hideButton}
         />
-        <div className='m-auto w-full max-w-1360pxr'>
+        <div className='m-auto w-full max-w-1360pxr pt-40pxr'>
           <SectionRef sectionRef={setDivRef} id='image'>
             <CampImage imgUrls={imageUrls} />
           </SectionRef>
@@ -214,6 +220,7 @@ function Page({ searchParams, params }: SearchParamsType) {
                 <SectionRef sectionRef={setDivRef} id='4'>
                   <ReservationInfo
                     openTime={detail.openTime}
+                    facilities={detail.facilities}
                     nextOpen={detail.nextOpenDate}
                     mannerTimeStart={detail.mannerTimeStart}
                     mannerTimeEnd={detail.mannerTimeEnd}
