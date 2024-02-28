@@ -5,12 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import WriteReviewModal from './WriteReviewModal';
-import getFormattedDate from '@/src/app/_utils/getFormattedDate';
 import getOneFormatDate from '@/src/app/_utils/getOneFormatDate';
 import { ReserveStateType } from './ReserveList';
 import { ReservationListType } from '@/src/app/_constants/reserveList';
-import { useQuery } from '@tanstack/react-query';
-import getOneReserve from '@/src/app/_data/profile/getOneReserve';
+
 
 interface ReserveItemType {
   list: ReservationListType;
