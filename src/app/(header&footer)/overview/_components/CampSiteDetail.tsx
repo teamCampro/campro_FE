@@ -116,8 +116,6 @@ function CampSiteDetail({
                     `최소 ${minNights}박`,
                     `반려동물 숙박 ${petYn === 1 ? '가능' : '불가'}`,
                     `최소 ${maxParking || 1}대`,
-                    `트레일러 진입 ${true ? '가능' : '불가'}`,
-                    `캠핑카 진입 ${true ? '가능' : '불가'}`,
                   ]}
                 />
                 <SiteInfoList
