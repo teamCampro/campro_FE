@@ -81,7 +81,7 @@ function SearchBarForOverview({
         </div>
       )}
       <div
-        className='flex-center z-30 mx-auto mb-40pxr w-full max-w-1360pxr border-b mobile:mb-0pxr mobile:border-gray200 mobile:p-0pxr'
+        className='flex-center z-30 mx-auto w-full max-w-1360pxr border-b mobile:mb-0pxr mobile:border-gray200 mobile:p-0pxr'
         onClick={() => onBackdropClick()}
       >
         <CommonForm
