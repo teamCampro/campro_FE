@@ -49,9 +49,8 @@ const LINKS = [
     text: '오토캠핑',
     icon: (
       <IconAutoCamping
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
         viewBox='0 0 28 28'
-        width='28'
-        height='28'
         fill='#555555'
       />
     ),
