@@ -188,7 +188,7 @@ function Page({ searchParams, params }: SearchParamsType) {
           selectedMenu={activeSection}
           hideButton={hideButton}
         />
-        <div className='m-auto w-full max-w-1360pxr pt-40pxr'>
+        <div className='m-auto max-w-1360pxr pt-40pxr'>
           <SectionRef sectionRef={setDivRef} id='image'>
             <CampImage imgUrls={imageUrls} />
           </SectionRef>
@@ -198,7 +198,7 @@ function Page({ searchParams, params }: SearchParamsType) {
             >
               <MiniMapContainer {...detail} />
             </aside>
-            <div>
+            <div className='w-full'>
               <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
                 <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
                   <SectionRef sectionRef={setDivRef} id='1'>

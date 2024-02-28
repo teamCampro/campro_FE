@@ -25,7 +25,7 @@ export const GET = async (
     const query2 = `SELECT name siteName, img_urls siteImgUrls, site_image siteImage, check_in_time checkInTime, check_out_time checkOutTime,
     price, camping_type campingType, max_people maxPeople, parking_guide parkingGuide, pet_yn petYn, czs.id, min_nights minNights, max_parking maxParking, site_size siteSize, floor_type floorType
     FROM camping_zone_site czs
-    INNER JOIN camping_zone_site_sub_image czssi ON czs.id = czssi.camping_zone_site_id 
+    INNER JOIN camping_zone_site_sub_image czssi ON czs.camping_zone_id = czssi.camping_zone_site_id 
     WHERE camping_zone_id = ?
   `;
     const query3 = `SELECT r.id AS reviewId, 
