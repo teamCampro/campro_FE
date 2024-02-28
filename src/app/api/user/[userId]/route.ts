@@ -23,7 +23,7 @@ export const GET = async (
       nickname: userInfo[0].nickname,
       onboard: userInfo[0].onboarding_keyword,
     };
-    console.log(result);
+
     db.release();
     return NextResponse.json({ result });
   } catch (error) {

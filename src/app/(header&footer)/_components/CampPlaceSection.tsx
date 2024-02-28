@@ -17,6 +17,7 @@ export interface CampZoneData {
     recommendList: CampZone[];
     popularList: CampZone[];
     recentList: CampZone[];
+    recommendFirstList: CampZone[];
   };
 }
 interface UserInfo {
@@ -25,11 +26,13 @@ interface UserInfo {
   tel: string;
   role: string;
   nickname: string;
+  onboard: string;
 }
 function CampPlaceSection({ data }: { data: CampZoneData | null }) {
   const { data: userInfo } = useQuery<UserInfo, Error>({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
+    refetchOnMount: 'always',
   });
 
   if (!data) return null;
@@ -39,11 +42,26 @@ function CampPlaceSection({ data }: { data: CampZoneData | null }) {
     type: 'recommend',
     campPlaces: data.result.recommendList,
   };
+
+  const recommendListForUser = {
+    type: 'recommendForUser',
+    campPlaces: data.result.recommendList,
+  };
+  const recommendListFirstForUser = {
+    type: 'recommendFirstForUser',
+    campPlaces: data.result.recommendFirstList,
+  };
   const recentList = { type: 'recent', campPlaces: data.result.recentList };
 
-  let campPlaces = userInfo
-    ? [recommendList, popularList, recentList]
-    : [popularList, recentList];
+  let campPlaces =
+    userInfo && data.result.recommendFirstList.length > 0
+      ? [
+          recommendListForUser,
+          recommendListFirstForUser,
+          popularList,
+          recentList,
+        ]
+      : [recommendList, popularList, recentList];
 
   return (
     <div className='flex max-w-1440pxr flex-col gap-28pxr '>
@@ -53,6 +71,7 @@ function CampPlaceSection({ data }: { data: CampZoneData | null }) {
             campPlaces={item.campPlaces}
             type={item.type}
             userName={userInfo?.nickname}
+            onboardName={userInfo?.onboard}
           />
         </div>
       ))}

@@ -90,7 +90,7 @@ function ImageUploader({
         {images &&
           images.slice(1).map((image, index) => (
             <div
-              key={image}
+              key={index}
               className={primaryTypeClassName}
               onMouseEnter={() => onMouseEnter(index)}
               onMouseLeave={() => onMouseLeave(index)}
