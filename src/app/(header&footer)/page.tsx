@@ -5,12 +5,22 @@ import { useEffect, useState } from 'react';
 import { getMainCampList } from '../_data/main/campList';
 import { CampZoneData } from './_components/CampPlaceSection';
 import { useAppSelector } from '@/hooks/redux';
+import { useQuery } from '@tanstack/react-query';
+import { getUserInfo } from '../_data/sign/getUserInfo';
+
 interface SearchParamsType {
   searchParams: {
     [key: string]: string;
   };
 }
-
+export interface UserInfo {
+  name: string;
+  email: string;
+  tel: string;
+  role: string;
+  nickname: string;
+  onboard: string;
+}
 function Page({ searchParams }: SearchParamsType) {
   const [data, setData] = useState<CampZoneData | null>(null);
 
@@ -19,6 +29,7 @@ function Page({ searchParams }: SearchParamsType) {
   useEffect(() => {
     const fetch = async () => {
       const res = await getMainCampList();
+
       setData(res);
     };
     fetch();
