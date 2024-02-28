@@ -23,7 +23,7 @@ const CAMPING_CATEGORIES = [
     buttonText: '카라반',
   },
   {
-    image: <IconAutoCamping className='scale-[2]' />,
+    image: <IconAutoCamping className='fill-black' />,
     buttonText: '오토 캠핑',
   },
   {
