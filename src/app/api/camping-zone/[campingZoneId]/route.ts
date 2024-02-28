@@ -14,7 +14,7 @@ export const GET = async (
     SELECT camp_image campImage, img_urls imgUrls, cz.name, address, tel, intro, facilities, plan_image planImage,
       manner_time_start mannerTimeStart, manner_time_end mannerTimeEnd, open_time openTime, next_open_date nextOpenDate,
       guide, refund_guide refundGuide, ui.name bossName, boss_company_name bossCompanyName, boss_address bossAddress,
-      ui.email bossEmail, business_number businessNumber, tour_number tourNumber, lat, lng, tour, keyword
+      ui.email bossEmail, business_number businessNumber, tour_number tourNumber, lat, lng, tour, cz.onboarding_keyword onboardingKeyword
       FROM camping_zone cz
       INNER JOIN camping_zone_sub_image czsi ON cz.id = czsi.camping_zone_id
       INNER JOIN user_info ui ON cz.boss_id = ui.id

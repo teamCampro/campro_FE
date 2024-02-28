@@ -4,7 +4,7 @@ import { IconCall, IconLocation } from '@/public/svgs';
 import TagList from './TagList';
 
 interface CampSiteBasicInfoProps {
-  keyword: string;
+  onboardingKeyword: string;
   placeName: string;
   address: string;
   tel: string;
@@ -12,7 +12,7 @@ interface CampSiteBasicInfoProps {
 }
 
 function CampSiteBasicInfo({
-  keyword,
+  onboardingKeyword,
   placeName,
   address,
   tel,
@@ -28,12 +28,13 @@ function CampSiteBasicInfo({
       { text: '아늑해요', count: 369 },
     ],
   };
-  const keywords = keyword.split(',').filter(Boolean).slice(4);
+  console.log(onboardingKeyword);
+  const keywords = JSON.parse(onboardingKeyword).slice(0, 4);
   return (
     <article className='flex flex-col gap-24pxr'>
       <div className='flex flex-col gap-12pxr'>
         <div className='flex flex-wrap gap-8pxr mobile:mr-60pxr mobile:gap-4pxr tablet:mr-80pxr'>
-          {keywords.map((word, i) => (
+          {keywords.map((word: string, i: number) => (
             <Chip key={word + i}>
               {word.trim().length === 4 && word.indexOf('캠핑') > -1 ? (
                 <>
