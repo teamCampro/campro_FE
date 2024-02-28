@@ -20,13 +20,22 @@ interface Props {
   campPlaces?: CampZone[];
   type: string;
   userName?: string;
+  onboardName?: string;
 }
 
-function CampPlaceList({ campPlaces, type, userName }: Props) {
+function CampPlaceList({ campPlaces, type, userName, onboardName }: Props) {
   let listName = '';
   switch (type) {
-    case 'recommend':
+    case 'recommendForUser':
       listName = `${userName}님을 위한 캠핑장`;
+      break;
+
+    case 'recommendFirstForUser':
+      if (!onboardName) return;
+      listName = `${JSON.parse(onboardName)[0]} 캠핑장`;
+      break;
+    case 'recommend':
+      listName = `추천 캠핑장`;
       break;
     case 'popular':
       listName = '인기 캠핑장';
