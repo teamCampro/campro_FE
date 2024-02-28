@@ -10,6 +10,7 @@ export interface UserInfo {
 
 export const getUserInfo = async () => {
   const userId = window.localStorage.getItem('userId');
+  if (!userId) return;
   try {
     const response = await axiosInstance.get(`user/${userId}`);
     return response.data.result;

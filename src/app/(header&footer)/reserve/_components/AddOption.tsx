@@ -63,7 +63,7 @@ function AddOption({ optionList }: { optionList: additionalOption[] }) {
                 />
               </button>
             </div>
-            <h3 className='flex basis-78pxr justify-end font-body2-bold tabletMin:font-body1-bold'>
+            <h3 className='flex basis-78pxr justify-end font-body2-bold mobile:justify-start tabletMin:font-body1-bold'>
               {numberFormatter(String(option.price))}원
             </h3>
           </li>

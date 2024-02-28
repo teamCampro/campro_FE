@@ -198,7 +198,7 @@ function Page({ searchParams, params }: SearchParamsType) {
             >
               <MiniMapContainer {...detail} />
             </aside>
-            <div>
+            <div className='w-full'>
               <div className='flex flex-col gap-32pxr mobile:gap-24pxr mobile:px-20pxr mobile359:px-0pxr'>
                 <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
                   <SectionRef sectionRef={setDivRef} id='1'>

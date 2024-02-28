@@ -36,7 +36,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
               배치도
             </span>
           </div>
-          <div className='flex-center h-480pxr w-full max-w-767pxr rounded-b-2xl bg-gray100'>
+          <div className='flex-center max-h-480pxr w-full max-w-767pxr rounded-b-2xl bg-gray100'>
             <a
               href={planImage[0]}
               onClick={(event) => {
@@ -53,6 +53,7 @@ function ModalForPlanImage({ onClose, planImage }: Props) {
                 height={480}
                 alt='배치도 이미지'
                 src={planImage[0]}
+                className='rounded-b-2xl'
               />
             </a>
           </div>

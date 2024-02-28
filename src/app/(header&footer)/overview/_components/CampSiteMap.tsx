@@ -18,7 +18,7 @@ function CampSiteMap({ planImage }: CampSiteMapProps) {
       <div>
         <Image
           onClick={openModal}
-          className='cursor-pointer rounded-2xl mobile:aspect-320/220 mobile:rounded-none'
+          className='max-h-520pxr max-w-980pxr cursor-pointer rounded-2xl mobile:aspect-320/220 mobile:rounded-none'
           src={planImage}
           alt='배치도'
           priority
