@@ -32,7 +32,7 @@ function Pagination({
       </p>
       <button
         type='button'
-        className={showRightArrow ? 'block' : 'hidden'}
+        /*  className={showRightArrow ? 'block' : 'hidden'} */
         disabled={rightArrowDisabled}
         onClick={() => onUpdatePage('next')}
       >

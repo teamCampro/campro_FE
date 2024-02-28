@@ -3,7 +3,7 @@ import OnBoardingHeader from '../_components/OnboardingHeader';
 
 function Layout({ children }: LayoutType) {
   return (
-    <div>
+    <div className='scrollbar-hide h-screen  overflow-auto bg-gray100'>
       <OnBoardingHeader />
       {children}
     </div>
