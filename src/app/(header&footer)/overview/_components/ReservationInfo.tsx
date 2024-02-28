@@ -5,13 +5,13 @@ import { ModalOutside, ModalPortal } from '@/components/index';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { IconNavigationDown, IconNavigationUp } from '@/public/svgs';
 import { isOpen } from '@/src/app/_slices/isOpenLoginRequiredModal';
+import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { CampingZoneSite } from '../[id]/page';
 import CampSiteBookingInfo from './CampSiteBookingInfo';
 import CampSiteDetail from './CampSiteDetail';
 import CampSiteItem from './CampSiteItem';
-import { setRedirectUrl } from '@/src/app/_slices/redirectUrl';
 interface ReservationInfoProps {
   siteList: CampingZoneSite[];
   openTime: string;
@@ -19,6 +19,7 @@ interface ReservationInfoProps {
   mannerTimeStart: string;
   mannerTimeEnd: string;
   imageUrls: string;
+  facilities: string;
 }
 
 function ReservationInfo({
@@ -27,6 +28,7 @@ function ReservationInfo({
   nextOpen,
   mannerTimeStart,
   mannerTimeEnd,
+  facilities,
 }: ReservationInfoProps) {
   const [selectedSite, setSelectedSite] = useState<CampingZoneSite | null>(
     null,
@@ -114,6 +116,7 @@ function ReservationInfo({
               custom='bg-black-50 z-30 h-screen w-full left-0pxr top-0pxr'
             >
               <CampSiteDetail
+                facilities={JSON.parse(JSON.parse(facilities))}
                 onClose={() => setSelectedSite(null)}
                 selectedSite={selectedSite}
                 handleReserve={handleReserve}

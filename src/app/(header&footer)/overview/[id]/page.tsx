@@ -32,8 +32,12 @@ export type CampingZoneSite = {
   price: number;
   campingType: string;
   maxPeople: number;
+  minPeople: number;
   parkingGuide: string;
   petYn: number;
+  maxParking: number;
+  siteSize: string;
+  floorType: string;
 };
 
 interface CampingZone {
@@ -75,6 +79,7 @@ export type Review = {
   star: number;
   reviewKeyword: string;
   description: string;
+  nickname: string;
 };
 
 interface SearchParamsType {
@@ -214,6 +219,7 @@ function Page({ searchParams, params }: SearchParamsType) {
                 <SectionRef sectionRef={setDivRef} id='4'>
                   <ReservationInfo
                     openTime={detail.openTime}
+                    facilities={detail.facilities}
                     nextOpen={detail.nextOpenDate}
                     mannerTimeStart={detail.mannerTimeStart}
                     mannerTimeEnd={detail.mannerTimeEnd}

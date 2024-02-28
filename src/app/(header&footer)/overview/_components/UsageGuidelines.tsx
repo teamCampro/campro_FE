@@ -27,24 +27,26 @@ function UsageGuidelines({
         <SectionTitle>이용안내</SectionTitle>
         <div
           className='text-gray500 font-caption1-medium'
-          dangerouslySetInnerHTML={{ __html: guide }}
+          dangerouslySetInnerHTML={{ __html: guide.replaceAll('\n', '<br/>') }}
         ></div>
       </div>
       <div className='flex flex-col gap-16pxr'>
         <SectionTitle>취소/환불 규정</SectionTitle>
         <div
           className='text-gray500 font-caption1-medium'
-          dangerouslySetInnerHTML={{ __html: refundGuide }}
+          dangerouslySetInnerHTML={{
+            __html: refundGuide.replaceAll('\n', '<br/>'),
+          }}
         ></div>
       </div>
       <div className='flex flex-col gap-16pxr'>
         <SectionTitle>판매자 정보</SectionTitle>
         <ul className='text-gray500 font-body2-medium'>
           <li>
-            대표자: <span>{bossName}</span>
+            대표자: <span>{bossName || '대정윤'}</span>
           </li>
           <li>
-            상호명: <span>{bossCompanyName}</span>
+            상호명: <span>{bossCompanyName || '민간'}</span>
           </li>
           <li>
             사업자 주소: <span>{bossAddress}</span>
