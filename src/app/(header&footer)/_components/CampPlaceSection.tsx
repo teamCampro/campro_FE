@@ -16,23 +16,15 @@ interface CampZoneData {
     recommendList: CampZone[];
     popularList: CampZone[];
     recentList: CampZone[];
-    recommendFirstList: CampZone[];
   };
 }
 
 function CampPlaceSection({ data }: { data: CampZoneData }) {
-  console.log(data);
   if (!data) return;
   const popularList = data.result.popularList;
   const recommendList = data.result.recommendList;
   const recentList = data.result.recentList;
-  const recommendFirstList = data.result.recommendFirstList;
-  const campPlaces = [
-    recommendFirstList,
-    recommendList,
-    popularList,
-    recentList,
-  ];
+  const campPlaces = [recommendList, popularList, recentList];
   return (
     <div className='flex max-w-1440pxr flex-col gap-28pxr '>
       {campPlaces.map((item, index) => (

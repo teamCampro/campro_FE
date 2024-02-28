@@ -24,15 +24,12 @@ function CampPlaceList({ campPlaces, type }: Props) {
   let listName;
   switch (type) {
     case 0:
-      listName = '산/숲을 위한 캠핑장';
-      break;
-    case 1:
       listName = '홍길동님을 위한 캠핑장';
       break;
-    case 2:
+    case 1:
       listName = '인기 캠핑장';
       break;
-    case 3:
+    case 2:
       listName = '새로 입점한 캠핑장';
       break;
   }
