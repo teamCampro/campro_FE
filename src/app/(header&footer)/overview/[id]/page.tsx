@@ -129,6 +129,7 @@ function Page({ searchParams, params }: SearchParamsType) {
 
         if (newActiveSection !== activeSection) {
           setActiveSection(newActiveSection);
+          setHideButton(newActiveSection === '4');
         }
       },
       {
@@ -163,7 +164,7 @@ function Page({ searchParams, params }: SearchParamsType) {
     hideRefs.forEach((ref) => ref && observer.observe(ref));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [campingZone]);
+  }, [campingZone, activeSection]);
 
   if (!campingZone) return <Loading />;
 
