@@ -13,7 +13,7 @@ type CampZone = {
   displayAddress: string;
   campImage: string;
   minimumAmount: number;
-  onboardingKeyword: string[];
+  keyword: string;
 };
 
 interface Props {

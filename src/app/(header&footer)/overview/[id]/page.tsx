@@ -41,7 +41,7 @@ interface CampingZone {
     campImage: string;
     imgUrls: string;
     name: string;
-    onboardingKeyword: string;
+    keyword: string;
     address: string;
     tel: string;
     intro: string;
@@ -94,7 +94,6 @@ function Page({ searchParams, params }: SearchParamsType) {
   useEffect(() => {
     const getCamp = async () => {
       const res = await getOverview(params.id);
-      console.log(res);
       setCampingZone(res);
     };
 
@@ -198,7 +197,7 @@ function Page({ searchParams, params }: SearchParamsType) {
                 <div className='contents mobile359:flex mobile359:flex-col mobile359:gap-24pxr mobile359:px-16pxr'>
                   <SectionRef sectionRef={setDivRef} id='1'>
                     <CampSiteBasicInfo
-                      onboardingKeyword={detail.onboardingKeyword}
+                      keyword={detail.keyword}
                       placeName={detail.name}
                       address={detail.address}
                       tel={detail.tel}
