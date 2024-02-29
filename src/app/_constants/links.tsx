@@ -19,7 +19,11 @@ const LINKS = [
     href: `/search?${createQueryString('텐트')}`,
     text: '텐트',
     icon: (
-      <IconTent viewBox='0 0 24 24' width='28' height='28' fill='#555555' />
+      <IconTent
+        viewBox='0 0 24 24'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
+        fill='#555555'
+      />
     ),
   },
   {
@@ -29,8 +33,7 @@ const LINKS = [
     icon: (
       <IconCampingCar
         viewBox='0 0 24 24'
-        width='28'
-        height='28'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
         fill='#555555'
       />
     ),
@@ -40,7 +43,11 @@ const LINKS = [
     href: `/search?${createQueryString('글램핑')}`,
     text: '글램핑',
     icon: (
-      <IconGlamping viewBox='0 0 24 24' width='28' height='28' fill='#555555' />
+      <IconGlamping
+        viewBox='0 0 24 24'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
+        fill='#555555'
+      />
     ),
   },
   {
@@ -50,8 +57,8 @@ const LINKS = [
     icon: (
       <IconAutoCamping
         className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
-        viewBox='0 0 28 28'
         fill='#555555'
+        viewBox='0 0 28 28'
       />
     ),
   },
@@ -60,7 +67,11 @@ const LINKS = [
     href: `/search?${createQueryString('캠프닉')}`,
     text: '캠프닉',
     icon: (
-      <IconCampnic viewBox='0 0 24 24' width='28' height='28' fill='#555555' />
+      <IconCampnic
+        viewBox='0 0 24 24'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
+        fill='#555555'
+      />
     ),
   },
   {
@@ -70,8 +81,7 @@ const LINKS = [
     icon: (
       <IconKidsCamping
         viewBox='0 0 24 24'
-        width='28'
-        height='28'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
         fill='#555555'
       />
     ),
@@ -87,7 +97,11 @@ const LINKS = [
     href: `/search?${createQueryString('차박')}`,
     text: '차박',
     icon: (
-      <IconChabak viewBox='0 0 24 24' width='28' height='28' fill='#555555' />
+      <IconChabak
+        viewBox='0 0 23 20'
+        className='h-28pxr w-28pxr mobile:h-24pxr mobile:w-24pxr'
+        fill='#555555'
+      />
     ),
   },
 ];

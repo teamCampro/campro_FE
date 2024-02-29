@@ -20,7 +20,7 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
               {imgUrls[0] && imgUrls[0] !== '' && (
                 <Image
                   priority
-                  className='aspect-580/398 cursor-pointer rounded-l-2xl transition-all hover:brightness-[0.7] tablet:aspect-688/398'
+                  className='cursor-pointer rounded-l-2xl transition-all hover:brightness-[0.7]'
                   fill
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
@@ -38,7 +38,7 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                         width={256}
                         height={192}
                         key={imgUrl + i}
-                        className={`flex aspect-256/192 w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 1 ? 'rounded-tr-2xl' : ''} ${i === 3 ? 'rounded-br-2xl' : ''}`}
+                        className={`flex w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 1 ? 'rounded-tr-2xl' : ''} ${i === 3 ? 'rounded-br-2xl' : ''}`}
                         src={imgUrl}
                         alt={`${imgUrl}`}
                       />
