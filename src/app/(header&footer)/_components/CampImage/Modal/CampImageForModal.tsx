@@ -52,7 +52,7 @@ function CampImageForModal({
           className='!flex w-full items-start rounded-b-2xl !py-16pxr !pl-16pxr !pr-4pxr first-line:bg-white'
           slidesPerView='auto'
         >
-          {imgUrls.slice(0, Number(imgUrls.length)).map(
+          {imgUrls.map(
             (imgUrl, i) =>
               imgUrl && (
                 <SwiperSlide key={imgUrl + i} className='mr-12pxr'>

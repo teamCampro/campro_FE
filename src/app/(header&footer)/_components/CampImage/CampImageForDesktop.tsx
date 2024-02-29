@@ -11,16 +11,17 @@ interface Props {
 }
 
 function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
+  console.log(imgUrls);
   return (
     <>
       {imgUrls && (
         <div className='relative flex w-full max-w-1360pxr'>
-          <div className='grid h-auto w-full grid-cols-2  gap-12pxr'>
+          <div className='grid w-full grid-cols-2  gap-12pxr'>
             <div className='relative flex h-full w-full'>
               {imgUrls[0] && imgUrls[0] !== '' && (
                 <Image
                   priority
-                  className='cursor-pointer rounded-l-2xl transition-all hover:brightness-[0.7]'
+                  className='cursor-pointer rounded-l-2xl transition-all '
                   fill
                   src={imgUrls[0]}
                   alt={`${imgUrls[0]}`}
@@ -28,22 +29,19 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
               )}
             </div>
             <div className='grid w-full grid-cols-2 gap-12pxr'>
-              {imgUrls
-                .slice(1, 5)
-                .map(
-                  (imgUrl, i) =>
-                    imgUrl && (
-                      <Image
-                        priority
-                        width={256}
-                        height={192}
-                        key={imgUrl + i}
-                        className={`flex h-full w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 1 ? 'rounded-tr-2xl' : ''} ${i === 3 ? 'rounded-br-2xl' : ''}`}
-                        src={imgUrl}
-                        alt={`${imgUrl}`}
-                      />
-                    ),
-                )}
+              {imgUrls.map((imgUrl, i) =>
+                imgUrl && i < 5 && i > 0 ? (
+                  <Image
+                    priority
+                    width={256}
+                    height={192}
+                    key={imgUrl + i}
+                    className={`flex h-full w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 2 ? 'rounded-tr-2xl' : ''} ${i === 4 ? 'rounded-br-2xl' : ''}`}
+                    src={imgUrl}
+                    alt={`${imgUrl}`}
+                  />
+                ) : null,
+              )}
             </div>
           </div>
           <button
