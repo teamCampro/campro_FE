@@ -27,23 +27,23 @@ function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
                 />
               )}
             </div>
-            <div className='grid w-full grid-cols-2 gap-12pxr'>
-              {imgUrls
-                .slice(1, 5)
-                .map(
-                  (imgUrl, i) =>
-                    imgUrl && (
+            <div className='grid h-full w-full grid-cols-2 gap-12pxr'>
+              {imgUrls.map(
+                (imgUrl, i) =>
+                  imgUrl &&
+                  i >= 1 &&
+                  i < 5 && (
+                    <div className='relative h-full w-full' key={imgUrl + i}>
                       <Image
                         priority
-                        width={256}
-                        height={192}
-                        key={imgUrl + i}
+                        fill
                         className={`flex h-full w-full cursor-pointer object-cover hover:brightness-[0.7] ${i === 1 ? 'rounded-tr-2xl' : ''} ${i === 3 ? 'rounded-br-2xl' : ''}`}
                         src={imgUrl}
                         alt={`${imgUrl}`}
                       />
-                    ),
-                )}
+                    </div>
+                  ),
+              )}
             </div>
           </div>
           <button
