@@ -46,6 +46,7 @@ function Hero({ searchParams }: SearchParamsType) {
           width={1200}
           height={468}
           src={heroImage}
+          priority
           alt='히어로 이미지'
         />
         <div className='flex-center absolute top-64pxr flex-col gap-28pxr mobile:top-62pxr'>
