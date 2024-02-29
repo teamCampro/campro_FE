@@ -123,9 +123,9 @@ function Question() {
   if (questions.length < 1) return <Loading />;
 
   return (
-    <div className='flex-center custom-height bg-gray100 pb-16pxr pt-108pxr mobile:items-start mobile:pt-40pxr'>
+    <div className='flex-center custom-height items-start  pb-16pxr pt-108pxr mobile:items-start mobile:pt-40pxr '>
       {isAnswering ? (
-        <div className='flex-center flex-col gap-48pxr'>
+        <div className='flex-center flex-col gap-48pxr '>
           <Pagination
             currentPage={currentPage}
             totalItems={totalItems}
@@ -152,12 +152,12 @@ function Question() {
             <p className='mb-64pxr text-gray600 font-body2'>
               취향에 맞는 캠핑장을 보여드릴게요!
             </p>
-
             <Image
-              src='/gifs/campro_loading.gif'
-              width={150}
-              height={150}
+              src='/gifs/loading.gif'
+              width={700}
+              height={700}
               alt='로딩 이미지'
+              className='-m-100pxr'
             />
           </div>
         </div>
