@@ -118,7 +118,7 @@ body {
 }
 
 .custom-height {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 81px);
 }
 .custom-gradient {
   background: linear-gradient(

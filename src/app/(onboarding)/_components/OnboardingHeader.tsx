@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 function OnBoardingHeader() {
   return (
-    <nav className='mobile:w-full mobile:border-b mobile:border-gray200'>
+    <nav className='border-b border-gray200 bg-white mobile:w-full'>
       <div className='custom-header m-auto grid h-80pxr max-w-1440pxr items-center px-40pxr mobile:h-52pxr mobile:gap-1pxr mobile:px-20pxr mobile:py-0pxr'>
         <div className=' custom-header-logo flex items-center justify-center gap-15pxr '>
           <Link href='/'>
