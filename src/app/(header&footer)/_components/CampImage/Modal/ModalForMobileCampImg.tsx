@@ -25,6 +25,7 @@ function ModalForMobileCampImg({
                     <Image
                       width={138}
                       height={138}
+                      priority
                       className='flex min-h-138pxr w-full min-w-138pxr cursor-pointer object-cover object-center hover:brightness-[0.7]'
                       src={imgUrl}
                       alt={`${imgUrl}`}

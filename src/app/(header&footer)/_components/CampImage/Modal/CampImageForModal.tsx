@@ -39,6 +39,7 @@ function CampImageForModal({
               <Image
                 className='flex w-full cursor-pointer hover:brightness-[0.7]'
                 src={mainImage}
+                priority
                 fill
                 alt='메인 캠프 이미지'
                 style={{ objectFit: 'cover' }}
@@ -59,6 +60,7 @@ function CampImageForModal({
                   <Image
                     className={`${mainImage === imgUrl ? 'border-[3px] border-green-500' : 'border-white'} flex  w-full  rounded-[12px] border object-cover hover:brightness-[0.7]`}
                     src={imgUrl}
+                    priority
                     alt={`camp-image${i}`}
                     fill
                     onClick={() => handleClickImage(imgUrl)}
