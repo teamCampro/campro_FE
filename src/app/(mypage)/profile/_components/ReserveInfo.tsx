@@ -122,7 +122,7 @@ function ReserveInfo({ getDetailReserve, reserveId }: ReserveInfoType) {
   const handleModal = () => {
     setIsClose(!isClose);
   };
-  console.log('킹갓대호대호', carInfo);
+
   return (
     <>
       <div className='flex-center justify-between tabletMin:mb-32pxr'>

@@ -3,7 +3,7 @@ import { CampZoneForSearch } from '../(header)/search/page';
 function createMapPosition(campPlaceData: CampZoneForSearch[]) {
   return campPlaceData?.map((data) => {
     const { lat, lng } = data;
-    console.log(campPlaceData);
+
     return {
       id: data.id,
       title: data.name,

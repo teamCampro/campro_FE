@@ -32,7 +32,6 @@ function CancleReserverModal({
       reserveId: number;
     }) => deleteReserve(Number(userId), reserveId),
     onSuccess: () => {
-      console.log('성공함', userId + '');
       queryClient.invalidateQueries({
         queryKey: ['userReserve', userId + '', null],
       });
