@@ -26,8 +26,6 @@ function Page() {
     patchFetch();
   }, []);
 
-  console.log(data);
-
   return <></>;
 }
 

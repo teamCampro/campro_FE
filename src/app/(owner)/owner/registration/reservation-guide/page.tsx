@@ -141,7 +141,7 @@ function ReservationGuidePage() {
           month,
           0,
         ).getDate();
-        console.log(month, checkNext);
+
         if (checkNext < day) return false;
       }
       return true;
@@ -149,9 +149,7 @@ function ReservationGuidePage() {
 
     const next = nextPeriod(openPeriodDay.day);
     if (!next) {
-      console.log(`삐뽀삐뽀 다음 주기 ${openPeriodDay.day}이 없음`);
     } else {
-      console.log('있음');
     }
   }, [openPeriodDay]);
 

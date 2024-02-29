@@ -21,7 +21,7 @@ interface SearchParamsType {
 
 async function Page({ params }: SearchParamsType) {
   const reserveData = await getReservationInfo(params.siteId);
-  console.log(reserveData.result);
+
   return (
     <>
       <h2 className='text-block flex-center relative p-16pxr font-title3-semibold tabletMin:hidden tabletMin:font-h1-semibold'>

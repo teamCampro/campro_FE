@@ -18147,4 +18147,3 @@ const makeRevertations = () => {
   }
   return revertations;
 };
-console.log(JSON.stringify(makeRevertations()));

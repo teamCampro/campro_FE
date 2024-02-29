@@ -136,7 +136,7 @@ const getFirstRecommendList = async (db: any, userId: string | null) => {
   const [userInfoRow] = await db.execute(selectUserInfoQuery, [userId]);
 
   const userInfo: any = userInfoRow;
-  console.log(userInfo);
+
   const userOnboardingKeyword = JSON.parse(userInfo[0].onboarding_keyword);
 
   if (!userOnboardingKeyword) {
@@ -195,7 +195,6 @@ const getSecondRecommendList = async (db: any, userId: string | null) => {
 
   let userOnboardingKeywordRandom = '';
 
-  console.log(userOnboardingKeywordRandom);
   /*  console.log(userOnboardingKeyword[0]); */
 
   const [recommendFirstList] = await db.execute(

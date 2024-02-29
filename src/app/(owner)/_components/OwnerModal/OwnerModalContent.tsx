@@ -48,7 +48,6 @@ function OwnerModalContent({ reservationDetailInfo }: Props) {
     selectedAdditionalOptionResult,
   } = reservationDetailInfo;
 
-  console.log(reservationDetailInfo);
   const date = String(new Date(reservedAt));
   const formattedReservedAt = formattedDate(date);
   const newDate = new Date();
