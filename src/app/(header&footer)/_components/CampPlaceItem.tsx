@@ -68,9 +68,9 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
         </Link>
         <button
           type='button'
-          className='absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-white bg-opacity-60 fill-gray100 p-7pxr mobile:h-28pxr mobile:w-28pxr'
+          className='group absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-gray800 bg-opacity-50 fill-gray100 p-7pxr hover:bg-white hover:bg-opacity-60 mobile:h-28pxr mobile:w-28pxr'
         >
-          <IconColoredHeart className='fill-none stroke-gray100 hover:fill-primary100 hover:stroke-primary100' />
+          <IconColoredHeart className='fill-none stroke-gray100 group-hover:fill-primary100 group-hover:stroke-primary100' />
         </button>
       </div>
       <div className='flex flex-col gap-2pxr'>
