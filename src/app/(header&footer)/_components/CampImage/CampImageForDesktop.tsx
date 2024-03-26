@@ -11,7 +11,6 @@ interface Props {
 }
 
 function CampImageForDesktop({ imgUrls, isOpen, onOpen, onClose }: Props) {
-  console.log(imgUrls);
   return (
     <>
       {imgUrls && (
