@@ -61,16 +61,16 @@ function CampPlaceItem({ campPlace, isResponsive = false }: Props) {
               width: '100%',
               height: 'auto',
             }}
-            className={`rounded-3xl ${aspectClasses} aspect-340/220 transition-all hover:brightness-[0.7] mobile:aspect-square`}
+            className={`rounded-2xl ${aspectClasses} aspect-340/220 transition-all hover:brightness-[0.7] mobile:aspect-square`}
             src={campPlace.campImage}
             alt='캠핑장 이미지'
           />
         </Link>
         <button
           type='button'
-          className='absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-gray800 bg-opacity-50 fill-gray100 p-7pxr mobile:h-28pxr mobile:w-28pxr'
+          className='group absolute bottom-16pxr right-16pxr h-34pxr w-34pxr rounded-full bg-gray800 bg-opacity-50 fill-gray100 p-7pxr hover:bg-white hover:bg-opacity-60 mobile:h-28pxr mobile:w-28pxr'
         >
-          <IconColoredHeart className='fill-none stroke-gray100 hover:fill-primary100 hover:stroke-primary100' />
+          <IconColoredHeart className='fill-none stroke-gray100 group-hover:fill-primary100 group-hover:stroke-primary100' />
         </button>
       </div>
       <div className='flex flex-col gap-2pxr'>
