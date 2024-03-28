@@ -30,6 +30,13 @@
 <br/>
 <br/>
 
+## Wiki
+
+### <a href='https://github.com/teamCampro/campro_FE/wiki' target="_blank" rel="noopener noreferrer">Wiki로 바로가기</a>
+
+<br/>
+<br/>
+
 ## 팀원 소개
 
 | <a href="https://github.com/aowjarkwk"> <img src='https://avatars.githubusercontent.com/u/83692053?v=4' width=150px height=150px></a> | <a href="https://github.com/lsc58461"><img src='https://avatars.githubusercontent.com/u/79037820?v=4' width=150px height=150px></a> | <a href="https://github.com/minhyeokG0"><img src='https://avatars.githubusercontent.com/u/144667681?v=4' width=150px height=150px></a> | <a href="https://github.com/wecaners"><img src='https://avatars.githubusercontent.com/u/90304025?v=4' width=150px height=150px></a> | <a href="https://github.com/namminimi"><img src='https://avatars.githubusercontent.com/u/111848336?v=4' width=150px height=150px></a> |
